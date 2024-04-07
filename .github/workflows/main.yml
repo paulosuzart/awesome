@@ -3,6 +3,10 @@ on:
   schedule:
   - cron: 30 0 * * 0
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   starred_ml:
     runs-on: ubuntu-latest
@@ -19,7 +23,10 @@ jobs:
 
       - run: opam install starred_ml
 
-      - run: TOKEN=${GITHUB_TOKEN} opam exec -- starred_ml > README.md
+      - name: Generate awesome README
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: opam exec -- starred_ml > README.md
         working-directory: ${{ github.event.repository.name }}
   
   
@@ -27,6 +34,5 @@ jobs:
         with:
           commit-message: ${{ github.event.repository.updated_at}} starred_ml update
           title: ${{ github.run_number }} starred_ml update
-          name: starred_ml-update
           branch-suffix: short-commit-hash
           path: ${{ github.event.repository.name }}
