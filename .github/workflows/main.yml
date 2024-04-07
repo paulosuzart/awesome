@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Checkout tree
         uses: actions/checkout@v4
+        path: ${{ github.event.repository.name }}
   
       - name: Set-up OCaml
         uses: ocaml/setup-ocaml@v2
@@ -18,10 +19,13 @@ jobs:
       - run: opam install starred_ml
 
       - run: TOKEN=${GITHUB_TOKEN} opam exec -- starred_ml > README.md
-
+        working-directory: ${{ github.event.repository.name }}
+  
+  
       - uses: peter-evans/create-pull-request@v6
         with:
-          message: ${{ github.event.repository.updated_at}} starred_ml update
+          commit-message: ${{ github.event.repository.updated_at}} starred_ml update
           title: ${{ github.run_number }} starred_ml update
           name: starred_ml-update
           branch-suffix: short-commit-hash
+          path: ${{ github.event.repository.name }}
