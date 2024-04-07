@@ -1,6 +1,9 @@
 Awesome Stars
 ===
 
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
+
 > My curated list of Github starts! Geberated by [starred_ml](https://github.com/paulosuzart/starred_ml)
 
 This is also a repository template to be used with [starred_ml](https://github.com/paulosuzart/starred_ml). It includes:
