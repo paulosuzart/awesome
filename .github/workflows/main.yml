@@ -25,4 +25,5 @@ jobs:
         with:
           message: ${{ github.event.repository.updated_at}} starred_ml update
           title: ${{ github.run_number }} starred_ml update
-          name: ${{ github.run_number }}-starred_ml-update
+          name: starred_ml-update
+          branch-suffix: short-commit-hash
