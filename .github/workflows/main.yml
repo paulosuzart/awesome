@@ -1,0 +1,28 @@
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: 30 0 * * *
+
+jobs:
+  starred_ml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tree
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.event.repository.name }}
+
+      - name: Set-up OCaml
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: '5.1.1'
+
+      - run: opam install starre_ml
+
+      - run: TOKEN=${GITHUB_TOKEN} starred_ml > README.md
+
+      - use: peter-evans/create-pull-request@v6
+        with:
+          message: ${{ github.event.repository.updated_at}} starred_ml update
+          title: ${{ GITHUB_RUN_NUMBER }} starred_ml update
+          name: ${{ GITHUB_RUN_NUMBER }}-starred_ml-update
