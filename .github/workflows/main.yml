@@ -9,9 +9,7 @@ jobs:
     steps:
       - name: Checkout tree
         uses: actions/checkout@v4
-        with:
-          path: ${{ github.event.repository.name }}
-
+  
       - name: Set-up OCaml
         uses: ocaml/setup-ocaml@v2
         with:
