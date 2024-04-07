@@ -19,7 +19,7 @@ jobs:
 
       - run: opam install starred_ml
 
-      - run: TOKEN=${GITHUB_TOKEN} starred_ml > README.md
+      - run: TOKEN=${GITHUB_TOKEN} opam exec -- starred_ml > README.md
 
       - uses: peter-evans/create-pull-request@v6
         with:
