@@ -17,7 +17,7 @@ jobs:
         with:
           ocaml-compiler: '5.1.1'
 
-      - run: opam install starre_ml
+      - run: opam install starred_ml
 
       - run: TOKEN=${GITHUB_TOKEN} starred_ml > README.md
 
