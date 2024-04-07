@@ -1,0 +1,47 @@
+.TH "Diffing.Defs" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing.Defs \- The core types of a diffing implementation
+.SH Module type
+Module type   Diffing.Defs
+.SH Documentation
+.sp
+Module type
+.BI "Defs"
+ = 
+.B sig end
+
+.sp
+The core types of a diffing implementation
+
+.sp
+
+.sp
+.sp
+.I type left 
+
+.sp
+
+.sp
+.I type right 
+
+.sp
+
+.sp
+.I type eq 
+
+.sp
+Detailed equality trace
+
+.sp
+.I type diff 
+
+.sp
+Detailed difference trace
+
+.sp
+.I type state 
+
+.sp
+environment of a partial patch
+
+.sp

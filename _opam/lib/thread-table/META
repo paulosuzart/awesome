@@ -1,0 +1,7 @@
+version = "1.0.0"
+description = ""
+requires = ""
+archive(byte) = "Thread_table.cma"
+archive(native) = "Thread_table.cmxa"
+plugin(byte) = "Thread_table.cma"
+plugin(native) = "Thread_table.cmxs"

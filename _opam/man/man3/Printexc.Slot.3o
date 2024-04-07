@@ -1,0 +1,192 @@
+.TH "Printexc.Slot" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Printexc.Slot \- no description
+.SH Module
+Module   Printexc.Slot
+.SH Documentation
+.sp
+Module
+.BI "Slot"
+ : 
+.B sig end
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.sp
+.sp
+.I type t 
+= 
+.B Printexc.backtrace_slot
+
+.sp
+
+.sp
+
+.I val is_raise 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_raise slot
+.ft R
+is 
+.ft B
+true
+.ft R
+when 
+.ft B
+slot
+.ft R
+refers to a raising
+point in the code, and 
+.ft B
+false
+.ft R
+when it comes from a simple
+function call\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val is_inline 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_inline slot
+.ft R
+is 
+.ft B
+true
+.ft R
+when 
+.ft B
+slot
+.ft R
+refers to a call
+that got inlined by the compiler, and 
+.ft B
+false
+.ft R
+when it comes from
+any other context\&.
+
+.sp
+.B "Since"
+4.04
+
+.sp
+
+.I val location 
+: 
+.B t -> Printexc.location option
+.sp
+
+.ft B
+location slot
+.ft R
+returns the location information of the slot,
+if available, and 
+.ft B
+None
+.ft R
+otherwise\&.
+.sp
+Some possible reasons for failing to return a location are as follow:
+.sp
+\-the slot corresponds to a compiler\-inserted raise
+.sp
+\-the slot corresponds to a part of the program that has not been
+compiled with debug information (
+.ft B
+\-g
+.ft R
+)
+
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val name 
+: 
+.B t -> string option
+.sp
+
+.ft B
+name slot
+.ft R
+returns the name of the function or definition
+enclosing the location referred to by the slot\&.
+.sp
+
+.ft B
+name slot
+.ft R
+returns None if the name is unavailable, which
+may happen for the same reasons as 
+.ft B
+location
+.ft R
+returning None\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val format 
+: 
+.B int -> t -> string option
+.sp
+
+.ft B
+format pos slot
+.ft R
+returns the string representation of 
+.ft B
+slot
+.ft R
+as
+.ft B
+raw_backtrace_to_string
+.ft R
+would format it, assuming it is the
+.ft B
+pos
+.ft R
+\-th element of the backtrace: the 
+.ft B
+0
+.ft R
+\-th element is
+pretty\-printed differently than the others\&.
+.sp
+Whole\-backtrace printing functions also skip some uninformative
+slots; in that case, 
+.ft B
+format pos slot
+.ft R
+returns 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp

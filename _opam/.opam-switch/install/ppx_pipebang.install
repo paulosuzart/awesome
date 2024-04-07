@@ -1,0 +1,24 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_pipebang/META"
+  "_build/install/default/lib/ppx_pipebang/dune-package"
+  "_build/install/default/lib/ppx_pipebang/opam"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.a"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.cma"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.cmi"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.cmt"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.cmti"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.cmx"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.cmxa"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.ml"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_pipebang/CHANGES.md"
+  "_build/install/default/doc/ppx_pipebang/LICENSE.md"
+  "_build/install/default/doc/ppx_pipebang/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_pipebang/ppx.exe"
+  "_build/install/default/lib/ppx_pipebang/ppx_pipebang.cmxs"
+]

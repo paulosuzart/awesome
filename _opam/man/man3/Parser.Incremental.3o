@@ -1,0 +1,132 @@
+.TH "Parser.Incremental" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Parser.Incremental \- no description
+.SH Module
+Module   Parser.Incremental
+.SH Documentation
+.sp
+Module
+.BI "Incremental"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val use_file 
+: 
+.B Lexing.position ->
+.B   Parsetree.toplevel_phrase list Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val toplevel_phrase 
+: 
+.B Lexing.position ->
+.B   Parsetree.toplevel_phrase Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_val_longident 
+: 
+.B Lexing.position -> Longident.t Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_pattern 
+: 
+.B Lexing.position ->
+.B   Parsetree.pattern Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_mty_longident 
+: 
+.B Lexing.position -> Longident.t Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_module_type 
+: 
+.B Lexing.position ->
+.B   Parsetree.module_type Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_module_expr 
+: 
+.B Lexing.position ->
+.B   Parsetree.module_expr Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_mod_longident 
+: 
+.B Lexing.position -> Longident.t Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_mod_ext_longident 
+: 
+.B Lexing.position -> Longident.t Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_expression 
+: 
+.B Lexing.position ->
+.B   Parsetree.expression Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_core_type 
+: 
+.B Lexing.position ->
+.B   Parsetree.core_type Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_constr_longident 
+: 
+.B Lexing.position -> Longident.t Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val parse_any_longident 
+: 
+.B Lexing.position -> Longident.t Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val interface 
+: 
+.B Lexing.position ->
+.B   Parsetree.signature Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp
+
+.I val implementation 
+: 
+.B Lexing.position ->
+.B   Parsetree.structure Parser.MenhirInterpreter.checkpoint
+.sp
+
+.sp

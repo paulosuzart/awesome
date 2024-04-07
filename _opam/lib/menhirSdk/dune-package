@@ -1,0 +1,87 @@
+(lang dune 3.15)
+(name menhirSdk)
+(version 20231231)
+(sections (lib .) (libexec .) (doc ../../doc/menhirSdk))
+(files
+ (lib
+  (META
+   cmly_api.ml
+   cmly_format.ml
+   cmly_read.ml
+   cmly_read.mli
+   dune-package
+   keyword.ml
+   keyword.mli
+   menhirSdk.a
+   menhirSdk.cma
+   menhirSdk.cmi
+   menhirSdk.cmt
+   menhirSdk.cmx
+   menhirSdk.cmxa
+   menhirSdk.ml
+   menhirSdk__Cmly_api.cmi
+   menhirSdk__Cmly_api.cmt
+   menhirSdk__Cmly_api.cmx
+   menhirSdk__Cmly_format.cmi
+   menhirSdk__Cmly_format.cmt
+   menhirSdk__Cmly_format.cmx
+   menhirSdk__Cmly_read.cmi
+   menhirSdk__Cmly_read.cmt
+   menhirSdk__Cmly_read.cmti
+   menhirSdk__Cmly_read.cmx
+   menhirSdk__Keyword.cmi
+   menhirSdk__Keyword.cmt
+   menhirSdk__Keyword.cmti
+   menhirSdk__Keyword.cmx
+   menhirSdk__Version.cmi
+   menhirSdk__Version.cmt
+   menhirSdk__Version.cmx
+   version.ml))
+ (libexec (menhirSdk.cmxs))
+ (doc (LICENSE)))
+(library
+ (name menhirSdk)
+ (kind normal)
+ (synopsis "Toolkit for postprocessing Menhir automata (.cmly files)")
+ (archives (byte menhirSdk.cma) (native menhirSdk.cmxa))
+ (plugins (byte menhirSdk.cma) (native menhirSdk.cmxs))
+ (native_archives menhirSdk.a)
+ (main_module_name MenhirSdk)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name menhirSdk)
+     (visibility public)
+     (kind alias)
+     (source (path MenhirSdk) (impl (path menhirSdk.ml-gen))))
+    (name MenhirSdk)
+    (modules
+     (module
+      (obj_name menhirSdk__Cmly_api)
+      (visibility public)
+      (source (path Cmly_api) (impl (path cmly_api.ml))))
+     (module
+      (obj_name menhirSdk__Cmly_format)
+      (visibility public)
+      (source (path Cmly_format) (impl (path cmly_format.ml))))
+     (module
+      (obj_name menhirSdk__Cmly_read)
+      (visibility public)
+      (source
+       (path Cmly_read)
+       (intf (path cmly_read.mli))
+       (impl (path cmly_read.ml))))
+     (module
+      (obj_name menhirSdk__Keyword)
+      (visibility public)
+      (source
+       (path Keyword)
+       (intf (path keyword.mli))
+       (impl (path keyword.ml))))
+     (module
+      (obj_name menhirSdk__Version)
+      (visibility public)
+      (source (path Version) (impl (path version.ml))))))
+   (wrapped true))))

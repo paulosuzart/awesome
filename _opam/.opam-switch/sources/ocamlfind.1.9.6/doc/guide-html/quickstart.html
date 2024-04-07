@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"><!-- WARNING! This is a generated file, do not edit! -->
+<html><header><title>
+QUICKSTART - The most important ways to use findlib</title></header>
+<body bgcolor="white" text="black" >
+<table bgcolor="lightgrey" width="100%" 
+                 cellspacing="0" border="0" cellpadding="10">
+<tr><td align="left">&nbsp;</td>
+<td align="center"><a href="../..">up</a></td>
+<td align="right">&nbsp;</td>
+</tr></table><hr><h1>QUICKSTART - The most important ways to use findlib</h1>
+<h1>
+Intro
+</h1><p>
+See the file INSTALL for instructions how to build and install
+findlib.
+</p><h1>
+Findlib and the toploop
+</h1><p>
+For a number of platforms, OCaml can load bytecode-compiled
+libraries dynamically. For these platforms, findlib is very simple to
+use as explained in the following. For other platforms, see the paragraph
+below about &quot;custom toploops&quot;.
+</p><p>
+After the toploop has been started, it is possible to load the special
+findlib support&#58;<a name="textnote1" href="#footnote1">[1]</a>
+
+<p><pre>
+$ ocaml
+        Objective Caml version 3.07
+
+# #use &quot;topfind&quot;;;
+Findlib has been successfully loaded. Additional directives&#58;
+  #require &quot;package&quot;;;      to load a package
+  #list;;                   to list the available packages
+  #camlp4o;;                to load camlp4 (standard syntax)
+  #camlp4r;;                to load camlp4 (revised syntax)
+  #predicates &quot;p,q,...&quot;;;   to set these predicates
+  Topfind.reset();;         to force that packages will be reloaded
+  #thread;;                 to enable threads
+
+- &#58; unit = ()
+</pre></p>
+
+You can now list the available packages&#58;
+
+<p><pre>
+# #list;;
+bigarray            (version&#58; [distributed with Ocaml])
+camlp4              (version&#58; Camlp4 version 3.03 ALPHA)
+dbm                 (version&#58; [distributed with Ocaml])
+dynlink             (version&#58; [distributed with Ocaml])
+findlib             (version&#58; 0.6)
+graphics            (version&#58; [distributed with Ocaml])
+labltk              (version&#58; [distributed with Ocaml])
+netstring           (version&#58; 0.10)
+num                 (version&#58; [distributed with Ocaml])
+stdlib              (version&#58; [distributed with Ocaml])
+str                 (version&#58; [distributed with Ocaml])
+threads             (version&#58; [distributed with Ocaml])
+unix                (version&#58; [distributed with Ocaml])
+xstrp4              (version&#58; 1.1)
+</pre></p>
+
+and load packages by simply typing&#58;
+
+<p><pre>
+# #require &quot;netstring&quot;;;
+Loading /opt/ocaml/lib/unix.cma
+Loading /opt/ocaml/lib/str.cma
+Loading /opt/ocaml/site-lib/netstring/netstring.cma
+Loading /opt/ocaml/site-lib/netstring/netstring_top.cmo
+</pre></p>
+
+Findlib takes care to load packages that are required by loaded packages
+first. For example, &quot;netstring&quot; uses &quot;unix&quot; and &quot;str&quot; internally, but you
+do not need to load them because findlib does it for you. In this example
+you can also see that findlib loads netstring_top.cmo containing printers
+for the toploop.
+</p><p>
+You can also enable the Camlp4 parsers by simply typing
+
+<p><pre>
+# #camlp4o;;
+Loading /opt/ocaml-3.03a/lib/camlp4/camlp4o.cma
+        Camlp4 Parsing version 3.03 ALPHA
+</pre></p>
+
+for the standard syntax or
+
+<p><pre>
+# #camlp4r;;
+Loading /opt/ocaml-3.03a/lib/camlp4/camlp4r.cma
+        Camlp4 Parsing version 3.03 ALPHA
+</pre></p>
+
+for the revised syntax. (But you cannot switch between the syntaxes.)
+
+</p><h1>
+Custom Toploops
+</h1><p>
+For some platforms, OCaml does not implement loading external
+libraries (e.g. Cygwin). One has to create a so-called custom toploop
+that statically links with these libraries. Example&#58;
+
+<p><pre>
+$ ocamlfind ocamlmktop -o mytop -package findlib,unix -linkpkg
+$ ./mytop
+        Objective Caml version 3.07
+ 
+# #use &quot;topfind&quot;;;
+Findlib has been successfully loaded. Additional directives&#58;
+  #require &quot;package&quot;;;      to load a package
+  #list;;                   to list the available packages
+  #camlp4o;;                to load camlp4 (standard syntax)
+  #camlp4r;;                to load camlp4 (revised syntax)
+  #predicates &quot;p,q,...&quot;;;   to set these predicates
+  Topfind.reset();;         to force that packages will be reloaded
+  #thread;;                 to enable threads
+
+- &#58; unit = ()
+</pre></p>
+
+Now &quot;#require&quot; works for all libraries referring to the special &quot;unix&quot;
+functions.
+
+</p><h1>
+Findlib and scripts
+</h1><p>
+The #require directive can also be used in scripts. Example&#58;
+
+<p><pre>
+#use &quot;topfind&quot;;;
+#require &quot;netstring&quot;;;
+
+open Cgi;;
+...
+</pre></p>
+
+This makes it possible to write scripts that do not contain #directory
+directives that are specific for certain installations.
+</p><p>
+For Unix environments, you can start scripts directly if you
+apply the following trick&#58;
+
+<p><pre>
+#! /bin/sh
+# (*
+exec ocaml &quot;$0&quot; &quot;$&#64;&quot;
+*) use &quot;topfind&quot;;;
+#require &quot;netstring&quot;;;
+
+open Cgi;;
+...
+</pre></p>
+
+This works wherever OCaml is installed.
+</p><h1>
+Compiling programs
+</h1><p>
+Assumed you want to compile a program that uses the Netstring package.
+Do it the following way&#58;
+
+<p><pre>
+$ ocamlfind ocamlc -package netstring -c myprogram.ml
+</pre></p>
+
+This way you do not need to add &quot;-I&quot; options to locate Netstring.
+</p><p>
+If you want to create an executable, do not forget to add the
+-linkpkg switch&#58;
+
+<p><pre>
+$ ocamlfind ocamlc -o myprogram -package netstring -linkpkg myprogram.cmo
+</pre></p>
+
+This switch causes that the mentioned packages are added to the resulting
+executable.
+</p><p>
+If you want to include several packages, you can either add several
+&quot;-package&quot; options, or you can enumerate the packages separated by commas&#58;
+-package netstring,labltk.
+</p><h1>
+Camlp4
+</h1><p>
+If you add a -syntax option, the compiler will be told to parse the
+source file using camlp4&#58;
+
+<p><pre>
+$ ocamlfind ocamlc -package netstring -syntax camlp4o -c myprogram.ml
+</pre></p>
+
+Use -syntax camlp4o for the standard syntax or -syntax camlp4r for the
+revised syntax.
+</p><p>
+Additionally, you can mention packages that add new syntax features.
+The package xstrp4 is an example of this&#58;
+
+<p><pre>
+$ ocamlfind ocamlc -package xstrp4,netstring -syntax camlp4o -c myprogram.ml
+</pre></p>
+
+Now you can use the $ notation that is implemented by xstrp4 in the
+source file myprogram.ml.
+</p><p>
+Note that you can also invoke ocamldep from ocamlfind&#58;
+
+<p><pre>
+$ ocamlfind ocamldep -package xstrp4 -syntax camlp4o *.ml *.mli &gt;.depend
+</pre></p>
+
+This enables the syntax extensions, too.
+</p><h1>
+ocamlbrowser
+</h1><p>
+Since findlib-0.7, it is also possible to start ocamlbrowser from
+ocamlfind. For example,
+
+<p><pre>
+$ ocamlfind browser -package xstrp4
+</pre></p>
+
+adds the correct path specification such that the modules contained in the
+package xstrp4 are also displayed. With
+
+<p><pre>
+$ ocamlfind browser -all
+</pre></p>
+
+all package are added to the path spec.
+
+</p><h1>
+The Makefile wizard
+</h1><p>
+There is a wizard that makes it very easy to write Makefiles. Call the
+wizard by
+<p><pre>
+$ ocamlfind findlib/make_wizard
+</pre></p>
+(the wizard requires that the labltk library is available). A new window
+pops up, and by very few clicks you can describe your own library. Finally,
+a Makefile is written.
+
+</p><h1>
+There is no magic!
+</h1><p>
+Findlib is neither a patch of OCaml nor uses it internal features of
+the OCaml programming environment. It is only a convention to install
+software components in filesystem hierarchies, a library interpreting 
+this convention, and some frontend applications making the library useable for
+you.
+</p><p>
+One important consequence is that you can only refer to those
+software components that have previously been installed in a way findlib
+understands. This convention is beyond the scope of this QUICKSTART guide,
+see the reference manual for details. You can always check whether findlib
+accepts a component as &quot;findlib package&quot; by the command
+
+<p><pre>
+$ ocamlfind list
+</pre></p>
+
+(this is the same as the #list directive in the toploop). If the package
+occurs in the list, it is found, otherwise not.
+</p><hr align=left noshade=noshade width="30%">
+<dl>
+<dt><a name="footnote1" href="#textnote1">[1]</a></dt>
+<dd>In previous versions, #use &quot;findlib&quot; loaded the
+library. However, this caused a name conflict for a certain type of
+installation. Because of this, the name of the loader script has been changed
+to &quot;topfind&quot;, but &quot;findlib&quot;, and &quot;ocamlfind&quot; (Debian) are also available
+for backwards compatibility.
+</dd></dl>
+<hr><table bgcolor="lightgrey" width="100%" 
+                 cellspacing="0" border="0" cellpadding="10">
+<tr><td align="left">&nbsp;</td>
+<td align="center"><a href="../..">up</a></td>
+<td align="right">&nbsp;</td>
+</tr></table></html>

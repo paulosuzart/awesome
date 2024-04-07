@@ -1,0 +1,35 @@
+(lang dune 3.15)
+(name ppx_derivers)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_derivers))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_derivers.a
+   ppx_derivers.cma
+   ppx_derivers.cmi
+   ppx_derivers.cmt
+   ppx_derivers.cmti
+   ppx_derivers.cmx
+   ppx_derivers.cmxa
+   ppx_derivers.ml
+   ppx_derivers.mli))
+ (libexec (ppx_derivers.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_derivers)
+ (kind normal)
+ (archives (byte ppx_derivers.cma) (native ppx_derivers.cmxa))
+ (plugins (byte ppx_derivers.cma) (native ppx_derivers.cmxs))
+ (native_archives ppx_derivers.a)
+ (main_module_name Ppx_derivers)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_derivers)
+   (visibility public)
+   (source
+    (path Ppx_derivers)
+    (intf (path ppx_derivers.mli))
+    (impl (path ppx_derivers.ml))))))

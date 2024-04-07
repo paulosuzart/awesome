@@ -1,0 +1,24 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/jane-street-headers/META"
+  "_build/install/default/lib/jane-street-headers/core_params.h"
+  "_build/install/default/lib/jane-street-headers/dune-package"
+  "_build/install/default/lib/jane-street-headers/jane_common.h"
+  "_build/install/default/lib/jane-street-headers/jane_street_headers.a"
+  "_build/install/default/lib/jane-street-headers/jane_street_headers.cma"
+  "_build/install/default/lib/jane-street-headers/jane_street_headers.cmi"
+  "_build/install/default/lib/jane-street-headers/jane_street_headers.cmt"
+  "_build/install/default/lib/jane-street-headers/jane_street_headers.cmx"
+  "_build/install/default/lib/jane-street-headers/jane_street_headers.cmxa"
+  "_build/install/default/lib/jane-street-headers/jane_street_headers.ml"
+  "_build/install/default/lib/jane-street-headers/ocaml_utils.h"
+  "_build/install/default/lib/jane-street-headers/ocaml_utils_macros.h"
+  "_build/install/default/lib/jane-street-headers/opam"
+  "_build/install/default/lib/jane-street-headers/unix_utils.h"
+]
+doc: [
+  "_build/install/default/doc/jane-street-headers/LICENSE.md"
+  "_build/install/default/doc/jane-street-headers/README.org"
+]
+libexec:
+  "_build/install/default/lib/jane-street-headers/jane_street_headers.cmxs"

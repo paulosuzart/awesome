@@ -1,0 +1,105 @@
+(lang dune 3.15)
+(name dune-configurator)
+(version 3.15.0)
+(sections (lib .) (libexec .) (doc ../../doc/dune-configurator))
+(files
+ (lib
+  (.private/configurator__Dune_lang.cmi
+   .private/configurator__Dune_lang.cmt
+   .private/configurator__Dune_lang.cmti
+   .private/configurator__Import.cmi
+   .private/configurator__Import.cmt
+   .private/configurator__Ocaml_config.cmi
+   .private/configurator__Ocaml_config.cmt
+   .private/configurator__Ocaml_config.cmti
+   META
+   configurator.a
+   configurator.cma
+   configurator.cmi
+   configurator.cmt
+   configurator.cmx
+   configurator.cmxa
+   configurator.ml
+   configurator__.cmi
+   configurator__.cmt
+   configurator__.cmx
+   configurator__.ml
+   configurator__Dune_lang.cmx
+   configurator__Extract_obj.cmi
+   configurator__Extract_obj.cmt
+   configurator__Extract_obj.cmti
+   configurator__Extract_obj.cmx
+   configurator__Import.cmx
+   configurator__Ocaml_config.cmx
+   configurator__V1.cmi
+   configurator__V1.cmt
+   configurator__V1.cmti
+   configurator__V1.cmx
+   dune-package
+   dune_lang.ml
+   dune_lang.mli
+   extract_obj.ml
+   extract_obj.mli
+   import.ml
+   ocaml_config.ml
+   ocaml_config.mli
+   opam
+   v1.ml
+   v1.mli))
+ (libexec (configurator.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md odoc-pages/index.mld)))
+(library
+ (name dune-configurator)
+ (kind normal)
+ (archives (byte configurator.cma) (native configurator.cmxa))
+ (plugins (byte configurator.cma) (native configurator.cmxs))
+ (native_archives configurator.a)
+ (requires unix csexp)
+ (main_module_name Configurator)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name configurator__)
+     (visibility public)
+     (kind alias)
+     (source (path Configurator__) (impl (path configurator__.ml-gen))))
+    (name Configurator)
+    (modules
+     (module
+      (obj_name configurator)
+      (visibility public)
+      (source (path Configurator) (impl (path configurator.ml))))
+     (module
+      (obj_name configurator__Dune_lang)
+      (visibility private)
+      (source
+       (path Dune_lang)
+       (intf (path dune_lang.mli))
+       (impl (path dune_lang.ml))))
+     (module
+      (obj_name configurator__Extract_obj)
+      (visibility public)
+      (source
+       (path Extract_obj)
+       (intf (path extract_obj.mli))
+       (impl (path extract_obj.ml))))
+     (module
+      (obj_name configurator__Import)
+      (visibility private)
+      (source (path Import) (impl (path import.ml))))
+     (module
+      (obj_name configurator__Ocaml_config)
+      (visibility private)
+      (source
+       (path Ocaml_config)
+       (intf (path ocaml_config.mli))
+       (impl (path ocaml_config.ml))))
+     (module
+      (obj_name configurator__V1)
+      (visibility public)
+      (source (path V1) (intf (path v1.mli)) (impl (path v1.ml))))))
+   (wrapped true)))
+ (special_builtin_support (configurator (api_version 1))))

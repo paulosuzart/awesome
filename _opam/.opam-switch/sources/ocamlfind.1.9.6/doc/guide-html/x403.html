@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Change your Makefile</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="How to create your own packages"
+HREF="c395.html"><LINK
+REL="PREVIOUS"
+TITLE="How to create your own packages"
+HREF="c395.html"><LINK
+REL="NEXT"
+TITLE="Using the Makefile wizard"
+HREF="x421.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c395.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 6. How to create your own packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x421.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN403"
+>Change your Makefile</A
+></H1
+><P
+>Here is a commented version of a Makefile that may be used to compile
+and link a package. It describes the frequent case that the package
+simply consists of a bundle of modules that are dependent on other
+packages.</P
+><P
+>First, some general definitions. NAME is the name of the package.  The
+OBJECTS variable enumerates the bytecode objects, whereas XOBJECTS
+names the native objects. The same naming convention is used for
+ARCHIVE and XARCHIVE, specifying the resulting bytecode, resp. native
+archive file. The REQUIRES variable lists the names of the packages
+that are needed for this package.  If you need additional predicates,
+put them into the PREDICATES variable.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>NAME     = p
+
+OCAMLC   = ocamlfind ocamlc
+OCAMLOPT = ocamlfind ocamlopt
+OCAMLDEP = ocamldep
+
+OBJECTS  = p1.cmo p2.cmo
+XOBJECTS = p1.cmx p2.cmx
+
+ARCHIVE  = $(NAME).cma
+XARCHIVE = $(NAME).cmxa
+SARCHIVE = $(NAME).cmxs
+
+REQUIRES = unix str q r s
+PREDICATES =</PRE
+><P
+>The default goal is "all", causing the bytecode archive to be
+created. In order to get a native archive, choose "opt" as second goal.
+(The ".PHONY" line is a declaration meaningful for GNU-make; "all" and
+"opt" are only virtual goals as there no files "all", or "opt" which
+is indicated by making them dependents of ".PHONY".)</P
+><PRE
+CLASS="PROGRAMLISTING"
+>.PHONY: all opt
+all: $(ARCHIVE)
+opt: $(XARCHIVE) $(SARCHIVE)</PRE
+><P
+>The following two rules create the bytecode resp. native archive from
+the objects.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>$(ARCHIVE): $(OBJECTS)
+        $(OCAMLC) -a -o $(ARCHIVE) -package "$(REQUIRES)" -linkpkg \
+	          -predicates "$(PREDICATES)" $(OBJECTS)
+$(XARCHIVE): $(XOBJECTS)
+        $(OCAMLOPT) -a -o $(XARCHIVE) -package "$(REQUIRES)" -linkpkg \
+	          -predicates "$(PREDICATES)" $(XOBJECTS)
+
+$(SARCHIVE): $(XARCHIVE)
+        $(OCAMLOPT) -shared -o $(SARCHIVE) $(XARCHIVE) || true</PRE
+><P
+>Note that the cmxs archive is optional: we just ignore the error
+when it cannot be built.</P
+><P
+>These rules compile the modules independently. The lines similar to
+".ml.cmo" must be read: "How to transform files with suffix .ml into
+files with suffix .cmo". The corresponding command can refer to the
+input file as "$&lt;" and to the output file(s) as "$@".</P
+><PRE
+CLASS="PROGRAMLISTING"
+>.SUFFIXES: .cmo .cmi .cmx .ml .mli
+
+.ml.cmo:
+        $(OCAMLC) -package "$(REQUIRES)" -predicates "$(PREDICATES)" \
+                  -c $&lt;
+.mli.cmi:
+        $(OCAMLC) -package "$(REQUIRES)" -predicates "$(PREDICATES)" \
+                  -c $&lt;
+.ml.cmx:
+        $(OCAMLOPT) -package "$(REQUIRES)" -predicates "$(PREDICATES)" \
+                  -c $&lt;</PRE
+><P
+>The "depend" goal is the file describing the dependencies within the
+package; it is created by ocamldep.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>depend: *.ml *.mli
+         $(OCAMLDEP) *.ml *.mli &gt;depend
+include depend</PRE
+><P
+>The "install" rule is a bit tricky. First it is tested if there is a
+native archive to install, and if so, the variable "extra" contains
+the corresponding files. The "ocamlfind install" command creates a new
+package directory and puts the given files into it.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>.PHONY: install uninstall
+install: all
+	 ocamlfind install $(NAME) *.mli *.cmi $(ARCHIVE) META \
+             -optional $(XARCHIVE) $(SARCHIVE)
+
+uninstall:
+         ocamlfind remove $(NAME)</PRE
+><P
+>Last but not least a cleanup rule:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>.PHONY: clean
+         rm -f *.cmi *.cmo *.cmx *.cma *.cmxa *.a</PRE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c395.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x421.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>How to create your own packages</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c395.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using the Makefile wizard</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

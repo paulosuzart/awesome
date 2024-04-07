@@ -1,0 +1,159 @@
+.TH "Pparse" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Pparse \- Driver for the parser and external preprocessors.
+.SH Module
+Module   Pparse
+.SH Documentation
+.sp
+Module
+.BI "Pparse"
+ : 
+.B sig end
+
+.sp
+Driver for the parser and external preprocessors\&.
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type error 
+=
+ | CannotRun
+.B of 
+.B string
+ | WrongMagic
+.B of 
+.B string
+ 
+.sp
+
+.sp
+
+.I exception Error 
+.B of 
+.B error
+
+.sp
+
+.sp
+
+.I val preprocess 
+: 
+.B string -> string
+.sp
+
+.sp
+
+.I val remove_preprocessed 
+: 
+.B string -> unit
+.sp
+
+.sp
+.I type 
+.B 'a
+.I ast_kind 
+=
+ | Structure
+.B : 
+.B Parsetree.structure ast_kind
+ | Signature
+.B : 
+.B Parsetree.signature ast_kind
+ 
+.sp
+
+.sp
+
+.I val read_ast 
+: 
+.B 'a ast_kind -> string -> 'a
+.sp
+
+.sp
+
+.I val write_ast 
+: 
+.B 'a ast_kind -> string -> 'a -> unit
+.sp
+
+.sp
+
+.I val file 
+: 
+.B tool_name:string ->
+.B   string -> (Lexing.lexbuf -> 'a) -> 'a ast_kind -> 'a
+.sp
+
+.sp
+
+.I val apply_rewriters 
+: 
+.B ?restore:bool -> tool_name:string -> 'a ast_kind -> 'a -> 'a
+.sp
+If 
+.ft B
+restore = true
+.ft R
+(the default), cookies set by external
+rewriters will be kept for later calls\&.
+
+.sp
+
+.I val apply_rewriters_str 
+: 
+.B ?restore:bool ->
+.B   tool_name:string -> Parsetree.structure -> Parsetree.structure
+.sp
+
+.sp
+
+.I val apply_rewriters_sig 
+: 
+.B ?restore:bool ->
+.B   tool_name:string -> Parsetree.signature -> Parsetree.signature
+.sp
+
+.sp
+
+.I val report_error 
+: 
+.B Format.formatter -> error -> unit
+.sp
+
+.sp
+
+.I val parse_implementation 
+: 
+.B tool_name:string -> string -> Parsetree.structure
+.sp
+
+.sp
+
+.I val parse_interface 
+: 
+.B tool_name:string -> string -> Parsetree.signature
+.sp
+
+.sp
+
+.I val call_external_preprocessor 
+: 
+.B string -> string -> string
+.sp
+
+.sp
+
+.I val open_and_check_magic 
+: 
+.B string -> string -> in_channel * bool
+.sp
+
+.sp

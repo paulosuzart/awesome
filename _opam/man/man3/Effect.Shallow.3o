@@ -1,0 +1,209 @@
+.TH "Effect.Shallow" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Effect.Shallow \- no description
+.SH Module
+Module   Effect.Shallow
+.SH Documentation
+.sp
+Module
+.BI "Shallow"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B ('a, 'b)
+.I continuation 
+
+.sp
+
+.ft B
+(\&'a,\&'b) continuation
+.ft R
+is a delimited continuation that expects a 
+.ft B
+\&'a
+.ft R
+value and returns a 
+.ft B
+\&'b
+.ft R
+value\&.
+
+.sp
+
+.I val fiber 
+: 
+.B ('a -> 'b) -> ('a, 'b) continuation
+.sp
+
+.ft B
+fiber f
+.ft R
+constructs a continuation that runs the computation 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.I type 
+.B ('a, 'b)
+.I handler 
+= {
+ retc : 
+.B 'a -> 'b
+;
+ exnc : 
+.B exn -> 'b
+;
+ effc : 
+.B 'c. 'c Effect.t -> (('c, 'a) continuation -> 'b) option
+;
+ }
+
+.sp
+
+.ft B
+(\&'a,\&'b) handler
+.ft R
+is a handler record with three fields \-\- 
+.ft B
+retc
+.ft R
+is the value handler, 
+.ft B
+exnc
+.ft R
+handles exceptions, and 
+.ft B
+effc
+.ft R
+handles the
+effects performed by the computation enclosed by the handler\&.
+
+.sp
+
+.I val continue_with 
+: 
+.B ('c, 'a) continuation ->
+.B   'c -> ('a, 'b) handler -> 'b
+.sp
+
+.ft B
+continue_with k v h
+.ft R
+resumes the continuation 
+.ft B
+k
+.ft R
+with value 
+.ft B
+v
+.ft R
+with
+the handler 
+.ft B
+h
+.ft R
+\&.
+
+.sp
+.B "Raises Continuation_already_resumed"
+if the continuation has already been
+resumed\&.
+
+.sp
+
+.I val discontinue_with 
+: 
+.B ('c, 'a) continuation ->
+.B   exn -> ('a, 'b) handler -> 'b
+.sp
+
+.ft B
+discontinue_with k e h
+.ft R
+resumes the continuation 
+.ft B
+k
+.ft R
+by raising the
+exception 
+.ft B
+e
+.ft R
+with the handler 
+.ft B
+h
+.ft R
+\&.
+
+.sp
+.B "Raises Continuation_already_resumed"
+if the continuation has already been
+resumed\&.
+
+.sp
+
+.I val discontinue_with_backtrace 
+: 
+.B ('a, 'b) continuation ->
+.B   exn -> Printexc.raw_backtrace -> ('b, 'c) handler -> 'c
+.sp
+
+.ft B
+discontinue_with k e bt h
+.ft R
+resumes the continuation 
+.ft B
+k
+.ft R
+by raising the
+exception 
+.ft B
+e
+.ft R
+with the handler 
+.ft B
+h
+.ft R
+using the raw backtrace 
+.ft B
+bt
+.ft R
+as the
+origin of the exception\&.
+
+.sp
+.B "Raises Continuation_already_resumed"
+if the continuation has already been
+resumed\&.
+
+.sp
+
+.I val get_callstack 
+: 
+.B ('a, 'b) continuation -> int -> Printexc.raw_backtrace
+.sp
+
+.ft B
+get_callstack c n
+.ft R
+returns a description of the top of the call stack on
+the continuation 
+.ft B
+c
+.ft R
+, with at most 
+.ft B
+n
+.ft R
+entries\&.
+
+.sp

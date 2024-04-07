@@ -1,0 +1,61 @@
+(lang dune 3.15)
+(name domain-local-await)
+(version 1.0.1)
+(sections (lib .) (libexec .) (doc ../../doc/domain-local-await))
+(files
+ (lib
+  (Domain_local_await.a
+   Domain_local_await.cma
+   Domain_local_await.cmxa
+   Domain_local_await.ml
+   Domain_local_await.mli
+   META
+   Thread_intf.ml
+   domain_local_await.cmi
+   domain_local_await.cmt
+   domain_local_await.cmti
+   domain_local_await.cmx
+   domain_local_await__.cmi
+   domain_local_await__.cmt
+   domain_local_await__.cmx
+   domain_local_await__.ml
+   domain_local_await__Thread_intf.cmi
+   domain_local_await__Thread_intf.cmt
+   domain_local_await__Thread_intf.cmx
+   dune-package
+   opam))
+ (libexec (Domain_local_await.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name domain-local-await)
+ (kind normal)
+ (archives (byte Domain_local_await.cma) (native Domain_local_await.cmxa))
+ (plugins (byte Domain_local_await.cma) (native Domain_local_await.cmxs))
+ (native_archives Domain_local_await.a)
+ (requires thread-table)
+ (main_module_name Domain_local_await)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name domain_local_await__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Domain_local_await__)
+      (impl (path domain_local_await__.ml-gen))))
+    (name Domain_local_await)
+    (modules
+     (module
+      (obj_name domain_local_await)
+      (visibility public)
+      (source
+       (path Domain_local_await)
+       (intf (path Domain_local_await.mli))
+       (impl (path Domain_local_await.ml))))
+     (module
+      (obj_name domain_local_await__Thread_intf)
+      (visibility public)
+      (source (path Thread_intf) (impl (path Thread_intf.ml))))))
+   (wrapped true))))

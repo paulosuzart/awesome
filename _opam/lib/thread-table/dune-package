@@ -1,0 +1,58 @@
+(lang dune 3.15)
+(name thread-table)
+(version 1.0.0)
+(sections (lib .) (libexec .) (doc ../../doc/thread-table))
+(files
+ (lib
+  (META
+   Thread_table.a
+   Thread_table.cma
+   Thread_table.cmxa
+   dune-package
+   mix.ml
+   opam
+   thread_table.cmi
+   thread_table.cmt
+   thread_table.cmti
+   thread_table.cmx
+   thread_table.ml
+   thread_table.mli
+   thread_table__.cmi
+   thread_table__.cmt
+   thread_table__.cmx
+   thread_table__.ml
+   thread_table__Mix.cmi
+   thread_table__Mix.cmt
+   thread_table__Mix.cmx))
+ (libexec (Thread_table.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name thread-table)
+ (kind normal)
+ (archives (byte Thread_table.cma) (native Thread_table.cmxa))
+ (plugins (byte Thread_table.cma) (native Thread_table.cmxs))
+ (native_archives Thread_table.a)
+ (main_module_name Thread_table)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name thread_table__)
+     (visibility public)
+     (kind alias)
+     (source (path Thread_table__) (impl (path thread_table__.ml-gen))))
+    (name Thread_table)
+    (modules
+     (module
+      (obj_name thread_table__Mix)
+      (visibility public)
+      (source (path Mix) (impl (path mix.ml))))
+     (module
+      (obj_name thread_table)
+      (visibility public)
+      (source
+       (path Thread_table)
+       (intf (path thread_table.mli))
+       (impl (path thread_table.ml))))))
+   (wrapped true))))

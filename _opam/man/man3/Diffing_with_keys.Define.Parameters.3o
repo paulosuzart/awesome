@@ -1,0 +1,56 @@
+.TH "Diffing_with_keys.Define.Parameters" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing_with_keys.Define.Parameters \- no description
+.SH Module type
+Module type   Diffing_with_keys.Define.Parameters
+.SH Documentation
+.sp
+Module type
+.BI "Parameters"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val weight 
+: 
+.B Diffing_with_keys.Define.change -> int
+.sp
+
+.sp
+
+.I val test 
+: 
+.B D.state ->
+.B   Diffing_with_keys.Define.left ->
+.B   Diffing_with_keys.Define.right ->
+.B   (unit, Diffing_with_keys.Define.diff) result
+.sp
+
+.sp
+
+.I val update 
+: 
+.B Diffing_with_keys.Define.change -> D.state -> D.state
+.sp
+
+.sp
+
+.I val key_left 
+: 
+.B D.left -> string
+.sp
+
+.sp
+
+.I val key_right 
+: 
+.B D.right -> string
+.sp
+
+.sp

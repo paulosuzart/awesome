@@ -1,0 +1,7 @@
+version = "1.5.2"
+description = ""
+requires = ""
+archive(byte) = "csexp.cma"
+archive(native) = "csexp.cmxa"
+plugin(byte) = "csexp.cma"
+plugin(native) = "csexp.cmxs"

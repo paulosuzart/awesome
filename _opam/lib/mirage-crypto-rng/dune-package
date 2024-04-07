@@ -1,0 +1,131 @@
+(lang dune 3.15)
+(name mirage-crypto-rng)
+(version 0.11.3)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/mirage-crypto-rng)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (.private/mirage_crypto_rng__Entropy.cmi
+   .private/mirage_crypto_rng__Entropy.cmt
+   .private/mirage_crypto_rng__Fortuna.cmi
+   .private/mirage_crypto_rng__Fortuna.cmt
+   .private/mirage_crypto_rng__Hmac_drbg.cmi
+   .private/mirage_crypto_rng__Hmac_drbg.cmt
+   .private/mirage_crypto_rng__Rng.cmi
+   .private/mirage_crypto_rng__Rng.cmt
+   META
+   dune-package
+   entropy.ml
+   fortuna.ml
+   hmac_drbg.ml
+   mirage_crypto_rng.a
+   mirage_crypto_rng.cma
+   mirage_crypto_rng.cmi
+   mirage_crypto_rng.cmt
+   mirage_crypto_rng.cmti
+   mirage_crypto_rng.cmx
+   mirage_crypto_rng.cmxa
+   mirage_crypto_rng.ml
+   mirage_crypto_rng.mli
+   mirage_crypto_rng__.cmi
+   mirage_crypto_rng__.cmt
+   mirage_crypto_rng__.cmx
+   mirage_crypto_rng__.ml
+   mirage_crypto_rng__Entropy.cmx
+   mirage_crypto_rng__Fortuna.cmx
+   mirage_crypto_rng__Hmac_drbg.cmx
+   mirage_crypto_rng__Rng.cmx
+   opam
+   rng.ml
+   unix/libmirage_crypto_rng_unix_stubs.a
+   unix/mirage_crypto_rng_unix.a
+   unix/mirage_crypto_rng_unix.cma
+   unix/mirage_crypto_rng_unix.cmi
+   unix/mirage_crypto_rng_unix.cmt
+   unix/mirage_crypto_rng_unix.cmti
+   unix/mirage_crypto_rng_unix.cmx
+   unix/mirage_crypto_rng_unix.cmxa
+   unix/mirage_crypto_rng_unix.ml
+   unix/mirage_crypto_rng_unix.mli))
+ (libexec (mirage_crypto_rng.cmxs unix/mirage_crypto_rng_unix.cmxs))
+ (doc
+  (CHANGES.md
+   LICENSE.md
+   LICENSE.md.mirage-crypto-ec
+   LICENSE.md.mirage-crypto-rng-mirage
+   README.md))
+ (stublibs (dllmirage_crypto_rng_unix_stubs.so)))
+(library
+ (name mirage-crypto-rng)
+ (kind normal)
+ (archives (byte mirage_crypto_rng.cma) (native mirage_crypto_rng.cmxa))
+ (plugins (byte mirage_crypto_rng.cma) (native mirage_crypto_rng.cmxs))
+ (native_archives mirage_crypto_rng.a)
+ (requires cstruct mirage-crypto)
+ (main_module_name Mirage_crypto_rng)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name mirage_crypto_rng__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Mirage_crypto_rng__)
+      (impl (path mirage_crypto_rng__.ml-gen))))
+    (name Mirage_crypto_rng)
+    (modules
+     (module
+      (obj_name mirage_crypto_rng__Entropy)
+      (visibility private)
+      (source (path Entropy) (impl (path entropy.ml))))
+     (module
+      (obj_name mirage_crypto_rng__Fortuna)
+      (visibility private)
+      (source (path Fortuna) (impl (path fortuna.ml))))
+     (module
+      (obj_name mirage_crypto_rng__Hmac_drbg)
+      (visibility private)
+      (source (path Hmac_drbg) (impl (path hmac_drbg.ml))))
+     (module
+      (obj_name mirage_crypto_rng)
+      (visibility public)
+      (source
+       (path Mirage_crypto_rng)
+       (intf (path mirage_crypto_rng.mli))
+       (impl (path mirage_crypto_rng.ml))))
+     (module
+      (obj_name mirage_crypto_rng__Rng)
+      (visibility private)
+      (source (path Rng) (impl (path rng.ml))))))
+   (wrapped true))))
+(library
+ (name mirage-crypto-rng.unix)
+ (kind normal)
+ (archives
+  (byte unix/mirage_crypto_rng_unix.cma)
+  (native unix/mirage_crypto_rng_unix.cmxa))
+ (plugins
+  (byte unix/mirage_crypto_rng_unix.cma)
+  (native unix/mirage_crypto_rng_unix.cmxs))
+ (foreign_objects unix/mc_getrandom_stubs.o)
+ (foreign_archives
+  (archives (for all) (files unix/libmirage_crypto_rng_unix_stubs.a)))
+ (foreign_dll_files ../stublibs/dllmirage_crypto_rng_unix_stubs.so)
+ (native_archives unix/mirage_crypto_rng_unix.a)
+ (requires mirage-crypto-rng unix logs)
+ (main_module_name Mirage_crypto_rng_unix)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name mirage_crypto_rng_unix)
+   (visibility public)
+   (source
+    (path Mirage_crypto_rng_unix)
+    (intf (path unix/mirage_crypto_rng_unix.mli))
+    (impl (path unix/mirage_crypto_rng_unix.ml))))))

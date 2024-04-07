@@ -1,0 +1,32 @@
+opam-version: "2.0"
+lib: [
+  "_build/opam" {"opam"}
+  "_build/pkg/META" {"META"}
+  "_build/src/fmt.a" {"fmt.a"}
+  "_build/src/fmt.cma" {"fmt.cma"}
+  "_build/src/fmt.cmi" {"fmt.cmi"}
+  "?_build/src/fmt.cmti" {"fmt.cmti"}
+  "_build/src/fmt.cmx" {"fmt.cmx"}
+  "_build/src/fmt.cmxa" {"fmt.cmxa"}
+  "_build/src/fmt.cmxs" {"fmt.cmxs"}
+  "_build/src/fmt.mli" {"fmt.mli"}
+  "_build/src/fmt_top.a" {"fmt_top.a"}
+  "_build/src/fmt_top.cma" {"fmt_top.cma"}
+  "_build/src/fmt_top.cmx" {"fmt_top.cmx"}
+  "_build/src/fmt_top.cmxa" {"fmt_top.cmxa"}
+  "_build/src/fmt_top.cmxs" {"fmt_top.cmxs"}
+  "_build/src/fmt_tty.a" {"fmt_tty.a"}
+  "_build/src/fmt_tty.cma" {"fmt_tty.cma"}
+  "_build/src/fmt_tty.cmi" {"fmt_tty.cmi"}
+  "?_build/src/fmt_tty.cmti" {"fmt_tty.cmti"}
+  "_build/src/fmt_tty.cmx" {"fmt_tty.cmx"}
+  "_build/src/fmt_tty.cmxa" {"fmt_tty.cmxa"}
+  "_build/src/fmt_tty.cmxs" {"fmt_tty.cmxs"}
+  "_build/src/fmt_tty.mli" {"fmt_tty.mli"}
+  "_build/src/fmt_tty_top_init.ml" {"fmt_tty_top_init.ml"}
+]
+doc: [
+  "_build/CHANGES.md" {"CHANGES.md"}
+  "_build/LICENSE.md" {"LICENSE.md"}
+  "_build/README.md" {"README.md"}
+]

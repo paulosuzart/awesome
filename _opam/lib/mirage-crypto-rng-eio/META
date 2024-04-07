@@ -1,0 +1,7 @@
+version = "0.11.3"
+description = ""
+requires = "cstruct duration eio logs mirage-crypto-rng mtime"
+archive(byte) = "mirage_crypto_rng_eio.cma"
+archive(native) = "mirage_crypto_rng_eio.cmxa"
+plugin(byte) = "mirage_crypto_rng_eio.cma"
+plugin(native) = "mirage_crypto_rng_eio.cmxs"

@@ -1,0 +1,104 @@
+.TH "Hashtbl.HashedType" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Hashtbl.HashedType \- The input signature of the functor Hashtbl.Make.
+.SH Module type
+Module type   Hashtbl.HashedType
+.SH Documentation
+.sp
+Module type
+.BI "HashedType"
+ = 
+.B sig end
+
+.sp
+The input signature of the functor 
+.ft B
+Hashtbl\&.Make
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type of the hashtable keys\&.
+
+.sp
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+The equality predicate used to compare keys\&.
+
+.sp
+
+.I val hash 
+: 
+.B t -> int
+.sp
+A hashing function on keys\&. It must be such that if two keys are
+equal according to 
+.ft B
+equal
+.ft R
+, then they have identical hash values
+as computed by 
+.ft B
+hash
+.ft R
+\&.
+Examples: suitable (
+.ft B
+equal
+.ft R
+, 
+.ft B
+hash
+.ft R
+) pairs for arbitrary key
+types include
+.sp
+\-        (
+.ft B
+(=)
+.ft R
+, 
+.ft B
+Hashtbl\&.HashedType\&.hash
+.ft R
+) for comparing objects by structure
+(provided objects do not contain floats)
+.sp
+\-        (
+.ft B
+(fun x y \-> compare x y = 0)
+.ft R
+, 
+.ft B
+Hashtbl\&.HashedType\&.hash
+.ft R
+)
+for comparing objects by structure
+and handling 
+.ft B
+nan
+.ft R
+correctly
+.sp
+\-        (
+.ft B
+(==)
+.ft R
+, 
+.ft B
+Hashtbl\&.HashedType\&.hash
+.ft R
+) for comparing objects by physical
+equality (e\&.g\&. for mutable or cyclic objects)\&.
+
+
+.sp

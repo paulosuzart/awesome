@@ -1,0 +1,3 @@
+(library (name ppx_stable_witness_runtime)
+ (public_name ppx_stable_witness.runtime) (libraries stable_witness)
+ (preprocess no_preprocessing))

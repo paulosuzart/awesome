@@ -1,0 +1,89 @@
+(lang dune 3.15)
+(name eio_linux)
+(version v1.0)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/eio_linux)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   dune-package
+   eio_linux.a
+   eio_linux.cma
+   eio_linux.cmi
+   eio_linux.cmt
+   eio_linux.cmti
+   eio_linux.cmx
+   eio_linux.cmxa
+   eio_linux.ml
+   eio_linux.mli
+   eio_linux__.cmi
+   eio_linux__.cmt
+   eio_linux__.cmx
+   eio_linux__.ml
+   eio_linux__Err.cmi
+   eio_linux__Err.cmt
+   eio_linux__Err.cmx
+   eio_linux__Low_level.cmi
+   eio_linux__Low_level.cmt
+   eio_linux__Low_level.cmti
+   eio_linux__Low_level.cmx
+   eio_linux__Sched.cmi
+   eio_linux__Sched.cmt
+   eio_linux__Sched.cmx
+   err.ml
+   libeio_linux_stubs.a
+   low_level.ml
+   low_level.mli
+   opam
+   sched.ml))
+ (libexec (eio_linux.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md))
+ (stublibs (dlleio_linux_stubs.so)))
+(library
+ (name eio_linux)
+ (kind normal)
+ (archives (byte eio_linux.cma) (native eio_linux.cmxa))
+ (plugins (byte eio_linux.cma) (native eio_linux.cmxs))
+ (foreign_objects eio_stubs.o)
+ (foreign_archives (archives (for all) (files libeio_linux_stubs.a)))
+ (foreign_dll_files ../stublibs/dlleio_linux_stubs.so)
+ (native_archives eio_linux.a)
+ (requires eio eio.utils eio.unix uring fmt)
+ (main_module_name Eio_linux)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eio_linux__)
+     (visibility public)
+     (kind alias)
+     (source (path Eio_linux__) (impl (path eio_linux__.ml-gen))))
+    (name Eio_linux)
+    (modules
+     (module
+      (obj_name eio_linux)
+      (visibility public)
+      (source
+       (path Eio_linux)
+       (intf (path eio_linux.mli))
+       (impl (path eio_linux.ml))))
+     (module
+      (obj_name eio_linux__Err)
+      (visibility public)
+      (source (path Err) (impl (path err.ml))))
+     (module
+      (obj_name eio_linux__Low_level)
+      (visibility public)
+      (source
+       (path Low_level)
+       (intf (path low_level.mli))
+       (impl (path low_level.ml))))
+     (module
+      (obj_name eio_linux__Sched)
+      (visibility public)
+      (source (path Sched) (impl (path sched.ml))))))
+   (wrapped true))))

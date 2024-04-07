@@ -1,0 +1,70 @@
+(lang dune 3.15)
+(name ppx_optcomp)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_optcomp))
+(files
+ (lib
+  (META
+   cparser.ml
+   dune-package
+   interpreter.ml
+   opam
+   ppx_optcomp.a
+   ppx_optcomp.cma
+   ppx_optcomp.cmi
+   ppx_optcomp.cmt
+   ppx_optcomp.cmx
+   ppx_optcomp.cmxa
+   ppx_optcomp.ml
+   ppx_optcomp__.cmi
+   ppx_optcomp__.cmt
+   ppx_optcomp__.cmx
+   ppx_optcomp__.ml
+   ppx_optcomp__Cparser.cmi
+   ppx_optcomp__Cparser.cmt
+   ppx_optcomp__Cparser.cmx
+   ppx_optcomp__Interpreter.cmi
+   ppx_optcomp__Interpreter.cmt
+   ppx_optcomp__Interpreter.cmx
+   ppx_optcomp__Token.cmi
+   ppx_optcomp__Token.cmt
+   ppx_optcomp__Token.cmx
+   token.ml))
+ (libexec (ppx_optcomp.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_optcomp)
+ (kind ppx_deriver)
+ (archives (byte ppx_optcomp.cma) (native ppx_optcomp.cmxa))
+ (plugins (byte ppx_optcomp.cma) (native ppx_optcomp.cmxs))
+ (native_archives ppx_optcomp.a)
+ (requires compiler-libs.common base ppxlib.ast ppxlib stdio)
+ (main_module_name Ppx_optcomp)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_optcomp__)
+     (visibility public)
+     (kind alias)
+     (source (path Ppx_optcomp__) (impl (path ppx_optcomp__.ml-gen))))
+    (name Ppx_optcomp)
+    (modules
+     (module
+      (obj_name ppx_optcomp__Cparser)
+      (visibility public)
+      (source (path Cparser) (impl (path cparser.ml))))
+     (module
+      (obj_name ppx_optcomp__Interpreter)
+      (visibility public)
+      (source (path Interpreter) (impl (path interpreter.ml))))
+     (module
+      (obj_name ppx_optcomp)
+      (visibility public)
+      (source (path Ppx_optcomp) (impl (path ppx_optcomp.ml))))
+     (module
+      (obj_name ppx_optcomp__Token)
+      (visibility public)
+      (source (path Token) (impl (path token.ml))))))
+   (wrapped true))))

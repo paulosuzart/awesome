@@ -1,0 +1,425 @@
+.TH "Condition" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Condition \- Condition variables.
+.SH Module
+Module   Condition
+.SH Documentation
+.sp
+Module
+.BI "Condition"
+ : 
+.B sig end
+
+.sp
+Condition variables\&.
+.sp
+Condition variables are useful when several threads wish to access a
+shared data structure that is protected by a mutex (a mutual exclusion
+lock)\&.
+.sp
+A condition variable is a communication channel\&. On the receiver
+side, one or more threads can indicate that they wish to wait
+for a certain property to become true\&. On the sender side, a thread
+can signal that this property has become true, causing one (or
+more) waiting threads to be woken up\&.
+.sp
+For instance, in the implementation of a queue data structure, if a
+thread that wishes to extract an element finds that the queue is
+currently empty, then this thread waits for the queue to become
+nonempty\&. A thread that inserts an element into the queue signals
+that the queue has become nonempty\&. A condition variable is used for this
+purpose\&. This communication channel conveys the information that
+the property "the queue is nonempty" is true, or more accurately,
+may be true\&. (We explain below why the receiver of a signal cannot
+be certain that the property holds\&.)
+.sp
+To continue the example of the queue, assuming that the queue has a fixed
+maximum capacity, then a thread that wishes to insert an element
+may find that the queue is full\&. Then, this thread must wait for
+the queue to become not full, and a thread that extracts an element
+of the queue signals that the queue has become not full\&. Another
+condition variable is used for this purpose\&.
+.sp
+In short, a condition variable 
+.ft B
+c
+.ft R
+is used to convey the information
+that a certain property P about a shared data structure D,
+protected by a mutex 
+.ft B
+m
+.ft R
+, may be true\&.
+.sp
+Condition variables provide an efficient alternative to busy\-waiting\&.
+When one wishes to wait for the property P to be true,
+instead of writing a busy\-waiting loop:
+.EX
+.ft B
+.br
+\&     Mutex\&.lock m;
+.br
+\&     while not P do
+.br
+\&       Mutex\&.unlock m; Mutex\&.lock m
+.br
+\&     done;
+.br
+\&     <update the data structure>;
+.br
+\&     Mutex\&.unlock m
+.br
+\&   
+.ft R
+.EE
+one uses 
+.ft B
+Condition\&.wait
+.ft R
+in the body of the loop, as follows:
+.EX
+.ft B
+.br
+\&     Mutex\&.lock m;
+.br
+\&     while not P do
+.br
+\&       Condition\&.wait c m
+.br
+\&     done;
+.br
+\&     <update the data structure>;
+.br
+\&     Mutex\&.unlock m
+.br
+\&   
+.ft R
+.EE
+The busy\-waiting loop is inefficient because the waiting thread
+consumes processing time and creates contention of the mutex 
+.ft B
+m
+.ft R
+\&.
+Calling 
+.ft B
+Condition\&.wait
+.ft R
+allows the waiting thread to be suspended, so it
+does not consume any computing resources while waiting\&.
+.sp
+With a condition variable 
+.ft B
+c
+.ft R
+, exactly one mutex 
+.ft B
+m
+.ft R
+is associated\&.
+This association is implicit: the mutex 
+.ft B
+m
+.ft R
+is not explicitly passed
+as an argument to 
+.ft B
+Condition\&.create
+.ft R
+\&. It is up to the programmer to know, for
+each condition variable 
+.ft B
+c
+.ft R
+, which is the associated mutex 
+.ft B
+m
+.ft R
+\&.
+.sp
+With a mutex 
+.ft B
+m
+.ft R
+, several condition variables can be associated\&.
+In the example of the bounded queue, one condition variable is
+used to indicate that the queue is nonempty, and another condition
+variable is used to indicate that the queue is not full\&.
+.sp
+With a condition variable 
+.ft B
+c
+.ft R
+, exactly one logical property P
+should be associated\&. Examples of such properties
+include "the queue is nonempty" and "the queue is not full"\&.
+It is up to the programmer to keep track, for each condition
+variable, of the corresponding property P\&.
+A signal is sent on the condition variable 
+.ft B
+c
+.ft R
+as an indication that the property P is true, or may be true\&.
+On the receiving end, however, a thread that is woken up
+cannot assume that P is true;
+after a call to 
+.ft B
+Condition\&.wait
+.ft R
+terminates,
+one must explicitly test whether P is true\&.
+There are several reasons why this is so\&.
+One reason is that,
+between the moment when the signal is sent
+and the moment when a waiting thread receives the signal
+and is scheduled,
+the property P may be falsified by some other thread
+that is able to acquire the mutex 
+.ft B
+m
+.ft R
+and alter the data structure D\&.
+Another reason is that spurious wakeups may occur:
+a waiting thread can be woken up even if no signal was sent\&.
+.sp
+Here is a complete example, where a mutex protects a sequential
+unbounded queue, and where a condition variable is used to signal
+that the queue is nonempty\&.
+.EX
+.ft B
+.br
+\&     type \&'a safe_queue =
+.br
+\&       { queue : \&'a Queue\&.t; mutex : Mutex\&.t; nonempty : Condition\&.t }
+.br
+\&
+.br
+\&     let create () =
+.br
+\&       { queue = Queue\&.create(); mutex = Mutex\&.create();
+.br
+\&         nonempty = Condition\&.create() }
+.br
+\&
+.br
+\&     let add v q =
+.br
+\&       Mutex\&.lock q\&.mutex;
+.br
+\&       let was_empty = Queue\&.is_empty q\&.queue in
+.br
+\&       Queue\&.add v q\&.queue;
+.br
+\&       if was_empty then Condition\&.broadcast q\&.nonempty;
+.br
+\&       Mutex\&.unlock q\&.mutex
+.br
+\&
+.br
+\&     let take q =
+.br
+\&       Mutex\&.lock q\&.mutex;
+.br
+\&       while Queue\&.is_empty q\&.queue do Condition\&.wait q\&.nonempty q\&.mutex done;
+.br
+\&       let v = Queue\&.take q\&.queue in (* cannot fail since queue is nonempty *)
+.br
+\&       Mutex\&.unlock q\&.mutex;
+.br
+\&       v
+.br
+\&   
+.ft R
+.EE
+Because the call to 
+.ft B
+Condition\&.broadcast
+.ft R
+takes place inside the critical
+section, the following property holds whenever the mutex is unlocked:
+if the queue is nonempty, then no thread is waiting,
+or, in other words,
+if some thread is waiting, then the queue must be empty\&.
+This is a desirable property: if a thread
+that attempts to execute a 
+.ft B
+take
+.ft R
+operation
+could remain suspended
+even though the queue is nonempty,
+that would be a problematic situation,
+known as a deadlock\&.
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type of condition variables\&.
+
+.sp
+
+.I val create 
+: 
+.B unit -> t
+.sp
+
+.ft B
+create()
+.ft R
+creates and returns a new condition variable\&.
+This condition variable should be associated (in the programmer\&'s mind)
+with a certain mutex 
+.ft B
+m
+.ft R
+and with a certain property P of the data
+structure that is protected by the mutex 
+.ft B
+m
+.ft R
+\&.
+
+.sp
+
+.I val wait 
+: 
+.B t -> Mutex.t -> unit
+.sp
+The call 
+.ft B
+wait c m
+.ft R
+is permitted only if 
+.ft B
+m
+.ft R
+is the mutex associated
+with the condition variable 
+.ft B
+c
+.ft R
+, and only if 
+.ft B
+m
+.ft R
+is currently locked\&.
+This call atomically unlocks the mutex 
+.ft B
+m
+.ft R
+and suspends the
+current thread on the condition variable 
+.ft B
+c
+.ft R
+\&. This thread can
+later be woken up after the condition variable 
+.ft B
+c
+.ft R
+has been signaled
+via 
+.ft B
+Condition\&.signal
+.ft R
+or 
+.ft B
+Condition\&.broadcast
+.ft R
+; however, it can also be woken up for
+no reason\&. The mutex 
+.ft B
+m
+.ft R
+is locked again before 
+.ft B
+wait
+.ft R
+returns\&. One
+cannot assume that the property P associated with the condition
+variable 
+.ft B
+c
+.ft R
+holds when 
+.ft B
+wait
+.ft R
+returns; one must explicitly test
+whether P holds after calling 
+.ft B
+wait
+.ft R
+\&.
+
+.sp
+
+.I val signal 
+: 
+.B t -> unit
+.sp
+
+.ft B
+signal c
+.ft R
+wakes up one of the threads waiting on the condition
+variable 
+.ft B
+c
+.ft R
+, if there is one\&. If there is none, this call has
+no effect\&.
+.sp
+It is recommended to call 
+.ft B
+signal c
+.ft R
+inside a critical section,
+that is, while the mutex 
+.ft B
+m
+.ft R
+associated with 
+.ft B
+c
+.ft R
+is locked\&.
+
+.sp
+
+.I val broadcast 
+: 
+.B t -> unit
+.sp
+
+.ft B
+broadcast c
+.ft R
+wakes up all threads waiting on the condition
+variable 
+.ft B
+c
+.ft R
+\&. If there are none, this call has no effect\&.
+.sp
+It is recommended to call 
+.ft B
+broadcast c
+.ft R
+inside a critical section,
+that is, while the mutex 
+.ft B
+m
+.ft R
+associated with 
+.ft B
+c
+.ft R
+is locked\&.
+
+.sp

@@ -1,0 +1,6 @@
+description = ""
+requires = "cstruct mirage-crypto"
+archive(byte) = "pbkdf.cma"
+archive(native) = "pbkdf.cmxa"
+plugin(byte) = "pbkdf.cma"
+plugin(native) = "pbkdf.cmxs"

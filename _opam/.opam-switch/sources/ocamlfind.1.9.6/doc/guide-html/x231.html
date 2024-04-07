@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Toploops and runtime systems</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="A new frontend for ocamlc"
+HREF="c192.html"><LINK
+REL="PREVIOUS"
+TITLE="A new frontend for ocamlc"
+HREF="c192.html"><LINK
+REL="NEXT"
+TITLE="Multi-threaded applications"
+HREF="x265.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c192.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. A new frontend for ocamlc</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x265.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN231"
+>Toploops and runtime systems</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN233"
+>Dynamic toploops</A
+></H2
+><P
+>Recent versions of OCaml support dynamic loading of stub libraries
+(but only for the more widely used operating systems). This means
+that one can start a toploop by running
+
+<PRE
+CLASS="PROGRAMLISTING"
+>$ ocaml
+        Objective Caml version 3.07+2
+ 
+# _</PRE
+>
+
+and that it is now possible to load .cma archive files referring to
+shared C libraries ("DLLs"). In older versions of OCaml this was
+not possible and one had to create a so-called custom toploop
+with the ocamlmktop command. This method is still supported and 
+explained below; however, nowadays it is often not necessary to
+do so. For the modern way, findlib includes a small script called
+"topfind" (i.e. "ocamlfind for the toploop") that can be directly
+loaded into the toploop:
+
+<PRE
+CLASS="PROGRAMLISTING"
+># #use "topfind";;
+- : unit = ()
+Findlib has been successfully loaded. Additional directives:
+  #require "package";;      to load a package
+  #list;;                   to list the available packages
+  #camlp4o;;                to load camlp4 (standard syntax)
+  #camlp4r;;                to load camlp4 (revised syntax)
+  #predicates "p,q,...";;   to set these predicates
+  Topfind.reset();;         to force that packages will be reloaded
+  #thread;;                 to enable threads
+ 
+- : unit = ()
+# _</PRE
+></P
+><P
+>A number of additional directives are now available. The "#require"
+directive loads additional packages (with all dependencies):</P
+><PRE
+CLASS="PROGRAMLISTING"
+># #require "q1,q2,...,qM";;</PRE
+><P
+>"#require" loads the listed packages and all their ancestors in the
+right order, but leaves packages out that have already been loaded.
+Scripts can now simply load and document which packages are used by a
+"#require" directive right at the beginning of the script.</P
+><P
+>The #list directive lists the available packages as "ocamlfind list"
+would do it.</P
+><P
+>If you need additional predicates, you can set them with #predicates.
+Note that this should be done before the first package is loaded in
+order to ensure a consistent library system.</P
+><P
+>The #thread directive enables multi-threading if possible. Note that
+this is only supported for installations basing on the POSIX thread
+library. (However, if you have only have VM threads, you can still
+create a custom toploop supporting threads. See below.) Furthermore,
+the #thread directive should be executed before any packages are
+loaded.</P
+><P
+>The #camlp4o and #camlp4r directives load the camlp4 syntax parsers
+for the standard and the revised syntax, respectively.</P
+><P
+>Especially when developing packages, it is sometimes necessary to
+reload all dynamically loaded packages in the toploop. This can be
+forced by</P
+><PRE
+CLASS="PROGRAMLISTING"
+>Topfind.reset();;</PRE
+><P
+>which causes the "#require" directive to load all packages again. The
+Topfind module implements all the mentioned directives.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN248"
+>Custom toploops</A
+></H2
+><P
+>It is very simple to create toploops. In order to make a toploop
+executable that includes directly the packages p1,p2,..,pN simply
+execute the command</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlmktop -o toploop -package p1,p2,...,pN,findlib -linkpkg</PRE
+><P
+>(Maybe you have to add the -custom switch.) Note that one of the 
+packages should be "findlib" itself, because this adds the 
+additional directives mentioned above, i.e. you can directly use
+these directives without #use "topfind" (but running "topfind" 
+is harmless).</P
+><P
+>Note that such a toploop includes the code of the packages given
+on the commmand line, but that it does not automatically add the
+package directories to the search path (in previous versions of
+findlib this was tried, but it never really worked). To do so,
+you still have to #require the packages.</P
+><P
+>In order to create a toploop supporting VM-style threads, use the
+command
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlmktop -o toploop -package p1,p2,...,pN,findlib,threads -vmthread -linkpkg</PRE
+>
+
+Now the #thread directive will work and enable the access to the
+multi-threading modules.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN256"
+>Runtime systems</A
+></H2
+><P
+>Building of runtime systems is supported, too. For example, you can run</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o runtime -make-runtime -package p1,p2,...,pN -linkpkg</PRE
+><P
+>but the problem is which options to specify when a program is linked
+for this runtime system. If you executed</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o program -use-runtime runtime -package p1,p2,...,pN\
+          -linkpkg m1.cmo ... mM.cmo</PRE
+><P
+>it would be tried to link the archives from the packages again into
+the bytecode binary. Because of this, it is necessary to suppress
+linking in packages of the runtime system when linking binaries for a
+runtime system. The -dontlink option can be used for this:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o program -use-runtime runtime -package p1,p2,...,pN\
+          -dontlink p1,p2,...,pN -linkpkg m1.cmo ... mM.cmo</PRE
+><P
+>Note that the -package option can enumerate more packages than
+-dontlink, and in this case the additional packages are actually
+linked in as they are not contained in the runtime system.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c192.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x265.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>A new frontend for ocamlc</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c192.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Multi-threaded applications</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

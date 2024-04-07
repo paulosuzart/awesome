@@ -1,0 +1,24 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_tydi/META"
+  "_build/install/default/lib/ppx_tydi/dune-package"
+  "_build/install/default/lib/ppx_tydi/opam"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.a"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.cma"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.cmi"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.cmt"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.cmti"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.cmx"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.cmxa"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.ml"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_tydi/CHANGES.md"
+  "_build/install/default/doc/ppx_tydi/LICENSE.md"
+  "_build/install/default/doc/ppx_tydi/README.mdx"
+]
+libexec: [
+  "_build/install/default/lib/ppx_tydi/ppx.exe"
+  "_build/install/default/lib/ppx_tydi/ppx_tydi.cmxs"
+]

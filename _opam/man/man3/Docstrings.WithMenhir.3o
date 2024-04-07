@@ -1,0 +1,174 @@
+.TH "Docstrings.WithMenhir" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Docstrings.WithMenhir \- no description
+.SH Module
+Module   Docstrings.WithMenhir
+.SH Documentation
+.sp
+Module
+.BI "WithMenhir"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val symbol_docs 
+: 
+.B Lexing.position * Lexing.position -> Docstrings.docs
+.sp
+Fetch the item documentation for the current symbol\&. This also
+marks this documentation (for ambiguity warnings)\&.
+
+.sp
+
+.I val symbol_docs_lazy 
+: 
+.B Lexing.position * Lexing.position ->
+.B   Docstrings.docs Lazy.t
+.sp
+
+.sp
+
+.I val rhs_docs 
+: 
+.B Lexing.position -> Lexing.position -> Docstrings.docs
+.sp
+Fetch the item documentation for the symbols between two
+positions\&. This also marks this documentation (for ambiguity
+warnings)\&.
+
+.sp
+
+.I val rhs_docs_lazy 
+: 
+.B Lexing.position ->
+.B   Lexing.position -> Docstrings.docs Lazy.t
+.sp
+
+.sp
+
+.I val mark_symbol_docs 
+: 
+.B Lexing.position * Lexing.position -> unit
+.sp
+Mark the item documentation for the current symbol (for ambiguity
+warnings)\&.
+
+.sp
+
+.I val mark_rhs_docs 
+: 
+.B Lexing.position -> Lexing.position -> unit
+.sp
+Mark as associated the item documentation for the symbols between
+two positions (for ambiguity warnings)
+
+.sp
+
+.I val symbol_info 
+: 
+.B Lexing.position -> Docstrings.info
+.sp
+Fetch the field info for the current symbol\&.
+
+.sp
+
+.I val rhs_info 
+: 
+.B Lexing.position -> Docstrings.info
+.sp
+Fetch the field info following the symbol at a given position\&.
+
+.sp
+
+.I val symbol_text 
+: 
+.B Lexing.position -> Docstrings.text
+.sp
+Fetch the text preceding the current symbol\&.
+
+.sp
+
+.I val symbol_text_lazy 
+: 
+.B Lexing.position -> Docstrings.text Lazy.t
+.sp
+
+.sp
+
+.I val rhs_text 
+: 
+.B Lexing.position -> Docstrings.text
+.sp
+Fetch the text preceding the symbol at the given position\&.
+
+.sp
+
+.I val rhs_text_lazy 
+: 
+.B Lexing.position -> Docstrings.text Lazy.t
+.sp
+
+.sp
+
+.PP
+.SS Extra text
+.sp
+There may be additional text attached to the delimiters of a block
+(e\&.g\&. 
+.ft B
+struct
+.ft R
+and 
+.ft B
+end
+.ft R
+)\&. This is fetched by the following
+functions, which are applied to the contents of the block rather
+than the delimiters\&.
+.PP
+
+.I val symbol_pre_extra_text 
+: 
+.B Lexing.position -> Docstrings.text
+.sp
+Fetch additional text preceding the current symbol
+
+.sp
+
+.I val symbol_post_extra_text 
+: 
+.B Lexing.position -> Docstrings.text
+.sp
+Fetch additional text following the current symbol
+
+.sp
+
+.I val rhs_pre_extra_text 
+: 
+.B Lexing.position -> Docstrings.text
+.sp
+Fetch additional text preceding the symbol at the given position
+
+.sp
+
+.I val rhs_post_extra_text 
+: 
+.B Lexing.position -> Docstrings.text
+.sp
+Fetch additional text following the symbol at the given position
+
+.sp
+
+.I val rhs_post_text 
+: 
+.B Lexing.position -> Docstrings.text
+.sp
+Fetch text following the symbol at the given position
+
+.sp

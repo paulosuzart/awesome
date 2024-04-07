@@ -1,0 +1,43 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_module_timer/META"
+  "_build/install/default/lib/ppx_module_timer/dune-package"
+  "_build/install/default/lib/ppx_module_timer/opam"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.a"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.cma"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.cmi"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.cmt"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.cmti"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.cmx"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.cmxa"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.ml"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.mli"
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.a"
+    {"runtime/ppx_module_timer_runtime.a"}
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cma"
+    {"runtime/ppx_module_timer_runtime.cma"}
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmi"
+    {"runtime/ppx_module_timer_runtime.cmi"}
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmt"
+    {"runtime/ppx_module_timer_runtime.cmt"}
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmti"
+    {"runtime/ppx_module_timer_runtime.cmti"}
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmx"
+    {"runtime/ppx_module_timer_runtime.cmx"}
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmxa"
+    {"runtime/ppx_module_timer_runtime.cmxa"}
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.ml"
+    {"runtime/ppx_module_timer_runtime.ml"}
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.mli"
+    {"runtime/ppx_module_timer_runtime.mli"}
+]
+doc: [
+  "_build/install/default/doc/ppx_module_timer/LICENSE.md"
+  "_build/install/default/doc/ppx_module_timer/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_module_timer/ppx.exe"
+  "_build/install/default/lib/ppx_module_timer/ppx_module_timer.cmxs"
+  "_build/install/default/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmxs"
+    {"runtime/ppx_module_timer_runtime.cmxs"}
+]

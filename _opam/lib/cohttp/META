@@ -1,0 +1,16 @@
+version = "v6.0.0_beta2"
+description = "Co-operative Client/Server HTTP library."
+requires =
+"base64
+ http
+ logs
+ ppx_sexp_conv.runtime-lib
+ re
+ sexplib0
+ stringext
+ uri
+ uri-sexp"
+archive(byte) = "cohttp.cma"
+archive(native) = "cohttp.cmxa"
+plugin(byte) = "cohttp.cma"
+plugin(native) = "cohttp.cmxs"

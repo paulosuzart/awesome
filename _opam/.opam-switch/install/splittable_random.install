@@ -1,0 +1,22 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/splittable_random/META"
+  "_build/install/default/lib/splittable_random/dune-package"
+  "_build/install/default/lib/splittable_random/opam"
+  "_build/install/default/lib/splittable_random/splittable_random.a"
+  "_build/install/default/lib/splittable_random/splittable_random.cma"
+  "_build/install/default/lib/splittable_random/splittable_random.cmi"
+  "_build/install/default/lib/splittable_random/splittable_random.cmt"
+  "_build/install/default/lib/splittable_random/splittable_random.cmti"
+  "_build/install/default/lib/splittable_random/splittable_random.cmx"
+  "_build/install/default/lib/splittable_random/splittable_random.cmxa"
+  "_build/install/default/lib/splittable_random/splittable_random.ml"
+  "_build/install/default/lib/splittable_random/splittable_random.mli"
+]
+doc: [
+  "_build/install/default/doc/splittable_random/CHANGES.md"
+  "_build/install/default/doc/splittable_random/LICENSE.md"
+  "_build/install/default/doc/splittable_random/README.md"
+]
+libexec:
+  "_build/install/default/lib/splittable_random/splittable_random.cmxs"

@@ -1,0 +1,1921 @@
+.TH "StdLabels.String" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+StdLabels.String \- no description
+.SH Module
+Module   StdLabels.String
+.SH Documentation
+.sp
+Module
+.BI "String"
+ : 
+.B (module StringLabels)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Strings
+
+.PP
+.I type t 
+= 
+.B string
+
+.sp
+The type for strings\&.
+
+.sp
+
+.I val make 
+: 
+.B int -> char -> string
+.sp
+
+.ft B
+make n c
+.ft R
+is a string of length 
+.ft B
+n
+.ft R
+with each index holding the
+character 
+.ft B
+c
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n < 0
+.ft R
+or 
+.ft B
+n > 
+.ft R
+.ft B
+Sys\&.max_string_length
+.ft R
+\&.
+
+.sp
+
+.I val init 
+: 
+.B int -> f:(int -> char) -> string
+.sp
+
+.ft B
+init n ~f
+.ft R
+is a string of length 
+.ft B
+n
+.ft R
+with index
+.ft B
+i
+.ft R
+holding the character 
+.ft B
+f i
+.ft R
+(called in increasing index order)\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n < 0
+.ft R
+or 
+.ft B
+n > 
+.ft R
+.ft B
+Sys\&.max_string_length
+.ft R
+\&.
+
+.sp
+
+.I val empty 
+: 
+.B string
+.sp
+The empty string\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val length 
+: 
+.B string -> int
+.sp
+
+.ft B
+length s
+.ft R
+is the length (number of bytes/characters) of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val get 
+: 
+.B string -> int -> char
+.sp
+
+.ft B
+get s i
+.ft R
+is the character at index 
+.ft B
+i
+.ft R
+in 
+.ft B
+s
+.ft R
+\&. This is the same
+as writing 
+.ft B
+s\&.[i]
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i
+.ft R
+not an index of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val of_bytes 
+: 
+.B bytes -> string
+.sp
+Return a new string that contains the same bytes as the given byte
+sequence\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val to_bytes 
+: 
+.B string -> bytes
+.sp
+Return a new byte sequence that contains the same bytes as the given
+string\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val blit 
+: 
+.B src:string -> src_pos:int -> dst:bytes -> dst_pos:int -> len:int -> unit
+.sp
+Same as 
+.ft B
+Bytes\&.blit_string
+.ft R
+which should be preferred\&.
+
+.sp
+
+.PP
+.SS Concatenating
+.sp
+Note\&. The 
+.ft B
+(^)
+.ft R
+binary operator concatenates two
+strings\&.
+.PP
+
+.I val concat 
+: 
+.B sep:string -> string list -> string
+.sp
+
+.ft B
+concat ~sep ss
+.ft R
+concatenates the list of strings 
+.ft B
+ss
+.ft R
+, inserting
+the separator string 
+.ft B
+sep
+.ft R
+between each\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the result is longer than
+.ft B
+Sys\&.max_string_length
+.ft R
+bytes\&.
+
+.sp
+
+.I val cat 
+: 
+.B string -> string -> string
+.sp
+
+.ft B
+cat s1 s2
+.ft R
+concatenates s1 and s2 (
+.ft B
+s1 ^ s2
+.ft R
+)\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+.B "Raises Invalid_argument"
+if the result is longer than
+.ft B
+Sys\&.max_string_length
+.ft R
+bytes\&.
+
+.sp
+
+.PP
+.SS Predicates and comparisons
+
+.PP
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+
+.ft B
+equal s0 s1
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+s0
+.ft R
+and 
+.ft B
+s1
+.ft R
+are character\-wise
+equal\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val compare 
+: 
+.B t -> t -> int
+.sp
+
+.ft B
+compare s0 s1
+.ft R
+sorts 
+.ft B
+s0
+.ft R
+and 
+.ft B
+s1
+.ft R
+in lexicographical order\&. 
+.ft B
+compare
+.ft R
+behaves like 
+.ft B
+compare
+.ft R
+on strings but may be more efficient\&.
+
+.sp
+
+.I val starts_with 
+: 
+.B prefix:string -> string -> bool
+.sp
+
+.ft B
+starts_with 
+.ft R
+.ft B
+~prefix s
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+s
+.ft R
+starts with
+.ft B
+prefix
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val ends_with 
+: 
+.B suffix:string -> string -> bool
+.sp
+
+.ft B
+ends_with 
+.ft R
+.ft B
+~suffix s
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+s
+.ft R
+ends with 
+.ft B
+suffix
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val contains_from 
+: 
+.B string -> int -> char -> bool
+.sp
+
+.ft B
+contains_from s start c
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+c
+.ft R
+appears in 
+.ft B
+s
+.ft R
+after position 
+.ft B
+start
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+start
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val rcontains_from 
+: 
+.B string -> int -> char -> bool
+.sp
+
+.ft B
+rcontains_from s stop c
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+c
+.ft R
+appears in 
+.ft B
+s
+.ft R
+before position 
+.ft B
+stop+1
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+stop < 0
+.ft R
+or 
+.ft B
+stop+1
+.ft R
+is not a valid
+position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val contains 
+: 
+.B string -> char -> bool
+.sp
+
+.ft B
+contains s c
+.ft R
+is 
+.ft B
+String\&.contains_from
+.ft R
+.ft B
+s 0 c
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Extracting substrings
+
+.PP
+
+.I val sub 
+: 
+.B string -> pos:int -> len:int -> string
+.sp
+
+.ft B
+sub s ~pos ~len
+.ft R
+is a string of length 
+.ft B
+len
+.ft R
+, containing the
+substring of 
+.ft B
+s
+.ft R
+that starts at position 
+.ft B
+pos
+.ft R
+and has length
+.ft B
+len
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid
+substring of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val split_on_char 
+: 
+.B sep:char -> string -> string list
+.sp
+
+.ft B
+split_on_char ~sep s
+.ft R
+is the list of all (possibly empty)
+substrings of 
+.ft B
+s
+.ft R
+that are delimited by the character 
+.ft B
+sep
+.ft R
+\&.
+.sp
+The function\&'s result is specified by the following invariants:
+.sp
+\-The list is not empty\&.
+.sp
+\-Concatenating its elements using 
+.ft B
+sep
+.ft R
+as a separator returns a
+string equal to the input (
+.ft B
+concat (make 1 sep)
+.br
+\&      (split_on_char sep s) = s
+.ft R
+)\&.
+.sp
+\-No string in the result contains the 
+.ft B
+sep
+.ft R
+character\&.
+
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS Transforming
+
+.PP
+
+.I val map 
+: 
+.B f:(char -> char) -> string -> string
+.sp
+
+.ft B
+map f s
+.ft R
+is the string resulting from applying 
+.ft B
+f
+.ft R
+to all the
+characters of 
+.ft B
+s
+.ft R
+in increasing order\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val mapi 
+: 
+.B f:(int -> char -> char) -> string -> string
+.sp
+
+.ft B
+mapi ~f s
+.ft R
+is like 
+.ft B
+StringLabels\&.map
+.ft R
+but the index of the character is also
+passed to 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val fold_left 
+: 
+.B f:('acc -> char -> 'acc) -> init:'acc -> string -> 'acc
+.sp
+
+.ft B
+fold_left f x s
+.ft R
+computes 
+.ft B
+f (\&.\&.\&. (f (f x s\&.[0]) s\&.[1]) \&.\&.\&.) s\&.[n\-1]
+.ft R
+,
+where 
+.ft B
+n
+.ft R
+is the length of the string 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val fold_right 
+: 
+.B f:(char -> 'acc -> 'acc) -> string -> init:'acc -> 'acc
+.sp
+
+.ft B
+fold_right f s x
+.ft R
+computes 
+.ft B
+f s\&.[0] (f s\&.[1] ( \&.\&.\&. (f s\&.[n\-1] x) \&.\&.\&.))
+.ft R
+,
+where 
+.ft B
+n
+.ft R
+is the length of the string 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val for_all 
+: 
+.B f:(char -> bool) -> string -> bool
+.sp
+
+.ft B
+for_all p s
+.ft R
+checks if all characters in 
+.ft B
+s
+.ft R
+satisfy the predicate 
+.ft B
+p
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val exists 
+: 
+.B f:(char -> bool) -> string -> bool
+.sp
+
+.ft B
+exists p s
+.ft R
+checks if at least one character of 
+.ft B
+s
+.ft R
+satisfies the predicate
+.ft B
+p
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val trim 
+: 
+.B string -> string
+.sp
+
+.ft B
+trim s
+.ft R
+is 
+.ft B
+s
+.ft R
+without leading and trailing whitespace\&. Whitespace
+characters are: 
+.ft B
+\&' \&'
+.ft R
+, 
+.ft B
+\&'\(rsx0C\&'
+.ft R
+(form feed), 
+.ft B
+\&'\(rsn\&'
+.ft R
+, 
+.ft B
+\&'\(rsr\&'
+.ft R
+, and 
+.ft B
+\&'\(rst\&'
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val escaped 
+: 
+.B string -> string
+.sp
+
+.ft B
+escaped s
+.ft R
+is 
+.ft B
+s
+.ft R
+with special characters represented by escape
+sequences, following the lexical conventions of OCaml\&.
+.sp
+All characters outside the US\-ASCII printable range [0x20;0x7E] are
+escaped, as well as backslash (0x2F) and double\-quote (0x22)\&.
+.sp
+The function 
+.ft B
+Scanf\&.unescaped
+.ft R
+is a left inverse of 
+.ft B
+escaped
+.ft R
+,
+i\&.e\&. 
+.ft B
+Scanf\&.unescaped (escaped s) = s
+.ft R
+for any string 
+.ft B
+s
+.ft R
+(unless
+.ft B
+escaped s
+.ft R
+fails)\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the result is longer than
+.ft B
+Sys\&.max_string_length
+.ft R
+bytes\&.
+
+.sp
+
+.I val uppercase_ascii 
+: 
+.B string -> string
+.sp
+
+.ft B
+uppercase_ascii s
+.ft R
+is 
+.ft B
+s
+.ft R
+with all lowercase letters
+translated to uppercase, using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val lowercase_ascii 
+: 
+.B string -> string
+.sp
+
+.ft B
+lowercase_ascii s
+.ft R
+is 
+.ft B
+s
+.ft R
+with all uppercase letters translated
+to lowercase, using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val capitalize_ascii 
+: 
+.B string -> string
+.sp
+
+.ft B
+capitalize_ascii s
+.ft R
+is 
+.ft B
+s
+.ft R
+with the first character set to
+uppercase, using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val uncapitalize_ascii 
+: 
+.B string -> string
+.sp
+
+.ft B
+uncapitalize_ascii s
+.ft R
+is 
+.ft B
+s
+.ft R
+with the first character set to lowercase,
+using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS Traversing
+
+.PP
+
+.I val iter 
+: 
+.B f:(char -> unit) -> string -> unit
+.sp
+
+.ft B
+iter ~f s
+.ft R
+applies function 
+.ft B
+f
+.ft R
+in turn to all the characters of 
+.ft B
+s
+.ft R
+\&.
+It is equivalent to 
+.ft B
+f s\&.[0]; f s\&.[1]; \&.\&.\&.; f s\&.[length s \- 1]; ()
+.ft R
+\&.
+
+.sp
+
+.I val iteri 
+: 
+.B f:(int -> char -> unit) -> string -> unit
+.sp
+
+.ft B
+iteri
+.ft R
+is like 
+.ft B
+StringLabels\&.iter
+.ft R
+, but the function is also given the
+corresponding character index\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.PP
+.SS Searching
+
+.PP
+
+.I val index_from 
+: 
+.B string -> int -> char -> int
+.sp
+
+.ft B
+index_from s i c
+.ft R
+is the index of the first occurrence of 
+.ft B
+c
+.ft R
+in
+.ft B
+s
+.ft R
+after position 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+after position 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val index_from_opt 
+: 
+.B string -> int -> char -> int option
+.sp
+
+.ft B
+index_from_opt s i c
+.ft R
+is the index of the first occurrence of 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+after position 
+.ft B
+i
+.ft R
+(if any)\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val rindex_from 
+: 
+.B string -> int -> char -> int
+.sp
+
+.ft B
+rindex_from s i c
+.ft R
+is the index of the last occurrence of 
+.ft B
+c
+.ft R
+in
+.ft B
+s
+.ft R
+before position 
+.ft B
+i+1
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+before position 
+.ft B
+i+1
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i+1
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val rindex_from_opt 
+: 
+.B string -> int -> char -> int option
+.sp
+
+.ft B
+rindex_from_opt s i c
+.ft R
+is the index of the last occurrence of 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+before position 
+.ft B
+i+1
+.ft R
+(if any)\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i+1
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val index 
+: 
+.B string -> char -> int
+.sp
+
+.ft B
+index s c
+.ft R
+is 
+.ft B
+String\&.index_from
+.ft R
+.ft B
+s 0 c
+.ft R
+\&.
+
+.sp
+
+.I val index_opt 
+: 
+.B string -> char -> int option
+.sp
+
+.ft B
+index_opt s c
+.ft R
+is 
+.ft B
+String\&.index_from_opt
+.ft R
+.ft B
+s 0 c
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val rindex 
+: 
+.B string -> char -> int
+.sp
+
+.ft B
+rindex s c
+.ft R
+is 
+.ft B
+String\&.rindex_from
+.ft R
+.ft B
+s (length s \- 1) c
+.ft R
+\&.
+
+.sp
+
+.I val rindex_opt 
+: 
+.B string -> char -> int option
+.sp
+
+.ft B
+rindex_opt s c
+.ft R
+is 
+.ft B
+String\&.rindex_from_opt
+.ft R
+.ft B
+s (length s \- 1) c
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS Strings and Sequences
+
+.PP
+
+.I val to_seq 
+: 
+.B t -> char Seq.t
+.sp
+
+.ft B
+to_seq s
+.ft R
+is a sequence made of the string\&'s characters in
+increasing order\&. In 
+.ft B
+"unsafe\-string"
+.ft R
+mode, modifications of the string
+during iteration will be reflected in the sequence\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seqi 
+: 
+.B t -> (int * char) Seq.t
+.sp
+
+.ft B
+to_seqi s
+.ft R
+is like 
+.ft B
+StringLabels\&.to_seq
+.ft R
+but also tuples the corresponding index\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B char Seq.t -> t
+.sp
+
+.ft B
+of_seq s
+.ft R
+is a string made of the sequence\&'s characters\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.PP
+.SS UTF decoding and validations
+
+.PP
+
+.PP
+.SS UTF-8
+
+.PP
+
+.I val get_utf_8_uchar 
+: 
+.B t -> int -> Uchar.utf_decode
+.sp
+
+.ft B
+get_utf_8_uchar b i
+.ft R
+decodes an UTF\-8 character at index 
+.ft B
+i
+.ft R
+in
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val is_valid_utf_8 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_valid_utf_8 b
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+b
+.ft R
+contains valid
+UTF\-8 data\&.
+
+.sp
+
+.PP
+.SS UTF-16BE
+
+.PP
+
+.I val get_utf_16be_uchar 
+: 
+.B t -> int -> Uchar.utf_decode
+.sp
+
+.ft B
+get_utf_16be_uchar b i
+.ft R
+decodes an UTF\-16BE character at index
+.ft B
+i
+.ft R
+in 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val is_valid_utf_16be 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_valid_utf_16be b
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+b
+.ft R
+contains valid
+UTF\-16BE data\&.
+
+.sp
+
+.PP
+.SS UTF-16LE
+
+.PP
+
+.I val get_utf_16le_uchar 
+: 
+.B t -> int -> Uchar.utf_decode
+.sp
+
+.ft B
+get_utf_16le_uchar b i
+.ft R
+decodes an UTF\-16LE character at index
+.ft B
+i
+.ft R
+in 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val is_valid_utf_16le 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_valid_utf_16le b
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+b
+.ft R
+contains valid
+UTF\-16LE data\&.
+
+.sp
+
+.PP
+.SS Binary decoding of integers
+
+.PP
+
+.PP
+The functions in this section binary decode integers from strings\&.
+.sp
+All following functions raise 
+.ft B
+Invalid_argument
+.ft R
+if the characters
+needed at index 
+.ft B
+i
+.ft R
+to decode the integer are not available\&.
+.sp
+Little\-endian (resp\&. big\-endian) encoding means that least
+(resp\&. most) significant bytes are stored first\&.  Big\-endian is
+also known as network byte order\&.  Native\-endian encoding is
+either little\-endian or big\-endian depending on 
+.ft B
+Sys\&.big_endian
+.ft R
+\&.
+.sp
+32\-bit and 64\-bit integers are represented by the 
+.ft B
+int32
+.ft R
+and
+.ft B
+int64
+.ft R
+types, which can be interpreted either as signed or
+unsigned numbers\&.
+.sp
+8\-bit and 16\-bit integers are represented by the 
+.ft B
+int
+.ft R
+type,
+which has more bits than the binary encoding\&.  These extra bits
+are sign\-extended (or zero\-extended) for functions which decode 8\-bit
+or 16\-bit integers and represented them with 
+.ft B
+int
+.ft R
+values\&.
+.PP
+
+.I val get_uint8 
+: 
+.B string -> int -> int
+.sp
+
+.ft B
+get_uint8 b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s unsigned 8\-bit integer starting at character
+index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int8 
+: 
+.B string -> int -> int
+.sp
+
+.ft B
+get_int8 b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s signed 8\-bit integer starting at character
+index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_uint16_ne 
+: 
+.B string -> int -> int
+.sp
+
+.ft B
+get_uint16_ne b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s native\-endian unsigned 16\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_uint16_be 
+: 
+.B string -> int -> int
+.sp
+
+.ft B
+get_uint16_be b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s big\-endian unsigned 16\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_uint16_le 
+: 
+.B string -> int -> int
+.sp
+
+.ft B
+get_uint16_le b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s little\-endian unsigned 16\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int16_ne 
+: 
+.B string -> int -> int
+.sp
+
+.ft B
+get_int16_ne b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s native\-endian signed 16\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int16_be 
+: 
+.B string -> int -> int
+.sp
+
+.ft B
+get_int16_be b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s big\-endian signed 16\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int16_le 
+: 
+.B string -> int -> int
+.sp
+
+.ft B
+get_int16_le b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s little\-endian signed 16\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int32_ne 
+: 
+.B string -> int -> int32
+.sp
+
+.ft B
+get_int32_ne b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s native\-endian 32\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val hash 
+: 
+.B t -> int
+.sp
+An unseeded hash function for strings, with the same output value as
+.ft B
+Hashtbl\&.hash
+.ft R
+\&. This function allows this module to be passed as argument
+to the functor 
+.ft B
+Hashtbl\&.Make
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val seeded_hash 
+: 
+.B int -> t -> int
+.sp
+A seeded hash function for strings, with the same output value as
+.ft B
+Hashtbl\&.seeded_hash
+.ft R
+\&. This function allows this module to be passed as
+argument to the functor 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val get_int32_be 
+: 
+.B string -> int -> int32
+.sp
+
+.ft B
+get_int32_be b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s big\-endian 32\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int32_le 
+: 
+.B string -> int -> int32
+.sp
+
+.ft B
+get_int32_le b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s little\-endian 32\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int64_ne 
+: 
+.B string -> int -> int64
+.sp
+
+.ft B
+get_int64_ne b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s native\-endian 64\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int64_be 
+: 
+.B string -> int -> int64
+.sp
+
+.ft B
+get_int64_be b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s big\-endian 64\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val get_int64_le 
+: 
+.B string -> int -> int64
+.sp
+
+.ft B
+get_int64_le b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s little\-endian 64\-bit integer
+starting at character index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp

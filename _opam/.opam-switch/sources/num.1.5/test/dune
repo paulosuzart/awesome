@@ -1,0 +1,22 @@
+(rule
+ (alias runtest)
+ (action (run ./driver.exe)))
+
+(rule
+ (alias runtest)
+ (action (run ./driver.bc)))
+
+(library
+  (name test_lib)
+  (modules test test_nats test_big_ints test_ratios test_nums test_io end_test)
+  (libraries num)
+  (flags ))
+
+(executable
+  (name driver)
+  (modules driver)
+  (flags -linkall)
+  (modes (byte exe))
+  (libraries test_lib))
+
+(rule (with-stdout-to driver.ml (echo "")))

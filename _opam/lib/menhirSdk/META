@@ -1,0 +1,7 @@
+version = "20231231"
+description = "Toolkit for postprocessing Menhir automata (.cmly files)"
+requires = ""
+archive(byte) = "menhirSdk.cma"
+archive(native) = "menhirSdk.cmxa"
+plugin(byte) = "menhirSdk.cma"
+plugin(native) = "menhirSdk.cmxs"

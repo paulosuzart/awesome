@@ -1,0 +1,437 @@
+.TH "Lazy" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Lazy \- Deferred computations.
+.SH Module
+Module   Lazy
+.SH Documentation
+.sp
+Module
+.BI "Lazy"
+ : 
+.B sig end
+
+.sp
+Deferred computations\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+= 
+.B 'a CamlinternalLazy.t
+
+.sp
+A value of type 
+.ft B
+\&'a Lazy\&.t
+.ft R
+is a deferred computation, called a suspension,
+that has a result of type 
+.ft B
+\&'a
+.ft R
+\&. The special expression syntax 
+.ft B
+lazy (expr)
+.ft R
+makes a suspension of the computation of 
+.ft B
+expr
+.ft R
+, without computing
+.ft B
+expr
+.ft R
+itself yet\&. "Forcing" the suspension will then compute 
+.ft B
+expr
+.ft R
+and
+return its result\&. Matching a suspension with the special pattern syntax
+.ft B
+lazy(pattern)
+.ft R
+also computes the underlying expression and tries to bind
+it to 
+.ft B
+pattern
+.ft R
+:
+.sp
+
+.EX
+.ft B
+.br
+\&      let lazy_option_map f x =
+.br
+\&      match x with
+.br
+\&      | lazy (Some x) \-> Some (Lazy\&.force f x)
+.br
+\&      | _ \-> None
+.br
+\&    
+.ft R
+.EE
+.sp
+Note: If lazy patterns appear in multiple cases in a pattern\-matching, lazy
+expressions may be forced even outside of the case ultimately selected by
+the pattern matching\&. In the example above, the suspension 
+.ft B
+x
+.ft R
+is always
+computed\&.
+.sp
+Note: 
+.ft B
+lazy_t
+.ft R
+is the built\-in type constructor used by the compiler for the
+.ft B
+lazy
+.ft R
+keyword\&.  You should not use it directly\&.  Always use 
+.ft B
+Lazy\&.t
+.ft R
+instead\&.
+.sp
+Note: 
+.ft B
+Lazy\&.force
+.ft R
+is not concurrency\-safe\&. If you use this module with
+multiple fibers, systhreads or domains, then you will need to add some
+locks\&. The module however ensures memory\-safety, and hence, concurrently
+accessing this module will not lead to a crash but the behaviour is
+unspecified\&.
+.sp
+Note: if the program is compiled with the 
+.ft B
+\-rectypes
+.ft R
+option,
+ill\-founded recursive definitions of the form 
+.ft B
+let rec x = lazy x
+.ft R
+or 
+.ft B
+let rec x = lazy(lazy(\&.\&.\&.(lazy x)))
+.ft R
+are accepted by the type\-checker
+and lead, when forced, to ill\-formed values that trigger infinite
+loops in the garbage collector and other parts of the run\-time system\&.
+Without the 
+.ft B
+\-rectypes
+.ft R
+option, such ill\-founded recursive definitions
+are rejected by the type\-checker\&.
+
+.sp
+
+.I exception Undefined 
+
+.sp
+Raised when forcing a suspension concurrently from multiple fibers,
+systhreads or domains, or when the suspension tries to force itself
+recursively\&.
+
+.sp
+
+.I val force 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+force x
+.ft R
+forces the suspension 
+.ft B
+x
+.ft R
+and returns its result\&. If 
+.ft B
+x
+.ft R
+has
+already been forced, 
+.ft B
+Lazy\&.force x
+.ft R
+returns the same value again without
+recomputing it\&.  If it raised an exception, the same exception is raised
+again\&.
+
+.sp
+.B "Raises Undefined"
+(see 
+.ft B
+Lazy\&.Undefined
+.ft R
+)\&.
+
+.sp
+
+.PP
+.SS Iterators
+
+.PP
+
+.I val map 
+: 
+.B ('a -> 'b) -> 'a t -> 'b t
+.sp
+
+.ft B
+map f x
+.ft R
+returns a suspension that, when forced,
+forces 
+.ft B
+x
+.ft R
+and applies 
+.ft B
+f
+.ft R
+to its value\&.
+.sp
+It is equivalent to 
+.ft B
+lazy (f (Lazy\&.force x))
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.PP
+.SS Reasoning on already-forced suspensions
+
+.PP
+
+.I val is_val 
+: 
+.B 'a t -> bool
+.sp
+
+.ft B
+is_val x
+.ft R
+returns 
+.ft B
+true
+.ft R
+if 
+.ft B
+x
+.ft R
+has already been forced and
+did not raise an exception\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val from_val 
+: 
+.B 'a -> 'a t
+.sp
+
+.ft B
+from_val v
+.ft R
+evaluates 
+.ft B
+v
+.ft R
+first (as any function would) and returns
+an already\-forced suspension of its result\&.
+It is the same as 
+.ft B
+let x = v in lazy x
+.ft R
+, but uses dynamic tests
+to optimize suspension creation in some cases\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val map_val 
+: 
+.B ('a -> 'b) -> 'a t -> 'b t
+.sp
+
+.ft B
+map_val f x
+.ft R
+applies 
+.ft B
+f
+.ft R
+directly if 
+.ft B
+x
+.ft R
+is already forced,
+otherwise it behaves as 
+.ft B
+map f x
+.ft R
+\&.
+.sp
+When 
+.ft B
+x
+.ft R
+is already forced, this behavior saves the construction of
+a suspension, but on the other hand it performs more work eagerly
+that may not be useful if you never force the function result\&.
+.sp
+If 
+.ft B
+f
+.ft R
+raises an exception, it will be raised immediately when
+.ft B
+is_val x
+.ft R
+, or raised only when forcing the thunk otherwise\&.
+.sp
+If 
+.ft B
+map_val f x
+.ft R
+does not raise an exception, then
+.ft B
+is_val (map_val f x)
+.ft R
+is equal to 
+.ft B
+is_val x
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.PP
+.SS Advanced
+.sp
+The following definitions are for advanced uses only; they require
+familiary with the lazy compilation scheme to be used appropriately\&.
+.PP
+
+.I val from_fun 
+: 
+.B (unit -> 'a) -> 'a t
+.sp
+
+.ft B
+from_fun f
+.ft R
+is the same as 
+.ft B
+lazy (f ())
+.ft R
+but slightly more efficient\&.
+.sp
+It should only be used if the function 
+.ft B
+f
+.ft R
+is already defined\&.
+In particular it is always less efficient to write
+.ft B
+from_fun (fun () \-> expr)
+.ft R
+than 
+.ft B
+lazy expr
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val force_val 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+force_val x
+.ft R
+forces the suspension 
+.ft B
+x
+.ft R
+and returns its result\&.  If 
+.ft B
+x
+.ft R
+has already been forced, 
+.ft B
+force_val x
+.ft R
+returns the same value again
+without recomputing it\&.
+.sp
+If the computation of 
+.ft B
+x
+.ft R
+raises an exception, it is unspecified
+whether 
+.ft B
+force_val x
+.ft R
+raises the same exception or 
+.ft B
+Lazy\&.Undefined
+.ft R
+\&.
+
+.sp
+.B "Raises Undefined"
+if the forcing of 
+.ft B
+x
+.ft R
+tries to force 
+.ft B
+x
+.ft R
+itself
+recursively\&.
+
+.sp
+.B "Raises Undefined"
+(see 
+.ft B
+Lazy\&.Undefined
+.ft R
+)\&.
+
+.sp

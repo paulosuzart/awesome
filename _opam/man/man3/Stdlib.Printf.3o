@@ -1,0 +1,872 @@
+.TH "Stdlib.Printf" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Printf \- no description
+.SH Module
+Module   Stdlib.Printf
+.SH Documentation
+.sp
+Module
+.BI "Printf"
+ : 
+.B (module Stdlib__Printf)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val fprintf 
+: 
+.B out_channel -> ('a, out_channel, unit) format -> 'a
+.sp
+
+.ft B
+fprintf outchan format arg1 \&.\&.\&. argN
+.ft R
+formats the arguments
+.ft B
+arg1
+.ft R
+to 
+.ft B
+argN
+.ft R
+according to the format string 
+.ft B
+format
+.ft R
+, and
+outputs the resulting string on the channel 
+.ft B
+outchan
+.ft R
+\&.
+.sp
+The format string is a character string which contains two types of
+objects: plain characters, which are simply copied to the output
+channel, and conversion specifications, each of which causes
+conversion and printing of arguments\&.
+.sp
+Conversion specifications have the following form:
+.sp
+
+.ft B
+% [flags] [width] [\&.precision] type
+.ft R
+.sp
+In short, a conversion specification consists in the 
+.ft B
+%
+.ft R
+character,
+followed by optional modifiers and a type which is made of one or
+two characters\&.
+.sp
+The types and their meanings are:
+.sp
+.sp
+\-
+.ft B
+d
+.ft R
+, 
+.ft B
+i
+.ft R
+: convert an integer argument to signed decimal\&.
+The flag 
+.ft B
+#
+.ft R
+adds underscores to large values for readability\&.
+.sp
+\-
+.ft B
+u
+.ft R
+, 
+.ft B
+n
+.ft R
+, 
+.ft B
+l
+.ft R
+, 
+.ft B
+L
+.ft R
+, or 
+.ft B
+N
+.ft R
+: convert an integer argument to
+unsigned decimal\&.  Warning: 
+.ft B
+n
+.ft R
+, 
+.ft B
+l
+.ft R
+, 
+.ft B
+L
+.ft R
+, and 
+.ft B
+N
+.ft R
+are
+used for 
+.ft B
+scanf
+.ft R
+, and should not be used for 
+.ft B
+printf
+.ft R
+\&.
+The flag 
+.ft B
+#
+.ft R
+adds underscores to large values for readability\&.
+.sp
+\-
+.ft B
+x
+.ft R
+: convert an integer argument to unsigned hexadecimal,
+using lowercase letters\&.
+The flag 
+.ft B
+#
+.ft R
+adds a 
+.ft B
+0x
+.ft R
+prefix to non zero values\&.
+.sp
+\-
+.ft B
+X
+.ft R
+: convert an integer argument to unsigned hexadecimal,
+using uppercase letters\&.
+The flag 
+.ft B
+#
+.ft R
+adds a 
+.ft B
+0X
+.ft R
+prefix to non zero values\&.
+.sp
+\-
+.ft B
+o
+.ft R
+: convert an integer argument to unsigned octal\&.
+The flag 
+.ft B
+#
+.ft R
+adds a 
+.ft B
+0
+.ft R
+prefix to non zero values\&.
+.sp
+\-
+.ft B
+s
+.ft R
+: insert a string argument\&.
+.sp
+\-
+.ft B
+S
+.ft R
+: convert a string argument to OCaml syntax (double quotes, escapes)\&.
+.sp
+\-
+.ft B
+c
+.ft R
+: insert a character argument\&.
+.sp
+\-
+.ft B
+C
+.ft R
+: convert a character argument to OCaml syntax
+(single quotes, escapes)\&.
+.sp
+\-
+.ft B
+f
+.ft R
+: convert a floating\-point argument to decimal notation,
+in the style 
+.ft B
+dddd\&.ddd
+.ft R
+\&.
+.sp
+\-
+.ft B
+F
+.ft R
+: convert a floating\-point argument to OCaml syntax (
+.ft B
+dddd\&.
+.ft R
+or 
+.ft B
+dddd\&.ddd
+.ft R
+or 
+.ft B
+d\&.ddd e+\-dd
+.ft R
+)\&.
+Converts to hexadecimal with the 
+.ft B
+#
+.ft R
+flag (see 
+.ft B
+h
+.ft R
+)\&.
+.sp
+\-
+.ft B
+e
+.ft R
+or 
+.ft B
+E
+.ft R
+: convert a floating\-point argument to decimal notation,
+in the style 
+.ft B
+d\&.ddd e+\-dd
+.ft R
+(mantissa and exponent)\&.
+.sp
+\-
+.ft B
+g
+.ft R
+or 
+.ft B
+G
+.ft R
+: convert a floating\-point argument to decimal notation,
+in style 
+.ft B
+f
+.ft R
+or 
+.ft B
+e
+.ft R
+, 
+.ft B
+E
+.ft R
+(whichever is more compact)\&. Moreover,
+any trailing zeros are removed from the fractional part of the result
+and the decimal\-point character is removed if there is no fractional
+part remaining\&.
+.sp
+\-
+.ft B
+h
+.ft R
+or 
+.ft B
+H
+.ft R
+: convert a floating\-point argument to hexadecimal notation,
+in the style 
+.ft B
+0xh\&.hhhh p+\-dd
+.ft R
+(hexadecimal mantissa, exponent in
+decimal and denotes a power of 2)\&.
+.sp
+\-
+.ft B
+B
+.ft R
+: convert a boolean argument to the string 
+.ft B
+true
+.ft R
+or 
+.ft B
+false
+.ft R
+
+.sp
+\-
+.ft B
+b
+.ft R
+: convert a boolean argument (deprecated; do not use in new
+programs)\&.
+.sp
+\-
+.ft B
+ld
+.ft R
+, 
+.ft B
+li
+.ft R
+, 
+.ft B
+lu
+.ft R
+, 
+.ft B
+lx
+.ft R
+, 
+.ft B
+lX
+.ft R
+, 
+.ft B
+lo
+.ft R
+: convert an 
+.ft B
+int32
+.ft R
+argument to
+the format specified by the second letter (decimal, hexadecimal, etc)\&.
+.sp
+\-
+.ft B
+nd
+.ft R
+, 
+.ft B
+ni
+.ft R
+, 
+.ft B
+nu
+.ft R
+, 
+.ft B
+nx
+.ft R
+, 
+.ft B
+nX
+.ft R
+, 
+.ft B
+no
+.ft R
+: convert a 
+.ft B
+nativeint
+.ft R
+argument to
+the format specified by the second letter\&.
+.sp
+\-
+.ft B
+Ld
+.ft R
+, 
+.ft B
+Li
+.ft R
+, 
+.ft B
+Lu
+.ft R
+, 
+.ft B
+Lx
+.ft R
+, 
+.ft B
+LX
+.ft R
+, 
+.ft B
+Lo
+.ft R
+: convert an 
+.ft B
+int64
+.ft R
+argument to
+the format specified by the second letter\&.
+.sp
+\-
+.ft B
+a
+.ft R
+: user\-defined printer\&. Take two arguments and apply the
+first one to 
+.ft B
+outchan
+.ft R
+(the current output channel) and to the
+second argument\&. The first argument must therefore have type
+.ft B
+out_channel \-> \&'b \-> unit
+.ft R
+and the second 
+.ft B
+\&'b
+.ft R
+\&.
+The output produced by the function is inserted in the output of
+.ft B
+fprintf
+.ft R
+at the current point\&.
+.sp
+\-
+.ft B
+t
+.ft R
+: same as 
+.ft B
+%a
+.ft R
+, but take only one argument (with type
+.ft B
+out_channel \-> unit
+.ft R
+) and apply it to 
+.ft B
+outchan
+.ft R
+\&.
+.sp
+\-
+.ft B
+{ fmt %}
+.ft R
+: convert a format string argument to its type digest\&.
+The argument must have the same type as the internal format string
+.ft B
+fmt
+.ft R
+\&.
+.sp
+\-
+.ft B
+( fmt %)
+.ft R
+: format string substitution\&. Take a format string
+argument and substitute it to the internal format string 
+.ft B
+fmt
+.ft R
+to print following arguments\&. The argument must have the same
+type as the internal format string 
+.ft B
+fmt
+.ft R
+\&.
+.sp
+\-
+.ft B
+!
+.ft R
+: take no argument and flush the output\&.
+.sp
+\-
+.ft B
+%
+.ft R
+: take no argument and output one 
+.ft B
+%
+.ft R
+character\&.
+.sp
+\-
+.ft B
+@
+.ft R
+: take no argument and output one 
+.ft B
+@
+.ft R
+character\&.
+.sp
+\-
+.ft B
+,
+.ft R
+: take no argument and output nothing: a no\-op delimiter for
+conversion specifications\&.
+
+The optional 
+.ft B
+flags
+.ft R
+are:
+.sp
+\-
+.ft B
+\-
+.ft R
+: left\-justify the output (default is right justification)\&.
+.sp
+\-
+.ft B
+0
+.ft R
+: for numerical conversions, pad with zeroes instead of spaces\&.
+.sp
+\-
+.ft B
++
+.ft R
+: for signed numerical conversions, prefix number with a 
+.ft B
++
+.ft R
+sign if positive\&.
+.sp
+\-space: for signed numerical conversions, prefix number with a
+space if positive\&.
+.sp
+\-
+.ft B
+#
+.ft R
+: request an alternate formatting style for the integer types
+and the floating\-point type 
+.ft B
+F
+.ft R
+\&.
+
+The optional 
+.ft B
+width
+.ft R
+is an integer indicating the minimal
+width of the result\&. For instance, 
+.ft B
+%6d
+.ft R
+prints an integer,
+prefixing it with spaces to fill at least 6 characters\&.
+.sp
+The optional 
+.ft B
+precision
+.ft R
+is a dot 
+.ft B
+\&.
+.ft R
+followed by an integer
+indicating how many digits follow the decimal point in the 
+.ft B
+%f
+.ft R
+,
+.ft B
+%e
+.ft R
+, 
+.ft B
+%E
+.ft R
+, 
+.ft B
+%h
+.ft R
+, and 
+.ft B
+%H
+.ft R
+conversions or the maximum number of
+significant digits to appear for the 
+.ft B
+%F
+.ft R
+, 
+.ft B
+%g
+.ft R
+and 
+.ft B
+%G
+.ft R
+conversions\&.
+For instance, 
+.ft B
+%\&.4f
+.ft R
+prints a 
+.ft B
+float
+.ft R
+with 4 fractional digits\&.
+.sp
+The integer in a 
+.ft B
+width
+.ft R
+or 
+.ft B
+precision
+.ft R
+can also be specified as
+.ft B
+*
+.ft R
+, in which case an extra integer argument is taken to specify
+the corresponding 
+.ft B
+width
+.ft R
+or 
+.ft B
+precision
+.ft R
+\&. This integer argument
+precedes immediately the argument to print\&.
+For instance, 
+.ft B
+%\&.*f
+.ft R
+prints a 
+.ft B
+float
+.ft R
+with as many fractional
+digits as the value of the argument given before the float\&.
+
+.sp
+
+.I val printf 
+: 
+.B ('a, out_channel, unit) format -> 'a
+.sp
+Same as 
+.ft B
+Printf\&.fprintf
+.ft R
+, but output on 
+.ft B
+stdout
+.ft R
+\&.
+
+.sp
+
+.I val eprintf 
+: 
+.B ('a, out_channel, unit) format -> 'a
+.sp
+Same as 
+.ft B
+Printf\&.fprintf
+.ft R
+, but output on 
+.ft B
+stderr
+.ft R
+\&.
+
+.sp
+
+.I val sprintf 
+: 
+.B ('a, unit, string) format -> 'a
+.sp
+Same as 
+.ft B
+Printf\&.fprintf
+.ft R
+, but instead of printing on an output channel,
+return a string containing the result of formatting the arguments\&.
+
+.sp
+
+.I val bprintf 
+: 
+.B Buffer.t -> ('a, Buffer.t, unit) format -> 'a
+.sp
+Same as 
+.ft B
+Printf\&.fprintf
+.ft R
+, but instead of printing on an output channel,
+append the formatted arguments to the given extensible buffer
+(see module 
+.ft B
+Buffer
+.ft R
+)\&.
+
+.sp
+
+.I val ifprintf 
+: 
+.B 'b -> ('a, 'b, 'c, unit) format4 -> 'a
+.sp
+Same as 
+.ft B
+Printf\&.fprintf
+.ft R
+, but does not print anything\&.
+Useful to ignore some material when conditionally printing\&.
+
+.sp
+.B "Since"
+3.10
+
+.sp
+
+.I val ibprintf 
+: 
+.B Buffer.t -> ('a, Buffer.t, unit) format -> 'a
+.sp
+Same as 
+.ft B
+Printf\&.bprintf
+.ft R
+, but does not print anything\&.
+Useful to ignore some material when conditionally printing\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.PP
+Formatted output functions with continuations\&.
+.PP
+
+.I val kfprintf 
+: 
+.B (out_channel -> 'd) ->
+.B   out_channel -> ('a, out_channel, unit, 'd) format4 -> 'a
+.sp
+Same as 
+.ft B
+fprintf
+.ft R
+, but instead of returning immediately,
+passes the out channel to its first argument at the end of printing\&.
+
+.sp
+.B "Since"
+3.09
+
+.sp
+
+.I val ikfprintf 
+: 
+.B ('b -> 'd) -> 'b -> ('a, 'b, 'c, 'd) format4 -> 'a
+.sp
+Same as 
+.ft B
+kfprintf
+.ft R
+above, but does not print anything\&.
+Useful to ignore some material when conditionally printing\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val ksprintf 
+: 
+.B (string -> 'd) -> ('a, unit, string, 'd) format4 -> 'a
+.sp
+Same as 
+.ft B
+sprintf
+.ft R
+above, but instead of returning the string,
+passes it to the first argument\&.
+
+.sp
+.B "Since"
+3.09
+
+.sp
+
+.I val kbprintf 
+: 
+.B (Buffer.t -> 'd) ->
+.B   Buffer.t -> ('a, Buffer.t, unit, 'd) format4 -> 'a
+.sp
+Same as 
+.ft B
+bprintf
+.ft R
+, but instead of returning immediately,
+passes the buffer to its first argument at the end of printing\&.
+
+.sp
+.B "Since"
+3.10
+
+.sp
+
+.I val ikbprintf 
+: 
+.B (Buffer.t -> 'd) ->
+.B   Buffer.t -> ('a, Buffer.t, unit, 'd) format4 -> 'a
+.sp
+Same as 
+.ft B
+kbprintf
+.ft R
+above, but does not print anything\&.
+Useful to ignore some material when conditionally printing\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.PP
+Deprecated
+.PP
+
+.I val kprintf 
+: 
+.B (string -> 'b) -> ('a, unit, string, 'b) format4 -> 'a
+.sp
+.B "Deprecated."
+Use Printf\&.ksprintf instead\&.
+
+.sp
+A deprecated synonym for 
+.ft B
+ksprintf
+.ft R
+\&.
+
+.sp

@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_derivers/META"
+  "_build/install/default/lib/ppx_derivers/dune-package"
+  "_build/install/default/lib/ppx_derivers/opam"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.a"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.cma"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.cmi"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.cmt"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.cmti"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.cmx"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.cmxa"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.ml"
+  "_build/install/default/lib/ppx_derivers/ppx_derivers.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_derivers/CHANGES.md"
+  "_build/install/default/doc/ppx_derivers/LICENSE.md"
+  "_build/install/default/doc/ppx_derivers/README.md"
+]
+libexec: "_build/install/default/lib/ppx_derivers/ppx_derivers.cmxs"

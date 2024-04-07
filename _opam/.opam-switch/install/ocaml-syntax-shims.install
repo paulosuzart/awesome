@@ -1,0 +1,12 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ocaml-syntax-shims/META"
+  "_build/install/default/lib/ocaml-syntax-shims/dune-package"
+  "_build/install/default/lib/ocaml-syntax-shims/opam"
+]
+bin: "_build/install/default/bin/ocaml-syntax-shims"
+doc: [
+  "_build/install/default/doc/ocaml-syntax-shims/CHANGES.md"
+  "_build/install/default/doc/ocaml-syntax-shims/LICENSE.md"
+  "_build/install/default/doc/ocaml-syntax-shims/README.md"
+]

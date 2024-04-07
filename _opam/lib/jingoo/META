@@ -1,0 +1,7 @@
+version = "1.5.0"
+description = "jingoo library"
+requires = "dynlink ppx_deriving.runtime re unix uucp uutf"
+archive(byte) = "jingoo.cma"
+archive(native) = "jingoo.cmxa"
+plugin(byte) = "jingoo.cma"
+plugin(native) = "jingoo.cmxs"

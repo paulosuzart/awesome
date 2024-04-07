@@ -1,0 +1,24 @@
+(rule
+ (targets config.ml config.h)
+ (action
+  (run ./include/discover.exe)))
+
+(library
+ (name iomux)
+ (public_name iomux)
+ (modules iomux config poll util)
+ (libraries unix)
+ (foreign_stubs
+  (language c)
+  (flags
+    :standard
+    "-Wall"
+    ; "-Wstrict-prototypes"
+    ; "-Wmissing-prototypes"
+    ; "-Wmissing-declarations"
+    "-Wshadow"
+    "-Wpointer-arith"
+    "-Wcast-qual"
+    "-Wsign-compare"
+    "-Werror")
+  (names iomux_stubs)))

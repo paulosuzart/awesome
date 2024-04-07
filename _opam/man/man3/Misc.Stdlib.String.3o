@@ -1,0 +1,56 @@
+.TH "Misc.Stdlib.String" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.Stdlib.String \-  Extensions to the String module 
+.SH Module
+Module   Misc.Stdlib.String
+.SH Documentation
+.sp
+Module
+.BI "String"
+ : 
+.B sig end
+
+.sp
+.SS Extensions to the String module
+
+
+.sp
+
+.sp
+.sp
+.I include String
+.sp
+
+.sp
+.I module Set : 
+.B sig end
+
+.sp
+
+.sp
+.I module Map : 
+.B sig end
+
+.sp
+
+.sp
+.I module Tbl : 
+.B sig end
+
+.sp
+
+.sp
+
+.I val print 
+: 
+.B Format.formatter -> t -> unit
+.sp
+
+.sp
+
+.I val for_all 
+: 
+.B (char -> bool) -> t -> bool
+.sp
+
+.sp

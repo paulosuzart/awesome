@@ -1,0 +1,2853 @@
+.TH "ocamlfind" "1" "The findlib package manager for OCaml" "User Manual"
+.SH "NAME"
+.ft R
+ocamlfind - [Command-line interface of the Package manager]\c
+.SH "SYNOPSIS"
+.ft R
+.ft R
+.ft B
+.nf
+\&\ \ \ \ \ \ \ ocamlfind\ query\ [-help\ |\ other\ options]\ \c
+.ft I
+package_name\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ ocamlc\ [-help\ |\ other\ options]\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ ocamlcp\ [-help\ |\ other\ options]\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ ocamlmktop\ [-help\ |\ other\ options]\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ ocamlopt\ [-help\ |\ other\ options]\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ ocamldoc\ [-help\ |\ other\ options]\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ ocamldep\ [-help\ |\ other\ options]\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ ocamlmklib\ [-help\ |\ other\ options]\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ ocamlbrowser\ [-help\ |\ other\ options]\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ install\ [-help\ |\ other\ options]\ \c
+.ft I
+package_name\c
+.ft B
+\&\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ remove\ [-help\ |\ other\ options]\ \c
+.ft I
+package_name\c
+.ft B
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ lint\ \c
+.ft I
+META\c
+.ft B
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ list\ [-describe]\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ printppx\ [-help\ |\ other\ options]\ \c
+.ft I
+package_name\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ printconf\ [\ variable\ ]\c
+\&
+.br
+\&\ \ \ or:\ ocamlfind\ \c
+.ft I
+package\c
+.ft B
+/\c
+.ft I
+command\c
+.ft B
+\&\ \c
+.ft I
+arg\c
+.ft B
+\&\ ...\c
+\&
+.br
+\&
+.br
+Optional\ toolchain\ selection\ by:\c
+\&
+.br
+\&\ \ ocamlfind\ -toolchain\ \c
+.ft I
+name\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SH "THE 'query' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ query\ [\ -predicates\ \c
+.ft I
+p\c
+.ft B
+\&\ \ |\ \c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -format\ \c
+.ft I
+f\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -long-format\ |\ -l\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -i-format\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -l-format\ |\ \c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -a-format\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -o-format\ |\ \c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -p-format\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -prefix\ \c
+.ft I
+p\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -separator\ \c
+.ft I
+s\c
+.ft B
+\&\ |\ \c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -suffix\ \c
+.ft I
+s\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -pp\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -descendants\ |\ -d\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -recursive\ \ |\ -r\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -qe\ |\ -qo]\ \c
+.ft I
+package\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This command looks packages up, sorts them optionally, and\c
+\&  
+prints attributes of them. If the option -recursive (short: -r) is not\c
+\&  
+specified, exactly the packages given on the command line are looked\c
+\&  
+up; if -recursive is present, the packages and all their ancestors, or\c
+\&  
+if -descendants (short: -d) is present, too, all their descendants are printed.\c
+.PP
+.ft R
+Package lookup and the selection of the attributes of the packages can\c
+\&  
+be modified by specifying predicates; without a -predicates option the\c
+\&  
+empty set of predicates is used. Note that even the lookup is\c
+\&  
+influenced by the set of actual predicates as the "requires" variables\c
+\&  
+may be conditional.\c
+.PP
+.ft R
+What is printed about a package depends on the specified format; there\c
+\&  
+are a number of options that modify the format. Some formats denote\c
+\&  
+sets of values (such as -format %a), in which case multiple output\c
+\&  
+records are printed for every package. (It is even possible to specify\c
+\&  
+formats denoting the Cartesian product of sets, such as -format %a%o,\c
+\&  
+but this does not make sense.) Before the first output record the\c
+\&  
+prefix is printed, and the suffix after the last record. Between two\c
+\&  
+records the separator is printed.\c
+.SS "Options"
+.ft R
+.ft R
+.RS "2m"
+.ft R
+-predicates 
+.ft I
+p\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Sets the set of actual predicates. The argument\c
+\&  
+\&  
+.ft I
+p\c
+.ft R
+\& is a list of predicate names separated\c
+\&  
+\& by commas and/or whitespace. If multiple -predicates options are\c
+\&  
+\& given, the union of all specified sets is effectively used.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-format 
+.ft I
+f\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Sets the format to the string\c
+\&  
+\&  
+.ft I
+f\c
+.ft R
+\&. Characters preceded by a percent sign\c
+\&  
+\& are interpreted as placeholders; all other characters mean\c
+\&  
+\& themselves. The defined placeholders are listed below.\c
+\&  
+\& The default format is "%d".\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-long-format or -l\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Sets the format such that all relevant variables are printed.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-i-format\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Same as -format "-I %d", i.e. directory options for ocamlc are printed.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-l-format\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Same as -format "-ccopt -L%d", i.e. directory options for the\c
+\&  
+linker backend are printed.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-a-format\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Same as -format "%+a", i.e. archive file names are printed.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-o-format\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Same as -format "%o", i.e. linker options are printed.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-p-format\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Same as -format "%p", i.e. package names are printed.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-prefix 
+.ft I
+p\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Sets the prefix that is printed before the first output record\c
+\&  
+\& to the given string. The default prefix is the empty string.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-suffix 
+.ft I
+s\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Sets the suffix that is printed after the last output record\c
+\&  
+\& to the given string. The default suffix is the empty string.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-separator 
+.ft I
+s\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Sets the separator that is printed between output records to\c
+\&  
+\& the given string. The default separator is a linefeed character.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-recursive or -r\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Not only the packages given on the command line are queried\c
+\&  
+\& but also all ancestors or descendants. If the option -descendants is\c
+\&  
+\& specified, too, the descendants are printed, otherwise the\c
+\&  
+\& ancestors. The packages are topologically sorted.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-descendants -d\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Instead of the ancestors the descendants of the\c
+\&  
+\& given packages are queried. This option implies 
+-recursive\c
+\&.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-pp\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Query preprocessor packages (camlp4 syntax extensions). Normally\c
+\&  
+it is not needed to set -predicates, except you need the archives (then add\c
+\&  
+-predicates byte). This option implies 
+-recursive\c
+\&.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-qe\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Do not print most errors to stderr, just set the exit code\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-qo\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Do not print the regular output.\c
+.RE
+.ft R
+.PP
+.ft R
+.SS "Placeholders meaningful in the -format option"
+.ft R
+.ft R
+.RS "2m"
+.ft R
+%%\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by a single percent sign\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%p\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the package name\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%d\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the package directory\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%m\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the path to the META file (new since findlib-1.6)\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%D\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the package description\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%v\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the version string\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%a\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the archive filename. If there is more\c
+\&  
+\& than one archive, a separate output record is printed for every archive.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%+a\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Like %a, but the filenames are converted to absolute\c
+\&  
+\& paths ("+" and "@" notations are resolved)\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%A\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the list of archive filenames.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%+A\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Like %A, but the filenames are converted to absolute\c
+\&  
+\& paths ("+" and "@" notations are resolved)\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%o\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by one linker option. If there is more than\c
+\&  
+\& one option, a separate output record is printed for every option.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%O\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the list of linker options.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+%(\c
+.ft I
+property\c
+.ft R
+)\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Replaced by the value of the property named in parentheses,\c
+\&  
+or the empty string if not defined.\c
+.RE
+.ft R
+.PP
+.ft R
+.SH "THE SUBCOMMANDS 'ocamlc', 'ocamlcp', 'ocamlopt', and 'ocamlmktop'"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ (\ ocamlc\ |\ ocamlcp\ |\ ocamlopt\ |\ ocamlmktop\ )\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ [\ -package\ \c
+.ft I
+package-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -linkpkg\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -predicates\ \c
+.ft I
+pred-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -dontlink\ \c
+.ft I
+package-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -syntax\ \c
+.ft I
+pred-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -ppopt\ \c
+.ft I
+camlp4-arg\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -ppxopt\ \c
+.ft I
+package\c
+.ft B
+,\c
+.ft I
+arg\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -dllpath-pkg\ \c
+.ft I
+package-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -dllpath-all\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -passopt\ \c
+.ft I
+arg\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -passrest\ \c
+.ft I
+arg...\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -only-show\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \c
+.ft I
+standard-option\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+These subcommands are drivers for the compilers with the same names,\c
+\&  
+i.e. "ocamlfind ocamlc" is a driver for "ocamlc", and so on. The\c
+\&  
+subcommands understand all documented options of the compilers (here\c
+\&  
+called 
+.ft I
+standard-options\c
+.ft R
+), but also a few\c
+\&  
+more options. If these subcommands are invoked only with standard\c
+\&  
+options, they behave as if the underlying compiler had been called\c
+\&  
+directly. The extra options modify this.\c
+.PP
+.ft R
+Internally, these subcommands transform the given list of options and\c
+\&  
+file arguments into an invocation of the driven compiler. This\c
+\&  
+transformation only adds options and files, and the relative order of\c
+\&  
+the options and files passed directly is unchanged.\c
+.PP
+.ft R
+If there are -package options, additional directory search specifiers\c
+\&  
+will be included ("-I", and "-ccopt -I"), such that files of all named\c
+\&  
+packages and all ancestors can be found.\c
+.PP
+.ft R
+The -linkpkg option causes that the packages listed in the -package\c
+\&  
+options and all necessary ancestors are linked in. This means that the\c
+\&  
+archive files implementing the packages are inserted into the list of\c
+\&  
+file arguments.\c
+.PP
+.ft R
+As the package database is queried a set of predicates is needed. Most\c
+\&  
+predicates are set automatically, see below, but additional predicates\c
+\&  
+can be given by a -predicates option.\c
+.PP
+.ft R
+If there is a 
+-syntax\c
+\& option, the drivers assume that\c
+\&  
+a preprocessor is to be used. In this case, the preprocessor command\c
+\&  
+is built first in a preprocessor stage, and this command is passed to the\c
+\&  
+compiler using the 
+-pp\c
+\& option. The set of predicates\c
+\&  
+in the preprocessor stage is different from the set in the compiler/linker\c
+\&  
+stage.\c
+.SS "Options for compiling and linking"
+.ft R
+.ft R
+Here, only the additional options not interpreted by the compiler but\c
+\&  
+by the driver itself, and options with additional effects are explained.\c
+\&  
+Some options are only meaningful for the preprocessor call, and are\c
+\&  
+explained below.\c
+.PP
+.ft R
+.RS "2m"
+.ft R
+-package 
+.ft I
+package-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Adds the listed package names to the set of included\c
+\&  
+\& packages. The package names may be separated by commas and/or\c
+\&  
+\& whitespace. In the transformed command, for every package of the set\c
+\&  
+\& of included packages and for any ancestor a directory search option\c
+\&  
+\& is inserted after the already given options. This means that\c
+\&  
+\& "-I" and "-ccopt -I" options are added for every package directory.\c
+\&  
+\&  
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-linkpkg\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Causes that in the transformed command all archives\c
+\&  
+\& of the packages specified by -packages and all their ancestors are\c
+\&  
+\& added to the file arguments. More precisely, these archives are\c
+\&  
+\& inserted before the first given file argument. Furthermore, "-ccopt\c
+\&  
+\& -L" options for all package directories, and the linker options of\c
+\&  
+\& the selected packages are added, too. Note that the archives are\c
+\&  
+\& inserted in topological order while the linker options are added in\c
+\&  
+\& reverse toplogical order.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-predicates 
+.ft I
+pred-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Adds the given predicates to the set of actual\c
+\&  
+\& predicates. The predicates must be separated by commas and/or\c
+\&  
+\& whitespace. 
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-dontlink 
+.ft I
+package-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This option modifies the behaviour of\c
+\&  
+\& -linkpkg. Packages specified here and all ancestors are not linked\c
+\&  
+\& in. Again the packages are separated by commas and/or whitespace.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-dllpath-pkg 
+.ft I
+package-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+For these packages 
+-dllpath\c
+\& options\c
+\&  
+\& are added to the compiler command. This may be useful when the ld.conf\c
+\&  
+\& file is not properly configured.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-dllpath-all\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+For all linked packages 
+-dllpath\c
+\& options\c
+\&  
+\& are added to the compiler command. This may be useful when the ld.conf\c
+\&  
+\& file is not properly configured.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-passopt 
+.ft I
+arg\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The argument 
+.ft I
+arg\c
+.ft R
+\& is\c
+\&  
+\& passed directly to the underlying compiler. This is needed to\c
+\&  
+\& specify undocumented compiler options.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-passrest 
+.ft I
+arg...\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+All following arguments 
+.ft I
+arg...\c
+.ft R
+\& are\c
+\&  
+\& passed directly to the underlying compiler. This is needed to\c
+\&  
+\& specify undocumented compiler options.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-only-show\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Only prints the constructed command (ocamlc/ocamlopt) to\c
+\&  
+\& stdout, but does not execute the command. (This is for the unlikely event\c
+\&  
+\& that you need a wrapper around ocamlfind.)\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-verbose\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This standard option is interpreted by the driver, too.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-thread\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This standard option causes that the predicate "mt"\c
+\&  
+\& is added to the set of actual predicates. If POSIX threads are available,\c
+\&  
+\& the predicate "mt_posix" is selected, too. If only VM threads are\c
+\&  
+\& available, the predicate "mt_vm" is included into the set, and the\c
+\&  
+\& compiler switch is changed into -vmthread.\c
+.PP
+.ft R
+Note that the presence of the "mt" predicate triggers special\c
+\&  
+fixup of the dependency graph (see below).\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-vmthread\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This standard option causes that the predicates "mt"\c
+\&  
+\& and "mt_vm" are added to the set of actual predicates.\c
+.PP
+.ft R
+Note that the presence of the "mt" predicate triggers special\c
+\&  
+fixup of the dependency graph (see below).\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-p\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This standard option of "ocamlopt" causes that the\c
+\&  
+\& predicate "gprof" is added to the set of actual predicates.\c
+.RE
+.ft R
+.PP
+.ft R
+.SS "Options for preprocessing"
+.ft R
+.ft R
+The options relevant for the preprocessor are the following:\c
+.PP
+.ft R
+.RS "2m"
+.ft R
+-package 
+.ft I
+package-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+These packages are considered while looking up the\c
+\&  
+\& preprocessor arguments. (It does not cause problems that the same\c
+\&  
+\& -package option is used for this purpose, because the set of predicates\c
+\&  
+\& is different.) It is recommended to mention at least 
+camlp4\c
+\&  
+\& here if the preprocessor is going to be used.\c
+\&  
+\&  
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-syntax 
+.ft I
+pred-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+These predicates are assumed to be true in addition\c
+\&  
+\& to the standard preprocessor predicates. See below for a list.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-ppopt 
+.ft I
+camlp4-arg\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This argument is passed to the camlp4 call.\c
+\&  
+\&  
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-ppxopt 
+.ft I
+package\c
+.ft R
+,\c
+.ft I
+arg\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Add 
+.ft I
+arg\c
+.ft R
+\& to the ppx\c
+\&  
+\& preprocessor invocation specified via the "ppx" property in\c
+\&  
+\& the META file of 
+.ft I
+package\c
+.ft R
+\&.\c
+\&  
+\&  
+.RE
+.ft R
+.PP
+.ft R
+.SS "Predicates for compiling and linking"
+.ft R
+.ft R
+.RS "2m"
+.ft R
+byte\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The "byte" predicate means that one of the bytecode compilers is\c
+\&  
+used. It is automatically included into the predicate set if the\c
+\&  
+"ocamlc", "ocamlcp", or "ocamlmktop" compiler is used.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+native\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The "native" predicate means that the native compiler is used. It is\c
+\&  
+automatically included into the predicate set if the "ocamlopt"\c
+\&  
+compiler is used.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+toploop\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The "toploop" predicate means that the toploop is available in the\c
+\&  
+linked program. This predicate is only set when the toploop is actually\c
+\&  
+being executed, not when the toploop is created (this changed in version\c
+\&  
+1.0.4 of findlib).\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+create_toploop\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This predicate means that a toploop is being created (using\c
+\&  
+ocamlmktop).\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+mt\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The "mt" predicate means that the program is multi-threaded. It is\c
+\&  
+automatically included into the predicate set if the -thread option is\c
+\&  
+given. 
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+mt_posix\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The "mt_posix" predicate means that in the case "mt" is set, too, the\c
+\&  
+POSIX libraries are used to implement threads. "mt_posix" is automatically\c
+\&  
+included into the predicate set if the variable "type_of_threads" in the\c
+\&  
+META description of the "threads" package has the value "posix". This\c
+\&  
+is normally the case if "findlib" is configured for POSIX threads.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+mt_vm\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The "mt_vm" predicate means that in the case "mt" is set, too, the\c
+\&  
+VM thread emulation is used to implement multi-threading.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+gprof\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The "gprof" predicate means that in the case "native" is set, too, the\c
+\&  
+program is compiled for profiling. It is automatically included into\c
+\&  
+the predicate set if "ocamlopt" is used and the -p option is in\c
+\&  
+effect.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+autolink\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The "autolink" predicate means that ocamlc is able to perform automatic\c
+\&  
+linking. It is automatically included into the predicate set if ocamlc\c
+\&  
+knows automatic linking (from version 3.00), but it is not set if the\c
+\&  
+-noautolink option is set.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+syntax\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This predicate is set if there is a 
+-syntax\c
+\&  
+\& option. It is set both for the preprocessor and the compiler/linker stage,\c
+\&  
+\& and it can be used to find out whether the preprocessor is enabled or not.\c
+\&  
+\&  
+.RE
+.ft R
+.PP
+.ft R
+.SS "Predicates for preprocessing"
+.ft R
+.ft R
+.RS "2m"
+.ft R
+preprocessor\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This predicate is always set while looking up the\c
+\&  
+\& preprocessor arguments. It can be used to distinguish between the\c
+\&  
+\& preprocessor stage and the compiler/linker stage.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+syntax\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This predicate is set if there is a 
+-syntax\c
+\&  
+\& option. It is set both for the preprocessor and the compiler/linker stage,\c
+\&  
+\& and it can be used to find out whether the preprocessor is enabled or not.\c
+\&  
+\&  
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+camlp4o\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This is the reserved predicate for the standard OCaml syntax.\c
+\&  
+\& It can be used in the 
+-syntax\c
+\& predicate list.\c
+\&  
+\&  
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+camlp4r\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+This is the reserved predicate for the revised OCaml syntax.\c
+\&  
+\& It can be used in the 
+-syntax\c
+\& predicate list.\c
+\&  
+\&  
+.RE
+.ft R
+.PP
+.ft R
+.SS "Special behaviour of 'ocamlmktop'"
+.ft R
+.ft R
+As there is a special module 
+Topfind\c
+\& that\c
+\&  
+supports loading of packages in scripts, the "ocamlmktop" subcommand\c
+\&  
+can add initialization code for this module. This extra code is\c
+\&  
+linked into the executable if "findlib" is in the set of effectively\c
+\&  
+linked packages. 
+.SS "Fixup of the dependency graph for multi-threading"
+.ft R
+.ft R
+For a number of reasons the presence of the "mt" predicate triggers\c
+\&  
+that (1) the package "threads" is added to the list of required packages\c
+\&  
+and (2) the package "threads" becomes prerequisite of all other packages\c
+\&  
+(except of itself and a few hardcoded exceptions). The effect is that\c
+\&  
+the options -thread and -vmthread automatically select the "threads"\c
+\&  
+package, and that "threads" is inserted at the right position in the\c
+\&  
+package list.\c
+.SS "Extended file naming"
+.ft R
+.ft R
+At a number of places one can not only refer to files by absolute\c
+\&  
+or relative path names, but also by extended names. These have two\c
+\&  
+major forms: "+\c
+.ft I
+name\c
+.ft R
+"\c
+\&  
+refers to the subdirectory 
+.ft I
+name\c
+.ft R
+\& of the\c
+\&  
+standard library directory, and "@\c
+.ft I
+name\c
+.ft R
+"\c
+\&  
+refers to the package directory of the package 
+.ft I
+name\c
+.ft R
+\&.\c
+\&  
+Both forms can be continued by a path, e.g. "@netstring/netstring_top.cma".\c
+.PP
+.ft R
+You can use extended names: (1) With 
+-I\c
+\& options,\c
+\&  
+(2) as normal file arguments of the compiler, (3) in the 
+\&  
+"archive" property of packages.\c
+.SS "How to set the names of the compiler executables"
+.ft R
+.ft R
+Normally, the OCaml bytecode compiler can be called under the name\c
+\&  
+ocamlc\c
+\&. However, this is not always true; sometimes a\c
+\&  
+different name is chosen.\c
+.PP
+.ft R
+You can instruct ocamlfind to call executables with other names than\c
+\&  
+ocamlc\c
+, 
+ocamlopt\c
+,\c
+\&  
+ocamlmktop\c
+, and 
+ocamlcp\c
+\&. If present,\c
+\&  
+the environment variable 
+OCAMLFIND_COMMANDS\c
+\& is interpreted\c
+\&  
+as a mapping from the standard names to the actual names of the executables. It\c
+\&  
+must have the following format:\c
+\&  
+\&  
+.PP
+.ft R
+.ft B
+.nf
+.ft I
+standardname1\c
+.ft B
+=\c
+.ft I
+actualname1\c
+.ft B
+\&\ \c
+.ft I
+standardname2\c
+.ft B
+=\c
+.ft I
+actualname2\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.PP
+.ft R
+Example: You may set 
+OCAMLFIND_COMMANDS\c
+\& as follows:\c
+\&  
+\&  
+.PP
+.ft R
+.ft B
+.nf
+OCAMLFIND_COMMANDS='ocamlc=ocamlc-3.00\ ocamlopt=ocamlopt-3.00'\c
+\&
+.br
+export\ OCAMLFIND_COMMANDS\c
+.ft R
+.fi
+.PP
+.ft R
+Alternatively, you can change the configuration file\c
+\&  
+findlib.conf\c
+\&.\c
+.SH "THE SUBCOMMAND 'ocamlmklib'"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ ocamlmklib\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ [\ -package\ \c
+.ft I
+package-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -predicates\ \c
+.ft I
+pred-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -dllpath-pkg\ \c
+.ft I
+package-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -dllpath-all\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -passopt\ \c
+.ft I
+arg\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -passrest\ \c
+.ft I
+arg...\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \c
+.ft I
+standard-option\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This is a wrapper around ocamlmklib, and creates library archives and\c
+\&  
+DLLs. In addition to the standard options, one can use -package to\c
+\&  
+add the search path of packages. Note that no predicates are set by default -\c
+\&  
+the wrapper does not know whether this is about byte or native code linking.\c
+.PP
+.ft R
+This wrapper is mostly provided for completeness.\c
+.SH "THE 'ocamldep' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ ocamldep\ [-package\ \c
+.ft I
+package-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -syntax\ \c
+.ft I
+pred-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -ppopt\ \c
+.ft I
+camlp4-arg\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -passopt\ \c
+.ft I
+arg\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -passrest\ \c
+.ft I
+arg...\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -verbose\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \c
+.ft I
+standard-option\c
+.ft B
+]\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This command is a driver for the tool 
+ocamldep\c
+\& of the\c
+\&  
+OCaml distribution. This driver is only useful in conjunction with\c
+\&  
+the preprocessor camlp4; otherwise it does not provide more functions\c
+\&  
+than 
+ocamldep\c
+\& itself.\c
+.SS "Options"
+.ft R
+.ft R
+Here, only the additional options not interpreted by 
+ocamldep\c
+\&  
+but\c
+\&  
+by the driver itself, and options with additional effects are explained.\c
+.PP
+.ft R
+.RS "2m"
+.ft R
+-package 
+.ft I
+package-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The packages named here are only used to look up the\c
+\&  
+preprocessor options. The package 
+camlp4\c
+\& should be\c
+\&  
+specified anyway, but further packages that add capabilities to the\c
+\&  
+preprocessor can also be passed.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-syntax 
+.ft I
+pred-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The predicates that are in effect during the look-up\c
+\&  
+of the preprocessor options. At least, either 
+camlp4o\c
+\&  
+(selecting the normal syntax), or 
+camlp4r\c
+\& (selecting\c
+\&  
+the revised syntax) should be specified.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-ppopt 
+.ft I
+camlp4-arg\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+An option that is passed through to the camlp4 call.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-passopt 
+.ft I
+arg\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+An option that is passed through to the ocamldep call.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-passrest 
+.ft I
+arg...\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+All further arguments are passed down to ocamldep\c
+\&  
+\& unprocessed\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-verbose\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Displays the resulting ocamldep command (for debugging)\c
+.RE
+.ft R
+.PP
+.ft R
+.SS "Example"
+.ft R
+.ft R
+A typical way of using this driver:\c
+\&  
+\&  
+.PP
+.ft R
+.ft B
+.nf
+ocamlfind\ ocamldep\ -package\ camlp4,xstrp4\ -syntax\ camlp4r\ file1.ml\ file2.ml\c
+.ft R
+.fi
+\&  
+\&  
+This command outputs the dependencies of 
+file1.ml\c
+\& and\c
+\&  
+file2.ml\c
+, although these modules make use of the\c
+\&  
+syntax extensions provided by 
+xstrp4\c
+\& and are written\c
+\&  
+in revised syntax.\c
+.SH "THE 'ocamlbrowser' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ ocamlbrowser\ [-package\ \c
+.ft I
+package-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -all\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -passopt\ \c
+.ft I
+arg\c
+.ft B
+\&\ \c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -passrest\ ]\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This driver calls the 
+ocamlbrowser\c
+\& with package options.\c
+\&  
+With 
+-package\c
+, the specified packages are included into\c
+\&  
+the search path of the browser, and the modules of these packages become\c
+\&  
+visible (in addition to the standard library). The option 
+-all\c
+\& causes that all packages are selected that are managed by findlib.\c
+.PP
+.ft R
+As for other drivers, the options 
+-passopt\c
+\& and\c
+\&  
+-passrest\c
+\& can be used\c
+\&  
+to pass arguments directly to the 
+ocamlbrowser\c
+\& program.\c
+.SH "THE SUBCOMMAND 'ocamldoc'"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ ocamldoc\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ [\ -package\ \c
+.ft I
+package-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -predicates\ \c
+.ft I
+pred-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -syntax\ \c
+.ft I
+pred-name-list\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ -ppopt\ \c
+.ft I
+camlp4-arg\c
+.ft B
+\&\ |\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \c
+.ft I
+standard-option\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This subcommand is a driver for ocamldoc. It undestands all options\c
+\&  
+ocamldoc supports plus the mentioned findlib options. Basically,\c
+\&  
+the -package options are translated into -I options, and the selected\c
+\&  
+syntax options are translated into camlp4 options.\c
+.SS "Options"
+.ft R
+.ft R
+Here, only the additional options not interpreted by 
+ocamldep\c
+\&  
+but\c
+\&  
+by the driver itself, and options with additional effects are explained.\c
+.PP
+.ft R
+.RS "2m"
+.ft R
+-package 
+.ft I
+package-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Adds the listed package names to the set of included\c
+\&  
+\& packages. The package names may be separated by commas and/or\c
+\&  
+\& whitespace. In the transformed command, for every package of the set\c
+\&  
+\& of included packages and for any ancestor a directory search option\c
+\&  
+\& is inserted after the already given options. This means that\c
+\&  
+\& "-I" options are added for every package directory.\c
+\&  
+\&  
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-predicates 
+.ft I
+pred-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Adds the given predicates to the set of actual\c
+\&  
+\& predicates. The predicates must be separated by commas and/or\c
+\&  
+\& whitespace. 
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-syntax 
+.ft I
+pred-name-list\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+The predicates that are in effect during the look-up\c
+\&  
+of the preprocessor options. At least, either 
+camlp4o\c
+\&  
+(selecting the normal syntax), or 
+camlp4r\c
+\& (selecting\c
+\&  
+the revised syntax) should be specified.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+-ppopt 
+.ft I
+camlp4-arg\c
+.ft R
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+An option that is passed through to the camlp4 call.\c
+.RE
+.ft R
+.PP
+.ft R
+.SH "THE 'install' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ install\ [\ -destdir\ \c
+.ft I
+directory\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -metadir\ \c
+.ft I
+directory\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -ldconf\ \c
+.ft I
+path\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -dont-add-directory-directive\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -patch-version\ \c
+.ft I
+string\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -patch-rmpkg\ \c
+.ft I
+name\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -patch-archives\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -dll\ ]\ [\ -nodll\ ]\ [\ -optional\ ]\ [\ -add\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \c
+.ft I
+package_name\c
+.ft B
+\&\ \c
+.ft I
+file\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This subcommand installs a new package either at the default location\c
+\&  
+(see the variable 
+destdir\c
+\& of\c
+\&  
+findlib.conf\c
+), or in the directory\c
+\&  
+specified by the -destdir option. This\c
+\&  
+means that a new package directory is created and that the files on\c
+\&  
+the command line are copied to this directory. It is required that a\c
+\&  
+META\c
+\& file is one of the files copied to the target\c
+\&  
+directory.\c
+.PP
+.ft R
+Note that package directories should be flat (no\c
+\&  
+subdirectories). Existing packages are never overwritten.\c
+.PP
+.ft R
+It is possible to have a separate directory for all the META files. If\c
+\&  
+you want that, you have either to set the variable\c
+\&  
+metadir\c
+\& of 
+\&  
+findlib.conf\c
+, or to specify the\c
+\&  
+-metadir option. In this case, the file called META is copied to the\c
+\&  
+specified directory and renamed to META.p (where p is the package\c
+\&  
+name), while all the other files are copied to the package\c
+\&  
+directory as usual. Furthermore, the META file is modified such that the\c
+\&  
+directory\c
+\& variable contains the path of the package\c
+\&  
+directory. 
+.PP
+.ft R
+The option -dont-add-directory-directive prevents the installer from\c
+\&  
+adding a 
+directory\c
+\& variable.\c
+.PP
+.ft R
+If there are files ending in the suffixes 
+\&.so\c
+\& or\c
+\&  
+\&.dll\c
+, the package directory will be added to the\c
+\&  
+DLL configuration file 
+ld.conf\c
+, such that the dynamic\c
+\&  
+loader can find the DLL. The location of this file can be overriden by\c
+\&  
+the -ldconf option. To turn this feature off, use "-ldconf ignore";\c
+\&  
+this causes that the ld.conf file is not modified.\c
+.PP
+.ft R
+However, if there is a stublibs directory in site-lib, the DLLs are not\c
+\&  
+installed in the package directory, but in this directory that is\c
+\&  
+shared by all packages that are installed at the same location.\c
+\&  
+In this case, the configuration file 
+ld.conf\c
+\& is\c
+\&  
+not modified, so you do not need to say "-ldconf ignore" if you\c
+\&  
+prefer this style of installation.\c
+.PP
+.ft R
+The options -dll and -nodll can be used to control exactly which files\c
+\&  
+are considered as DLLs and which not. By default, the mentioned\c
+\&  
+suffix rule is in effect: files ending in ".so" (Unix) or ".dll"\c
+\&  
+(Windows) are DLLs. The switch -dll changes this, and all following\c
+\&  
+files are considered as DLLs, regardless of their suffix. The switch 
+\&  
+-nodll expresses that the following files are not DLLs, even if they\c
+\&  
+have a DLL-like suffix. For example, in the following call the files\c
+\&  
+f1 and f2 are handled by the suffix rule; f3 and f4 are DLLs anyway;\c
+\&  
+and f5 and f6 are not DLLs:\c
+\&  
+\&  
+.PP
+.ft R
+.ft B
+.nf
+ocamlfind\ install\ p\ f1\ f2\ -dll\ f3\ f4\ -nodll\ f5\ f6\c
+.ft R
+.fi
+.PP
+.ft R
+The switch -optional declares that all following files are optional,\c
+\&  
+i.e. the command will not fail if files do not exist.\c
+.PP
+.ft R
+The -patch options may be used to change the contents of the META files\c
+\&  
+while it is being installed. The option -patch-version changes the\c
+\&  
+contents of the top-level "version" variable. The option -patch-rmpkg\c
+\&  
+removes the given subpackage. The option -patch-archives is experimental,\c
+\&  
+in particular it removes all non-existing files from "archive" variables,\c
+\&  
+and even whole subpackages if the archives are missing.\c
+.PP
+.ft R
+The effect of -add is to add further files to an already installed\c
+\&  
+packages.\c
+.SH "THE 'remove' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ remove\ [\ -destdir\ \c
+.ft I
+directory\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -metadir\ \c
+.ft I
+directory\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ -ldconf\ \c
+.ft I
+path\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \c
+.ft I
+package_name\c
+.ft B
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+The package will removed if it is installed at the default location 
+\&  
+(see the variable 
+destdir\c
+\& of\c
+\&  
+findlib.conf\c
+). If the package\c
+\&  
+resides at a different location, it will not be removed by default;\c
+\&  
+however, you can pass an alternate directory for packages by the\c
+\&  
+-destdir option. (This must be the same directory as specified at\c
+\&  
+installation time.)\c
+.PP
+.ft R
+Note that package directories should be flat (no subdirectories); this\c
+\&  
+subcommand cannot remove deep package directories. 
+.PP
+.ft R
+If you have a separate directory for META files, you must either\c
+\&  
+configure this directory by the 
+metadir\c
+\& variable\c
+\&  
+of 
+findlib.conf\c
+, or by specifying\c
+\&  
+the -metadir option.\c
+.PP
+.ft R
+The command does not fail if the package and/or the META\c
+\&  
+file cannot be located. You will get a warning only in this case.\c
+.PP
+.ft R
+If the package directory is mentioned in the 
+ld.conf\c
+\&  
+configuration file for DLLs, it will be tried to remove this entry\c
+\&  
+from the file. The location of this file can be overriden by\c
+\&  
+the -ldconf option. To turn this feature off, use "-ldconf ignore";\c
+\&  
+this causes that the ld.conf file is not modified.\c
+.PP
+.ft R
+If there is a stublibs directory, it is checked whether the package\c
+\&  
+owns any of the files in this directory, and the owned files will\c
+\&  
+be deleted.\c
+.SH "THE 'list' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ list\ [-describe]\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This command lists all packages in the search path. The option -describe\c
+\&  
+outputs the package descriptions, too.\c
+.SH "THE 'printppx' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ printppx\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ [\ -predicates\ \c
+.ft I
+pred-name-list\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ [\ -ppxopt\ \c
+.ft I
+package\c
+.ft B
+,\c
+.ft I
+arg\c
+.ft B
+\&\ ]\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \c
+.ft I
+package\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This command prints the ppx preprocessor options as they would\c
+\&  
+occur in an OCaml compiler invocation for the packages listed in\c
+\&  
+the command. The output includes one "-ppx" option for each\c
+\&  
+preprocessor. The possible options have the same meaning as for\c
+\&  
+"ocamlfind ocamlc". The option "-predicates" adds assumed\c
+\&  
+predicates and\c
+\&  
+"-ppxopt 
+.ft I
+package\c
+.ft R
+,\c
+.ft I
+arg\c
+.ft R
+"\c
+\&  
+adds "\c
+.ft I
+arg\c
+.ft R
+" to the ppx invocation of\c
+\&  
+package 
+.ft I
+package\c
+.ft R
+\&.\c
+.PP
+.ft R
+The output of "ocamlfind printppx" will contain quotes\c
+\&  
+"\c
+"\c
+" for ppx commands that contain\c
+\&  
+space-separated arguments. In this case 
+$(ocamlfind\c
+\&  
+printppx ...)\c
+\& won't work as naively expected, because\c
+\&  
+many shells (including bash and dash) perform field splitting on\c
+\&  
+the result of command substitutions without honoring quotes.\c
+.SH "THE 'lint' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ lint\ \c
+.ft I
+file\c
+.ft B
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+Checks the META file, and reports possible problems.\c
+.SH "THE 'printconf' SUBCOMMAND"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ printconf\ [\ conf\ |\ path\ |\ destdir\ |\ metadir\ |\ metapath\ |\ stdlib\ |\ ldconf\ ]\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This command prints the effective configuration after reading the\c
+\&  
+configuration file, and after applying the various environment\c
+\&  
+variables overriding settings. When called without arguments, the command\c
+\&  
+prints all configuration options in a human-readable form. When called\c
+\&  
+with an argument, only the value of the requested option is printed without\c
+\&  
+explaining texts:\c
+.PP
+.ft R
+.RS "2m"
+.ft R
+conf\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Prints the location of the configuration file findlib.conf\c
+\&  
+\&  
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+path\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Prints the search path for packages. The members of the\c
+\&  
+\& path are separated by linefeeds.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+destdir\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Prints the location where package are installed and\c
+\&  
+\& removed by default.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+metadir\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Prints the location where META files are installed and\c
+\&  
+\& removed (if the alternative layout is used).\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+metapath\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Prints the path where the META file is installed for\c
+\&  
+a fictive package. The name of the package is marked with '%s' in the\c
+\&  
+path. For instance, this command could output "/some/path/%s/META" or\c
+\&  
+"/some/path/META.%s", depending on the layout.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+stdlib\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Prints the location of the standard library.\c
+.RE
+.ft R
+.sp
+.RS "2m"
+.ft R
+ldconf\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+.ft R
+Prints the location of the ld.conf file\c
+.RE
+.ft R
+.PP
+.ft R
+.SH "THE SUBCOMMAND CALLING PACKAGE PROGRAMS"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ \c
+.ft I
+pkg\c
+.ft B
+/\c
+.ft I
+cmd\c
+.ft B
+\&\ \c
+.ft I
+argument\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+This subcommand is useful to call programs that are installed in\c
+\&  
+package directories. It looks up the directory for 
+\&  
+.ft I
+pkg\c
+.ft R
+\& and calls the command named\c
+\&  
+.ft I
+cmd\c
+.ft R
+\& in this directory. The remaining arguments\c
+\&  
+are passed to this command.\c
+.PP
+.ft R
+argv(0) contains the absolute path to the command, and argv(1) and\c
+\&  
+the following argv entries contain the arguments. The working directory\c
+\&  
+is not changed.\c
+.PP
+.ft R
+Example: To call the program "x" that is installed in package "p",\c
+\&  
+with arguments "y" and "z", run:\c
+.PP
+.ft R
+.ft B
+.nf
+ocamlfind\ p/x\ y\ z\c
+.ft R
+.fi
+.SH "CONFIGURATION FILE, ENVIRONMENT VARIABLES"
+.ft R
+.ft R
+The configuration file and environment variables are documented\c
+\&  
+in the manual page for\c
+\&  
+\&  
+findlib.conf\c
+\&.\c
+.SH "HOW TO SET THE TOOLCHAIN"
+.ft R
+.SS "Synopsis"
+.ft R
+.ft R
+.ft B
+.nf
+ocamlfind\ -toolchain\ \c
+.ft I
+name\c
+.ft B
+\&\ ...\c
+.ft R
+.fi
+.SS "Description"
+.ft R
+.ft R
+The -toolchain option can be given before any other command,\c
+\&  
+e.g.\c
+\&  
+.PP
+.ft R
+.ft B
+.nf
+ocamlfind\ -toolchain\ foo\ ocamlc\ -c\ file.ml\c
+.ft R
+.fi
+\&  
+compiles file.ml with toolchain "foo". By selecting toolchains one\c
+\&  
+can switch to different command sets. For instance, the toolchain\c
+\&  
+"foo" may consist of a patched ocamlc compiler. 
+\&  
+See 
+findlib.conf\c
+\& how to\c
+\&  
+configure toolchains.\c

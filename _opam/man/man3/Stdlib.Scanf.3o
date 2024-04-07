@@ -1,0 +1,1758 @@
+.TH "Stdlib.Scanf" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Scanf \- no description
+.SH Module
+Module   Stdlib.Scanf
+.SH Documentation
+.sp
+Module
+.BI "Scanf"
+ : 
+.B (module Stdlib__Scanf)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Introduction
+
+.PP
+
+.PP
+.SS Functional input with format strings
+
+.PP
+
+.PP
+The module 
+.ft B
+Scanf
+.ft R
+provides formatted input functions or scanners\&.
+.sp
+The formatted input functions can read from any kind of input, including
+strings, files, or anything that can return characters\&. The more general
+source of characters is named a formatted input channel (or     scanning buffer) and has type 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+\&. The more general
+formatted input function reads from any scanning buffer and is named
+.ft B
+bscanf
+.ft R
+\&.
+.sp
+Generally speaking, the formatted input functions have 3 arguments:
+.sp
+\-the first argument is a source of characters for the input,
+.sp
+\-the second argument is a format string that specifies the values to
+read,
+.sp
+\-the third argument is a receiver function that is applied to the
+values read\&.
+
+Hence, a typical call to the formatted input function 
+.ft B
+Scanf\&.bscanf
+.ft R
+is
+.ft B
+bscanf ic fmt f
+.ft R
+, where:
+.sp
+.sp
+\-
+.ft B
+ic
+.ft R
+is a source of characters (typically a     formatted input channel with type 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+),
+
+.sp
+\-
+.ft B
+fmt
+.ft R
+is a format string (the same format strings as those used to print
+material with module 
+.ft B
+Printf
+.ft R
+or 
+.ft B
+Format
+.ft R
+),
+
+.sp
+\-
+.ft B
+f
+.ft R
+is a function that has as many arguments as the number of values to
+read in the input according to 
+.ft B
+fmt
+.ft R
+\&.
+
+.PP
+
+.PP
+.SS A simple example
+
+.PP
+
+.PP
+As suggested above, the expression 
+.ft B
+bscanf ic "%d" f
+.ft R
+reads a decimal
+integer 
+.ft B
+n
+.ft R
+from the source of characters 
+.ft B
+ic
+.ft R
+and returns 
+.ft B
+f n
+.ft R
+\&.
+.sp
+For instance,
+.sp
+.sp
+\-if we use 
+.ft B
+stdin
+.ft R
+as the source of characters (
+.ft B
+Scanf\&.Scanning\&.stdin
+.ft R
+is
+the predefined formatted input channel that reads from standard input),
+
+.sp
+\-if we define the receiver 
+.ft B
+f
+.ft R
+as 
+.ft B
+let f x = x + 1
+.ft R
+,
+
+then 
+.ft B
+bscanf Scanning\&.stdin "%d" f
+.ft R
+reads an integer 
+.ft B
+n
+.ft R
+from the
+standard input and returns 
+.ft B
+f n
+.ft R
+(that is 
+.ft B
+n + 1
+.ft R
+)\&. Thus, if we
+evaluate 
+.ft B
+bscanf stdin "%d" f
+.ft R
+, and then enter 
+.ft B
+41
+.ft R
+at the
+keyboard, the result we get is 
+.ft B
+42
+.ft R
+\&.
+.PP
+
+.PP
+.SS Formatted input as a functional feature
+
+.PP
+
+.PP
+The OCaml scanning facility is reminiscent of the corresponding C feature\&.
+However, it is also largely different, simpler, and yet more powerful:
+the formatted input functions are higher\-order functionals and the
+parameter passing mechanism is just the regular function application not
+the variable assignment based mechanism which is typical for formatted
+input in imperative languages; the OCaml format strings also feature
+useful additions to easily define complex tokens; as expected within a
+functional programming language, the formatted input functions also
+support polymorphism, in particular arbitrary interaction with
+polymorphic user\-defined scanners\&. Furthermore, the OCaml formatted input
+facility is fully type\-checked at compile time\&.
+.PP
+
+.PP
+Unsynchronized accesses
+.PP
+
+.PP
+Unsynchronized accesses to a 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+may lead to an
+invalid 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+state\&. Thus, concurrent accesses
+to 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+s must be synchronized (for instance with
+a 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.PP
+
+.PP
+.SS Formatted input channel
+
+.PP
+.I module Scanning : 
+.B sig end
+
+.sp
+
+.sp
+
+.PP
+.SS Type of formatted input functions
+
+.PP
+.I type 
+.B ('a, 'b, 'c, 'd)
+.I scanner 
+= 
+.B ('a, Scanning.in_channel, 'b, 'c, 'a -> 'd, 'd) format6 -> 'c
+
+.sp
+The type of formatted input scanners: 
+.ft B
+(\&'a, \&'b, \&'c, \&'d) scanner
+.ft R
+is the type of a formatted input function that reads from some
+formatted input channel according to some format string; more
+precisely, if 
+.ft B
+scan
+.ft R
+is some formatted input function, then 
+.ft B
+scan
+.br
+\&    ic fmt f
+.ft R
+applies 
+.ft B
+f
+.ft R
+to all the arguments specified by format
+string 
+.ft B
+fmt
+.ft R
+, when 
+.ft B
+scan
+.ft R
+has read those arguments from the
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted input channel 
+.ft B
+ic
+.ft R
+\&.
+.sp
+For instance, the 
+.ft B
+Scanf\&.scanf
+.ft R
+function below has type
+.ft B
+(\&'a, \&'b, \&'c, \&'d) scanner
+.ft R
+, since it is a formatted input function that
+reads from 
+.ft B
+Scanf\&.Scanning\&.stdin
+.ft R
+: 
+.ft B
+scanf fmt f
+.ft R
+applies 
+.ft B
+f
+.ft R
+to the arguments
+specified by 
+.ft B
+fmt
+.ft R
+, reading those arguments from 
+.ft B
+stdin
+.ft R
+as
+expected\&.
+.sp
+If the format 
+.ft B
+fmt
+.ft R
+has some 
+.ft B
+%r
+.ft R
+indications, the corresponding
+formatted input functions must be provided before receiver function
+.ft B
+f
+.ft R
+\&. For instance, if 
+.ft B
+read_elem
+.ft R
+is an input function for values of type
+.ft B
+t
+.ft R
+, then 
+.ft B
+bscanf ic "%r;" read_elem f
+.ft R
+reads a value 
+.ft B
+v
+.ft R
+of type 
+.ft B
+t
+.ft R
+followed by a 
+.ft B
+\&';\&'
+.ft R
+character, and returns 
+.ft B
+f v
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.10
+
+.sp
+.I type 
+.B ('a, 'b, 'c, 'd)
+.I scanner_opt 
+= 
+.B ('a, Scanning.in_channel, 'b, 'c, 'a -> 'd option, 'd) format6 ->
+.B   'c
+
+.sp
+
+.sp
+
+.I exception Scan_failure 
+.B of 
+.B string
+
+.sp
+When the input can not be read according to the format string
+specification, formatted input functions typically raise exception
+.ft B
+Scan_failure
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS The general formatted input function
+
+.PP
+
+.I val bscanf 
+: 
+.B Scanning.in_channel -> ('a, 'b, 'c, 'd) scanner
+.sp
+
+.sp
+
+.PP
+
+.ft B
+bscanf ic fmt r1 \&.\&.\&. rN f
+.ft R
+reads characters from the
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted input channel 
+.ft B
+ic
+.ft R
+and converts them to
+values according to format string 
+.ft B
+fmt
+.ft R
+\&.
+As a final step, receiver function 
+.ft B
+f
+.ft R
+is applied to the values read and
+gives the result of the 
+.ft B
+bscanf
+.ft R
+call\&.
+.sp
+For instance, if 
+.ft B
+f
+.ft R
+is the function 
+.ft B
+fun s i \-> i + 1
+.ft R
+, then
+.ft B
+Scanf\&.sscanf "x = 1" "%s = %i" f
+.ft R
+returns 
+.ft B
+2
+.ft R
+\&.
+.sp
+Arguments 
+.ft B
+r1
+.ft R
+to 
+.ft B
+rN
+.ft R
+are user\-defined input functions that read the
+argument corresponding to the 
+.ft B
+%r
+.ft R
+conversions specified in the format
+string\&.
+.PP
+
+.I val bscanf_opt 
+: 
+.B Scanning.in_channel -> ('a, 'b, 'c, 'd) scanner_opt
+.sp
+Same as 
+.ft B
+Scanf\&.bscanf
+.ft R
+, but returns 
+.ft B
+None
+.ft R
+in case of scanning failure\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.PP
+.SS Format string description
+
+.PP
+
+.PP
+The format string is a character string which contains three types of
+objects:
+.sp
+\-plain characters, which are simply matched with the characters of the
+input (with a special case for space and line feed, see 
+.ft B
+Scanf\&.space
+.ft R
+),
+.sp
+\-conversion specifications, each of which causes reading and conversion of
+one argument for the function 
+.ft B
+f
+.ft R
+(see 
+.ft B
+Scanf\&.conversion
+.ft R
+),
+.sp
+\-scanning indications to specify boundaries of tokens
+(see scanning 
+.ft B
+Scanf\&.indication
+.ft R
+)\&.
+
+.PP
+
+.PP
+.SS The space character in format strings
+
+.PP
+
+.PP
+As mentioned above, a plain character in the format string is just
+matched with the next character of the input; however, two characters are
+special exceptions to this rule: the space character (
+.ft B
+\&' \&'
+.ft R
+or ASCII code
+32) and the line feed character (
+.ft B
+\&'\(rsn\&'
+.ft R
+or ASCII code 10)\&.
+A space does not match a single space character, but any amount of
+\&'whitespace\&' in the input\&. More precisely, a space inside the format
+string matches any number of tab, space, line feed and carriage
+return characters\&. Similarly, a line feed character in the format string
+matches either a single line feed or a carriage return followed by a line
+feed\&.
+.sp
+Matching any amount of whitespace, a space in the format string
+also matches no amount of whitespace at all; hence, the call 
+.ft B
+bscanf ib
+.br
+\&    "Price = %d $" (fun p \-> p)
+.ft R
+succeeds and returns 
+.ft B
+1
+.ft R
+when reading an
+input with various whitespace in it, such as 
+.ft B
+Price = 1 $
+.ft R
+,
+.ft B
+Price  =  1    $
+.ft R
+, or even 
+.ft B
+Price=1$
+.ft R
+\&.
+.PP
+
+.PP
+.SS Conversion specifications in format strings
+
+.PP
+
+.PP
+Conversion specifications consist in the 
+.ft B
+%
+.ft R
+character, followed by
+an optional flag, an optional field width, and followed by one or
+two conversion characters\&.
+.sp
+The conversion characters and their meanings are:
+.sp
+.sp
+\-
+.ft B
+d
+.ft R
+: reads an optionally signed decimal integer (
+.ft B
+0\-9
+.ft R
++)\&.
+.sp
+\-
+.ft B
+i
+.ft R
+: reads an optionally signed integer
+(usual input conventions for decimal (
+.ft B
+0\-9
+.ft R
++), hexadecimal
+(
+.ft B
+0x[0\-9a\-f]+
+.ft R
+and 
+.ft B
+0X[0\-9A\-F]+
+.ft R
+), octal (
+.ft B
+0o[0\-7]+
+.ft R
+), and binary
+(
+.ft B
+0b[0\-1]+
+.ft R
+) notations are understood)\&.
+.sp
+\-
+.ft B
+u
+.ft R
+: reads an unsigned decimal integer\&.
+.sp
+\-
+.ft B
+x
+.ft R
+or 
+.ft B
+X
+.ft R
+: reads an unsigned hexadecimal integer (
+.ft B
+[0\-9a\-fA\-F]+
+.ft R
+)\&.
+.sp
+\-
+.ft B
+o
+.ft R
+: reads an unsigned octal integer (
+.ft B
+[0\-7]+
+.ft R
+)\&.
+.sp
+\-
+.ft B
+s
+.ft R
+: reads a string argument that spreads as much as possible, until the
+following bounding condition holds:
+.sp
+\-a whitespace has been found (see 
+.ft B
+Scanf\&.space
+.ft R
+),
+.sp
+\-a scanning indication (see scanning 
+.ft B
+Scanf\&.indication
+.ft R
+) has been
+encountered,
+.sp
+\-the end\-of\-input has been reached\&.
+
+Hence, this conversion always succeeds: it returns an empty
+string if the bounding condition holds when the scan begins\&.
+.sp
+\-
+.ft B
+S
+.ft R
+: reads a delimited string argument (delimiters and special
+escaped characters follow the lexical conventions of OCaml)\&.
+.sp
+\-
+.ft B
+c
+.ft R
+: reads a single character\&. To test the current input character
+without reading it, specify a null field width, i\&.e\&. use
+specification 
+.ft B
+%0c
+.ft R
+\&. Raise 
+.ft B
+Invalid_argument
+.ft R
+, if the field width
+specification is greater than 1\&.
+.sp
+\-
+.ft B
+C
+.ft R
+: reads a single delimited character (delimiters and special
+escaped characters follow the lexical conventions of OCaml)\&.
+.sp
+\-
+.ft B
+f
+.ft R
+, 
+.ft B
+e
+.ft R
+, 
+.ft B
+E
+.ft R
+, 
+.ft B
+g
+.ft R
+, 
+.ft B
+G
+.ft R
+: reads an optionally signed
+floating\-point number in decimal notation, in the style 
+.ft B
+dddd\&.ddd
+.br
+\&      e/E+\-dd
+.ft R
+\&.
+.sp
+\-
+.ft B
+h
+.ft R
+, 
+.ft B
+H
+.ft R
+: reads an optionally signed floating\-point number
+in hexadecimal notation\&.
+.sp
+\-
+.ft B
+F
+.ft R
+: reads a floating point number according to the lexical
+conventions of OCaml (hence the decimal point is mandatory if the
+exponent part is not mentioned)\&.
+.sp
+\-
+.ft B
+B
+.ft R
+: reads a boolean argument (
+.ft B
+true
+.ft R
+or 
+.ft B
+false
+.ft R
+)\&.
+.sp
+\-
+.ft B
+b
+.ft R
+: reads a boolean argument (for backward compatibility; do not use
+in new programs)\&.
+.sp
+\-
+.ft B
+ld
+.ft R
+, 
+.ft B
+li
+.ft R
+, 
+.ft B
+lu
+.ft R
+, 
+.ft B
+lx
+.ft R
+, 
+.ft B
+lX
+.ft R
+, 
+.ft B
+lo
+.ft R
+: reads an 
+.ft B
+int32
+.ft R
+argument to
+the format specified by the second letter for regular integers\&.
+.sp
+\-
+.ft B
+nd
+.ft R
+, 
+.ft B
+ni
+.ft R
+, 
+.ft B
+nu
+.ft R
+, 
+.ft B
+nx
+.ft R
+, 
+.ft B
+nX
+.ft R
+, 
+.ft B
+no
+.ft R
+: reads a 
+.ft B
+nativeint
+.ft R
+argument to
+the format specified by the second letter for regular integers\&.
+.sp
+\-
+.ft B
+Ld
+.ft R
+, 
+.ft B
+Li
+.ft R
+, 
+.ft B
+Lu
+.ft R
+, 
+.ft B
+Lx
+.ft R
+, 
+.ft B
+LX
+.ft R
+, 
+.ft B
+Lo
+.ft R
+: reads an 
+.ft B
+int64
+.ft R
+argument to
+the format specified by the second letter for regular integers\&.
+.sp
+\-
+.ft B
+[ range ]
+.ft R
+: reads characters that matches one of the characters
+mentioned in the range of characters 
+.ft B
+range
+.ft R
+(or not mentioned in
+it, if the range starts with 
+.ft B
+^
+.ft R
+)\&. Reads a 
+.ft B
+string
+.ft R
+that can be
+empty, if the next input character does not match the range\&. The set of
+characters from 
+.ft B
+c1
+.ft R
+to 
+.ft B
+c2
+.ft R
+(inclusively) is denoted by 
+.ft B
+c1\-c2
+.ft R
+\&.
+Hence, 
+.ft B
+%[0\-9]
+.ft R
+returns a string representing a decimal number
+or an empty string if no decimal digit is found; similarly,
+.ft B
+%[0\-9a\-f]
+.ft R
+returns a string of hexadecimal digits\&.
+If a closing bracket appears in a range, it must occur as the
+first character of the range (or just after the 
+.ft B
+^
+.ft R
+in case of
+range negation); hence 
+.ft B
+[]]
+.ft R
+matches a 
+.ft B
+]
+.ft R
+character and
+.ft B
+[^]]
+.ft R
+matches any character that is not 
+.ft B
+]
+.ft R
+\&.
+Use 
+.ft B
+%%
+.ft R
+and 
+.ft B
+%@
+.ft R
+to include a 
+.ft B
+%
+.ft R
+or a 
+.ft B
+@
+.ft R
+in a range\&.
+.sp
+\-
+.ft B
+r
+.ft R
+: user\-defined reader\&. Takes the next 
+.ft B
+ri
+.ft R
+formatted input
+function and applies it to the scanning buffer 
+.ft B
+ib
+.ft R
+to read the
+next argument\&. The input function 
+.ft B
+ri
+.ft R
+must therefore have type
+.ft B
+Scanning\&.in_channel \-> \&'a
+.ft R
+and the argument read has type 
+.ft B
+\&'a
+.ft R
+\&.
+.sp
+\-
+.ft B
+{ fmt %}
+.ft R
+: reads a format string argument\&. The format string
+read must have the same type as the format string specification
+.ft B
+fmt
+.ft R
+\&. For instance, 
+.ft B
+"%{ %i %}"
+.ft R
+reads any format string that
+can read a value of type 
+.ft B
+int
+.ft R
+; hence, if 
+.ft B
+s
+.ft R
+is the string
+.ft B
+"fmt:\(rs"number is %u\(rs""
+.ft R
+, then 
+.ft B
+Scanf\&.sscanf s "fmt: %{%i%}"
+.ft R
+succeeds and returns the format string 
+.ft B
+"number is %u"
+.ft R
+\&.
+.sp
+\-
+.ft B
+( fmt %)
+.ft R
+: scanning sub\-format substitution\&.
+Reads a format string 
+.ft B
+rf
+.ft R
+in the input, then goes on scanning with
+.ft B
+rf
+.ft R
+instead of scanning with 
+.ft B
+fmt
+.ft R
+\&.
+The format string 
+.ft B
+rf
+.ft R
+must have the same type as the format string
+specification 
+.ft B
+fmt
+.ft R
+that it replaces\&.
+For instance, 
+.ft B
+"%( %i %)"
+.ft R
+reads any format string that can read a value
+of type 
+.ft B
+int
+.ft R
+\&.
+The conversion returns the format string read 
+.ft B
+rf
+.ft R
+, and then a value
+read using 
+.ft B
+rf
+.ft R
+\&.
+Hence, if 
+.ft B
+s
+.ft R
+is the string 
+.ft B
+"\(rs"%4d\(rs"1234\&.00"
+.ft R
+, then
+.ft B
+Scanf\&.sscanf s "%(%i%)" (fun fmt i \-> fmt, i)
+.ft R
+evaluates to
+.ft B
+("%4d", 1234)
+.ft R
+\&.
+This behaviour is not mere format substitution, since the conversion
+returns the format string read as additional argument\&. If you need
+pure format substitution, use special flag 
+.ft B
+_
+.ft R
+to discard the
+extraneous argument: conversion 
+.ft B
+%_( fmt %)
+.ft R
+reads a format string
+.ft B
+rf
+.ft R
+and then behaves the same as format string 
+.ft B
+rf
+.ft R
+\&.  Hence, if 
+.ft B
+s
+.ft R
+is
+the string 
+.ft B
+"\(rs"%4d\(rs"1234\&.00"
+.ft R
+, then 
+.ft B
+Scanf\&.sscanf s "%_(%i%)"
+.ft R
+is
+simply equivalent to 
+.ft B
+Scanf\&.sscanf "1234\&.00" "%4d"
+.ft R
+\&.
+.sp
+\-
+.ft B
+l
+.ft R
+: returns the number of lines read so far\&.
+.sp
+\-
+.ft B
+n
+.ft R
+: returns the number of characters read so far\&.
+.sp
+\-
+.ft B
+N
+.ft R
+or 
+.ft B
+L
+.ft R
+: returns the number of tokens read so far\&.
+.sp
+\-
+.ft B
+!
+.ft R
+: matches the end of input condition\&.
+.sp
+\-
+.ft B
+%
+.ft R
+: matches one 
+.ft B
+%
+.ft R
+character in the input\&.
+.sp
+\-
+.ft B
+@
+.ft R
+: matches one 
+.ft B
+@
+.ft R
+character in the input\&.
+.sp
+\-
+.ft B
+,
+.ft R
+: does nothing\&.
+
+Following the 
+.ft B
+%
+.ft R
+character that introduces a conversion, there may be
+the special flag 
+.ft B
+_
+.ft R
+: the conversion that follows occurs as usual,
+but the resulting value is discarded\&.
+For instance, if 
+.ft B
+f
+.ft R
+is the function 
+.ft B
+fun i \-> i + 1
+.ft R
+, and 
+.ft B
+s
+.ft R
+is the
+string 
+.ft B
+"x = 1"
+.ft R
+, then 
+.ft B
+Scanf\&.sscanf s "%_s = %i" f
+.ft R
+returns 
+.ft B
+2
+.ft R
+\&.
+.sp
+The field width is composed of an optional integer literal
+indicating the maximal width of the token to read\&.
+For instance, 
+.ft B
+%6d
+.ft R
+reads an integer, having at most 6 decimal digits;
+.ft B
+%4f
+.ft R
+reads a float with at most 4 characters; and 
+.ft B
+%8[\(rs000\-\(rs255]
+.ft R
+returns the next 8 characters (or all the characters still available,
+if fewer than 8 characters are available in the input)\&.
+.sp
+Notes:
+.sp
+.sp
+\-as mentioned above, a 
+.ft B
+%s
+.ft R
+conversion always succeeds, even if there is
+nothing to read in the input: in this case, it simply returns 
+.ft B
+""
+.ft R
+\&.
+
+.sp
+\-in addition to the relevant digits, 
+.ft B
+\&'_\&'
+.ft R
+characters may appear
+inside numbers (this is reminiscent to the usual OCaml lexical
+conventions)\&. If stricter scanning is desired, use the range
+conversion facility instead of the number conversions\&.
+
+.sp
+\-the 
+.ft B
+scanf
+.ft R
+facility is not intended for heavy duty lexical
+analysis and parsing\&. If it appears not expressive enough for your
+needs, several alternative exists: regular expressions (module
+.ft B
+Str
+.ft R
+), stream parsers, 
+.ft B
+ocamllex
+.ft R
+\-generated lexers,
+.ft B
+ocamlyacc
+.ft R
+\-generated parsers\&.
+
+.PP
+
+.PP
+.SS Scanning indications in format strings
+
+.PP
+
+.PP
+Scanning indications appear just after the string conversions 
+.ft B
+%s
+.ft R
+and 
+.ft B
+%[ range ]
+.ft R
+to delimit the end of the token\&. A scanning
+indication is introduced by a 
+.ft B
+@
+.ft R
+character, followed by some
+plain character 
+.ft B
+c
+.ft R
+\&. It means that the string token should end
+just before the next matching 
+.ft B
+c
+.ft R
+(which is skipped)\&. If no 
+.ft B
+c
+.ft R
+character is encountered, the string token spreads as much as
+possible\&. For instance, 
+.ft B
+"%s@\(rst"
+.ft R
+reads a string up to the next
+tab character or to the end of input\&. If a 
+.ft B
+@
+.ft R
+character appears
+anywhere else in the format string, it is treated as a plain character\&.
+.sp
+Note:
+.sp
+.sp
+\-As usual in format strings, 
+.ft B
+%
+.ft R
+and 
+.ft B
+@
+.ft R
+characters must be escaped
+using 
+.ft B
+%%
+.ft R
+and 
+.ft B
+%@
+.ft R
+; this rule still holds within range specifications
+and scanning indications\&.
+For instance, format 
+.ft B
+"%s@%%"
+.ft R
+reads a string up to the next 
+.ft B
+%
+.ft R
+character, and format 
+.ft B
+"%s@%@"
+.ft R
+reads a string up to the next 
+.ft B
+@
+.ft R
+\&.
+.sp
+\-The scanning indications introduce slight differences in the syntax of
+.ft B
+Scanf
+.ft R
+format strings, compared to those used for the 
+.ft B
+Printf
+.ft R
+module\&. However, the scanning indications are similar to those used in
+the 
+.ft B
+Format
+.ft R
+module; hence, when producing formatted text to be scanned
+by 
+.ft B
+Scanf\&.bscanf
+.ft R
+, it is wise to use printing functions from the
+.ft B
+Format
+.ft R
+module (or, if you need to use functions from 
+.ft B
+Printf
+.ft R
+, banish
+or carefully double check the format strings that contain 
+.ft B
+\&'@\&'
+.ft R
+characters)\&.
+
+.PP
+
+.PP
+.SS Exceptions during scanning
+
+.PP
+
+.PP
+Scanners may raise the following exceptions when the input cannot be read
+according to the format string:
+.sp
+.sp
+\-Raise 
+.ft B
+Scanf\&.Scan_failure
+.ft R
+if the input does not match the format\&.
+
+.sp
+\-Raise 
+.ft B
+Failure
+.ft R
+if a conversion to a number is not possible\&.
+
+.sp
+\-Raise 
+.ft B
+End_of_file
+.ft R
+if the end of input is encountered while some more
+characters are needed to read the current conversion specification\&.
+
+.sp
+\-Raise 
+.ft B
+Invalid_argument
+.ft R
+if the format string is invalid\&.
+
+Note:
+.sp
+.sp
+\-as a consequence, scanning a 
+.ft B
+%s
+.ft R
+conversion never raises exception
+.ft B
+End_of_file
+.ft R
+: if the end of input is reached the conversion succeeds and
+simply returns the characters read so far, or 
+.ft B
+""
+.ft R
+if none were ever read\&.
+
+.PP
+
+.PP
+.SS Specialised formatted input functions
+
+.PP
+
+.I val sscanf 
+: 
+.B string -> ('a, 'b, 'c, 'd) scanner
+.sp
+Same as 
+.ft B
+Scanf\&.bscanf
+.ft R
+, but reads from the given string\&.
+
+.sp
+
+.I val sscanf_opt 
+: 
+.B string -> ('a, 'b, 'c, 'd) scanner_opt
+.sp
+Same as 
+.ft B
+Scanf\&.sscanf
+.ft R
+, but returns 
+.ft B
+None
+.ft R
+in case of scanning failure\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val scanf 
+: 
+.B ('a, 'b, 'c, 'd) scanner
+.sp
+Same as 
+.ft B
+Scanf\&.bscanf
+.ft R
+, but reads from the predefined formatted input
+channel 
+.ft B
+Scanf\&.Scanning\&.stdin
+.ft R
+that is connected to 
+.ft B
+stdin
+.ft R
+\&.
+
+.sp
+
+.I val scanf_opt 
+: 
+.B ('a, 'b, 'c, 'd) scanner_opt
+.sp
+Same as 
+.ft B
+Scanf\&.scanf
+.ft R
+, but returns 
+.ft B
+None
+.ft R
+in case of scanning failure\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val kscanf 
+: 
+.B Scanning.in_channel ->
+.B   (Scanning.in_channel -> exn -> 'd) -> ('a, 'b, 'c, 'd) scanner
+.sp
+Same as 
+.ft B
+Scanf\&.bscanf
+.ft R
+, but takes an additional function argument
+.ft B
+ef
+.ft R
+that is called in case of error: if the scanning process or
+some conversion fails, the scanning function aborts and calls the
+error handling function 
+.ft B
+ef
+.ft R
+with the formatted input channel and the
+exception that aborted the scanning process as arguments\&.
+
+.sp
+
+.I val ksscanf 
+: 
+.B string ->
+.B   (Scanning.in_channel -> exn -> 'd) -> ('a, 'b, 'c, 'd) scanner
+.sp
+Same as 
+.ft B
+Scanf\&.kscanf
+.ft R
+but reads from the given string\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.PP
+.SS Reading format strings from input
+
+.PP
+
+.I val bscanf_format 
+: 
+.B Scanning.in_channel ->
+.B   ('a, 'b, 'c, 'd, 'e, 'f) format6 ->
+.B   (('a, 'b, 'c, 'd, 'e, 'f) format6 -> 'g) -> 'g
+.sp
+
+.ft B
+bscanf_format ic fmt f
+.ft R
+reads a format string token from the formatted
+input channel 
+.ft B
+ic
+.ft R
+, according to the given format string 
+.ft B
+fmt
+.ft R
+, and
+applies 
+.ft B
+f
+.ft R
+to the resulting format string value\&.
+
+.sp
+.B "Since"
+3.09
+
+.sp
+.B "Raises Scan_failure"
+if the format string value read does not have the
+same type as 
+.ft B
+fmt
+.ft R
+\&.
+
+.sp
+
+.I val sscanf_format 
+: 
+.B string ->
+.B   ('a, 'b, 'c, 'd, 'e, 'f) format6 ->
+.B   (('a, 'b, 'c, 'd, 'e, 'f) format6 -> 'g) -> 'g
+.sp
+Same as 
+.ft B
+Scanf\&.bscanf_format
+.ft R
+, but reads from the given string\&.
+
+.sp
+.B "Since"
+3.09
+
+.sp
+
+.I val format_from_string 
+: 
+.B string ->
+.B   ('a, 'b, 'c, 'd, 'e, 'f) format6 ->
+.B   ('a, 'b, 'c, 'd, 'e, 'f) format6
+.sp
+
+.ft B
+format_from_string s fmt
+.ft R
+converts a string argument to a format string,
+according to the given format string 
+.ft B
+fmt
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.10
+
+.sp
+.B "Raises Scan_failure"
+if 
+.ft B
+s
+.ft R
+, considered as a format string, does not
+have the same type as 
+.ft B
+fmt
+.ft R
+\&.
+
+.sp
+
+.I val unescaped 
+: 
+.B string -> string
+.sp
+
+.ft B
+unescaped s
+.ft R
+return a copy of 
+.ft B
+s
+.ft R
+with escape sequences (according to
+the lexical conventions of OCaml) replaced by their corresponding special
+characters\&.
+More precisely, 
+.ft B
+Scanf\&.unescaped
+.ft R
+has the following property:
+for all string 
+.ft B
+s
+.ft R
+, 
+.ft B
+Scanf\&.unescaped (String\&.escaped s) = s
+.ft R
+\&.
+.sp
+Always return a copy of the argument, even if there is no escape sequence
+in the argument\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+.B "Raises Scan_failure"
+if 
+.ft B
+s
+.ft R
+is not properly escaped (i\&.e\&. 
+.ft B
+s
+.ft R
+has invalid
+escape sequences or special characters that are not properly escaped)\&.
+For instance, 
+.ft B
+Scanf\&.unescaped "\(rs""
+.ft R
+will fail\&.
+
+.sp

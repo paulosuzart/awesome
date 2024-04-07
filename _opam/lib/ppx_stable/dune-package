@@ -1,0 +1,64 @@
+(lang dune 3.15)
+(name ppx_stable)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_stable))
+(files
+ (lib
+  (META
+   dune-package
+   generic_map.ml
+   generic_map.mli
+   opam
+   ppx_stable.a
+   ppx_stable.cma
+   ppx_stable.cmi
+   ppx_stable.cmt
+   ppx_stable.cmti
+   ppx_stable.cmx
+   ppx_stable.cmxa
+   ppx_stable.ml
+   ppx_stable.mli
+   ppx_stable__.cmi
+   ppx_stable__.cmt
+   ppx_stable__.cmx
+   ppx_stable__.ml
+   ppx_stable__Generic_map.cmi
+   ppx_stable__Generic_map.cmt
+   ppx_stable__Generic_map.cmti
+   ppx_stable__Generic_map.cmx))
+ (libexec (ppx_stable.cmxs))
+ (doc (LICENSE.md README.md)))
+(library
+ (name ppx_stable)
+ (kind ppx_deriver)
+ (archives (byte ppx_stable.cma) (native ppx_stable.cmxa))
+ (plugins (byte ppx_stable.cma) (native ppx_stable.cmxs))
+ (native_archives ppx_stable.a)
+ (requires base compiler-libs.common ppxlib.ast ppxlib)
+ (main_module_name Ppx_stable)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_stable__)
+     (visibility public)
+     (kind alias)
+     (source (path Ppx_stable__) (impl (path ppx_stable__.ml-gen))))
+    (name Ppx_stable)
+    (modules
+     (module
+      (obj_name ppx_stable__Generic_map)
+      (visibility public)
+      (source
+       (path Generic_map)
+       (intf (path generic_map.mli))
+       (impl (path generic_map.ml))))
+     (module
+      (obj_name ppx_stable)
+      (visibility public)
+      (source
+       (path Ppx_stable)
+       (intf (path ppx_stable.mli))
+       (impl (path ppx_stable.ml))))))
+   (wrapped true))))

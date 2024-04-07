@@ -1,0 +1,13 @@
+opam-version: "2.0"
+added: [
+  "bin/ocaml-syntax-shims" {"F:e7918dd65b48e66dcbd50d237a06204c"}
+  "doc/ocaml-syntax-shims" {"D"}
+  "doc/ocaml-syntax-shims/CHANGES.md" {"F:1cf0461b42c759f44eeb4f1b7d9fbf92"}
+  "doc/ocaml-syntax-shims/LICENSE.md" {"F:3b903cfeb2c8b8e55d6912f183cdea5b"}
+  "doc/ocaml-syntax-shims/README.md" {"F:33ffeade16e0f931097e4d078b747e0b"}
+  "lib/ocaml-syntax-shims" {"D"}
+  "lib/ocaml-syntax-shims/META" {"F:d41d8cd98f00b204e9800998ecf8427e"}
+  "lib/ocaml-syntax-shims/dune-package"
+    {"F:d67f820e851052e0af5192c9a2789800"}
+  "lib/ocaml-syntax-shims/opam" {"F:5584bbe8050793979176a395ce186174"}
+]

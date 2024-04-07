@@ -1,0 +1,15 @@
+(lang dune 3.15)
+(name stdlib-shims)
+(version 0.3.0)
+(sections (lib .) (libexec .) (doc ../../doc/stdlib-shims))
+(files
+ (lib (META dune-package opam stdlib_shims.cma stdlib_shims.cmxa))
+ (libexec (stdlib_shims.cmxs))
+ (doc (CHANGES.md LICENSE README.md)))
+(library
+ (name stdlib-shims)
+ (kind normal)
+ (archives (byte stdlib_shims.cma) (native stdlib_shims.cmxa))
+ (plugins (byte stdlib_shims.cma) (native stdlib_shims.cmxs))
+ (modes byte native)
+ (modules (unwrapped)))

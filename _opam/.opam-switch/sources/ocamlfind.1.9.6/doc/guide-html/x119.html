@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>How to compile and link a program that uses a package</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using packages"
+HREF="c74.html"><LINK
+REL="PREVIOUS"
+TITLE="Querying information stored in META files"
+HREF="x108.html"><LINK
+REL="NEXT"
+TITLE="Dependencies"
+HREF="x135.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x108.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x135.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN119"
+>How to compile and link a program that uses a package</A
+></H1
+><P
+>Now suppose you want to compile a program which calls functions of
+your new package p. If prog1.ml, prog2.ml, and prog3.ml are the three
+source files the program consists of, compile them with the commands</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -package p -c prog1.ml
+ocamlfind ocamlc -package p -c prog2.ml
+ocamlfind ocamlc -package p -c prog3.ml</PRE
+><P
+>The "ocamlfind ocamlc" invocation is a frontend to "ocamlc". Most
+arguments are directly passed to "ocamlc", but there are a few new
+options, and often some new options are implicitly added. Here, the
+new -package option is used, which adds search paths such that the
+modules of package p are found. Effectively, the following direct
+ocamlc invocations would be equivalent
+<A
+NAME="AEN124"
+HREF="#FTN.AEN124"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlc -I /usr/local/lib/ocaml/site-lib/p -c prog1.ml
+ocamlc -I /usr/local/lib/ocaml/site-lib/p -c prog2.ml
+ocamlc -I /usr/local/lib/ocaml/site-lib/p -c prog3.ml</PRE
+><P
+>The -I option has the effect that the named directory is also searched
+when looking up cmi files. Because of this you can refer directly to
+the modules M1 and M2 in the program sources.</P
+><P
+>In order to link the program use the following command:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o program -package p -linkpkg prog1.cmo prog2.cmo prog3.cmo</PRE
+><P
+>The -linkpkg option causes some more arguments to be added to the
+constructed ocamlc command. Especially, the name of the archive of p
+is extracted from the META file, and automatically inserted before the
+prog1.cmo argument. The resulting command looks like<A
+NAME="AEN131"
+HREF="#FTN.AEN131"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlc -o program -I /usr/local/lib/ocaml/site-lib/p p.cma prog1.cmo prog2.cmo prog3.cmo</PRE
+><P
+>Please note that the bytecode archive p.cma has been selected, and not
+the native archive p.cmxa. As it is known that the bytecode compiler
+is used, the predicate "byte" is automatically set.</P
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notes</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN124"
+HREF="x119.html#AEN124"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>If you specify the -verbose option, the constructed
+command is printed to the terminal. Actually, there are some more
+implicitly added options, especially -ccopt -I&lt;dir&gt; for every
+package directory &lt;dir&gt;. This means that you can compile C
+programs accessing header files stored in the package directory.</P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN131"
+HREF="x119.html#AEN131"
+><SPAN
+CLASS="footnote"
+>[2]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Again, the actual command contains even some more arguments...</P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x108.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x135.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Querying information stored in META files</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c74.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Dependencies</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,13 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base compiler-libs.common ppxlib ppxlib.ast stdio"
+archive(ppx_driver,byte) = "ppx_optcomp.cma"
+archive(ppx_driver,native) = "ppx_optcomp.cmxa"
+plugin(ppx_driver,byte) = "ppx_optcomp.cma"
+plugin(ppx_driver,native) = "ppx_optcomp.cmxs"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = ""
+requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppx_optcomp"
+library_kind = "ppx_deriver"

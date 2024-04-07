@@ -1,0 +1,93 @@
+.TH "Ephemeron.K1.Bucket" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ephemeron.K1.Bucket \- no description
+.SH Module
+Module   Ephemeron.K1.Bucket
+.SH Documentation
+.sp
+Module
+.BI "Bucket"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B ('k, 'd)
+.I t 
+
+.sp
+A bucket is a mutable "list" of ephemerons\&.
+
+.sp
+
+.I val make 
+: 
+.B unit -> ('k, 'd) t
+.sp
+Create a new bucket\&.
+
+.sp
+
+.I val add 
+: 
+.B ('k, 'd) t -> 'k -> 'd -> unit
+.sp
+Add an ephemeron to the bucket\&.
+
+.sp
+
+.I val remove 
+: 
+.B ('k, 'd) t -> 'k -> unit
+.sp
+
+.ft B
+remove b k
+.ft R
+removes from 
+.ft B
+b
+.ft R
+the most\-recently added
+ephemeron with key 
+.ft B
+k
+.ft R
+, or does nothing if there is no such
+ephemeron\&.
+
+.sp
+
+.I val find 
+: 
+.B ('k, 'd) t -> 'k -> 'd option
+.sp
+Returns the data of the most\-recently added ephemeron with the
+given key, or 
+.ft B
+None
+.ft R
+if there is no such ephemeron\&.
+
+.sp
+
+.I val length 
+: 
+.B ('k, 'd) t -> int
+.sp
+Returns an upper bound on the length of the bucket\&.
+
+.sp
+
+.I val clear 
+: 
+.B ('k, 'd) t -> unit
+.sp
+Remove all ephemerons from the bucket\&.
+
+.sp

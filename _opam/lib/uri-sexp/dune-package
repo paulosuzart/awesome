@@ -1,0 +1,37 @@
+(lang dune 3.15)
+(name uri-sexp)
+(version 4.4.0)
+(sections (lib .) (libexec .) (doc ../../doc/uri-sexp))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   uri_sexp.a
+   uri_sexp.cma
+   uri_sexp.cmi
+   uri_sexp.cmt
+   uri_sexp.cmti
+   uri_sexp.cmx
+   uri_sexp.cmxa
+   uri_sexp.ml
+   uri_sexp.mli))
+ (libexec (uri_sexp.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name uri-sexp)
+ (kind normal)
+ (archives (byte uri_sexp.cma) (native uri_sexp.cmxa))
+ (plugins (byte uri_sexp.cma) (native uri_sexp.cmxs))
+ (native_archives uri_sexp.a)
+ (requires sexplib0 uri ppx_sexp_conv.runtime-lib)
+ (main_module_name Uri_sexp)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name uri_sexp)
+   (visibility public)
+   (source
+    (path Uri_sexp)
+    (intf (path uri_sexp.mli))
+    (impl (path uri_sexp.ml))))))

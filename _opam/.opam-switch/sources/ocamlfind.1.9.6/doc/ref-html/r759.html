@@ -1,0 +1,571 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>META</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib Reference Manual"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Files"
+HREF="p757.html"><LINK
+REL="PREVIOUS"
+TITLE="Files"
+HREF="p757.html"><LINK
+REL="NEXT"
+TITLE="findlib.conf"
+HREF="r865.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib Reference Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="p757.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="r865.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="AEN759"
+></A
+>META</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="META"
+></A
+><H2
+>Name</H2
+>META&nbsp;--&nbsp;[File that specifies metainformation of OCaml packages]</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN767"
+></A
+><H2
+>GRAMMAR</H2
+><PRE
+CLASS="SYNOPSIS"
+>         metafile ::= entry*
+            entry ::= assignment | addition | subpackage
+       subpackage ::= "package" pkgname '(' metafile ')'
+       assignment ::= variable_name [ formal_predicates ] '='  value
+         addition ::= variable_name [ formal_predicates ] '+=' value
+formal_predicates ::= '(' formal_predicate { ',' formal_predicate } ')'
+    variable_name ::= name
+ formal_predicate ::= name | '-' name
+             name ::= [ 'A'-'Z' 'a'-'z' '0'-'9' '_' '.' ]+
+          pkgname ::= '"' (character but not '.')* '"'
+            value ::= '"' character* '"'</PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN770"
+></A
+><H2
+>DESCRIPTION</H2
+><P
+>If a package directory contains a file with the fixed name "META" it
+is interpreted as described here. The file is a sequence of entries
+following the given grammar; every entry defines a variable under a
+certain condition given by the list of formal predicates, or it
+introduces a subpackage.</P
+><P
+>There is a list of predefined variables and a list of standard
+predicates. These variables define: required packages, description, version
+information, directories, archive files, and linker options. The
+predicates denote circumstances of the application of the variables:
+whether the bytecode or the native compiler is used, if there is a
+toploop compiled in, details of multi-threading execution, details of
+profiling. </P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN774"
+></A
+><H2
+>DETAILS OF THE FILE FORMAT</H2
+><P
+>The file consists of a sequence of entries which must be formed as the
+grammar prescribes. The lexical tokens are names, values, and
+interpunctuation like '(', ',' and so on. Note that linefeeds do not
+play a special role, i.e. an entry definition may be given in more than
+one line, or several definitions may occur on a single line. There may
+be comments which begin with '#' and run until the end of the line.</P
+><P
+>Names are sequences of the characters A-Z, a-z, 0-9, or _. Names
+containing capital letters and names beginning with digits are
+allowed but not recommended.</P
+><P
+>Values are enclosed between double quotes. Values may contain any
+character. The characters " and \ must be preceded by backslashes. </P
+><P
+>Package names must not contain the '.' character because it is used
+as delimiter of compound names.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN780"
+></A
+><H2
+>MAIN PACKAGES AND SUBPACKAGES</H2
+><P
+>The outermost variable assignments and additions belong to the main
+package. The name of the main package is not defined within META;
+it is either the name of the directory containing META or the suffix
+of the META file (if the name of the META file is formed like
+META.name).</P
+><P
+>The keyword <TT
+CLASS="LITERAL"
+>package</TT
+> starts the definition
+of a subpackage. There must not be two such definitions with the
+same name. Within the parantheses, the variable assignments and
+additions refer to the subpackage. It is allowed that a subpackage
+contains further subpackages.</P
+><P
+>The package name following <TT
+CLASS="LITERAL"
+>package</TT
+>
+is the local name relative to the main package, i.e. the
+name of the main package is not mentioned. At all other places,
+however, the subpackage must be prefixed by the name of the
+containing package, separated by a '.'.</P
+><P
+>Subpackages are independent of the containing package, except
+that the subpackage points to the same installation directory as
+the containing package (i.e. the location of the installation directory
+is inherited from the containing package).</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN788"
+></A
+><H2
+>SEMANTICS OF VARIABLE DEFINITIONS</H2
+><P
+>In order to determine the value of a variable, first all assignments
+are inspected, and the most specific assignment is taken (if there is
+none, the empty string will be taken as value). In a second step,
+all additions are gone through one after the other in the order
+they occur in the file, and the values of all matching additions are
+appended to the current value. In the following, it is further
+clarified which assignment is the most specific, which additions
+actually match, and how the details of the value addition look like.</P
+><P
+> The most specific assignment is selected upon a set of actual
+predicates, i.e. the set of predicates that are assumed to be true.
+The predicates occuring in the definitions of assignments and
+additions are called formal predicates. They may be positive or
+negative; the latter are prepended by a '-' sign. In order to
+determine the value after the evaluation of the assignments, the
+following rules apply: </P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+> An assignment can only be used if all positive formal
+predicates are included in the set of actual predicates, and if all
+negative formal predicates are not included in the set of actual
+predicates.  Such an assignment is called
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>applicable</I
+></SPAN
+>. If there is no such assignment, the
+variable will have no value.  </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>If there is more than one applicable assignment, the definition with
+the biggest number of formal predicates is selected.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>If there is still more than one applicable assignment, both applicable 
+and with a maximum number of formal predicates, the definition that is defined
+first is selected.</P
+></LI
+></UL
+><P
+>An addition is matching when all positive formal predicates are
+included in the set of actual predicates, and all negative formal
+predicates are not included.</P
+><P
+>The value of an addition is appended to the current value with
+implicit white space as separator.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN802"
+></A
+><H2
+>VARIABLES</H2
+><P
+>There is a set of variables with predefined meaning:</P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+> The
+variable "directory" redefines the location of the package
+directory. Normally, the META file is the first file read in the
+package directory, and before any other file is read, the "directory"
+variable is evaluated in order to see if the package directory must be
+changed. The value of the "directory" variable is determined with an
+empty set of actual predicates. The value must be either: an absolute
+path name of the alternate directory, or a path name relative to the
+stdlib directory of OCaml (written "+path"), or a normal relative path
+name (without special syntax). In the latter case, the interpretation
+depends on whether it is contained in a main or sub package, and
+whether the standard repository layout or the alternate layout is in
+effect (see <A
+HREF="r1061.html#SITE-LIB"
+>site-lib</A
+> for these terms).
+For a main package in standard layout the base directory is the
+directory physically containing the META file, and the relative path
+is interpreted for this base directory. For a main package in
+alternate layout the base directory is the directory physically
+containing the META.pkg files. The base directory for subpackages is
+the package directory of the containing package. (In the case
+that a subpackage definition does not have a "directory" setting,
+the subpackage simply inherits the package directory of the containing
+package. By writing a "directory" directive one can change this
+location again.)</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+> 
+The variable "requires" specifies the list of required packages. The
+names of the packages must be separated by white space and/or commas.
+The names must be fully qualified (i.e. when they refer to a subpackage,
+the names of all containing packages must be prepended, separated by
+'.').</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+> 
+The variable "description" may include a short description of the
+package (displayed by <TT
+CLASS="LITERAL"
+>ocamlfind list</TT
+>).</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+> 
+The variable "version" specifies the version string.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+> 
+The variable "archive" specifies the list of archive files. These
+files should be given either as (1) plain names without any directory
+information; they are only searched in the package directory.
+(2) Or they have the form "+path" in which case the files are looked up
+relative to the standard library. (3) Or they have the form "@name/file"
+in which case the files are looked up in the package directory
+of another package. (4) Or they are given as absolute paths.</P
+><P
+>The
+names of the files must be separated by white space and/or commas.
+In the preprocessor stage, the archive files are passed as extensions
+to the preprocessor (camlp4) call. In the linker stage (-linkpkg), the archive
+files are linked. In the compiler stage, the archive files are ignored.</P
+><P
+>Note that "archive" should only be used for archive files that are
+intended to be included in executables or loaded into toploops. For
+modules loaded at runtime there is the separate variable "plugin".</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+> 
+The variable "plugin" specifies the plugin archives of the package.
+These can be dynamically loaded with the <TT
+CLASS="LITERAL"
+>Fl_dynload</TT
+>
+module. The plugin archives can have ".cmo", ".cma", or ".cmxs" suffix.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+> 
+The variable "linkopts" specifies additional linker options.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The variable "error" can be used to signal error conditions. When
+this variable is applicable, the ocaml compilers are stopped, and
+an error message is printed. The message is the value of the variable.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The variable "warning" can be used to signal warnings. When
+this variable is applicable, the warning is printed, but the
+compilation continues. The message is the value of the variable.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+> 
+The variable "exists_if" can be used to disable subpackages. The
+value of "exists_if" is a file; the subpackage is hidden if this
+file does not exist. You can also enumerate several files, and the
+subpackage is hidden if none of the files exist.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The variable "ppx" is a command that is added to the compiler invocation
+via the -ppx option (available since OCaml-4.01). If the command is
+relative to the current directory (e.g. ./cmd), the command is expected
+in the package directory. The special forms as defined for "archive"
+are also available (e.g. @otherpkg/cmd). Additional arguments can be
+specified on the ocamlfind command line with the -ppxopt option
+or the "ppxopt" variable.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The variable "ppxopt" is a set of options that are added to the ppx
+rewriter invocation. The contents of the variable consists of one or
+several whitespace-separated parts. Every part consists of several
+comma-separated subparts; the first subpart indicates the package
+that contains the ppx rewriter invocation, the rest contain the options
+to be appended. If the option is a path relative to the current directory
+(e.g. ./foo.cma), the path is expanded relative to the package directory.
+The special forms as defined for "archive" are also available
+(e.g. @otherpkg/foo.cma).</P
+></LI
+></UL
+><P
+>It is possible to define additional variables but there is currently
+no software interpreting them.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN836"
+></A
+><H2
+>PREDICATES</H2
+><P
+>There is a list of standard predicates:</P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "byte" predicate means that the bytecode compiler is used.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "native" predicate means that the native compiler is used.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "toploop" predicate means that the toploop is available in the
+linked program. It is only set when the toploop is running, not when
+the toploop is generated.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "create_toploop" predicate means that a toploop is created (using
+ocamlmktop).</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "mt" predicate means that the program is multi-threaded.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "mt_posix" predicate means that in the case "mt" is set, too, the
+POSIX libraries are used to implement threads.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "mt_vm" predicate means that in the case "mt" is set, too, the
+VM-based libraries are used to implement threads.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "gprof" predicate means that in the case "native" is set, too, the
+program is compiled for profiling</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "autolink" predicate means that ocamlc can/will perform automatic linking.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "preprocessor" predicate means that the META variables are scanned for
+preprocessor options.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "syntax" predicate means that the -syntax option is present on the
+command line.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>Legacy: The "plugin" predicate could be used in some versions of findlib
+to select cmxs archives instead of cmxa archives. This use is still possible
+but discouraged.</P
+></LI
+></UL
+><P
+>In addition to these predicates, there are package predicates
+for every package that is finally selected. Of course, this kind of
+predicate must not be used to select "directory" and "requires"
+variables, but for the other variables they are perfectly valid.
+The package predicates have the form "pkg_" plus the name of the
+package (fully qualified).</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="p757.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="r865.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Files</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p757.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>findlib.conf</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

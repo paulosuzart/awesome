@@ -1,0 +1,105 @@
+.TH "Arg_helper.Make" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Arg_helper.Make \- no description
+.SH Module
+Module   Arg_helper.Make
+.SH Documentation
+.sp
+Module
+.BI "Make"
+ : 
+.B functor (S : sig end) -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"S"
+
+.B sig end
+
+
+
+
+
+.sp
+.sp
+.I type parsed 
+
+.sp
+
+.sp
+
+.I val default 
+: 
+.B S.Value.t -> parsed
+.sp
+
+.sp
+
+.I val set_base_default 
+: 
+.B S.Value.t -> parsed -> parsed
+.sp
+
+.sp
+
+.I val add_base_override 
+: 
+.B S.Key.t -> S.Value.t -> parsed -> parsed
+.sp
+
+.sp
+
+.I val reset_base_overrides 
+: 
+.B parsed -> parsed
+.sp
+
+.sp
+
+.I val set_user_default 
+: 
+.B S.Value.t -> parsed -> parsed
+.sp
+
+.sp
+
+.I val add_user_override 
+: 
+.B S.Key.t -> S.Value.t -> parsed -> parsed
+.sp
+
+.sp
+
+.I val parse 
+: 
+.B string -> string -> parsed ref -> unit
+.sp
+
+.sp
+.I type parse_result 
+=
+ | Ok
+ | Parse_failed
+.B of 
+.B exn
+ 
+.sp
+
+.sp
+
+.I val parse_no_error 
+: 
+.B string -> parsed ref -> parse_result
+.sp
+
+.sp
+
+.I val get 
+: 
+.B key:S.Key.t -> parsed -> S.Value.t
+.sp
+
+.sp

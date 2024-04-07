@@ -1,0 +1,43 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_bin_prot/META"
+  "_build/install/default/lib/ppx_bin_prot/dune-package"
+  "_build/install/default/lib/ppx_bin_prot/opam"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.a"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.cma"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.cmi"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.cmt"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.cmti"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.cmx"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.cmxa"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.ml"
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.mli"
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.a"
+    {"shape-expander/bin_shape_expand.a"}
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.cma"
+    {"shape-expander/bin_shape_expand.cma"}
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmi"
+    {"shape-expander/bin_shape_expand.cmi"}
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmt"
+    {"shape-expander/bin_shape_expand.cmt"}
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmti"
+    {"shape-expander/bin_shape_expand.cmti"}
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmx"
+    {"shape-expander/bin_shape_expand.cmx"}
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmxa"
+    {"shape-expander/bin_shape_expand.cmxa"}
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.ml"
+    {"shape-expander/bin_shape_expand.ml"}
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.mli"
+    {"shape-expander/bin_shape_expand.mli"}
+]
+doc: [
+  "_build/install/default/doc/ppx_bin_prot/CHANGES.md"
+  "_build/install/default/doc/ppx_bin_prot/LICENSE.md"
+  "_build/install/default/doc/ppx_bin_prot/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_bin_prot/ppx_bin_prot.cmxs"
+  "_build/install/default/lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmxs"
+    {"shape-expander/bin_shape_expand.cmxs"}
+]

@@ -1,0 +1,290 @@
+(lang dune 3.15)
+(name cohttp)
+(version v6.0.0_beta2)
+(sections (lib .) (libexec .) (doc ../../doc/cohttp))
+(files
+ (lib
+  (META
+   accept.ml
+   accept.mli
+   accept_lexer.ml
+   accept_parser.ml
+   accept_parser.mli
+   accept_types.ml
+   auth.ml
+   auth.mli
+   body.ml
+   body.mli
+   client.ml
+   code.ml
+   code.mli
+   cohttp.a
+   cohttp.cma
+   cohttp.cmi
+   cohttp.cmt
+   cohttp.cmx
+   cohttp.cmxa
+   cohttp.ml
+   cohttp__.cmi
+   cohttp__.cmt
+   cohttp__.cmx
+   cohttp__.ml
+   cohttp__Accept.cmi
+   cohttp__Accept.cmt
+   cohttp__Accept.cmti
+   cohttp__Accept.cmx
+   cohttp__Accept_lexer.cmi
+   cohttp__Accept_lexer.cmt
+   cohttp__Accept_lexer.cmx
+   cohttp__Accept_parser.cmi
+   cohttp__Accept_parser.cmt
+   cohttp__Accept_parser.cmti
+   cohttp__Accept_parser.cmx
+   cohttp__Accept_types.cmi
+   cohttp__Accept_types.cmt
+   cohttp__Accept_types.cmx
+   cohttp__Auth.cmi
+   cohttp__Auth.cmt
+   cohttp__Auth.cmti
+   cohttp__Auth.cmx
+   cohttp__Body.cmi
+   cohttp__Body.cmt
+   cohttp__Body.cmti
+   cohttp__Body.cmx
+   cohttp__Client.cmi
+   cohttp__Client.cmt
+   cohttp__Client.cmx
+   cohttp__Code.cmi
+   cohttp__Code.cmt
+   cohttp__Code.cmti
+   cohttp__Code.cmx
+   cohttp__Conf.cmi
+   cohttp__Conf.cmt
+   cohttp__Conf.cmti
+   cohttp__Conf.cmx
+   cohttp__Connection.cmi
+   cohttp__Connection.cmt
+   cohttp__Connection.cmti
+   cohttp__Connection.cmx
+   cohttp__Cookie.cmi
+   cohttp__Cookie.cmt
+   cohttp__Cookie.cmti
+   cohttp__Cookie.cmx
+   cohttp__Header.cmi
+   cohttp__Header.cmt
+   cohttp__Header.cmti
+   cohttp__Header.cmx
+   cohttp__Header_io.cmi
+   cohttp__Header_io.cmt
+   cohttp__Header_io.cmti
+   cohttp__Header_io.cmx
+   cohttp__Link.cmi
+   cohttp__Link.cmt
+   cohttp__Link.cmti
+   cohttp__Link.cmx
+   cohttp__Path.cmi
+   cohttp__Path.cmt
+   cohttp__Path.cmti
+   cohttp__Path.cmx
+   cohttp__Request.cmi
+   cohttp__Request.cmt
+   cohttp__Request.cmti
+   cohttp__Request.cmx
+   cohttp__Response.cmi
+   cohttp__Response.cmt
+   cohttp__Response.cmti
+   cohttp__Response.cmx
+   cohttp__S.cmi
+   cohttp__S.cmt
+   cohttp__S.cmx
+   cohttp__Server.cmi
+   cohttp__Server.cmt
+   cohttp__Server.cmx
+   cohttp__String_io.cmi
+   cohttp__String_io.cmt
+   cohttp__String_io.cmti
+   cohttp__String_io.cmx
+   cohttp__Transfer.cmi
+   cohttp__Transfer.cmt
+   cohttp__Transfer.cmti
+   cohttp__Transfer.cmx
+   cohttp__Transfer_io.cmi
+   cohttp__Transfer_io.cmt
+   cohttp__Transfer_io.cmti
+   cohttp__Transfer_io.cmx
+   conf.ml
+   conf.mli
+   connection.ml
+   connection.mli
+   cookie.ml
+   cookie.mli
+   dune-package
+   header.ml
+   header.mli
+   header_io.ml
+   header_io.mli
+   link.ml
+   link.mli
+   opam
+   path.ml
+   path.mli
+   request.ml
+   request.mli
+   response.ml
+   response.mli
+   s.ml
+   server.ml
+   string_io.ml
+   string_io.mli
+   transfer.ml
+   transfer.mli
+   transfer_io.ml
+   transfer_io.mli))
+ (libexec (cohttp.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name cohttp)
+ (kind normal)
+ (synopsis "Co-operative Client/Server HTTP library.")
+ (archives (byte cohttp.cma) (native cohttp.cmxa))
+ (plugins (byte cohttp.cma) (native cohttp.cmxs))
+ (native_archives cohttp.a)
+ (requires
+  base64
+  logs
+  (re_export http)
+  re
+  sexplib0
+  stringext
+  uri
+  uri-sexp
+  ppx_sexp_conv.runtime-lib)
+ (main_module_name Cohttp)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name cohttp__)
+     (visibility public)
+     (kind alias)
+     (source (path Cohttp__) (impl (path cohttp__.ml-gen))))
+    (name Cohttp)
+    (modules
+     (module
+      (obj_name cohttp__Accept)
+      (visibility public)
+      (source (path Accept) (intf (path accept.mli)) (impl (path accept.ml))))
+     (module
+      (obj_name cohttp__Accept_lexer)
+      (visibility public)
+      (source (path Accept_lexer) (impl (path accept_lexer.ml))))
+     (module
+      (obj_name cohttp__Accept_parser)
+      (visibility public)
+      (source
+       (path Accept_parser)
+       (intf (path accept_parser.mli))
+       (impl (path accept_parser.ml))))
+     (module
+      (obj_name cohttp__Accept_types)
+      (visibility public)
+      (source (path Accept_types) (impl (path accept_types.ml))))
+     (module
+      (obj_name cohttp__Auth)
+      (visibility public)
+      (source (path Auth) (intf (path auth.mli)) (impl (path auth.ml))))
+     (module
+      (obj_name cohttp__Body)
+      (visibility public)
+      (source (path Body) (intf (path body.mli)) (impl (path body.ml))))
+     (module
+      (obj_name cohttp__Client)
+      (visibility public)
+      (source (path Client) (impl (path client.ml))))
+     (module
+      (obj_name cohttp__Code)
+      (visibility public)
+      (source (path Code) (intf (path code.mli)) (impl (path code.ml))))
+     (module
+      (obj_name cohttp)
+      (visibility public)
+      (source (path Cohttp) (impl (path cohttp.ml))))
+     (module
+      (obj_name cohttp__Conf)
+      (visibility public)
+      (source (path Conf) (intf (path conf.mli)) (impl (path conf.ml))))
+     (module
+      (obj_name cohttp__Connection)
+      (visibility public)
+      (source
+       (path Connection)
+       (intf (path connection.mli))
+       (impl (path connection.ml))))
+     (module
+      (obj_name cohttp__Cookie)
+      (visibility public)
+      (source (path Cookie) (intf (path cookie.mli)) (impl (path cookie.ml))))
+     (module
+      (obj_name cohttp__Header)
+      (visibility public)
+      (source (path Header) (intf (path header.mli)) (impl (path header.ml))))
+     (module
+      (obj_name cohttp__Header_io)
+      (visibility public)
+      (source
+       (path Header_io)
+       (intf (path header_io.mli))
+       (impl (path header_io.ml))))
+     (module
+      (obj_name cohttp__Link)
+      (visibility public)
+      (source (path Link) (intf (path link.mli)) (impl (path link.ml))))
+     (module
+      (obj_name cohttp__Path)
+      (visibility public)
+      (source (path Path) (intf (path path.mli)) (impl (path path.ml))))
+     (module
+      (obj_name cohttp__Request)
+      (visibility public)
+      (source
+       (path Request)
+       (intf (path request.mli))
+       (impl (path request.ml))))
+     (module
+      (obj_name cohttp__Response)
+      (visibility public)
+      (source
+       (path Response)
+       (intf (path response.mli))
+       (impl (path response.ml))))
+     (module
+      (obj_name cohttp__S)
+      (visibility public)
+      (source (path S) (impl (path s.ml))))
+     (module
+      (obj_name cohttp__Server)
+      (visibility public)
+      (source (path Server) (impl (path server.ml))))
+     (module
+      (obj_name cohttp__String_io)
+      (visibility public)
+      (source
+       (path String_io)
+       (intf (path string_io.mli))
+       (impl (path string_io.ml))))
+     (module
+      (obj_name cohttp__Transfer)
+      (visibility public)
+      (source
+       (path Transfer)
+       (intf (path transfer.mli))
+       (impl (path transfer.ml))))
+     (module
+      (obj_name cohttp__Transfer_io)
+      (visibility public)
+      (source
+       (path Transfer_io)
+       (intf (path transfer_io.mli))
+       (impl (path transfer_io.ml))))))
+   (wrapped true))))

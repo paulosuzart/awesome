@@ -1,0 +1,51 @@
+opam-version: "2.0"
+added: [
+  "doc/uri" {"D"}
+  "doc/uri/CHANGES.md" {"F:a04276e45191630f164226dd45443633"}
+  "doc/uri/LICENSE.md" {"F:e5a7c86245e9bb5274ebb7b63ce7012a"}
+  "doc/uri/README.md" {"F:c17216c6abd6ce546e52501b86c58071"}
+  "lib/uri" {"D"}
+  "lib/uri/META" {"F:79119f48aee4a5a657d8994a886931de"}
+  "lib/uri/dune-package" {"F:b3456c85f1ba6de896c877dc029b66c7"}
+  "lib/uri/opam" {"F:a051752f8fc9886ad20fc5ba5ddae36f"}
+  "lib/uri/services/uri_services.a" {"F:b44a3be4e847cdde0783a10a831f1996"}
+  "lib/uri/services/uri_services.cma" {"F:c993a18e3b20c0999fccdefb892cc011"}
+  "lib/uri/services/uri_services.cmi" {"F:34cdd69e4c3c7037c8cd0dc7a1383057"}
+  "lib/uri/services/uri_services.cmt" {"F:aa8b38e445beab8749d78382285efc3e"}
+  "lib/uri/services/uri_services.cmti" {"F:63e74f871fe2e8d9ceb6405e41e5708f"}
+  "lib/uri/services/uri_services.cmx" {"F:0f55fcf6bac6e91e9dab57ee4d9f3897"}
+  "lib/uri/services/uri_services.cmxa" {"F:bb08d686ab6e30f7d18de672c650b9b0"}
+  "lib/uri/services/uri_services.cmxs" {"F:9f410f6a82b6320e706da3125d8ff1ea"}
+  "lib/uri/services/uri_services.ml" {"F:37c40bf31c6802989853c53ec3e56166"}
+  "lib/uri/services/uri_services.mli" {"F:c19bc6034798c3efe8d0333d985ecf49"}
+  "lib/uri/services_full/uri_services_full.a"
+    {"F:86365bfe52a6189247d1eca0158dbea8"}
+  "lib/uri/services_full/uri_services_full.cma"
+    {"F:4a2239859adfa63f7f1d3c116596c1c5"}
+  "lib/uri/services_full/uri_services_full.cmi"
+    {"F:5bce06ed94c2753c4e5b0c9531090679"}
+  "lib/uri/services_full/uri_services_full.cmt"
+    {"F:23ff96e21aaccb9f6a59fd2306841541"}
+  "lib/uri/services_full/uri_services_full.cmti"
+    {"F:23b208976036a664731bb5afc30f4360"}
+  "lib/uri/services_full/uri_services_full.cmx"
+    {"F:d9f438fa81673b39c21498f6db19a0bc"}
+  "lib/uri/services_full/uri_services_full.cmxa"
+    {"F:c9f071463e06ccb160b266d1c86d11ef"}
+  "lib/uri/services_full/uri_services_full.cmxs"
+    {"F:8f497a2691b236786e9134e1d9607965"}
+  "lib/uri/services_full/uri_services_full.ml"
+    {"F:a91d26744d71050a1ab78302431590f5"}
+  "lib/uri/services_full/uri_services_full.mli"
+    {"F:61311938e86e8d3c0fb1989d4364291a"}
+  "lib/uri/uri.a" {"F:d40eae25daadecb024893902ddab044b"}
+  "lib/uri/uri.cma" {"F:3766444636f7f7e0f4e4acf30203d402"}
+  "lib/uri/uri.cmi" {"F:b9c70d1c5f62f60635621e2ebb9be2a9"}
+  "lib/uri/uri.cmt" {"F:56bfade86858a6285436abf62a0995be"}
+  "lib/uri/uri.cmti" {"F:28a2358d4e522437d4661631397adb9d"}
+  "lib/uri/uri.cmx" {"F:659ccaf8308ff311abc0edf8ad5a21fb"}
+  "lib/uri/uri.cmxa" {"F:30223ed928a7e5b8e26a6635cbed6c35"}
+  "lib/uri/uri.cmxs" {"F:7e2a31de01f5df72681a5d971e9f8a69"}
+  "lib/uri/uri.ml" {"F:ae39e9a173dd8479954cb8b49f958a19"}
+  "lib/uri/uri.mli" {"F:ce357a56fb32b5a2ff167e1a6ad8d509"}
+]

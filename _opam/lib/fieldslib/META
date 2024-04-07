@@ -1,0 +1,7 @@
+version = "v0.16.0"
+description = ""
+requires = "base"
+archive(byte) = "fieldslib.cma"
+archive(native) = "fieldslib.cmxa"
+plugin(byte) = "fieldslib.cma"
+plugin(native) = "fieldslib.cmxs"

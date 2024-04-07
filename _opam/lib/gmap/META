@@ -1,0 +1,7 @@
+version = "0.3.0"
+description = ""
+requires = ""
+archive(byte) = "gmap.cma"
+archive(native) = "gmap.cmxa"
+plugin(byte) = "gmap.cma"
+plugin(native) = "gmap.cmxs"

@@ -1,0 +1,57 @@
+.TH "Clflags.Int_arg_helper" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Clflags.Int_arg_helper \- Optimization parameters represented as ints indexed by round number.
+.SH Module
+Module   Clflags.Int_arg_helper
+.SH Documentation
+.sp
+Module
+.BI "Int_arg_helper"
+ : 
+.B sig end
+
+.sp
+Optimization parameters represented as ints indexed by round number\&.
+
+.sp
+
+.sp
+.sp
+.I type parsed 
+
+.sp
+
+.sp
+
+.I val parse 
+: 
+.B string -> string -> parsed ref -> unit
+.sp
+
+.sp
+.I type parse_result 
+=
+ | Ok
+ | Parse_failed
+.B of 
+.B exn
+ 
+.sp
+
+.sp
+
+.I val parse_no_error 
+: 
+.B string ->
+.B   parsed ref ->
+.B   parse_result
+.sp
+
+.sp
+
+.I val get 
+: 
+.B key:int -> parsed -> int
+.sp
+
+.sp

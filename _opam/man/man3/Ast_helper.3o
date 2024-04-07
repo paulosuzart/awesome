@@ -1,0 +1,311 @@
+.TH "Ast_helper" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_helper \- Helpers to produce Parsetree fragments
+.SH Module
+Module   Ast_helper
+.SH Documentation
+.sp
+Module
+.BI "Ast_helper"
+ : 
+.B sig end
+
+.sp
+Helpers to produce Parsetree fragments
+.sp
+Warning This module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I with_loc 
+= 
+.B 'a Location.loc
+
+.sp
+
+.sp
+.I type loc 
+= 
+.B Location.t
+
+.sp
+
+.sp
+.I type lid 
+= 
+.B Longident.t with_loc
+
+.sp
+
+.sp
+.I type str 
+= 
+.B string with_loc
+
+.sp
+
+.sp
+.I type str_opt 
+= 
+.B string option with_loc
+
+.sp
+
+.sp
+.I type attrs 
+= 
+.B Parsetree.attribute list
+
+.sp
+
+.sp
+
+.PP
+.SS Default locations
+
+.PP
+
+.I val default_loc 
+: 
+.B loc ref
+.sp
+Default value for all optional location arguments\&.
+
+.sp
+
+.I val with_default_loc 
+: 
+.B loc -> (unit -> 'a) -> 'a
+.sp
+Set the 
+.ft B
+default_loc
+.ft R
+within the scope of the execution
+of the provided function\&.
+
+.sp
+
+.PP
+.SS Constants
+
+.PP
+.I module Const : 
+.B sig end
+
+.sp
+
+.sp
+.I module Attr : 
+.B sig end
+
+.sp
+.SS Attributes
+
+
+.sp
+
+.PP
+.SS Core language
+
+.PP
+.I module Typ : 
+.B sig end
+
+.sp
+Type expressions
+
+.sp
+.I module Pat : 
+.B sig end
+
+.sp
+Patterns
+
+.sp
+.I module Exp : 
+.B sig end
+
+.sp
+Expressions
+
+.sp
+.I module Val : 
+.B sig end
+
+.sp
+Value declarations
+
+.sp
+.I module Type : 
+.B sig end
+
+.sp
+Type declarations
+
+.sp
+.I module Te : 
+.B sig end
+
+.sp
+Type extensions
+
+.sp
+
+.PP
+.SS Module language
+
+.PP
+.I module Mty : 
+.B sig end
+
+.sp
+Module type expressions
+
+.sp
+.I module Mod : 
+.B sig end
+
+.sp
+Module expressions
+
+.sp
+.I module Sig : 
+.B sig end
+
+.sp
+Signature items
+
+.sp
+.I module Str : 
+.B sig end
+
+.sp
+Structure items
+
+.sp
+.I module Md : 
+.B sig end
+
+.sp
+Module declarations
+
+.sp
+.I module Ms : 
+.B sig end
+
+.sp
+Module substitutions
+
+.sp
+.I module Mtd : 
+.B sig end
+
+.sp
+Module type declarations
+
+.sp
+.I module Mb : 
+.B sig end
+
+.sp
+Module bindings
+
+.sp
+.I module Opn : 
+.B sig end
+
+.sp
+Opens
+
+.sp
+.I module Incl : 
+.B sig end
+
+.sp
+Includes
+
+.sp
+.I module Vb : 
+.B sig end
+
+.sp
+Value bindings
+
+.sp
+
+.PP
+.SS Class language
+
+.PP
+.I module Cty : 
+.B sig end
+
+.sp
+Class type expressions
+
+.sp
+.I module Ctf : 
+.B sig end
+
+.sp
+Class type fields
+
+.sp
+.I module Cl : 
+.B sig end
+
+.sp
+Class expressions
+
+.sp
+.I module Cf : 
+.B sig end
+
+.sp
+Class fields
+
+.sp
+.I module Ci : 
+.B sig end
+
+.sp
+Classes
+
+.sp
+.I module Csig : 
+.B sig end
+
+.sp
+Class signatures
+
+.sp
+.I module Cstr : 
+.B sig end
+
+.sp
+Class structures
+
+.sp
+.I module Rf : 
+.B sig end
+
+.sp
+Row fields
+
+.sp
+.I module Of : 
+.B sig end
+
+.sp
+Object fields
+
+.sp

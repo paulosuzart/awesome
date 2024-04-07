@@ -1,0 +1,35 @@
+opam-version: "2.0"
+added: [
+  "doc/base_bigstring" {"D"}
+  "doc/base_bigstring/CHANGES.md" {"F:3cf742ac1c1ffd379897e00bdd0de160"}
+  "doc/base_bigstring/LICENSE.md" {"F:93afbebc0e066419e584932bf74cc496"}
+  "lib/base_bigstring" {"D"}
+  "lib/base_bigstring/META" {"F:6deada176df7cac50ca081c152bf9be9"}
+  "lib/base_bigstring/base_bigstring.a"
+    {"F:0327e0e109b8457b7feb9824a830079f"}
+  "lib/base_bigstring/base_bigstring.cma"
+    {"F:9f9544f9271796224d92d1b44e17f45e"}
+  "lib/base_bigstring/base_bigstring.cmi"
+    {"F:48ae732198a50e54e031e56b73bc6a75"}
+  "lib/base_bigstring/base_bigstring.cmt"
+    {"F:c5e03395bd427d9138b01b5f7d4f38e1"}
+  "lib/base_bigstring/base_bigstring.cmti"
+    {"F:b4cab78911ab208ee3d903fb337a59da"}
+  "lib/base_bigstring/base_bigstring.cmx"
+    {"F:b3e8edea85540d4d8fce4fe1a32ac631"}
+  "lib/base_bigstring/base_bigstring.cmxa"
+    {"F:8841665a3222ceb8b87f7ff210e40a2a"}
+  "lib/base_bigstring/base_bigstring.cmxs"
+    {"F:284f9429166b572c2c6637957a694a44"}
+  "lib/base_bigstring/base_bigstring.ml"
+    {"F:b2e20c62cda750b59b31f030153b103d"}
+  "lib/base_bigstring/base_bigstring.mli"
+    {"F:3d239e15c89e1207b3ebe21cb617eb69"}
+  "lib/base_bigstring/dune-package" {"F:d43d729103a1d857e126513a60018454"}
+  "lib/base_bigstring/libbase_bigstring_stubs.a"
+    {"F:bd8b538bd2f2a0066c46151e190462f9"}
+  "lib/base_bigstring/opam" {"F:fdc735ecd556685937fbde881b2cec4f"}
+  "lib/base_bigstring/runtime.js" {"F:2d7063a4f89a37dd7a23c89d605b58a6"}
+  "lib/stublibs/dllbase_bigstring_stubs.so"
+    {"F:a43fca903b7c049741033dc3eeaca41a"}
+]

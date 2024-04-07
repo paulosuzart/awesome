@@ -1,0 +1,41 @@
+opam-version: "2.0"
+added: [
+  "doc/ipaddr" {"D"}
+  "doc/ipaddr/CHANGES.md" {"F:0a8d19c2421b6154de39577e65e9d027"}
+  "doc/ipaddr/LICENSE.md" {"F:0e20a57b051989d95e775a42e48ba56e"}
+  "doc/ipaddr/README.md" {"F:4abdbb1e3e62d92f30f8c770bd1a3ab4"}
+  "lib/ipaddr" {"D"}
+  "lib/ipaddr/META" {"F:b6912b1cc421aa30dff024d36c486e1b"}
+  "lib/ipaddr/dune-package" {"F:4998acd55995b8aea266f1c259140fe9"}
+  "lib/ipaddr/ipaddr.a" {"F:c191888a307f8fc64e111dc968571dee"}
+  "lib/ipaddr/ipaddr.cma" {"F:9f7bba54aab51f25deae2c95057c8d7d"}
+  "lib/ipaddr/ipaddr.cmi" {"F:f73d05128e6ab9ea311749f7adf8632c"}
+  "lib/ipaddr/ipaddr.cmt" {"F:0d4677b3a7edd8cd98b26e007d1a452f"}
+  "lib/ipaddr/ipaddr.cmti" {"F:dac3d230ad8cb0851446f239f486d0a3"}
+  "lib/ipaddr/ipaddr.cmx" {"F:9eec26f6ae8bde882a9764c05694e1a1"}
+  "lib/ipaddr/ipaddr.cmxa" {"F:787cacbe29749432e13cb9708dd09c1e"}
+  "lib/ipaddr/ipaddr.cmxs" {"F:0a01fa18fdcfc6efd56913e47170c09a"}
+  "lib/ipaddr/ipaddr.ml" {"F:7e1d8bfb9cc8551cebb8b695b397adf5"}
+  "lib/ipaddr/ipaddr.mli" {"F:c1200614483a0bac484b86ff4089ebdb"}
+  "lib/ipaddr/opam" {"F:657ad598b6e02270d62d95ca621a5ff2"}
+  "lib/ipaddr/top/ipaddr_top.a" {"F:b000177ec24af16062d4e15bc815dc23"}
+  "lib/ipaddr/top/ipaddr_top.cma" {"F:2e071a335659ea346c0a605ab127f828"}
+  "lib/ipaddr/top/ipaddr_top.cmi" {"F:94b44e0d74ca98b58c760d12b3fc9b95"}
+  "lib/ipaddr/top/ipaddr_top.cmt" {"F:000415d7d65243f015414f719f40fc5b"}
+  "lib/ipaddr/top/ipaddr_top.cmti" {"F:0c77242b1c803dd97ad935b1d095107c"}
+  "lib/ipaddr/top/ipaddr_top.cmx" {"F:5a38dd07de50eadc16f2b4eaf4d7db1d"}
+  "lib/ipaddr/top/ipaddr_top.cmxa" {"F:f8aaab8f2b9785a5133675abf29f016a"}
+  "lib/ipaddr/top/ipaddr_top.cmxs" {"F:0c87c6342b7a98b26c303cbfd8523636"}
+  "lib/ipaddr/top/ipaddr_top.ml" {"F:3ebb6b27c329c95117c5beddde81cb0d"}
+  "lib/ipaddr/top/ipaddr_top.mli" {"F:6b37654f1afd156d289188b920446165"}
+  "lib/ipaddr/unix/ipaddr_unix.a" {"F:d36399f86ab42ff5313dbf11d22a1703"}
+  "lib/ipaddr/unix/ipaddr_unix.cma" {"F:d7720de1f7b028fa65c47ccf103acb3f"}
+  "lib/ipaddr/unix/ipaddr_unix.cmi" {"F:95161f050df7fa6447570dc9c29e1449"}
+  "lib/ipaddr/unix/ipaddr_unix.cmt" {"F:e55ba6a7df3ee991196f7799f3a8fd34"}
+  "lib/ipaddr/unix/ipaddr_unix.cmti" {"F:f48e8158a500ff3781776befc69e47f0"}
+  "lib/ipaddr/unix/ipaddr_unix.cmx" {"F:971ea728499982c2a1e73420a6ecf238"}
+  "lib/ipaddr/unix/ipaddr_unix.cmxa" {"F:f80ce6f15e6f0ca207e18444b97124cc"}
+  "lib/ipaddr/unix/ipaddr_unix.cmxs" {"F:b3e225499a2a4b5b049218b680aa4196"}
+  "lib/ipaddr/unix/ipaddr_unix.ml" {"F:31210bb8a3692bd962de36141b88b624"}
+  "lib/ipaddr/unix/ipaddr_unix.mli" {"F:5fdce41a5f563009bcf098a2f644c4db"}
+]

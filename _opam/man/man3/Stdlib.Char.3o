@@ -1,0 +1,171 @@
+.TH "Stdlib.Char" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Char \- no description
+.SH Module
+Module   Stdlib.Char
+.SH Documentation
+.sp
+Module
+.BI "Char"
+ : 
+.B (module Stdlib__Char)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val code 
+: 
+.B char -> int
+.sp
+Return the ASCII code of the argument\&.
+
+.sp
+
+.I val chr 
+: 
+.B int -> char
+.sp
+Return the character with the given ASCII code\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the argument is
+outside the range 0\-\-255\&.
+
+.sp
+
+.I val escaped 
+: 
+.B char -> string
+.sp
+Return a string representing the given character,
+with special characters escaped following the lexical conventions
+of OCaml\&.
+All characters outside the ASCII printable range (32\&.\&.126) are
+escaped, as well as backslash, double\-quote, and single\-quote\&.
+
+.sp
+
+.I val lowercase_ascii 
+: 
+.B char -> char
+.sp
+Convert the given character to its equivalent lowercase character,
+using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val uppercase_ascii 
+: 
+.B char -> char
+.sp
+Convert the given character to its equivalent uppercase character,
+using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+.I type t 
+= 
+.B char
+
+.sp
+An alias for the type of characters\&.
+
+.sp
+
+.I val compare 
+: 
+.B t -> t -> int
+.sp
+The comparison function for characters, with the same specification as
+.ft B
+compare
+.ft R
+\&.  Along with the type 
+.ft B
+t
+.ft R
+, this function 
+.ft B
+compare
+.ft R
+allows the module 
+.ft B
+Char
+.ft R
+to be passed as argument to the functors
+.ft B
+Set\&.Make
+.ft R
+and 
+.ft B
+Map\&.Make
+.ft R
+\&.
+
+.sp
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+The equal function for chars\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val seeded_hash 
+: 
+.B int -> t -> int
+.sp
+A seeded hash function for characters, with the same output value as
+.ft B
+Hashtbl\&.seeded_hash
+.ft R
+\&. This function allows this module to be passed as
+argument to the functor 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val hash 
+: 
+.B t -> int
+.sp
+An unseeded hash function for characters, with the same output value as
+.ft B
+Hashtbl\&.hash
+.ft R
+\&. This function allows this module to be passed as argument
+to the functor 
+.ft B
+Hashtbl\&.Make
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp

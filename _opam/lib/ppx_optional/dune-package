@@ -1,0 +1,37 @@
+(lang dune 3.15)
+(name ppx_optional)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_optional))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_optional.a
+   ppx_optional.cma
+   ppx_optional.cmi
+   ppx_optional.cmt
+   ppx_optional.cmti
+   ppx_optional.cmx
+   ppx_optional.cmxa
+   ppx_optional.ml
+   ppx_optional.mli))
+ (libexec (ppx.exe ppx_optional.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_optional)
+ (kind ppx_rewriter)
+ (archives (byte ppx_optional.cma) (native ppx_optional.cmxa))
+ (plugins (byte ppx_optional.cma) (native ppx_optional.cmxs))
+ (native_archives ppx_optional.a)
+ (requires base ppxlib.ast ppxlib)
+ (main_module_name Ppx_optional)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_optional)
+   (visibility public)
+   (source
+    (path Ppx_optional)
+    (intf (path ppx_optional.mli))
+    (impl (path ppx_optional.ml))))))

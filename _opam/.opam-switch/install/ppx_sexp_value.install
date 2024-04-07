@@ -1,0 +1,24 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_sexp_value/META"
+  "_build/install/default/lib/ppx_sexp_value/dune-package"
+  "_build/install/default/lib/ppx_sexp_value/opam"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.a"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.cma"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.cmi"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.cmt"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.cmti"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.cmx"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.cmxa"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.ml"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_sexp_value/CHANGES.md"
+  "_build/install/default/doc/ppx_sexp_value/LICENSE.md"
+  "_build/install/default/doc/ppx_sexp_value/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_sexp_value/ppx.exe"
+  "_build/install/default/lib/ppx_sexp_value/ppx_sexp_value.cmxs"
+]

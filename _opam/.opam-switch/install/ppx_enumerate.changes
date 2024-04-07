@@ -1,0 +1,45 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_enumerate" {"D"}
+  "doc/ppx_enumerate/CHANGES.md" {"F:5b001a8fc0cf1a1802fd1f4336c990de"}
+  "doc/ppx_enumerate/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_enumerate/README.md" {"F:c88f353600a4046cfb44f299810bde9e"}
+  "lib/ppx_enumerate" {"D"}
+  "lib/ppx_enumerate/META" {"F:157785bd3300fd9809a88394bd65d791"}
+  "lib/ppx_enumerate/dune-package" {"F:a8bc8a74b8ed7f3e8dd20c2bcde56e66"}
+  "lib/ppx_enumerate/opam" {"F:6a67f4fa08096b672063dbd5f52a2218"}
+  "lib/ppx_enumerate/ppx_enumerate.a" {"F:c3a4f97d21d2cedc0bc63bdf5c4ba8b1"}
+  "lib/ppx_enumerate/ppx_enumerate.cma"
+    {"F:962a5793e42e053cb72699f7a6717f1d"}
+  "lib/ppx_enumerate/ppx_enumerate.cmi"
+    {"F:c4c0819a3ff6273bbcc9d696eb91bc11"}
+  "lib/ppx_enumerate/ppx_enumerate.cmt"
+    {"F:7f7f28084ddb15690c9bf3d8ddff31b0"}
+  "lib/ppx_enumerate/ppx_enumerate.cmti"
+    {"F:1fdfc03f51dcfaaf1aee6b0bd294577f"}
+  "lib/ppx_enumerate/ppx_enumerate.cmx"
+    {"F:919aec46c84b7df001efa1dbfde1699d"}
+  "lib/ppx_enumerate/ppx_enumerate.cmxa"
+    {"F:65add121a161c29380f7f423760a839a"}
+  "lib/ppx_enumerate/ppx_enumerate.cmxs"
+    {"F:a210342defa154a55c7c39bb8c9397ca"}
+  "lib/ppx_enumerate/ppx_enumerate.ml" {"F:1de9a76fe5adb23f6f41e18072523f8d"}
+  "lib/ppx_enumerate/ppx_enumerate.mli"
+    {"F:2861abcca737651ea75baf6282c8e16a"}
+  "lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.a"
+    {"F:4b2778fca155ec9db5d8e50c333a395f"}
+  "lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cma"
+    {"F:81065a4391705b12db834584efec7d4f"}
+  "lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmi"
+    {"F:96167b5cecb95bc9147901db6c46316c"}
+  "lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmt"
+    {"F:9cbc994e493d4cbabcae257a8d918ee3"}
+  "lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmx"
+    {"F:2b4bf836f66f8c9ef58a9db444dfc2a6"}
+  "lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmxa"
+    {"F:1182cd37e1841524d97cde6087f42cf9"}
+  "lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmxs"
+    {"F:6589e5178bfa091edc7a9b92d9f717a5"}
+  "lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.ml"
+    {"F:3713900d236aeb629c8bb5ac032166cb"}
+]

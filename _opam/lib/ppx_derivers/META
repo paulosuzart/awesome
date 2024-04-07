@@ -1,0 +1,6 @@
+description = ""
+requires = ""
+archive(byte) = "ppx_derivers.cma"
+archive(native) = "ppx_derivers.cmxa"
+plugin(byte) = "ppx_derivers.cma"
+plugin(native) = "ppx_derivers.cmxs"

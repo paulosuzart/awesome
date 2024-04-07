@@ -1,0 +1,40 @@
+.\" Pipe this output to groff -m man -K utf8 -T utf8 | less -R
+.\"
+.mso an.tmac
+.TH "DUNE-COQ" 1 "" "Dune 3.15.0" "Dune Manual"
+.\" Disable hyphenation and ragged-right
+.nh
+.ad l
+.SH NAME
+.P
+dune\N'45'coq \N'45' Command group related to Coq\N'46'
+.SH SYNOPSIS
+.sp -1
+.P
+\fBdune coq top FILE \N'45'\N'45' ARGS\fR
+.SH COMMANDS
+.TP 4
+\fBtop\fR [\fIOPTION\fR]… \fICOQFILE\fR [\fIARGS\fR]…
+Execute a Coq toplevel with the local configuration\N'46'
+.SH COMMON OPTIONS
+.TP 4
+\fB\N'45'\N'45'help\fR[=\fIFMT\fR] (default=\fBauto\fR)
+Show this help in format \fIFMT\fR\N'46' The value \fIFMT\fR must be one of \fBauto\fR, \fBpager\fR, \fBgroff\fR or \fBplain\fR\N'46' With \fBauto\fR, the format is \fBpager\fR or \fBplain\fR whenever the \fBTERM\fR env var is \fBdumb\fR or undefined\N'46'
+.TP 4
+\fB\N'45'\N'45'version\fR
+Show version information\N'46'
+.SH EXIT STATUS
+.P
+\fBdune coq\fR exits with:
+.TP 4
+0
+on success\N'46'
+.TP 4
+1
+if an error happened\N'46'
+.TP 4
+130
+if it was interrupted by a signal\N'46'
+.SH SEE ALSO
+.P
+dune(1)

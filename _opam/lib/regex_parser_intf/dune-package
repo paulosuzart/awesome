@@ -1,0 +1,32 @@
+(lang dune 3.15)
+(name regex_parser_intf)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/regex_parser_intf))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   regex_parser_intf.a
+   regex_parser_intf.cma
+   regex_parser_intf.cmi
+   regex_parser_intf.cmt
+   regex_parser_intf.cmx
+   regex_parser_intf.cmxa
+   regex_parser_intf.ml))
+ (libexec (regex_parser_intf.cmxs))
+ (doc (LICENSE.md)))
+(library
+ (name regex_parser_intf)
+ (kind normal)
+ (archives (byte regex_parser_intf.cma) (native regex_parser_intf.cmxa))
+ (plugins (byte regex_parser_intf.cma) (native regex_parser_intf.cmxs))
+ (native_archives regex_parser_intf.a)
+ (requires base)
+ (main_module_name Regex_parser_intf)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name regex_parser_intf)
+   (visibility public)
+   (source (path Regex_parser_intf) (impl (path regex_parser_intf.ml))))))

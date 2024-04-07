@@ -1,0 +1,2 @@
+opam-version: "2.0"
+share_root: "config.cache" {"ocaml/config.cache"}

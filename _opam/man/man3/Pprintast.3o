@@ -1,0 +1,184 @@
+.TH "Pprintast" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Pprintast \- Pretty-printers for Parsetree
+.SH Module
+Module   Pprintast
+.SH Documentation
+.sp
+Module
+.BI "Pprintast"
+ : 
+.B sig end
+
+.sp
+Pretty\-printers for 
+.ft B
+Parsetree
+.ft R
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type space_formatter 
+= 
+.B (unit, Format.formatter, unit) format
+
+.sp
+
+.sp
+
+.I val longident 
+: 
+.B Format.formatter -> Longident.t -> unit
+.sp
+
+.sp
+
+.I val expression 
+: 
+.B Format.formatter -> Parsetree.expression -> unit
+.sp
+
+.sp
+
+.I val string_of_expression 
+: 
+.B Parsetree.expression -> string
+.sp
+
+.sp
+
+.I val pattern 
+: 
+.B Format.formatter -> Parsetree.pattern -> unit
+.sp
+
+.sp
+
+.I val core_type 
+: 
+.B Format.formatter -> Parsetree.core_type -> unit
+.sp
+
+.sp
+
+.I val signature 
+: 
+.B Format.formatter -> Parsetree.signature -> unit
+.sp
+
+.sp
+
+.I val structure 
+: 
+.B Format.formatter -> Parsetree.structure -> unit
+.sp
+
+.sp
+
+.I val string_of_structure 
+: 
+.B Parsetree.structure -> string
+.sp
+
+.sp
+
+.I val module_expr 
+: 
+.B Format.formatter -> Parsetree.module_expr -> unit
+.sp
+
+.sp
+
+.I val toplevel_phrase 
+: 
+.B Format.formatter -> Parsetree.toplevel_phrase -> unit
+.sp
+
+.sp
+
+.I val top_phrase 
+: 
+.B Format.formatter -> Parsetree.toplevel_phrase -> unit
+.sp
+
+.sp
+
+.I val class_field 
+: 
+.B Format.formatter -> Parsetree.class_field -> unit
+.sp
+
+.sp
+
+.I val class_type_field 
+: 
+.B Format.formatter -> Parsetree.class_type_field -> unit
+.sp
+
+.sp
+
+.I val class_expr 
+: 
+.B Format.formatter -> Parsetree.class_expr -> unit
+.sp
+
+.sp
+
+.I val class_type 
+: 
+.B Format.formatter -> Parsetree.class_type -> unit
+.sp
+
+.sp
+
+.I val module_type 
+: 
+.B Format.formatter -> Parsetree.module_type -> unit
+.sp
+
+.sp
+
+.I val structure_item 
+: 
+.B Format.formatter -> Parsetree.structure_item -> unit
+.sp
+
+.sp
+
+.I val signature_item 
+: 
+.B Format.formatter -> Parsetree.signature_item -> unit
+.sp
+
+.sp
+
+.I val binding 
+: 
+.B Format.formatter -> Parsetree.value_binding -> unit
+.sp
+
+.sp
+
+.I val payload 
+: 
+.B Format.formatter -> Parsetree.payload -> unit
+.sp
+
+.sp
+
+.I val tyvar 
+: 
+.B Format.formatter -> string -> unit
+.sp
+Print a type variable name, taking care of the special treatment
+required for the single quote character in second position\&.
+
+.sp

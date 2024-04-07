@@ -1,0 +1,114 @@
+opam-version: "2.0"
+added: [
+  "doc/tls" {"D"}
+  "doc/tls/CHANGES.md" {"F:b545771c781548f6dadb95c68311055d"}
+  "doc/tls/LICENSE.md" {"F:de5b5d0c1bc509849dc9653f8bcd99ed"}
+  "doc/tls/README.md" {"F:8569f73d7e494bdfef5089b4d54e1b69"}
+  "lib/tls" {"D"}
+  "lib/tls/META" {"F:e8a4fe88fbcdde92c50cd14c07e9deba"}
+  "lib/tls/ciphersuite.ml" {"F:bcadecd1d6fac70daf459ede5b511b10"}
+  "lib/tls/config.ml" {"F:1f845af94c1a0c938dc9d3931a30dcd6"}
+  "lib/tls/config.mli" {"F:23ee7e799e6b281e57797c687f8bfd02"}
+  "lib/tls/core.ml" {"F:bf3898bd3f6d678712e5ceb65136f235"}
+  "lib/tls/crypto.ml" {"F:ee2b5262ded074cb306352e7379419fe"}
+  "lib/tls/dune-package" {"F:47959fae2514de2002239900229ffc98"}
+  "lib/tls/engine.ml" {"F:af831fe973af5d6a18fc6102d93d3a3e"}
+  "lib/tls/engine.mli" {"F:7d26d9187bf992f1cc49fa14252e9c7e"}
+  "lib/tls/explorator.ml" {"F:d41d8cd98f00b204e9800998ecf8427e"}
+  "lib/tls/handshake_client.ml" {"F:c7e31c33b105f9737fe138f57e2a1002"}
+  "lib/tls/handshake_client.mli" {"F:ad8a2dc82131e7e831cbb3a09c5ca9c7"}
+  "lib/tls/handshake_client13.ml" {"F:f6fad60313896d81dc6172c43cefcce7"}
+  "lib/tls/handshake_common.ml" {"F:5f019431997078b89f25043812a3b109"}
+  "lib/tls/handshake_crypto.ml" {"F:d6c3ba1fd734e701d92817b87281262d"}
+  "lib/tls/handshake_crypto.mli" {"F:64352083ddaa580477a4f6acec9e13cd"}
+  "lib/tls/handshake_crypto13.ml" {"F:4d90c958f04d48e9980b91cd2a3fef5c"}
+  "lib/tls/handshake_server.ml" {"F:b56fe1915918252f1d465b7bfaba5254"}
+  "lib/tls/handshake_server.mli" {"F:2e2139b1013a35cfb9aa5d42948a8434"}
+  "lib/tls/handshake_server13.ml" {"F:0e4be4edbb2e14df56b3785efaddce2b"}
+  "lib/tls/opam" {"F:d27098fd5361684ebb1af70e78bd7a07"}
+  "lib/tls/packet.ml" {"F:7d1dc17bf33773eb05f7af1411387d93"}
+  "lib/tls/reader.ml" {"F:77d527c82b065447f17da0b043dcfc11"}
+  "lib/tls/reader.mli" {"F:9ac1c8788443d3e2ecc6c7140d14ff09"}
+  "lib/tls/state.ml" {"F:ebd76dcd41c6204dccbee2e33a6438ee"}
+  "lib/tls/tls.a" {"F:41f8ee3dae5a22d12c09790aeab90329"}
+  "lib/tls/tls.cma" {"F:5ca2f4ce6089b0bf7e2079417642cc58"}
+  "lib/tls/tls.cmi" {"F:73e034986c33bcaf8ae9a64f58083779"}
+  "lib/tls/tls.cmt" {"F:552299a1bf814d5c9cc7a4d9b23e8778"}
+  "lib/tls/tls.cmx" {"F:81d37cf4f8a4430d2eaf1bae542702b4"}
+  "lib/tls/tls.cmxa" {"F:020618ddb0663ed3fc0d7a142d2bfe3b"}
+  "lib/tls/tls.cmxs" {"F:69367c24c11c2274862aa692ab815688"}
+  "lib/tls/tls.ml" {"F:39e8ac776ed4c21ebf87227c3923f872"}
+  "lib/tls/tls__Ciphersuite.cmi" {"F:a3d73f0927c5af4e28afc93bcefdb433"}
+  "lib/tls/tls__Ciphersuite.cmt" {"F:e26c546847dfd6fae0907e0570c3b049"}
+  "lib/tls/tls__Ciphersuite.cmx" {"F:5ce32875045c1a923ca8cacee44f1e45"}
+  "lib/tls/tls__Config.cmi" {"F:564e55a0e0bae7449397c6d239ee4633"}
+  "lib/tls/tls__Config.cmt" {"F:73943a4e4e014aa4c92db9c3d248aaaa"}
+  "lib/tls/tls__Config.cmti" {"F:7678de251ddf73b570fb4fc8a1752e26"}
+  "lib/tls/tls__Config.cmx" {"F:9e8d2e02607832b9a564a2ee5704af21"}
+  "lib/tls/tls__Core.cmi" {"F:63de54c9468af93dc0ec1e7f5e0b36f9"}
+  "lib/tls/tls__Core.cmt" {"F:bf001f005e134a4de4d04e60c7b7a799"}
+  "lib/tls/tls__Core.cmx" {"F:f072e796b81e77ba2758759fe529645c"}
+  "lib/tls/tls__Crypto.cmi" {"F:62647444aa2b63f84cff9c36ab12d28d"}
+  "lib/tls/tls__Crypto.cmt" {"F:a5def949028e1d2ad36cefb35021edf1"}
+  "lib/tls/tls__Crypto.cmx" {"F:130b051aece540374bd7ab0ac8a31c45"}
+  "lib/tls/tls__Engine.cmi" {"F:6eab05f003b879bbe09c7afa07ad6265"}
+  "lib/tls/tls__Engine.cmt" {"F:b6a3e320b56f27851d7ddf1bd4b97cd6"}
+  "lib/tls/tls__Engine.cmti" {"F:18e6b632315e1a509dcaa5c887bea253"}
+  "lib/tls/tls__Engine.cmx" {"F:40bc3c8fd099061b6f62928181ce757c"}
+  "lib/tls/tls__Explorator.cmi" {"F:a6390359ce56b9b3c993dad45f24e3c6"}
+  "lib/tls/tls__Explorator.cmt" {"F:222af7de05aeab58bac10f753dff6780"}
+  "lib/tls/tls__Explorator.cmx" {"F:9820ccbf63baf644419468388c47c37a"}
+  "lib/tls/tls__Handshake_client.cmi" {"F:659e7271fd432763b5cab98c99299ca5"}
+  "lib/tls/tls__Handshake_client.cmt" {"F:4b92c3f02bdc2aa8a6ea7f094d1ee3f4"}
+  "lib/tls/tls__Handshake_client.cmti" {"F:7754eac5e8adf00233237c08cd026e26"}
+  "lib/tls/tls__Handshake_client.cmx" {"F:764f4ccfc9848ad474dde02da5dac296"}
+  "lib/tls/tls__Handshake_client13.cmi"
+    {"F:816866aa53b21fd4a2cf29405ff3f2f0"}
+  "lib/tls/tls__Handshake_client13.cmt"
+    {"F:e88e4e085a1d98116df2f35562ec6456"}
+  "lib/tls/tls__Handshake_client13.cmx"
+    {"F:70c767e61518977c43a28d5b95333a70"}
+  "lib/tls/tls__Handshake_common.cmi" {"F:2336b8c2758f558d90eefdce35d31888"}
+  "lib/tls/tls__Handshake_common.cmt" {"F:fc35584441be12cc4dcfc645055ddfcb"}
+  "lib/tls/tls__Handshake_common.cmx" {"F:237bead7e051e98c9d93d2a5a613ecf5"}
+  "lib/tls/tls__Handshake_crypto.cmi" {"F:8850ad5ac0dc7516611ab75174f0b3fc"}
+  "lib/tls/tls__Handshake_crypto.cmt" {"F:cf4793947f28b6a203e44639d7f532ca"}
+  "lib/tls/tls__Handshake_crypto.cmti" {"F:6b24c94d8587274fd003378ef8e5912a"}
+  "lib/tls/tls__Handshake_crypto.cmx" {"F:916796ba1206004080be3a2aa695e6ea"}
+  "lib/tls/tls__Handshake_crypto13.cmi"
+    {"F:9449fdb065a4367e7aeaaf496a43ae75"}
+  "lib/tls/tls__Handshake_crypto13.cmt"
+    {"F:6cb8bba7a55e4ecd2a85ed31052dee66"}
+  "lib/tls/tls__Handshake_crypto13.cmx"
+    {"F:3479651c4f2e2e9e24a4e0757df0600d"}
+  "lib/tls/tls__Handshake_server.cmi" {"F:3ce6b48ac88867972f7e5746df3e97e4"}
+  "lib/tls/tls__Handshake_server.cmt" {"F:82148faa2ff44b217c5985ac816500ee"}
+  "lib/tls/tls__Handshake_server.cmti" {"F:3c95c835acadad2f5bf1f1c6cce67ada"}
+  "lib/tls/tls__Handshake_server.cmx" {"F:b9ebd719fc3ce2a6fd1d0890f28ecdab"}
+  "lib/tls/tls__Handshake_server13.cmi"
+    {"F:cde865e9db1cd90664704d48fa7fcaee"}
+  "lib/tls/tls__Handshake_server13.cmt"
+    {"F:7518859caafa5bfa5c4db480dd460df0"}
+  "lib/tls/tls__Handshake_server13.cmx"
+    {"F:204f593463696981537fbeeba578d91b"}
+  "lib/tls/tls__Packet.cmi" {"F:c5cb96e9bf836f869cf53c2a38c0642a"}
+  "lib/tls/tls__Packet.cmt" {"F:7a871e655d339bdde485ade65279d2cd"}
+  "lib/tls/tls__Packet.cmx" {"F:3345fee7292bf95578e6f6865b416bc0"}
+  "lib/tls/tls__Reader.cmi" {"F:bcf01bf1e5d6b51cb7d10039abb30161"}
+  "lib/tls/tls__Reader.cmt" {"F:1d289a3624eacabcf46a3dee0197eea3"}
+  "lib/tls/tls__Reader.cmti" {"F:87b0240bf956e6f07f480f4b48d15bf9"}
+  "lib/tls/tls__Reader.cmx" {"F:0598e4a4e011f8e7fc4cd63528ae48ce"}
+  "lib/tls/tls__State.cmi" {"F:bd57ebdf0537f31ec89ff56fa0d81f9c"}
+  "lib/tls/tls__State.cmt" {"F:c9a09968b5f10cf96dfde6457c4eda88"}
+  "lib/tls/tls__State.cmx" {"F:637d981778622f86176dda7f4d5dc0fd"}
+  "lib/tls/tls__Utils.cmi" {"F:1d688d4f9c6415a5399bcbc7c7c36783"}
+  "lib/tls/tls__Utils.cmt" {"F:e4febf242c247685f426ca5b932a44f4"}
+  "lib/tls/tls__Utils.cmx" {"F:e9d1ca0b02c6a4c99fe9e18ce844f9c2"}
+  "lib/tls/tls__Writer.cmi" {"F:d19b70367a2c59cb95fd81387c7bce01"}
+  "lib/tls/tls__Writer.cmt" {"F:959e95b54ed4953b0586913a8290a58f"}
+  "lib/tls/tls__Writer.cmti" {"F:d31d8b21193dcb12c3be756467e529ae"}
+  "lib/tls/tls__Writer.cmx" {"F:5d9e037a4f60695b701710fadcbc3c58"}
+  "lib/tls/utils.ml" {"F:e418a94884134c042368a2c5d94b4b80"}
+  "lib/tls/writer.ml" {"F:c886fc66b1a9a908d61fbcd44d132f19"}
+  "lib/tls/writer.mli" {"F:4a3cd2cc65d8b1b8b1d704b5a7fe09e2"}
+]

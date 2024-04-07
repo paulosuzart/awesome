@@ -1,0 +1,12 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_optional.cma"
+archive(ppx_driver,native) = "ppx_optional.cmxa"
+plugin(ppx_driver,byte) = "ppx_optional.cma"
+plugin(ppx_driver,native) = "ppx_optional.cmxs"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = ""
+ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+library_kind = "ppx_rewriter"

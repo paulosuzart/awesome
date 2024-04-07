@@ -1,0 +1,67 @@
+.TH "Identifiable" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Identifiable \- Uniform interface for common data structures over various things.
+.SH Module
+Module   Identifiable
+.SH Documentation
+.sp
+Module
+.BI "Identifiable"
+ : 
+.B sig end
+
+.sp
+Uniform interface for common data structures over various things\&.
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I module type Thing = 
+.B sig end
+
+.sp
+
+.sp
+.I module Pair : 
+.B functor (A : Thing) (B : Thing) -> sig end
+
+.sp
+
+.sp
+.I module type Set = 
+.B sig end
+
+.sp
+
+.sp
+.I module type Map = 
+.B sig end
+
+.sp
+
+.sp
+.I module type Tbl = 
+.B sig end
+
+.sp
+
+.sp
+.I module type S = 
+.B sig end
+
+.sp
+
+.sp
+.I module Make : 
+.B functor (T : Thing) -> sig end
+
+.sp
+
+.sp

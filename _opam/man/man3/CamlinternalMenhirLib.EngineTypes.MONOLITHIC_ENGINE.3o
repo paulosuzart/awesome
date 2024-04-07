@@ -1,0 +1,51 @@
+.TH "CamlinternalMenhirLib.EngineTypes.MONOLITHIC_ENGINE" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.EngineTypes.MONOLITHIC_ENGINE \- no description
+.SH Module type
+Module type   CamlinternalMenhirLib.EngineTypes.MONOLITHIC_ENGINE
+.SH Documentation
+.sp
+Module type
+.BI "MONOLITHIC_ENGINE"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type state 
+
+.sp
+
+.sp
+.I type token 
+
+.sp
+
+.sp
+.I type semantic_value 
+
+.sp
+
+.sp
+
+.I exception Error 
+
+.sp
+
+.sp
+
+.I val entry 
+: 
+.B [ `Legacy | `Simplified ] ->
+.B   state ->
+.B   (Lexing.lexbuf ->
+.B    token) ->
+.B   Lexing.lexbuf ->
+.B   semantic_value
+.sp
+
+.sp

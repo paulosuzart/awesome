@@ -1,0 +1,27 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/tls-eio/META"
+  "_build/install/default/lib/tls-eio/dune-package"
+  "_build/install/default/lib/tls-eio/opam"
+  "_build/install/default/lib/tls-eio/tls_eio.a"
+  "_build/install/default/lib/tls-eio/tls_eio.cma"
+  "_build/install/default/lib/tls-eio/tls_eio.cmi"
+  "_build/install/default/lib/tls-eio/tls_eio.cmt"
+  "_build/install/default/lib/tls-eio/tls_eio.cmti"
+  "_build/install/default/lib/tls-eio/tls_eio.cmx"
+  "_build/install/default/lib/tls-eio/tls_eio.cmxa"
+  "_build/install/default/lib/tls-eio/tls_eio.ml"
+  "_build/install/default/lib/tls-eio/tls_eio.mli"
+  "_build/install/default/lib/tls-eio/x509_eio.cmi"
+  "_build/install/default/lib/tls-eio/x509_eio.cmt"
+  "_build/install/default/lib/tls-eio/x509_eio.cmti"
+  "_build/install/default/lib/tls-eio/x509_eio.cmx"
+  "_build/install/default/lib/tls-eio/x509_eio.ml"
+  "_build/install/default/lib/tls-eio/x509_eio.mli"
+]
+doc: [
+  "_build/install/default/doc/tls-eio/CHANGES.md"
+  "_build/install/default/doc/tls-eio/LICENSE.md"
+  "_build/install/default/doc/tls-eio/README.md"
+]
+libexec: "_build/install/default/lib/tls-eio/tls_eio.cmxs"

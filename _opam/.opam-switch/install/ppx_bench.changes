@@ -1,0 +1,62 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_bench" {"D"}
+  "doc/ppx_bench/CHANGES.md" {"F:3d984df94971d1ec2d4c7b4adcc6fddf"}
+  "doc/ppx_bench/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_bench/README.md" {"F:39cf1092bd04aeb5b84514784d3b5df3"}
+  "lib/ppx_bench" {"D"}
+  "lib/ppx_bench/META" {"F:a891ee34bab2a7211d7f455d4bd3d68f"}
+  "lib/ppx_bench/dune-package" {"F:3c6f8cb669bb7834a19e312f2b19f6dd"}
+  "lib/ppx_bench/opam" {"F:12aec71dcc1cf13d7ee022398b10da36"}
+  "lib/ppx_bench/ppx.exe" {"F:a302d0846d9cce5e03fc55a4eb1eb4e7"}
+  "lib/ppx_bench/ppx_bench.a" {"F:479a6c864279efccb94f137e1bae2c19"}
+  "lib/ppx_bench/ppx_bench.cma" {"F:2886a2636e8ad1ccc8b7b72e738ae287"}
+  "lib/ppx_bench/ppx_bench.cmi" {"F:12b98cdb895937e0bd1ad78306b48e2e"}
+  "lib/ppx_bench/ppx_bench.cmt" {"F:4a2c57261844ab3878a9a71a960f6564"}
+  "lib/ppx_bench/ppx_bench.cmti" {"F:e597571b71500d15b822a6cbe50c6fb8"}
+  "lib/ppx_bench/ppx_bench.cmx" {"F:4242022e6107dfa821592446daa4d489"}
+  "lib/ppx_bench/ppx_bench.cmxa" {"F:66e477d7115a564ec3df731fa2e60ac3"}
+  "lib/ppx_bench/ppx_bench.cmxs" {"F:5e62feff8ed7119d1d9fcdd2a40d2535"}
+  "lib/ppx_bench/ppx_bench.ml" {"F:bb48414775fa64eb0bbc02b6c42c3d89"}
+  "lib/ppx_bench/ppx_bench.mli" {"F:d41d8cd98f00b204e9800998ecf8427e"}
+  "lib/ppx_bench/runtime-lib/benchmark_accumulator.ml"
+    {"F:47ef15e6d49ef9ae3271852c13b68c7b"}
+  "lib/ppx_bench/runtime-lib/benchmark_accumulator.mli"
+    {"F:659dd73291c7808f06799db33ba1b54f"}
+  "lib/ppx_bench/runtime-lib/export.ml"
+    {"F:cb76e81812e25f94deff4f60804dc6e3"}
+  "lib/ppx_bench/runtime-lib/export.mli"
+    {"F:273934d8e15f3bbcaa724c11b17532ca"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib.a"
+    {"F:69e39ecf0d5a56277f1f0941a4602283"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib.cma"
+    {"F:c71d0074e408fbb0002a8a9d806765e9"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib.cmi"
+    {"F:c9a81f8432304a6213099dc4056ad2b8"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib.cmt"
+    {"F:bf7b7674fd68d9d2b59947c877f2cf8d"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib.cmx"
+    {"F:5a4991b4af14a8eb05858c7a206bf765"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib.cmxa"
+    {"F:eb688c7bdfa6b21236713f2af3b46126"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib.cmxs"
+    {"F:f155325201fa7370fc8ac2c134a28f03"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib.ml"
+    {"F:b2e40634d10da9ce70bb8cb373e5276c"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib__Benchmark_accumulator.cmi"
+    {"F:85c48f02341b463bb71674b664448340"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib__Benchmark_accumulator.cmt"
+    {"F:872b859fc80d21cb1c84596eda873076"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib__Benchmark_accumulator.cmti"
+    {"F:85a2e0d4182bd7c5d2a8591d374b4d4e"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib__Benchmark_accumulator.cmx"
+    {"F:94f53a5d73a89aab79f18db388c66848"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib__Export.cmi"
+    {"F:f5edef71cb7136059e73fc1e3e1651d6"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib__Export.cmt"
+    {"F:42ed1b30e0ea18b113c63d2896efe607"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib__Export.cmti"
+    {"F:ac0b178fb11fb2b9e8446b6c703c7bdc"}
+  "lib/ppx_bench/runtime-lib/ppx_bench_lib__Export.cmx"
+    {"F:0b6352719cafcae13b92f9fea0a8e477"}
+]

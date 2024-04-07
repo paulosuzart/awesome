@@ -1,0 +1,39 @@
+opam-version: "2.0"
+lib: [
+  "_build/opam" {"opam"}
+  "_build/pkg/META" {"META"}
+  "_build/src-clock/libmtime_clock_stubs.a"
+    {"clock/os/libmtime_clock_stubs.a"}
+  "_build/src-clock/mtime_clock.a" {"clock/os/mtime_clock.a"}
+  "_build/src-clock/mtime_clock.cma" {"clock/os/mtime_clock.cma"}
+  "_build/src-clock/mtime_clock.cmi" {"clock/os/mtime_clock.cmi"}
+  "?_build/src-clock/mtime_clock.cmti" {"clock/os/mtime_clock.cmti"}
+  "_build/src-clock/mtime_clock.cmx" {"clock/os/mtime_clock.cmx"}
+  "_build/src-clock/mtime_clock.cmxa" {"clock/os/mtime_clock.cmxa"}
+  "_build/src-clock/mtime_clock.cmxs" {"clock/os/mtime_clock.cmxs"}
+  "_build/src-clock/mtime_clock.mli" {"clock/os/mtime_clock.mli"}
+  "_build/src-clock/runtime.js" {"clock/os/runtime.js"}
+  "_build/src/mtime.a" {"mtime.a"}
+  "_build/src/mtime.cma" {"mtime.cma"}
+  "_build/src/mtime.cmi" {"mtime.cmi"}
+  "?_build/src/mtime.cmti" {"mtime.cmti"}
+  "_build/src/mtime.cmx" {"mtime.cmx"}
+  "_build/src/mtime.cmxa" {"mtime.cmxa"}
+  "_build/src/mtime.cmxs" {"mtime.cmxs"}
+  "_build/src/mtime.mli" {"mtime.mli"}
+  "_build/src/mtime_top.a" {"top/mtime_top.a"}
+  "_build/src/mtime_top.cma" {"top/mtime_top.cma"}
+  "_build/src/mtime_top.cmx" {"top/mtime_top.cmx"}
+  "_build/src/mtime_top.cmxa" {"top/mtime_top.cmxa"}
+  "_build/src/mtime_top.cmxs" {"top/mtime_top.cmxs"}
+  "_build/src/mtime_top_init.ml" {"mtime_top_init.ml"}
+]
+stublibs:
+  "_build/src-clock/dllmtime_clock_stubs.so" {"dllmtime_clock_stubs.so"}
+doc: [
+  "_build/CHANGES.md" {"CHANGES.md"}
+  "_build/LICENSE.md" {"LICENSE.md"}
+  "_build/README.md" {"README.md"}
+  "_build/doc/index.mld" {"odoc-pages/index.mld"}
+  "_build/test/min_clock.ml" {"min_clock.ml"}
+]

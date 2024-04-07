@@ -1,0 +1,30 @@
+.TH "CamlinternalMenhirLib.EngineTypes.ENGINE" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.EngineTypes.ENGINE \- no description
+.SH Module type
+Module type   CamlinternalMenhirLib.EngineTypes.ENGINE
+.SH Documentation
+.sp
+Module type
+.BI "ENGINE"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I include CamlinternalMenhirLib.EngineTypes.MONOLITHIC_ENGINE
+.sp
+
+.sp
+.I include CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE
+.sp
+
+.sp
+.I include CamlinternalMenhirLib.EngineTypes.INCREMENTAL_ENGINE_START
+.sp
+
+.sp

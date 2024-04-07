@@ -1,0 +1,71 @@
+(lang dune 3.15)
+(name base_bigstring)
+(version v0.16.0)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/base_bigstring)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   base_bigstring.a
+   base_bigstring.cma
+   base_bigstring.cmi
+   base_bigstring.cmt
+   base_bigstring.cmti
+   base_bigstring.cmx
+   base_bigstring.cmxa
+   base_bigstring.ml
+   base_bigstring.mli
+   dune-package
+   libbase_bigstring_stubs.a
+   opam
+   runtime.js))
+ (libexec (base_bigstring.cmxs))
+ (doc (CHANGES.md LICENSE.md))
+ (stublibs (dllbase_bigstring_stubs.so)))
+(library
+ (name base_bigstring)
+ (kind normal)
+ (archives (byte base_bigstring.cma) (native base_bigstring.cmxa))
+ (plugins (byte base_bigstring.cma) (native base_bigstring.cmxs))
+ (foreign_objects base_bigstring_stubs.o)
+ (foreign_archives (archives (for all) (files libbase_bigstring_stubs.a)))
+ (foreign_dll_files ../stublibs/dllbase_bigstring_stubs.so)
+ (native_archives base_bigstring.a)
+ (jsoo_runtime runtime.js)
+ (requires
+  base
+  int_repr
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_here.runtime-lib
+  ppx_assert.runtime-lib
+  ppx_bench.runtime-lib
+  bin_prot
+  fieldslib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  typerep
+  variantslib
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime
+  base_quickcheck)
+ (main_module_name Base_bigstring)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name base_bigstring)
+   (visibility public)
+   (source
+    (path Base_bigstring)
+    (intf (path base_bigstring.mli))
+    (impl (path base_bigstring.ml))))))

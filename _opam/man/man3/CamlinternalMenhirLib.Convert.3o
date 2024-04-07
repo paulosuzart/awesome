@@ -1,0 +1,62 @@
+.TH "CamlinternalMenhirLib.Convert" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.Convert \- no description
+.SH Module
+Module   CamlinternalMenhirLib.Convert
+.SH Documentation
+.sp
+Module
+.BI "Convert"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B ('token, 'semantic_value)
+.I traditional 
+= 
+.B (Lexing.lexbuf -> 'token) -> Lexing.lexbuf -> 'semantic_value
+
+.sp
+
+.sp
+.I type 
+.B ('token, 'semantic_value)
+.I revised 
+= 
+.B (unit -> 'token) -> 'semantic_value
+
+.sp
+
+.sp
+
+.I val traditional2revised 
+: 
+.B ('token -> 'raw_token) ->
+.B   ('token -> Lexing.position) ->
+.B   ('token -> Lexing.position) ->
+.B   ('raw_token, 'semantic_value) traditional ->
+.B   ('token, 'semantic_value) revised
+.sp
+
+.sp
+
+.I val revised2traditional 
+: 
+.B ('raw_token -> Lexing.position -> Lexing.position -> 'token) ->
+.B   ('token, 'semantic_value) revised ->
+.B   ('raw_token, 'semantic_value) traditional
+.sp
+
+.sp
+.I module Simplified : 
+.B sig end
+
+.sp
+
+.sp

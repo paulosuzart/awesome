@@ -1,0 +1,35 @@
+(lang dune 3.15)
+(name stringext)
+(version 1.6.0)
+(sections (lib .) (libexec .) (doc ../../doc/stringext))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   stringext.a
+   stringext.cma
+   stringext.cmi
+   stringext.cmt
+   stringext.cmti
+   stringext.cmx
+   stringext.cmxa
+   stringext.ml
+   stringext.mli))
+ (libexec (stringext.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name stringext)
+ (kind normal)
+ (archives (byte stringext.cma) (native stringext.cmxa))
+ (plugins (byte stringext.cma) (native stringext.cmxs))
+ (native_archives stringext.a)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name stringext)
+   (visibility public)
+   (source
+    (path Stringext)
+    (intf (path stringext.mli))
+    (impl (path stringext.ml))))))

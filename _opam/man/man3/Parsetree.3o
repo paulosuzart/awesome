@@ -1,0 +1,5167 @@
+.TH "Parsetree" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Parsetree \- Abstract syntax tree produced by parsing
+.SH Module
+Module   Parsetree
+.SH Documentation
+.sp
+Module
+.BI "Parsetree"
+ : 
+.B sig end
+
+.sp
+Abstract syntax tree produced by parsing
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type constant 
+=
+ | Pconst_integer
+.B of 
+.B string * char option
+.I "  "
+  (* Integer constants such as 
+.ft B
+3
+.ft R
+.ft B
+3l
+.ft R
+.ft B
+3L
+.ft R
+.ft B
+3n
+.ft R
+\&.
+.sp
+Suffixes 
+.ft B
+[g\-z][G\-Z]
+.ft R
+are accepted by the parser\&.
+Suffixes except 
+.ft B
+\&'l\&'
+.ft R
+, 
+.ft B
+\&'L\&'
+.ft R
+and 
+.ft B
+\&'n\&'
+.ft R
+are rejected by the typechecker
+ *)
+ | Pconst_char
+.B of 
+.B char
+.I "  "
+  (* Character such as 
+.ft B
+\&'c\&'
+.ft R
+\&.
+ *)
+ | Pconst_string
+.B of 
+.B string * Location.t * string option
+.I "  "
+  (* Constant string such as 
+.ft B
+"constant"
+.ft R
+or
+.ft B
+{delim|other constant|delim}
+.ft R
+\&.
+.sp
+The location span the content of the string, without the delimiters\&.
+ *)
+ | Pconst_float
+.B of 
+.B string * char option
+.I "  "
+  (* Float constant such as 
+.ft B
+3\&.4
+.ft R
+, 
+.ft B
+2e5
+.ft R
+or 
+.ft B
+1\&.4e\-4
+.ft R
+\&.
+.sp
+Suffixes 
+.ft B
+g\-z
+.ft R
+.ft B
+G\-Z
+.ft R
+are accepted by the parser\&.
+Suffixes are rejected by the typechecker\&.
+ *)
+ 
+.sp
+
+.sp
+.I type location_stack 
+= 
+.B Location.t list
+
+.sp
+
+.sp
+
+.PP
+.SS Extension points
+
+.PP
+.I type attribute 
+= {
+ attr_name : 
+.B string Asttypes.loc
+;
+ attr_payload : 
+.B payload
+;
+ attr_loc : 
+.B Location.t
+;
+ }
+
+.sp
+Attributes such as 
+.ft B
+[@id ARG]
+.ft R
+and 
+.ft B
+[@@id ARG]
+.ft R
+\&.
+.sp
+Metadata containers passed around within the AST\&.
+The compiler ignores unknown attributes\&.
+
+.sp
+.I type extension 
+= 
+.B string Asttypes.loc * payload
+
+.sp
+Extension points such as 
+.ft B
+[%id ARG] and [%%id ARG]
+.ft R
+\&.
+.sp
+Sub\-language placeholder \-\- rejected by the typechecker\&.
+
+.sp
+.I type attributes 
+= 
+.B attribute list
+
+.sp
+
+.sp
+.I type payload 
+=
+ | PStr
+.B of 
+.B structure
+ | PSig
+.B of 
+.B signature
+.I "  "
+  (* 
+.ft B
+: SIG
+.ft R
+in an attribute or an extension point
+ *)
+ | PTyp
+.B of 
+.B core_type
+.I "  "
+  (* 
+.ft B
+: T
+.ft R
+in an attribute or an extension point
+ *)
+ | PPat
+.B of 
+.B pattern * expression option
+.I "  "
+  (* 
+.ft B
+? P
+.ft R
+or  
+.ft B
+? P when E
+.ft R
+, in an attribute or an extension point
+ *)
+ 
+.sp
+
+.sp
+
+.PP
+.SS Core language
+
+.PP
+
+.PP
+.SS Type expressions
+
+.PP
+.I type core_type 
+= {
+ ptyp_desc : 
+.B core_type_desc
+;
+ ptyp_loc : 
+.B Location.t
+;
+ ptyp_loc_stack : 
+.B location_stack
+;
+ ptyp_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type core_type_desc 
+=
+ | Ptyp_any  (* 
+.ft B
+_
+.ft R
+
+ *)
+ | Ptyp_var
+.B of 
+.B string
+.I "  "
+  (* A type variable such as 
+.ft B
+\&'a
+.ft R
+
+ *)
+ | Ptyp_arrow
+.B of 
+.B Asttypes.arg_label * core_type * core_type
+.I "  "
+  (* 
+.ft B
+Ptyp_arrow(lbl, T1, T2)
+.ft R
+represents:
+.sp
+\-
+.ft B
+T1 \-> T2
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is
+.ft B
+Asttypes\&.arg_label\&.Nolabel
+.ft R
+,
+.sp
+\-
+.ft B
+~l:T1 \-> T2
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is
+.ft B
+Asttypes\&.arg_label\&.Labelled
+.ft R
+,
+.sp
+\-
+.ft B
+?l:T1 \-> T2
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is
+.ft B
+Asttypes\&.arg_label\&.Optional
+.ft R
+\&.
+
+ *)
+ | Ptyp_tuple
+.B of 
+.B core_type list
+.I "  "
+  (* 
+.ft B
+Ptyp_tuple([T1 ; \&.\&.\&. ; Tn])
+.ft R
+represents a product type 
+.ft B
+T1 * \&.\&.\&. * Tn
+.ft R
+\&.
+.sp
+Invariant: 
+.ft B
+n >= 2
+.ft R
+\&.
+ *)
+ | Ptyp_constr
+.B of 
+.B Longident.t Asttypes.loc * core_type list
+.I "  "
+  (* 
+.ft B
+Ptyp_constr(lident, l)
+.ft R
+represents:
+.sp
+\-
+.ft B
+tconstr
+.ft R
+when 
+.ft B
+l=[]
+.ft R
+,
+.sp
+\-
+.ft B
+T tconstr
+.ft R
+when 
+.ft B
+l=[T]
+.ft R
+,
+.sp
+\-
+.ft B
+(T1, \&.\&.\&., Tn) tconstr
+.ft R
+when 
+.ft B
+l=[T1 ; \&.\&.\&. ; Tn]
+.ft R
+\&.
+
+ *)
+ | Ptyp_object
+.B of 
+.B object_field list * Asttypes.closed_flag
+.I "  "
+  (* 
+.ft B
+Ptyp_object([ l1:T1; \&.\&.\&.; ln:Tn ], flag)
+.ft R
+represents:
+.sp
+\-
+.ft B
+< l1:T1; \&.\&.\&.; ln:Tn >
+.ft R
+when 
+.ft B
+flag
+.ft R
+is
+.ft B
+Asttypes\&.closed_flag\&.Closed
+.ft R
+,
+.sp
+\-
+.ft B
+< l1:T1; \&.\&.\&.; ln:Tn; \&.\&. >
+.ft R
+when 
+.ft B
+flag
+.ft R
+is
+.ft B
+Asttypes\&.closed_flag\&.Open
+.ft R
+\&.
+
+ *)
+ | Ptyp_class
+.B of 
+.B Longident.t Asttypes.loc * core_type list
+.I "  "
+  (* 
+.ft B
+Ptyp_class(tconstr, l)
+.ft R
+represents:
+.sp
+\-
+.ft B
+#tconstr
+.ft R
+when 
+.ft B
+l=[]
+.ft R
+,
+.sp
+\-
+.ft B
+T #tconstr
+.ft R
+when 
+.ft B
+l=[T]
+.ft R
+,
+.sp
+\-
+.ft B
+(T1, \&.\&.\&., Tn) #tconstr
+.ft R
+when 
+.ft B
+l=[T1 ; \&.\&.\&. ; Tn]
+.ft R
+\&.
+
+ *)
+ | Ptyp_alias
+.B of 
+.B core_type * string
+.I "  "
+  (* 
+.ft B
+T as \&'a
+.ft R
+\&.
+ *)
+ | Ptyp_variant
+.B of 
+.B row_field list * Asttypes.closed_flag * Asttypes.label list option
+.I "  "
+  (* 
+.ft B
+Ptyp_variant([`A;`B], flag, labels)
+.ft R
+represents:
+.sp
+\-
+.ft B
+[ `A|`B ]
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.closed_flag\&.Closed
+.ft R
+,
+and 
+.ft B
+labels
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+[> `A|`B ]
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.closed_flag\&.Open
+.ft R
+,
+and 
+.ft B
+labels
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+[< `A|`B ]
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.closed_flag\&.Closed
+.ft R
+,
+and 
+.ft B
+labels
+.ft R
+is 
+.ft B
+Some []
+.ft R
+,
+.sp
+\-
+.ft B
+[< `A|`B > `X `Y ]
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.closed_flag\&.Closed
+.ft R
+,
+and 
+.ft B
+labels
+.ft R
+is 
+.ft B
+Some ["X";"Y"]
+.ft R
+\&.
+
+ *)
+ | Ptyp_poly
+.B of 
+.B string Asttypes.loc list * core_type
+.I "  "
+  (* 
+.ft B
+\&'a1 \&.\&.\&. \&'an\&. T
+.ft R
+.sp
+Can only appear in the following context:
+.sp
+.sp
+\-As the 
+.ft B
+Parsetree\&.core_type
+.ft R
+of a
+.ft B
+Parsetree\&.pattern_desc\&.Ppat_constraint
+.ft R
+node corresponding
+to a constraint on a let\-binding:
+.EX
+.ft B
+let x : \&'a1 \&.\&.\&. \&'an\&. T = e \&.\&.\&.
+.ft R
+.EE
+
+.sp
+\-Under 
+.ft B
+Parsetree\&.class_field_kind\&.Cfk_virtual
+.ft R
+for methods
+(not values)\&.
+
+.sp
+\-As the 
+.ft B
+Parsetree\&.core_type
+.ft R
+of a
+.ft B
+Parsetree\&.class_type_field_desc\&.Pctf_method
+.ft R
+node\&.
+
+.sp
+\-As the 
+.ft B
+Parsetree\&.core_type
+.ft R
+of a 
+.ft B
+Parsetree\&.expression_desc\&.Pexp_poly
+.ft R
+node\&.
+
+.sp
+\-As the 
+.ft B
+Parsetree\&.label_declaration\&.pld_type
+.ft R
+field of a
+.ft B
+Parsetree\&.label_declaration
+.ft R
+\&.
+
+.sp
+\-As a 
+.ft B
+Parsetree\&.core_type
+.ft R
+of a 
+.ft B
+Parsetree\&.core_type_desc\&.Ptyp_object
+.ft R
+node\&.
+
+.sp
+\-As the 
+.ft B
+Parsetree\&.value_description\&.pval_type
+.ft R
+field of a
+.ft B
+Parsetree\&.value_description
+.ft R
+\&.
+
+ *)
+ | Ptyp_package
+.B of 
+.B package_type
+.I "  "
+  (* 
+.ft B
+(module S)
+.ft R
+\&.
+ *)
+ | Ptyp_extension
+.B of 
+.B extension
+.I "  "
+  (* 
+.ft B
+[%id]
+.ft R
+\&.
+ *)
+ 
+.sp
+
+.sp
+.I type package_type 
+= 
+.B Longident.t Asttypes.loc *
+.B   (Longident.t Asttypes.loc * core_type) list
+
+.sp
+As 
+.ft B
+Parsetree\&.package_type
+.ft R
+typed values:
+.sp
+\-
+.ft B
+(S, [])
+.ft R
+represents 
+.ft B
+(module S)
+.ft R
+,
+.sp
+\-
+.ft B
+(S, [(t1, T1) ; \&.\&.\&. ; (tn, Tn)])
+.ft R
+represents 
+.ft B
+(module S with type t1 = T1 and \&.\&.\&. and tn = Tn)
+.ft R
+\&.
+
+
+.sp
+.I type row_field 
+= {
+ prf_desc : 
+.B row_field_desc
+;
+ prf_loc : 
+.B Location.t
+;
+ prf_attributes : 
+.B attributes
+;
+ }
+
+.sp
+
+.sp
+.I type row_field_desc 
+=
+ | Rtag
+.B of 
+.B Asttypes.label Asttypes.loc * bool * core_type list
+.I "  "
+  (* 
+.ft B
+Rtag(`A, b, l)
+.ft R
+represents:
+.sp
+\-
+.ft B
+`A
+.ft R
+when 
+.ft B
+b
+.ft R
+is 
+.ft B
+true
+.ft R
+and 
+.ft B
+l
+.ft R
+is 
+.ft B
+[]
+.ft R
+,
+.sp
+\-
+.ft B
+`A of T
+.ft R
+when 
+.ft B
+b
+.ft R
+is 
+.ft B
+false
+.ft R
+and 
+.ft B
+l
+.ft R
+is 
+.ft B
+[T]
+.ft R
+,
+.sp
+\-
+.ft B
+`A of T1 & \&.\&. & Tn
+.ft R
+when 
+.ft B
+b
+.ft R
+is 
+.ft B
+false
+.ft R
+and 
+.ft B
+l
+.ft R
+is 
+.ft B
+[T1;\&.\&.\&.Tn]
+.ft R
+,
+.sp
+\-
+.ft B
+`A of & T1 & \&.\&. & Tn
+.ft R
+when 
+.ft B
+b
+.ft R
+is 
+.ft B
+true
+.ft R
+and 
+.ft B
+l
+.ft R
+is 
+.ft B
+[T1;\&.\&.\&.Tn]
+.ft R
+\&.
+
+.sp
+\-The 
+.ft B
+bool
+.ft R
+field is true if the tag contains a
+constant (empty) constructor\&.
+.sp
+\-
+.ft B
+&
+.ft R
+occurs when several types are used for the same constructor
+(see 4\&.2 in the manual)
+
+ *)
+ | Rinherit
+.B of 
+.B core_type
+.I "  "
+  (* 
+.ft B
+[ | t ]
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type object_field 
+= {
+ pof_desc : 
+.B object_field_desc
+;
+ pof_loc : 
+.B Location.t
+;
+ pof_attributes : 
+.B attributes
+;
+ }
+
+.sp
+
+.sp
+.I type object_field_desc 
+=
+ | Otag
+.B of 
+.B Asttypes.label Asttypes.loc * core_type
+ | Oinherit
+.B of 
+.B core_type
+ 
+.sp
+
+.sp
+
+.PP
+.SS Patterns
+
+.PP
+.I type pattern 
+= {
+ ppat_desc : 
+.B pattern_desc
+;
+ ppat_loc : 
+.B Location.t
+;
+ ppat_loc_stack : 
+.B location_stack
+;
+ ppat_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type pattern_desc 
+=
+ | Ppat_any  (* The pattern 
+.ft B
+_
+.ft R
+\&.
+ *)
+ | Ppat_var
+.B of 
+.B string Asttypes.loc
+.I "  "
+  (* A variable pattern such as 
+.ft B
+x
+.ft R
+
+ *)
+ | Ppat_alias
+.B of 
+.B pattern * string Asttypes.loc
+.I "  "
+  (* An alias pattern such as 
+.ft B
+P as \&'a
+.ft R
+
+ *)
+ | Ppat_constant
+.B of 
+.B constant
+.I "  "
+  (* Patterns such as 
+.ft B
+1
+.ft R
+, 
+.ft B
+\&'a\&'
+.ft R
+, 
+.ft B
+"true"
+.ft R
+, 
+.ft B
+1\&.0
+.ft R
+, 
+.ft B
+1l
+.ft R
+, 
+.ft B
+1L
+.ft R
+, 
+.ft B
+1n
+.ft R
+
+ *)
+ | Ppat_interval
+.B of 
+.B constant * constant
+.I "  "
+  (* Patterns such as 
+.ft B
+\&'a\&'\&.\&.\&'z\&'
+.ft R
+\&.
+.sp
+Other forms of interval are recognized by the parser
+but rejected by the type\-checker\&.
+ *)
+ | Ppat_tuple
+.B of 
+.B pattern list
+.I "  "
+  (* Patterns 
+.ft B
+(P1, \&.\&.\&., Pn)
+.ft R
+\&.
+.sp
+Invariant: 
+.ft B
+n >= 2
+.ft R
+
+ *)
+ | Ppat_construct
+.B of 
+.B Longident.t Asttypes.loc
+.B    * (string Asttypes.loc list * pattern) option
+.I "  "
+  (* 
+.ft B
+Ppat_construct(C, args)
+.ft R
+represents:
+.sp
+\-
+.ft B
+C
+.ft R
+when 
+.ft B
+args
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+C P
+.ft R
+when 
+.ft B
+args
+.ft R
+is 
+.ft B
+Some ([], P)
+.ft R
+
+.sp
+\-
+.ft B
+C (P1, \&.\&.\&., Pn)
+.ft R
+when 
+.ft B
+args
+.ft R
+is
+.ft B
+Some ([], Ppat_tuple [P1; \&.\&.\&.; Pn])
+.ft R
+
+.sp
+\-
+.ft B
+C (type a b) P
+.ft R
+when 
+.ft B
+args
+.ft R
+is 
+.ft B
+Some ([a; b], P)
+.ft R
+
+
+ *)
+ | Ppat_variant
+.B of 
+.B Asttypes.label * pattern option
+.I "  "
+  (* 
+.ft B
+Ppat_variant(`A, pat)
+.ft R
+represents:
+.sp
+\-
+.ft B
+`A
+.ft R
+when 
+.ft B
+pat
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+`A P
+.ft R
+when 
+.ft B
+pat
+.ft R
+is 
+.ft B
+Some P
+.ft R
+
+
+ *)
+ | Ppat_record
+.B of 
+.B (Longident.t Asttypes.loc * pattern) list * Asttypes.closed_flag
+.I "  "
+  (* 
+.ft B
+Ppat_record([(l1, P1) ; \&.\&.\&. ; (ln, Pn)], flag)
+.ft R
+represents:
+.sp
+\-
+.ft B
+{ l1=P1; \&.\&.\&.; ln=Pn }
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.closed_flag\&.Closed
+.ft R
+
+.sp
+\-
+.ft B
+{ l1=P1; \&.\&.\&.; ln=Pn; _}
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.closed_flag\&.Open
+.ft R
+
+Invariant: 
+.ft B
+n > 0
+.ft R
+
+ *)
+ | Ppat_array
+.B of 
+.B pattern list
+.I "  "
+  (* Pattern 
+.ft B
+[| P1; \&.\&.\&.; Pn |]
+.ft R
+
+ *)
+ | Ppat_or
+.B of 
+.B pattern * pattern
+.I "  "
+  (* Pattern 
+.ft B
+P1 | P2
+.ft R
+
+ *)
+ | Ppat_constraint
+.B of 
+.B pattern * core_type
+.I "  "
+  (* Pattern 
+.ft B
+(P : T)
+.ft R
+
+ *)
+ | Ppat_type
+.B of 
+.B Longident.t Asttypes.loc
+.I "  "
+  (* Pattern 
+.ft B
+#tconst
+.ft R
+
+ *)
+ | Ppat_lazy
+.B of 
+.B pattern
+.I "  "
+  (* Pattern 
+.ft B
+lazy P
+.ft R
+
+ *)
+ | Ppat_unpack
+.B of 
+.B string option Asttypes.loc
+.I "  "
+  (* 
+.ft B
+Ppat_unpack(s)
+.ft R
+represents:
+.sp
+\-
+.ft B
+(module P)
+.ft R
+when 
+.ft B
+s
+.ft R
+is 
+.ft B
+Some "P"
+.ft R
+
+.sp
+\-
+.ft B
+(module _)
+.ft R
+when 
+.ft B
+s
+.ft R
+is 
+.ft B
+None
+.ft R
+
+Note: 
+.ft B
+(module P : S)
+.ft R
+is represented as
+.ft B
+Ppat_constraint(Ppat_unpack(Some "P"), Ptyp_package S)
+.ft R
+
+ *)
+ | Ppat_exception
+.B of 
+.B pattern
+.I "  "
+  (* Pattern 
+.ft B
+exception P
+.ft R
+
+ *)
+ | Ppat_extension
+.B of 
+.B extension
+.I "  "
+  (* Pattern 
+.ft B
+[%id]
+.ft R
+
+ *)
+ | Ppat_open
+.B of 
+.B Longident.t Asttypes.loc * pattern
+.I "  "
+  (* Pattern 
+.ft B
+M\&.(P)
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+
+.PP
+.SS Value expressions
+
+.PP
+.I type expression 
+= {
+ pexp_desc : 
+.B expression_desc
+;
+ pexp_loc : 
+.B Location.t
+;
+ pexp_loc_stack : 
+.B location_stack
+;
+ pexp_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type expression_desc 
+=
+ | Pexp_ident
+.B of 
+.B Longident.t Asttypes.loc
+.I "  "
+  (* Identifiers such as 
+.ft B
+x
+.ft R
+and 
+.ft B
+M\&.x
+.ft R
+
+ *)
+ | Pexp_constant
+.B of 
+.B constant
+.I "  "
+  (* Expressions constant such as 
+.ft B
+1
+.ft R
+, 
+.ft B
+\&'a\&'
+.ft R
+, 
+.ft B
+"true"
+.ft R
+, 
+.ft B
+1\&.0
+.ft R
+, 
+.ft B
+1l
+.ft R
+,
+.ft B
+1L
+.ft R
+, 
+.ft B
+1n
+.ft R
+
+ *)
+ | Pexp_let
+.B of 
+.B Asttypes.rec_flag * value_binding list * expression
+.I "  "
+  (* 
+.ft B
+Pexp_let(flag, [(P1,E1) ; \&.\&.\&. ; (Pn,En)], E)
+.ft R
+represents:
+.sp
+\-
+.ft B
+let P1 = E1 and \&.\&.\&. and Pn = EN in E
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.rec_flag\&.Nonrecursive
+.ft R
+,
+.sp
+\-
+.ft B
+let rec P1 = E1 and \&.\&.\&. and Pn = EN in E
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.rec_flag\&.Recursive
+.ft R
+\&.
+
+ *)
+ | Pexp_function
+.B of 
+.B case list
+.I "  "
+  (* 
+.ft B
+function P1 \-> E1 | \&.\&.\&. | Pn \-> En
+.ft R
+
+ *)
+ | Pexp_fun
+.B of 
+.B Asttypes.arg_label * expression option * pattern
+.B    * expression
+.I "  "
+  (* 
+.ft B
+Pexp_fun(lbl, exp0, P, E1)
+.ft R
+represents:
+.sp
+\-
+.ft B
+fun P \-> E1
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Nolabel
+.ft R
+and 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+None
+.ft R
+
+.sp
+\-
+.ft B
+fun ~l:P \-> E1
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Labelled
+.ft R
+and 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+None
+.ft R
+
+.sp
+\-
+.ft B
+fun ?l:P \-> E1
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Optional
+.ft R
+and 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+None
+.ft R
+
+.sp
+\-
+.ft B
+fun ?l:(P = E0) \-> E1
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Optional
+.ft R
+and 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+Some E0
+.ft R
+
+Notes:
+.sp
+\-If 
+.ft B
+E0
+.ft R
+is provided, only
+.ft B
+Asttypes\&.arg_label\&.Optional
+.ft R
+is allowed\&.
+.sp
+\-
+.ft B
+fun P1 P2 \&.\&. Pn \-> E1
+.ft R
+is represented as nested
+.ft B
+Parsetree\&.expression_desc\&.Pexp_fun
+.ft R
+\&.
+.sp
+\-
+.ft B
+let f P = E
+.ft R
+is represented using
+.ft B
+Parsetree\&.expression_desc\&.Pexp_fun
+.ft R
+\&.
+
+ *)
+ | Pexp_apply
+.B of 
+.B expression * (Asttypes.arg_label * expression) list
+.I "  "
+  (* 
+.ft B
+Pexp_apply(E0, [(l1, E1) ; \&.\&.\&. ; (ln, En)])
+.ft R
+represents 
+.ft B
+E0 ~l1:E1 \&.\&.\&. ~ln:En
+.ft R
+.sp
+
+.ft B
+li
+.ft R
+can be
+.ft B
+Asttypes\&.arg_label\&.Nolabel
+.ft R
+(non labeled argument),
+.ft B
+Asttypes\&.arg_label\&.Labelled
+.ft R
+(labelled arguments) or
+.ft B
+Asttypes\&.arg_label\&.Optional
+.ft R
+(optional argument)\&.
+.sp
+Invariant: 
+.ft B
+n > 0
+.ft R
+
+ *)
+ | Pexp_match
+.B of 
+.B expression * case list
+.I "  "
+  (* 
+.ft B
+match E0 with P1 \-> E1 | \&.\&.\&. | Pn \-> En
+.ft R
+
+ *)
+ | Pexp_try
+.B of 
+.B expression * case list
+.I "  "
+  (* 
+.ft B
+try E0 with P1 \-> E1 | \&.\&.\&. | Pn \-> En
+.ft R
+
+ *)
+ | Pexp_tuple
+.B of 
+.B expression list
+.I "  "
+  (* Expressions 
+.ft B
+(E1, \&.\&.\&., En)
+.ft R
+.sp
+Invariant: 
+.ft B
+n >= 2
+.ft R
+
+ *)
+ | Pexp_construct
+.B of 
+.B Longident.t Asttypes.loc * expression option
+.I "  "
+  (* 
+.ft B
+Pexp_construct(C, exp)
+.ft R
+represents:
+.sp
+\-
+.ft B
+C
+.ft R
+when 
+.ft B
+exp
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+C E
+.ft R
+when 
+.ft B
+exp
+.ft R
+is 
+.ft B
+Some E
+.ft R
+,
+.sp
+\-
+.ft B
+C (E1, \&.\&.\&., En)
+.ft R
+when 
+.ft B
+exp
+.ft R
+is 
+.ft B
+Some (Pexp_tuple[E1;\&.\&.\&.;En])
+.ft R
+
+
+ *)
+ | Pexp_variant
+.B of 
+.B Asttypes.label * expression option
+.I "  "
+  (* 
+.ft B
+Pexp_variant(`A, exp)
+.ft R
+represents
+.sp
+\-
+.ft B
+`A
+.ft R
+when 
+.ft B
+exp
+.ft R
+is 
+.ft B
+None
+.ft R
+
+.sp
+\-
+.ft B
+`A E
+.ft R
+when 
+.ft B
+exp
+.ft R
+is 
+.ft B
+Some E
+.ft R
+
+
+ *)
+ | Pexp_record
+.B of 
+.B (Longident.t Asttypes.loc * expression) list
+.B    * expression option
+.I "  "
+  (* 
+.ft B
+Pexp_record([(l1,P1) ; \&.\&.\&. ; (ln,Pn)], exp0)
+.ft R
+represents
+.sp
+\-
+.ft B
+{ l1=P1; \&.\&.\&.; ln=Pn }
+.ft R
+when 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+None
+.ft R
+
+.sp
+\-
+.ft B
+{ E0 with l1=P1; \&.\&.\&.; ln=Pn }
+.ft R
+when 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+Some E0
+.ft R
+
+Invariant: 
+.ft B
+n > 0
+.ft R
+
+ *)
+ | Pexp_field
+.B of 
+.B expression * Longident.t Asttypes.loc
+.I "  "
+  (* 
+.ft B
+E\&.l
+.ft R
+
+ *)
+ | Pexp_setfield
+.B of 
+.B expression * Longident.t Asttypes.loc * expression
+.I "  "
+  (* 
+.ft B
+E1\&.l <\- E2
+.ft R
+
+ *)
+ | Pexp_array
+.B of 
+.B expression list
+.I "  "
+  (* 
+.ft B
+[| E1; \&.\&.\&.; En |]
+.ft R
+
+ *)
+ | Pexp_ifthenelse
+.B of 
+.B expression * expression * expression option
+.I "  "
+  (* 
+.ft B
+if E1 then E2 else E3
+.ft R
+
+ *)
+ | Pexp_sequence
+.B of 
+.B expression * expression
+.I "  "
+  (* 
+.ft B
+E1; E2
+.ft R
+
+ *)
+ | Pexp_while
+.B of 
+.B expression * expression
+.I "  "
+  (* 
+.ft B
+while E1 do E2 done
+.ft R
+
+ *)
+ | Pexp_for
+.B of 
+.B pattern * expression * expression
+.B    * Asttypes.direction_flag * expression
+.I "  "
+  (* 
+.ft B
+Pexp_for(i, E1, E2, direction, E3)
+.ft R
+represents:
+.sp
+\-
+.ft B
+for i = E1 to E2 do E3 done
+.ft R
+when 
+.ft B
+direction
+.ft R
+is 
+.ft B
+Asttypes\&.direction_flag\&.Upto
+.ft R
+
+.sp
+\-
+.ft B
+for i = E1 downto E2 do E3 done
+.ft R
+when 
+.ft B
+direction
+.ft R
+is 
+.ft B
+Asttypes\&.direction_flag\&.Downto
+.ft R
+
+
+ *)
+ | Pexp_constraint
+.B of 
+.B expression * core_type
+.I "  "
+  (* 
+.ft B
+(E : T)
+.ft R
+
+ *)
+ | Pexp_coerce
+.B of 
+.B expression * core_type option * core_type
+.I "  "
+  (* 
+.ft B
+Pexp_coerce(E, from, T)
+.ft R
+represents
+.sp
+\-
+.ft B
+(E :> T)
+.ft R
+when 
+.ft B
+from
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+(E : T0 :> T)
+.ft R
+when 
+.ft B
+from
+.ft R
+is 
+.ft B
+Some T0
+.ft R
+\&.
+
+ *)
+ | Pexp_send
+.B of 
+.B expression * Asttypes.label Asttypes.loc
+.I "  "
+  (* 
+.ft B
+E # m
+.ft R
+
+ *)
+ | Pexp_new
+.B of 
+.B Longident.t Asttypes.loc
+.I "  "
+  (* 
+.ft B
+new M\&.c
+.ft R
+
+ *)
+ | Pexp_setinstvar
+.B of 
+.B Asttypes.label Asttypes.loc * expression
+.I "  "
+  (* 
+.ft B
+x <\- 2
+.ft R
+
+ *)
+ | Pexp_override
+.B of 
+.B (Asttypes.label Asttypes.loc * expression) list
+.I "  "
+  (* 
+.ft B
+{< x1 = E1; \&.\&.\&.; xn = En >}
+.ft R
+
+ *)
+ | Pexp_letmodule
+.B of 
+.B string option Asttypes.loc * module_expr * expression
+.I "  "
+  (* 
+.ft B
+let module M = ME in E
+.ft R
+
+ *)
+ | Pexp_letexception
+.B of 
+.B extension_constructor * expression
+.I "  "
+  (* 
+.ft B
+let exception C in E
+.ft R
+
+ *)
+ | Pexp_assert
+.B of 
+.B expression
+.I "  "
+  (* 
+.ft B
+assert E
+.ft R
+\&.
+.sp
+Note: 
+.ft B
+assert false
+.ft R
+is treated in a special way by the
+type\-checker\&.
+ *)
+ | Pexp_lazy
+.B of 
+.B expression
+.I "  "
+  (* 
+.ft B
+lazy E
+.ft R
+
+ *)
+ | Pexp_poly
+.B of 
+.B expression * core_type option
+.I "  "
+  (* Used for method bodies\&.
+.sp
+Can only be used as the expression under
+.ft B
+Parsetree\&.class_field_kind\&.Cfk_concrete
+.ft R
+for methods (not
+values)\&.
+ *)
+ | Pexp_object
+.B of 
+.B class_structure
+.I "  "
+  (* 
+.ft B
+object \&.\&.\&. end
+.ft R
+
+ *)
+ | Pexp_newtype
+.B of 
+.B string Asttypes.loc * expression
+.I "  "
+  (* 
+.ft B
+fun (type t) \-> E
+.ft R
+
+ *)
+ | Pexp_pack
+.B of 
+.B module_expr
+.I "  "
+  (* 
+.ft B
+(module ME)
+.ft R
+\&.
+.sp
+
+.ft B
+(module ME : S)
+.ft R
+is represented as
+.ft B
+Pexp_constraint(Pexp_pack ME, Ptyp_package S)
+.ft R
+
+ *)
+ | Pexp_open
+.B of 
+.B open_declaration * expression
+.I "  "
+  (* \- 
+.ft B
+M\&.(E)
+.ft R
+.sp
+\-
+.ft B
+let open M in E
+.ft R
+
+.sp
+\-
+.ft B
+let open! M in E
+.ft R
+
+
+ *)
+ | Pexp_letop
+.B of 
+.B letop
+.I "  "
+  (* \- 
+.ft B
+let* P = E0 in E1
+.ft R
+.sp
+\-
+.ft B
+let* P0 = E00 and* P1 = E01 in E1
+.ft R
+
+
+ *)
+ | Pexp_extension
+.B of 
+.B extension
+.I "  "
+  (* 
+.ft B
+[%id]
+.ft R
+
+ *)
+ | Pexp_unreachable  (* 
+.ft B
+\&.
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type case 
+= {
+ pc_lhs : 
+.B pattern
+;
+ pc_guard : 
+.B expression option
+;
+ pc_rhs : 
+.B expression
+;
+ }
+
+.sp
+Values of type 
+.ft B
+Parsetree\&.case
+.ft R
+represents 
+.ft B
+(P \-> E)
+.ft R
+or 
+.ft B
+(P when E0 \-> E)
+.ft R
+
+
+.sp
+.I type letop 
+= {
+ let_ : 
+.B binding_op
+;
+ ands : 
+.B binding_op list
+;
+ body : 
+.B expression
+;
+ }
+
+.sp
+
+.sp
+.I type binding_op 
+= {
+ pbop_op : 
+.B string Asttypes.loc
+;
+ pbop_pat : 
+.B pattern
+;
+ pbop_exp : 
+.B expression
+;
+ pbop_loc : 
+.B Location.t
+;
+ }
+
+.sp
+
+.sp
+
+.PP
+.SS Value descriptions
+
+.PP
+.I type value_description 
+= {
+ pval_name : 
+.B string Asttypes.loc
+;
+ pval_type : 
+.B core_type
+;
+ pval_prim : 
+.B string list
+;
+ pval_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ pval_loc : 
+.B Location.t
+;
+ }
+
+.sp
+Values of type 
+.ft B
+Parsetree\&.value_description
+.ft R
+represents:
+.sp
+\-
+.ft B
+val x: T
+.ft R
+,
+when 
+.ft B
+Parsetree\&.value_description\&.pval_prim
+.ft R
+is 
+.ft B
+[]
+.ft R
+
+.sp
+\-
+.ft B
+external x: T = "s1" \&.\&.\&. "sn"
+.ft R
+when 
+.ft B
+Parsetree\&.value_description\&.pval_prim
+.ft R
+is 
+.ft B
+["s1";\&.\&.\&."sn"]
+.ft R
+
+
+
+.sp
+
+.PP
+.SS Type declarations
+
+.PP
+.I type type_declaration 
+= {
+ ptype_name : 
+.B string Asttypes.loc
+;
+ ptype_params : 
+.B (core_type * (Asttypes.variance * Asttypes.injectivity)) list
+;  (* 
+.ft B
+(\&'a1,\&.\&.\&.\&'an) t
+.ft R
+
+ *) 
+ ptype_cstrs : 
+.B (core_type * core_type * Location.t) list
+;  (* 
+.ft B
+\&.\&.\&. constraint T1=T1\&'  \&.\&.\&. constraint Tn=Tn\&'
+.ft R
+
+ *) 
+ ptype_kind : 
+.B type_kind
+;
+ ptype_private : 
+.B Asttypes.private_flag
+;  (* for 
+.ft B
+= private \&.\&.\&.
+.ft R
+
+ *) 
+ ptype_manifest : 
+.B core_type option
+;  (* represents 
+.ft B
+= T
+.ft R
+
+ *) 
+ ptype_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ ptype_loc : 
+.B Location.t
+;
+ }
+
+.sp
+Here are type declarations and their representation,
+for various 
+.ft B
+Parsetree\&.type_declaration\&.ptype_kind
+.ft R
+and 
+.ft B
+Parsetree\&.type_declaration\&.ptype_manifest
+.ft R
+values:
+.sp
+\-
+.ft B
+type t
+.ft R
+when 
+.ft B
+type_kind
+.ft R
+is 
+.ft B
+Parsetree\&.type_kind\&.Ptype_abstract
+.ft R
+,
+and 
+.ft B
+manifest
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+type t = T0
+.ft R
+when 
+.ft B
+type_kind
+.ft R
+is 
+.ft B
+Parsetree\&.type_kind\&.Ptype_abstract
+.ft R
+,
+and 
+.ft B
+manifest
+.ft R
+is 
+.ft B
+Some T0
+.ft R
+,
+.sp
+\-
+.ft B
+type t = C of T | \&.\&.\&.
+.ft R
+when 
+.ft B
+type_kind
+.ft R
+is 
+.ft B
+Parsetree\&.type_kind\&.Ptype_variant
+.ft R
+,
+and 
+.ft B
+manifest
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+type t = T0 = C of T | \&.\&.\&.
+.ft R
+when 
+.ft B
+type_kind
+.ft R
+is 
+.ft B
+Parsetree\&.type_kind\&.Ptype_variant
+.ft R
+,
+and 
+.ft B
+manifest
+.ft R
+is 
+.ft B
+Some T0
+.ft R
+,
+.sp
+\-
+.ft B
+type t = {l: T; \&.\&.\&.}
+.ft R
+when 
+.ft B
+type_kind
+.ft R
+is 
+.ft B
+Parsetree\&.type_kind\&.Ptype_record
+.ft R
+,
+and 
+.ft B
+manifest
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+type t = T0 = {l : T; \&.\&.\&.}
+.ft R
+when 
+.ft B
+type_kind
+.ft R
+is 
+.ft B
+Parsetree\&.type_kind\&.Ptype_record
+.ft R
+,
+and 
+.ft B
+manifest
+.ft R
+is 
+.ft B
+Some T0
+.ft R
+,
+.sp
+\-
+.ft B
+type t = \&.\&.
+.ft R
+when 
+.ft B
+type_kind
+.ft R
+is 
+.ft B
+Parsetree\&.type_kind\&.Ptype_open
+.ft R
+,
+and 
+.ft B
+manifest
+.ft R
+is 
+.ft B
+None
+.ft R
+\&.
+
+
+.sp
+.I type type_kind 
+=
+ | Ptype_abstract
+ | Ptype_variant
+.B of 
+.B constructor_declaration list
+ | Ptype_record
+.B of 
+.B label_declaration list
+.I "  "
+  (* Invariant: non\-empty list
+ *)
+ | Ptype_open
+ 
+.sp
+
+.sp
+.I type label_declaration 
+= {
+ pld_name : 
+.B string Asttypes.loc
+;
+ pld_mutable : 
+.B Asttypes.mutable_flag
+;
+ pld_type : 
+.B core_type
+;
+ pld_loc : 
+.B Location.t
+;
+ pld_attributes : 
+.B attributes
+;  (* 
+.ft B
+l : T [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+\- 
+.ft B
+{ \&.\&.\&.; l: T; \&.\&.\&. }
+.ft R
+when 
+.ft B
+Parsetree\&.label_declaration\&.pld_mutable
+.ft R
+is 
+.ft B
+Asttypes\&.mutable_flag\&.Immutable
+.ft R
+,
+.sp
+\-
+.ft B
+{ \&.\&.\&.; mutable l: T; \&.\&.\&. }
+.ft R
+when 
+.ft B
+Parsetree\&.label_declaration\&.pld_mutable
+.ft R
+is 
+.ft B
+Asttypes\&.mutable_flag\&.Mutable
+.ft R
+\&.
+
+Note: 
+.ft B
+T
+.ft R
+can be a 
+.ft B
+Parsetree\&.core_type_desc\&.Ptyp_poly
+.ft R
+\&.
+
+.sp
+.I type constructor_declaration 
+= {
+ pcd_name : 
+.B string Asttypes.loc
+;
+ pcd_vars : 
+.B string Asttypes.loc list
+;
+ pcd_args : 
+.B constructor_arguments
+;
+ pcd_res : 
+.B core_type option
+;
+ pcd_loc : 
+.B Location.t
+;
+ pcd_attributes : 
+.B attributes
+;  (* 
+.ft B
+C of \&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type constructor_arguments 
+=
+ | Pcstr_tuple
+.B of 
+.B core_type list
+ | Pcstr_record
+.B of 
+.B label_declaration list
+.I "  "
+  (* Values of type 
+.ft B
+Parsetree\&.constructor_declaration
+.ft R
+represents the constructor arguments of:
+.sp
+\-
+.ft B
+C of T1 * \&.\&.\&. * Tn
+.ft R
+when 
+.ft B
+res = None
+.ft R
+,
+and 
+.ft B
+args = Pcstr_tuple [T1; \&.\&.\&. ; Tn]
+.ft R
+,
+.sp
+\-
+.ft B
+C: T0
+.ft R
+when 
+.ft B
+res = Some T0
+.ft R
+,
+and 
+.ft B
+args = Pcstr_tuple []
+.ft R
+,
+.sp
+\-
+.ft B
+C: T1 * \&.\&.\&. * Tn \-> T0
+.ft R
+when 
+.ft B
+res = Some T0
+.ft R
+,
+and 
+.ft B
+args = Pcstr_tuple [T1; \&.\&.\&. ; Tn]
+.ft R
+,
+.sp
+\-
+.ft B
+C of {\&.\&.\&.}
+.ft R
+when 
+.ft B
+res = None
+.ft R
+,
+and 
+.ft B
+args = Pcstr_record [\&.\&.\&.]
+.ft R
+,
+.sp
+\-
+.ft B
+C: {\&.\&.\&.} \-> T0
+.ft R
+when 
+.ft B
+res = Some T0
+.ft R
+,
+and 
+.ft B
+args = Pcstr_record [\&.\&.\&.]
+.ft R
+\&.
+
+ *)
+ 
+.sp
+
+.sp
+.I type type_extension 
+= {
+ ptyext_path : 
+.B Longident.t Asttypes.loc
+;
+ ptyext_params : 
+.B (core_type * (Asttypes.variance * Asttypes.injectivity)) list
+;
+ ptyext_constructors : 
+.B extension_constructor list
+;
+ ptyext_private : 
+.B Asttypes.private_flag
+;
+ ptyext_loc : 
+.B Location.t
+;
+ ptyext_attributes : 
+.B attributes
+;  (* \&.\&.\&. 
+.ft B
+@@id1
+.ft R
+.ft B
+@@id2
+.ft R
+
+ *) 
+ }
+
+.sp
+Definition of new extensions constructors for the extensive sum type 
+.ft B
+t
+.ft R
+(
+.ft B
+type t += \&.\&.\&.
+.ft R
+)\&.
+
+.sp
+.I type extension_constructor 
+= {
+ pext_name : 
+.B string Asttypes.loc
+;
+ pext_kind : 
+.B extension_constructor_kind
+;
+ pext_loc : 
+.B Location.t
+;
+ pext_attributes : 
+.B attributes
+;  (* 
+.ft B
+C of \&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type type_exception 
+= {
+ ptyexn_constructor : 
+.B extension_constructor
+;
+ ptyexn_loc : 
+.B Location.t
+;
+ ptyexn_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+Definition of a new exception (
+.ft B
+exception E
+.ft R
+)\&.
+
+.sp
+.I type extension_constructor_kind 
+=
+ | Pext_decl
+.B of 
+.B string Asttypes.loc list * constructor_arguments
+.B    * core_type option
+.I "  "
+  (* 
+.ft B
+Pext_decl(existentials, c_args, t_opt)
+.ft R
+describes a new extension constructor\&. It can be:
+.sp
+\-
+.ft B
+C of T1 * \&.\&.\&. * Tn
+.ft R
+when:
+.sp
+\-
+.ft B
+existentials
+.ft R
+is 
+.ft B
+[]
+.ft R
+,
+.sp
+\-
+.ft B
+c_args
+.ft R
+is 
+.ft B
+[T1; \&.\&.\&.; Tn]
+.ft R
+,
+.sp
+\-
+.ft B
+t_opt
+.ft R
+is 
+.ft B
+None
+.ft R
+
+
+.sp
+\-
+.ft B
+C: T0
+.ft R
+when
+.sp
+\-
+.ft B
+existentials
+.ft R
+is 
+.ft B
+[]
+.ft R
+,
+.sp
+\-
+.ft B
+c_args
+.ft R
+is 
+.ft B
+[]
+.ft R
+,
+.sp
+\-
+.ft B
+t_opt
+.ft R
+is 
+.ft B
+Some T0
+.ft R
+\&.
+
+.sp
+\-
+.ft B
+C: T1 * \&.\&.\&. * Tn \-> T0
+.ft R
+when
+.sp
+\-
+.ft B
+existentials
+.ft R
+is 
+.ft B
+[]
+.ft R
+,
+.sp
+\-
+.ft B
+c_args
+.ft R
+is 
+.ft B
+[T1; \&.\&.\&.; Tn]
+.ft R
+,
+.sp
+\-
+.ft B
+t_opt
+.ft R
+is 
+.ft B
+Some T0
+.ft R
+\&.
+
+.sp
+\-
+.ft B
+C: \&'a\&.\&.\&. \&. T1 * \&.\&.\&. * Tn \-> T0
+.ft R
+when
+.sp
+\-
+.ft B
+existentials
+.ft R
+is 
+.ft B
+[\&'a;\&.\&.\&.]
+.ft R
+,
+.sp
+\-
+.ft B
+c_args
+.ft R
+is 
+.ft B
+[T1; \&.\&.\&. ; Tn]
+.ft R
+,
+.sp
+\-
+.ft B
+t_opt
+.ft R
+is 
+.ft B
+Some T0
+.ft R
+\&.
+
+
+ *)
+ | Pext_rebind
+.B of 
+.B Longident.t Asttypes.loc
+.I "  "
+  (* 
+.ft B
+Pext_rebind(D)
+.ft R
+re\-export the constructor 
+.ft B
+D
+.ft R
+with the new name 
+.ft B
+C
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+
+.PP
+.SS Class language
+
+.PP
+
+.PP
+.SS Type expressions for the class language
+
+.PP
+.I type class_type 
+= {
+ pcty_desc : 
+.B class_type_desc
+;
+ pcty_loc : 
+.B Location.t
+;
+ pcty_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type class_type_desc 
+=
+ | Pcty_constr
+.B of 
+.B Longident.t Asttypes.loc * core_type list
+.I "  "
+  (* \- 
+.ft B
+c
+.ft R
+.sp
+\-
+.ft B
+[\&'a1, \&.\&.\&., \&'an] c
+.ft R
+
+
+ *)
+ | Pcty_signature
+.B of 
+.B class_signature
+.I "  "
+  (* 
+.ft B
+object \&.\&.\&. end
+.ft R
+
+ *)
+ | Pcty_arrow
+.B of 
+.B Asttypes.arg_label * core_type * class_type
+.I "  "
+  (* 
+.ft B
+Pcty_arrow(lbl, T, CT)
+.ft R
+represents:
+.sp
+\-
+.ft B
+T \-> CT
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Nolabel
+.ft R
+,
+.sp
+\-
+.ft B
+~l:T \-> CT
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Labelled
+.ft R
+,
+.sp
+\-
+.ft B
+?l:T \-> CT
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Optional
+.ft R
+\&.
+
+ *)
+ | Pcty_extension
+.B of 
+.B extension
+.I "  "
+  (* 
+.ft B
+%id
+.ft R
+
+ *)
+ | Pcty_open
+.B of 
+.B open_description * class_type
+.I "  "
+  (* 
+.ft B
+let open M in CT
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type class_signature 
+= {
+ pcsig_self : 
+.B core_type
+;
+ pcsig_fields : 
+.B class_type_field list
+;
+ }
+
+.sp
+Values of type 
+.ft B
+class_signature
+.ft R
+represents:
+.sp
+\-
+.ft B
+object(\&'selfpat) \&.\&.\&. end
+.ft R
+
+.sp
+\-
+.ft B
+object \&.\&.\&. end
+.ft R
+when 
+.ft B
+Parsetree\&.class_signature\&.pcsig_self
+.ft R
+is 
+.ft B
+Parsetree\&.core_type_desc\&.Ptyp_any
+.ft R
+
+
+
+.sp
+.I type class_type_field 
+= {
+ pctf_desc : 
+.B class_type_field_desc
+;
+ pctf_loc : 
+.B Location.t
+;
+ pctf_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type class_type_field_desc 
+=
+ | Pctf_inherit
+.B of 
+.B class_type
+.I "  "
+  (* 
+.ft B
+inherit CT
+.ft R
+
+ *)
+ | Pctf_val
+.B of 
+.B (Asttypes.label Asttypes.loc * Asttypes.mutable_flag *
+.B  Asttypes.virtual_flag * core_type)
+.I "  "
+  (* 
+.ft B
+val x: T
+.ft R
+
+ *)
+ | Pctf_method
+.B of 
+.B (Asttypes.label Asttypes.loc * Asttypes.private_flag *
+.B  Asttypes.virtual_flag * core_type)
+.I "  "
+  (* 
+.ft B
+method x: T
+.ft R
+.sp
+Note: 
+.ft B
+T
+.ft R
+can be a 
+.ft B
+Parsetree\&.core_type_desc\&.Ptyp_poly
+.ft R
+\&.
+ *)
+ | Pctf_constraint
+.B of 
+.B (core_type * core_type)
+.I "  "
+  (* 
+.ft B
+constraint T1 = T2
+.ft R
+
+ *)
+ | Pctf_attribute
+.B of 
+.B attribute
+.I "  "
+  (* 
+.ft B
+[@@@id]
+.ft R
+
+ *)
+ | Pctf_extension
+.B of 
+.B extension
+.I "  "
+  (* 
+.ft B
+[%%id]
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type 
+.B 'a
+.I class_infos 
+= {
+ pci_virt : 
+.B Asttypes.virtual_flag
+;
+ pci_params : 
+.B (core_type * (Asttypes.variance * Asttypes.injectivity)) list
+;
+ pci_name : 
+.B string Asttypes.loc
+;
+ pci_expr : 
+.B 'a
+;
+ pci_loc : 
+.B Location.t
+;
+ pci_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+Values of type 
+.ft B
+class_expr class_infos
+.ft R
+represents:
+.sp
+\-
+.ft B
+class c = \&.\&.\&.
+.ft R
+
+.sp
+\-
+.ft B
+class [\&'a1,\&.\&.\&.,\&'an] c = \&.\&.\&.
+.ft R
+
+.sp
+\-
+.ft B
+class virtual c = \&.\&.\&.
+.ft R
+
+They are also used for "class type" declaration\&.
+
+.sp
+.I type class_description 
+= 
+.B class_type class_infos
+
+.sp
+
+.sp
+.I type class_type_declaration 
+= 
+.B class_type class_infos
+
+.sp
+
+.sp
+
+.PP
+.SS Value expressions for the class language
+
+.PP
+.I type class_expr 
+= {
+ pcl_desc : 
+.B class_expr_desc
+;
+ pcl_loc : 
+.B Location.t
+;
+ pcl_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type class_expr_desc 
+=
+ | Pcl_constr
+.B of 
+.B Longident.t Asttypes.loc * core_type list
+.I "  "
+  (* 
+.ft B
+c
+.ft R
+and 
+.ft B
+[\&'a1, \&.\&.\&., \&'an] c
+.ft R
+
+ *)
+ | Pcl_structure
+.B of 
+.B class_structure
+.I "  "
+  (* 
+.ft B
+object \&.\&.\&. end
+.ft R
+
+ *)
+ | Pcl_fun
+.B of 
+.B Asttypes.arg_label * expression option * pattern
+.B    * class_expr
+.I "  "
+  (* 
+.ft B
+Pcl_fun(lbl, exp0, P, CE)
+.ft R
+represents:
+.sp
+\-
+.ft B
+fun P \-> CE
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Nolabel
+.ft R
+and 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+fun ~l:P \-> CE
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Labelled
+.ft R
+and 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+fun ?l:P \-> CE
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Optional
+.ft R
+and 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+fun ?l:(P = E0) \-> CE
+.ft R
+when 
+.ft B
+lbl
+.ft R
+is 
+.ft B
+Asttypes\&.arg_label\&.Optional
+.ft R
+and 
+.ft B
+exp0
+.ft R
+is 
+.ft B
+Some E0
+.ft R
+\&.
+
+ *)
+ | Pcl_apply
+.B of 
+.B class_expr * (Asttypes.arg_label * expression) list
+.I "  "
+  (* 
+.ft B
+Pcl_apply(CE, [(l1,E1) ; \&.\&.\&. ; (ln,En)])
+.ft R
+represents 
+.ft B
+CE ~l1:E1 \&.\&.\&. ~ln:En
+.ft R
+\&.
+.ft B
+li
+.ft R
+can be empty (non labeled argument) or start with 
+.ft B
+?
+.ft R
+(optional argument)\&.
+.sp
+Invariant: 
+.ft B
+n > 0
+.ft R
+
+ *)
+ | Pcl_let
+.B of 
+.B Asttypes.rec_flag * value_binding list * class_expr
+.I "  "
+  (* 
+.ft B
+Pcl_let(rec, [(P1, E1); \&.\&.\&. ; (Pn, En)], CE)
+.ft R
+represents:
+.sp
+\-
+.ft B
+let P1 = E1 and \&.\&.\&. and Pn = EN in CE
+.ft R
+when 
+.ft B
+rec
+.ft R
+is 
+.ft B
+Asttypes\&.rec_flag\&.Nonrecursive
+.ft R
+,
+.sp
+\-
+.ft B
+let rec P1 = E1 and \&.\&.\&. and Pn = EN in CE
+.ft R
+when 
+.ft B
+rec
+.ft R
+is 
+.ft B
+Asttypes\&.rec_flag\&.Recursive
+.ft R
+\&.
+
+ *)
+ | Pcl_constraint
+.B of 
+.B class_expr * class_type
+.I "  "
+  (* 
+.ft B
+(CE : CT)
+.ft R
+
+ *)
+ | Pcl_extension
+.B of 
+.B extension
+.I "  "
+  (* 
+.ft B
+[%id]
+.ft R
+
+ *)
+ | Pcl_open
+.B of 
+.B open_description * class_expr
+.I "  "
+  (* 
+.ft B
+let open M in CE
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type class_structure 
+= {
+ pcstr_self : 
+.B pattern
+;
+ pcstr_fields : 
+.B class_field list
+;
+ }
+
+.sp
+Values of type 
+.ft B
+Parsetree\&.class_structure
+.ft R
+represents:
+.sp
+\-
+.ft B
+object(selfpat) \&.\&.\&. end
+.ft R
+
+.sp
+\-
+.ft B
+object \&.\&.\&. end
+.ft R
+when 
+.ft B
+Parsetree\&.class_structure\&.pcstr_self
+.ft R
+is 
+.ft B
+Parsetree\&.pattern_desc\&.Ppat_any
+.ft R
+
+
+
+.sp
+.I type class_field 
+= {
+ pcf_desc : 
+.B class_field_desc
+;
+ pcf_loc : 
+.B Location.t
+;
+ pcf_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type class_field_desc 
+=
+ | Pcf_inherit
+.B of 
+.B Asttypes.override_flag * class_expr * string Asttypes.loc option
+.I "  "
+  (* 
+.ft B
+Pcf_inherit(flag, CE, s)
+.ft R
+represents:
+.sp
+\-
+.ft B
+inherit CE
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.override_flag\&.Fresh
+.ft R
+and 
+.ft B
+s
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+inherit CE as x
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.override_flag\&.Fresh
+.ft R
+and 
+.ft B
+s
+.ft R
+is 
+.ft B
+Some x
+.ft R
+,
+.sp
+\-
+.ft B
+inherit! CE
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.override_flag\&.Override
+.ft R
+and 
+.ft B
+s
+.ft R
+is 
+.ft B
+None
+.ft R
+,
+.sp
+\-
+.ft B
+inherit! CE as x
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.override_flag\&.Override
+.ft R
+and 
+.ft B
+s
+.ft R
+is 
+.ft B
+Some x
+.ft R
+
+
+ *)
+ | Pcf_val
+.B of 
+.B (Asttypes.label Asttypes.loc * Asttypes.mutable_flag *
+.B  class_field_kind)
+.I "  "
+  (* 
+.ft B
+Pcf_val(x,flag, kind)
+.ft R
+represents:
+.sp
+\-
+.ft B
+val x = E
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.mutable_flag\&.Immutable
+.ft R
+and 
+.ft B
+kind
+.ft R
+is 
+.ft B
+Parsetree\&.class_field_kind\&.Cfk_concrete
+.ft R
+
+.sp
+\-
+.ft B
+val virtual x: T
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.mutable_flag\&.Immutable
+.ft R
+and 
+.ft B
+kind
+.ft R
+is 
+.ft B
+Parsetree\&.class_field_kind\&.Cfk_virtual
+.ft R
+
+.sp
+\-
+.ft B
+val mutable x = E
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.mutable_flag\&.Mutable
+.ft R
+and 
+.ft B
+kind
+.ft R
+is 
+.ft B
+Parsetree\&.class_field_kind\&.Cfk_concrete
+.ft R
+
+.sp
+\-
+.ft B
+val mutable virtual x: T
+.ft R
+when 
+.ft B
+flag
+.ft R
+is 
+.ft B
+Asttypes\&.mutable_flag\&.Mutable
+.ft R
+and 
+.ft B
+kind
+.ft R
+is 
+.ft B
+Parsetree\&.class_field_kind\&.Cfk_virtual
+.ft R
+
+
+ *)
+ | Pcf_method
+.B of 
+.B (Asttypes.label Asttypes.loc * Asttypes.private_flag *
+.B  class_field_kind)
+.I "  "
+  (* \- 
+.ft B
+method x = E
+.ft R
+(
+.ft B
+E
+.ft R
+can be a 
+.ft B
+Parsetree\&.expression_desc\&.Pexp_poly
+.ft R
+)
+.sp
+\-
+.ft B
+method virtual x: T
+.ft R
+(
+.ft B
+T
+.ft R
+can be a 
+.ft B
+Parsetree\&.core_type_desc\&.Ptyp_poly
+.ft R
+)
+
+ *)
+ | Pcf_constraint
+.B of 
+.B (core_type * core_type)
+.I "  "
+  (* 
+.ft B
+constraint T1 = T2
+.ft R
+
+ *)
+ | Pcf_initializer
+.B of 
+.B expression
+.I "  "
+  (* 
+.ft B
+initializer E
+.ft R
+
+ *)
+ | Pcf_attribute
+.B of 
+.B attribute
+.I "  "
+  (* 
+.ft B
+[@@@id]
+.ft R
+
+ *)
+ | Pcf_extension
+.B of 
+.B extension
+.I "  "
+  (* 
+.ft B
+[%%id]
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type class_field_kind 
+=
+ | Cfk_virtual
+.B of 
+.B core_type
+ | Cfk_concrete
+.B of 
+.B Asttypes.override_flag * expression
+ 
+.sp
+
+.sp
+.I type class_declaration 
+= 
+.B class_expr class_infos
+
+.sp
+
+.sp
+
+.PP
+.SS Module language
+
+.PP
+
+.PP
+.SS Type expressions for the module language
+
+.PP
+.I type module_type 
+= {
+ pmty_desc : 
+.B module_type_desc
+;
+ pmty_loc : 
+.B Location.t
+;
+ pmty_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type module_type_desc 
+=
+ | Pmty_ident
+.B of 
+.B Longident.t Asttypes.loc
+.I "  "
+  (* 
+.ft B
+Pmty_ident(S)
+.ft R
+represents 
+.ft B
+S
+.ft R
+
+ *)
+ | Pmty_signature
+.B of 
+.B signature
+.I "  "
+  (* 
+.ft B
+sig \&.\&.\&. end
+.ft R
+
+ *)
+ | Pmty_functor
+.B of 
+.B functor_parameter * module_type
+.I "  "
+  (* 
+.ft B
+functor(X : MT1) \-> MT2
+.ft R
+
+ *)
+ | Pmty_with
+.B of 
+.B module_type * with_constraint list
+.I "  "
+  (* 
+.ft B
+MT with \&.\&.\&.
+.ft R
+
+ *)
+ | Pmty_typeof
+.B of 
+.B module_expr
+.I "  "
+  (* 
+.ft B
+module type of ME
+.ft R
+
+ *)
+ | Pmty_extension
+.B of 
+.B extension
+.I "  "
+  (* 
+.ft B
+[%id]
+.ft R
+
+ *)
+ | Pmty_alias
+.B of 
+.B Longident.t Asttypes.loc
+.I "  "
+  (* 
+.ft B
+(module M)
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type functor_parameter 
+=
+ | Unit  (* 
+.ft B
+()
+.ft R
+
+ *)
+ | Named
+.B of 
+.B string option Asttypes.loc * module_type
+.I "  "
+  (* 
+.ft B
+Named(name, MT)
+.ft R
+represents:
+.sp
+\-
+.ft B
+(X : MT)
+.ft R
+when 
+.ft B
+name
+.ft R
+is 
+.ft B
+Some X
+.ft R
+,
+.sp
+\-
+.ft B
+(_ : MT)
+.ft R
+when 
+.ft B
+name
+.ft R
+is 
+.ft B
+None
+.ft R
+
+
+ *)
+ 
+.sp
+
+.sp
+.I type signature 
+= 
+.B signature_item list
+
+.sp
+
+.sp
+.I type signature_item 
+= {
+ psig_desc : 
+.B signature_item_desc
+;
+ psig_loc : 
+.B Location.t
+;
+ }
+
+.sp
+
+.sp
+.I type signature_item_desc 
+=
+ | Psig_value
+.B of 
+.B value_description
+.I "  "
+  (* \- 
+.ft B
+val x: T
+.ft R
+.sp
+\-
+.ft B
+external x: T = "s1" \&.\&.\&. "sn"
+.ft R
+
+
+ *)
+ | Psig_type
+.B of 
+.B Asttypes.rec_flag * type_declaration list
+.I "  "
+  (* 
+.ft B
+type t1 = \&.\&.\&. and \&.\&.\&. and tn  = \&.\&.\&.
+.ft R
+
+ *)
+ | Psig_typesubst
+.B of 
+.B type_declaration list
+.I "  "
+  (* 
+.ft B
+type t1 := \&.\&.\&. and \&.\&.\&. and tn := \&.\&.\&.
+.ft R
+
+ *)
+ | Psig_typext
+.B of 
+.B type_extension
+.I "  "
+  (* 
+.ft B
+type t1 += \&.\&.\&.
+.ft R
+
+ *)
+ | Psig_exception
+.B of 
+.B type_exception
+.I "  "
+  (* 
+.ft B
+exception C of T
+.ft R
+
+ *)
+ | Psig_module
+.B of 
+.B module_declaration
+.I "  "
+  (* 
+.ft B
+module X = M
+.ft R
+and 
+.ft B
+module X : MT
+.ft R
+
+ *)
+ | Psig_modsubst
+.B of 
+.B module_substitution
+.I "  "
+  (* 
+.ft B
+module X := M
+.ft R
+
+ *)
+ | Psig_recmodule
+.B of 
+.B module_declaration list
+.I "  "
+  (* 
+.ft B
+module rec X1 : MT1 and \&.\&.\&. and Xn : MTn
+.ft R
+
+ *)
+ | Psig_modtype
+.B of 
+.B module_type_declaration
+.I "  "
+  (* 
+.ft B
+module type S = MT
+.ft R
+and 
+.ft B
+module type S
+.ft R
+
+ *)
+ | Psig_modtypesubst
+.B of 
+.B module_type_declaration
+.I "  "
+  (* 
+.ft B
+module type S :=  \&.\&.\&.
+.ft R
+
+ *)
+ | Psig_open
+.B of 
+.B open_description
+.I "  "
+  (* 
+.ft B
+open X
+.ft R
+
+ *)
+ | Psig_include
+.B of 
+.B include_description
+.I "  "
+  (* 
+.ft B
+include MT
+.ft R
+
+ *)
+ | Psig_class
+.B of 
+.B class_description list
+.I "  "
+  (* 
+.ft B
+class c1 : \&.\&.\&. and \&.\&.\&. and cn : \&.\&.\&.
+.ft R
+
+ *)
+ | Psig_class_type
+.B of 
+.B class_type_declaration list
+.I "  "
+  (* 
+.ft B
+class type ct1 = \&.\&.\&. and \&.\&.\&. and ctn = \&.\&.\&.
+.ft R
+
+ *)
+ | Psig_attribute
+.B of 
+.B attribute
+.I "  "
+  (* 
+.ft B
+[@@@id]
+.ft R
+
+ *)
+ | Psig_extension
+.B of 
+.B extension * attributes
+.I "  "
+  (* 
+.ft B
+[%%id]
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type module_declaration 
+= {
+ pmd_name : 
+.B string option Asttypes.loc
+;
+ pmd_type : 
+.B module_type
+;
+ pmd_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ pmd_loc : 
+.B Location.t
+;
+ }
+
+.sp
+Values of type 
+.ft B
+module_declaration
+.ft R
+represents 
+.ft B
+S : MT
+.ft R
+
+
+.sp
+.I type module_substitution 
+= {
+ pms_name : 
+.B string Asttypes.loc
+;
+ pms_manifest : 
+.B Longident.t Asttypes.loc
+;
+ pms_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ pms_loc : 
+.B Location.t
+;
+ }
+
+.sp
+Values of type 
+.ft B
+module_substitution
+.ft R
+represents 
+.ft B
+S := M
+.ft R
+
+
+.sp
+.I type module_type_declaration 
+= {
+ pmtd_name : 
+.B string Asttypes.loc
+;
+ pmtd_type : 
+.B module_type option
+;
+ pmtd_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@@id1] [@@id2]
+.ft R
+
+ *) 
+ pmtd_loc : 
+.B Location.t
+;
+ }
+
+.sp
+Values of type 
+.ft B
+module_type_declaration
+.ft R
+represents:
+.sp
+\-
+.ft B
+S = MT
+.ft R
+,
+.sp
+\-
+.ft B
+S
+.ft R
+for abstract module type declaration,
+when 
+.ft B
+Parsetree\&.module_type_declaration\&.pmtd_type
+.ft R
+is 
+.ft B
+None
+.ft R
+\&.
+
+
+.sp
+.I type 
+.B 'a
+.I open_infos 
+= {
+ popen_expr : 
+.B 'a
+;
+ popen_override : 
+.B Asttypes.override_flag
+;
+ popen_loc : 
+.B Location.t
+;
+ popen_attributes : 
+.B attributes
+;
+ }
+
+.sp
+Values of type 
+.ft B
+\&'a open_infos
+.ft R
+represents:
+.sp
+\-
+.ft B
+open! X
+.ft R
+when 
+.ft B
+Parsetree\&.open_infos\&.popen_override
+.ft R
+is 
+.ft B
+Asttypes\&.override_flag\&.Override
+.ft R
+(silences the "used identifier shadowing" warning)
+.sp
+\-
+.ft B
+open  X
+.ft R
+when 
+.ft B
+Parsetree\&.open_infos\&.popen_override
+.ft R
+is 
+.ft B
+Asttypes\&.override_flag\&.Fresh
+.ft R
+
+
+
+.sp
+.I type open_description 
+= 
+.B Longident.t Asttypes.loc open_infos
+
+.sp
+Values of type 
+.ft B
+open_description
+.ft R
+represents:
+.sp
+\-
+.ft B
+open M\&.N
+.ft R
+
+.sp
+\-
+.ft B
+open M(N)\&.O
+.ft R
+
+
+
+.sp
+.I type open_declaration 
+= 
+.B module_expr open_infos
+
+.sp
+Values of type 
+.ft B
+open_declaration
+.ft R
+represents:
+.sp
+\-
+.ft B
+open M\&.N
+.ft R
+
+.sp
+\-
+.ft B
+open M(N)\&.O
+.ft R
+
+.sp
+\-
+.ft B
+open struct \&.\&.\&. end
+.ft R
+
+
+
+.sp
+.I type 
+.B 'a
+.I include_infos 
+= {
+ pincl_mod : 
+.B 'a
+;
+ pincl_loc : 
+.B Location.t
+;
+ pincl_attributes : 
+.B attributes
+;
+ }
+
+.sp
+
+.sp
+.I type include_description 
+= 
+.B module_type include_infos
+
+.sp
+Values of type 
+.ft B
+include_description
+.ft R
+represents 
+.ft B
+include MT
+.ft R
+
+
+.sp
+.I type include_declaration 
+= 
+.B module_expr include_infos
+
+.sp
+Values of type 
+.ft B
+include_declaration
+.ft R
+represents 
+.ft B
+include ME
+.ft R
+
+
+.sp
+.I type with_constraint 
+=
+ | Pwith_type
+.B of 
+.B Longident.t Asttypes.loc * type_declaration
+.I "  "
+  (* 
+.ft B
+with type X\&.t = \&.\&.\&.
+.ft R
+.sp
+Note: the last component of the longident must match
+the name of the type_declaration\&.
+ *)
+ | Pwith_module
+.B of 
+.B Longident.t Asttypes.loc * Longident.t Asttypes.loc
+.I "  "
+  (* 
+.ft B
+with module X\&.Y = Z
+.ft R
+
+ *)
+ | Pwith_modtype
+.B of 
+.B Longident.t Asttypes.loc * module_type
+.I "  "
+  (* 
+.ft B
+with module type X\&.Y = Z
+.ft R
+
+ *)
+ | Pwith_modtypesubst
+.B of 
+.B Longident.t Asttypes.loc * module_type
+.I "  "
+  (* 
+.ft B
+with module type X\&.Y := sig end
+.ft R
+
+ *)
+ | Pwith_typesubst
+.B of 
+.B Longident.t Asttypes.loc * type_declaration
+.I "  "
+  (* 
+.ft B
+with type X\&.t := \&.\&.\&., same format as [Pwith_type]
+.ft R
+
+ *)
+ | Pwith_modsubst
+.B of 
+.B Longident.t Asttypes.loc * Longident.t Asttypes.loc
+.I "  "
+  (* 
+.ft B
+with module X\&.Y := Z
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+
+.PP
+.SS Value expressions for the module language
+
+.PP
+.I type module_expr 
+= {
+ pmod_desc : 
+.B module_expr_desc
+;
+ pmod_loc : 
+.B Location.t
+;
+ pmod_attributes : 
+.B attributes
+;  (* 
+.ft B
+\&.\&.\&. [@id1] [@id2]
+.ft R
+
+ *) 
+ }
+
+.sp
+
+.sp
+.I type module_expr_desc 
+=
+ | Pmod_ident
+.B of 
+.B Longident.t Asttypes.loc
+.I "  "
+  (* 
+.ft B
+X
+.ft R
+
+ *)
+ | Pmod_structure
+.B of 
+.B structure
+.I "  "
+  (* 
+.ft B
+struct \&.\&.\&. end
+.ft R
+
+ *)
+ | Pmod_functor
+.B of 
+.B functor_parameter * module_expr
+.I "  "
+  (* 
+.ft B
+functor(X : MT1) \-> ME
+.ft R
+
+ *)
+ | Pmod_apply
+.B of 
+.B module_expr * module_expr
+.I "  "
+  (* 
+.ft B
+ME1(ME2)
+.ft R
+
+ *)
+ | Pmod_apply_unit
+.B of 
+.B module_expr
+.I "  "
+  (* 
+.ft B
+ME1()
+.ft R
+
+ *)
+ | Pmod_constraint
+.B of 
+.B module_expr * module_type
+.I "  "
+  (* 
+.ft B
+(ME : MT)
+.ft R
+
+ *)
+ | Pmod_unpack
+.B of 
+.B expression
+.I "  "
+  (* 
+.ft B
+(val E)
+.ft R
+
+ *)
+ | Pmod_extension
+.B of 
+.B extension
+.I "  "
+  (* 
+.ft B
+[%id]
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type structure 
+= 
+.B structure_item list
+
+.sp
+
+.sp
+.I type structure_item 
+= {
+ pstr_desc : 
+.B structure_item_desc
+;
+ pstr_loc : 
+.B Location.t
+;
+ }
+
+.sp
+
+.sp
+.I type structure_item_desc 
+=
+ | Pstr_eval
+.B of 
+.B expression * attributes
+.I "  "
+  (* 
+.ft B
+E
+.ft R
+
+ *)
+ | Pstr_value
+.B of 
+.B Asttypes.rec_flag * value_binding list
+.I "  "
+  (* 
+.ft B
+Pstr_value(rec, [(P1, E1 ; \&.\&.\&. ; (Pn, En))])
+.ft R
+represents:
+.sp
+\-
+.ft B
+let P1 = E1 and \&.\&.\&. and Pn = EN
+.ft R
+when 
+.ft B
+rec
+.ft R
+is 
+.ft B
+Asttypes\&.rec_flag\&.Nonrecursive
+.ft R
+,
+.sp
+\-
+.ft B
+let rec P1 = E1 and \&.\&.\&. and Pn = EN 
+.ft R
+when 
+.ft B
+rec
+.ft R
+is 
+.ft B
+Asttypes\&.rec_flag\&.Recursive
+.ft R
+\&.
+
+ *)
+ | Pstr_primitive
+.B of 
+.B value_description
+.I "  "
+  (* \- 
+.ft B
+val x: T
+.ft R
+.sp
+\-
+.ft B
+external x: T = "s1" \&.\&.\&. "sn" 
+.ft R
+
+
+ *)
+ | Pstr_type
+.B of 
+.B Asttypes.rec_flag * type_declaration list
+.I "  "
+  (* 
+.ft B
+type t1 = \&.\&.\&. and \&.\&.\&. and tn = \&.\&.\&.
+.ft R
+
+ *)
+ | Pstr_typext
+.B of 
+.B type_extension
+.I "  "
+  (* 
+.ft B
+type t1 += \&.\&.\&.
+.ft R
+
+ *)
+ | Pstr_exception
+.B of 
+.B type_exception
+.I "  "
+  (* \- 
+.ft B
+exception C of T
+.ft R
+.sp
+\-
+.ft B
+exception C = M\&.X
+.ft R
+
+
+ *)
+ | Pstr_module
+.B of 
+.B module_binding
+.I "  "
+  (* 
+.ft B
+module X = ME
+.ft R
+
+ *)
+ | Pstr_recmodule
+.B of 
+.B module_binding list
+.I "  "
+  (* 
+.ft B
+module rec X1 = ME1 and \&.\&.\&. and Xn = MEn
+.ft R
+
+ *)
+ | Pstr_modtype
+.B of 
+.B module_type_declaration
+.I "  "
+  (* 
+.ft B
+module type S = MT
+.ft R
+
+ *)
+ | Pstr_open
+.B of 
+.B open_declaration
+.I "  "
+  (* 
+.ft B
+open X
+.ft R
+
+ *)
+ | Pstr_class
+.B of 
+.B class_declaration list
+.I "  "
+  (* 
+.ft B
+class c1 = \&.\&.\&. and \&.\&.\&. and cn = \&.\&.\&.
+.ft R
+
+ *)
+ | Pstr_class_type
+.B of 
+.B class_type_declaration list
+.I "  "
+  (* 
+.ft B
+class type ct1 = \&.\&.\&. and \&.\&.\&. and ctn = \&.\&.\&.
+.ft R
+
+ *)
+ | Pstr_include
+.B of 
+.B include_declaration
+.I "  "
+  (* 
+.ft B
+include ME
+.ft R
+
+ *)
+ | Pstr_attribute
+.B of 
+.B attribute
+.I "  "
+  (* 
+.ft B
+[@@@id]
+.ft R
+
+ *)
+ | Pstr_extension
+.B of 
+.B extension * attributes
+.I "  "
+  (* 
+.ft B
+[%%id]
+.ft R
+
+ *)
+ 
+.sp
+
+.sp
+.I type value_constraint 
+=
+ | Pvc_constraint
+.B of {
+ locally_abstract_univars : 
+.B string Asttypes.loc list
+;
+ typ : 
+.B core_type
+;
+ }
+ | Pvc_coercion
+.B of {
+ ground : 
+.B core_type option
+;
+ coercion : 
+.B core_type
+;
+ }
+.I "  "
+  (* \- 
+.ft B
+Pvc_constraint { locally_abstract_univars=[]; typ}
+.ft R
+is a simple type constraint on a value binding: 
+.ft B
+let x : typ
+.ft R
+.sp
+\-More generally, in 
+.ft B
+Pvc_constraint { locally_abstract_univars; typ}
+.ft R
+
+.ft B
+locally_abstract_univars
+.ft R
+is the list of locally abstract type
+variables in 
+.ft B
+let x: type a \&.\&.\&. \&. typ 
+.ft R
+
+.sp
+\-
+.ft B
+Pvc_coercion { ground=None; coercion }
+.ft R
+represents 
+.ft B
+let x :> typ
+.ft R
+
+.sp
+\-
+.ft B
+Pvc_coercion { ground=Some g; coercion }
+.ft R
+represents 
+.ft B
+let x : g :> typ
+.ft R
+
+
+ *)
+ 
+.sp
+
+.sp
+.I type value_binding 
+= {
+ pvb_pat : 
+.B pattern
+;
+ pvb_expr : 
+.B expression
+;
+ pvb_constraint : 
+.B value_constraint option
+;
+ pvb_attributes : 
+.B attributes
+;
+ pvb_loc : 
+.B Location.t
+;
+ }
+
+.sp
+
+.ft B
+let pat : type_constraint = exp
+.ft R
+
+
+.sp
+.I type module_binding 
+= {
+ pmb_name : 
+.B string option Asttypes.loc
+;
+ pmb_expr : 
+.B module_expr
+;
+ pmb_attributes : 
+.B attributes
+;
+ pmb_loc : 
+.B Location.t
+;
+ }
+
+.sp
+Values of type 
+.ft B
+module_binding
+.ft R
+represents 
+.ft B
+module X = ME
+.ft R
+
+
+.sp
+
+.PP
+.SS Toplevel
+
+.PP
+
+.PP
+.SS Toplevel phrases
+
+.PP
+.I type toplevel_phrase 
+=
+ | Ptop_def
+.B of 
+.B structure
+ | Ptop_dir
+.B of 
+.B toplevel_directive
+.I "  "
+  (* 
+.ft B
+#use
+.ft R
+, 
+.ft B
+#load
+.ft R
+\&.\&.\&.
+ *)
+ 
+.sp
+
+.sp
+.I type toplevel_directive 
+= {
+ pdir_name : 
+.B string Asttypes.loc
+;
+ pdir_arg : 
+.B directive_argument option
+;
+ pdir_loc : 
+.B Location.t
+;
+ }
+
+.sp
+
+.sp
+.I type directive_argument 
+= {
+ pdira_desc : 
+.B directive_argument_desc
+;
+ pdira_loc : 
+.B Location.t
+;
+ }
+
+.sp
+
+.sp
+.I type directive_argument_desc 
+=
+ | Pdir_string
+.B of 
+.B string
+ | Pdir_int
+.B of 
+.B string * char option
+ | Pdir_ident
+.B of 
+.B Longident.t
+ | Pdir_bool
+.B of 
+.B bool
+ 
+.sp
+
+.sp

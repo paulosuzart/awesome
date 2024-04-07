@@ -1,0 +1,7 @@
+version = "0.3.0"
+description = ""
+requires = ""
+archive(byte) = "stdlib_shims.cma"
+archive(native) = "stdlib_shims.cmxa"
+plugin(byte) = "stdlib_shims.cma"
+plugin(native) = "stdlib_shims.cmxs"

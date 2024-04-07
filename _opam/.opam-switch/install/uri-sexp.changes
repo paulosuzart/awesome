@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/uri-sexp" {"D"}
+  "doc/uri-sexp/CHANGES.md" {"F:a04276e45191630f164226dd45443633"}
+  "doc/uri-sexp/LICENSE.md" {"F:e5a7c86245e9bb5274ebb7b63ce7012a"}
+  "doc/uri-sexp/README.md" {"F:c17216c6abd6ce546e52501b86c58071"}
+  "lib/uri-sexp" {"D"}
+  "lib/uri-sexp/META" {"F:20e3844a6624eb8b4a11b201c4db6314"}
+  "lib/uri-sexp/dune-package" {"F:a431a8c62b4cac8ddfa5c328da23bfe5"}
+  "lib/uri-sexp/opam" {"F:39527e835101da7adf427062c560dd8a"}
+  "lib/uri-sexp/uri_sexp.a" {"F:ceb9ac9c627bd284c8c0d3862a48530e"}
+  "lib/uri-sexp/uri_sexp.cma" {"F:647e3f4afd6abcfba5ecdb2b2ce2e6bf"}
+  "lib/uri-sexp/uri_sexp.cmi" {"F:c8931be640984edbe5cedadcefbc0d6b"}
+  "lib/uri-sexp/uri_sexp.cmt" {"F:774da44faec95c80f97847885ed7de11"}
+  "lib/uri-sexp/uri_sexp.cmti" {"F:2d48c04483b111af4daf963a0889afb7"}
+  "lib/uri-sexp/uri_sexp.cmx" {"F:fa8d55da93c4bef47bf675a1632c98ae"}
+  "lib/uri-sexp/uri_sexp.cmxa" {"F:136fc0988ef87121074e7c9220487796"}
+  "lib/uri-sexp/uri_sexp.cmxs" {"F:e3c2713c44c15fbe9992c7a9382ccc2f"}
+  "lib/uri-sexp/uri_sexp.ml" {"F:60973c7272af4de9107a9a2d548980be"}
+  "lib/uri-sexp/uri_sexp.mli" {"F:a4ba581c53c06c234304f10f5b378abb"}
+]

@@ -1,0 +1,29 @@
+opam-version: "2.0"
+added: [
+  "doc/macaddr" {"D"}
+  "doc/macaddr/CHANGES.md" {"F:0a8d19c2421b6154de39577e65e9d027"}
+  "doc/macaddr/LICENSE.md" {"F:0e20a57b051989d95e775a42e48ba56e"}
+  "doc/macaddr/README.md" {"F:4abdbb1e3e62d92f30f8c770bd1a3ab4"}
+  "lib/macaddr" {"D"}
+  "lib/macaddr/META" {"F:91b7e31fced25a3883530a16e7d84184"}
+  "lib/macaddr/dune-package" {"F:1f80fbd4247138ea0b41c0636aed1a7b"}
+  "lib/macaddr/macaddr.a" {"F:b3a1d05e852f025e9a64564d5b72453f"}
+  "lib/macaddr/macaddr.cma" {"F:aae97197091e9e332e6276e39ee7e4f0"}
+  "lib/macaddr/macaddr.cmi" {"F:cd7246e0278b2e1b5d5390ac2419680e"}
+  "lib/macaddr/macaddr.cmt" {"F:c1fd111e8871d488cebe8bdd0f17f3df"}
+  "lib/macaddr/macaddr.cmti" {"F:6fc42a946b9ff93402f084585a2795d2"}
+  "lib/macaddr/macaddr.cmx" {"F:6816eb5b3f170465f5833a5a8d4c2dbf"}
+  "lib/macaddr/macaddr.cmxa" {"F:cd56a8b38df559aef48d398b4843997e"}
+  "lib/macaddr/macaddr.cmxs" {"F:2ba9b9a24d20262ccacefb8513b98f19"}
+  "lib/macaddr/macaddr.ml" {"F:2b2c97a41ebd72191182beed52fc3a4b"}
+  "lib/macaddr/macaddr.mli" {"F:bbc73db9aa4740d6e2e15d830c2f83e8"}
+  "lib/macaddr/opam" {"F:28890828e84870ca2755633a24352d42"}
+  "lib/macaddr/top/macaddr_top.a" {"F:6a85646864127389e483002cbb065e2c"}
+  "lib/macaddr/top/macaddr_top.cma" {"F:09bf4a7be037d56aa7cd6366c5a8427f"}
+  "lib/macaddr/top/macaddr_top.cmi" {"F:9604548e751da264bfca41bece4b0748"}
+  "lib/macaddr/top/macaddr_top.cmt" {"F:edd9abadbc3c2f50b4b157d4d52e89d8"}
+  "lib/macaddr/top/macaddr_top.cmx" {"F:5715f3c6e2009f511df53cbfed6a4e20"}
+  "lib/macaddr/top/macaddr_top.cmxa" {"F:aa20e16025599eb2b43ede2000bf3fc5"}
+  "lib/macaddr/top/macaddr_top.cmxs" {"F:397b92c78a668b9fa35e683af6ab8965"}
+  "lib/macaddr/top/macaddr_top.ml" {"F:1fb36d1dff8e8930a557dd496027dfdd"}
+]

@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>How a package directory looks like</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using packages"
+HREF="c74.html"><LINK
+REL="PREVIOUS"
+TITLE="Looking up package directories"
+HREF="x81.html"><LINK
+REL="NEXT"
+TITLE="Querying information stored in META files"
+HREF="x108.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x81.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x108.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN89"
+>How a package directory looks like</A
+></H1
+><P
+>Let us assume that the package p implements the modules M1 and M2. If
+you compile m1.mli and m2.mli you get the corresponding binary files
+m1.cmi and m2.cmi describing the interfaces of the modules. Of course,
+these cmi files must go into the package directory. It is recommended
+to put the source mli files into the directory, too, as they document
+the interface.</P
+><P
+>Another product of the compilation are two cmo files, m1.cmo and
+m2.cmo (we assume the bytecode compiler, the native compiler would
+create m1.cmx and m2.cmx). It is possible to put these files directly
+into the directory, but there is a better way. As it makes only sense
+to use both modules (a very common assumption), they should first be
+archived by doing</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlc -a -o p.cma m1.cmo m2.cmo</PRE
+><P
+>The archive p.cma contains both cmo files, and preserves the order of
+the files. Assumed that in M2 there is a reference to an entity in M1,
+M2 depends on M1 and when linking a program using these modules, M1
+must be mentioned first (e.g. ocamlc m1.cmo m2.cmo
+program.ml)<A
+NAME="AEN95"
+HREF="#FTN.AEN95"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+>. If you create the archive p.cma it contains already
+this dependency, and you need not to remember it when linking in the
+p.cma.</P
+><P
+>So far the files m1.cmi, m2.cmi, and p.cma are needed, and m1.mli and
+m2.mli are recommended. Usually there is another file in the
+directory, META, containing additional information about the package.
+In our example, META looks like</P
+><PRE
+CLASS="PROGRAMLISTING"
+>description = "Our super-duper package"
+requires = ""
+version = "1"
+archive(byte) = "p.cma"</PRE
+><P
+>The variable "requires" contains a list of packages that are
+required by this package (the names may be separated by commas or
+spaces). As our package, p, does not depend on any other package, this
+list is empty. I'll explain what happens with non-empty lists below.</P
+><P
+>The variable "version" is simply a version string, and "description"
+is a short comment on the package.</P
+><P
+>The variable "archive" denotes the files that have to be
+actually linked in if the package is used. This is again a list of
+(file) names. In contrast to the other variables, "archive" has a
+condition, written in parantheses. This value of "archive" will only
+be used if the predicate "byte" is true; this predicate is usually
+given if the program is compiled to bytecode. If you have a native
+archive, p.cmxa, of the two modules M1 and M2, you can add another
+line to META:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>archive(native) = "p.cmxa"</PRE
+><P
+>The correct value for the "archive" variable is selected upon the
+given set of predicates.</P
+><P
+>Many packages can also be loaded at runtime with the
+<TT
+CLASS="LITERAL"
+>Fl_dynload</TT
+> module. In this case, though, the
+variable "plugin" is used instead of "archive", e.g.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>plugin(byte) = "p.cma"
+plugin(native) = "p.cmxs"</PRE
+><P
+>(You can create p.cmxs from p.cmxa with 
+"ocamlopt -shared -linkall -o p.cmxs p.cmxa".) Note that "plugin" is entirely optional.</P
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notes</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN95"
+HREF="x89.html#AEN95"
+><SPAN
+CLASS="footnote"
+>[1]</SPAN
+></A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Note that C linkers usually require the reverse
+order, but only for archive elements, i.e. files with suffix
+.a.</P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x81.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x108.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Looking up package directories</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c74.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Querying information stored in META files</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

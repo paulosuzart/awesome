@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/duration" {"D"}
+  "doc/duration/CHANGES.md" {"F:2bed69f398e498335f2c5e29d360843a"}
+  "doc/duration/LICENSE.md" {"F:94560837b873ca3c725f11491002457e"}
+  "doc/duration/README.md" {"F:796c89678ae2b766b6324efb3a9f4654"}
+  "lib/duration" {"D"}
+  "lib/duration/META" {"F:90df3bbe40630b85488cb75c032eb1d9"}
+  "lib/duration/dune-package" {"F:af38dfa4bd7fbf1f33eb92d75a5112c4"}
+  "lib/duration/duration.a" {"F:c409898f385ba1636555296cc0298f15"}
+  "lib/duration/duration.cma" {"F:e638d075b0f18dad0eb22c48a687bfd7"}
+  "lib/duration/duration.cmi" {"F:0d8e19db422b43c5e68d8217239633e9"}
+  "lib/duration/duration.cmt" {"F:ba80b16c74727b501581ea0e701a4143"}
+  "lib/duration/duration.cmti" {"F:659e8f51c0365234938d43fca9f2a2d9"}
+  "lib/duration/duration.cmx" {"F:b231a6081a7a5df675b219f8a3818e50"}
+  "lib/duration/duration.cmxa" {"F:6812d7ddaa2f943df823a3f3bbdc0503"}
+  "lib/duration/duration.cmxs" {"F:62b57bb932610bcc92c82ffaf61227ca"}
+  "lib/duration/duration.ml" {"F:72767c6130c2b995797c37928c792cfd"}
+  "lib/duration/duration.mli" {"F:b7a5b44b96851c609bfe15f0a019c8f1"}
+  "lib/duration/opam" {"F:68e039c45166912bd516c5dc6f7177b3"}
+]

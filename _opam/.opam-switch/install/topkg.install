@@ -1,0 +1,37 @@
+opam-version: "2.0"
+lib: [
+  "_build/pkg/META" {"META"}
+  "_build/src/topkg.a" {"topkg.a"}
+  "_build/src/topkg.cma" {"topkg.cma"}
+  "_build/src/topkg.cmi" {"topkg.cmi"}
+  "?_build/src/topkg.cmti" {"topkg.cmti"}
+  "_build/src/topkg.cmx" {"topkg.cmx"}
+  "_build/src/topkg.cmxa" {"topkg.cmxa"}
+  "_build/src/topkg.cmxs" {"topkg.cmxs"}
+  "_build/src/topkg.mli" {"topkg.mli"}
+  "_build/src/topkg_build.cmx" {"topkg_build.cmx"}
+  "_build/src/topkg_cmd.cmx" {"topkg_cmd.cmx"}
+  "_build/src/topkg_codec.cmx" {"topkg_codec.cmx"}
+  "_build/src/topkg_conf.cmx" {"topkg_conf.cmx"}
+  "_build/src/topkg_distrib.cmx" {"topkg_distrib.cmx"}
+  "_build/src/topkg_fexts.cmx" {"topkg_fexts.cmx"}
+  "_build/src/topkg_fpath.cmx" {"topkg_fpath.cmx"}
+  "_build/src/topkg_install.cmx" {"topkg_install.cmx"}
+  "_build/src/topkg_ipc.cmx" {"topkg_ipc.cmx"}
+  "_build/src/topkg_log.cmx" {"topkg_log.cmx"}
+  "_build/src/topkg_main.cmx" {"topkg_main.cmx"}
+  "_build/src/topkg_opam.cmx" {"topkg_opam.cmx"}
+  "_build/src/topkg_os.cmx" {"topkg_os.cmx"}
+  "_build/src/topkg_pkg.cmx" {"topkg_pkg.cmx"}
+  "_build/src/topkg_publish.cmx" {"topkg_publish.cmx"}
+  "_build/src/topkg_result.cmx" {"topkg_result.cmx"}
+  "_build/src/topkg_string.cmx" {"topkg_string.cmx"}
+  "_build/src/topkg_test.cmx" {"topkg_test.cmx"}
+  "_build/src/topkg_vcs.cmx" {"topkg_vcs.cmx"}
+  "_build/topkg.opam" {"opam"}
+]
+doc: [
+  "_build/CHANGES.md" {"CHANGES.md"}
+  "_build/LICENSE.md" {"LICENSE.md"}
+  "_build/README.md" {"README.md"}
+]

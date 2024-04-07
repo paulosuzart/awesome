@@ -1,0 +1,51 @@
+.TH "Numbers.Int8" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Numbers.Int8 \- no description
+.SH Module
+Module   Numbers.Int8
+.SH Documentation
+.sp
+Module
+.BI "Int8"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+
+.I val zero 
+: 
+.B t
+.sp
+
+.sp
+
+.I val one 
+: 
+.B t
+.sp
+
+.sp
+
+.I val of_int_exn 
+: 
+.B int -> t
+.sp
+
+.sp
+
+.I val to_int 
+: 
+.B t -> int
+.sp
+
+.sp

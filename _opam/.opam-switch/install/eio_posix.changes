@@ -1,0 +1,91 @@
+opam-version: "2.0"
+added: [
+  "doc/eio_posix" {"D"}
+  "doc/eio_posix/CHANGES.md" {"F:1b55e672250975f24595d49656d48380"}
+  "doc/eio_posix/LICENSE.md" {"F:06e13767200a87a3ee1de75b80bf3a2b"}
+  "doc/eio_posix/README.md" {"F:fc784beaabc8ee43bc51b2dd5bfe5278"}
+  "lib/eio_posix" {"D"}
+  "lib/eio_posix/META" {"F:2b27fc1798e64977190c094fbf70311e"}
+  "lib/eio_posix/config.ml" {"F:7e69033374daac6c73e61753838e4d9d"}
+  "lib/eio_posix/domain_mgr.ml" {"F:a5f514930b6a88dde53311368907fcc7"}
+  "lib/eio_posix/dune-package" {"F:f32ec61628257e0ba610fd1644deda70"}
+  "lib/eio_posix/eio_posix.a" {"F:debec6552f04a102d81b927b01d4015e"}
+  "lib/eio_posix/eio_posix.cma" {"F:bb4fcedc4d36bf6d2da207b469855afe"}
+  "lib/eio_posix/eio_posix.cmi" {"F:1ecd02c19d16a5763c2911f5baf63464"}
+  "lib/eio_posix/eio_posix.cmt" {"F:df0032f16abd88e67f5dd78a65eed369"}
+  "lib/eio_posix/eio_posix.cmti" {"F:9076143af356f361962b4cdef9dcb294"}
+  "lib/eio_posix/eio_posix.cmx" {"F:482d2799f54f052c490d160a45560480"}
+  "lib/eio_posix/eio_posix.cmxa" {"F:0199649c2da52ea2aef4160292c4bb73"}
+  "lib/eio_posix/eio_posix.cmxs" {"F:e97d450d256980d6fe2b07fc49b0a0e3"}
+  "lib/eio_posix/eio_posix.ml" {"F:10e3512df16b04ca12cec6c65f1eb6ae"}
+  "lib/eio_posix/eio_posix.mli" {"F:e77586656749de49402b7400563a0748"}
+  "lib/eio_posix/eio_posix__.cmi" {"F:0e4b041a7cffdb085fa478f05cbbb71f"}
+  "lib/eio_posix/eio_posix__.cmt" {"F:60d3056da066ec889cec3e0ae5bebf4a"}
+  "lib/eio_posix/eio_posix__.cmx" {"F:68dfecaf2270d16ef694df9430d35d66"}
+  "lib/eio_posix/eio_posix__.ml" {"F:9bf0d8f431917c9318020311f4f98e99"}
+  "lib/eio_posix/eio_posix__Config.cmi"
+    {"F:22bdb19887d8042ae38abba9372950e3"}
+  "lib/eio_posix/eio_posix__Config.cmt"
+    {"F:d256f96516ae8beeb3c3dd3893094d19"}
+  "lib/eio_posix/eio_posix__Config.cmx"
+    {"F:ee82c76d9fce4ea4002cf6e8e0805b12"}
+  "lib/eio_posix/eio_posix__Domain_mgr.cmi"
+    {"F:e85534c98c7e749c95e8daf9ef3489a8"}
+  "lib/eio_posix/eio_posix__Domain_mgr.cmt"
+    {"F:3bcd380c2d773802a8b6afc958107b67"}
+  "lib/eio_posix/eio_posix__Domain_mgr.cmx"
+    {"F:a317650bc853bc92989be2380ed7656f"}
+  "lib/eio_posix/eio_posix__Err.cmi" {"F:8e577c3f3029ce1cf2e0c14c0317895c"}
+  "lib/eio_posix/eio_posix__Err.cmt" {"F:4eeeefb03c9fd73a3ba324190703eed0"}
+  "lib/eio_posix/eio_posix__Err.cmx" {"F:8772f3ff2f3e6713a6d5502a3010e9d6"}
+  "lib/eio_posix/eio_posix__Flow.cmi" {"F:4aa8356a2a31481aea637912fbd19b78"}
+  "lib/eio_posix/eio_posix__Flow.cmt" {"F:f8bbcb119c8c677f0454ac6bc2692cbb"}
+  "lib/eio_posix/eio_posix__Flow.cmx" {"F:1991f79d00651f1ba73da71f8672c831"}
+  "lib/eio_posix/eio_posix__Fs.cmi" {"F:2a6e3f8fa6a792c01092ce7089fa5397"}
+  "lib/eio_posix/eio_posix__Fs.cmt" {"F:59cfba05a73bc47822fce112d7aa8336"}
+  "lib/eio_posix/eio_posix__Fs.cmx" {"F:2b9b7fd7eaf3367c1557a6aaccaac37f"}
+  "lib/eio_posix/eio_posix__Low_level.cmi"
+    {"F:0ddcf68ea73a13cccf65e508751a79ce"}
+  "lib/eio_posix/eio_posix__Low_level.cmt"
+    {"F:78515a2a7346564a31438168f36cb72d"}
+  "lib/eio_posix/eio_posix__Low_level.cmti"
+    {"F:8b91da57e9324b8323c5be5f50b52ea3"}
+  "lib/eio_posix/eio_posix__Low_level.cmx"
+    {"F:9ed005dd7a3fb6b8df68d9f1d81bf092"}
+  "lib/eio_posix/eio_posix__Net.cmi" {"F:ffe12e8ce21482043a9a70d1f3b14eae"}
+  "lib/eio_posix/eio_posix__Net.cmt" {"F:132b244df44e5b522177a06ef18ec206"}
+  "lib/eio_posix/eio_posix__Net.cmx" {"F:f2e5d942484de602fd2557ad84742f41"}
+  "lib/eio_posix/eio_posix__Path.cmi" {"F:09eec14ac50ca2358181b22bd6e5f061"}
+  "lib/eio_posix/eio_posix__Path.cmt" {"F:efe9b8dfffff4312a64d915f5e75926c"}
+  "lib/eio_posix/eio_posix__Path.cmti" {"F:3fccbabb2e8c18d9ad8bdf10710395b5"}
+  "lib/eio_posix/eio_posix__Path.cmx" {"F:163ec51d2b6c7d166385a98d53b712bd"}
+  "lib/eio_posix/eio_posix__Process.cmi"
+    {"F:3f49c3cc624e406a43e77cdea8ab9de6"}
+  "lib/eio_posix/eio_posix__Process.cmt"
+    {"F:5fda0a1583c76aeaab6ba14481032d03"}
+  "lib/eio_posix/eio_posix__Process.cmx"
+    {"F:240f89661ccc6821793bbc94eeb764fb"}
+  "lib/eio_posix/eio_posix__Sched.cmi" {"F:73b912ff67704f8780eded87acf000fa"}
+  "lib/eio_posix/eio_posix__Sched.cmt" {"F:0e23af7810843dd441a0a5cee8ff467e"}
+  "lib/eio_posix/eio_posix__Sched.cmti"
+    {"F:c40bf256a0c2ac0584c4542c80fc4e2b"}
+  "lib/eio_posix/eio_posix__Sched.cmx" {"F:26c92d2d5bc6d3546ad2729b56996306"}
+  "lib/eio_posix/eio_posix__Time.cmi" {"F:0cd70a30bb033efdfe79dee66718e3b2"}
+  "lib/eio_posix/eio_posix__Time.cmt" {"F:867477adbabe0440ff64fe89b81d8b66"}
+  "lib/eio_posix/eio_posix__Time.cmx" {"F:6999b3b2fb8be6d3c16971d43c2732c5"}
+  "lib/eio_posix/err.ml" {"F:0025482b13322bf84c448c7480be174d"}
+  "lib/eio_posix/flow.ml" {"F:9671294d84061d44f9ec879910c89590"}
+  "lib/eio_posix/fs.ml" {"F:b72612713fe43daaa34faa7518acae27"}
+  "lib/eio_posix/libeio_posix_stubs.a" {"F:df96587e7ea54d61ee98b296d4200232"}
+  "lib/eio_posix/low_level.ml" {"F:ad6d8ab79682c3a529ea4067c16c9c82"}
+  "lib/eio_posix/low_level.mli" {"F:b8b4973069a856aab251ff19a39f5a8d"}
+  "lib/eio_posix/net.ml" {"F:488367ded6b1835af4bafde59eda0d8b"}
+  "lib/eio_posix/opam" {"F:4df430a285a547753edcc5321825bd22"}
+  "lib/eio_posix/path.ml" {"F:a2c91ae0333f35d8c06c29468df4bdfd"}
+  "lib/eio_posix/path.mli" {"F:c1e6e7220cb1e356e73fab8e2362584f"}
+  "lib/eio_posix/process.ml" {"F:25f069c16635509cb9d009d02843512c"}
+  "lib/eio_posix/sched.ml" {"F:36b485b3e2fa040427f4cb1936415dc2"}
+  "lib/eio_posix/sched.mli" {"F:20b0fe0b2f870f959b25d58f1e070bba"}
+  "lib/eio_posix/time.ml" {"F:d3a078e16ad2dd8a2102074a87f7c43d"}
+  "lib/stublibs/dlleio_posix_stubs.so" {"F:f2d180c59d972eda9d55aaa8dff2fc08"}
+]

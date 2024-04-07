@@ -1,0 +1,38 @@
+(lang dune 3.15)
+(name ppx_sexp_value)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_sexp_value))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_sexp_value.a
+   ppx_sexp_value.cma
+   ppx_sexp_value.cmi
+   ppx_sexp_value.cmt
+   ppx_sexp_value.cmti
+   ppx_sexp_value.cmx
+   ppx_sexp_value.cmxa
+   ppx_sexp_value.ml
+   ppx_sexp_value.mli))
+ (libexec (ppx.exe ppx_sexp_value.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_sexp_value)
+ (kind ppx_rewriter)
+ (archives (byte ppx_sexp_value.cma) (native ppx_sexp_value.cmxa))
+ (plugins (byte ppx_sexp_value.cma) (native ppx_sexp_value.cmxs))
+ (native_archives ppx_sexp_value.a)
+ (requires base ppxlib.ast ppxlib ppx_sexp_conv.expander ppx_here.expander)
+ (ppx_runtime_deps ppx_sexp_conv.runtime-lib)
+ (main_module_name Ppx_sexp_value)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_sexp_value)
+   (visibility public)
+   (source
+    (path Ppx_sexp_value)
+    (intf (path ppx_sexp_value.mli))
+    (impl (path ppx_sexp_value.ml))))))

@@ -1,0 +1,48 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_custom_printf" {"D"}
+  "doc/ppx_custom_printf/CHANGES.md" {"F:0ec49dcceb3637f1702a1515aa540443"}
+  "doc/ppx_custom_printf/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_custom_printf/README.md" {"F:6290f8e9fb8a343ad69b877b2adec1aa"}
+  "lib/ppx_custom_printf" {"D"}
+  "lib/ppx_custom_printf/META" {"F:1c31b61031b259239e3aeec089212346"}
+  "lib/ppx_custom_printf/dune-package" {"F:8da03372831dfb5f7627c23aba304e76"}
+  "lib/ppx_custom_printf/format_lifter.ml"
+    {"F:b9e28535ee64b4d2a92fc13d68ecc18a"}
+  "lib/ppx_custom_printf/opam" {"F:9cb2290250c530473ff93ef1c7b70882"}
+  "lib/ppx_custom_printf/ppx.exe" {"F:4745768c460bbd085622a8da97022b7c"}
+  "lib/ppx_custom_printf/ppx_custom_printf.a"
+    {"F:064e38a989e0745841a637ea24d73496"}
+  "lib/ppx_custom_printf/ppx_custom_printf.cma"
+    {"F:62618eced48d7ff7baac9e017df7d2a9"}
+  "lib/ppx_custom_printf/ppx_custom_printf.cmi"
+    {"F:af0c4f088b980a3dc2d03f68344708ea"}
+  "lib/ppx_custom_printf/ppx_custom_printf.cmt"
+    {"F:f43f93846eeb50d772406dc2b654aa82"}
+  "lib/ppx_custom_printf/ppx_custom_printf.cmti"
+    {"F:affb8acaac8c6ba1f5d6e56d8e0deb9e"}
+  "lib/ppx_custom_printf/ppx_custom_printf.cmx"
+    {"F:7687100f22bdf820dd67520f5590ab2f"}
+  "lib/ppx_custom_printf/ppx_custom_printf.cmxa"
+    {"F:5158970a8478bb65bc0dee26e418c25b"}
+  "lib/ppx_custom_printf/ppx_custom_printf.cmxs"
+    {"F:e025740b2b4fe01e2718b74e689e8cb0"}
+  "lib/ppx_custom_printf/ppx_custom_printf.ml"
+    {"F:ce62280d38b6900ef4d6bad511902610"}
+  "lib/ppx_custom_printf/ppx_custom_printf.mli"
+    {"F:d41d8cd98f00b204e9800998ecf8427e"}
+  "lib/ppx_custom_printf/ppx_custom_printf__.cmi"
+    {"F:19171966a04323ca092995fabb653760"}
+  "lib/ppx_custom_printf/ppx_custom_printf__.cmt"
+    {"F:44842c39297fbab746c35149f39aec64"}
+  "lib/ppx_custom_printf/ppx_custom_printf__.cmx"
+    {"F:f6af46bf06f833fbee58c33b671cb8b0"}
+  "lib/ppx_custom_printf/ppx_custom_printf__.ml"
+    {"F:f30b2b11b89c2594f72161e010893bb5"}
+  "lib/ppx_custom_printf/ppx_custom_printf__Format_lifter.cmi"
+    {"F:8b236c0dcb3e7b767dee009811679107"}
+  "lib/ppx_custom_printf/ppx_custom_printf__Format_lifter.cmt"
+    {"F:f37aff745cb2a048287177165d9869a4"}
+  "lib/ppx_custom_printf/ppx_custom_printf__Format_lifter.cmx"
+    {"F:821bfef9711dcc9c80531b4c72375926"}
+]

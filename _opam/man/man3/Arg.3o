@@ -1,0 +1,932 @@
+.TH "Arg" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Arg \- Parsing of command line arguments.
+.SH Module
+Module   Arg
+.SH Documentation
+.sp
+Module
+.BI "Arg"
+ : 
+.B sig end
+
+.sp
+Parsing of command line arguments\&.
+.sp
+This module provides a general mechanism for extracting options and
+arguments from the command line to the program\&. For example:
+.sp
+
+.EX
+.ft B
+.br
+\&     let usage_msg = "append [\-verbose] <file1> [<file2>] \&.\&.\&. \-o <output>"
+.br
+\&     let verbose = ref false
+.br
+\&     let input_files = ref []
+.br
+\&     let output_file = ref ""
+.br
+\&
+.br
+\&     let anon_fun filename =
+.br
+\&       input_files := filename::!input_files
+.br
+\&
+.br
+\&     let speclist =
+.br
+\&       [("\-verbose", Arg\&.Set verbose, "Output debug information");
+.br
+\&        ("\-o", Arg\&.Set_string output_file, "Set output file name")]
+.br
+\&
+.br
+\&     let () =
+.br
+\&       Arg\&.parse speclist anon_fun usage_msg;
+.br
+\&       (* Main functionality here *)
+.br
+\&
+.ft R
+.EE
+.sp
+Syntax of command lines:
+A keyword is a character string starting with a 
+.ft B
+\-
+.ft R
+\&.
+An option is a keyword alone or followed by an argument\&.
+The types of keywords are: 
+.ft B
+Unit
+.ft R
+, 
+.ft B
+Bool
+.ft R
+, 
+.ft B
+Set
+.ft R
+, 
+.ft B
+Clear
+.ft R
+,
+.ft B
+String
+.ft R
+, 
+.ft B
+Set_string
+.ft R
+, 
+.ft B
+Int
+.ft R
+, 
+.ft B
+Set_int
+.ft R
+, 
+.ft B
+Float
+.ft R
+, 
+.ft B
+Set_float
+.ft R
+,
+.ft B
+Tuple
+.ft R
+, 
+.ft B
+Symbol
+.ft R
+, 
+.ft B
+Rest
+.ft R
+, 
+.ft B
+Rest_all
+.ft R
+and 
+.ft B
+Expand
+.ft R
+\&.
+.sp
+
+.ft B
+Unit
+.ft R
+, 
+.ft B
+Set
+.ft R
+and 
+.ft B
+Clear
+.ft R
+keywords take no argument\&.
+.sp
+A 
+.ft B
+Rest
+.ft R
+or 
+.ft B
+Rest_all
+.ft R
+keyword takes the remainder of the command line
+as arguments\&. (More explanations below\&.)
+.sp
+Every other keyword takes the following word on the command line
+as argument\&.  For compatibility with GNU getopt_long, 
+.ft B
+keyword=arg
+.ft R
+is also allowed\&.
+Arguments not preceded by a keyword are called anonymous arguments\&.
+.sp
+Examples (
+.ft B
+cmd
+.ft R
+is assumed to be the command name):
+.sp
+\-  
+.ft B
+cmd \-flag           
+.ft R
+(a unit option)
+.sp
+\-  
+.ft B
+cmd \-int 1          
+.ft R
+(an int option with argument 
+.ft B
+1
+.ft R
+)
+.sp
+\-  
+.ft B
+cmd \-string foobar  
+.ft R
+(a string option with argument 
+.ft B
+"foobar"
+.ft R
+)
+.sp
+\-  
+.ft B
+cmd \-float 12\&.34    
+.ft R
+(a float option with argument 
+.ft B
+12\&.34
+.ft R
+)
+.sp
+\-  
+.ft B
+cmd a b c           
+.ft R
+(three anonymous arguments: 
+.ft B
+"a"
+.ft R
+, 
+.ft B
+"b"
+.ft R
+, and 
+.ft B
+"c"
+.ft R
+)
+.sp
+\-  
+.ft B
+cmd a b \-\- c d      
+.ft R
+(two anonymous arguments and a rest option with
+two arguments)
+
+.ft B
+Rest
+.ft R
+takes a function that is called repeatedly for each
+remaining command line argument\&. 
+.ft B
+Rest_all
+.ft R
+takes a function that
+is called once, with the list of all remaining arguments\&.
+.sp
+Note that if no arguments follow a 
+.ft B
+Rest
+.ft R
+keyword then the function
+is not called at all whereas the function for a 
+.ft B
+Rest_all
+.ft R
+keyword
+is called with an empty list\&.
+
+.sp
+.B Alert unsynchronized_access.
+The Arg module relies on a mutable global state, parsing functions should only be called from a single domain.
+
+.sp
+
+.sp
+.sp
+.I type spec 
+=
+ | Unit
+.B of 
+.B (unit -> unit)
+.I "  "
+  (* Call the function with unit argument
+ *)
+ | Bool
+.B of 
+.B (bool -> unit)
+.I "  "
+  (* Call the function with a bool argument
+ *)
+ | Set
+.B of 
+.B bool ref
+.I "  "
+  (* Set the reference to true
+ *)
+ | Clear
+.B of 
+.B bool ref
+.I "  "
+  (* Set the reference to false
+ *)
+ | String
+.B of 
+.B (string -> unit)
+.I "  "
+  (* Call the function with a string argument
+ *)
+ | Set_string
+.B of 
+.B string ref
+.I "  "
+  (* Set the reference to the string argument
+ *)
+ | Int
+.B of 
+.B (int -> unit)
+.I "  "
+  (* Call the function with an int argument
+ *)
+ | Set_int
+.B of 
+.B int ref
+.I "  "
+  (* Set the reference to the int argument
+ *)
+ | Float
+.B of 
+.B (float -> unit)
+.I "  "
+  (* Call the function with a float argument
+ *)
+ | Set_float
+.B of 
+.B float ref
+.I "  "
+  (* Set the reference to the float argument
+ *)
+ | Tuple
+.B of 
+.B spec list
+.I "  "
+  (* Take several arguments according to the
+spec list
+ *)
+ | Symbol
+.B of 
+.B string list * (string -> unit)
+.I "  "
+  (* Take one of the symbols as argument and
+call the function with the symbol
+ *)
+ | Rest
+.B of 
+.B (string -> unit)
+.I "  "
+  (* Stop interpreting keywords and call the
+function with each remaining argument
+ *)
+ | Rest_all
+.B of 
+.B (string list -> unit)
+.I "  "
+  (* Stop interpreting keywords and call the
+function with all remaining arguments
+ *)
+ | Expand
+.B of 
+.B (string -> string array)
+.I "  "
+  (* If the remaining arguments to process
+are of the form
+.ft B
+["\-foo"; "arg"] @ rest
+.ft R
+where "foo"
+is registered as 
+.ft B
+Expand f
+.ft R
+, then the
+arguments 
+.ft B
+f "arg" @ rest
+.ft R
+are
+processed\&. Only allowed in
+.ft B
+parse_and_expand_argv_dynamic
+.ft R
+\&.
+ *)
+ 
+.sp
+The concrete type describing the behavior associated
+with a keyword\&.
+
+.sp
+.I type key 
+= 
+.B string
+
+.sp
+
+.sp
+.I type doc 
+= 
+.B string
+
+.sp
+
+.sp
+.I type usage_msg 
+= 
+.B string
+
+.sp
+
+.sp
+.I type anon_fun 
+= 
+.B string -> unit
+
+.sp
+
+.sp
+
+.I val parse 
+: 
+.B (key * spec * doc) list -> anon_fun -> usage_msg -> unit
+.sp
+
+.ft B
+Arg\&.parse speclist anon_fun usage_msg
+.ft R
+parses the command line\&.
+.ft B
+speclist
+.ft R
+is a list of triples 
+.ft B
+(key, spec, doc)
+.ft R
+\&.
+.ft B
+key
+.ft R
+is the option keyword, it must start with a 
+.ft B
+\&'\-\&'
+.ft R
+character\&.
+.ft B
+spec
+.ft R
+gives the option type and the function to call when this option
+is found on the command line\&.
+.ft B
+doc
+.ft R
+is a one\-line description of this option\&.
+.ft B
+anon_fun
+.ft R
+is called on anonymous arguments\&.
+The functions in 
+.ft B
+spec
+.ft R
+and 
+.ft B
+anon_fun
+.ft R
+are called in the same order
+as their arguments appear on the command line\&.
+.sp
+If an error occurs, 
+.ft B
+Arg\&.parse
+.ft R
+exits the program, after printing
+to standard error an error message as follows:
+.sp
+\-  The reason for the error: unknown option, invalid or missing argument, etc\&.
+.sp
+\-  
+.ft B
+usage_msg
+.ft R
+
+.sp
+\-  The list of options, each followed by the corresponding 
+.ft B
+doc
+.ft R
+string\&.
+Beware: options that have an empty 
+.ft B
+doc
+.ft R
+string will not be included in the
+list\&.
+
+For the user to be able to specify anonymous arguments starting with a
+.ft B
+\-
+.ft R
+, include for example 
+.ft B
+("\-", String anon_fun, doc)
+.ft R
+in 
+.ft B
+speclist
+.ft R
+\&.
+.sp
+By default, 
+.ft B
+parse
+.ft R
+recognizes two unit options, 
+.ft B
+\-help
+.ft R
+and 
+.ft B
+\-\-help
+.ft R
+,
+which will print to standard output 
+.ft B
+usage_msg
+.ft R
+and the list of
+options, and exit the program\&.  You can override this behaviour
+by specifying your own 
+.ft B
+\-help
+.ft R
+and 
+.ft B
+\-\-help
+.ft R
+options in 
+.ft B
+speclist
+.ft R
+\&.
+
+.sp
+
+.I val parse_dynamic 
+: 
+.B (key * spec * doc) list ref ->
+.B   anon_fun -> usage_msg -> unit
+.sp
+Same as 
+.ft B
+Arg\&.parse
+.ft R
+, except that the 
+.ft B
+speclist
+.ft R
+argument is a reference
+and may be updated during the parsing\&. A typical use for this feature
+is to parse command lines of the form:
+.sp
+\-    command subcommand 
+.ft B
+options
+.ft R
+where the list of options depends on the value of the subcommand argument\&.
+
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val parse_argv 
+: 
+.B ?current:int ref ->
+.B   string array ->
+.B   (key * spec * doc) list -> anon_fun -> usage_msg -> unit
+.sp
+
+.ft B
+Arg\&.parse_argv ~current args speclist anon_fun usage_msg
+.ft R
+parses
+the array 
+.ft B
+args
+.ft R
+as if it were the command line\&.  It uses and updates
+the value of 
+.ft B
+~current
+.ft R
+(if given), or 
+.ft B
+Arg\&.current
+.ft R
+\&.  You must set
+it before calling 
+.ft B
+parse_argv
+.ft R
+\&.  The initial value of 
+.ft B
+current
+.ft R
+is the index of the program name (argument 0) in the array\&.
+If an error occurs, 
+.ft B
+Arg\&.parse_argv
+.ft R
+raises 
+.ft B
+Arg\&.Bad
+.ft R
+with
+the error message as argument\&.  If option 
+.ft B
+\-help
+.ft R
+or 
+.ft B
+\-\-help
+.ft R
+is
+given, 
+.ft B
+Arg\&.parse_argv
+.ft R
+raises 
+.ft B
+Arg\&.Help
+.ft R
+with the help message
+as argument\&.
+
+.sp
+
+.I val parse_argv_dynamic 
+: 
+.B ?current:int ref ->
+.B   string array ->
+.B   (key * spec * doc) list ref ->
+.B   anon_fun -> string -> unit
+.sp
+Same as 
+.ft B
+Arg\&.parse_argv
+.ft R
+, except that the 
+.ft B
+speclist
+.ft R
+argument is a
+reference and may be updated during the parsing\&.
+See 
+.ft B
+Arg\&.parse_dynamic
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val parse_and_expand_argv_dynamic 
+: 
+.B int ref ->
+.B   string array ref ->
+.B   (key * spec * doc) list ref ->
+.B   anon_fun -> string -> unit
+.sp
+Same as 
+.ft B
+Arg\&.parse_argv_dynamic
+.ft R
+, except that the 
+.ft B
+argv
+.ft R
+argument is a
+reference and may be updated during the parsing of 
+.ft B
+Expand
+.ft R
+arguments\&.
+See 
+.ft B
+Arg\&.parse_argv_dynamic
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val parse_expand 
+: 
+.B (key * spec * doc) list -> anon_fun -> usage_msg -> unit
+.sp
+Same as 
+.ft B
+Arg\&.parse
+.ft R
+, except that the 
+.ft B
+Expand
+.ft R
+arguments are allowed and
+the 
+.ft B
+Arg\&.current
+.ft R
+reference is not updated\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I exception Help 
+.B of 
+.B string
+
+.sp
+Raised by 
+.ft B
+Arg\&.parse_argv
+.ft R
+when the user asks for help\&.
+
+.sp
+
+.I exception Bad 
+.B of 
+.B string
+
+.sp
+Functions in 
+.ft B
+spec
+.ft R
+or 
+.ft B
+anon_fun
+.ft R
+can raise 
+.ft B
+Arg\&.Bad
+.ft R
+with an error
+message to reject invalid arguments\&.
+.ft B
+Arg\&.Bad
+.ft R
+is also raised by 
+.ft B
+Arg\&.parse_argv
+.ft R
+in case of an error\&.
+
+.sp
+
+.I val usage 
+: 
+.B (key * spec * doc) list -> usage_msg -> unit
+.sp
+
+.ft B
+Arg\&.usage speclist usage_msg
+.ft R
+prints to standard error
+an error message that includes the list of valid options\&.  This is
+the same message that 
+.ft B
+Arg\&.parse
+.ft R
+prints in case of error\&.
+.ft B
+speclist
+.ft R
+and 
+.ft B
+usage_msg
+.ft R
+are the same as for 
+.ft B
+Arg\&.parse
+.ft R
+\&.
+
+.sp
+
+.I val usage_string 
+: 
+.B (key * spec * doc) list -> usage_msg -> string
+.sp
+Returns the message that would have been printed by 
+.ft B
+Arg\&.usage
+.ft R
+,
+if provided with the same parameters\&.
+
+.sp
+
+.I val align 
+: 
+.B ?limit:int ->
+.B   (key * spec * doc) list -> (key * spec * doc) list
+.sp
+Align the documentation strings by inserting spaces at the first alignment
+separator (tab or, if tab is not found, space), according to the length of
+the keyword\&.  Use a alignment separator as the first character in a doc
+string if you want to align the whole string\&.  The doc strings corresponding
+to 
+.ft B
+Symbol
+.ft R
+arguments are aligned on the next line\&.
+
+.sp
+
+.I val current 
+: 
+.B int ref
+.sp
+Position (in 
+.ft B
+Sys\&.argv
+.ft R
+) of the argument being processed\&.  You can
+change this value, e\&.g\&. to force 
+.ft B
+Arg\&.parse
+.ft R
+to skip some arguments\&.
+.ft B
+Arg\&.parse
+.ft R
+uses the initial value of 
+.ft B
+Arg\&.current
+.ft R
+as the index of
+argument 0 (the program name) and starts parsing arguments
+at the next element\&.
+
+.sp
+
+.I val read_arg 
+: 
+.B string -> string array
+.sp
+
+.ft B
+Arg\&.read_arg file
+.ft R
+reads newline\-terminated command line arguments from
+file 
+.ft B
+file
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val read_arg0 
+: 
+.B string -> string array
+.sp
+Identical to 
+.ft B
+Arg\&.read_arg
+.ft R
+but assumes null character terminated command
+line arguments\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val write_arg 
+: 
+.B string -> string array -> unit
+.sp
+
+.ft B
+Arg\&.write_arg file args
+.ft R
+writes the arguments 
+.ft B
+args
+.ft R
+newline\-terminated
+into the file 
+.ft B
+file
+.ft R
+\&. If any of the arguments in 
+.ft B
+args
+.ft R
+contains a
+newline, use 
+.ft B
+Arg\&.write_arg0
+.ft R
+instead\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val write_arg0 
+: 
+.B string -> string array -> unit
+.sp
+Identical to 
+.ft B
+Arg\&.write_arg
+.ft R
+but uses the null character for terminator
+instead of newline\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp

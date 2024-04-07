@@ -1,0 +1,210 @@
+.TH "Hashtbl.SeededS" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Hashtbl.SeededS \- The output signature of the functor Hashtbl.MakeSeeded.
+.SH Module type
+Module type   Hashtbl.SeededS
+.SH Documentation
+.sp
+Module type
+.BI "SeededS"
+ = 
+.B sig end
+
+.sp
+The output signature of the functor 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.sp
+.sp
+.I type key 
+
+.sp
+
+.sp
+.I type 
+.B !'a
+.I t 
+
+.sp
+
+.sp
+
+.I val create 
+: 
+.B ?random:bool -> int -> 'a t
+.sp
+
+.sp
+
+.I val clear 
+: 
+.B 'a t -> unit
+.sp
+
+.sp
+
+.I val reset 
+: 
+.B 'a t -> unit
+.sp
+
+.sp
+
+.I val copy 
+: 
+.B 'a t -> 'a t
+.sp
+
+.sp
+
+.I val add 
+: 
+.B 'a t -> key -> 'a -> unit
+.sp
+
+.sp
+
+.I val remove 
+: 
+.B 'a t -> key -> unit
+.sp
+
+.sp
+
+.I val find 
+: 
+.B 'a t -> key -> 'a
+.sp
+
+.sp
+
+.I val find_opt 
+: 
+.B 'a t -> key -> 'a option
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_all 
+: 
+.B 'a t -> key -> 'a list
+.sp
+
+.sp
+
+.I val replace 
+: 
+.B 'a t -> key -> 'a -> unit
+.sp
+
+.sp
+
+.I val mem 
+: 
+.B 'a t -> key -> bool
+.sp
+
+.sp
+
+.I val iter 
+: 
+.B (key -> 'a -> unit) -> 'a t -> unit
+.sp
+
+.sp
+
+.I val filter_map_inplace 
+: 
+.B (key -> 'a -> 'a option) -> 'a t -> unit
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val fold 
+: 
+.B (key -> 'a -> 'acc -> 'acc) ->
+.B   'a t -> 'acc -> 'acc
+.sp
+
+.sp
+
+.I val length 
+: 
+.B 'a t -> int
+.sp
+
+.sp
+
+.I val stats 
+: 
+.B 'a t -> Hashtbl.statistics
+.sp
+
+.sp
+
+.I val to_seq 
+: 
+.B 'a t -> (key * 'a) Seq.t
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seq_keys 
+: 
+.B 'a t -> key Seq.t
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seq_values 
+: 
+.B 'a t -> 'a Seq.t
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val add_seq 
+: 
+.B 'a t -> (key * 'a) Seq.t -> unit
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val replace_seq 
+: 
+.B 'a t -> (key * 'a) Seq.t -> unit
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B (key * 'a) Seq.t -> 'a t
+.sp
+.B "Since"
+4.07
+
+.sp

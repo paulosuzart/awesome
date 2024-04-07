@@ -1,0 +1,18 @@
+opam-version: "2.0"
+added: [
+  "doc/hmap" {"D"}
+  "doc/hmap/CHANGES.md" {"F:7432c0043ed1bae0d14cd1299dc447b1"}
+  "doc/hmap/LICENSE.md" {"F:b227434c1b462610bf819eb4c5b8f3e8"}
+  "doc/hmap/README.md" {"F:fcb3eed2bed3a7cca635d349497539bf"}
+  "lib/hmap" {"D"}
+  "lib/hmap/META" {"F:f733b0a56f837f0c8ea8af9cfd636e6a"}
+  "lib/hmap/hmap.a" {"F:7fb31308a9b6e0c703c8b5f0da5d8477"}
+  "lib/hmap/hmap.cma" {"F:87f5dbb799e4bcde17029ec31426f202"}
+  "lib/hmap/hmap.cmi" {"F:1c703084de26680edf3a441514b6f3d5"}
+  "lib/hmap/hmap.cmti" {"F:914f68578b90bf225c9dd7a284742178"}
+  "lib/hmap/hmap.cmx" {"F:33cf05250f80c573be8810215467edc5"}
+  "lib/hmap/hmap.cmxa" {"F:dc0265ce7abc50bbbc8692c3e6fe5971"}
+  "lib/hmap/hmap.cmxs" {"F:449d4ebfa250dfc779460fadda518c4f"}
+  "lib/hmap/hmap.mli" {"F:79f7403da90d6ca7483fdca469ba646b"}
+  "lib/hmap/opam" {"F:167e089f5138fec13316a6a3eaaa04f2"}
+]

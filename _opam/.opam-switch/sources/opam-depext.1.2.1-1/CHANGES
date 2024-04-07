@@ -1,0 +1,127 @@
+1.2.1 (2022-01-21):
+* Add OCaml 5.00 compatibility (#147 by @dra27)
+
+1.2.0 (2021-11-10):
+* Support opam 2.1 to allow workflows using OPAMCLI=2.0 (#142 by @rjbou)
+* Always upgrade installed packages when adding new packages on Arch
+  (#138 by @kit-ty-kate)
+* Prevent yum-based distributions from upgrading during an update
+  (#137 by @kit-ty-kate)
+
+1.1.5 (2021-11-10):
+* Fix `depext -u` on Arch Linux and add more BSD support (#135 by @kit-ty-kate)
+* Fix Arch Linux and Oracle Linux support (#134 by @kit-ty-kate)
+
+1.1.4 (2020-10-14):
+* Fix shell quoting when calling opam (#132 by @kit-ty-kate)
+* Display the correct licence in the man page (#98 by @avsm)
+* Make behaviour of interactive yes consistent across platforms, mirroring
+  the integrated depext support in ocaml/opam#4168 (#123 by @kit-ty-kate)
+* Compatibility with opam 2.1.0~alpha (#126 by @rjbou)
+
+1.1.3 (2019-04-24):
+* Support test-only and docs-only dependencies in opam files via
+  `--with-test` and `--with-doc` to opam-depext.
+
+1.1.2 (2018-06-05):
+* Fixed license
+* Specific fixes for OpenSuse, Fedora
+* Improved OpenBSD support
+
+1.1.1 (2018-01-29):
+* Propagate exit codes of sub-commands
+* Fixes
+
+1.1.0 (2017-10-17):
+* Separate output between comments (stderr) and information (stdout)
+* Switch to opam 2.0.0~beta5 CLI and variables (not backwards compatible)
+
+1.0.6 (2017-07-24):
+* Really fix Zypper non-interactive installation by passing
+  parameters in the right order (#68 by @jpdeplaix).
+
+1.0.5 (2017-07-20):
+* Pass `--non-interactive` to zypper on OpenSUSE (#67 #62 by
+  @yallop and @jpdeplaix)
+* Improve README to point to package descriptions (#65 by @dbuenzli)
+
+1.0.4 (2017-03-30):
+* Fix build on FreeBSD (#61 by @sg2342)
+
+1.0.3 (2017-03-08):
+* Vendor in cmdliner to remove the dependency on all external
+  OCaml packages.  This lets depext always be the first in the
+  dependency order, including not needing ocamlfind or ocamlbuild.
+
+1.0.2 (2016-08-11):
+* Fix uncaught exception on empty depexts
+
+1.0.1 (2016-06-20):
+* Add support for `OPAMYES` and `OPAMVERBOSE` environment variables
+  to force `-y` and `-v` respectively.
+
+1.0.0 (2016-06-19):
+* Add support for `-y`, `-j <jobs>` and `-v` flags when used in
+  conjunction with `opam depext -i`.  These are passed through to
+  the `opam install` command and allow non-interactive, parallel and
+  verbose output to be activated in the OPAM source builds.  This
+  conveniently allows the most common flags to `opam install` to be
+  used by an equivalent `opam depext -i` call.
+* Fix the debug printing when using `opam depext -d` to flush output
+  more often and add newlines.
+* Add support for Oracle Linux via the `oraclelinux` tag.
+* Add support for Raspbian Linux via the `raspbian` tag (#41).
+* Add support for OpenSUSE via the `opensuse` tag.
+* Fix FreeBSD support.
+
+0.9.1 (2016-02-22):
+* Do not assume that `bash` is installed for source depexts (#35).
+* Add support for Red Hat Enterprise Linux via `rhel` tag (#32).
+* Add multi-distro Docker-based Travis file.
+
+0.9.0 (2016-01-04):
+* Add support for Alpine Linux.
+
+0.8.1 (2015-08-03):
+* Repair OpenBSD depext support
+
+0.8 (2015-07-27):
+* Detect and support opam 1.1.0
+* Revert unneeded #23
+
+0.7 (2015-07-12):
+* Fix `os-release` detection by evaluating it through a shell rather
+  than parsing the file directly.  Repairs CentOS and RHEL detection.
+* Fix package detection on Ubuntu and Debian by doing a sequence of
+  `dpkg` queries instead of a combined one. (#23 via Francois Berenger).
+
+0.6 (2015-06-25):
+* Detect already installed packages and skip them
+* Better OS detection, use `os-release`
+* Added a `--dryrun` option
+
+0.5 (2015-04-19):
+* Do not let `yum upgrade` go interactive.
+* Print commands before `sudo` so that they can be cut-and-pasted (#4).
+* Double-check the installation of multiple RPMs as the exit code
+  can be unreliable (#9).
+* Add support for Gentoo and Arch Linux (#11).
+* Add Travis CI scripts.
+
+0.4 (2015-03-22):
+* Add `-u` or `--update` flag to trigger an OS package set update
+  before performing external dependency installation. This is useful
+  on Debian or Ubuntu where package installation may fail if the
+  sets are not up-to-date with respect to latest security updates.
+* Fix installation of source packages.
+* Detect the CentOS distribution correctly.
+* Fix external command detection to not go through a subshell.
+
+0.3 (2015-01-27):
+* Add OCaml 3.12.1 compatibility.
+* Add `-i` flag to perform OPAM package installation after the
+  external OS dependencies are installed.
+* Fixes for MacPorts and CentOS support.
+
+0.2 (2015-01-21):
+* Initial public release.

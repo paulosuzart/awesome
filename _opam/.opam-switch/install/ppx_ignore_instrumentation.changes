@@ -1,0 +1,37 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_ignore_instrumentation" {"D"}
+  "doc/ppx_ignore_instrumentation/LICENSE.md"
+    {"F:8f9a63480c505270926fac42ef2097b8"}
+  "doc/ppx_ignore_instrumentation/README.md"
+    {"F:1fb6531bb399ca71dd4a4643c193458f"}
+  "lib/ppx_ignore_instrumentation" {"D"}
+  "lib/ppx_ignore_instrumentation/META"
+    {"F:89ccd274b6e588d8258410e043e5d958"}
+  "lib/ppx_ignore_instrumentation/dune-package"
+    {"F:3c206cc174efae964ac69e1b7e42f4ca"}
+  "lib/ppx_ignore_instrumentation/opam"
+    {"F:83f23a48e2f44e76e395b3925947be51"}
+  "lib/ppx_ignore_instrumentation/ppx.exe"
+    {"F:ad171d30258138f6b37f9e0a998ba8f3"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.a"
+    {"F:400cbcafdb86a4b84bf5cc57b62cfcab"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cma"
+    {"F:2dbe283f9202378e519d2a993dc5a323"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmi"
+    {"F:5c5be4a6672868972a254821a9f7d586"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmt"
+    {"F:a82131db982e553ca57fea7fb8f31bfb"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmti"
+    {"F:7878cdc708c82d1acdd79d1ed71d19ae"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmx"
+    {"F:567273dd36855988548d3215b6e4bc85"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmxa"
+    {"F:2a7910d1e3789c28fb2ce11948b5ccea"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmxs"
+    {"F:e6f821571f7dd1c5dd76d4fb168ac7c8"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.ml"
+    {"F:5b11a8c9c88510612508234dadaab326"}
+  "lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.mli"
+    {"F:067b8b030beecc60423f7a7ab38606a3"}
+]

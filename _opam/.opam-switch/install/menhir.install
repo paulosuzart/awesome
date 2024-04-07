@@ -1,0 +1,15 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/menhir/META"
+  "_build/install/default/lib/menhir/dune-package"
+]
+bin: "_build/install/default/bin/menhir"
+doc: [
+  "_build/install/default/doc/menhir/LICENSE"
+  "_build/install/default/doc/menhir/manual.html"
+  "_build/install/default/doc/menhir/manual.pdf"
+  "_build/install/default/doc/menhir/manual001.png"
+  "_build/install/default/doc/menhir/manual002.png"
+  "_build/install/default/doc/menhir/manual003.png"
+]
+man: "_build/install/default/man/man1/menhir.1"

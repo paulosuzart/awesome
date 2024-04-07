@@ -1,0 +1,19 @@
+opam-version: "2.0"
+added: [
+  "bin/ppx-base" {"F:634fc6924ecf4c2dbff99c444fe72d72"}
+  "doc/ppx_base" {"D"}
+  "doc/ppx_base/LICENSE.md" {"F:809d8824c11bf5dba3923a8a5635174b"}
+  "lib/ppx_base" {"D"}
+  "lib/ppx_base/META" {"F:f06d71d1b6483c82852e0c2c0370e16b"}
+  "lib/ppx_base/dune-package" {"F:412f4812d5613f5d295e4958dfd66fb4"}
+  "lib/ppx_base/opam" {"F:33a4f5b2cd3eeda8a750fa465090762f"}
+  "lib/ppx_base/ppx.exe" {"F:6d75bf7a2d5b7a6609efe8c305ebdcd3"}
+  "lib/ppx_base/ppx_base.a" {"F:a5010521eb69447b2ca15295de6bacc2"}
+  "lib/ppx_base/ppx_base.cma" {"F:e9e8e97e631c35cbeb2059c61b0ef920"}
+  "lib/ppx_base/ppx_base.cmi" {"F:72173d958309b6753f1e63bdbd356fb5"}
+  "lib/ppx_base/ppx_base.cmt" {"F:a399731c64770d96e4fa3cc7155a5ca1"}
+  "lib/ppx_base/ppx_base.cmx" {"F:423d4da52241e6c1891260879f525eb3"}
+  "lib/ppx_base/ppx_base.cmxa" {"F:c300204c62e8332aa3688d79c97380d8"}
+  "lib/ppx_base/ppx_base.cmxs" {"F:0f12b522e2385844b26da7661883734f"}
+  "lib/ppx_base/ppx_base.ml" {"F:93fd6c71e5b0012319ab63274560024e"}
+]

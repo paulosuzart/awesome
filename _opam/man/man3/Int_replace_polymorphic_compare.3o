@@ -1,0 +1,67 @@
+.TH "Int_replace_polymorphic_compare" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Int_replace_polymorphic_compare \- no description
+.SH Module
+Module   Int_replace_polymorphic_compare
+.SH Documentation
+.sp
+Module
+.BI "Int_replace_polymorphic_compare"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val (=) 
+: 
+.B int -> int -> bool
+.sp
+
+.sp
+
+.I val (<>) 
+: 
+.B int -> int -> bool
+.sp
+
+.sp
+
+.I val (<) 
+: 
+.B int -> int -> bool
+.sp
+
+.sp
+
+.I val (>) 
+: 
+.B int -> int -> bool
+.sp
+
+.sp
+
+.I val (<=) 
+: 
+.B int -> int -> bool
+.sp
+
+.sp
+
+.I val (>=) 
+: 
+.B int -> int -> bool
+.sp
+
+.sp
+
+.I val compare 
+: 
+.B int -> int -> int
+.sp
+
+.sp

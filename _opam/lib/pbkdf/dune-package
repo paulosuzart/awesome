@@ -1,0 +1,33 @@
+(lang dune 3.15)
+(name pbkdf)
+(sections (lib .) (libexec .) (doc ../../doc/pbkdf))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   pbkdf.a
+   pbkdf.cma
+   pbkdf.cmi
+   pbkdf.cmt
+   pbkdf.cmti
+   pbkdf.cmx
+   pbkdf.cmxa
+   pbkdf.ml
+   pbkdf.mli))
+ (libexec (pbkdf.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name pbkdf)
+ (kind normal)
+ (archives (byte pbkdf.cma) (native pbkdf.cmxa))
+ (plugins (byte pbkdf.cma) (native pbkdf.cmxs))
+ (native_archives pbkdf.a)
+ (requires cstruct mirage-crypto)
+ (main_module_name Pbkdf)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name pbkdf)
+   (visibility public)
+   (source (path Pbkdf) (intf (path pbkdf.mli)) (impl (path pbkdf.ml))))))

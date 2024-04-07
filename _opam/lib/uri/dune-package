@@ -1,0 +1,95 @@
+(lang dune 3.15)
+(name uri)
+(version 4.4.0)
+(sections (lib .) (libexec .) (doc ../../doc/uri))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   services/uri_services.a
+   services/uri_services.cma
+   services/uri_services.cmi
+   services/uri_services.cmt
+   services/uri_services.cmti
+   services/uri_services.cmx
+   services/uri_services.cmxa
+   services/uri_services.ml
+   services/uri_services.mli
+   services_full/uri_services_full.a
+   services_full/uri_services_full.cma
+   services_full/uri_services_full.cmi
+   services_full/uri_services_full.cmt
+   services_full/uri_services_full.cmti
+   services_full/uri_services_full.cmx
+   services_full/uri_services_full.cmxa
+   services_full/uri_services_full.ml
+   services_full/uri_services_full.mli
+   uri.a
+   uri.cma
+   uri.cmi
+   uri.cmt
+   uri.cmti
+   uri.cmx
+   uri.cmxa
+   uri.ml
+   uri.mli))
+ (libexec
+  (services/uri_services.cmxs services_full/uri_services_full.cmxs uri.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name uri)
+ (kind normal)
+ (archives (byte uri.cma) (native uri.cmxa))
+ (plugins (byte uri.cma) (native uri.cmxs))
+ (native_archives uri.a)
+ (requires stringext angstrom)
+ (main_module_name Uri)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name uri)
+   (visibility public)
+   (source (path Uri) (intf (path uri.mli)) (impl (path uri.ml))))))
+(library
+ (name uri.services)
+ (kind normal)
+ (archives
+  (byte services/uri_services.cma)
+  (native services/uri_services.cmxa))
+ (plugins
+  (byte services/uri_services.cma)
+  (native services/uri_services.cmxs))
+ (native_archives services/uri_services.a)
+ (requires uri)
+ (main_module_name Uri_services)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name uri_services)
+   (visibility public)
+   (source
+    (path Uri_services)
+    (intf (path services/uri_services.mli))
+    (impl (path services/uri_services.ml))))))
+(library
+ (name uri.services_full)
+ (kind normal)
+ (archives
+  (byte services_full/uri_services_full.cma)
+  (native services_full/uri_services_full.cmxa))
+ (plugins
+  (byte services_full/uri_services_full.cma)
+  (native services_full/uri_services_full.cmxs))
+ (native_archives services_full/uri_services_full.a)
+ (requires uri)
+ (main_module_name Uri_services_full)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name uri_services_full)
+   (visibility public)
+   (source
+    (path Uri_services_full)
+    (intf (path services_full/uri_services_full.mli))
+    (impl (path services_full/uri_services_full.ml))))))

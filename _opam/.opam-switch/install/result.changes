@@ -1,0 +1,19 @@
+opam-version: "2.0"
+added: [
+  "doc/result" {"D"}
+  "doc/result/CHANGES.md" {"F:6380a6be678c68b428ce28edb75f7193"}
+  "doc/result/LICENSE.md" {"F:0f0d371bfac9a53eae0d9c46bbd76bad"}
+  "doc/result/README.md" {"F:0cc2890cb0cdfd2ed5e4cff67e3a4a1b"}
+  "lib/result" {"D"}
+  "lib/result/META" {"F:14415cc05e02ed4467efb72402adbccb"}
+  "lib/result/dune-package" {"F:48cef724d700730ecd31329ca21c2a2e"}
+  "lib/result/opam" {"F:19bfc0fefaaf20a0b3d690add6718410"}
+  "lib/result/result.a" {"F:3aadf66152c375a0be76cfb059a346a1"}
+  "lib/result/result.cma" {"F:e4994ec41f3f75504a4e1d927781a00a"}
+  "lib/result/result.cmi" {"F:087f42a95c5d4d11e3a828542a39d873"}
+  "lib/result/result.cmt" {"F:8bab53da1b764366916dd74721408d65"}
+  "lib/result/result.cmx" {"F:1529fbb43b4f21f8b5e3211a892c3661"}
+  "lib/result/result.cmxa" {"F:c0ae35b7638c337990245ec4f068f9c6"}
+  "lib/result/result.cmxs" {"F:0c0b13ecb764b7d50a60add14995a322"}
+  "lib/result/result.ml" {"F:067689e1eb16dad28d1bfdedc5d76e2b"}
+]

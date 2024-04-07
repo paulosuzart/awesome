@@ -1,0 +1,84 @@
+(lang dune 3.15)
+(name base64)
+(version 3.5.1)
+(sections (lib .) (libexec .) (doc ../../doc/base64))
+(files
+ (lib
+  (META
+   base64.a
+   base64.cma
+   base64.cmi
+   base64.cmt
+   base64.cmti
+   base64.cmx
+   base64.cmxa
+   base64.ml
+   base64.mli
+   base64__.cmi
+   base64__.cmt
+   base64__.cmx
+   base64__.ml
+   base64__Unsafe.cmi
+   base64__Unsafe.cmt
+   base64__Unsafe.cmx
+   dune-package
+   opam
+   rfc2045/base64_rfc2045.a
+   rfc2045/base64_rfc2045.cma
+   rfc2045/base64_rfc2045.cmi
+   rfc2045/base64_rfc2045.cmt
+   rfc2045/base64_rfc2045.cmti
+   rfc2045/base64_rfc2045.cmx
+   rfc2045/base64_rfc2045.cmxa
+   rfc2045/base64_rfc2045.ml
+   rfc2045/base64_rfc2045.mli
+   unsafe.ml))
+ (libexec (base64.cmxs rfc2045/base64_rfc2045.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name base64)
+ (kind normal)
+ (archives (byte base64.cma) (native base64.cmxa))
+ (plugins (byte base64.cma) (native base64.cmxs))
+ (native_archives base64.a)
+ (main_module_name Base64)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name base64__)
+     (visibility public)
+     (kind alias)
+     (source (path Base64__) (impl (path base64__.ml-gen))))
+    (name Base64)
+    (modules
+     (module
+      (obj_name base64)
+      (visibility public)
+      (source (path Base64) (intf (path base64.mli)) (impl (path base64.ml))))
+     (module
+      (obj_name base64__Unsafe)
+      (visibility public)
+      (source (path Unsafe) (impl (path unsafe.ml))))))
+   (wrapped true))))
+(library
+ (name base64.rfc2045)
+ (kind normal)
+ (archives
+  (byte rfc2045/base64_rfc2045.cma)
+  (native rfc2045/base64_rfc2045.cmxa))
+ (plugins
+  (byte rfc2045/base64_rfc2045.cma)
+  (native rfc2045/base64_rfc2045.cmxs))
+ (native_archives rfc2045/base64_rfc2045.a)
+ (main_module_name Base64_rfc2045)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name base64_rfc2045)
+   (visibility public)
+   (source
+    (path Base64_rfc2045)
+    (intf (path rfc2045/base64_rfc2045.mli))
+    (impl (path rfc2045/base64_rfc2045.ml))))))

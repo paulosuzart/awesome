@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Dependencies</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using packages"
+HREF="c74.html"><LINK
+REL="PREVIOUS"
+TITLE="How to compile and link a program that uses a package"
+HREF="x119.html"><LINK
+REL="NEXT"
+TITLE="Linker options"
+HREF="x149.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x119.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x149.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN135"
+>Dependencies</A
+></H1
+><P
+>Often packages use other packages themselves. Let q be another package
+consisting of the single module M3 which contains references to M1 and
+M2. At the first glance, we can ignore this when describing the
+package, as we could always add "-package p" and "-package q" options
+when compiling programs using q. This solution is not optimal, as the
+user of a package must have knowlege about details of the package that
+should normally be hidden. When we introduced the notion of packages,
+one of the most important properties was that we can replace packages
+by improved versions. Imagine that q is replaced by q', but q' uses
+not only p but also r. Every program that used q and is now forced to
+use q' must be changed (at least in the Makefile) in order to link r,
+too. This is clearly not what is intended by packages.</P
+><P
+>The far better solution is to store dependency information in the META
+files. The "requires" variable can list names of packages that are
+direct ancestors, i.e. referred directly. (Do not put indirect
+ancestors into this variable, for example further packages required by
+r when describing q - these are found out automatically.) The META
+file of q looks like:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>description = "Something that needs p"
+requires = "p"
+version = "1"
+archive(byte) = q.cma
+archive(native) = q.cmxa</PRE
+><P
+>If you want to put several package names into "requires", separate
+them with commas or spaces.</P
+><P
+>The "ocamlfind query" command ignores the "requires" value by default,
+you must add the -recursive option. In this case, all direct or
+indirect ancestors of the packages given on the command line are
+selected, too, and printed in topological order. For example, the
+command</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind query -recursive -long-format -predicate byte q</PRE
+><P
+>prints two records:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>package:     p
+description: Our super-duper package
+version:     1
+archive(s):  p.cma
+linkopts:
+location:    /usr/local/lib/ocaml/site-lib/p
+
+package:     q
+description: Something that needs p
+version:     1
+archive(s):  q.cma
+linkopts:
+location:    /usr/local/lib/ocaml/site-lib/p</PRE
+><P
+>Without -recursive, only q would have been printed.</P
+><P
+>The compiler frontend provided with ocamlfind always works
+recursively. In order to compile and link another.ml that uses q, the
+following command is sufficient:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o another -package q -linkpkg another.ml</PRE
+><P
+>It is not necessary to specify -package p in this statement as the
+dependency relation is always used to find out the actually meant
+set of packages.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x119.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x149.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>How to compile and link a program that uses a package</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c74.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Linker options</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

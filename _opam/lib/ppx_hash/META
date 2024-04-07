@@ -1,0 +1,38 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "ppx_hash.expander ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_hash.cma"
+archive(ppx_driver,native) = "ppx_hash.cmxa"
+plugin(ppx_driver,byte) = "ppx_hash.cma"
+plugin(ppx_driver,native) = "ppx_hash.cmxs"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_compare.runtime-lib ppx_hash.runtime-lib"
+requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppx_hash"
+library_kind = "ppx_deriver"
+package "expander" (
+  directory = "expander"
+  version = "v0.16.0"
+  description = "Expander for ppx_hash"
+  requires =
+  "base compiler-libs.common ppx_compare.expander ppxlib ppxlib.ast"
+  archive(byte) = "ppx_hash_expander.cma"
+  archive(native) = "ppx_hash_expander.cmxa"
+  plugin(byte) = "ppx_hash_expander.cma"
+  plugin(native) = "ppx_hash_expander.cmxs"
+  # This is what dune uses to find out the runtime dependencies of
+  # a preprocessor
+  ppx_runtime_deps = "ppx_hash.runtime-lib"
+)
+package "runtime-lib" (
+  directory = "runtime-lib"
+  version = "v0.16.0"
+  description = "Runtime library for ppx_hash"
+  requires =
+  "base ppx_compare.runtime-lib ppx_sexp_conv.runtime-lib sexplib0"
+  archive(byte) = "ppx_hash_lib.cma"
+  archive(native) = "ppx_hash_lib.cmxa"
+  plugin(byte) = "ppx_hash_lib.cma"
+  plugin(native) = "ppx_hash_lib.cmxs"
+)

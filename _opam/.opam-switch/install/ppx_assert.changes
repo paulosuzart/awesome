@@ -1,0 +1,50 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_assert" {"D"}
+  "doc/ppx_assert/CHANGES.md" {"F:9e8c851d86f46b5b7077efd0a79f8c9a"}
+  "doc/ppx_assert/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_assert/README.md" {"F:24aa2ad739c0c43f9a35302568af710f"}
+  "lib/ppx_assert" {"D"}
+  "lib/ppx_assert/META" {"F:91cce94ccfece40c424f35beaa4868b8"}
+  "lib/ppx_assert/dune-package" {"F:d8cb9a6144c625e1354d2c04e8e88f37"}
+  "lib/ppx_assert/opam" {"F:4582a3c836d5d822fbab1129662b322d"}
+  "lib/ppx_assert/ppx.exe" {"F:3c6ec68530fa1db8b441437c9f246b99"}
+  "lib/ppx_assert/ppx_assert.a" {"F:86feef5249435db285897e3c34c1e717"}
+  "lib/ppx_assert/ppx_assert.cma" {"F:d475cf907c7515519848baf35aa8789a"}
+  "lib/ppx_assert/ppx_assert.cmi" {"F:a1ff7d9f5373aa9655d8ffa91be56edf"}
+  "lib/ppx_assert/ppx_assert.cmt" {"F:07e7ea60d76c2834b0b37dee17d79ebb"}
+  "lib/ppx_assert/ppx_assert.cmti" {"F:583588c49f7a774f9600aaf1848564f5"}
+  "lib/ppx_assert/ppx_assert.cmx" {"F:e8ffc824ffd43576523449cb4dc0f0c4"}
+  "lib/ppx_assert/ppx_assert.cmxa" {"F:b032fcb84c0ed63085bcd41222a20e89"}
+  "lib/ppx_assert/ppx_assert.cmxs" {"F:a7a86948a53a63fc2703d82176265b3c"}
+  "lib/ppx_assert/ppx_assert.ml" {"F:cfa161cbd960723961ffadbf95860058"}
+  "lib/ppx_assert/ppx_assert.mli" {"F:d41d8cd98f00b204e9800998ecf8427e"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib.a"
+    {"F:3b55a4c90772741abc13a4fdc18f78fb"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib.cma"
+    {"F:189ed2bb320f6de3f243a5beae590bcb"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib.cmi"
+    {"F:25bff6b777107277468276723b0b6d6c"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib.cmt"
+    {"F:8e761f06cb544d689209a9deac1273bd"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib.cmx"
+    {"F:7248d58e8fe3faa04d14ebc794774c25"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib.cmxa"
+    {"F:9ee04f8d47300d786a6ecec4fe5b04c3"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib.cmxs"
+    {"F:eaa856f0235bdffc0e0f62ac1323bfb4"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib.ml"
+    {"F:ae15dc6319ed525d9bb06365457cacee"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib__Runtime.cmi"
+    {"F:efc0f563f34611b41990a4029d61d48d"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib__Runtime.cmt"
+    {"F:838712e29150fa3ecd3afe24ea82435f"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib__Runtime.cmti"
+    {"F:70b24bc26de578f2b6169128ae491f1c"}
+  "lib/ppx_assert/runtime-lib/ppx_assert_lib__Runtime.cmx"
+    {"F:54898fb664b8a83d029d435509d235be"}
+  "lib/ppx_assert/runtime-lib/runtime.ml"
+    {"F:a7809654a6a670c253f59d48d48d323e"}
+  "lib/ppx_assert/runtime-lib/runtime.mli"
+    {"F:926c69f0046d105be1590f0010f35b86"}
+]

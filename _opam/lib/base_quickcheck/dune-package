@@ -1,0 +1,396 @@
+(lang dune 3.15)
+(name base_quickcheck)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/base_quickcheck))
+(files
+ (lib
+  (META
+   base_quickcheck.a
+   base_quickcheck.cma
+   base_quickcheck.cmi
+   base_quickcheck.cmt
+   base_quickcheck.cmx
+   base_quickcheck.cmxa
+   base_quickcheck.ml
+   base_quickcheck__.cmi
+   base_quickcheck__.cmt
+   base_quickcheck__.cmx
+   base_quickcheck__.ml
+   base_quickcheck__Bigarray_helpers.cmi
+   base_quickcheck__Bigarray_helpers.cmt
+   base_quickcheck__Bigarray_helpers.cmti
+   base_quickcheck__Bigarray_helpers.cmx
+   base_quickcheck__Export.cmi
+   base_quickcheck__Export.cmt
+   base_quickcheck__Export.cmti
+   base_quickcheck__Export.cmx
+   base_quickcheck__Generator.cmi
+   base_quickcheck__Generator.cmt
+   base_quickcheck__Generator.cmti
+   base_quickcheck__Generator.cmx
+   base_quickcheck__Observer.cmi
+   base_quickcheck__Observer.cmt
+   base_quickcheck__Observer.cmti
+   base_quickcheck__Observer.cmx
+   base_quickcheck__Observer0.cmi
+   base_quickcheck__Observer0.cmt
+   base_quickcheck__Observer0.cmti
+   base_quickcheck__Observer0.cmx
+   base_quickcheck__Shrinker.cmi
+   base_quickcheck__Shrinker.cmt
+   base_quickcheck__Shrinker.cmti
+   base_quickcheck__Shrinker.cmx
+   base_quickcheck__Test.cmi
+   base_quickcheck__Test.cmt
+   base_quickcheck__Test.cmti
+   base_quickcheck__Test.cmx
+   base_quickcheck__Test_intf.cmi
+   base_quickcheck__Test_intf.cmt
+   base_quickcheck__Test_intf.cmx
+   base_quickcheck__With_basic_types.cmi
+   base_quickcheck__With_basic_types.cmt
+   base_quickcheck__With_basic_types.cmx
+   bigarray_helpers.ml
+   bigarray_helpers.mli
+   dune-package
+   export.ml
+   export.mli
+   generator.ml
+   generator.mli
+   observer.ml
+   observer.mli
+   observer0.ml
+   observer0.mli
+   opam
+   ppx_quickcheck/expander/clause_syntax.ml
+   ppx_quickcheck/expander/clause_syntax.mli
+   ppx_quickcheck/expander/clause_syntax_intf.ml
+   ppx_quickcheck/expander/environment.ml
+   ppx_quickcheck/expander/environment.mli
+   ppx_quickcheck/expander/field_syntax.ml
+   ppx_quickcheck/expander/field_syntax.mli
+   ppx_quickcheck/expander/field_syntax_intf.ml
+   ppx_quickcheck/expander/import.ml
+   ppx_quickcheck/expander/ppx_generator_expander.ml
+   ppx_quickcheck/expander/ppx_generator_expander.mli
+   ppx_quickcheck/expander/ppx_observer_expander.ml
+   ppx_quickcheck/expander/ppx_observer_expander.mli
+   ppx_quickcheck/expander/ppx_quickcheck_expander.a
+   ppx_quickcheck/expander/ppx_quickcheck_expander.cma
+   ppx_quickcheck/expander/ppx_quickcheck_expander.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander.cmti
+   ppx_quickcheck/expander/ppx_quickcheck_expander.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander.cmxa
+   ppx_quickcheck/expander/ppx_quickcheck_expander.ml
+   ppx_quickcheck/expander/ppx_quickcheck_expander.mli
+   ppx_quickcheck/expander/ppx_quickcheck_expander__.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__.ml
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Clause_syntax.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Clause_syntax.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Clause_syntax.cmti
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Clause_syntax.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Clause_syntax_intf.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Clause_syntax_intf.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Clause_syntax_intf.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Environment.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Environment.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Environment.cmti
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Environment.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Field_syntax.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Field_syntax.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Field_syntax.cmti
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Field_syntax.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Field_syntax_intf.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Field_syntax_intf.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Field_syntax_intf.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Import.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Import.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Import.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_generator_expander.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_generator_expander.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_generator_expander.cmti
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_generator_expander.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_observer_expander.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_observer_expander.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_observer_expander.cmti
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_observer_expander.cmx
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_shrinker_expander.cmi
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_shrinker_expander.cmt
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_shrinker_expander.cmti
+   ppx_quickcheck/expander/ppx_quickcheck_expander__Ppx_shrinker_expander.cmx
+   ppx_quickcheck/expander/ppx_shrinker_expander.ml
+   ppx_quickcheck/expander/ppx_shrinker_expander.mli
+   ppx_quickcheck/ppx_quickcheck.a
+   ppx_quickcheck/ppx_quickcheck.cma
+   ppx_quickcheck/ppx_quickcheck.cmi
+   ppx_quickcheck/ppx_quickcheck.cmt
+   ppx_quickcheck/ppx_quickcheck.cmti
+   ppx_quickcheck/ppx_quickcheck.cmx
+   ppx_quickcheck/ppx_quickcheck.cmxa
+   ppx_quickcheck/ppx_quickcheck.ml
+   ppx_quickcheck/ppx_quickcheck.mli
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime.a
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime.cma
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime.cmi
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime.cmt
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime.cmx
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime.cmxa
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime.ml
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime__.cmi
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime__.cmt
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime__.cmx
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime__.ml
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime__Quickcheckable.cmi
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime__Quickcheckable.cmt
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime__Quickcheckable.cmx
+   ppx_quickcheck/runtime/quickcheckable.ml
+   shrinker.ml
+   shrinker.mli
+   test.ml
+   test.mli
+   test_intf.ml
+   with_basic_types.ml))
+ (libexec
+  (base_quickcheck.cmxs
+   ppx_quickcheck/expander/ppx_quickcheck_expander.cmxs
+   ppx_quickcheck/ppx_quickcheck.cmxs
+   ppx_quickcheck/runtime/ppx_quickcheck_runtime.cmxs))
+ (doc (CHANGES.md LICENSE.md odoc-pages/index.mld)))
+(library
+ (name base_quickcheck)
+ (kind normal)
+ (archives (byte base_quickcheck.cma) (native base_quickcheck.cmxa))
+ (plugins (byte base_quickcheck.cma) (native base_quickcheck.cmxs))
+ (native_archives base_quickcheck.a)
+ (requires
+  base
+  splittable_random
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_here.runtime-lib
+  fieldslib
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib)
+ (main_module_name Base_quickcheck)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name base_quickcheck__)
+     (visibility public)
+     (kind alias)
+     (source (path Base_quickcheck__) (impl (path base_quickcheck__.ml-gen))))
+    (name Base_quickcheck)
+    (modules
+     (module
+      (obj_name base_quickcheck)
+      (visibility public)
+      (source (path Base_quickcheck) (impl (path base_quickcheck.ml))))
+     (module
+      (obj_name base_quickcheck__Bigarray_helpers)
+      (visibility public)
+      (source
+       (path Bigarray_helpers)
+       (intf (path bigarray_helpers.mli))
+       (impl (path bigarray_helpers.ml))))
+     (module
+      (obj_name base_quickcheck__Export)
+      (visibility public)
+      (source (path Export) (intf (path export.mli)) (impl (path export.ml))))
+     (module
+      (obj_name base_quickcheck__Generator)
+      (visibility public)
+      (source
+       (path Generator)
+       (intf (path generator.mli))
+       (impl (path generator.ml))))
+     (module
+      (obj_name base_quickcheck__Observer)
+      (visibility public)
+      (source
+       (path Observer)
+       (intf (path observer.mli))
+       (impl (path observer.ml))))
+     (module
+      (obj_name base_quickcheck__Observer0)
+      (visibility public)
+      (source
+       (path Observer0)
+       (intf (path observer0.mli))
+       (impl (path observer0.ml))))
+     (module
+      (obj_name base_quickcheck__Shrinker)
+      (visibility public)
+      (source
+       (path Shrinker)
+       (intf (path shrinker.mli))
+       (impl (path shrinker.ml))))
+     (module
+      (obj_name base_quickcheck__Test)
+      (visibility public)
+      (source (path Test) (intf (path test.mli)) (impl (path test.ml))))
+     (module
+      (obj_name base_quickcheck__Test_intf)
+      (visibility public)
+      (source (path Test_intf) (impl (path test_intf.ml))))
+     (module
+      (obj_name base_quickcheck__With_basic_types)
+      (visibility public)
+      (source (path With_basic_types) (impl (path with_basic_types.ml))))))
+   (wrapped true))))
+(library
+ (name base_quickcheck.ppx_quickcheck)
+ (kind ppx_deriver)
+ (archives
+  (byte ppx_quickcheck/ppx_quickcheck.cma)
+  (native ppx_quickcheck/ppx_quickcheck.cmxa))
+ (plugins
+  (byte ppx_quickcheck/ppx_quickcheck.cma)
+  (native ppx_quickcheck/ppx_quickcheck.cmxs))
+ (native_archives ppx_quickcheck/ppx_quickcheck.a)
+ (requires ppxlib.ast ppxlib base_quickcheck.ppx_quickcheck.expander)
+ (main_module_name Ppx_quickcheck)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_quickcheck)
+   (visibility public)
+   (source
+    (path Ppx_quickcheck)
+    (intf (path ppx_quickcheck/ppx_quickcheck.mli))
+    (impl (path ppx_quickcheck/ppx_quickcheck.ml))))))
+(library
+ (name base_quickcheck.ppx_quickcheck.expander)
+ (kind normal)
+ (archives
+  (byte ppx_quickcheck/expander/ppx_quickcheck_expander.cma)
+  (native ppx_quickcheck/expander/ppx_quickcheck_expander.cmxa))
+ (plugins
+  (byte ppx_quickcheck/expander/ppx_quickcheck_expander.cma)
+  (native ppx_quickcheck/expander/ppx_quickcheck_expander.cmxs))
+ (native_archives ppx_quickcheck/expander/ppx_quickcheck_expander.a)
+ (requires base ppxlib.ast ppxlib compiler-libs.common)
+ (ppx_runtime_deps base_quickcheck.ppx_quickcheck.runtime base_quickcheck)
+ (main_module_name Ppx_quickcheck_expander)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_quickcheck_expander__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppx_quickcheck_expander__)
+      (impl (path ppx_quickcheck/expander/ppx_quickcheck_expander__.ml-gen))))
+    (name Ppx_quickcheck_expander)
+    (modules
+     (module
+      (obj_name ppx_quickcheck_expander__Clause_syntax)
+      (visibility public)
+      (source
+       (path Clause_syntax)
+       (intf (path ppx_quickcheck/expander/clause_syntax.mli))
+       (impl (path ppx_quickcheck/expander/clause_syntax.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander__Clause_syntax_intf)
+      (visibility public)
+      (source
+       (path Clause_syntax_intf)
+       (impl (path ppx_quickcheck/expander/clause_syntax_intf.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander__Environment)
+      (visibility public)
+      (source
+       (path Environment)
+       (intf (path ppx_quickcheck/expander/environment.mli))
+       (impl (path ppx_quickcheck/expander/environment.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander__Field_syntax)
+      (visibility public)
+      (source
+       (path Field_syntax)
+       (intf (path ppx_quickcheck/expander/field_syntax.mli))
+       (impl (path ppx_quickcheck/expander/field_syntax.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander__Field_syntax_intf)
+      (visibility public)
+      (source
+       (path Field_syntax_intf)
+       (impl (path ppx_quickcheck/expander/field_syntax_intf.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander__Import)
+      (visibility public)
+      (source (path Import) (impl (path ppx_quickcheck/expander/import.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander__Ppx_generator_expander)
+      (visibility public)
+      (source
+       (path Ppx_generator_expander)
+       (intf (path ppx_quickcheck/expander/ppx_generator_expander.mli))
+       (impl (path ppx_quickcheck/expander/ppx_generator_expander.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander__Ppx_observer_expander)
+      (visibility public)
+      (source
+       (path Ppx_observer_expander)
+       (intf (path ppx_quickcheck/expander/ppx_observer_expander.mli))
+       (impl (path ppx_quickcheck/expander/ppx_observer_expander.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander)
+      (visibility public)
+      (source
+       (path Ppx_quickcheck_expander)
+       (intf (path ppx_quickcheck/expander/ppx_quickcheck_expander.mli))
+       (impl (path ppx_quickcheck/expander/ppx_quickcheck_expander.ml))))
+     (module
+      (obj_name ppx_quickcheck_expander__Ppx_shrinker_expander)
+      (visibility public)
+      (source
+       (path Ppx_shrinker_expander)
+       (intf (path ppx_quickcheck/expander/ppx_shrinker_expander.mli))
+       (impl (path ppx_quickcheck/expander/ppx_shrinker_expander.ml))))))
+   (wrapped true))))
+(library
+ (name base_quickcheck.ppx_quickcheck.runtime)
+ (kind normal)
+ (archives
+  (byte ppx_quickcheck/runtime/ppx_quickcheck_runtime.cma)
+  (native ppx_quickcheck/runtime/ppx_quickcheck_runtime.cmxa))
+ (plugins
+  (byte ppx_quickcheck/runtime/ppx_quickcheck_runtime.cma)
+  (native ppx_quickcheck/runtime/ppx_quickcheck_runtime.cmxs))
+ (native_archives ppx_quickcheck/runtime/ppx_quickcheck_runtime.a)
+ (requires base base_quickcheck)
+ (main_module_name Ppx_quickcheck_runtime)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_quickcheck_runtime__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppx_quickcheck_runtime__)
+      (impl (path ppx_quickcheck/runtime/ppx_quickcheck_runtime__.ml-gen))))
+    (name Ppx_quickcheck_runtime)
+    (modules
+     (module
+      (obj_name ppx_quickcheck_runtime)
+      (visibility public)
+      (source
+       (path Ppx_quickcheck_runtime)
+       (impl (path ppx_quickcheck/runtime/ppx_quickcheck_runtime.ml))))
+     (module
+      (obj_name ppx_quickcheck_runtime__Quickcheckable)
+      (visibility public)
+      (source
+       (path Quickcheckable)
+       (impl (path ppx_quickcheck/runtime/quickcheckable.ml))))))
+   (wrapped true))))

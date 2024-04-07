@@ -1,0 +1,7 @@
+version = "0.11.3"
+description = ""
+requires = "cstruct eqaf.cstruct"
+archive(byte) = "mirage_crypto.cma"
+archive(native) = "mirage_crypto.cmxa"
+plugin(byte) = "mirage_crypto.cma"
+plugin(native) = "mirage_crypto.cmxs"

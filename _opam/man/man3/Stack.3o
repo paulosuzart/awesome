@@ -1,0 +1,348 @@
+.TH "Stack" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stack \- Last-in first-out stacks.
+.SH Module
+Module   Stack
+.SH Documentation
+.sp
+Module
+.BI "Stack"
+ : 
+.B sig end
+
+.sp
+Last\-in first\-out stacks\&.
+.sp
+This module implements stacks (LIFOs), with in\-place modification\&.
+
+.sp
+.B Alert unsynchronized_access.
+Unsynchronized accesses to stacks are a programming error.
+
+.sp
+
+.sp
+.sp
+
+.PP
+Unsynchronized accesses
+.PP
+
+.PP
+Unsynchronized accesses to a stack may lead to an invalid queue state\&.
+Thus, concurrent accesses to stacks must be synchronized (for instance
+with a 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.PP
+.I type 
+.B !'a
+.I t 
+
+.sp
+The type of stacks containing elements of type 
+.ft B
+\&'a
+.ft R
+\&.
+
+.sp
+
+.I exception Empty 
+
+.sp
+Raised when 
+.ft B
+Stack\&.pop
+.ft R
+or 
+.ft B
+Stack\&.top
+.ft R
+is applied to an empty stack\&.
+
+.sp
+
+.I val create 
+: 
+.B unit -> 'a t
+.sp
+Return a new stack, initially empty\&.
+
+.sp
+
+.I val push 
+: 
+.B 'a -> 'a t -> unit
+.sp
+
+.ft B
+push x s
+.ft R
+adds the element 
+.ft B
+x
+.ft R
+at the top of stack 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val pop 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+pop s
+.ft R
+removes and returns the topmost element in stack 
+.ft B
+s
+.ft R
+,
+or raises 
+.ft B
+Stack\&.Empty
+.ft R
+if the stack is empty\&.
+
+.sp
+
+.I val pop_opt 
+: 
+.B 'a t -> 'a option
+.sp
+
+.ft B
+pop_opt s
+.ft R
+removes and returns the topmost element in stack 
+.ft B
+s
+.ft R
+,
+or returns 
+.ft B
+None
+.ft R
+if the stack is empty\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val drop 
+: 
+.B 'a t -> unit
+.sp
+
+.ft B
+drop s
+.ft R
+removes the topmost element in stack 
+.ft B
+s
+.ft R
+,
+or raises 
+.ft B
+Stack\&.Empty
+.ft R
+if the stack is empty\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val top 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+top s
+.ft R
+returns the topmost element in stack 
+.ft B
+s
+.ft R
+,
+or raises 
+.ft B
+Stack\&.Empty
+.ft R
+if the stack is empty\&.
+
+.sp
+
+.I val top_opt 
+: 
+.B 'a t -> 'a option
+.sp
+
+.ft B
+top_opt s
+.ft R
+returns the topmost element in stack 
+.ft B
+s
+.ft R
+,
+or 
+.ft B
+None
+.ft R
+if the stack is empty\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val clear 
+: 
+.B 'a t -> unit
+.sp
+Discard all elements from a stack\&.
+
+.sp
+
+.I val copy 
+: 
+.B 'a t -> 'a t
+.sp
+Return a copy of the given stack\&.
+
+.sp
+
+.I val is_empty 
+: 
+.B 'a t -> bool
+.sp
+Return 
+.ft B
+true
+.ft R
+if the given stack is empty, 
+.ft B
+false
+.ft R
+otherwise\&.
+
+.sp
+
+.I val length 
+: 
+.B 'a t -> int
+.sp
+Return the number of elements in a stack\&. Time complexity O(1)
+
+.sp
+
+.I val iter 
+: 
+.B ('a -> unit) -> 'a t -> unit
+.sp
+
+.ft B
+iter f s
+.ft R
+applies 
+.ft B
+f
+.ft R
+in turn to all elements of 
+.ft B
+s
+.ft R
+,
+from the element at the top of the stack to the element at the
+bottom of the stack\&. The stack itself is unchanged\&.
+
+.sp
+
+.I val fold 
+: 
+.B ('acc -> 'a -> 'acc) -> 'acc -> 'a t -> 'acc
+.sp
+
+.ft B
+fold f accu s
+.ft R
+is 
+.ft B
+(f (\&.\&.\&. (f (f accu x1) x2) \&.\&.\&.) xn)
+.ft R
+where 
+.ft B
+x1
+.ft R
+is the top of the stack, 
+.ft B
+x2
+.ft R
+the second element,
+and 
+.ft B
+xn
+.ft R
+the bottom element\&. The stack is unchanged\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.PP
+.SS Stacks and Sequences
+
+.PP
+
+.I val to_seq 
+: 
+.B 'a t -> 'a Seq.t
+.sp
+Iterate on the stack, top to bottom\&.
+It is safe to modify the stack during iteration\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val add_seq 
+: 
+.B 'a t -> 'a Seq.t -> unit
+.sp
+Add the elements from the sequence on the top of the stack\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B 'a Seq.t -> 'a t
+.sp
+Create a stack from the sequence\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp

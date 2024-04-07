@@ -1,0 +1,14 @@
+opam-version: "2.0"
+synopsis: "/home/runner/work/awesome/awesome"
+repositories: "default"
+opam-root: "/home/runner/.opam"
+invariant: [
+  "ocaml-base-compiler" {= "5.01.1"}
+]
+paths {
+  
+}
+variables {
+  user: "runner"
+  group: "docker"
+}

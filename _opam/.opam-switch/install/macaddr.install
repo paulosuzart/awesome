@@ -1,0 +1,39 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/macaddr/META"
+  "_build/install/default/lib/macaddr/dune-package"
+  "_build/install/default/lib/macaddr/macaddr.a"
+  "_build/install/default/lib/macaddr/macaddr.cma"
+  "_build/install/default/lib/macaddr/macaddr.cmi"
+  "_build/install/default/lib/macaddr/macaddr.cmt"
+  "_build/install/default/lib/macaddr/macaddr.cmti"
+  "_build/install/default/lib/macaddr/macaddr.cmx"
+  "_build/install/default/lib/macaddr/macaddr.cmxa"
+  "_build/install/default/lib/macaddr/macaddr.ml"
+  "_build/install/default/lib/macaddr/macaddr.mli"
+  "_build/install/default/lib/macaddr/opam"
+  "_build/install/default/lib/macaddr/top/macaddr_top.a"
+    {"top/macaddr_top.a"}
+  "_build/install/default/lib/macaddr/top/macaddr_top.cma"
+    {"top/macaddr_top.cma"}
+  "_build/install/default/lib/macaddr/top/macaddr_top.cmi"
+    {"top/macaddr_top.cmi"}
+  "_build/install/default/lib/macaddr/top/macaddr_top.cmt"
+    {"top/macaddr_top.cmt"}
+  "_build/install/default/lib/macaddr/top/macaddr_top.cmx"
+    {"top/macaddr_top.cmx"}
+  "_build/install/default/lib/macaddr/top/macaddr_top.cmxa"
+    {"top/macaddr_top.cmxa"}
+  "_build/install/default/lib/macaddr/top/macaddr_top.ml"
+    {"top/macaddr_top.ml"}
+]
+doc: [
+  "_build/install/default/doc/macaddr/CHANGES.md"
+  "_build/install/default/doc/macaddr/LICENSE.md"
+  "_build/install/default/doc/macaddr/README.md"
+]
+libexec: [
+  "_build/install/default/lib/macaddr/macaddr.cmxs"
+  "_build/install/default/lib/macaddr/top/macaddr_top.cmxs"
+    {"top/macaddr_top.cmxs"}
+]

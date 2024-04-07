@@ -1,0 +1,131 @@
+.TH "Type" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Type \- Type introspection.
+.SH Module
+Module   Type
+.SH Documentation
+.sp
+Module
+.BI "Type"
+ : 
+.B sig end
+
+.sp
+Type introspection\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Type equality witness
+
+.PP
+.I type 
+.B (_, _)
+.I eq 
+=
+ | Equal
+.B : 
+.B ('a, 'a) eq
+ 
+.sp
+The purpose of 
+.ft B
+eq
+.ft R
+is to represent type equalities that may not otherwise
+be known by the type checker (e\&.g\&. because they may depend on dynamic data)\&.
+.sp
+A value of type 
+.ft B
+(a, b) eq
+.ft R
+represents the fact that types 
+.ft B
+a
+.ft R
+and 
+.ft B
+b
+.ft R
+are
+equal\&.
+.sp
+If one has a value 
+.ft B
+eq : (a, b) eq
+.ft R
+that proves types 
+.ft B
+a
+.ft R
+and 
+.ft B
+b
+.ft R
+are equal,
+one can use it to convert a value of type 
+.ft B
+a
+.ft R
+to a value of type 
+.ft B
+b
+.ft R
+by
+pattern matching on 
+.ft B
+Equal
+.ft R
+:
+.EX
+.ft B
+.br
+\&      let cast (type a) (type b) (Equal : (a, b) Type\&.eq) (a : a) : b = a
+.br
+\&    
+.ft R
+.EE
+.sp
+At runtime, this function simply returns its second argument unchanged\&.
+
+.sp
+
+.PP
+.SS Type identifiers
+
+.PP
+.I module Id : 
+.B sig end
+
+.sp
+Type identifiers\&.
+.sp
+A type identifier is a value that denotes a type\&. Given two type
+identifiers, they can be tested for 
+.ft B
+Type\&.Id\&.provably_equal
+.ft R
+to
+prove they denote the same type\&. Note that:
+.sp
+.sp
+\-Unequal identifiers do not imply unequal types: a given type can be
+denoted by more than one identifier\&.
+.sp
+\-Type identifiers can be marshalled, but they get a new, distinct,
+identity on unmarshalling, so the equalities are lost\&.
+
+See an 
+.ft B
+Type\&.Id\&.example
+.ft R
+of use\&.
+
+.sp

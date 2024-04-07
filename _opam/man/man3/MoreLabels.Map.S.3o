@@ -1,0 +1,1492 @@
+.TH "MoreLabels.Map.S" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+MoreLabels.Map.S \- Output signature of the functor MoreLabels.Map.Make.
+.SH Module type
+Module type   MoreLabels.Map.S
+.SH Documentation
+.sp
+Module type
+.BI "S"
+ = 
+.B sig end
+
+.sp
+Output signature of the functor 
+.ft B
+MoreLabels\&.Map\&.Make
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Maps
+
+.PP
+.I type key 
+
+.sp
+The type of the map keys\&.
+
+.sp
+.I type 
+.B !+'a
+.I t 
+
+.sp
+The type of maps from type 
+.ft B
+key
+.ft R
+to type 
+.ft B
+\&'a
+.ft R
+\&.
+
+.sp
+
+.I val empty 
+: 
+.B 'a t
+.sp
+The empty map\&.
+
+.sp
+
+.I val add 
+: 
+.B key:key ->
+.B   data:'a -> 'a t -> 'a t
+.sp
+
+.ft B
+add ~key ~data m
+.ft R
+returns a map containing the same bindings as
+.ft B
+m
+.ft R
+, plus a binding of 
+.ft B
+key
+.ft R
+to 
+.ft B
+data
+.ft R
+\&. If 
+.ft B
+key
+.ft R
+was already bound
+in 
+.ft B
+m
+.ft R
+to a value that is physically equal to 
+.ft B
+data
+.ft R
+,
+.ft B
+m
+.ft R
+is returned unchanged (the result of the function is
+then physically equal to 
+.ft B
+m
+.ft R
+)\&. Otherwise, the previous binding
+of 
+.ft B
+key
+.ft R
+in 
+.ft B
+m
+.ft R
+disappears\&.
+
+.sp
+.B "Before4.03"
+Physical equality was not ensured\&.
+
+
+.sp
+
+.I val add_to_list 
+: 
+.B key:key ->
+.B   data:'a -> 'a list t -> 'a list t
+.sp
+
+.ft B
+add_to_list ~key ~data m
+.ft R
+is 
+.ft B
+m
+.ft R
+with 
+.ft B
+key
+.ft R
+mapped to 
+.ft B
+l
+.ft R
+such
+that 
+.ft B
+l
+.ft R
+is 
+.ft B
+data :: Map\&.find key m
+.ft R
+if 
+.ft B
+key
+.ft R
+was bound in
+.ft B
+m
+.ft R
+and 
+.ft B
+[v]
+.ft R
+otherwise\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val update 
+: 
+.B key:key ->
+.B   f:('a option -> 'a option) -> 'a t -> 'a t
+.sp
+
+.ft B
+update ~key ~f m
+.ft R
+returns a map containing the same bindings as
+.ft B
+m
+.ft R
+, except for the binding of 
+.ft B
+key
+.ft R
+\&. Depending on the value of
+.ft B
+y
+.ft R
+where 
+.ft B
+y
+.ft R
+is 
+.ft B
+f (find_opt key m)
+.ft R
+, the binding of 
+.ft B
+key
+.ft R
+is
+added, removed or updated\&. If 
+.ft B
+y
+.ft R
+is 
+.ft B
+None
+.ft R
+, the binding is
+removed if it exists; otherwise, if 
+.ft B
+y
+.ft R
+is 
+.ft B
+Some z
+.ft R
+then 
+.ft B
+key
+.ft R
+is associated to 
+.ft B
+z
+.ft R
+in the resulting map\&.  If 
+.ft B
+key
+.ft R
+was already
+bound in 
+.ft B
+m
+.ft R
+to a value that is physically equal to 
+.ft B
+z
+.ft R
+, 
+.ft B
+m
+.ft R
+is returned unchanged (the result of the function is then
+physically equal to 
+.ft B
+m
+.ft R
+)\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val singleton 
+: 
+.B key -> 'a -> 'a t
+.sp
+
+.ft B
+singleton x y
+.ft R
+returns the one\-element map that contains a binding
+.ft B
+y
+.ft R
+for 
+.ft B
+x
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val remove 
+: 
+.B key -> 'a t -> 'a t
+.sp
+
+.ft B
+remove x m
+.ft R
+returns a map containing the same bindings as
+.ft B
+m
+.ft R
+, except for 
+.ft B
+x
+.ft R
+which is unbound in the returned map\&.
+If 
+.ft B
+x
+.ft R
+was not in 
+.ft B
+m
+.ft R
+, 
+.ft B
+m
+.ft R
+is returned unchanged
+(the result of the function is then physically equal to 
+.ft B
+m
+.ft R
+)\&.
+
+.sp
+.B "Before4.03"
+Physical equality was not ensured\&.
+
+
+.sp
+
+.I val merge 
+: 
+.B f:(key -> 'a option -> 'b option -> 'c option) ->
+.B   'a t -> 'b t -> 'c t
+.sp
+
+.ft B
+merge ~f m1 m2
+.ft R
+computes a map whose keys are a subset of the keys of
+.ft B
+m1
+.ft R
+and of 
+.ft B
+m2
+.ft R
+\&. The presence of each such binding, and the
+corresponding value, is determined with the function 
+.ft B
+f
+.ft R
+\&.
+In terms of the 
+.ft B
+find_opt
+.ft R
+operation, we have
+.ft B
+find_opt x (merge f m1 m2) = f x (find_opt x m1) (find_opt x m2)
+.ft R
+for any key 
+.ft B
+x
+.ft R
+, provided that 
+.ft B
+f x None None = None
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val union 
+: 
+.B f:(key -> 'a -> 'a -> 'a option) ->
+.B   'a t -> 'a t -> 'a t
+.sp
+
+.ft B
+union ~f m1 m2
+.ft R
+computes a map whose keys are a subset of the keys
+of 
+.ft B
+m1
+.ft R
+and of 
+.ft B
+m2
+.ft R
+\&.  When the same binding is defined in both
+arguments, the function 
+.ft B
+f
+.ft R
+is used to combine them\&.
+This is a special case of 
+.ft B
+merge
+.ft R
+: 
+.ft B
+union f m1 m2
+.ft R
+is equivalent
+to 
+.ft B
+merge f\&' m1 m2
+.ft R
+, where
+.sp
+\-
+.ft B
+f\&' _key None None = None
+.ft R
+
+.sp
+\-
+.ft B
+f\&' _key (Some v) None = Some v
+.ft R
+
+.sp
+\-
+.ft B
+f\&' _key None (Some v) = Some v
+.ft R
+
+.sp
+\-
+.ft B
+f\&' key (Some v1) (Some v2) = f key v1 v2
+.ft R
+
+
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val cardinal 
+: 
+.B 'a t -> int
+.sp
+Return the number of bindings of a map\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.PP
+.SS Bindings
+
+.PP
+
+.I val bindings 
+: 
+.B 'a t -> (key * 'a) list
+.sp
+Return the list of all bindings of the given map\&.
+The returned list is sorted in increasing order of keys with respect
+to the ordering 
+.ft B
+Ord\&.compare
+.ft R
+, where 
+.ft B
+Ord
+.ft R
+is the argument
+given to 
+.ft B
+MoreLabels\&.Map\&.Make
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val min_binding 
+: 
+.B 'a t -> key * 'a
+.sp
+Return the binding with the smallest key in a given map
+(with respect to the 
+.ft B
+Ord\&.compare
+.ft R
+ordering), or raise
+.ft B
+Not_found
+.ft R
+if the map is empty\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val min_binding_opt 
+: 
+.B 'a t -> (key * 'a) option
+.sp
+Return the binding with the smallest key in the given map
+(with respect to the 
+.ft B
+Ord\&.compare
+.ft R
+ordering), or 
+.ft B
+None
+.ft R
+if the map is empty\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val max_binding 
+: 
+.B 'a t -> key * 'a
+.sp
+Same as 
+.ft B
+MoreLabels\&.Map\&.S\&.min_binding
+.ft R
+, but returns the binding with
+the largest key in the given map\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val max_binding_opt 
+: 
+.B 'a t -> (key * 'a) option
+.sp
+Same as 
+.ft B
+MoreLabels\&.Map\&.S\&.min_binding_opt
+.ft R
+, but returns the binding with
+the largest key in the given map\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val choose 
+: 
+.B 'a t -> key * 'a
+.sp
+Return one binding of the given map, or raise 
+.ft B
+Not_found
+.ft R
+if
+the map is empty\&. Which binding is chosen is unspecified,
+but equal bindings will be chosen for equal maps\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val choose_opt 
+: 
+.B 'a t -> (key * 'a) option
+.sp
+Return one binding of the given map, or 
+.ft B
+None
+.ft R
+if
+the map is empty\&. Which binding is chosen is unspecified,
+but equal bindings will be chosen for equal maps\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS Searching
+
+.PP
+
+.I val find 
+: 
+.B key -> 'a t -> 'a
+.sp
+
+.ft B
+find x m
+.ft R
+returns the current value of 
+.ft B
+x
+.ft R
+in 
+.ft B
+m
+.ft R
+,
+or raises 
+.ft B
+Not_found
+.ft R
+if no binding for 
+.ft B
+x
+.ft R
+exists\&.
+
+.sp
+
+.I val find_opt 
+: 
+.B key -> 'a t -> 'a option
+.sp
+
+.ft B
+find_opt x m
+.ft R
+returns 
+.ft B
+Some v
+.ft R
+if the current value of 
+.ft B
+x
+.ft R
+in 
+.ft B
+m
+.ft R
+is 
+.ft B
+v
+.ft R
+, or 
+.ft B
+None
+.ft R
+if no binding for 
+.ft B
+x
+.ft R
+exists\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_first 
+: 
+.B f:(key -> bool) ->
+.B   'a t -> key * 'a
+.sp
+
+.ft B
+find_first ~f m
+.ft R
+, where 
+.ft B
+f
+.ft R
+is a monotonically increasing function,
+returns the binding of 
+.ft B
+m
+.ft R
+with the lowest key 
+.ft B
+k
+.ft R
+such that 
+.ft B
+f k
+.ft R
+,
+or raises 
+.ft B
+Not_found
+.ft R
+if no such key exists\&.
+.sp
+For example, 
+.ft B
+find_first (fun k \-> Ord\&.compare k x >= 0) m
+.ft R
+will
+return the first binding 
+.ft B
+k, v
+.ft R
+of 
+.ft B
+m
+.ft R
+where 
+.ft B
+Ord\&.compare k x >= 0
+.ft R
+(intuitively: 
+.ft B
+k >= x
+.ft R
+), or raise 
+.ft B
+Not_found
+.ft R
+if 
+.ft B
+x
+.ft R
+is greater than
+any element of 
+.ft B
+m
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_first_opt 
+: 
+.B f:(key -> bool) ->
+.B   'a t -> (key * 'a) option
+.sp
+
+.ft B
+find_first_opt ~f m
+.ft R
+, where 
+.ft B
+f
+.ft R
+is a monotonically increasing
+function, returns an option containing the binding of 
+.ft B
+m
+.ft R
+with the
+lowest key 
+.ft B
+k
+.ft R
+such that 
+.ft B
+f k
+.ft R
+, or 
+.ft B
+None
+.ft R
+if no such key exists\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_last 
+: 
+.B f:(key -> bool) ->
+.B   'a t -> key * 'a
+.sp
+
+.ft B
+find_last ~f m
+.ft R
+, where 
+.ft B
+f
+.ft R
+is a monotonically decreasing function,
+returns the binding of 
+.ft B
+m
+.ft R
+with the highest key 
+.ft B
+k
+.ft R
+such that 
+.ft B
+f k
+.ft R
+,
+or raises 
+.ft B
+Not_found
+.ft R
+if no such key exists\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_last_opt 
+: 
+.B f:(key -> bool) ->
+.B   'a t -> (key * 'a) option
+.sp
+
+.ft B
+find_last_opt ~f m
+.ft R
+, where 
+.ft B
+f
+.ft R
+is a monotonically decreasing
+function, returns an option containing the binding of 
+.ft B
+m
+.ft R
+with
+the highest key 
+.ft B
+k
+.ft R
+such that 
+.ft B
+f k
+.ft R
+, or 
+.ft B
+None
+.ft R
+if no such key
+exists\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS Traversing
+
+.PP
+
+.I val iter 
+: 
+.B f:(key:key -> data:'a -> unit) ->
+.B   'a t -> unit
+.sp
+
+.ft B
+iter ~f m
+.ft R
+applies 
+.ft B
+f
+.ft R
+to all bindings in map 
+.ft B
+m
+.ft R
+\&.
+.ft B
+f
+.ft R
+receives the key as first argument, and the associated value
+as second argument\&.  The bindings are passed to 
+.ft B
+f
+.ft R
+in increasing
+order with respect to the ordering over the type of the keys\&.
+
+.sp
+
+.I val fold 
+: 
+.B f:(key:key -> data:'a -> 'acc -> 'acc) ->
+.B   'a t -> init:'acc -> 'acc
+.sp
+
+.ft B
+fold ~f m ~init
+.ft R
+computes 
+.ft B
+(f kN dN \&.\&.\&. (f k1 d1 init)\&.\&.\&.)
+.ft R
+,
+where 
+.ft B
+k1 \&.\&.\&. kN
+.ft R
+are the keys of all bindings in 
+.ft B
+m
+.ft R
+(in increasing order), and 
+.ft B
+d1 \&.\&.\&. dN
+.ft R
+are the associated data\&.
+
+.sp
+
+.PP
+.SS Transforming
+
+.PP
+
+.I val map 
+: 
+.B f:('a -> 'b) -> 'a t -> 'b t
+.sp
+
+.ft B
+map ~f m
+.ft R
+returns a map with same domain as 
+.ft B
+m
+.ft R
+, where the
+associated value 
+.ft B
+a
+.ft R
+of all bindings of 
+.ft B
+m
+.ft R
+has been
+replaced by the result of the application of 
+.ft B
+f
+.ft R
+to 
+.ft B
+a
+.ft R
+\&.
+The bindings are passed to 
+.ft B
+f
+.ft R
+in increasing order
+with respect to the ordering over the type of the keys\&.
+
+.sp
+
+.I val mapi 
+: 
+.B f:(key -> 'a -> 'b) ->
+.B   'a t -> 'b t
+.sp
+Same as 
+.ft B
+MoreLabels\&.Map\&.S\&.map
+.ft R
+, but the function receives as arguments both the
+key and the associated value for each binding of the map\&.
+
+.sp
+
+.I val filter 
+: 
+.B f:(key -> 'a -> bool) ->
+.B   'a t -> 'a t
+.sp
+
+.ft B
+filter ~f m
+.ft R
+returns the map with all the bindings in 
+.ft B
+m
+.ft R
+that satisfy predicate 
+.ft B
+p
+.ft R
+\&. If every binding in 
+.ft B
+m
+.ft R
+satisfies 
+.ft B
+f
+.ft R
+,
+.ft B
+m
+.ft R
+is returned unchanged (the result of the function is then
+physically equal to 
+.ft B
+m
+.ft R
+)
+
+.sp
+.B "Before4.03"
+Physical equality was not ensured\&.
+
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val filter_map 
+: 
+.B f:(key -> 'a -> 'b option) ->
+.B   'a t -> 'b t
+.sp
+
+.ft B
+filter_map ~f m
+.ft R
+applies the function 
+.ft B
+f
+.ft R
+to every binding of
+.ft B
+m
+.ft R
+, and builds a map from the results\&. For each binding
+.ft B
+(k, v)
+.ft R
+in the input map:
+.sp
+\-if 
+.ft B
+f k v
+.ft R
+is 
+.ft B
+None
+.ft R
+then 
+.ft B
+k
+.ft R
+is not in the result,
+.sp
+\-if 
+.ft B
+f k v
+.ft R
+is 
+.ft B
+Some v\&'
+.ft R
+then the binding 
+.ft B
+(k, v\&')
+.ft R
+is in the output map\&.
+
+For example, the following function on maps whose values are lists
+.EX
+.ft B
+.br
+\&          filter_map
+.br
+\&            (fun _k li \-> match li with [] \-> None | _::tl \-> Some tl)
+.br
+\&            m
+.br
+\&          
+.ft R
+.EE
+drops all bindings of 
+.ft B
+m
+.ft R
+whose value is an empty list, and pops
+the first element of each value that is non\-empty\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val partition 
+: 
+.B f:(key -> 'a -> bool) ->
+.B   'a t -> 'a t * 'a t
+.sp
+
+.ft B
+partition ~f m
+.ft R
+returns a pair of maps 
+.ft B
+(m1, m2)
+.ft R
+, where
+.ft B
+m1
+.ft R
+contains all the bindings of 
+.ft B
+m
+.ft R
+that satisfy the
+predicate 
+.ft B
+f
+.ft R
+, and 
+.ft B
+m2
+.ft R
+is the map with all the bindings of
+.ft B
+m
+.ft R
+that do not satisfy 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val split 
+: 
+.B key ->
+.B   'a t ->
+.B   'a t * 'a option * 'a t
+.sp
+
+.ft B
+split x m
+.ft R
+returns a triple 
+.ft B
+(l, data, r)
+.ft R
+, where
+.ft B
+l
+.ft R
+is the map with all the bindings of 
+.ft B
+m
+.ft R
+whose key
+is strictly less than 
+.ft B
+x
+.ft R
+;
+.ft B
+r
+.ft R
+is the map with all the bindings of 
+.ft B
+m
+.ft R
+whose key
+is strictly greater than 
+.ft B
+x
+.ft R
+;
+.ft B
+data
+.ft R
+is 
+.ft B
+None
+.ft R
+if 
+.ft B
+m
+.ft R
+contains no binding for 
+.ft B
+x
+.ft R
+,
+or 
+.ft B
+Some v
+.ft R
+if 
+.ft B
+m
+.ft R
+binds 
+.ft B
+v
+.ft R
+to 
+.ft B
+x
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.PP
+.SS Predicates and comparisons
+
+.PP
+
+.I val is_empty 
+: 
+.B 'a t -> bool
+.sp
+Test whether a map is empty or not\&.
+
+.sp
+
+.I val mem 
+: 
+.B key -> 'a t -> bool
+.sp
+
+.ft B
+mem x m
+.ft R
+returns 
+.ft B
+true
+.ft R
+if 
+.ft B
+m
+.ft R
+contains a binding for 
+.ft B
+x
+.ft R
+,
+and 
+.ft B
+false
+.ft R
+otherwise\&.
+
+.sp
+
+.I val equal 
+: 
+.B cmp:('a -> 'a -> bool) ->
+.B   'a t -> 'a t -> bool
+.sp
+
+.ft B
+equal ~cmp m1 m2
+.ft R
+tests whether the maps 
+.ft B
+m1
+.ft R
+and 
+.ft B
+m2
+.ft R
+are
+equal, that is, contain equal keys and associate them with
+equal data\&.  
+.ft B
+cmp
+.ft R
+is the equality predicate used to compare
+the data associated with the keys\&.
+
+.sp
+
+.I val compare 
+: 
+.B cmp:('a -> 'a -> int) ->
+.B   'a t -> 'a t -> int
+.sp
+Total ordering between maps\&.  The first argument is a total ordering
+used to compare data associated with equal keys in the two maps\&.
+
+.sp
+
+.I val for_all 
+: 
+.B f:(key -> 'a -> bool) -> 'a t -> bool
+.sp
+
+.ft B
+for_all ~f m
+.ft R
+checks if all the bindings of the map
+satisfy the predicate 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val exists 
+: 
+.B f:(key -> 'a -> bool) -> 'a t -> bool
+.sp
+
+.ft B
+exists ~f m
+.ft R
+checks if at least one binding of the map
+satisfies the predicate 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.PP
+.SS Converting
+
+.PP
+
+.I val to_list 
+: 
+.B 'a t -> (key * 'a) list
+.sp
+
+.ft B
+to_list m
+.ft R
+is 
+.ft B
+MoreLabels\&.Map\&.S\&.bindings
+.ft R
+.ft B
+m
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val of_list 
+: 
+.B (key * 'a) list -> 'a t
+.sp
+
+.ft B
+of_list bs
+.ft R
+adds the bindings of 
+.ft B
+bs
+.ft R
+to the empty map,
+in list order (if a key is bound twice in 
+.ft B
+bs
+.ft R
+the last one
+takes over)\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val to_seq 
+: 
+.B 'a t -> (key * 'a) Seq.t
+.sp
+Iterate on the whole map, in ascending order of keys
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_rev_seq 
+: 
+.B 'a t -> (key * 'a) Seq.t
+.sp
+Iterate on the whole map, in descending order of keys
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val to_seq_from 
+: 
+.B key ->
+.B   'a t -> (key * 'a) Seq.t
+.sp
+
+.ft B
+to_seq_from k m
+.ft R
+iterates on a subset of the bindings of 
+.ft B
+m
+.ft R
+,
+in ascending order of keys, from key 
+.ft B
+k
+.ft R
+or above\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val add_seq 
+: 
+.B (key * 'a) Seq.t ->
+.B   'a t -> 'a t
+.sp
+Add the given bindings to the map, in order\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B (key * 'a) Seq.t -> 'a t
+.sp
+Build a map from the given bindings
+
+.sp
+.B "Since"
+4.07
+
+.sp

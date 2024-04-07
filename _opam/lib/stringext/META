@@ -1,0 +1,7 @@
+version = "1.6.0"
+description = ""
+requires = ""
+archive(byte) = "stringext.cma"
+archive(native) = "stringext.cmxa"
+plugin(byte) = "stringext.cma"
+plugin(native) = "stringext.cmxs"

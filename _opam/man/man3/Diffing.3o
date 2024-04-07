@@ -1,0 +1,157 @@
+.TH "Diffing" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing \- Parametric diffing
+.SH Module
+Module   Diffing
+.SH Documentation
+.sp
+Module
+.BI "Diffing"
+ : 
+.B sig end
+
+.sp
+Parametric diffing
+.sp
+This module implements diffing over lists of arbitrary content\&.
+It is parameterized by
+.sp
+\-The content of the two lists
+.sp
+\-The equality witness when an element is kept
+.sp
+\-The diffing witness when an element is changed
+
+Diffing is extended to maintain state depending on the
+computed changes while walking through the two lists\&.
+.sp
+The underlying algorithm is a modified Wagner\-Fischer algorithm
+(see <https://en\&.wikipedia\&.org/wiki/Wagner%E2%80%93Fischer_algorithm>)\&.
+.sp
+We provide the following guarantee:
+Given two lists 
+.ft B
+l
+.ft R
+and 
+.ft B
+r
+.ft R
+, if different patches result in different
+states, we say that the state diverges\&.
+.sp
+\-We always return the optimal patch on prefixes of 
+.ft B
+l
+.ft R
+and 
+.ft B
+r
+.ft R
+on which state does not diverge\&.
+.sp
+\-Otherwise, we return a correct but non\-optimal patch where subpatches
+with no divergent states are optimal for the given initial state\&.
+
+More precisely, the optimality of Wagner\-Fischer depends on the property
+that the edit\-distance between a k\-prefix of the left input and a l\-prefix
+of the right input d(k,l) satisfies
+.sp
+d(k,l) = min (
+del_cost + d(k\-1,l),
+insert_cost + d(k,l\-1),
+change_cost + d(k\-1,l\-1)
+)
+.sp
+Under this hypothesis, it is optimal to choose greedily the state of the
+minimal patch transforming the left k\-prefix into the right l\-prefix as a
+representative of the states of all possible patches transforming the left
+k\-prefix into the right l\-prefix\&.
+.sp
+If this property is not satisfied, we can still choose greedily a
+representative state\&. However, the computed patch is no more guaranteed to
+be globally optimal\&.
+Nevertheless, it is still a correct patch, which is even optimal among all
+explored patches\&.
+
+.sp
+
+.sp
+.sp
+.I module type Defs = 
+.B sig end
+
+.sp
+The core types of a diffing implementation
+
+.sp
+.I type change_kind 
+=
+ | Deletion
+ | Insertion
+ | Modification
+ | Preservation
+ 
+.sp
+The kind of changes which is used to share printing and styling
+across implementation
+
+.sp
+
+.I val prefix 
+: 
+.B Format.formatter -> int * change_kind -> unit
+.sp
+
+.sp
+
+.I val style 
+: 
+.B change_kind -> Misc.Color.style list
+.sp
+
+.sp
+.I type 
+.B ('left, 'right, 'eq, 'diff)
+.I change 
+=
+ | Delete
+.B of 
+.B 'left
+ | Insert
+.B of 
+.B 'right
+ | Keep
+.B of 
+.B 'left * 'right * 'eq
+ | Change
+.B of 
+.B 'left * 'right * 'diff
+ 
+.sp
+
+.sp
+
+.I val classify 
+: 
+.B ('a, 'b, 'c, 'd) change -> change_kind
+.sp
+
+.sp
+.I module Define : 
+.B functor (D : Defs) -> sig end
+
+.sp
+
+.ft B
+Define(Defs)
+.ft R
+creates the diffing types from the types
+defined in 
+.ft B
+Defs
+.ft R
+and the functors that need to be instantatied
+with the diffing algorithm parameters
+
+.sp

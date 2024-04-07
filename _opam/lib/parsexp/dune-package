@@ -1,0 +1,279 @@
+(lang dune 3.15)
+(name parsexp)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/parsexp))
+(files
+ (lib
+  (META
+   automaton.ml
+   automaton.mli
+   automaton_action.ml
+   automaton_action.mli
+   automaton_intf.ml
+   automaton_stack.ml
+   automaton_stack.mli
+   automaton_stack_intf.ml
+   automaton_state.ml
+   automaton_state.mli
+   automaton_state_intf.ml
+   automaton_tables.ml
+   automaton_tables.mli
+   conv.ml
+   conv.mli
+   conv_error.ml
+   conv_error.mli
+   conv_intf.ml
+   cst.ml
+   cst.mli
+   dune-package
+   import.ml
+   of_sexp_error.ml
+   of_sexp_error.mli
+   old_parser_cont_state.ml
+   old_parser_cont_state.mli
+   opam
+   parse_error.ml
+   parse_error.mli
+   parse_error_intf.ml
+   parser.ml
+   parser.mli
+   parser_intf.ml
+   parsexp.a
+   parsexp.cma
+   parsexp.cmi
+   parsexp.cmt
+   parsexp.cmti
+   parsexp.cmx
+   parsexp.cmxa
+   parsexp.ml
+   parsexp.mli
+   parsexp__.cmi
+   parsexp__.cmt
+   parsexp__.cmx
+   parsexp__.ml
+   parsexp__Automaton.cmi
+   parsexp__Automaton.cmt
+   parsexp__Automaton.cmti
+   parsexp__Automaton.cmx
+   parsexp__Automaton_action.cmi
+   parsexp__Automaton_action.cmt
+   parsexp__Automaton_action.cmti
+   parsexp__Automaton_action.cmx
+   parsexp__Automaton_intf.cmi
+   parsexp__Automaton_intf.cmt
+   parsexp__Automaton_intf.cmx
+   parsexp__Automaton_stack.cmi
+   parsexp__Automaton_stack.cmt
+   parsexp__Automaton_stack.cmti
+   parsexp__Automaton_stack.cmx
+   parsexp__Automaton_stack_intf.cmi
+   parsexp__Automaton_stack_intf.cmt
+   parsexp__Automaton_stack_intf.cmx
+   parsexp__Automaton_state.cmi
+   parsexp__Automaton_state.cmt
+   parsexp__Automaton_state.cmti
+   parsexp__Automaton_state.cmx
+   parsexp__Automaton_state_intf.cmi
+   parsexp__Automaton_state_intf.cmt
+   parsexp__Automaton_state_intf.cmx
+   parsexp__Automaton_tables.cmi
+   parsexp__Automaton_tables.cmt
+   parsexp__Automaton_tables.cmti
+   parsexp__Automaton_tables.cmx
+   parsexp__Conv.cmi
+   parsexp__Conv.cmt
+   parsexp__Conv.cmti
+   parsexp__Conv.cmx
+   parsexp__Conv_error.cmi
+   parsexp__Conv_error.cmt
+   parsexp__Conv_error.cmti
+   parsexp__Conv_error.cmx
+   parsexp__Conv_intf.cmi
+   parsexp__Conv_intf.cmt
+   parsexp__Conv_intf.cmx
+   parsexp__Cst.cmi
+   parsexp__Cst.cmt
+   parsexp__Cst.cmti
+   parsexp__Cst.cmx
+   parsexp__Import.cmi
+   parsexp__Import.cmt
+   parsexp__Import.cmx
+   parsexp__Of_sexp_error.cmi
+   parsexp__Of_sexp_error.cmt
+   parsexp__Of_sexp_error.cmti
+   parsexp__Of_sexp_error.cmx
+   parsexp__Old_parser_cont_state.cmi
+   parsexp__Old_parser_cont_state.cmt
+   parsexp__Old_parser_cont_state.cmti
+   parsexp__Old_parser_cont_state.cmx
+   parsexp__Parse_error.cmi
+   parsexp__Parse_error.cmt
+   parsexp__Parse_error.cmti
+   parsexp__Parse_error.cmx
+   parsexp__Parse_error_intf.cmi
+   parsexp__Parse_error_intf.cmt
+   parsexp__Parse_error_intf.cmx
+   parsexp__Parser.cmi
+   parsexp__Parser.cmt
+   parsexp__Parser.cmti
+   parsexp__Parser.cmx
+   parsexp__Parser_intf.cmi
+   parsexp__Parser_intf.cmt
+   parsexp__Parser_intf.cmx
+   parsexp__Parsexp_intf.cmi
+   parsexp__Parsexp_intf.cmt
+   parsexp__Parsexp_intf.cmx
+   parsexp__Positions.cmi
+   parsexp__Positions.cmt
+   parsexp__Positions.cmti
+   parsexp__Positions.cmx
+   parsexp_intf.ml
+   positions.ml
+   positions.mli))
+ (libexec (parsexp.cmxs))
+ (doc (CHANGES.md LICENSE.md README.org)))
+(library
+ (name parsexp)
+ (kind normal)
+ (archives (byte parsexp.cma) (native parsexp.cmxa))
+ (plugins (byte parsexp.cma) (native parsexp.cmxs))
+ (native_archives parsexp.a)
+ (requires sexplib0)
+ (main_module_name Parsexp)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name parsexp__)
+     (visibility public)
+     (kind alias)
+     (source (path Parsexp__) (impl (path parsexp__.ml-gen))))
+    (name Parsexp)
+    (modules
+     (module
+      (obj_name parsexp__Automaton)
+      (visibility public)
+      (source
+       (path Automaton)
+       (intf (path automaton.mli))
+       (impl (path automaton.ml))))
+     (module
+      (obj_name parsexp__Automaton_action)
+      (visibility public)
+      (source
+       (path Automaton_action)
+       (intf (path automaton_action.mli))
+       (impl (path automaton_action.ml))))
+     (module
+      (obj_name parsexp__Automaton_intf)
+      (visibility public)
+      (source (path Automaton_intf) (impl (path automaton_intf.ml))))
+     (module
+      (obj_name parsexp__Automaton_stack)
+      (visibility public)
+      (source
+       (path Automaton_stack)
+       (intf (path automaton_stack.mli))
+       (impl (path automaton_stack.ml))))
+     (module
+      (obj_name parsexp__Automaton_stack_intf)
+      (visibility public)
+      (source
+       (path Automaton_stack_intf)
+       (impl (path automaton_stack_intf.ml))))
+     (module
+      (obj_name parsexp__Automaton_state)
+      (visibility public)
+      (source
+       (path Automaton_state)
+       (intf (path automaton_state.mli))
+       (impl (path automaton_state.ml))))
+     (module
+      (obj_name parsexp__Automaton_state_intf)
+      (visibility public)
+      (source
+       (path Automaton_state_intf)
+       (impl (path automaton_state_intf.ml))))
+     (module
+      (obj_name parsexp__Automaton_tables)
+      (visibility public)
+      (source
+       (path Automaton_tables)
+       (intf (path automaton_tables.mli))
+       (impl (path automaton_tables.ml))))
+     (module
+      (obj_name parsexp__Conv)
+      (visibility public)
+      (source (path Conv) (intf (path conv.mli)) (impl (path conv.ml))))
+     (module
+      (obj_name parsexp__Conv_error)
+      (visibility public)
+      (source
+       (path Conv_error)
+       (intf (path conv_error.mli))
+       (impl (path conv_error.ml))))
+     (module
+      (obj_name parsexp__Conv_intf)
+      (visibility public)
+      (source (path Conv_intf) (impl (path conv_intf.ml))))
+     (module
+      (obj_name parsexp__Cst)
+      (visibility public)
+      (source (path Cst) (intf (path cst.mli)) (impl (path cst.ml))))
+     (module
+      (obj_name parsexp__Import)
+      (visibility public)
+      (source (path Import) (impl (path import.ml))))
+     (module
+      (obj_name parsexp__Of_sexp_error)
+      (visibility public)
+      (source
+       (path Of_sexp_error)
+       (intf (path of_sexp_error.mli))
+       (impl (path of_sexp_error.ml))))
+     (module
+      (obj_name parsexp__Old_parser_cont_state)
+      (visibility public)
+      (source
+       (path Old_parser_cont_state)
+       (intf (path old_parser_cont_state.mli))
+       (impl (path old_parser_cont_state.ml))))
+     (module
+      (obj_name parsexp__Parse_error)
+      (visibility public)
+      (source
+       (path Parse_error)
+       (intf (path parse_error.mli))
+       (impl (path parse_error.ml))))
+     (module
+      (obj_name parsexp__Parse_error_intf)
+      (visibility public)
+      (source (path Parse_error_intf) (impl (path parse_error_intf.ml))))
+     (module
+      (obj_name parsexp__Parser)
+      (visibility public)
+      (source (path Parser) (intf (path parser.mli)) (impl (path parser.ml))))
+     (module
+      (obj_name parsexp__Parser_intf)
+      (visibility public)
+      (source (path Parser_intf) (impl (path parser_intf.ml))))
+     (module
+      (obj_name parsexp)
+      (visibility public)
+      (source
+       (path Parsexp)
+       (intf (path parsexp.mli))
+       (impl (path parsexp.ml))))
+     (module
+      (obj_name parsexp__Parsexp_intf)
+      (visibility public)
+      (source (path Parsexp_intf) (impl (path parsexp_intf.ml))))
+     (module
+      (obj_name parsexp__Positions)
+      (visibility public)
+      (source
+       (path Positions)
+       (intf (path positions.mli))
+       (impl (path positions.ml))))))
+   (wrapped true))))

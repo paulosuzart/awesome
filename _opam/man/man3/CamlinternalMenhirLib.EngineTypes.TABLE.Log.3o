@@ -1,0 +1,69 @@
+.TH "CamlinternalMenhirLib.EngineTypes.TABLE.Log" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.EngineTypes.TABLE.Log \- no description
+.SH Module
+Module   CamlinternalMenhirLib.EngineTypes.TABLE.Log
+.SH Documentation
+.sp
+Module
+.BI "Log"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val state 
+: 
+.B CamlinternalMenhirLib.EngineTypes.TABLE.state -> unit
+.sp
+
+.sp
+
+.I val shift 
+: 
+.B CamlinternalMenhirLib.EngineTypes.TABLE.terminal ->
+.B   CamlinternalMenhirLib.EngineTypes.TABLE.state -> unit
+.sp
+
+.sp
+
+.I val reduce_or_accept 
+: 
+.B CamlinternalMenhirLib.EngineTypes.TABLE.production -> unit
+.sp
+
+.sp
+
+.I val lookahead_token 
+: 
+.B CamlinternalMenhirLib.EngineTypes.TABLE.terminal ->
+.B   Lexing.position -> Lexing.position -> unit
+.sp
+
+.sp
+
+.I val initiating_error_handling 
+: 
+.B unit -> unit
+.sp
+
+.sp
+
+.I val resuming_error_handling 
+: 
+.B unit -> unit
+.sp
+
+.sp
+
+.I val handling_error 
+: 
+.B CamlinternalMenhirLib.EngineTypes.TABLE.state -> unit
+.sp
+
+.sp

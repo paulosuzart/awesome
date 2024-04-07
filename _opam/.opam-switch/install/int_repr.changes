@@ -1,0 +1,20 @@
+opam-version: "2.0"
+added: [
+  "doc/int_repr" {"D"}
+  "doc/int_repr/CHANGES.md" {"F:28fd67a982160dbd9365696cb90766b0"}
+  "doc/int_repr/LICENSE.md" {"F:8f9a63480c505270926fac42ef2097b8"}
+  "lib/int_repr" {"D"}
+  "lib/int_repr/META" {"F:487541b80192edfa3dc9b37ef382e8e9"}
+  "lib/int_repr/dune-package" {"F:63420653d607b4b1c118d4566b6bbff9"}
+  "lib/int_repr/int_repr.a" {"F:e73fbe590d57371358ed91f9f6cc3035"}
+  "lib/int_repr/int_repr.cma" {"F:4240ac20b6c47b66cc54bda7a81ebccf"}
+  "lib/int_repr/int_repr.cmi" {"F:aaeb3002e91d7f6aee76b99198a857e3"}
+  "lib/int_repr/int_repr.cmt" {"F:719fa18fab73c428609cb3ae23cff593"}
+  "lib/int_repr/int_repr.cmti" {"F:74f4797ec4e41841555aa6f46206c472"}
+  "lib/int_repr/int_repr.cmx" {"F:588d0e485659d2aa1b2f41eca750fd1a"}
+  "lib/int_repr/int_repr.cmxa" {"F:29fc15ed8f67fc9fc5e28d01cdafb836"}
+  "lib/int_repr/int_repr.cmxs" {"F:8274865bb0a25a5ec30f5a8c5bd7ffe1"}
+  "lib/int_repr/int_repr.ml" {"F:7e9611f434ba1cbd6e4edfe305d161c3"}
+  "lib/int_repr/int_repr.mli" {"F:60a5fa1b9aad1f5549a454cfd2a52c46"}
+  "lib/int_repr/opam" {"F:65dac5c2b91c355b8d381819dc8e7f15"}
+]

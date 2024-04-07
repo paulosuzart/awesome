@@ -1,0 +1,217 @@
+.\" Pipe this output to groff -m man -K utf8 -T utf8 | less -R
+.\"
+.mso an.tmac
+.TH "DUNE" 1 "" "Dune 3.15.0" "Dune Manual"
+.\" Disable hyphenation and ragged-right
+.nh
+.ad l
+.SH NAME
+.P
+dune \N'45' composable build system for OCaml
+.SH SYNOPSIS
+.sp -1
+.P
+\fBdune build [\N'45'\N'45'watch]\fR
+.sp -1
+.P
+\fBdune runtest [\N'45'\N'45'watch]\fR
+.sp -1
+.P
+\fBdune exec NAME\fR
+.sp -1
+.P
+\fBdune utop [DIR]\fR
+.sp -1
+.P
+\fBdune install\fR
+.sp -1
+.P
+\fBdune init project NAME [PATH] [\N'45'\N'45'libs=l1,l2 \N'45'\N'45'ppx=p1,p2 \N'45'\N'45'inline\N'45'tests]\fR
+.SH DESCRIPTION
+.P
+Dune is a build system designed for OCaml projects only\N'46' It focuses on providing the user with a consistent experience and takes care of most of the low\N'45'level details of OCaml compilation\N'46' All you have to do is provide a description of your project and Dune will do the rest\N'46' 
+.P
+The scheme it implements is inspired from the one used inside Jane Street and adapted to the open source world\N'46' It has matured over a long time and is used daily by hundreds of developers, which means that it is highly tested and productive\N'46' 
+.SH COMMAND ALIASES
+.TP 4
+\fBprintenv\fR [\fIOPTION\fR]… [\fIPATH\fR]
+An alias for \fBenv\fR\N'46'
+.TP 4
+\fBpromote\fR [\fIOPTION\fR]… [\fIFILE\fR]…
+An alias for \fBpromotion apply\fR\N'46'
+.TP 4
+\fBtest\fR [\fIOPTION\fR]… [\fIDIR\fR]…
+An alias for \fBruntest\fR\N'46'
+.SH COMMANDS
+.TP 4
+\fBbuild\fR [\fIOPTION\fR]… [\fITARGET\fR]…
+Build the given targets, or the default ones if none are given\N'46'
+.TP 4
+\fBcache\fR \fICOMMAND\fR …
+Manage Dune\N'39's shared cache of build artifacts\N'46'
+.TP 4
+\fBclean\fR [\fIOPTION\fR]…
+Clean the project\N'46'
+.TP 4
+\fBcoq\fR \fICOMMAND\fR …
+Command group related to Coq\N'46'
+.TP 4
+\fBdescribe\fR [\fICOMMAND\fR] …
+Describe the workspace\N'46'
+.TP 4
+\fBdiagnostics\fR [\fIOPTION\fR]…
+Fetch and return errors from the current build\N'46'
+.TP 4
+\fBexec\fR [\fIOPTION\fR]… \fIPROG\fR [\fIARGS\fR]…
+Execute a command in a similar environment as if installation was performed\N'46'
+.TP 4
+\fBexternal\N'45'lib\N'45'deps\fR [\fIOPTION\fR]… [\fITARGET\fR]…
+Moved to dune describe external\N'45'lib\N'45'deps\N'46'
+.TP 4
+\fBfmt\fR [\fIOPTION\fR]…
+Format source code\N'46'
+.TP 4
+\fBformat\N'45'dune\N'45'file\fR [\fB\N'45'\N'45'dune\N'45'version\fR=\fIVERSION\fR] [\fIOPTION\fR]… [\fIFILE\fR]
+Format dune files\N'46'
+.TP 4
+\fBhelp\fR [\fB\N'45'\N'45'build\N'45'info\fR] [\fB\N'45'\N'45'man\N'45'format\fR=\fIFMT\fR] [\fIOPTION\fR]… [\fITOPIC\fR]
+Additional Dune help\N'46'
+.TP 4
+\fBinit\fR \fICOMMAND\fR …
+Command group for initializing Dune components\N'46'
+.TP 4
+\fBinstall\fR [\fIOPTION\fR]… [\fIPACKAGE\fR]…
+Install packages defined in the workspace\N'46'
+.TP 4
+\fBinstalled\N'45'libraries\fR [\fIOPTION\fR]…
+Print out libraries installed on the system\N'46'
+.TP 4
+\fBinternal\fR \fICOMMAND\fR …
+
+.TP 4
+\fBmonitor\fR [\fIOPTION\fR]…
+Connect to a Dune RPC server and monitor it\N'46'
+.TP 4
+\fBocaml\fR \fICOMMAND\fR …
+Command group related to OCaml\N'46'
+.TP 4
+\fBocaml\N'45'merlin\fR [\fIOPTION\fR]…
+Start a merlin configuration server\N'46'
+.TP 4
+\fBpkg\fR \fICOMMAND\fR …
+Experimental package management
+.TP 4
+\fBpromotion\fR \fICOMMAND\fR …
+Control how changes are propagated back to source code\N'46'
+.TP 4
+\fBrpc\fR \fICOMMAND\fR …
+Dune\N'39's RPC mechanism\N'46' Experimental\N'46'
+.TP 4
+\fBrules\fR [\fIOPTION\fR]… [\fITARGET\fR]…
+Dump rules\N'46'
+.TP 4
+\fBruntest\fR [\fIOPTION\fR]… [\fIDIR\fR]…
+Run tests\N'46'
+.TP 4
+\fBshow\fR \fICOMMAND\fR …
+Command group for showing information about the workspace
+.TP 4
+\fBshutdown\fR [\fIOPTION\fR]…
+Cancel and shutdown any builds in the current workspace\N'46'
+.TP 4
+\fBsubst\fR [\fB\N'45'\N'45'build\N'45'info\fR] [\fIOPTION\fR]…
+Substitute watermarks in source files\N'46'
+.TP 4
+\fBtop\fR [\fIOPTION\fR]… [\fIDIR\fR]
+Print a list of toplevel directives for including directories and loading cma files\N'46'
+.TP 4
+\fBuninstall\fR [\fIOPTION\fR]… [\fIPACKAGE\fR]…
+Uninstall packages defined in the workspace\N'46'
+.TP 4
+\fBupgrade\fR [\fIOPTION\fR]…
+Upgrade projects across major Dune versions\N'46'
+.TP 4
+\fButop\fR [\fIOPTION\fR]… [\fIDIR\fR] [\fIARGS\fR]…
+Load library in utop\N'46'
+.SH COMMON OPTIONS
+.P
+These options are common to all commands\N'46'
+.TP 4
+\fB\N'45'\N'45'help\fR[=\fIFMT\fR] (default=\fBauto\fR)
+Show this help in format \fIFMT\fR\N'46' The value \fIFMT\fR must be one of \fBauto\fR, \fBpager\fR, \fBgroff\fR or \fBplain\fR\N'46' With \fBauto\fR, the format is \fBpager\fR or \fBplain\fR whenever the \fBTERM\fR env var is \fBdumb\fR or undefined\N'46'
+.TP 4
+\fB\N'45'\N'45'version\fR
+Show version information\N'46'
+.SH MORE HELP
+.P
+Use `\fBdune\fR \fICOMMAND\fR \N'45'\N'45'help\N'39' for help on a single command\N'46'
+.SH EXIT STATUS
+.P
+\fBdune\fR exits with:
+.TP 4
+0
+on success\N'46'
+.TP 4
+1
+if an error happened\N'46'
+.TP 4
+130
+if it was interrupted by a signal\N'46'
+.SH ENVIRONMENT
+.P
+These environment variables affect the execution of \fBdune\fR:
+.TP 4
+\fBCLICOLOR\fR
+If different than \fB0\fR, ANSI colors are supported and should be used when the program isn\N'39't piped\N'46' If equal to \fB0\fR, don\N'39't output ANSI color escape codes
+.TP 4
+\fBCLICOLOR_FORCE\fR
+If different than \fB0\fR, ANSI colors should be enabled no matter what\N'46'
+.TP 4
+\fBDUNE_CACHE_ROOT\fR
+If set, determines the location of the machine\N'45'global shared cache\N'46'
+.SH BUGS
+.P
+Check bug reports at https://github\N'46'com/ocaml/dune/issues
+.SH EXAMPLES
+.TP 4
+1\N'46'
+Initialise a new project named `foo\N'39':
+.P
+.nf
+      dune init project foo
+.fi
+.TP 4
+2\N'46'
+Build all targets in the current source tree:
+.P
+.nf
+      dune build
+.fi
+.TP 4
+3\N'46'
+Run the executable named `bar\N'39':
+.P
+.nf
+      dune exec bar
+.fi
+.TP 4
+4\N'46'
+Run all tests in the current source tree:
+.P
+.nf
+      dune runtest
+.fi
+.TP 4
+5\N'46'
+Install all components defined in the project:
+.P
+.nf
+      dune install
+.fi
+.TP 4
+6\N'46'
+Remove all build artefacts:
+.P
+.nf
+      dune clean
+.fi

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Defining additional predicates</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Complex packages"
+HREF="c278.html"><LINK
+REL="PREVIOUS"
+TITLE="Complex packages"
+HREF="c278.html"><LINK
+REL="NEXT"
+TITLE="Appending to variables"
+HREF="x326.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c278.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Complex packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x326.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN311"
+>Defining additional predicates</A
+></H1
+><P
+>Additional predicates can be simply used without any declaration,
+i.e. you can freely invent new predicates. One application of them
+is to express conditional linkage. For example, one may provide archives
+for various conditions, such as a production archive, and a
+development archive. A single new predicate, "development", would be
+sufficient to express this:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>archive(byte) = "p_production.cma"
+archive(byte,development) = "p_development.cma"</PRE
+><P
+>When linking, include a "-predicates development" argument in the
+compiler command to select the development archive, otherwise the
+production archive is taken.</P
+><P
+>Predicates could also be used to select among several implementations
+of the same module. Define simply one predicate per implementation,
+e.g. "p_impl1", "p_impl2", and "p_impl3", and specify the archives for
+every implementation separately:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>archive(byte,p_impl1) = "p_impl1.cma"
+archive(byte,p_impl2) = "p_impl2.cma"
+archive(byte,p_impl3) = "p_impl3.cma"</PRE
+><P
+>In the case that the implementations have different dependencies,
+simply provide multiple "requires" variables:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>requires(p_impl1) = "q"
+requires(p_impl2) = "q,r"
+requires(p_impl3) = "r,s"</PRE
+><P
+>Sometimes, the implementations require different linker options. In
+this case, define several versions of the "linkopts" variable just
+like in the "requires" example.</P
+><P
+>Note that predicates are global identifiers that can be potentially
+applied to every selected package. In the case that a predicate is
+only meaningful for a single package, it is common practice to 
+choose the package name as prefix of the predicate name (e.g.
+"netstring_minimum" is a predicate usually only applied to the "netstring"
+package).</P
+><P
+></P
+><P
+>Predicates could be used to select which features of a library are
+linked. For example,
+
+<PRE
+CLASS="PROGRAMLISTING"
+>archive(byte) = "p_basic.cma"
+archive(byte,p_extension) = "p_basic.cma p_ext.cma"</PRE
+>
+
+would add the p_ext.cma archive only if the p_extension predicate
+were set. <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>It is considered as bad practice to select
+extensions of libraries by predicates. Findlib provides the construct
+of subpackages for this purpose.</I
+></SPAN
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c278.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x326.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Complex packages</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c278.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Appending to variables</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

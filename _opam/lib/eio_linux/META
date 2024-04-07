@@ -1,0 +1,7 @@
+version = "v1.0"
+description = ""
+requires = "eio eio.unix eio.utils fmt uring"
+archive(byte) = "eio_linux.cma"
+archive(native) = "eio_linux.cmxa"
+plugin(byte) = "eio_linux.cma"
+plugin(native) = "eio_linux.cmxs"

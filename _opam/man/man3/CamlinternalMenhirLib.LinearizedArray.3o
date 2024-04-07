@@ -1,0 +1,90 @@
+.TH "CamlinternalMenhirLib.LinearizedArray" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.LinearizedArray \- no description
+.SH Module
+Module   CamlinternalMenhirLib.LinearizedArray
+.SH Documentation
+.sp
+Module
+.BI "LinearizedArray"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+= 
+.B 'a array * int array
+
+.sp
+
+.sp
+
+.I val make 
+: 
+.B 'a array array -> 'a t
+.sp
+
+.sp
+
+.I val read 
+: 
+.B 'a t -> int -> int -> 'a
+.sp
+
+.sp
+
+.I val write 
+: 
+.B 'a t -> int -> int -> 'a -> unit
+.sp
+
+.sp
+
+.I val length 
+: 
+.B 'a t -> int
+.sp
+
+.sp
+
+.I val row_length 
+: 
+.B 'a t -> int -> int
+.sp
+
+.sp
+
+.I val read_row 
+: 
+.B 'a t -> int -> 'a list
+.sp
+
+.sp
+
+.I val row_length_via 
+: 
+.B (int -> int) -> int -> int
+.sp
+
+.sp
+
+.I val read_via 
+: 
+.B (int -> 'a) -> (int -> int) -> int -> int -> 'a
+.sp
+
+.sp
+
+.I val read_row_via 
+: 
+.B (int -> 'a) -> (int -> int) -> int -> 'a list
+.sp
+
+.sp

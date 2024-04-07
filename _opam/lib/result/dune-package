@@ -1,0 +1,31 @@
+(lang dune 3.15)
+(name result)
+(version 1.5)
+(sections (lib .) (libexec .) (doc ../../doc/result))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   result.a
+   result.cma
+   result.cmi
+   result.cmt
+   result.cmx
+   result.cmxa
+   result.ml))
+ (libexec (result.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name result)
+ (kind normal)
+ (archives (byte result.cma) (native result.cmxa))
+ (plugins (byte result.cma) (native result.cmxs))
+ (native_archives result.a)
+ (main_module_name Result)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name result)
+   (visibility public)
+   (source (path Result) (impl (path result.ml))))))

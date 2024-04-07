@@ -1,0 +1,50 @@
+version = "v0.16.3"
+description = ""
+requires =
+"base.base_internalhash_types base.caml base.shadow_stdlib sexplib0"
+archive(byte) = "base.cma"
+archive(native) = "base.cmxa"
+plugin(byte) = "base.cma"
+plugin(native) = "base.cmxs"
+jsoo_runtime = "runtime.js"
+package "base_internalhash_types" (
+  directory = "base_internalhash_types"
+  version = "v0.16.3"
+  description = ""
+  requires = ""
+  archive(byte) = "base_internalhash_types.cma"
+  archive(native) = "base_internalhash_types.cmxa"
+  plugin(byte) = "base_internalhash_types.cma"
+  plugin(native) = "base_internalhash_types.cmxs"
+  jsoo_runtime = "runtime.js"
+)
+package "caml" (
+  directory = "caml"
+  version = "v0.16.3"
+  description = ""
+  requires = ""
+  archive(byte) = "caml.cma"
+  archive(native) = "caml.cmxa"
+  plugin(byte) = "caml.cma"
+  plugin(native) = "caml.cmxs"
+)
+package "md5" (
+  directory = "md5"
+  version = "v0.16.3"
+  description = ""
+  requires = ""
+  archive(byte) = "md5_lib.cma"
+  archive(native) = "md5_lib.cmxa"
+  plugin(byte) = "md5_lib.cma"
+  plugin(native) = "md5_lib.cmxs"
+)
+package "shadow_stdlib" (
+  directory = "shadow_stdlib"
+  version = "v0.16.3"
+  description = ""
+  requires = ""
+  archive(byte) = "shadow_stdlib.cma"
+  archive(native) = "shadow_stdlib.cmxa"
+  plugin(byte) = "shadow_stdlib.cma"
+  plugin(native) = "shadow_stdlib.cmxs"
+)

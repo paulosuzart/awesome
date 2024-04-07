@@ -1,0 +1,118 @@
+(lang dune 3.15)
+(name sexplib0)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/sexplib0))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   sexp.ml
+   sexp.mli
+   sexp_conv.ml
+   sexp_conv.mli
+   sexp_conv_error.ml
+   sexp_conv_grammar.ml
+   sexp_conv_grammar.mli
+   sexp_conv_record.ml
+   sexp_conv_record.mli
+   sexp_grammar.ml
+   sexpable.ml
+   sexplib0.a
+   sexplib0.cma
+   sexplib0.cmi
+   sexplib0.cmt
+   sexplib0.cmx
+   sexplib0.cmxa
+   sexplib0.ml
+   sexplib0__.cmi
+   sexplib0__.cmt
+   sexplib0__.cmx
+   sexplib0__.ml
+   sexplib0__Sexp.cmi
+   sexplib0__Sexp.cmt
+   sexplib0__Sexp.cmti
+   sexplib0__Sexp.cmx
+   sexplib0__Sexp_conv.cmi
+   sexplib0__Sexp_conv.cmt
+   sexplib0__Sexp_conv.cmti
+   sexplib0__Sexp_conv.cmx
+   sexplib0__Sexp_conv_error.cmi
+   sexplib0__Sexp_conv_error.cmt
+   sexplib0__Sexp_conv_error.cmx
+   sexplib0__Sexp_conv_grammar.cmi
+   sexplib0__Sexp_conv_grammar.cmt
+   sexplib0__Sexp_conv_grammar.cmti
+   sexplib0__Sexp_conv_grammar.cmx
+   sexplib0__Sexp_conv_record.cmi
+   sexplib0__Sexp_conv_record.cmt
+   sexplib0__Sexp_conv_record.cmti
+   sexplib0__Sexp_conv_record.cmx
+   sexplib0__Sexp_grammar.cmi
+   sexplib0__Sexp_grammar.cmt
+   sexplib0__Sexp_grammar.cmx
+   sexplib0__Sexpable.cmi
+   sexplib0__Sexpable.cmt
+   sexplib0__Sexpable.cmx))
+ (libexec (sexplib0.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name sexplib0)
+ (kind normal)
+ (archives (byte sexplib0.cma) (native sexplib0.cmxa))
+ (plugins (byte sexplib0.cma) (native sexplib0.cmxs))
+ (native_archives sexplib0.a)
+ (main_module_name Sexplib0)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name sexplib0__)
+     (visibility public)
+     (kind alias)
+     (source (path Sexplib0__) (impl (path sexplib0__.ml-gen))))
+    (name Sexplib0)
+    (modules
+     (module
+      (obj_name sexplib0__Sexp)
+      (visibility public)
+      (source (path Sexp) (intf (path sexp.mli)) (impl (path sexp.ml))))
+     (module
+      (obj_name sexplib0__Sexp_conv)
+      (visibility public)
+      (source
+       (path Sexp_conv)
+       (intf (path sexp_conv.mli))
+       (impl (path sexp_conv.ml))))
+     (module
+      (obj_name sexplib0__Sexp_conv_error)
+      (visibility public)
+      (source (path Sexp_conv_error) (impl (path sexp_conv_error.ml))))
+     (module
+      (obj_name sexplib0__Sexp_conv_grammar)
+      (visibility public)
+      (source
+       (path Sexp_conv_grammar)
+       (intf (path sexp_conv_grammar.mli))
+       (impl (path sexp_conv_grammar.ml))))
+     (module
+      (obj_name sexplib0__Sexp_conv_record)
+      (visibility public)
+      (source
+       (path Sexp_conv_record)
+       (intf (path sexp_conv_record.mli))
+       (impl (path sexp_conv_record.ml))))
+     (module
+      (obj_name sexplib0__Sexp_grammar)
+      (visibility public)
+      (source (path Sexp_grammar) (impl (path sexp_grammar.ml))))
+     (module
+      (obj_name sexplib0__Sexpable)
+      (visibility public)
+      (source (path Sexpable) (impl (path sexpable.ml))))
+     (module
+      (obj_name sexplib0)
+      (visibility public)
+      (source (path Sexplib0) (impl (path sexplib0.ml))))))
+   (wrapped true))))

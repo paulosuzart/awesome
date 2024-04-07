@@ -1,0 +1,36 @@
+.TH "Stdlib.MoreLabels" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.MoreLabels \- no description
+.SH Module
+Module   Stdlib.MoreLabels
+.SH Documentation
+.sp
+Module
+.BI "MoreLabels"
+ : 
+.B (module Stdlib__MoreLabels)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module Hashtbl : 
+.B sig end
+
+.sp
+
+.sp
+.I module Map : 
+.B sig end
+
+.sp
+
+.sp
+.I module Set : 
+.B sig end
+
+.sp
+
+.sp

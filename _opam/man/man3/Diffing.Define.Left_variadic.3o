@@ -1,0 +1,56 @@
+.TH "Diffing.Define.Left_variadic" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing.Define.Left_variadic \-  Variadic diffing 
+.SH Module
+Module   Diffing.Define.Left_variadic
+.SH Documentation
+.sp
+Module
+.BI "Left_variadic"
+ : 
+.B sig end -> S
+
+.sp
+.SS Variadic diffing
+.sp
+Variadic diffing allows to expand the lists being diffed during diffing\&.
+in one specific direction\&.
+
+.sp
+.B "Parameters:"
+.sp
+"*"
+
+.B sig end
+
+
+
+
+
+.sp
+.sp
+
+.I val diff 
+: 
+.B D.state -> D.left array -> D.right array -> Diffing.Define.patch
+.sp
+
+.ft B
+diff state l r
+.ft R
+computes the optimal patch between 
+.ft B
+l
+.ft R
+and 
+.ft B
+r
+.ft R
+,
+using the initial state 
+.ft B
+state
+.ft R
+\&.
+
+.sp

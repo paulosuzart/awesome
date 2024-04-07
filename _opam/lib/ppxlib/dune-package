@@ -1,0 +1,1310 @@
+(lang dune 3.15)
+(name ppxlib)
+(version 0.32.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppxlib))
+(files
+ (lib
+  (META
+   ast/ast.ml
+   ast/ast_helper_lite.ml
+   ast/ast_helper_lite.mli
+   ast/import.ml
+   ast/location_error.ml
+   ast/location_error.mli
+   ast/ppxlib_ast.a
+   ast/ppxlib_ast.cma
+   ast/ppxlib_ast.cmi
+   ast/ppxlib_ast.cmt
+   ast/ppxlib_ast.cmx
+   ast/ppxlib_ast.cmxa
+   ast/ppxlib_ast.ml
+   ast/ppxlib_ast__.cmi
+   ast/ppxlib_ast__.cmt
+   ast/ppxlib_ast__.cmx
+   ast/ppxlib_ast__.ml
+   ast/ppxlib_ast__Ast.cmi
+   ast/ppxlib_ast__Ast.cmt
+   ast/ppxlib_ast__Ast.cmx
+   ast/ppxlib_ast__Ast_helper_lite.cmi
+   ast/ppxlib_ast__Ast_helper_lite.cmt
+   ast/ppxlib_ast__Ast_helper_lite.cmti
+   ast/ppxlib_ast__Ast_helper_lite.cmx
+   ast/ppxlib_ast__Import.cmi
+   ast/ppxlib_ast__Import.cmt
+   ast/ppxlib_ast__Import.cmx
+   ast/ppxlib_ast__Location_error.cmi
+   ast/ppxlib_ast__Location_error.cmt
+   ast/ppxlib_ast__Location_error.cmti
+   ast/ppxlib_ast__Location_error.cmx
+   ast/ppxlib_ast__Stdlib0.cmi
+   ast/ppxlib_ast__Stdlib0.cmt
+   ast/ppxlib_ast__Stdlib0.cmx
+   ast/ppxlib_ast__Versions.cmi
+   ast/ppxlib_ast__Versions.cmt
+   ast/ppxlib_ast__Versions.cmti
+   ast/ppxlib_ast__Versions.cmx
+   ast/ppxlib_ast__Warn.cmi
+   ast/ppxlib_ast__Warn.cmt
+   ast/ppxlib_ast__Warn.cmti
+   ast/ppxlib_ast__Warn.cmx
+   ast/stdlib0.ml
+   ast/versions.ml
+   ast/versions.mli
+   ast/warn.ml
+   ast/warn.mli
+   ast_builder.ml
+   ast_builder.mli
+   ast_builder_generated.ml
+   ast_builder_intf.ml
+   ast_pattern.ml
+   ast_pattern.mli
+   ast_pattern0.ml
+   ast_pattern_generated.ml
+   ast_traverse.ml
+   ast_traverse.mli
+   ast_traverse0.ml
+   ast_traverse0.mli
+   astlib/ast_402.ml
+   astlib/ast_403.ml
+   astlib/ast_404.ml
+   astlib/ast_405.ml
+   astlib/ast_406.ml
+   astlib/ast_407.ml
+   astlib/ast_408.ml
+   astlib/ast_409.ml
+   astlib/ast_410.ml
+   astlib/ast_411.ml
+   astlib/ast_412.ml
+   astlib/ast_413.ml
+   astlib/ast_414.ml
+   astlib/ast_500.ml
+   astlib/ast_501.ml
+   astlib/ast_metadata.ml
+   astlib/ast_metadata.mli
+   astlib/astlib.a
+   astlib/astlib.cma
+   astlib/astlib.cmi
+   astlib/astlib.cmt
+   astlib/astlib.cmx
+   astlib/astlib.cmxa
+   astlib/astlib.ml
+   astlib/astlib__.cmi
+   astlib/astlib__.cmt
+   astlib/astlib__.cmx
+   astlib/astlib__.ml
+   astlib/astlib__Ast_402.cmi
+   astlib/astlib__Ast_402.cmt
+   astlib/astlib__Ast_402.cmx
+   astlib/astlib__Ast_403.cmi
+   astlib/astlib__Ast_403.cmt
+   astlib/astlib__Ast_403.cmx
+   astlib/astlib__Ast_404.cmi
+   astlib/astlib__Ast_404.cmt
+   astlib/astlib__Ast_404.cmx
+   astlib/astlib__Ast_405.cmi
+   astlib/astlib__Ast_405.cmt
+   astlib/astlib__Ast_405.cmx
+   astlib/astlib__Ast_406.cmi
+   astlib/astlib__Ast_406.cmt
+   astlib/astlib__Ast_406.cmx
+   astlib/astlib__Ast_407.cmi
+   astlib/astlib__Ast_407.cmt
+   astlib/astlib__Ast_407.cmx
+   astlib/astlib__Ast_408.cmi
+   astlib/astlib__Ast_408.cmt
+   astlib/astlib__Ast_408.cmx
+   astlib/astlib__Ast_409.cmi
+   astlib/astlib__Ast_409.cmt
+   astlib/astlib__Ast_409.cmx
+   astlib/astlib__Ast_410.cmi
+   astlib/astlib__Ast_410.cmt
+   astlib/astlib__Ast_410.cmx
+   astlib/astlib__Ast_411.cmi
+   astlib/astlib__Ast_411.cmt
+   astlib/astlib__Ast_411.cmx
+   astlib/astlib__Ast_412.cmi
+   astlib/astlib__Ast_412.cmt
+   astlib/astlib__Ast_412.cmx
+   astlib/astlib__Ast_413.cmi
+   astlib/astlib__Ast_413.cmt
+   astlib/astlib__Ast_413.cmx
+   astlib/astlib__Ast_414.cmi
+   astlib/astlib__Ast_414.cmt
+   astlib/astlib__Ast_414.cmx
+   astlib/astlib__Ast_500.cmi
+   astlib/astlib__Ast_500.cmt
+   astlib/astlib__Ast_500.cmx
+   astlib/astlib__Ast_501.cmi
+   astlib/astlib__Ast_501.cmt
+   astlib/astlib__Ast_501.cmx
+   astlib/astlib__Ast_metadata.cmi
+   astlib/astlib__Ast_metadata.cmt
+   astlib/astlib__Ast_metadata.cmti
+   astlib/astlib__Ast_metadata.cmx
+   astlib/astlib__Config.cmi
+   astlib/astlib__Config.cmt
+   astlib/astlib__Config.cmti
+   astlib/astlib__Config.cmx
+   astlib/astlib__Keyword.cmi
+   astlib/astlib__Keyword.cmt
+   astlib/astlib__Keyword.cmti
+   astlib/astlib__Keyword.cmx
+   astlib/astlib__Location.cmi
+   astlib/astlib__Location.cmt
+   astlib/astlib__Location.cmti
+   astlib/astlib__Location.cmx
+   astlib/astlib__Longident.cmi
+   astlib/astlib__Longident.cmt
+   astlib/astlib__Longident.cmti
+   astlib/astlib__Longident.cmx
+   astlib/astlib__Migrate_402_403.cmi
+   astlib/astlib__Migrate_402_403.cmt
+   astlib/astlib__Migrate_402_403.cmx
+   astlib/astlib__Migrate_403_402.cmi
+   astlib/astlib__Migrate_403_402.cmt
+   astlib/astlib__Migrate_403_402.cmx
+   astlib/astlib__Migrate_403_404.cmi
+   astlib/astlib__Migrate_403_404.cmt
+   astlib/astlib__Migrate_403_404.cmx
+   astlib/astlib__Migrate_404_403.cmi
+   astlib/astlib__Migrate_404_403.cmt
+   astlib/astlib__Migrate_404_403.cmx
+   astlib/astlib__Migrate_404_405.cmi
+   astlib/astlib__Migrate_404_405.cmt
+   astlib/astlib__Migrate_404_405.cmx
+   astlib/astlib__Migrate_405_404.cmi
+   astlib/astlib__Migrate_405_404.cmt
+   astlib/astlib__Migrate_405_404.cmx
+   astlib/astlib__Migrate_405_406.cmi
+   astlib/astlib__Migrate_405_406.cmt
+   astlib/astlib__Migrate_405_406.cmx
+   astlib/astlib__Migrate_406_405.cmi
+   astlib/astlib__Migrate_406_405.cmt
+   astlib/astlib__Migrate_406_405.cmx
+   astlib/astlib__Migrate_406_407.cmi
+   astlib/astlib__Migrate_406_407.cmt
+   astlib/astlib__Migrate_406_407.cmx
+   astlib/astlib__Migrate_407_406.cmi
+   astlib/astlib__Migrate_407_406.cmt
+   astlib/astlib__Migrate_407_406.cmx
+   astlib/astlib__Migrate_407_408.cmi
+   astlib/astlib__Migrate_407_408.cmt
+   astlib/astlib__Migrate_407_408.cmx
+   astlib/astlib__Migrate_408_407.cmi
+   astlib/astlib__Migrate_408_407.cmt
+   astlib/astlib__Migrate_408_407.cmx
+   astlib/astlib__Migrate_408_409.cmi
+   astlib/astlib__Migrate_408_409.cmt
+   astlib/astlib__Migrate_408_409.cmx
+   astlib/astlib__Migrate_409_408.cmi
+   astlib/astlib__Migrate_409_408.cmt
+   astlib/astlib__Migrate_409_408.cmx
+   astlib/astlib__Migrate_409_410.cmi
+   astlib/astlib__Migrate_409_410.cmt
+   astlib/astlib__Migrate_409_410.cmx
+   astlib/astlib__Migrate_410_409.cmi
+   astlib/astlib__Migrate_410_409.cmt
+   astlib/astlib__Migrate_410_409.cmx
+   astlib/astlib__Migrate_410_411.cmi
+   astlib/astlib__Migrate_410_411.cmt
+   astlib/astlib__Migrate_410_411.cmx
+   astlib/astlib__Migrate_411_410.cmi
+   astlib/astlib__Migrate_411_410.cmt
+   astlib/astlib__Migrate_411_410.cmx
+   astlib/astlib__Migrate_411_412.cmi
+   astlib/astlib__Migrate_411_412.cmt
+   astlib/astlib__Migrate_411_412.cmx
+   astlib/astlib__Migrate_412_411.cmi
+   astlib/astlib__Migrate_412_411.cmt
+   astlib/astlib__Migrate_412_411.cmx
+   astlib/astlib__Migrate_412_413.cmi
+   astlib/astlib__Migrate_412_413.cmt
+   astlib/astlib__Migrate_412_413.cmx
+   astlib/astlib__Migrate_413_412.cmi
+   astlib/astlib__Migrate_413_412.cmt
+   astlib/astlib__Migrate_413_412.cmx
+   astlib/astlib__Migrate_413_414.cmi
+   astlib/astlib__Migrate_413_414.cmt
+   astlib/astlib__Migrate_413_414.cmx
+   astlib/astlib__Migrate_414_413.cmi
+   astlib/astlib__Migrate_414_413.cmt
+   astlib/astlib__Migrate_414_413.cmx
+   astlib/astlib__Migrate_414_500.cmi
+   astlib/astlib__Migrate_414_500.cmt
+   astlib/astlib__Migrate_414_500.cmx
+   astlib/astlib__Migrate_500_414.cmi
+   astlib/astlib__Migrate_500_414.cmt
+   astlib/astlib__Migrate_500_414.cmx
+   astlib/astlib__Migrate_500_501.cmi
+   astlib/astlib__Migrate_500_501.cmt
+   astlib/astlib__Migrate_500_501.cmx
+   astlib/astlib__Migrate_501_500.cmi
+   astlib/astlib__Migrate_501_500.cmt
+   astlib/astlib__Migrate_501_500.cmx
+   astlib/astlib__Parse.cmi
+   astlib/astlib__Parse.cmt
+   astlib/astlib__Parse.cmti
+   astlib/astlib__Parse.cmx
+   astlib/astlib__Pprintast.cmi
+   astlib/astlib__Pprintast.cmt
+   astlib/astlib__Pprintast.cmti
+   astlib/astlib__Pprintast.cmx
+   astlib/astlib__Stdlib0.cmi
+   astlib/astlib__Stdlib0.cmt
+   astlib/astlib__Stdlib0.cmx
+   astlib/config.ml
+   astlib/config.mli
+   astlib/keyword.ml
+   astlib/keyword.mli
+   astlib/location.ml
+   astlib/location.mli
+   astlib/longident.ml
+   astlib/longident.mli
+   astlib/migrate_402_403.ml
+   astlib/migrate_403_402.ml
+   astlib/migrate_403_404.ml
+   astlib/migrate_404_403.ml
+   astlib/migrate_404_405.ml
+   astlib/migrate_405_404.ml
+   astlib/migrate_405_406.ml
+   astlib/migrate_406_405.ml
+   astlib/migrate_406_407.ml
+   astlib/migrate_407_406.ml
+   astlib/migrate_407_408.ml
+   astlib/migrate_408_407.ml
+   astlib/migrate_408_409.ml
+   astlib/migrate_409_408.ml
+   astlib/migrate_409_410.ml
+   astlib/migrate_410_409.ml
+   astlib/migrate_410_411.ml
+   astlib/migrate_411_410.ml
+   astlib/migrate_411_412.ml
+   astlib/migrate_412_411.ml
+   astlib/migrate_412_413.ml
+   astlib/migrate_413_412.ml
+   astlib/migrate_413_414.ml
+   astlib/migrate_414_413.ml
+   astlib/migrate_414_500.ml
+   astlib/migrate_500_414.ml
+   astlib/migrate_500_501.ml
+   astlib/migrate_501_500.ml
+   astlib/parse.ml
+   astlib/parse.mli
+   astlib/pprintast.ml
+   astlib/pprintast.mli
+   astlib/stdlib0.ml
+   attribute.ml
+   attribute.mli
+   caller_id.ml
+   code_matcher.ml
+   code_matcher.mli
+   code_path.ml
+   code_path.mli
+   common.ml
+   common.mli
+   context_free.ml
+   context_free.mli
+   deriving.ml
+   deriving.mli
+   driver.ml
+   driver.mli
+   dune-package
+   expansion_context.ml
+   expansion_context.mli
+   expansion_helpers.ml
+   expansion_helpers.mli
+   extension.ml
+   extension.mli
+   ignore_unused_warning.ml
+   ignore_unused_warning.mli
+   import.ml
+   keyword.ml
+   keyword.mli
+   loc.ml
+   loc.mli
+   location.ml
+   location.mli
+   location_check.ml
+   location_check.mli
+   longident.ml
+   longident.mli
+   merlin_helpers.ml
+   merlin_helpers.mli
+   metaquot/ppxlib_metaquot.a
+   metaquot/ppxlib_metaquot.cma
+   metaquot/ppxlib_metaquot.cmi
+   metaquot/ppxlib_metaquot.cmt
+   metaquot/ppxlib_metaquot.cmx
+   metaquot/ppxlib_metaquot.cmxa
+   metaquot/ppxlib_metaquot.ml
+   metaquot_lifters/ppxlib_metaquot_lifters.a
+   metaquot_lifters/ppxlib_metaquot_lifters.cma
+   metaquot_lifters/ppxlib_metaquot_lifters.cmi
+   metaquot_lifters/ppxlib_metaquot_lifters.cmt
+   metaquot_lifters/ppxlib_metaquot_lifters.cmx
+   metaquot_lifters/ppxlib_metaquot_lifters.cmxa
+   metaquot_lifters/ppxlib_metaquot_lifters.ml
+   name.ml
+   name.mli
+   opam
+   options.ml
+   ppxlib.a
+   ppxlib.cma
+   ppxlib.cmi
+   ppxlib.cmt
+   ppxlib.cmx
+   ppxlib.cmxa
+   ppxlib.ml
+   ppxlib__.cmi
+   ppxlib__.cmt
+   ppxlib__.cmx
+   ppxlib__.ml
+   ppxlib__Ast_builder.cmi
+   ppxlib__Ast_builder.cmt
+   ppxlib__Ast_builder.cmti
+   ppxlib__Ast_builder.cmx
+   ppxlib__Ast_builder_generated.cmi
+   ppxlib__Ast_builder_generated.cmt
+   ppxlib__Ast_builder_generated.cmx
+   ppxlib__Ast_builder_intf.cmi
+   ppxlib__Ast_builder_intf.cmt
+   ppxlib__Ast_builder_intf.cmx
+   ppxlib__Ast_pattern.cmi
+   ppxlib__Ast_pattern.cmt
+   ppxlib__Ast_pattern.cmti
+   ppxlib__Ast_pattern.cmx
+   ppxlib__Ast_pattern0.cmi
+   ppxlib__Ast_pattern0.cmt
+   ppxlib__Ast_pattern0.cmx
+   ppxlib__Ast_pattern_generated.cmi
+   ppxlib__Ast_pattern_generated.cmt
+   ppxlib__Ast_pattern_generated.cmx
+   ppxlib__Ast_traverse.cmi
+   ppxlib__Ast_traverse.cmt
+   ppxlib__Ast_traverse.cmti
+   ppxlib__Ast_traverse.cmx
+   ppxlib__Ast_traverse0.cmi
+   ppxlib__Ast_traverse0.cmt
+   ppxlib__Ast_traverse0.cmti
+   ppxlib__Ast_traverse0.cmx
+   ppxlib__Attribute.cmi
+   ppxlib__Attribute.cmt
+   ppxlib__Attribute.cmti
+   ppxlib__Attribute.cmx
+   ppxlib__Caller_id.cmi
+   ppxlib__Caller_id.cmt
+   ppxlib__Caller_id.cmx
+   ppxlib__Code_matcher.cmi
+   ppxlib__Code_matcher.cmt
+   ppxlib__Code_matcher.cmti
+   ppxlib__Code_matcher.cmx
+   ppxlib__Code_path.cmi
+   ppxlib__Code_path.cmt
+   ppxlib__Code_path.cmti
+   ppxlib__Code_path.cmx
+   ppxlib__Common.cmi
+   ppxlib__Common.cmt
+   ppxlib__Common.cmti
+   ppxlib__Common.cmx
+   ppxlib__Context_free.cmi
+   ppxlib__Context_free.cmt
+   ppxlib__Context_free.cmti
+   ppxlib__Context_free.cmx
+   ppxlib__Deriving.cmi
+   ppxlib__Deriving.cmt
+   ppxlib__Deriving.cmti
+   ppxlib__Deriving.cmx
+   ppxlib__Driver.cmi
+   ppxlib__Driver.cmt
+   ppxlib__Driver.cmti
+   ppxlib__Driver.cmx
+   ppxlib__Expansion_context.cmi
+   ppxlib__Expansion_context.cmt
+   ppxlib__Expansion_context.cmti
+   ppxlib__Expansion_context.cmx
+   ppxlib__Expansion_helpers.cmi
+   ppxlib__Expansion_helpers.cmt
+   ppxlib__Expansion_helpers.cmti
+   ppxlib__Expansion_helpers.cmx
+   ppxlib__Extension.cmi
+   ppxlib__Extension.cmt
+   ppxlib__Extension.cmti
+   ppxlib__Extension.cmx
+   ppxlib__Ignore_unused_warning.cmi
+   ppxlib__Ignore_unused_warning.cmt
+   ppxlib__Ignore_unused_warning.cmti
+   ppxlib__Ignore_unused_warning.cmx
+   ppxlib__Import.cmi
+   ppxlib__Import.cmt
+   ppxlib__Import.cmx
+   ppxlib__Keyword.cmi
+   ppxlib__Keyword.cmt
+   ppxlib__Keyword.cmti
+   ppxlib__Keyword.cmx
+   ppxlib__Loc.cmi
+   ppxlib__Loc.cmt
+   ppxlib__Loc.cmti
+   ppxlib__Loc.cmx
+   ppxlib__Location.cmi
+   ppxlib__Location.cmt
+   ppxlib__Location.cmti
+   ppxlib__Location.cmx
+   ppxlib__Location_check.cmi
+   ppxlib__Location_check.cmt
+   ppxlib__Location_check.cmti
+   ppxlib__Location_check.cmx
+   ppxlib__Longident.cmi
+   ppxlib__Longident.cmt
+   ppxlib__Longident.cmti
+   ppxlib__Longident.cmx
+   ppxlib__Merlin_helpers.cmi
+   ppxlib__Merlin_helpers.cmt
+   ppxlib__Merlin_helpers.cmti
+   ppxlib__Merlin_helpers.cmx
+   ppxlib__Name.cmi
+   ppxlib__Name.cmt
+   ppxlib__Name.cmti
+   ppxlib__Name.cmx
+   ppxlib__Options.cmi
+   ppxlib__Options.cmt
+   ppxlib__Options.cmx
+   ppxlib__Quoter.cmi
+   ppxlib__Quoter.cmt
+   ppxlib__Quoter.cmti
+   ppxlib__Quoter.cmx
+   ppxlib__Reconcile.cmi
+   ppxlib__Reconcile.cmt
+   ppxlib__Reconcile.cmti
+   ppxlib__Reconcile.cmx
+   ppxlib__Skip_hash_bang.cmi
+   ppxlib__Skip_hash_bang.cmt
+   ppxlib__Skip_hash_bang.cmti
+   ppxlib__Skip_hash_bang.cmx
+   ppxlib__Spellcheck.cmi
+   ppxlib__Spellcheck.cmt
+   ppxlib__Spellcheck.cmx
+   ppxlib__Utils.cmi
+   ppxlib__Utils.cmt
+   ppxlib__Utils.cmti
+   ppxlib__Utils.cmx
+   print_diff/ppxlib_print_diff.a
+   print_diff/ppxlib_print_diff.cma
+   print_diff/ppxlib_print_diff.cmi
+   print_diff/ppxlib_print_diff.cmt
+   print_diff/ppxlib_print_diff.cmti
+   print_diff/ppxlib_print_diff.cmx
+   print_diff/ppxlib_print_diff.cmxa
+   print_diff/ppxlib_print_diff.ml
+   print_diff/ppxlib_print_diff.mli
+   quoter.ml
+   quoter.mli
+   reconcile.ml
+   reconcile.mli
+   runner/ppx_driver_runner.ml
+   runner/ppxlib_runner.a
+   runner/ppxlib_runner.cma
+   runner/ppxlib_runner.cmi
+   runner/ppxlib_runner.cmt
+   runner/ppxlib_runner.cmx
+   runner/ppxlib_runner.cmxa
+   runner/ppxlib_runner.ml
+   runner/ppxlib_runner__Ppx_driver_runner.cmi
+   runner/ppxlib_runner__Ppx_driver_runner.cmt
+   runner/ppxlib_runner__Ppx_driver_runner.cmx
+   runner_as_ppx/ppx_driver_runner_as_ppx.ml
+   runner_as_ppx/ppxlib_runner_as_ppx.a
+   runner_as_ppx/ppxlib_runner_as_ppx.cma
+   runner_as_ppx/ppxlib_runner_as_ppx.cmi
+   runner_as_ppx/ppxlib_runner_as_ppx.cmt
+   runner_as_ppx/ppxlib_runner_as_ppx.cmx
+   runner_as_ppx/ppxlib_runner_as_ppx.cmxa
+   runner_as_ppx/ppxlib_runner_as_ppx.ml
+   runner_as_ppx/ppxlib_runner_as_ppx__Ppx_driver_runner_as_ppx.cmi
+   runner_as_ppx/ppxlib_runner_as_ppx__Ppx_driver_runner_as_ppx.cmt
+   runner_as_ppx/ppxlib_runner_as_ppx__Ppx_driver_runner_as_ppx.cmx
+   skip_hash_bang.ml
+   skip_hash_bang.mli
+   spellcheck.ml
+   stdppx/stdppx.a
+   stdppx/stdppx.cma
+   stdppx/stdppx.cmi
+   stdppx/stdppx.cmt
+   stdppx/stdppx.cmx
+   stdppx/stdppx.cmxa
+   stdppx/stdppx.ml
+   traverse/ppxlib_traverse.a
+   traverse/ppxlib_traverse.cma
+   traverse/ppxlib_traverse.cmi
+   traverse/ppxlib_traverse.cmt
+   traverse/ppxlib_traverse.cmx
+   traverse/ppxlib_traverse.cmxa
+   traverse/ppxlib_traverse.ml
+   traverse_builtins/ppxlib_traverse_builtins.a
+   traverse_builtins/ppxlib_traverse_builtins.cma
+   traverse_builtins/ppxlib_traverse_builtins.cmi
+   traverse_builtins/ppxlib_traverse_builtins.cmt
+   traverse_builtins/ppxlib_traverse_builtins.cmx
+   traverse_builtins/ppxlib_traverse_builtins.cmxa
+   traverse_builtins/ppxlib_traverse_builtins.ml
+   utils.ml
+   utils.mli))
+ (libexec
+  (ast/ppxlib_ast.cmxs
+   astlib/astlib.cmxs
+   metaquot/ppx.exe
+   metaquot/ppxlib_metaquot.cmxs
+   metaquot_lifters/ppxlib_metaquot_lifters.cmxs
+   ppxlib.cmxs
+   print_diff/ppxlib_print_diff.cmxs
+   runner/ppxlib_runner.cmxs
+   runner_as_ppx/ppxlib_runner_as_ppx.cmxs
+   stdppx/stdppx.cmxs
+   traverse/ppxlib_traverse.cmxs
+   traverse_builtins/ppxlib_traverse_builtins.cmxs))
+ (doc
+  (CHANGES.md
+   HISTORY.md
+   LICENSE.md
+   README.md
+   odoc-pages/ast-traversal.mld
+   odoc-pages/driver.mld
+   odoc-pages/examples.mld
+   odoc-pages/generating-code.mld
+   odoc-pages/good-practices.mld
+   odoc-pages/index.mld
+   odoc-pages/matching-code.mld
+   odoc-pages/quick_intro.mld
+   odoc-pages/writing-ppxs.mld)))
+(library
+ (name ppxlib)
+ (kind normal)
+ (archives (byte ppxlib.cma) (native ppxlib.cmxa))
+ (plugins (byte ppxlib.cma) (native ppxlib.cmxs))
+ (native_archives ppxlib.a)
+ (requires
+  (re_export ppxlib.ast)
+  ocaml-compiler-libs.shadow
+  ppxlib.astlib
+  ppxlib.print_diff
+  ppx_derivers
+  ppxlib.traverse_builtins
+  ppxlib.stdppx
+  stdlib-shims
+  sexplib0)
+ (main_module_name Ppxlib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppxlib__)
+     (visibility public)
+     (kind alias)
+     (source (path Ppxlib__) (impl (path ppxlib__.ml-gen))))
+    (name Ppxlib)
+    (modules
+     (module
+      (obj_name ppxlib__Ast_builder)
+      (visibility public)
+      (source
+       (path Ast_builder)
+       (intf (path ast_builder.mli))
+       (impl (path ast_builder.ml))))
+     (module
+      (obj_name ppxlib__Ast_builder_generated)
+      (visibility public)
+      (source
+       (path Ast_builder_generated)
+       (impl (path ast_builder_generated.ml))))
+     (module
+      (obj_name ppxlib__Ast_builder_intf)
+      (visibility public)
+      (source (path Ast_builder_intf) (impl (path ast_builder_intf.ml))))
+     (module
+      (obj_name ppxlib__Ast_pattern)
+      (visibility public)
+      (source
+       (path Ast_pattern)
+       (intf (path ast_pattern.mli))
+       (impl (path ast_pattern.ml))))
+     (module
+      (obj_name ppxlib__Ast_pattern0)
+      (visibility public)
+      (source (path Ast_pattern0) (impl (path ast_pattern0.ml))))
+     (module
+      (obj_name ppxlib__Ast_pattern_generated)
+      (visibility public)
+      (source
+       (path Ast_pattern_generated)
+       (impl (path ast_pattern_generated.ml))))
+     (module
+      (obj_name ppxlib__Ast_traverse)
+      (visibility public)
+      (source
+       (path Ast_traverse)
+       (intf (path ast_traverse.mli))
+       (impl (path ast_traverse.ml))))
+     (module
+      (obj_name ppxlib__Ast_traverse0)
+      (visibility public)
+      (source
+       (path Ast_traverse0)
+       (intf (path ast_traverse0.mli))
+       (impl (path ast_traverse0.ml))))
+     (module
+      (obj_name ppxlib__Attribute)
+      (visibility public)
+      (source
+       (path Attribute)
+       (intf (path attribute.mli))
+       (impl (path attribute.ml))))
+     (module
+      (obj_name ppxlib__Caller_id)
+      (visibility public)
+      (source (path Caller_id) (impl (path caller_id.ml))))
+     (module
+      (obj_name ppxlib__Code_matcher)
+      (visibility public)
+      (source
+       (path Code_matcher)
+       (intf (path code_matcher.mli))
+       (impl (path code_matcher.ml))))
+     (module
+      (obj_name ppxlib__Code_path)
+      (visibility public)
+      (source
+       (path Code_path)
+       (intf (path code_path.mli))
+       (impl (path code_path.ml))))
+     (module
+      (obj_name ppxlib__Common)
+      (visibility public)
+      (source (path Common) (intf (path common.mli)) (impl (path common.ml))))
+     (module
+      (obj_name ppxlib__Context_free)
+      (visibility public)
+      (source
+       (path Context_free)
+       (intf (path context_free.mli))
+       (impl (path context_free.ml))))
+     (module
+      (obj_name ppxlib__Deriving)
+      (visibility public)
+      (source
+       (path Deriving)
+       (intf (path deriving.mli))
+       (impl (path deriving.ml))))
+     (module
+      (obj_name ppxlib__Driver)
+      (visibility public)
+      (source (path Driver) (intf (path driver.mli)) (impl (path driver.ml))))
+     (module
+      (obj_name ppxlib__Expansion_context)
+      (visibility public)
+      (source
+       (path Expansion_context)
+       (intf (path expansion_context.mli))
+       (impl (path expansion_context.ml))))
+     (module
+      (obj_name ppxlib__Expansion_helpers)
+      (visibility public)
+      (source
+       (path Expansion_helpers)
+       (intf (path expansion_helpers.mli))
+       (impl (path expansion_helpers.ml))))
+     (module
+      (obj_name ppxlib__Extension)
+      (visibility public)
+      (source
+       (path Extension)
+       (intf (path extension.mli))
+       (impl (path extension.ml))))
+     (module
+      (obj_name ppxlib__Ignore_unused_warning)
+      (visibility public)
+      (source
+       (path Ignore_unused_warning)
+       (intf (path ignore_unused_warning.mli))
+       (impl (path ignore_unused_warning.ml))))
+     (module
+      (obj_name ppxlib__Import)
+      (visibility public)
+      (source (path Import) (impl (path import.ml))))
+     (module
+      (obj_name ppxlib__Keyword)
+      (visibility public)
+      (source
+       (path Keyword)
+       (intf (path keyword.mli))
+       (impl (path keyword.ml))))
+     (module
+      (obj_name ppxlib__Loc)
+      (visibility public)
+      (source (path Loc) (intf (path loc.mli)) (impl (path loc.ml))))
+     (module
+      (obj_name ppxlib__Location)
+      (visibility public)
+      (source
+       (path Location)
+       (intf (path location.mli))
+       (impl (path location.ml))))
+     (module
+      (obj_name ppxlib__Location_check)
+      (visibility public)
+      (source
+       (path Location_check)
+       (intf (path location_check.mli))
+       (impl (path location_check.ml))))
+     (module
+      (obj_name ppxlib__Longident)
+      (visibility public)
+      (source
+       (path Longident)
+       (intf (path longident.mli))
+       (impl (path longident.ml))))
+     (module
+      (obj_name ppxlib__Merlin_helpers)
+      (visibility public)
+      (source
+       (path Merlin_helpers)
+       (intf (path merlin_helpers.mli))
+       (impl (path merlin_helpers.ml))))
+     (module
+      (obj_name ppxlib__Name)
+      (visibility public)
+      (source (path Name) (intf (path name.mli)) (impl (path name.ml))))
+     (module
+      (obj_name ppxlib__Options)
+      (visibility public)
+      (source (path Options) (impl (path options.ml))))
+     (module
+      (obj_name ppxlib)
+      (visibility public)
+      (source (path Ppxlib) (impl (path ppxlib.ml))))
+     (module
+      (obj_name ppxlib__Quoter)
+      (visibility public)
+      (source (path Quoter) (intf (path quoter.mli)) (impl (path quoter.ml))))
+     (module
+      (obj_name ppxlib__Reconcile)
+      (visibility public)
+      (source
+       (path Reconcile)
+       (intf (path reconcile.mli))
+       (impl (path reconcile.ml))))
+     (module
+      (obj_name ppxlib__Skip_hash_bang)
+      (visibility public)
+      (source
+       (path Skip_hash_bang)
+       (intf (path skip_hash_bang.mli))
+       (impl (path skip_hash_bang.ml))))
+     (module
+      (obj_name ppxlib__Spellcheck)
+      (visibility public)
+      (source (path Spellcheck) (impl (path spellcheck.ml))))
+     (module
+      (obj_name ppxlib__Utils)
+      (visibility public)
+      (source (path Utils) (intf (path utils.mli)) (impl (path utils.ml))))))
+   (wrapped true)))
+ (ppx.driver
+  (flags (-corrected-suffix %{corrected-suffix} -diff-cmd - -dump-ast))
+  (lint_flags (-corrected-suffix %{corrected-suffix} -diff-cmd - -null))
+  (main Ppxlib.Driver.standalone)))
+(library
+ (name ppxlib.ast)
+ (kind normal)
+ (archives (byte ast/ppxlib_ast.cma) (native ast/ppxlib_ast.cmxa))
+ (plugins (byte ast/ppxlib_ast.cma) (native ast/ppxlib_ast.cmxs))
+ (native_archives ast/ppxlib_ast.a)
+ (requires ppxlib.astlib stdlib-shims)
+ (main_module_name Ppxlib_ast)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppxlib_ast__)
+     (visibility public)
+     (kind alias)
+     (source (path Ppxlib_ast__) (impl (path ast/ppxlib_ast__.ml-gen))))
+    (name Ppxlib_ast)
+    (modules
+     (module
+      (obj_name ppxlib_ast__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path ast/ast.ml))))
+     (module
+      (obj_name ppxlib_ast__Ast_helper_lite)
+      (visibility public)
+      (source
+       (path Ast_helper_lite)
+       (intf (path ast/ast_helper_lite.mli))
+       (impl (path ast/ast_helper_lite.ml))))
+     (module
+      (obj_name ppxlib_ast__Import)
+      (visibility public)
+      (source (path Import) (impl (path ast/import.ml))))
+     (module
+      (obj_name ppxlib_ast__Location_error)
+      (visibility public)
+      (source
+       (path Location_error)
+       (intf (path ast/location_error.mli))
+       (impl (path ast/location_error.ml))))
+     (module
+      (obj_name ppxlib_ast)
+      (visibility public)
+      (source (path Ppxlib_ast) (impl (path ast/ppxlib_ast.ml))))
+     (module
+      (obj_name ppxlib_ast__Stdlib0)
+      (visibility public)
+      (source (path Stdlib0) (impl (path ast/stdlib0.ml))))
+     (module
+      (obj_name ppxlib_ast__Versions)
+      (visibility public)
+      (source
+       (path Versions)
+       (intf (path ast/versions.mli))
+       (impl (path ast/versions.ml))))
+     (module
+      (obj_name ppxlib_ast__Warn)
+      (visibility public)
+      (source
+       (path Warn)
+       (intf (path ast/warn.mli))
+       (impl (path ast/warn.ml))))))
+   (wrapped true))))
+(library
+ (name ppxlib.astlib)
+ (kind normal)
+ (archives (byte astlib/astlib.cma) (native astlib/astlib.cmxa))
+ (plugins (byte astlib/astlib.cma) (native astlib/astlib.cmxs))
+ (native_archives astlib/astlib.a)
+ (requires ocaml-compiler-libs.common compiler-libs.common)
+ (main_module_name Astlib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name astlib__)
+     (visibility public)
+     (kind alias)
+     (source (path Astlib__) (impl (path astlib/astlib__.ml-gen))))
+    (name Astlib)
+    (modules
+     (module
+      (obj_name astlib__Ast_402)
+      (visibility public)
+      (source (path Ast_402) (impl (path astlib/ast_402.ml))))
+     (module
+      (obj_name astlib__Ast_403)
+      (visibility public)
+      (source (path Ast_403) (impl (path astlib/ast_403.ml))))
+     (module
+      (obj_name astlib__Ast_404)
+      (visibility public)
+      (source (path Ast_404) (impl (path astlib/ast_404.ml))))
+     (module
+      (obj_name astlib__Ast_405)
+      (visibility public)
+      (source (path Ast_405) (impl (path astlib/ast_405.ml))))
+     (module
+      (obj_name astlib__Ast_406)
+      (visibility public)
+      (source (path Ast_406) (impl (path astlib/ast_406.ml))))
+     (module
+      (obj_name astlib__Ast_407)
+      (visibility public)
+      (source (path Ast_407) (impl (path astlib/ast_407.ml))))
+     (module
+      (obj_name astlib__Ast_408)
+      (visibility public)
+      (source (path Ast_408) (impl (path astlib/ast_408.ml))))
+     (module
+      (obj_name astlib__Ast_409)
+      (visibility public)
+      (source (path Ast_409) (impl (path astlib/ast_409.ml))))
+     (module
+      (obj_name astlib__Ast_410)
+      (visibility public)
+      (source (path Ast_410) (impl (path astlib/ast_410.ml))))
+     (module
+      (obj_name astlib__Ast_411)
+      (visibility public)
+      (source (path Ast_411) (impl (path astlib/ast_411.ml))))
+     (module
+      (obj_name astlib__Ast_412)
+      (visibility public)
+      (source (path Ast_412) (impl (path astlib/ast_412.ml))))
+     (module
+      (obj_name astlib__Ast_413)
+      (visibility public)
+      (source (path Ast_413) (impl (path astlib/ast_413.ml))))
+     (module
+      (obj_name astlib__Ast_414)
+      (visibility public)
+      (source (path Ast_414) (impl (path astlib/ast_414.ml))))
+     (module
+      (obj_name astlib__Ast_500)
+      (visibility public)
+      (source (path Ast_500) (impl (path astlib/ast_500.ml))))
+     (module
+      (obj_name astlib__Ast_501)
+      (visibility public)
+      (source (path Ast_501) (impl (path astlib/ast_501.ml))))
+     (module
+      (obj_name astlib__Ast_metadata)
+      (visibility public)
+      (source
+       (path Ast_metadata)
+       (intf (path astlib/ast_metadata.mli))
+       (impl (path astlib/ast_metadata.ml))))
+     (module
+      (obj_name astlib)
+      (visibility public)
+      (source (path Astlib) (impl (path astlib/astlib.ml))))
+     (module
+      (obj_name astlib__Config)
+      (visibility public)
+      (source
+       (path Config)
+       (intf (path astlib/config.mli))
+       (impl (path astlib/config.ml))))
+     (module
+      (obj_name astlib__Keyword)
+      (visibility public)
+      (source
+       (path Keyword)
+       (intf (path astlib/keyword.mli))
+       (impl (path astlib/keyword.ml))))
+     (module
+      (obj_name astlib__Location)
+      (visibility public)
+      (source
+       (path Location)
+       (intf (path astlib/location.mli))
+       (impl (path astlib/location.ml))))
+     (module
+      (obj_name astlib__Longident)
+      (visibility public)
+      (source
+       (path Longident)
+       (intf (path astlib/longident.mli))
+       (impl (path astlib/longident.ml))))
+     (module
+      (obj_name astlib__Migrate_402_403)
+      (visibility public)
+      (source (path Migrate_402_403) (impl (path astlib/migrate_402_403.ml))))
+     (module
+      (obj_name astlib__Migrate_403_402)
+      (visibility public)
+      (source (path Migrate_403_402) (impl (path astlib/migrate_403_402.ml))))
+     (module
+      (obj_name astlib__Migrate_403_404)
+      (visibility public)
+      (source (path Migrate_403_404) (impl (path astlib/migrate_403_404.ml))))
+     (module
+      (obj_name astlib__Migrate_404_403)
+      (visibility public)
+      (source (path Migrate_404_403) (impl (path astlib/migrate_404_403.ml))))
+     (module
+      (obj_name astlib__Migrate_404_405)
+      (visibility public)
+      (source (path Migrate_404_405) (impl (path astlib/migrate_404_405.ml))))
+     (module
+      (obj_name astlib__Migrate_405_404)
+      (visibility public)
+      (source (path Migrate_405_404) (impl (path astlib/migrate_405_404.ml))))
+     (module
+      (obj_name astlib__Migrate_405_406)
+      (visibility public)
+      (source (path Migrate_405_406) (impl (path astlib/migrate_405_406.ml))))
+     (module
+      (obj_name astlib__Migrate_406_405)
+      (visibility public)
+      (source (path Migrate_406_405) (impl (path astlib/migrate_406_405.ml))))
+     (module
+      (obj_name astlib__Migrate_406_407)
+      (visibility public)
+      (source (path Migrate_406_407) (impl (path astlib/migrate_406_407.ml))))
+     (module
+      (obj_name astlib__Migrate_407_406)
+      (visibility public)
+      (source (path Migrate_407_406) (impl (path astlib/migrate_407_406.ml))))
+     (module
+      (obj_name astlib__Migrate_407_408)
+      (visibility public)
+      (source (path Migrate_407_408) (impl (path astlib/migrate_407_408.ml))))
+     (module
+      (obj_name astlib__Migrate_408_407)
+      (visibility public)
+      (source (path Migrate_408_407) (impl (path astlib/migrate_408_407.ml))))
+     (module
+      (obj_name astlib__Migrate_408_409)
+      (visibility public)
+      (source (path Migrate_408_409) (impl (path astlib/migrate_408_409.ml))))
+     (module
+      (obj_name astlib__Migrate_409_408)
+      (visibility public)
+      (source (path Migrate_409_408) (impl (path astlib/migrate_409_408.ml))))
+     (module
+      (obj_name astlib__Migrate_409_410)
+      (visibility public)
+      (source (path Migrate_409_410) (impl (path astlib/migrate_409_410.ml))))
+     (module
+      (obj_name astlib__Migrate_410_409)
+      (visibility public)
+      (source (path Migrate_410_409) (impl (path astlib/migrate_410_409.ml))))
+     (module
+      (obj_name astlib__Migrate_410_411)
+      (visibility public)
+      (source (path Migrate_410_411) (impl (path astlib/migrate_410_411.ml))))
+     (module
+      (obj_name astlib__Migrate_411_410)
+      (visibility public)
+      (source (path Migrate_411_410) (impl (path astlib/migrate_411_410.ml))))
+     (module
+      (obj_name astlib__Migrate_411_412)
+      (visibility public)
+      (source (path Migrate_411_412) (impl (path astlib/migrate_411_412.ml))))
+     (module
+      (obj_name astlib__Migrate_412_411)
+      (visibility public)
+      (source (path Migrate_412_411) (impl (path astlib/migrate_412_411.ml))))
+     (module
+      (obj_name astlib__Migrate_412_413)
+      (visibility public)
+      (source (path Migrate_412_413) (impl (path astlib/migrate_412_413.ml))))
+     (module
+      (obj_name astlib__Migrate_413_412)
+      (visibility public)
+      (source (path Migrate_413_412) (impl (path astlib/migrate_413_412.ml))))
+     (module
+      (obj_name astlib__Migrate_413_414)
+      (visibility public)
+      (source (path Migrate_413_414) (impl (path astlib/migrate_413_414.ml))))
+     (module
+      (obj_name astlib__Migrate_414_413)
+      (visibility public)
+      (source (path Migrate_414_413) (impl (path astlib/migrate_414_413.ml))))
+     (module
+      (obj_name astlib__Migrate_414_500)
+      (visibility public)
+      (source (path Migrate_414_500) (impl (path astlib/migrate_414_500.ml))))
+     (module
+      (obj_name astlib__Migrate_500_414)
+      (visibility public)
+      (source (path Migrate_500_414) (impl (path astlib/migrate_500_414.ml))))
+     (module
+      (obj_name astlib__Migrate_500_501)
+      (visibility public)
+      (source (path Migrate_500_501) (impl (path astlib/migrate_500_501.ml))))
+     (module
+      (obj_name astlib__Migrate_501_500)
+      (visibility public)
+      (source (path Migrate_501_500) (impl (path astlib/migrate_501_500.ml))))
+     (module
+      (obj_name astlib__Parse)
+      (visibility public)
+      (source
+       (path Parse)
+       (intf (path astlib/parse.mli))
+       (impl (path astlib/parse.ml))))
+     (module
+      (obj_name astlib__Pprintast)
+      (visibility public)
+      (source
+       (path Pprintast)
+       (intf (path astlib/pprintast.mli))
+       (impl (path astlib/pprintast.ml))))
+     (module
+      (obj_name astlib__Stdlib0)
+      (visibility public)
+      (source (path Stdlib0) (impl (path astlib/stdlib0.ml))))))
+   (wrapped true))))
+(library
+ (name ppxlib.metaquot)
+ (kind ppx_rewriter)
+ (archives
+  (byte metaquot/ppxlib_metaquot.cma)
+  (native metaquot/ppxlib_metaquot.cmxa))
+ (plugins
+  (byte metaquot/ppxlib_metaquot.cma)
+  (native metaquot/ppxlib_metaquot.cmxs))
+ (native_archives metaquot/ppxlib_metaquot.a)
+ (requires
+  ppxlib.astlib
+  ppxlib.ast
+  ppxlib
+  ppxlib.traverse_builtins
+  ppxlib.metaquot_lifters)
+ (ppx_runtime_deps ppxlib.ast)
+ (main_module_name Ppxlib_metaquot)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppxlib_metaquot)
+   (visibility public)
+   (source (path Ppxlib_metaquot) (impl (path metaquot/ppxlib_metaquot.ml))))))
+(library
+ (name ppxlib.metaquot_lifters)
+ (kind normal)
+ (archives
+  (byte metaquot_lifters/ppxlib_metaquot_lifters.cma)
+  (native metaquot_lifters/ppxlib_metaquot_lifters.cmxa))
+ (plugins
+  (byte metaquot_lifters/ppxlib_metaquot_lifters.cma)
+  (native metaquot_lifters/ppxlib_metaquot_lifters.cmxs))
+ (native_archives metaquot_lifters/ppxlib_metaquot_lifters.a)
+ (requires
+  ppxlib.ast
+  ppxlib
+  ppxlib.traverse_builtins
+  ppxlib.stdppx
+  stdlib-shims)
+ (main_module_name Ppxlib_metaquot_lifters)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppxlib_metaquot_lifters)
+   (visibility public)
+   (source
+    (path Ppxlib_metaquot_lifters)
+    (impl (path metaquot_lifters/ppxlib_metaquot_lifters.ml))))))
+(library
+ (name ppxlib.print_diff)
+ (kind normal)
+ (archives
+  (byte print_diff/ppxlib_print_diff.cma)
+  (native print_diff/ppxlib_print_diff.cmxa))
+ (plugins
+  (byte print_diff/ppxlib_print_diff.cma)
+  (native print_diff/ppxlib_print_diff.cmxs))
+ (native_archives print_diff/ppxlib_print_diff.a)
+ (main_module_name Ppxlib_print_diff)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppxlib_print_diff)
+   (visibility public)
+   (source
+    (path Ppxlib_print_diff)
+    (intf (path print_diff/ppxlib_print_diff.mli))
+    (impl (path print_diff/ppxlib_print_diff.ml))))))
+(library
+ (name ppxlib.runner)
+ (kind normal)
+ (archives (byte runner/ppxlib_runner.cma) (native runner/ppxlib_runner.cmxa))
+ (plugins (byte runner/ppxlib_runner.cma) (native runner/ppxlib_runner.cmxs))
+ (native_archives runner/ppxlib_runner.a)
+ (requires ppxlib.ast ppxlib)
+ (main_module_name Ppxlib_runner)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppxlib_runner)
+     (visibility public)
+     (kind alias)
+     (source (path Ppxlib_runner) (impl (path runner/ppxlib_runner.ml-gen))))
+    (name Ppxlib_runner)
+    (modules
+     (module
+      (obj_name ppxlib_runner__Ppx_driver_runner)
+      (visibility public)
+      (source
+       (path Ppx_driver_runner)
+       (impl (path runner/ppx_driver_runner.ml))))))
+   (wrapped true))))
+(library
+ (name ppxlib.runner_as_ppx)
+ (kind normal)
+ (archives
+  (byte runner_as_ppx/ppxlib_runner_as_ppx.cma)
+  (native runner_as_ppx/ppxlib_runner_as_ppx.cmxa))
+ (plugins
+  (byte runner_as_ppx/ppxlib_runner_as_ppx.cma)
+  (native runner_as_ppx/ppxlib_runner_as_ppx.cmxs))
+ (native_archives runner_as_ppx/ppxlib_runner_as_ppx.a)
+ (requires ppxlib.ast ppxlib)
+ (main_module_name Ppxlib_runner_as_ppx)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppxlib_runner_as_ppx)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppxlib_runner_as_ppx)
+      (impl (path runner_as_ppx/ppxlib_runner_as_ppx.ml-gen))))
+    (name Ppxlib_runner_as_ppx)
+    (modules
+     (module
+      (obj_name ppxlib_runner_as_ppx__Ppx_driver_runner_as_ppx)
+      (visibility public)
+      (source
+       (path Ppx_driver_runner_as_ppx)
+       (impl (path runner_as_ppx/ppx_driver_runner_as_ppx.ml))))))
+   (wrapped true))))
+(library
+ (name ppxlib.stdppx)
+ (kind normal)
+ (archives (byte stdppx/stdppx.cma) (native stdppx/stdppx.cmxa))
+ (plugins (byte stdppx/stdppx.cma) (native stdppx/stdppx.cmxs))
+ (native_archives stdppx/stdppx.a)
+ (requires sexplib0 stdlib-shims)
+ (main_module_name Stdppx)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name stdppx)
+   (visibility public)
+   (source (path Stdppx) (impl (path stdppx/stdppx.ml))))))
+(library
+ (name ppxlib.traverse)
+ (kind ppx_deriver)
+ (archives
+  (byte traverse/ppxlib_traverse.cma)
+  (native traverse/ppxlib_traverse.cmxa))
+ (plugins
+  (byte traverse/ppxlib_traverse.cma)
+  (native traverse/ppxlib_traverse.cmxs))
+ (native_archives traverse/ppxlib_traverse.a)
+ (requires
+  ppxlib.ast
+  ppxlib
+  ppxlib.traverse_builtins
+  ppxlib.stdppx
+  stdlib-shims)
+ (main_module_name Ppxlib_traverse)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppxlib_traverse)
+   (visibility public)
+   (source (path Ppxlib_traverse) (impl (path traverse/ppxlib_traverse.ml))))))
+(library
+ (name ppxlib.traverse_builtins)
+ (kind normal)
+ (archives
+  (byte traverse_builtins/ppxlib_traverse_builtins.cma)
+  (native traverse_builtins/ppxlib_traverse_builtins.cmxa))
+ (plugins
+  (byte traverse_builtins/ppxlib_traverse_builtins.cma)
+  (native traverse_builtins/ppxlib_traverse_builtins.cmxs))
+ (native_archives traverse_builtins/ppxlib_traverse_builtins.a)
+ (main_module_name Ppxlib_traverse_builtins)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppxlib_traverse_builtins)
+   (visibility public)
+   (source
+    (path Ppxlib_traverse_builtins)
+    (impl (path traverse_builtins/ppxlib_traverse_builtins.ml))))))

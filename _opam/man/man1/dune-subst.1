@@ -1,0 +1,102 @@
+.\" Pipe this output to groff -m man -K utf8 -T utf8 | less -R
+.\"
+.mso an.tmac
+.TH "DUNE-SUBST" 1 "" "Dune 3.15.0" "Dune Manual"
+.\" Disable hyphenation and ragged-right
+.nh
+.ad l
+.SH NAME
+.P
+dune\N'45'subst \N'45' Substitute watermarks in source files\N'46'
+.SH SYNOPSIS
+.P
+\fBdune subst\fR [\fB\N'45'\N'45'build\N'45'info\fR] [\fIOPTION\fR]…
+.SH DESCRIPTION
+.P
+Substitute \fB%%ID%%\fR strings in source files, in a similar fashion to what topkg does in the default configuration\N'46'
+.P
+This command is only meant to be called when a user pins a package to its development version\N'46' Especially it replaces \fB%%VERSION%%\fR strings by the version obtained from the vcs\N'46' Currently only git is supported and the version is obtained from the output of:
+.P
+.nf
+  $ git describe \N'45'\N'45'always \N'45'\N'45'dirty \N'45'\N'45'abbrev=7
+.fi
+.P
+\fBdune subst\fR substitutes the variables that topkg substitutes with the default configuration:
+.sp -1
+.P
+\N'45' \fB%%NAME%%\fR, the name of the project (from the dune\N'45'project file)
+.sp -1
+.P
+\N'45' \fB%%VERSION%%\fR, output of \fBgit describe \N'45'\N'45'always \N'45'\N'45'dirty \N'45'\N'45'abbrev=7\fR
+.sp -1
+.P
+\N'45' \fB%%VERSION_NUM%%\fR, same as \fB%%VERSION%%\fR but with a potential leading \N'39'v\N'39' or \N'39'V\N'39' dropped
+.sp -1
+.P
+\N'45' \fB%%VCS_COMMIT_ID%%\fR, commit hash from the vcs
+.sp -1
+.P
+\N'45' \fB%%PKG_MAINTAINER%%\fR, contents of the \fBmaintainer:\fR field from the opam file
+.sp -1
+.P
+\N'45' \fB%%PKG_AUTHORS%%\fR, contents of the \fBauthors:\fR field from the opam file
+.sp -1
+.P
+\N'45' \fB%%PKG_HOMEPAGE%%\fR, contents of the \fBhomepage:\fR field from the opam file
+.sp -1
+.P
+\N'45' \fB%%PKG_ISSUES%%\fR, contents of the \fBissues:\fR field from the opam file
+.sp -1
+.P
+\N'45' \fB%%PKG_DOC%%\fR, contents of the \fBdoc:\fR field from the opam file
+.sp -1
+.P
+\N'45' \fB%%PKG_LICENSE%%\fR, contents of the \fBlicense:\fR field from the opam file
+.sp -1
+.P
+\N'45' \fB%%PKG_REPO%%\fR, contents of the \fBrepo:\fR field from the opam file
+.P
+In order to call \fBdune subst\fR when your package is pinned, add this line to the \fBbuild:\fR field of your opam file:
+.P
+.nf
+  [dune "subst"] {pinned}
+.fi
+.P
+Note that this command is meant to be called only from opam files and behaves a bit differently from other dune commands\N'46' In particular it doesn\N'39't try to detect the root and must be called from the root of the project\N'46'
+.SH OPTIONS
+.TP 4
+\fB\N'45'\N'45'build\N'45'info\fR
+Show build information\N'46'
+.SH COMMON OPTIONS
+.P
+These options are common to all commands\N'46'
+.TP 4
+\fB\N'45'\N'45'debug\N'45'backtraces\fR
+Always print exception backtraces\N'46'
+.TP 4
+\fB\N'45'\N'45'help\fR[=\fIFMT\fR] (default=\fBauto\fR)
+Show this help in format \fIFMT\fR\N'46' The value \fIFMT\fR must be one of \fBauto\fR, \fBpager\fR, \fBgroff\fR or \fBplain\fR\N'46' With \fBauto\fR, the format is \fBpager\fR or \fBplain\fR whenever the \fBTERM\fR env var is \fBdumb\fR or undefined\N'46'
+.TP 4
+\fB\N'45'\N'45'version\fR
+Show version information\N'46'
+.SH MORE HELP
+.P
+Use `\fBdune\fR \fICOMMAND\fR \N'45'\N'45'help\N'39' for help on a single command\N'46'
+.SH EXIT STATUS
+.P
+\fBdune subst\fR exits with:
+.TP 4
+0
+on success\N'46'
+.TP 4
+1
+if an error happened\N'46'
+.TP 4
+130
+if it was interrupted by a signal\N'46'
+.SH BUGS
+.P
+Check bug reports at https://github\N'46'com/ocaml/dune/issues
+.SH SEE ALSO
+.P
+dune(1)

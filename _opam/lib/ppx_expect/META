@@ -1,0 +1,120 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base
+                        ppx_expect.common
+                        ppx_expect.payload
+                        ppx_here.expander
+                        ppx_inline_test
+                        ppx_inline_test.libname
+                        ppxlib
+                        ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_expect.cma"
+archive(ppx_driver,native) = "ppx_expect.cmxa"
+plugin(ppx_driver,byte) = "ppx_expect.cma"
+plugin(ppx_driver,native) = "ppx_expect.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "ppx_expect.collector ppx_expect.config"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_expect.collector
+                         ppx_expect.config
+                         ppx_here.runtime-lib
+                         ppx_inline_test.config
+                         ppx_inline_test.runtime-lib"
+ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+library_kind = "ppx_rewriter"
+package "collector" (
+  directory = "collector"
+  version = "v0.16.0"
+  description = "Runtime library for ppx_expect"
+  requires =
+  "ppx_expect.common ppx_expect.config_types ppx_inline_test.runtime-lib"
+  archive(byte) = "expect_test_collector.cma"
+  archive(native) = "expect_test_collector.cmxa"
+  plugin(byte) = "expect_test_collector.cma"
+  plugin(native) = "expect_test_collector.cmxs"
+  jsoo_runtime = "runtime.js"
+)
+package "common" (
+  directory = "common"
+  version = "v0.16.0"
+  description = "Shared parts for ppx_expect"
+  requires = "base"
+  archive(byte) = "expect_test_common.cma"
+  archive(native) = "expect_test_common.cmxa"
+  plugin(byte) = "expect_test_common.cma"
+  plugin(native) = "expect_test_common.cmxs"
+)
+package "config" (
+  directory = "config"
+  version = "v0.16.0"
+  description = "Default runtime configuration for ppx_expect"
+  requires = "ppx_expect.config_types"
+  archive(byte) = "expect_test_config.cma"
+  archive(native) = "expect_test_config.cmxa"
+  plugin(byte) = "expect_test_config.cma"
+  plugin(native) = "expect_test_config.cmxs"
+)
+package "config_types" (
+  directory = "config_types"
+  version = "v0.16.0"
+  description = "Runtime configuration options for ppx_expect"
+  requires = ""
+  archive(byte) = "expect_test_config_types.cma"
+  archive(native) = "expect_test_config_types.cmxa"
+  plugin(byte) = "expect_test_config_types.cma"
+  plugin(native) = "expect_test_config_types.cmxs"
+)
+package "evaluator" (
+  directory = "evaluator"
+  version = "v0.16.0"
+  description = ""
+  requires =
+  "base
+   ppx_expect.collector
+   ppx_expect.common
+   ppx_expect.make_corrected_file
+   ppx_expect.matcher
+   ppxlib.print_diff
+   stdio"
+  archive(byte) = "ppx_expect_evaluator.cma"
+  archive(native) = "ppx_expect_evaluator.cmxa"
+  plugin(byte) = "ppx_expect_evaluator.cma"
+  plugin(native) = "ppx_expect_evaluator.cmxs"
+)
+package "make_corrected_file" (
+  directory = "make_corrected_file"
+  version = "v0.16.0"
+  description = ""
+  requires = "base ppxlib.print_diff stdio"
+  archive(byte) = "make_corrected_file.cma"
+  archive(native) = "make_corrected_file.cmxa"
+  plugin(byte) = "make_corrected_file.cma"
+  plugin(native) = "make_corrected_file.cmxs"
+)
+package "matcher" (
+  directory = "matcher"
+  version = "v0.16.0"
+  description = ""
+  requires =
+  "base
+   ppx_expect.common
+   ppx_expect.config_types
+   ppx_inline_test.runtime-lib
+   re"
+  archive(byte) = "expect_test_matcher.cma"
+  archive(native) = "expect_test_matcher.cmxa"
+  plugin(byte) = "expect_test_matcher.cma"
+  plugin(native) = "expect_test_matcher.cmxs"
+)
+package "payload" (
+  directory = "payload"
+  version = "v0.16.0"
+  description = ""
+  requires = "ppx_expect.common ppxlib ppxlib.ast"
+  archive(byte) = "ppx_expect_payload.cma"
+  archive(native) = "ppx_expect_payload.cmxa"
+  plugin(byte) = "ppx_expect_payload.cma"
+  plugin(native) = "ppx_expect_payload.cmxs"
+)

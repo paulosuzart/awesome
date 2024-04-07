@@ -1,0 +1,29 @@
+version = "v0.16.0"
+description = ""
+requires =
+"base
+ base_quickcheck
+ base_quickcheck.ppx_quickcheck.runtime
+ bin_prot
+ fieldslib
+ ppx_assert.runtime-lib
+ ppx_bench.runtime-lib
+ ppx_compare.runtime-lib
+ ppx_enumerate.runtime-lib
+ ppx_expect.collector
+ ppx_expect.config
+ ppx_hash.runtime-lib
+ ppx_here.runtime-lib
+ ppx_inline_test.config
+ ppx_inline_test.runtime-lib
+ ppx_log.types
+ ppx_module_timer.runtime
+ ppx_sexp_conv.runtime-lib
+ ppx_stable_witness.runtime
+ sexplib0
+ typerep
+ variantslib"
+archive(byte) = "int_repr.cma"
+archive(native) = "int_repr.cmxa"
+plugin(byte) = "int_repr.cma"
+plugin(native) = "int_repr.cmxs"

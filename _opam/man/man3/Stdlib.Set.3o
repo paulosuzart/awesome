@@ -1,0 +1,48 @@
+.TH "Stdlib.Set" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Set \- no description
+.SH Module
+Module   Stdlib.Set
+.SH Documentation
+.sp
+Module
+.BI "Set"
+ : 
+.B (module Stdlib__Set)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module type OrderedType = 
+.B sig end
+
+.sp
+Input signature of the functor 
+.ft B
+Set\&.Make
+.ft R
+\&.
+
+.sp
+.I module type S = 
+.B sig end
+
+.sp
+Output signature of the functor 
+.ft B
+Set\&.Make
+.ft R
+\&.
+
+.sp
+.I module Make : 
+.B functor (Ord : OrderedType) -> sig end
+
+.sp
+Functor building an implementation of the set structure
+given a totally ordered type\&.
+
+.sp

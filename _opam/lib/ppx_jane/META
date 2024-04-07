@@ -1,0 +1,87 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base_quickcheck.ppx_quickcheck
+                        ppx_expect
+                        ppx_jane.kernel
+                        ppx_log
+                        ppx_stable"
+archive(ppx_driver,byte) = "ppx_jane.cma"
+archive(ppx_driver,native) = "ppx_jane.cmxa"
+plugin(ppx_driver,byte) = "ppx_jane.cma"
+plugin(ppx_driver,native) = "ppx_jane.cmxs"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "base_quickcheck
+                         base_quickcheck.ppx_quickcheck.runtime
+                         bin_prot
+                         fieldslib
+                         ppx_assert.runtime-lib
+                         ppx_bench.runtime-lib
+                         ppx_compare.runtime-lib
+                         ppx_enumerate.runtime-lib
+                         ppx_expect.collector
+                         ppx_expect.config
+                         ppx_hash.runtime-lib
+                         ppx_here.runtime-lib
+                         ppx_inline_test.config
+                         ppx_inline_test.runtime-lib
+                         ppx_log.types
+                         ppx_module_timer.runtime
+                         ppx_sexp_conv.runtime-lib
+                         ppx_stable_witness.runtime
+                         sexplib0
+                         typerep
+                         variantslib"
+ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+library_kind = "ppx_rewriter"
+package "kernel" (
+  directory = "kernel"
+  version = "v0.16.0"
+  description = ""
+  requires(ppx_driver) = "ppx_assert
+                          ppx_base
+                          ppx_bench
+                          ppx_bin_prot
+                          ppx_custom_printf
+                          ppx_disable_unused_warnings
+                          ppx_fields_conv
+                          ppx_fixed_literal
+                          ppx_here
+                          ppx_ignore_instrumentation
+                          ppx_inline_test
+                          ppx_let
+                          ppx_module_timer
+                          ppx_optional
+                          ppx_pipebang
+                          ppx_sexp_message
+                          ppx_sexp_value
+                          ppx_stable_witness
+                          ppx_string
+                          ppx_tydi
+                          ppx_typerep_conv
+                          ppx_variants_conv"
+  archive(ppx_driver,byte) = "ppx_jane_kernel.cma"
+  archive(ppx_driver,native) = "ppx_jane_kernel.cmxa"
+  plugin(ppx_driver,byte) = "ppx_jane_kernel.cma"
+  plugin(ppx_driver,native) = "ppx_jane_kernel.cmxs"
+  # This line makes things transparent for people mixing preprocessors
+  # and normal dependencies
+  requires(-ppx_driver) = "bin_prot
+                           fieldslib
+                           ppx_assert.runtime-lib
+                           ppx_bench.runtime-lib
+                           ppx_compare.runtime-lib
+                           ppx_enumerate.runtime-lib
+                           ppx_hash.runtime-lib
+                           ppx_here.runtime-lib
+                           ppx_inline_test.config
+                           ppx_inline_test.runtime-lib
+                           ppx_module_timer.runtime
+                           ppx_sexp_conv.runtime-lib
+                           ppx_stable_witness.runtime
+                           sexplib0
+                           typerep
+                           variantslib"
+  ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+  library_kind = "ppx_rewriter"
+)

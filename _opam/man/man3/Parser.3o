@@ -1,0 +1,323 @@
+.TH "Parser" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Parser \- no description
+.SH Module
+Module   Parser
+.SH Documentation
+.sp
+Module
+.BI "Parser"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type token 
+=
+ | WITH
+ | WHILE
+ | WHEN
+ | VIRTUAL
+ | VAL
+ | UNDERSCORE
+ | UIDENT
+.B of 
+.B string
+ | TYPE
+ | TRY
+ | TRUE
+ | TO
+ | TILDE
+ | THEN
+ | STRUCT
+ | STRING
+.B of 
+.B (string * Location.t * string option)
+ | STAR
+ | SIG
+ | SEMISEMI
+ | SEMI
+ | RPAREN
+ | REC
+ | RBRACKET
+ | RBRACE
+ | QUOTED_STRING_ITEM
+.B of 
+.B (string * Location.t * string * Location.t * string option)
+ | QUOTED_STRING_EXPR
+.B of 
+.B (string * Location.t * string * Location.t * string option)
+ | QUOTE
+ | QUESTION
+ | PRIVATE
+ | PREFIXOP
+.B of 
+.B string
+ | PLUSEQ
+ | PLUSDOT
+ | PLUS
+ | PERCENT
+ | OR
+ | OPTLABEL
+.B of 
+.B string
+ | OPEN
+ | OF
+ | OBJECT
+ | NONREC
+ | NEW
+ | MUTABLE
+ | MODULE
+ | MINUSGREATER
+ | MINUSDOT
+ | MINUS
+ | METHOD
+ | MATCH
+ | LPAREN
+ | LIDENT
+.B of 
+.B string
+ | LETOP
+.B of 
+.B string
+ | LET
+ | LESSMINUS
+ | LESS
+ | LBRACKETPERCENTPERCENT
+ | LBRACKETPERCENT
+ | LBRACKETLESS
+ | LBRACKETGREATER
+ | LBRACKETBAR
+ | LBRACKETATATAT
+ | LBRACKETATAT
+ | LBRACKETAT
+ | LBRACKET
+ | LBRACELESS
+ | LBRACE
+ | LAZY
+ | LABEL
+.B of 
+.B string
+ | INT
+.B of 
+.B (string * char option)
+ | INITIALIZER
+ | INHERIT
+ | INFIXOP4
+.B of 
+.B string
+ | INFIXOP3
+.B of 
+.B string
+ | INFIXOP2
+.B of 
+.B string
+ | INFIXOP1
+.B of 
+.B string
+ | INFIXOP0
+.B of 
+.B string
+ | INCLUDE
+ | IN
+ | IF
+ | HASHOP
+.B of 
+.B string
+ | HASH
+ | GREATERRBRACKET
+ | GREATERRBRACE
+ | GREATER
+ | FUNCTOR
+ | FUNCTION
+ | FUN
+ | FOR
+ | FLOAT
+.B of 
+.B (string * char option)
+ | FALSE
+ | EXTERNAL
+ | EXCEPTION
+ | EQUAL
+ | EOL
+ | EOF
+ | END
+ | ELSE
+ | DOWNTO
+ | DOTOP
+.B of 
+.B string
+ | DOTDOT
+ | DOT
+ | DONE
+ | DOCSTRING
+.B of 
+.B Docstrings.docstring
+ | DO
+ | CONSTRAINT
+ | COMMENT
+.B of 
+.B (string * Location.t)
+ | COMMA
+ | COLONGREATER
+ | COLONEQUAL
+ | COLONCOLON
+ | COLON
+ | CLASS
+ | CHAR
+.B of 
+.B char
+ | BEGIN
+ | BARRBRACKET
+ | BARBAR
+ | BAR
+ | BANG
+ | BACKQUOTE
+ | ASSERT
+ | AS
+ | ANDOP
+.B of 
+.B string
+ | AND
+ | AMPERSAND
+ | AMPERAMPER
+ 
+.sp
+
+.sp
+
+.I exception Error 
+
+.sp
+
+.sp
+
+.I val use_file 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.toplevel_phrase list
+.sp
+
+.sp
+
+.I val toplevel_phrase 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.toplevel_phrase
+.sp
+
+.sp
+
+.I val parse_val_longident 
+: 
+.B (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Longident.t
+.sp
+
+.sp
+
+.I val parse_pattern 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.pattern
+.sp
+
+.sp
+
+.I val parse_mty_longident 
+: 
+.B (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Longident.t
+.sp
+
+.sp
+
+.I val parse_module_type 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.module_type
+.sp
+
+.sp
+
+.I val parse_module_expr 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.module_expr
+.sp
+
+.sp
+
+.I val parse_mod_longident 
+: 
+.B (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Longident.t
+.sp
+
+.sp
+
+.I val parse_mod_ext_longident 
+: 
+.B (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Longident.t
+.sp
+
+.sp
+
+.I val parse_expression 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.expression
+.sp
+
+.sp
+
+.I val parse_core_type 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val parse_constr_longident 
+: 
+.B (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Longident.t
+.sp
+
+.sp
+
+.I val parse_any_longident 
+: 
+.B (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Longident.t
+.sp
+
+.sp
+
+.I val interface 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.signature
+.sp
+
+.sp
+
+.I val implementation 
+: 
+.B (Lexing.lexbuf -> token) ->
+.B   Lexing.lexbuf -> Parsetree.structure
+.sp
+
+.sp
+.I module MenhirInterpreter : 
+.B sig end
+
+.sp
+
+.sp
+.I module Incremental : 
+.B sig end
+
+.sp
+
+.sp

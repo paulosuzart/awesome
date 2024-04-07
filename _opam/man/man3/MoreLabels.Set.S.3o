@@ -1,0 +1,1210 @@
+.TH "MoreLabels.Set.S" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+MoreLabels.Set.S \- Output signature of the functor MoreLabels.Set.Make.
+.SH Module type
+Module type   MoreLabels.Set.S
+.SH Documentation
+.sp
+Module type
+.BI "S"
+ = 
+.B sig end
+
+.sp
+Output signature of the functor 
+.ft B
+MoreLabels\&.Set\&.Make
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Sets
+
+.PP
+.I type elt 
+
+.sp
+The type of the set elements\&.
+
+.sp
+.I type t 
+
+.sp
+The type of sets\&.
+
+.sp
+
+.I val empty 
+: 
+.B t
+.sp
+The empty set\&.
+
+.sp
+
+.I val add 
+: 
+.B elt -> t -> t
+.sp
+
+.ft B
+add x s
+.ft R
+returns a set containing all elements of 
+.ft B
+s
+.ft R
+,
+plus 
+.ft B
+x
+.ft R
+\&. If 
+.ft B
+x
+.ft R
+was already in 
+.ft B
+s
+.ft R
+, 
+.ft B
+s
+.ft R
+is returned unchanged
+(the result of the function is then physically equal to 
+.ft B
+s
+.ft R
+)\&.
+
+.sp
+.B "Before4.03"
+Physical equality was not ensured\&.
+
+
+.sp
+
+.I val singleton 
+: 
+.B elt -> t
+.sp
+
+.ft B
+singleton x
+.ft R
+returns the one\-element set containing only 
+.ft B
+x
+.ft R
+\&.
+
+.sp
+
+.I val remove 
+: 
+.B elt -> t -> t
+.sp
+
+.ft B
+remove x s
+.ft R
+returns a set containing all elements of 
+.ft B
+s
+.ft R
+,
+except 
+.ft B
+x
+.ft R
+\&. If 
+.ft B
+x
+.ft R
+was not in 
+.ft B
+s
+.ft R
+, 
+.ft B
+s
+.ft R
+is returned unchanged
+(the result of the function is then physically equal to 
+.ft B
+s
+.ft R
+)\&.
+
+.sp
+.B "Before4.03"
+Physical equality was not ensured\&.
+
+
+.sp
+
+.I val union 
+: 
+.B t -> t -> t
+.sp
+Set union\&.
+
+.sp
+
+.I val inter 
+: 
+.B t -> t -> t
+.sp
+Set intersection\&.
+
+.sp
+
+.I val disjoint 
+: 
+.B t -> t -> bool
+.sp
+Test if two sets are disjoint\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val diff 
+: 
+.B t -> t -> t
+.sp
+Set difference: 
+.ft B
+diff s1 s2
+.ft R
+contains the elements of 
+.ft B
+s1
+.ft R
+that are not in 
+.ft B
+s2
+.ft R
+\&.
+
+.sp
+
+.I val cardinal 
+: 
+.B t -> int
+.sp
+Return the number of elements of a set\&.
+
+.sp
+
+.PP
+.SS Elements
+
+.PP
+
+.I val elements 
+: 
+.B t -> elt list
+.sp
+Return the list of all elements of the given set\&.
+The returned list is sorted in increasing order with respect
+to the ordering 
+.ft B
+Ord\&.compare
+.ft R
+, where 
+.ft B
+Ord
+.ft R
+is the argument
+given to 
+.ft B
+MoreLabels\&.Set\&.Make
+.ft R
+\&.
+
+.sp
+
+.I val min_elt 
+: 
+.B t -> elt
+.sp
+Return the smallest element of the given set
+(with respect to the 
+.ft B
+Ord\&.compare
+.ft R
+ordering), or raise
+.ft B
+Not_found
+.ft R
+if the set is empty\&.
+
+.sp
+
+.I val min_elt_opt 
+: 
+.B t -> elt option
+.sp
+Return the smallest element of the given set
+(with respect to the 
+.ft B
+Ord\&.compare
+.ft R
+ordering), or 
+.ft B
+None
+.ft R
+if the set is empty\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val max_elt 
+: 
+.B t -> elt
+.sp
+Same as 
+.ft B
+MoreLabels\&.Set\&.S\&.min_elt
+.ft R
+, but returns the largest element of the
+given set\&.
+
+.sp
+
+.I val max_elt_opt 
+: 
+.B t -> elt option
+.sp
+Same as 
+.ft B
+MoreLabels\&.Set\&.S\&.min_elt_opt
+.ft R
+, but returns the largest element of the
+given set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val choose 
+: 
+.B t -> elt
+.sp
+Return one element of the given set, or raise 
+.ft B
+Not_found
+.ft R
+if
+the set is empty\&. Which element is chosen is unspecified,
+but equal elements will be chosen for equal sets\&.
+
+.sp
+
+.I val choose_opt 
+: 
+.B t -> elt option
+.sp
+Return one element of the given set, or 
+.ft B
+None
+.ft R
+if
+the set is empty\&. Which element is chosen is unspecified,
+but equal elements will be chosen for equal sets\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS Searching
+
+.PP
+
+.I val find 
+: 
+.B elt -> t -> elt
+.sp
+
+.ft B
+find x s
+.ft R
+returns the element of 
+.ft B
+s
+.ft R
+equal to 
+.ft B
+x
+.ft R
+(according
+to 
+.ft B
+Ord\&.compare
+.ft R
+), or raise 
+.ft B
+Not_found
+.ft R
+if no such element
+exists\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val find_opt 
+: 
+.B elt -> t -> elt option
+.sp
+
+.ft B
+find_opt x s
+.ft R
+returns the element of 
+.ft B
+s
+.ft R
+equal to 
+.ft B
+x
+.ft R
+(according
+to 
+.ft B
+Ord\&.compare
+.ft R
+), or 
+.ft B
+None
+.ft R
+if no such element
+exists\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_first 
+: 
+.B f:(elt -> bool) ->
+.B   t -> elt
+.sp
+
+.ft B
+find_first ~f s
+.ft R
+, where 
+.ft B
+f
+.ft R
+is a monotonically increasing function,
+returns the lowest element 
+.ft B
+e
+.ft R
+of 
+.ft B
+s
+.ft R
+such that 
+.ft B
+f e
+.ft R
+,
+or raises 
+.ft B
+Not_found
+.ft R
+if no such element exists\&.
+.sp
+For example, 
+.ft B
+find_first (fun e \-> Ord\&.compare e x >= 0) s
+.ft R
+will
+return the first element 
+.ft B
+e
+.ft R
+of 
+.ft B
+s
+.ft R
+where 
+.ft B
+Ord\&.compare e x >= 0
+.ft R
+(intuitively: 
+.ft B
+e >= x
+.ft R
+), or raise 
+.ft B
+Not_found
+.ft R
+if 
+.ft B
+x
+.ft R
+is greater than
+any element of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_first_opt 
+: 
+.B f:(elt -> bool) ->
+.B   t -> elt option
+.sp
+
+.ft B
+find_first_opt ~f s
+.ft R
+, where 
+.ft B
+f
+.ft R
+is a monotonically increasing
+function, returns an option containing the lowest element 
+.ft B
+e
+.ft R
+of 
+.ft B
+s
+.ft R
+such that 
+.ft B
+f e
+.ft R
+, or 
+.ft B
+None
+.ft R
+if no such element exists\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_last 
+: 
+.B f:(elt -> bool) ->
+.B   t -> elt
+.sp
+
+.ft B
+find_last ~f s
+.ft R
+, where 
+.ft B
+f
+.ft R
+is a monotonically decreasing function,
+returns the highest element 
+.ft B
+e
+.ft R
+of 
+.ft B
+s
+.ft R
+such that 
+.ft B
+f e
+.ft R
+,
+or raises 
+.ft B
+Not_found
+.ft R
+if no such element exists\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_last_opt 
+: 
+.B f:(elt -> bool) ->
+.B   t -> elt option
+.sp
+
+.ft B
+find_last_opt ~f s
+.ft R
+, where 
+.ft B
+f
+.ft R
+is a monotonically decreasing
+function, returns an option containing the highest element 
+.ft B
+e
+.ft R
+of 
+.ft B
+s
+.ft R
+such that 
+.ft B
+f e
+.ft R
+, or 
+.ft B
+None
+.ft R
+if no such element exists\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS Traversing
+
+.PP
+
+.I val iter 
+: 
+.B f:(elt -> unit) -> t -> unit
+.sp
+
+.ft B
+iter ~f s
+.ft R
+applies 
+.ft B
+f
+.ft R
+in turn to all elements of 
+.ft B
+s
+.ft R
+\&.
+The elements of 
+.ft B
+s
+.ft R
+are presented to 
+.ft B
+f
+.ft R
+in increasing order
+with respect to the ordering over the type of the elements\&.
+
+.sp
+
+.I val fold 
+: 
+.B f:(elt -> 'acc -> 'acc) ->
+.B   t -> init:'acc -> 'acc
+.sp
+
+.ft B
+fold ~f s init
+.ft R
+computes 
+.ft B
+(f xN \&.\&.\&. (f x2 (f x1 init))\&.\&.\&.)
+.ft R
+,
+where 
+.ft B
+x1 \&.\&.\&. xN
+.ft R
+are the elements of 
+.ft B
+s
+.ft R
+, in increasing order\&.
+
+.sp
+
+.PP
+.SS Transforming
+
+.PP
+
+.I val map 
+: 
+.B f:(elt -> elt) ->
+.B   t -> t
+.sp
+
+.ft B
+map ~f s
+.ft R
+is the set whose elements are 
+.ft B
+f a0
+.ft R
+,
+.ft B
+f a1
+.ft R
+\&.\&.\&. 
+.ft B
+f
+.br
+\&          aN
+.ft R
+, where 
+.ft B
+a0
+.ft R
+,
+.ft B
+a1
+.ft R
+\&.\&.\&.
+.ft B
+aN
+.ft R
+are the elements of 
+.ft B
+s
+.ft R
+\&.
+.sp
+The elements are passed to 
+.ft B
+f
+.ft R
+in increasing order
+with respect to the ordering over the type of the elements\&.
+.sp
+If no element of 
+.ft B
+s
+.ft R
+is changed by 
+.ft B
+f
+.ft R
+, 
+.ft B
+s
+.ft R
+is returned
+unchanged\&. (If each output of 
+.ft B
+f
+.ft R
+is physically equal to its
+input, the returned set is physically equal to 
+.ft B
+s
+.ft R
+\&.)
+
+.sp
+.B "Since"
+4.04
+
+.sp
+
+.I val filter 
+: 
+.B f:(elt -> bool) -> t -> t
+.sp
+
+.ft B
+filter ~f s
+.ft R
+returns the set of all elements in 
+.ft B
+s
+.ft R
+that satisfy predicate 
+.ft B
+f
+.ft R
+\&. If 
+.ft B
+f
+.ft R
+satisfies every element in 
+.ft B
+s
+.ft R
+,
+.ft B
+s
+.ft R
+is returned unchanged (the result of the function is then
+physically equal to 
+.ft B
+s
+.ft R
+)\&.
+
+.sp
+.B "Before4.03"
+Physical equality was not ensured\&.
+
+
+.sp
+
+.I val filter_map 
+: 
+.B f:(elt -> elt option) ->
+.B   t -> t
+.sp
+
+.ft B
+filter_map ~f s
+.ft R
+returns the set of all 
+.ft B
+v
+.ft R
+such that
+.ft B
+f x = Some v
+.ft R
+for some element 
+.ft B
+x
+.ft R
+of 
+.ft B
+s
+.ft R
+\&.
+.sp
+For example,
+.EX
+.ft B
+filter_map (fun n \-> if n mod 2 = 0 then Some (n / 2) else None) s
+.ft R
+.EE
+is the set of halves of the even elements of 
+.ft B
+s
+.ft R
+\&.
+.sp
+If no element of 
+.ft B
+s
+.ft R
+is changed or dropped by 
+.ft B
+f
+.ft R
+(if
+.ft B
+f x = Some x
+.ft R
+for each element 
+.ft B
+x
+.ft R
+), then
+.ft B
+s
+.ft R
+is returned unchanged: the result of the function
+is then physically equal to 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val partition 
+: 
+.B f:(elt -> bool) ->
+.B   t -> t * t
+.sp
+
+.ft B
+partition ~f s
+.ft R
+returns a pair of sets 
+.ft B
+(s1, s2)
+.ft R
+, where
+.ft B
+s1
+.ft R
+is the set of all the elements of 
+.ft B
+s
+.ft R
+that satisfy the
+predicate 
+.ft B
+f
+.ft R
+, and 
+.ft B
+s2
+.ft R
+is the set of all the elements of
+.ft B
+s
+.ft R
+that do not satisfy 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+
+.I val split 
+: 
+.B elt ->
+.B   t -> t * bool * t
+.sp
+
+.ft B
+split x s
+.ft R
+returns a triple 
+.ft B
+(l, present, r)
+.ft R
+, where
+.ft B
+l
+.ft R
+is the set of elements of 
+.ft B
+s
+.ft R
+that are
+strictly less than 
+.ft B
+x
+.ft R
+;
+.ft B
+r
+.ft R
+is the set of elements of 
+.ft B
+s
+.ft R
+that are
+strictly greater than 
+.ft B
+x
+.ft R
+;
+.ft B
+present
+.ft R
+is 
+.ft B
+false
+.ft R
+if 
+.ft B
+s
+.ft R
+contains no element equal to 
+.ft B
+x
+.ft R
+,
+or 
+.ft B
+true
+.ft R
+if 
+.ft B
+s
+.ft R
+contains an element equal to 
+.ft B
+x
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Predicates and comparisons
+
+.PP
+
+.I val is_empty 
+: 
+.B t -> bool
+.sp
+Test whether a set is empty or not\&.
+
+.sp
+
+.I val mem 
+: 
+.B elt -> t -> bool
+.sp
+
+.ft B
+mem x s
+.ft R
+tests whether 
+.ft B
+x
+.ft R
+belongs to the set 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+
+.ft B
+equal s1 s2
+.ft R
+tests whether the sets 
+.ft B
+s1
+.ft R
+and 
+.ft B
+s2
+.ft R
+are
+equal, that is, contain equal elements\&.
+
+.sp
+
+.I val compare 
+: 
+.B t -> t -> int
+.sp
+Total ordering between sets\&. Can be used as the ordering function
+for doing sets of sets\&.
+
+.sp
+
+.I val subset 
+: 
+.B t -> t -> bool
+.sp
+
+.ft B
+subset s1 s2
+.ft R
+tests whether the set 
+.ft B
+s1
+.ft R
+is a subset of
+the set 
+.ft B
+s2
+.ft R
+\&.
+
+.sp
+
+.I val for_all 
+: 
+.B f:(elt -> bool) -> t -> bool
+.sp
+
+.ft B
+for_all ~f s
+.ft R
+checks if all elements of the set
+satisfy the predicate 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+
+.I val exists 
+: 
+.B f:(elt -> bool) -> t -> bool
+.sp
+
+.ft B
+exists ~f s
+.ft R
+checks if at least one element of
+the set satisfies the predicate 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Converting
+
+.PP
+
+.I val to_list 
+: 
+.B t -> elt list
+.sp
+
+.ft B
+to_list s
+.ft R
+is 
+.ft B
+MoreLabels\&.Set\&.S\&.elements
+.ft R
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val of_list 
+: 
+.B elt list -> t
+.sp
+
+.ft B
+of_list l
+.ft R
+creates a set from a list of elements\&.
+This is usually more efficient than folding 
+.ft B
+add
+.ft R
+over the list,
+except perhaps for lists with many duplicated elements\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val to_seq_from 
+: 
+.B elt ->
+.B   t -> elt Seq.t
+.sp
+
+.ft B
+to_seq_from x s
+.ft R
+iterates on a subset of the elements of 
+.ft B
+s
+.ft R
+in ascending order, from 
+.ft B
+x
+.ft R
+or above\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seq 
+: 
+.B t -> elt Seq.t
+.sp
+Iterate on the whole set, in ascending order
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_rev_seq 
+: 
+.B t -> elt Seq.t
+.sp
+Iterate on the whole set, in descending order
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val add_seq 
+: 
+.B elt Seq.t -> t -> t
+.sp
+Add the given elements to the set, in order\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B elt Seq.t -> t
+.sp
+Build a set from the given bindings
+
+.sp
+.B "Since"
+4.07
+
+.sp

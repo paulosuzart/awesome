@@ -1,0 +1,50 @@
+package "bytecomp" (
+  directory = "bytecomp"
+  version = "v0.12.4"
+  description = ""
+  requires = "compiler-libs.bytecomp"
+  archive(byte) = "ocaml_bytecomp.cma"
+  archive(native) = "ocaml_bytecomp.cmxa"
+  plugin(byte) = "ocaml_bytecomp.cma"
+  plugin(native) = "ocaml_bytecomp.cmxs"
+)
+package "common" (
+  directory = "common"
+  version = "v0.12.4"
+  description = ""
+  requires = "compiler-libs.common"
+  archive(byte) = "ocaml_common.cma"
+  archive(native) = "ocaml_common.cmxa"
+  plugin(byte) = "ocaml_common.cma"
+  plugin(native) = "ocaml_common.cmxs"
+)
+package "optcomp" (
+  directory = "optcomp"
+  version = "v0.12.4"
+  description = ""
+  requires = "compiler-libs.optcomp"
+  archive(byte) = "ocaml_optcomp.cma"
+  archive(native) = "ocaml_optcomp.cmxa"
+  plugin(byte) = "ocaml_optcomp.cma"
+  plugin(native) = "ocaml_optcomp.cmxs"
+)
+package "shadow" (
+  directory = "shadow"
+  version = "v0.12.4"
+  description = ""
+  requires = ""
+  archive(byte) = "ocaml_shadow.cma"
+  archive(native) = "ocaml_shadow.cmxa"
+  plugin(byte) = "ocaml_shadow.cma"
+  plugin(native) = "ocaml_shadow.cmxs"
+)
+package "toplevel" (
+  directory = "toplevel"
+  version = "v0.12.4"
+  description = ""
+  requires = "compiler-libs.toplevel"
+  archive(byte) = "ocaml_toplevel.cma"
+  archive(native) = "ocaml_toplevel.cmxa"
+  plugin(byte) = "ocaml_toplevel.cma"
+  plugin(native) = "ocaml_toplevel.cmxs"
+)

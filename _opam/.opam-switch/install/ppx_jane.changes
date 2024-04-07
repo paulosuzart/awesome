@@ -1,0 +1,38 @@
+opam-version: "2.0"
+added: [
+  "bin/ppx-jane" {"F:3f88ef39d75a265d68a0308308ce6f93"}
+  "doc/ppx_jane" {"D"}
+  "doc/ppx_jane/CHANGES.md" {"F:a4544d48e946bf467f7a84d56fbd4f2b"}
+  "doc/ppx_jane/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_jane/README.md" {"F:b67bf9ef0b3c65c6ac5ecfc6cb79f3f3"}
+  "lib/ppx_jane" {"D"}
+  "lib/ppx_jane/META" {"F:6fdd8e21ae1969d0ca1b8a01f8c894e8"}
+  "lib/ppx_jane/dune-package" {"F:a7d2071d8854f7c6ad31192451512e80"}
+  "lib/ppx_jane/kernel/ppx.exe" {"F:3b4702a1e81eb679e4cb4a1bc0374eb8"}
+  "lib/ppx_jane/kernel/ppx_jane_kernel.a"
+    {"F:b3b33d8fcb9bdf5a1ff9692d637de289"}
+  "lib/ppx_jane/kernel/ppx_jane_kernel.cma"
+    {"F:f06b8b307e742734fbb22c3f0f5c0c25"}
+  "lib/ppx_jane/kernel/ppx_jane_kernel.cmi"
+    {"F:71ecae937dc74754b4735c3a860674d2"}
+  "lib/ppx_jane/kernel/ppx_jane_kernel.cmt"
+    {"F:8bf8f2b7c9dcfd68fd3e80d8b71c5f9e"}
+  "lib/ppx_jane/kernel/ppx_jane_kernel.cmx"
+    {"F:81bf59196d9e207372e575ba2abea03e"}
+  "lib/ppx_jane/kernel/ppx_jane_kernel.cmxa"
+    {"F:8d8e19e264ec854ab17547c1cab2dfff"}
+  "lib/ppx_jane/kernel/ppx_jane_kernel.cmxs"
+    {"F:6c72925e0508f3d0fdba07b08d20f5bf"}
+  "lib/ppx_jane/kernel/ppx_jane_kernel.ml"
+    {"F:93fd6c71e5b0012319ab63274560024e"}
+  "lib/ppx_jane/opam" {"F:2d13d4a467b176590165c5e2fa6998fe"}
+  "lib/ppx_jane/ppx.exe" {"F:e15a03835c56e0847b0081e61e487937"}
+  "lib/ppx_jane/ppx_jane.a" {"F:d08669139b5767214e7483da6ddf858b"}
+  "lib/ppx_jane/ppx_jane.cma" {"F:70fb928dfd3fc14a215711a50f688ee2"}
+  "lib/ppx_jane/ppx_jane.cmi" {"F:3a248a317d5a9455e243c2ff62e89478"}
+  "lib/ppx_jane/ppx_jane.cmt" {"F:f80264d541fa4ffef54e3b095e384dc4"}
+  "lib/ppx_jane/ppx_jane.cmx" {"F:dc1786823fad8fa85966d868170d91f8"}
+  "lib/ppx_jane/ppx_jane.cmxa" {"F:565b998e4b8c8980afdf4c91ec1def83"}
+  "lib/ppx_jane/ppx_jane.cmxs" {"F:096754ca79ee97ef454a6a1c0ac904aa"}
+  "lib/ppx_jane/ppx_jane.ml" {"F:93fd6c71e5b0012319ab63274560024e"}
+]

@@ -1,0 +1,244 @@
+(lang dune 3.15)
+(name ppx_sexp_conv)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_sexp_conv))
+(files
+ (lib
+  (META
+   dune-package
+   expander/attrs.ml
+   expander/attrs.mli
+   expander/conversion.ml
+   expander/conversion.mli
+   expander/expand_of_sexp.ml
+   expander/expand_of_sexp.mli
+   expander/expand_sexp_of.ml
+   expander/expand_sexp_of.mli
+   expander/fresh_name.ml
+   expander/fresh_name.mli
+   expander/helpers.ml
+   expander/helpers.mli
+   expander/lifted.ml
+   expander/lifted.mli
+   expander/ppx_sexp_conv_expander.a
+   expander/ppx_sexp_conv_expander.cma
+   expander/ppx_sexp_conv_expander.cmi
+   expander/ppx_sexp_conv_expander.cmt
+   expander/ppx_sexp_conv_expander.cmti
+   expander/ppx_sexp_conv_expander.cmx
+   expander/ppx_sexp_conv_expander.cmxa
+   expander/ppx_sexp_conv_expander.ml
+   expander/ppx_sexp_conv_expander.mli
+   expander/ppx_sexp_conv_expander__.cmi
+   expander/ppx_sexp_conv_expander__.cmt
+   expander/ppx_sexp_conv_expander__.cmx
+   expander/ppx_sexp_conv_expander__.ml
+   expander/ppx_sexp_conv_expander__Attrs.cmi
+   expander/ppx_sexp_conv_expander__Attrs.cmt
+   expander/ppx_sexp_conv_expander__Attrs.cmti
+   expander/ppx_sexp_conv_expander__Attrs.cmx
+   expander/ppx_sexp_conv_expander__Conversion.cmi
+   expander/ppx_sexp_conv_expander__Conversion.cmt
+   expander/ppx_sexp_conv_expander__Conversion.cmti
+   expander/ppx_sexp_conv_expander__Conversion.cmx
+   expander/ppx_sexp_conv_expander__Expand_of_sexp.cmi
+   expander/ppx_sexp_conv_expander__Expand_of_sexp.cmt
+   expander/ppx_sexp_conv_expander__Expand_of_sexp.cmti
+   expander/ppx_sexp_conv_expander__Expand_of_sexp.cmx
+   expander/ppx_sexp_conv_expander__Expand_sexp_of.cmi
+   expander/ppx_sexp_conv_expander__Expand_sexp_of.cmt
+   expander/ppx_sexp_conv_expander__Expand_sexp_of.cmti
+   expander/ppx_sexp_conv_expander__Expand_sexp_of.cmx
+   expander/ppx_sexp_conv_expander__Fresh_name.cmi
+   expander/ppx_sexp_conv_expander__Fresh_name.cmt
+   expander/ppx_sexp_conv_expander__Fresh_name.cmti
+   expander/ppx_sexp_conv_expander__Fresh_name.cmx
+   expander/ppx_sexp_conv_expander__Helpers.cmi
+   expander/ppx_sexp_conv_expander__Helpers.cmt
+   expander/ppx_sexp_conv_expander__Helpers.cmti
+   expander/ppx_sexp_conv_expander__Helpers.cmx
+   expander/ppx_sexp_conv_expander__Lifted.cmi
+   expander/ppx_sexp_conv_expander__Lifted.cmt
+   expander/ppx_sexp_conv_expander__Lifted.cmti
+   expander/ppx_sexp_conv_expander__Lifted.cmx
+   expander/ppx_sexp_conv_expander__Ppx_sexp_conv_grammar.cmi
+   expander/ppx_sexp_conv_expander__Ppx_sexp_conv_grammar.cmt
+   expander/ppx_sexp_conv_expander__Ppx_sexp_conv_grammar.cmti
+   expander/ppx_sexp_conv_expander__Ppx_sexp_conv_grammar.cmx
+   expander/ppx_sexp_conv_expander__Record_field_attrs.cmi
+   expander/ppx_sexp_conv_expander__Record_field_attrs.cmt
+   expander/ppx_sexp_conv_expander__Record_field_attrs.cmti
+   expander/ppx_sexp_conv_expander__Record_field_attrs.cmx
+   expander/ppx_sexp_conv_expander__Renaming.cmi
+   expander/ppx_sexp_conv_expander__Renaming.cmt
+   expander/ppx_sexp_conv_expander__Renaming.cmti
+   expander/ppx_sexp_conv_expander__Renaming.cmx
+   expander/ppx_sexp_conv_grammar.ml
+   expander/ppx_sexp_conv_grammar.mli
+   expander/record_field_attrs.ml
+   expander/record_field_attrs.mli
+   expander/renaming.ml
+   expander/renaming.mli
+   opam
+   ppx_sexp_conv.a
+   ppx_sexp_conv.cma
+   ppx_sexp_conv.cmi
+   ppx_sexp_conv.cmt
+   ppx_sexp_conv.cmti
+   ppx_sexp_conv.cmx
+   ppx_sexp_conv.cmxa
+   ppx_sexp_conv.ml
+   ppx_sexp_conv.mli
+   runtime-lib/ppx_sexp_conv_lib.a
+   runtime-lib/ppx_sexp_conv_lib.cma
+   runtime-lib/ppx_sexp_conv_lib.cmi
+   runtime-lib/ppx_sexp_conv_lib.cmt
+   runtime-lib/ppx_sexp_conv_lib.cmx
+   runtime-lib/ppx_sexp_conv_lib.cmxa
+   runtime-lib/ppx_sexp_conv_lib.ml))
+ (libexec
+  (expander/ppx_sexp_conv_expander.cmxs
+   ppx_sexp_conv.cmxs
+   runtime-lib/ppx_sexp_conv_lib.cmxs))
+ (doc (CHANGES.md LICENSE.md README.org)))
+(library
+ (name ppx_sexp_conv)
+ (kind ppx_deriver)
+ (archives (byte ppx_sexp_conv.cma) (native ppx_sexp_conv.cmxa))
+ (plugins (byte ppx_sexp_conv.cma) (native ppx_sexp_conv.cmxs))
+ (native_archives ppx_sexp_conv.a)
+ (requires ppxlib.ast ppxlib ppx_sexp_conv.expander)
+ (main_module_name Ppx_sexp_conv)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_sexp_conv)
+   (visibility public)
+   (source
+    (path Ppx_sexp_conv)
+    (intf (path ppx_sexp_conv.mli))
+    (impl (path ppx_sexp_conv.ml))))))
+(library
+ (name ppx_sexp_conv.expander)
+ (kind normal)
+ (archives
+  (byte expander/ppx_sexp_conv_expander.cma)
+  (native expander/ppx_sexp_conv_expander.cmxa))
+ (plugins
+  (byte expander/ppx_sexp_conv_expander.cma)
+  (native expander/ppx_sexp_conv_expander.cmxs))
+ (native_archives expander/ppx_sexp_conv_expander.a)
+ (requires base ppxlib.ast ppxlib ppxlib.metaquot_lifters)
+ (ppx_runtime_deps ppx_sexp_conv.runtime-lib sexplib0)
+ (main_module_name Ppx_sexp_conv_expander)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_sexp_conv_expander__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppx_sexp_conv_expander__)
+      (impl (path expander/ppx_sexp_conv_expander__.ml-gen))))
+    (name Ppx_sexp_conv_expander)
+    (modules
+     (module
+      (obj_name ppx_sexp_conv_expander__Attrs)
+      (visibility public)
+      (source
+       (path Attrs)
+       (intf (path expander/attrs.mli))
+       (impl (path expander/attrs.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Conversion)
+      (visibility public)
+      (source
+       (path Conversion)
+       (intf (path expander/conversion.mli))
+       (impl (path expander/conversion.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Expand_of_sexp)
+      (visibility public)
+      (source
+       (path Expand_of_sexp)
+       (intf (path expander/expand_of_sexp.mli))
+       (impl (path expander/expand_of_sexp.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Expand_sexp_of)
+      (visibility public)
+      (source
+       (path Expand_sexp_of)
+       (intf (path expander/expand_sexp_of.mli))
+       (impl (path expander/expand_sexp_of.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Fresh_name)
+      (visibility public)
+      (source
+       (path Fresh_name)
+       (intf (path expander/fresh_name.mli))
+       (impl (path expander/fresh_name.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Helpers)
+      (visibility public)
+      (source
+       (path Helpers)
+       (intf (path expander/helpers.mli))
+       (impl (path expander/helpers.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Lifted)
+      (visibility public)
+      (source
+       (path Lifted)
+       (intf (path expander/lifted.mli))
+       (impl (path expander/lifted.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander)
+      (visibility public)
+      (source
+       (path Ppx_sexp_conv_expander)
+       (intf (path expander/ppx_sexp_conv_expander.mli))
+       (impl (path expander/ppx_sexp_conv_expander.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Ppx_sexp_conv_grammar)
+      (visibility public)
+      (source
+       (path Ppx_sexp_conv_grammar)
+       (intf (path expander/ppx_sexp_conv_grammar.mli))
+       (impl (path expander/ppx_sexp_conv_grammar.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Record_field_attrs)
+      (visibility public)
+      (source
+       (path Record_field_attrs)
+       (intf (path expander/record_field_attrs.mli))
+       (impl (path expander/record_field_attrs.ml))))
+     (module
+      (obj_name ppx_sexp_conv_expander__Renaming)
+      (visibility public)
+      (source
+       (path Renaming)
+       (intf (path expander/renaming.mli))
+       (impl (path expander/renaming.ml))))))
+   (wrapped true))))
+(library
+ (name ppx_sexp_conv.runtime-lib)
+ (kind normal)
+ (archives
+  (byte runtime-lib/ppx_sexp_conv_lib.cma)
+  (native runtime-lib/ppx_sexp_conv_lib.cmxa))
+ (plugins
+  (byte runtime-lib/ppx_sexp_conv_lib.cma)
+  (native runtime-lib/ppx_sexp_conv_lib.cmxs))
+ (native_archives runtime-lib/ppx_sexp_conv_lib.a)
+ (requires sexplib0)
+ (main_module_name Ppx_sexp_conv_lib)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_sexp_conv_lib)
+   (visibility public)
+   (source
+    (path Ppx_sexp_conv_lib)
+    (impl (path runtime-lib/ppx_sexp_conv_lib.ml))))))

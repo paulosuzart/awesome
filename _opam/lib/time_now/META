@@ -1,0 +1,15 @@
+version = "v0.16.0"
+description = ""
+requires =
+"base
+ jane-street-headers
+ ppx_compare.runtime-lib
+ ppx_enumerate.runtime-lib
+ ppx_hash.runtime-lib
+ ppx_sexp_conv.runtime-lib
+ sexplib0"
+archive(byte) = "time_now.cma"
+archive(native) = "time_now.cmxa"
+plugin(byte) = "time_now.cma"
+plugin(native) = "time_now.cmxs"
+jsoo_runtime = "runtime.js"

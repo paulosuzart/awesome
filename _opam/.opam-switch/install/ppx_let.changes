@@ -1,0 +1,42 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_let" {"D"}
+  "doc/ppx_let/CHANGES.md" {"F:fd179e2f7381f83a2b6a178fe73fc883"}
+  "doc/ppx_let/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_let/README.md" {"F:c8c17e486e90af4a70bfdbd766cae8d7"}
+  "lib/ppx_let" {"D"}
+  "lib/ppx_let/META" {"F:ceba1ee9c0471af590c0bf50cc84a3f5"}
+  "lib/ppx_let/dune-package" {"F:c0866d8519a848a823ca03c64857eab4"}
+  "lib/ppx_let/expander/ppx_let_expander.a"
+    {"F:0aa282a865d22c7f3db8ca5cce818fa5"}
+  "lib/ppx_let/expander/ppx_let_expander.cma"
+    {"F:95d3cc3d54d18f01eaeed3180751b261"}
+  "lib/ppx_let/expander/ppx_let_expander.cmi"
+    {"F:f65752b0e7e17180d2451f2596664304"}
+  "lib/ppx_let/expander/ppx_let_expander.cmt"
+    {"F:36c9d89f2547efa5e4439a3d053295be"}
+  "lib/ppx_let/expander/ppx_let_expander.cmti"
+    {"F:7cd7cfed0a45ad24c353d365d816f204"}
+  "lib/ppx_let/expander/ppx_let_expander.cmx"
+    {"F:125bc7f023643c219f05291d9050f9d2"}
+  "lib/ppx_let/expander/ppx_let_expander.cmxa"
+    {"F:7565ff53a74cda0e0d8358fbb657d293"}
+  "lib/ppx_let/expander/ppx_let_expander.cmxs"
+    {"F:54a8991fb60a0e80bf72e06b72f2ccd1"}
+  "lib/ppx_let/expander/ppx_let_expander.ml"
+    {"F:85f7a4dc59560ad686c9116fd03bcd2a"}
+  "lib/ppx_let/expander/ppx_let_expander.mli"
+    {"F:fd1f2574f96e05a93f5cb247cfa3a5a0"}
+  "lib/ppx_let/opam" {"F:c854af72095ec59d20c8eec22c274bd3"}
+  "lib/ppx_let/ppx.exe" {"F:ef02eba79ce833c6a6165ff0296ee199"}
+  "lib/ppx_let/ppx_let.a" {"F:6a4f0281b589292990755bbd230b82d9"}
+  "lib/ppx_let/ppx_let.cma" {"F:60ff00329a8d282aa14a791b75f56347"}
+  "lib/ppx_let/ppx_let.cmi" {"F:8d00e22f187437b6ce10b392773ddcea"}
+  "lib/ppx_let/ppx_let.cmt" {"F:39aa882b65362e022fcbd8a0efce5b5e"}
+  "lib/ppx_let/ppx_let.cmti" {"F:942564cc75fde867d5c3afb59f93576c"}
+  "lib/ppx_let/ppx_let.cmx" {"F:44d088a0ce5a149be97beb18e1b07c36"}
+  "lib/ppx_let/ppx_let.cmxa" {"F:56e39659d9003a189833718e33ae044d"}
+  "lib/ppx_let/ppx_let.cmxs" {"F:d24e8396adda9efdbea654c51f6d8123"}
+  "lib/ppx_let/ppx_let.ml" {"F:e601a5212e6cc1a4d4d011b1068a40c9"}
+  "lib/ppx_let/ppx_let.mli" {"F:d41d8cd98f00b204e9800998ecf8427e"}
+]

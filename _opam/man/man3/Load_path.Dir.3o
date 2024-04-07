@@ -1,0 +1,80 @@
+.TH "Load_path.Dir" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Load_path.Dir \- no description
+.SH Module
+Module   Load_path.Dir
+.SH Documentation
+.sp
+Module
+.BI "Dir"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+Represent one directory in the load path\&.
+
+.sp
+
+.I val create 
+: 
+.B string -> t
+.sp
+
+.sp
+
+.I val path 
+: 
+.B t -> string
+.sp
+
+.sp
+
+.I val files 
+: 
+.B t -> string list
+.sp
+All the files in that directory\&. This doesn\&'t include files in
+sub\-directories of this directory\&.
+
+.sp
+
+.I val find 
+: 
+.B t -> string -> string option
+.sp
+
+.ft B
+find dir fn
+.ft R
+returns the full path to 
+.ft B
+fn
+.ft R
+in 
+.ft B
+dir
+.ft R
+\&.
+
+.sp
+
+.I val find_uncap 
+: 
+.B t -> string -> string option
+.sp
+As 
+.ft B
+Load_path\&.Dir\&.find
+.ft R
+, but search also for uncapitalized name, i\&.e\&. if name is
+Foo\&.ml, either /path/Foo\&.ml or /path/foo\&.ml may be returned\&.
+
+.sp

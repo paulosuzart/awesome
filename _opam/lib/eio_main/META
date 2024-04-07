@@ -1,0 +1,7 @@
+version = "v1.0"
+description = ""
+requires = "eio_linux eio_posix"
+archive(byte) = "eio_main.cma"
+archive(native) = "eio_main.cmxa"
+plugin(byte) = "eio_main.cma"
+plugin(native) = "eio_main.cmxs"

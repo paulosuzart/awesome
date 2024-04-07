@@ -1,0 +1,88 @@
+.TH "Misc.LongString" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.LongString \- no description
+.SH Module
+Module   Misc.LongString
+.SH Documentation
+.sp
+Module
+.BI "LongString"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+= 
+.B bytes array
+
+.sp
+
+.sp
+
+.I val create 
+: 
+.B int -> t
+.sp
+
+.sp
+
+.I val length 
+: 
+.B t -> int
+.sp
+
+.sp
+
+.I val get 
+: 
+.B t -> int -> char
+.sp
+
+.sp
+
+.I val set 
+: 
+.B t -> int -> char -> unit
+.sp
+
+.sp
+
+.I val blit 
+: 
+.B t -> int -> t -> int -> int -> unit
+.sp
+
+.sp
+
+.I val blit_string 
+: 
+.B string -> int -> t -> int -> int -> unit
+.sp
+
+.sp
+
+.I val output 
+: 
+.B out_channel -> t -> int -> int -> unit
+.sp
+
+.sp
+
+.I val input_bytes_into 
+: 
+.B t -> in_channel -> int -> unit
+.sp
+
+.sp
+
+.I val input_bytes 
+: 
+.B in_channel -> int -> t
+.sp
+
+.sp

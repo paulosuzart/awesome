@@ -1,0 +1,7 @@
+OPAM_SWITCH_PREFIX	=	/home/runner/work/awesome/awesome/_opam	Prefix\ of\ the\ current\ opam\ switch
+CAML_LD_LIBRARY_PATH	=	/home/runner/work/awesome/awesome/_opam/lib/stublibs	Updated\ by\ package\ ocaml-base-compiler
+CAML_LD_LIBRARY_PATH	=	/home/runner/work/awesome/awesome/_opam/lib/ocaml/stublibs:/home/runner/work/awesome/awesome/_opam/lib/ocaml	Updated\ by\ package\ ocaml
+CAML_LD_LIBRARY_PATH	+=	/home/runner/work/awesome/awesome/_opam/lib/stublibs	Updated\ by\ package\ ocaml
+OCAML_TOPLEVEL_PATH	=	/home/runner/work/awesome/awesome/_opam/lib/toplevel	Updated\ by\ package\ ocaml
+MANPATH	=:	/home/runner/work/awesome/awesome/_opam/man	Current\ opam\ switch\ man\ dir
+PATH	=+=	/home/runner/work/awesome/awesome/_opam/bin	Binary\ dir\ for\ opam\ switch\ /home/runner/work/awesome/awesome

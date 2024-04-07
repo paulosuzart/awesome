@@ -1,0 +1,14 @@
+(library (name re2) (public_name re2)
+ (libraries core re2_c regex_parser_intf jane_rope) (virtual_deps conf-g++)
+ (c_library_flags :standard -lstdc++ -lpthread) (flags :standard -w +52)
+ (cxx_names stubs)
+ (cxx_flags (:standard -x c++ \ -pedantic) (-I re2_c/libre2))
+ (preprocess (pps ppx_jane)))
+
+(rule
+ (targets explicit_dependencies_unignored.ml
+  explicit_dependencies_unignored.mli)
+ (mode fallback) (deps %{workspace_root}/bin/gen-explicit-dependencies.sh)
+ (action
+  (bash
+   "%{deps} re2_c; for ext in ml mli; do mv explicit_dependencies{,_unignored}.$ext; done")))

@@ -1,0 +1,46 @@
+(lang dune 3.15)
+(name ppx_string)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_string))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_string.a
+   ppx_string.cma
+   ppx_string.cmi
+   ppx_string.cmt
+   ppx_string.cmti
+   ppx_string.cmx
+   ppx_string.cmxa
+   ppx_string.ml
+   ppx_string.mli))
+ (libexec (ppx.exe ppx_string.cmxs))
+ (doc (LICENSE.md README.org)))
+(library
+ (name ppx_string)
+ (kind ppx_rewriter)
+ (archives (byte ppx_string.cma) (native ppx_string.cmxa))
+ (plugins (byte ppx_string.cma) (native ppx_string.cmxs))
+ (native_archives ppx_string.a)
+ (requires
+  base
+  compiler-libs.common
+  ppxlib.ast
+  ppxlib
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib)
+ (main_module_name Ppx_string)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_string)
+   (visibility public)
+   (source
+    (path Ppx_string)
+    (intf (path ppx_string.mli))
+    (impl (path ppx_string.ml))))))

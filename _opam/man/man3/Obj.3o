@@ -1,0 +1,339 @@
+.TH "Obj" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Obj \- Operations on internal representations of values.
+.SH Module
+Module   Obj
+.SH Documentation
+.sp
+Module
+.BI "Obj"
+ : 
+.B sig end
+
+.sp
+Operations on internal representations of values\&.
+.sp
+Not for the casual user\&.
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+.I type raw_data 
+= 
+.B nativeint
+
+.sp
+
+.sp
+
+.I val repr 
+: 
+.B 'a -> t
+.sp
+
+.sp
+
+.I val obj 
+: 
+.B t -> 'a
+.sp
+
+.sp
+
+.I val magic 
+: 
+.B 'a -> 'b
+.sp
+
+.sp
+
+.I val is_block 
+: 
+.B t -> bool
+.sp
+
+.sp
+
+.I val is_int 
+: 
+.B t -> bool
+.sp
+
+.sp
+
+.I val tag 
+: 
+.B t -> int
+.sp
+
+.sp
+
+.I val size 
+: 
+.B t -> int
+.sp
+
+.sp
+
+.I val reachable_words 
+: 
+.B t -> int
+.sp
+Computes the total size (in words, including the headers) of all
+heap blocks accessible from the argument\&.  Statically
+allocated blocks are included\&.
+
+.sp
+.B "Since"
+4.04
+
+.sp
+
+.I val field 
+: 
+.B t -> int -> t
+.sp
+
+.sp
+
+.I val set_field 
+: 
+.B t -> int -> t -> unit
+.sp
+When using flambda:
+.sp
+
+.ft B
+set_field
+.ft R
+MUST NOT be called on immutable blocks\&.  (Blocks allocated
+in C stubs, or with 
+.ft B
+new_block
+.ft R
+below, are always considered mutable\&.)
+.sp
+The same goes for 
+.ft B
+set_double_field
+.ft R
+\&.
+.sp
+For experts only:
+.ft B
+set_field
+.ft R
+et al can be made safe by first wrapping the block in
+.ft B
+Sys\&.opaque_identity
+.ft R
+, so any information about its contents will not
+be propagated\&.
+
+.sp
+
+.I val double_field 
+: 
+.B t -> int -> float
+.sp
+
+.sp
+
+.I val set_double_field 
+: 
+.B t -> int -> float -> unit
+.sp
+
+.sp
+
+.I val raw_field 
+: 
+.B t -> int -> raw_data
+.sp
+
+.sp
+
+.I val set_raw_field 
+: 
+.B t -> int -> raw_data -> unit
+.sp
+
+.sp
+
+.I val new_block 
+: 
+.B int -> int -> t
+.sp
+
+.sp
+
+.I val dup 
+: 
+.B t -> t
+.sp
+
+.sp
+
+.I val add_offset 
+: 
+.B t -> Int32.t -> t
+.sp
+
+.sp
+
+.I val with_tag 
+: 
+.B int -> t -> t
+.sp
+
+.sp
+
+.I val first_non_constant_constructor_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val last_non_constant_constructor_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val forcing_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val cont_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val lazy_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val closure_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val object_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val infix_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val forward_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val no_scan_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val abstract_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val string_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val double_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val double_array_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val custom_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val int_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val out_of_heap_tag 
+: 
+.B int
+.sp
+
+.sp
+
+.I val unaligned_tag 
+: 
+.B int
+.sp
+
+.sp
+.I module Closure : 
+.B sig end
+
+.sp
+
+.sp
+.I module Extension_constructor : 
+.B sig end
+
+.sp
+
+.sp
+.I module Ephemeron : 
+.B sig end
+
+.sp
+
+.sp

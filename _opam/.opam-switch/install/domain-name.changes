@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/domain-name" {"D"}
+  "doc/domain-name/CHANGES.md" {"F:d47c2041b2dc5b63a81981c5c2b5faa7"}
+  "doc/domain-name/LICENSE.md" {"F:8622c771d57f358dd8efd8cdc6634143"}
+  "doc/domain-name/README.md" {"F:5ca458af735d03d325e447fa572a1507"}
+  "lib/domain-name" {"D"}
+  "lib/domain-name/META" {"F:2f9772e40cbf3e62aeae86ee2c28e8dc"}
+  "lib/domain-name/domain_name.a" {"F:eefb33b184c2e822b89ed7028a525e4e"}
+  "lib/domain-name/domain_name.cma" {"F:73778b3492701b1060e49eb159322c8a"}
+  "lib/domain-name/domain_name.cmi" {"F:6cf35a4654d1de5c2c13350ba65039bc"}
+  "lib/domain-name/domain_name.cmt" {"F:7cd3b31d49c93aa379602100cb1780fd"}
+  "lib/domain-name/domain_name.cmti" {"F:fa5974278c6640faac97d1f34fdf88ef"}
+  "lib/domain-name/domain_name.cmx" {"F:264fd8a3c9f575a73d1778abeceec58d"}
+  "lib/domain-name/domain_name.cmxa" {"F:4b19847f524030615f7d1470a2d85f1f"}
+  "lib/domain-name/domain_name.cmxs" {"F:e192a6754ee5c173cbfdaa2dcf900196"}
+  "lib/domain-name/domain_name.ml" {"F:3b3a7399e7c01fb226aba02bd805c972"}
+  "lib/domain-name/domain_name.mli" {"F:22441b8627ce62538ecd487db599e793"}
+  "lib/domain-name/dune-package" {"F:e73f4d16928463a7f60d29e709d0ee2d"}
+  "lib/domain-name/opam" {"F:979bc93f61ffbe1c8d7ed86b86746f66"}
+]

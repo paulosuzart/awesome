@@ -1,0 +1,65 @@
+(lang dune 3.15)
+(name ppx_fields_conv)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_fields_conv))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_fields_conv.a
+   ppx_fields_conv.cma
+   ppx_fields_conv.cmi
+   ppx_fields_conv.cmt
+   ppx_fields_conv.cmti
+   ppx_fields_conv.cmx
+   ppx_fields_conv.cmxa
+   ppx_fields_conv.ml
+   ppx_fields_conv.mli
+   ppx_fields_conv__.cmi
+   ppx_fields_conv__.cmt
+   ppx_fields_conv__.cmx
+   ppx_fields_conv__.ml
+   ppx_fields_conv__Selector.cmi
+   ppx_fields_conv__Selector.cmt
+   ppx_fields_conv__Selector.cmti
+   ppx_fields_conv__Selector.cmx
+   selector.ml
+   selector.mli))
+ (libexec (ppx_fields_conv.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_fields_conv)
+ (kind ppx_deriver)
+ (archives (byte ppx_fields_conv.cma) (native ppx_fields_conv.cmxa))
+ (plugins (byte ppx_fields_conv.cma) (native ppx_fields_conv.cmxs))
+ (native_archives ppx_fields_conv.a)
+ (requires base ppxlib.ast ppxlib)
+ (ppx_runtime_deps fieldslib)
+ (main_module_name Ppx_fields_conv)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_fields_conv__)
+     (visibility public)
+     (kind alias)
+     (source (path Ppx_fields_conv__) (impl (path ppx_fields_conv__.ml-gen))))
+    (name Ppx_fields_conv)
+    (modules
+     (module
+      (obj_name ppx_fields_conv)
+      (visibility public)
+      (source
+       (path Ppx_fields_conv)
+       (intf (path ppx_fields_conv.mli))
+       (impl (path ppx_fields_conv.ml))))
+     (module
+      (obj_name ppx_fields_conv__Selector)
+      (visibility public)
+      (source
+       (path Selector)
+       (intf (path selector.mli))
+       (impl (path selector.ml))))))
+   (wrapped true))))

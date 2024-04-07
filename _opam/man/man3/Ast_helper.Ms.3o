@@ -1,0 +1,30 @@
+.TH "Ast_helper.Ms" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_helper.Ms \- Module substitutions
+.SH Module
+Module   Ast_helper.Ms
+.SH Documentation
+.sp
+Module
+.BI "Ms"
+ : 
+.B sig end
+
+.sp
+Module substitutions
+
+.sp
+
+.sp
+.sp
+
+.I val mk 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   ?docs:Docstrings.docs ->
+.B   ?text:Docstrings.text ->
+.B   Ast_helper.str -> Ast_helper.lid -> Parsetree.module_substitution
+.sp
+
+.sp

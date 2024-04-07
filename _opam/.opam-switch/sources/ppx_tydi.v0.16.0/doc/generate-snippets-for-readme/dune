@@ -1,0 +1,2 @@
+(library (name ppx_tydi_doc_generate_snippets_for_readme)
+ (preprocess (pps ppx_tydi)))

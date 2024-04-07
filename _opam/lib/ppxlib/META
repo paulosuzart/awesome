@@ -1,0 +1,139 @@
+version = "0.32.0"
+description = ""
+requires =
+"ocaml-compiler-libs.shadow
+ ppx_derivers
+ ppxlib.ast
+ ppxlib.astlib
+ ppxlib.print_diff
+ ppxlib.stdppx
+ ppxlib.traverse_builtins
+ sexplib0
+ stdlib-shims"
+archive(byte) = "ppxlib.cma"
+archive(native) = "ppxlib.cmxa"
+plugin(byte) = "ppxlib.cma"
+plugin(native) = "ppxlib.cmxs"
+package "ast" (
+  directory = "ast"
+  version = "0.32.0"
+  description = ""
+  requires = "ppxlib.astlib stdlib-shims"
+  archive(byte) = "ppxlib_ast.cma"
+  archive(native) = "ppxlib_ast.cmxa"
+  plugin(byte) = "ppxlib_ast.cma"
+  plugin(native) = "ppxlib_ast.cmxs"
+)
+package "astlib" (
+  directory = "astlib"
+  version = "0.32.0"
+  description = ""
+  requires = "compiler-libs.common ocaml-compiler-libs.common"
+  archive(byte) = "astlib.cma"
+  archive(native) = "astlib.cmxa"
+  plugin(byte) = "astlib.cma"
+  plugin(native) = "astlib.cmxs"
+)
+package "metaquot" (
+  directory = "metaquot"
+  version = "0.32.0"
+  description = ""
+  requires(ppx_driver) = "ppxlib
+                          ppxlib.ast
+                          ppxlib.astlib
+                          ppxlib.metaquot_lifters
+                          ppxlib.traverse_builtins"
+  archive(ppx_driver,byte) = "ppxlib_metaquot.cma"
+  archive(ppx_driver,native) = "ppxlib_metaquot.cmxa"
+  plugin(ppx_driver,byte) = "ppxlib_metaquot.cma"
+  plugin(ppx_driver,native) = "ppxlib_metaquot.cmxs"
+  # This is what dune uses to find out the runtime dependencies of
+  # a preprocessor
+  ppx_runtime_deps = "ppxlib.ast"
+  # This line makes things transparent for people mixing preprocessors
+  # and normal dependencies
+  requires(-ppx_driver) = "ppxlib.ast"
+  ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+  library_kind = "ppx_rewriter"
+)
+package "metaquot_lifters" (
+  directory = "metaquot_lifters"
+  version = "0.32.0"
+  description = ""
+  requires =
+  "ppxlib ppxlib.ast ppxlib.stdppx ppxlib.traverse_builtins stdlib-shims"
+  archive(byte) = "ppxlib_metaquot_lifters.cma"
+  archive(native) = "ppxlib_metaquot_lifters.cmxa"
+  plugin(byte) = "ppxlib_metaquot_lifters.cma"
+  plugin(native) = "ppxlib_metaquot_lifters.cmxs"
+)
+package "print_diff" (
+  directory = "print_diff"
+  version = "0.32.0"
+  description = ""
+  requires = ""
+  archive(byte) = "ppxlib_print_diff.cma"
+  archive(native) = "ppxlib_print_diff.cmxa"
+  plugin(byte) = "ppxlib_print_diff.cma"
+  plugin(native) = "ppxlib_print_diff.cmxs"
+)
+package "runner" (
+  directory = "runner"
+  version = "0.32.0"
+  description = ""
+  requires = "ppxlib ppxlib.ast"
+  archive(byte) = "ppxlib_runner.cma"
+  archive(native) = "ppxlib_runner.cmxa"
+  plugin(byte) = "ppxlib_runner.cma"
+  plugin(native) = "ppxlib_runner.cmxs"
+)
+package "runner_as_ppx" (
+  directory = "runner_as_ppx"
+  version = "0.32.0"
+  description = ""
+  requires = "ppxlib ppxlib.ast"
+  archive(byte) = "ppxlib_runner_as_ppx.cma"
+  archive(native) = "ppxlib_runner_as_ppx.cmxa"
+  plugin(byte) = "ppxlib_runner_as_ppx.cma"
+  plugin(native) = "ppxlib_runner_as_ppx.cmxs"
+)
+package "stdppx" (
+  directory = "stdppx"
+  version = "0.32.0"
+  description = ""
+  requires = "sexplib0 stdlib-shims"
+  archive(byte) = "stdppx.cma"
+  archive(native) = "stdppx.cmxa"
+  plugin(byte) = "stdppx.cma"
+  plugin(native) = "stdppx.cmxs"
+)
+package "traverse" (
+  directory = "traverse"
+  version = "0.32.0"
+  description = ""
+  requires(ppx_driver) = "ppxlib
+                          ppxlib.ast
+                          ppxlib.stdppx
+                          ppxlib.traverse_builtins
+                          stdlib-shims"
+  archive(ppx_driver,byte) = "ppxlib_traverse.cma"
+  archive(ppx_driver,native) = "ppxlib_traverse.cmxa"
+  plugin(ppx_driver,byte) = "ppxlib_traverse.cma"
+  plugin(ppx_driver,native) = "ppxlib_traverse.cmxs"
+  # This line makes things transparent for people mixing preprocessors
+  # and normal dependencies
+  requires(-ppx_driver) = ""
+  requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+  ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppxlib.traverse"
+  library_kind = "ppx_deriver"
+)
+package "traverse_builtins" (
+  directory = "traverse_builtins"
+  version = "0.32.0"
+  description = ""
+  requires = ""
+  archive(byte) = "ppxlib_traverse_builtins.cma"
+  archive(native) = "ppxlib_traverse_builtins.cmxa"
+  plugin(byte) = "ppxlib_traverse_builtins.cma"
+  plugin(native) = "ppxlib_traverse_builtins.cmxs"
+)

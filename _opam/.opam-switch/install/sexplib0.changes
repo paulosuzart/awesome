@@ -1,0 +1,80 @@
+opam-version: "2.0"
+added: [
+  "doc/sexplib0" {"D"}
+  "doc/sexplib0/CHANGES.md" {"F:94a0e48e2718ce6f54a6a8093d558bb0"}
+  "doc/sexplib0/LICENSE.md" {"F:3f13460988cb84b5042540fbccab662e"}
+  "doc/sexplib0/README.md" {"F:ccc84308cb1c770bb6d9132e9301b98e"}
+  "lib/sexplib0" {"D"}
+  "lib/sexplib0/META" {"F:66fafe7fc9d610ad91890ee8a2ffc117"}
+  "lib/sexplib0/dune-package" {"F:ea3ab22fc4f677695247d18767f2ac88"}
+  "lib/sexplib0/opam" {"F:6eb494e4e831b7efe11b2b24da3970fe"}
+  "lib/sexplib0/sexp.ml" {"F:8f374a2230eb7376bed04fa3c6824e7d"}
+  "lib/sexplib0/sexp.mli" {"F:0de1c528400c8bca182161709e334db3"}
+  "lib/sexplib0/sexp_conv.ml" {"F:7d3f4349be30f0ec30895e130a547f4b"}
+  "lib/sexplib0/sexp_conv.mli" {"F:c5e2e24f7da16d67d111a73576c95813"}
+  "lib/sexplib0/sexp_conv_error.ml" {"F:e82dad90b9b1bf0968f1701fb6613cb4"}
+  "lib/sexplib0/sexp_conv_grammar.ml" {"F:5ce1ca8f2019927b5e5773e2cca1999c"}
+  "lib/sexplib0/sexp_conv_grammar.mli" {"F:ca8c49a73c773689cee15a1620fdd38f"}
+  "lib/sexplib0/sexp_conv_record.ml" {"F:e211d745d3e1eb148f6d889407647718"}
+  "lib/sexplib0/sexp_conv_record.mli" {"F:4e3d722b6e7cc3317ed841361a54e925"}
+  "lib/sexplib0/sexp_grammar.ml" {"F:f7dfd921cd1b3123c1b8120838d59fea"}
+  "lib/sexplib0/sexpable.ml" {"F:fb57022b0f8179fe492ff747ac4142ab"}
+  "lib/sexplib0/sexplib0.a" {"F:e4dc1796a664b402d2fbd975d8ecd2f7"}
+  "lib/sexplib0/sexplib0.cma" {"F:f16f1aaf1d1dfb200c547ff8e3fd5c0c"}
+  "lib/sexplib0/sexplib0.cmi" {"F:2a96060d196c336a423c96c3a1cad204"}
+  "lib/sexplib0/sexplib0.cmt" {"F:25e9f77b59e93a82e3a8ea3fe502259d"}
+  "lib/sexplib0/sexplib0.cmx" {"F:416ea3815693b991a0e95f3527a6a2f6"}
+  "lib/sexplib0/sexplib0.cmxa" {"F:573467156d37f395143313692a513dc1"}
+  "lib/sexplib0/sexplib0.cmxs" {"F:5edc2043454e1b8d2b9c7ffb57da9d50"}
+  "lib/sexplib0/sexplib0.ml" {"F:275eda96e427a1adbd4381ab5be729aa"}
+  "lib/sexplib0/sexplib0__.cmi" {"F:6477a62097bfb8a6f3b0fd37434b234a"}
+  "lib/sexplib0/sexplib0__.cmt" {"F:df7b80a326284bb97b90de9d23d2a504"}
+  "lib/sexplib0/sexplib0__.cmx" {"F:f928123ca13a1e8bd6b3e55e463972ee"}
+  "lib/sexplib0/sexplib0__.ml" {"F:50217b9acb5f154a5714d6b856368f7e"}
+  "lib/sexplib0/sexplib0__Sexp.cmi" {"F:0be25baa657c6be6ae9abc1f5aad3648"}
+  "lib/sexplib0/sexplib0__Sexp.cmt" {"F:3c675a2cf37396aa607e4d04cfb5e27b"}
+  "lib/sexplib0/sexplib0__Sexp.cmti" {"F:cf226e8b3d694b5f7db1235022d7d40c"}
+  "lib/sexplib0/sexplib0__Sexp.cmx" {"F:8b78e3c93cabcd708884c6a2dfd07016"}
+  "lib/sexplib0/sexplib0__Sexp_conv.cmi"
+    {"F:437256bf71c1293d10148a2ada7da2cd"}
+  "lib/sexplib0/sexplib0__Sexp_conv.cmt"
+    {"F:05212db20c9e690251a77bafb854189c"}
+  "lib/sexplib0/sexplib0__Sexp_conv.cmti"
+    {"F:f67b4e9470d96bf91fd0ff135fbc76e2"}
+  "lib/sexplib0/sexplib0__Sexp_conv.cmx"
+    {"F:1a479ca59372a7e2a3536377bd7275ae"}
+  "lib/sexplib0/sexplib0__Sexp_conv_error.cmi"
+    {"F:c533896f82a0c7c657ae16f7bb0f2e37"}
+  "lib/sexplib0/sexplib0__Sexp_conv_error.cmt"
+    {"F:e55c2a30c25018a5002b47fd896f4f52"}
+  "lib/sexplib0/sexplib0__Sexp_conv_error.cmx"
+    {"F:e1951d169e419cb99c7a42d2239559d2"}
+  "lib/sexplib0/sexplib0__Sexp_conv_grammar.cmi"
+    {"F:b86d862fe08981a9fc1171c95a5d4aa4"}
+  "lib/sexplib0/sexplib0__Sexp_conv_grammar.cmt"
+    {"F:2b4cbca491e1206a8262028387ad625f"}
+  "lib/sexplib0/sexplib0__Sexp_conv_grammar.cmti"
+    {"F:64ee23c0ab19f3ad9c4a365347151ac1"}
+  "lib/sexplib0/sexplib0__Sexp_conv_grammar.cmx"
+    {"F:f27435408da69374b38ab639e632f81c"}
+  "lib/sexplib0/sexplib0__Sexp_conv_record.cmi"
+    {"F:06e98356963ea403a38acee0badead4a"}
+  "lib/sexplib0/sexplib0__Sexp_conv_record.cmt"
+    {"F:976a0064c3b8f02c9c6bfbe7c01c0122"}
+  "lib/sexplib0/sexplib0__Sexp_conv_record.cmti"
+    {"F:b09be71e3b861da0325babdf9ac23828"}
+  "lib/sexplib0/sexplib0__Sexp_conv_record.cmx"
+    {"F:ced9dafd316a99e423067e5ad2a662aa"}
+  "lib/sexplib0/sexplib0__Sexp_grammar.cmi"
+    {"F:678af14e59d066ad94d5904cdeedff27"}
+  "lib/sexplib0/sexplib0__Sexp_grammar.cmt"
+    {"F:8e459cc42718645389e5c17e5ca86080"}
+  "lib/sexplib0/sexplib0__Sexp_grammar.cmx"
+    {"F:7b38680bac5d6a27f6fafb23c5e47e6a"}
+  "lib/sexplib0/sexplib0__Sexpable.cmi"
+    {"F:06ccdde7a7b2786b4721d56c2cc4b79c"}
+  "lib/sexplib0/sexplib0__Sexpable.cmt"
+    {"F:d9993a7c8399a22bbb5a34dff71a86be"}
+  "lib/sexplib0/sexplib0__Sexpable.cmx"
+    {"F:bcc047aaf3a2ba52530ec380bc65018e"}
+]

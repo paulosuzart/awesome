@@ -1,0 +1,34 @@
+.TH "Diffing_with_keys.Define.Simple" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing_with_keys.Define.Simple \- no description
+.SH Module
+Module   Diffing_with_keys.Define.Simple
+.SH Documentation
+.sp
+Module
+.BI "Simple"
+ : 
+.B Parameters -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"*"
+
+.B Diffing_with_keys.Define.Parameters
+
+
+
+
+
+.sp
+.sp
+
+.I val diff 
+: 
+.B D.state -> D.left list -> D.right list -> Diffing_with_keys.Define.patch
+.sp
+
+.sp

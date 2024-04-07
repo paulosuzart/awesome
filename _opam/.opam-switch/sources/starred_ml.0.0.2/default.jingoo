@@ -1,0 +1,27 @@
+Awesome Starts
+===
+
+> A curated list of Github starts! Geberated by [starred_ml](https://github.com/paulosuzart/starred_ml)
+
+
+Languages
+---
+
+Languages starred: {{ lang_count }}:
+
+
+{%- for lang in languages %}
+   - [{{ lang }}](#{{ lang }})
+{%- endfor %}
+
+Contents
+---
+
+{% for item in by_language -%}
+## {{ item.language }}
+
+{%- for repo in item.starred %}
+   - [{{ repo.name }}]({{ repo.url }}): {{ repo.description }}
+{%- endfor %}
+
+{% endfor %}

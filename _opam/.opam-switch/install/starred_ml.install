@@ -1,0 +1,12 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/starred_ml/META"
+  "_build/install/default/lib/starred_ml/dune-package"
+  "_build/install/default/lib/starred_ml/opam"
+]
+bin: "_build/install/default/bin/starred_ml"
+doc: [
+  "_build/install/default/doc/starred_ml/CHANGES.md"
+  "_build/install/default/doc/starred_ml/LICENSE"
+  "_build/install/default/doc/starred_ml/README.md"
+]

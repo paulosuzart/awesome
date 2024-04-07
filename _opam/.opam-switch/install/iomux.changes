@@ -1,0 +1,39 @@
+opam-version: "2.0"
+added: [
+  "doc/iomux" {"D"}
+  "doc/iomux/CHANGES.md" {"F:1b6234d7d66cbfcc491e99e77fd8f77f"}
+  "doc/iomux/LICENSE.md" {"F:ae412c6a4107972d973225ca43022033"}
+  "doc/iomux/README.md" {"F:a90dde8b80ecdd001669949e295b1314"}
+  "lib/iomux" {"D"}
+  "lib/iomux/META" {"F:44bea78267744a515ad74a656429ba2d"}
+  "lib/iomux/config.ml" {"F:3d65efe72519ad6205b94ca283e6c9b2"}
+  "lib/iomux/dune-package" {"F:cb02e463e2f4290420738deb6e2cce0c"}
+  "lib/iomux/iomux.a" {"F:7d1dccea48bb29fbd5eced1589486f4d"}
+  "lib/iomux/iomux.cma" {"F:1156bc1ca65358fb8631c35c9cffc4ad"}
+  "lib/iomux/iomux.cmi" {"F:0e40820a1988382325eda8241f07e8e4"}
+  "lib/iomux/iomux.cmt" {"F:3f04336141efabf5676408039f37a9da"}
+  "lib/iomux/iomux.cmx" {"F:abc42a69c03d2b77fff33c4573c3da70"}
+  "lib/iomux/iomux.cmxa" {"F:0fa6eff185706259c682ce0080c950ff"}
+  "lib/iomux/iomux.cmxs" {"F:a718b7ce097a4b5503e85d3aa1f3635e"}
+  "lib/iomux/iomux.ml" {"F:3be49b875dc3faf30f3eb00aedc76f8c"}
+  "lib/iomux/iomux__.cmi" {"F:ebd5013b1370503ec9183bce3b5241f6"}
+  "lib/iomux/iomux__.cmt" {"F:4506a9343aabee8032571a630bd0a900"}
+  "lib/iomux/iomux__.cmx" {"F:d7307d4edef18b66130ba14c6613a6e9"}
+  "lib/iomux/iomux__.ml" {"F:b08d2f82726d9226ce1347b8a88905f7"}
+  "lib/iomux/iomux__Config.cmi" {"F:6f6a71e32194dcf5ea63fe192f93cfba"}
+  "lib/iomux/iomux__Config.cmt" {"F:5d7b4fde052230344c4fd1426bc24195"}
+  "lib/iomux/iomux__Config.cmx" {"F:f5cca37e457317d9996e5be60c6e9d52"}
+  "lib/iomux/iomux__Poll.cmi" {"F:564450a0842efabc6b284a15df8b620c"}
+  "lib/iomux/iomux__Poll.cmt" {"F:df19ed81907eb70f622ca7b7b7502e03"}
+  "lib/iomux/iomux__Poll.cmti" {"F:8a6a3d89192dc8c2bc089deea8f739d7"}
+  "lib/iomux/iomux__Poll.cmx" {"F:9da5dfe45dfb9112dc3791d68ee671d6"}
+  "lib/iomux/iomux__Util.cmi" {"F:a723bf85ba81298cf1c166dfbf2581aa"}
+  "lib/iomux/iomux__Util.cmt" {"F:af3f3509712e6e6befcba0f3e54c7552"}
+  "lib/iomux/iomux__Util.cmx" {"F:0b40350eb44bfe18b31c08f96774e8a8"}
+  "lib/iomux/libiomux_stubs.a" {"F:88c384dc93f839cec26f6b483499ee4b"}
+  "lib/iomux/opam" {"F:d505dcf8b69a007ed1ab8cc5d9c3d14a"}
+  "lib/iomux/poll.ml" {"F:88b7e7dc76d861f8416000f046f88a6a"}
+  "lib/iomux/poll.mli" {"F:d456daac2361adeb96e99528fdb683fb"}
+  "lib/iomux/util.ml" {"F:62fd1a241f805c0fd6fa86f2e2b15308"}
+  "lib/stublibs/dlliomux_stubs.so" {"F:30037c8af5d818bfcbdcb1eb2d987c75"}
+]

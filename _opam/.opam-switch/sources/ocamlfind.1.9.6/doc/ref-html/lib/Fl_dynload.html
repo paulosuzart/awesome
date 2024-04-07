@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Fl_metascanner.html">
+<link rel="next" href="Topfind.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Findlib" rel="Chapter" href="Findlib.html">
+<link title="Fl_package_base" rel="Chapter" href="Fl_package_base.html">
+<link title="Fl_metascanner" rel="Chapter" href="Fl_metascanner.html">
+<link title="Fl_dynload" rel="Chapter" href="Fl_dynload.html">
+<link title="Topfind" rel="Chapter" href="Topfind.html"><title>The Findlib Library : Fl_dynload</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Fl_metascanner.html" title="Fl_metascanner">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Topfind.html" title="Topfind">Next</a>
+</div>
+<h1>Module <a href="type_Fl_dynload.html">Fl_dynload</a></h1>
+
+<pre><span id="MODULEFl_dynload"><span class="keyword">module</span> Fl_dynload</span>: <code class="code">sig</code> <a href="Fl_dynload.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>Utilities for loading dynamically packages</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="VALload_packages"><span class="keyword">val</span> load_packages</span> : <code class="type">?debug:bool -> string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Load the given packages and all their dependencies dynamically. Packages
+    already loaded or already in-core are not loaded again. The predicates
+    are taken from <a href="Findlib.html#VALrecorded_predicates"><code class="code">Findlib.recorded_predicates</code></a>, which are normally the
+    predicates from the link-time of the executable.</p>
+
+<p>In order to initialize this module correctly, you need to link the
+    executable in a special way. This is done by including "findlib.dynload"
+    in the <code class="code">ocamlfind</code> command, e.g.</p>
+
+<pre class="codepre"><code class="code"> ocamlfind ocamlopt -o program -package findlib.dynload -linkpkg m.ml </code></pre>
+<p>It is not sufficient to just link <code class="code">findlib_dynload.cm(x)a</code> into the
+    executable. The above command adds special initialization code that
+    (a) records the predicates and (b) records the packages already present
+    in the executable. Also <code class="code">-linkall</code> is implicitly added.</p>
+
+<p>The dynamic package loader works both for bytecode and native code.
+    The META files of the packages need to specify the cma or cmxs files
+    in the following way:</p>
+
+<ul>
+<li>First, the "plugin" variable is checked (instead of "archive"), e.g.
+       <pre class="codepre"><code class="code">plugin(byte) = "my_plugin.cma"
+plugin(native) = "my_plugin.cmxs"
+       </code></pre>
+       This is the preferred style.</li>
+<li>Second, for bytecode only, the normal "archive" variable is
+       also accepted if "plugin" is not present. (Because bytecode archives
+       can normally be dynamically loaded without special preparation.)</li>
+<li>Third, for native-code only, the "archive(plugin)" variable
+       is also accepted. This is for legacy packages.</li>
+</ul>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,256 @@
+.TH "Domain" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Domain \- no description
+.SH Module
+Module   Domain
+.SH Documentation
+.sp
+Module
+.BI "Domain"
+ : 
+.B sig end
+
+.sp
+.B Alert unstable.
+The Domain interface may change in incompatible ways in the future.
+
+.sp
+
+.sp
+.sp
+
+.PP
+Domains\&.
+.sp
+See \&'Parallel programming\&' chapter in the manual\&.
+.PP
+.I type 
+.B !'a
+.I t 
+
+.sp
+A domain of type 
+.ft B
+\&'a t
+.ft R
+runs independently, eventually producing a
+result of type \&'a, or an exception
+
+.sp
+
+.I val spawn 
+: 
+.B (unit -> 'a) -> 'a t
+.sp
+
+.ft B
+spawn f
+.ft R
+creates a new domain that runs in parallel with the
+current domain\&.
+
+.sp
+.B "Raises Failure"
+if the program has insufficient resources to create another
+domain\&.
+
+.sp
+
+.I val join 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+join d
+.ft R
+blocks until domain 
+.ft B
+d
+.ft R
+runs to completion\&. If 
+.ft B
+d
+.ft R
+results in a
+value, then that is returned by 
+.ft B
+join d
+.ft R
+\&. If 
+.ft B
+d
+.ft R
+raises an uncaught
+exception, then that is re\-raised by 
+.ft B
+join d
+.ft R
+\&.
+
+.sp
+.I type id 
+= private 
+.B int
+
+.sp
+Domains have unique integer identifiers
+
+.sp
+
+.I val get_id 
+: 
+.B 'a t -> id
+.sp
+
+.ft B
+get_id d
+.ft R
+returns the identifier of the domain 
+.ft B
+d
+.ft R
+
+
+.sp
+
+.I val self 
+: 
+.B unit -> id
+.sp
+
+.ft B
+self ()
+.ft R
+is the identifier of the currently running domain
+
+.sp
+
+.I val before_first_spawn 
+: 
+.B (unit -> unit) -> unit
+.sp
+
+.ft B
+before_first_spawn f
+.ft R
+registers 
+.ft B
+f
+.ft R
+to be called before the first domain
+is spawned by the program\&. The functions registered with
+.ft B
+before_first_spawn
+.ft R
+are called on the main (initial) domain\&. The functions
+registered with 
+.ft B
+before_first_spawn
+.ft R
+are called in \&'first in, first out\&'
+order: the oldest function added with 
+.ft B
+before_first_spawn
+.ft R
+is called first\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the program has already spawned a domain\&.
+
+.sp
+
+.I val at_exit 
+: 
+.B (unit -> unit) -> unit
+.sp
+
+.ft B
+at_exit f
+.ft R
+registers 
+.ft B
+f
+.ft R
+to be called when the current domain exits\&. Note
+that 
+.ft B
+at_exit
+.ft R
+callbacks are domain\-local and only apply to the calling
+domain\&. The registered functions are called in \&'last in, first out\&' order:
+the function most recently added with 
+.ft B
+at_exit
+.ft R
+is called first\&. An example:
+.sp
+
+.EX
+.ft B
+.br
+\&let temp_file_key = Domain\&.DLS\&.new_key (fun _ \->
+.br
+\&  let tmp = snd (Filename\&.open_temp_file "" "") in
+.br
+\&  Domain\&.at_exit (fun () \-> close_out_noerr tmp);
+.br
+\&  tmp)
+.br
+\&    
+.ft R
+.EE
+.sp
+The snippet above creates a key that when retrieved for the first
+time will open a temporary file and register an 
+.ft B
+at_exit
+.ft R
+callback
+to close it, thus guaranteeing the descriptor is not leaked in
+case the current domain exits\&.
+
+.sp
+
+.I val cpu_relax 
+: 
+.B unit -> unit
+.sp
+If busy\-waiting, calling cpu_relax () between iterations
+will improve performance on some CPU architectures
+
+.sp
+
+.I val is_main_domain 
+: 
+.B unit -> bool
+.sp
+
+.ft B
+is_main_domain ()
+.ft R
+returns true if called from the initial domain\&.
+
+.sp
+
+.I val recommended_domain_count 
+: 
+.B unit -> int
+.sp
+The recommended maximum number of domains which should be running
+simultaneously (including domains already running)\&.
+.sp
+The value returned is at least 
+.ft B
+1
+.ft R
+\&.
+
+.sp
+.I module DLS : 
+.B sig end
+
+.sp
+
+.sp

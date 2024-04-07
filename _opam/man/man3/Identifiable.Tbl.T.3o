@@ -1,0 +1,31 @@
+.TH "Identifiable.Tbl.T" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Identifiable.Tbl.T \- no description
+.SH Module
+Module   Identifiable.Tbl.T
+.SH Documentation
+.sp
+Module
+.BI "T"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+.I include Map.OrderedType
+.sp
+
+.sp
+.I include Hashtbl.HashedType
+.sp
+
+.sp

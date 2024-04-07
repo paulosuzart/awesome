@@ -1,0 +1,55 @@
+(library
+ (name urcp_lib)
+ (modules urcp_lib)
+ (libraries fmt unix uring logs))
+
+(library
+ (name urcp_fixed_lib)
+ (modules urcp_fixed_lib)
+ (libraries fmt unix uring logs))
+
+(library
+ (name lwtcp_lib)
+ (modules lwtcp_lib)
+ (libraries lwt.unix logs))
+
+(executable
+ (name urcat)
+ (modules urcat)
+ (libraries unix uring))
+
+(executable
+ (name urcp)
+ (modules urcp)
+ (libraries cmdliner logs.cli logs.fmt fmt.tty fmt.cli urcp_fixed_lib
+   urcp_lib))
+
+(executable
+ (name lwtcp)
+ (modules lwtcp)
+ (libraries cmdliner logs.cli logs.fmt fmt.tty fmt.cli lwtcp_lib))
+
+(executable
+ (name urstat)
+ (modules urstat)
+ (libraries uring fmt))
+
+(executable
+ (name poll_add)
+ (modules poll_add)
+ (libraries unix uring logs logs.fmt))
+
+(rule
+ (alias runtest)
+ (package uring)
+ (action (run ./poll_add.exe)))
+
+(rule
+ (alias runbenchmark)
+ (package uring)
+ (deps urcp.exe)
+ (action
+  (run ./urcp.exe)))
+
+(mdx
+  (deps (package uring)))

@@ -1,0 +1,351 @@
+.TH "Dynlink" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Dynlink \- Dynamic loading of .cmo, .cma and .cmxs files.
+.SH Module
+Module   Dynlink
+.SH Documentation
+.sp
+Module
+.BI "Dynlink"
+ : 
+.B sig end
+
+.sp
+Dynamic loading of \&.cmo, \&.cma and \&.cmxs files\&.
+
+.sp
+
+.sp
+.sp
+
+.I val is_native 
+: 
+.B bool
+.sp
+
+.ft B
+true
+.ft R
+if the program is native,
+.ft B
+false
+.ft R
+if the program is bytecode\&.
+
+.sp
+
+.PP
+.SS Dynamic loading of compiled files
+
+.PP
+
+.I val loadfile 
+: 
+.B string -> unit
+.sp
+In bytecode: load the given bytecode object file (
+.ft B
+\&.cmo
+.ft R
+file) or
+bytecode library file (
+.ft B
+\&.cma
+.ft R
+file), and link it with the running
+program\&. In native code: load the given OCaml plugin file (usually
+.ft B
+\&.cmxs
+.ft R
+), and link it with the running program\&.
+.sp
+All toplevel expressions in the loaded compilation units
+are evaluated\&. No facilities are provided to
+access value names defined by the unit\&. Therefore, the unit
+must itself register its entry points with the main program (or a
+previously\-loaded library) e\&.g\&. by modifying tables of functions\&.
+.sp
+An exception will be raised if the given library defines toplevel
+modules whose names clash with modules existing either in the main
+program or a shared library previously loaded with 
+.ft B
+loadfile
+.ft R
+\&.
+Modules from shared libraries previously loaded with
+.ft B
+loadfile_private
+.ft R
+are not included in this restriction\&.
+.sp
+The compilation units loaded by this function are added to the
+"allowed units" list (see 
+.ft B
+Dynlink\&.set_allowed_units
+.ft R
+)\&.
+
+.sp
+
+.I val loadfile_private 
+: 
+.B string -> unit
+.sp
+Same as 
+.ft B
+loadfile
+.ft R
+, except that the compilation units just loaded
+are hidden (cannot be referenced) from other modules dynamically
+loaded afterwards\&.
+.sp
+An exception will be raised if the given library defines toplevel
+modules whose names clash with modules existing in either the main
+program or a shared library previously loaded with 
+.ft B
+loadfile
+.ft R
+\&.
+Modules from shared libraries previously loaded with
+.ft B
+loadfile_private
+.ft R
+are not included in this restriction\&.
+.sp
+An exception will also be raised if the given library defines
+toplevel modules whose name matches that of an interface depended
+on by a module existing in either the main program or a shared
+library previously loaded with 
+.ft B
+loadfile
+.ft R
+\&. This applies even if
+such dependency is only a "module alias" dependency (i\&.e\&. just on
+the name rather than the contents of the interface)\&.
+.sp
+The compilation units loaded by this function are not added to the
+"allowed units" list (see 
+.ft B
+Dynlink\&.set_allowed_units
+.ft R
+) since they cannot
+be referenced from other compilation units\&.
+
+.sp
+
+.I val adapt_filename 
+: 
+.B string -> string
+.sp
+In bytecode, the identity function\&. In native code, replace the last
+extension with 
+.ft B
+\&.cmxs
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Access control
+
+.PP
+
+.I val set_allowed_units 
+: 
+.B string list -> unit
+.sp
+Set the list of compilation units that may be referenced from units that
+are dynamically loaded in the future to be exactly the given value\&.
+.sp
+Initially all compilation units composing the program currently running
+are available for reference from dynamically\-linked units\&.
+.ft B
+set_allowed_units
+.ft R
+can be used to restrict access to a subset of these
+units, e\&.g\&. to the units that compose the API for
+dynamically\-linked code, and prevent access to all other units,
+e\&.g\&. private, internal modules of the running program\&.
+.sp
+Note that 
+.ft B
+Dynlink\&.loadfile
+.ft R
+changes the allowed\-units list\&.
+
+.sp
+
+.I val allow_only 
+: 
+.B string list -> unit
+.sp
+
+.ft B
+allow_only units
+.ft R
+sets the list of allowed units to be the intersection
+of the existing allowed units and the given list of units\&.  As such it
+can never increase the set of allowed units\&.
+
+.sp
+
+.I val prohibit 
+: 
+.B string list -> unit
+.sp
+
+.ft B
+prohibit units
+.ft R
+prohibits dynamically\-linked units from referencing
+the units named in list 
+.ft B
+units
+.ft R
+by removing such units from the allowed
+units list\&.  This can be used to prevent access to selected units,
+e\&.g\&. private, internal modules of the running program\&.
+
+.sp
+
+.I val main_program_units 
+: 
+.B unit -> string list
+.sp
+Return the list of compilation units that form the main program (i\&.e\&.
+are not dynamically linked)\&.
+
+.sp
+
+.I val public_dynamically_loaded_units 
+: 
+.B unit -> string list
+.sp
+Return the list of compilation units that have been dynamically loaded via
+.ft B
+loadfile
+.ft R
+(and not via 
+.ft B
+loadfile_private
+.ft R
+)\&.  Note that compilation units
+loaded dynamically cannot be unloaded\&.
+
+.sp
+
+.I val all_units 
+: 
+.B unit -> string list
+.sp
+Return the list of compilation units that form the main program together
+with those that have been dynamically loaded via 
+.ft B
+loadfile
+.ft R
+(and not via
+.ft B
+loadfile_private
+.ft R
+)\&.
+
+.sp
+
+.I val allow_unsafe_modules 
+: 
+.B bool -> unit
+.sp
+Govern whether unsafe object files are allowed to be
+dynamically linked\&. A compilation unit is \&'unsafe\&' if it contains
+declarations of external functions, which can break type safety\&.
+By default, dynamic linking of unsafe object files is
+not allowed\&. In native code, this function does nothing; object files
+with external functions are always allowed to be dynamically linked\&.
+
+.sp
+
+.PP
+.SS Error reporting
+
+.PP
+.I type linking_error 
+= private
+ | Undefined_global
+.B of 
+.B string
+ | Unavailable_primitive
+.B of 
+.B string
+ | Uninitialized_global
+.B of 
+.B string
+ 
+.sp
+
+.sp
+.I type error 
+= private
+ | Not_a_bytecode_file
+.B of 
+.B string
+ | Inconsistent_import
+.B of 
+.B string
+ | Unavailable_unit
+.B of 
+.B string
+ | Unsafe_file
+ | Linking_error
+.B of 
+.B string * linking_error
+ | Corrupted_interface
+.B of 
+.B string
+ | Cannot_open_dynamic_library
+.B of 
+.B exn
+ | Library's_module_initializers_failed
+.B of 
+.B exn
+ | Inconsistent_implementation
+.B of 
+.B string
+ | Module_already_loaded
+.B of 
+.B string
+ | Private_library_cannot_implement_interface
+.B of 
+.B string
+ 
+.sp
+
+.sp
+
+.I exception Error 
+.B of 
+.B error
+
+.sp
+Errors in dynamic linking are reported by raising the 
+.ft B
+Error
+.ft R
+exception with a description of the error\&.
+A common case is the dynamic library not being found on the system: this
+is reported via 
+.ft B
+Cannot_open_dynamic_library
+.ft R
+(the enclosed exception may
+be platform\-specific)\&.
+
+.sp
+
+.I val error_message 
+: 
+.B error -> string
+.sp
+Convert an error description to a printable message\&.
+
+.sp

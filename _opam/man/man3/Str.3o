@@ -1,0 +1,1157 @@
+.TH "Str" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Str \- Regular expressions and high-level string processing
+.SH Module
+Module   Str
+.SH Documentation
+.sp
+Module
+.BI "Str"
+ : 
+.B sig end
+
+.sp
+Regular expressions and high\-level string processing
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Regular expressions
+
+.PP
+
+.PP
+The 
+.ft B
+Str
+.ft R
+library provides regular expressions on sequences of bytes\&.
+It is, in general, unsuitable to match Unicode characters\&.
+.PP
+.I type regexp 
+
+.sp
+The type of compiled regular expressions\&.
+
+.sp
+
+.I val regexp 
+: 
+.B string -> regexp
+.sp
+Compile a regular expression\&. The following constructs are
+recognized:
+.sp
+\-
+.ft B
+\&.     
+.ft R
+Matches any character except newline\&.
+.sp
+\-
+.ft B
+*     
+.ft R
+(postfix) Matches the preceding expression zero, one or
+several times
+.sp
+\-
+.ft B
++     
+.ft R
+(postfix) Matches the preceding expression one or
+several times
+.sp
+\-
+.ft B
+?     
+.ft R
+(postfix) Matches the preceding expression once or
+not at all
+.sp
+\-
+.ft B
+[\&.\&.]  
+.ft R
+Character set\&. Ranges are denoted with 
+.ft B
+\-
+.ft R
+, as in 
+.ft B
+[a\-z]
+.ft R
+\&.
+An initial 
+.ft B
+^
+.ft R
+, as in 
+.ft B
+[^0\-9]
+.ft R
+, complements the set\&.
+To include a 
+.ft B
+]
+.ft R
+character in a set, make it the first
+character of the set\&. To include a 
+.ft B
+\-
+.ft R
+character in a set,
+make it the first or the last character of the set\&.
+.sp
+\-
+.ft B
+^     
+.ft R
+Matches at beginning of line: either at the beginning of
+the matched string, or just after a \&'\(rsn\&' character\&.
+.sp
+\-
+.ft B
+$     
+.ft R
+Matches at end of line: either at the end of the matched
+string, or just before a \&'\(rsn\&' character\&.
+.sp
+\-
+.ft B
+\(rs|    
+.ft R
+(infix) Alternative between two expressions\&.
+.sp
+\-
+.ft B
+\(rs(\&.\&.\(rs)
+.ft R
+Grouping and naming of the enclosed expression\&.
+.sp
+\-
+.ft B
+\(rs1    
+.ft R
+The text matched by the first 
+.ft B
+\(rs(\&.\&.\&.\(rs)
+.ft R
+expression
+(
+.ft B
+\(rs2
+.ft R
+for the second expression, and so on up to 
+.ft B
+\(rs9
+.ft R
+)\&.
+.sp
+\-
+.ft B
+\(rsb    
+.ft R
+Matches word boundaries\&.
+.sp
+\-
+.ft B
+\(rs     
+.ft R
+Quotes special characters\&.  The special characters
+are 
+.ft B
+$^\(rs\&.*+?[]
+.ft R
+\&.
+
+In regular expressions you will often use backslash characters; it\&'s
+easier to use a quoted string literal 
+.ft B
+{|\&.\&.\&.|}
+.ft R
+to avoid having to
+escape backslashes\&.
+.sp
+For example, the following expression:
+.EX
+.ft B
+let r = Str\&.regexp {|hello \(rs([A\-Za\-z]+\(rs)|} in
+.br
+\&      Str\&.replace_first r {|\(rs1|} "hello world" 
+.ft R
+.EE
+returns the string 
+.ft B
+"world"
+.ft R
+\&.
+.sp
+If you want a regular expression that matches a literal backslash
+character, you need to double it: 
+.ft B
+Str\&.regexp {|\(rs\(rs|}
+.ft R
+\&.
+.sp
+You can use regular string literals 
+.ft B
+"\&.\&.\&."
+.ft R
+too, however you will
+have to escape backslashes\&. The example above can be rewritten with a
+regular string literal as:
+.EX
+.ft B
+let r = Str\&.regexp "hello \(rs\(rs([A\-Za\-z]+\(rs\(rs)" in
+.br
+\&      Str\&.replace_first r "\(rs\(rs1" "hello world" 
+.ft R
+.EE
+.sp
+And the regular expression for matching a backslash becomes a
+quadruple backslash: 
+.ft B
+Str\&.regexp "\(rs\(rs\(rs\(rs"
+.ft R
+\&.
+
+.sp
+
+.I val regexp_case_fold 
+: 
+.B string -> regexp
+.sp
+Same as 
+.ft B
+regexp
+.ft R
+, but the compiled expression will match text
+in a case\-insensitive way: uppercase and lowercase letters will
+be considered equivalent\&.
+
+.sp
+
+.I val quote 
+: 
+.B string -> string
+.sp
+
+.ft B
+Str\&.quote s
+.ft R
+returns a regexp string that matches exactly
+.ft B
+s
+.ft R
+and nothing else\&.
+
+.sp
+
+.I val regexp_string 
+: 
+.B string -> regexp
+.sp
+
+.ft B
+Str\&.regexp_string s
+.ft R
+returns a regular expression
+that matches exactly 
+.ft B
+s
+.ft R
+and nothing else\&.
+
+.sp
+
+.I val regexp_string_case_fold 
+: 
+.B string -> regexp
+.sp
+
+.ft B
+Str\&.regexp_string_case_fold
+.ft R
+is similar to 
+.ft B
+Str\&.regexp_string
+.ft R
+,
+but the regexp matches in a case\-insensitive way\&.
+
+.sp
+
+.PP
+.SS String matching and searching
+
+.PP
+
+.I val string_match 
+: 
+.B regexp -> string -> int -> bool
+.sp
+
+.ft B
+string_match r s start
+.ft R
+tests whether a substring of 
+.ft B
+s
+.ft R
+that
+starts at position 
+.ft B
+start
+.ft R
+matches the regular expression 
+.ft B
+r
+.ft R
+\&.
+The first character of a string has position 
+.ft B
+0
+.ft R
+, as usual\&.
+
+.sp
+
+.I val search_forward 
+: 
+.B regexp -> string -> int -> int
+.sp
+
+.ft B
+search_forward r s start
+.ft R
+searches the string 
+.ft B
+s
+.ft R
+for a substring
+matching the regular expression 
+.ft B
+r
+.ft R
+\&. The search starts at position
+.ft B
+start
+.ft R
+and proceeds towards the end of the string\&.
+Return the position of the first character of the matched
+substring\&.
+
+.sp
+.B "Raises Not_found"
+if no substring matches\&.
+
+.sp
+
+.I val search_backward 
+: 
+.B regexp -> string -> int -> int
+.sp
+
+.ft B
+search_backward r s last
+.ft R
+searches the string 
+.ft B
+s
+.ft R
+for a
+substring matching the regular expression 
+.ft B
+r
+.ft R
+\&. The search first
+considers substrings that start at position 
+.ft B
+last
+.ft R
+and proceeds
+towards the beginning of string\&. Return the position of the first
+character of the matched substring\&.
+
+.sp
+.B "Raises Not_found"
+if no substring matches\&.
+
+.sp
+
+.I val string_partial_match 
+: 
+.B regexp -> string -> int -> bool
+.sp
+Similar to 
+.ft B
+Str\&.string_match
+.ft R
+, but also returns true if
+the argument string is a prefix of a string that matches\&.
+This includes the case of a true complete match\&.
+
+.sp
+
+.I val matched_string 
+: 
+.B string -> string
+.sp
+
+.ft B
+matched_string s
+.ft R
+returns the substring of 
+.ft B
+s
+.ft R
+that was matched
+by the last call to one of the following matching or searching
+functions:
+.sp
+\-
+.ft B
+Str\&.string_match
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.search_forward
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.search_backward
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.string_partial_match
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.global_substitute
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.substitute_first
+.ft R
+
+provided that none of the following functions was called in between:
+.sp
+\-
+.ft B
+Str\&.global_replace
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.replace_first
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.split
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.bounded_split
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.split_delim
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.bounded_split_delim
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.full_split
+.ft R
+
+.sp
+\-
+.ft B
+Str\&.bounded_full_split
+.ft R
+
+Note: in the case of 
+.ft B
+global_substitute
+.ft R
+and 
+.ft B
+substitute_first
+.ft R
+,
+a call to 
+.ft B
+matched_string
+.ft R
+is only valid within the 
+.ft B
+subst
+.ft R
+argument,
+not after 
+.ft B
+global_substitute
+.ft R
+or 
+.ft B
+substitute_first
+.ft R
+returns\&.
+.sp
+The user must make sure that the parameter 
+.ft B
+s
+.ft R
+is the same string
+that was passed to the matching or searching function\&.
+
+.sp
+
+.I val match_beginning 
+: 
+.B unit -> int
+.sp
+
+.ft B
+match_beginning()
+.ft R
+returns the position of the first character
+of the substring that was matched by the last call to a matching
+or searching function (see 
+.ft B
+Str\&.matched_string
+.ft R
+for details)\&.
+
+.sp
+
+.I val match_end 
+: 
+.B unit -> int
+.sp
+
+.ft B
+match_end()
+.ft R
+returns the position of the character following the
+last character of the substring that was matched by the last call
+to a matching or searching function (see 
+.ft B
+Str\&.matched_string
+.ft R
+for
+details)\&.
+
+.sp
+
+.I val matched_group 
+: 
+.B int -> string -> string
+.sp
+
+.ft B
+matched_group n s
+.ft R
+returns the substring of 
+.ft B
+s
+.ft R
+that was matched
+by the 
+.ft B
+n
+.ft R
+th group 
+.ft B
+\(rs(\&.\&.\&.\(rs)
+.ft R
+of the regular expression that was
+matched by the last call to a matching or searching function (see
+.ft B
+Str\&.matched_string
+.ft R
+for details)\&. When 
+.ft B
+n
+.ft R
+is 
+.ft B
+0
+.ft R
+, it returns the
+substring matched by the whole regular expression\&.
+The user must make sure that the parameter 
+.ft B
+s
+.ft R
+is the same string
+that was passed to the matching or searching function\&.
+
+.sp
+.B "Raises Not_found"
+if the 
+.ft B
+n
+.ft R
+th group
+of the regular expression was not matched\&.  This can happen
+with groups inside alternatives 
+.ft B
+\(rs|
+.ft R
+, options 
+.ft B
+?
+.ft R
+or repetitions 
+.ft B
+*
+.ft R
+\&.  For instance, the empty string will match
+.ft B
+\(rs(a\(rs)*
+.ft R
+, but 
+.ft B
+matched_group 1 ""
+.ft R
+will raise 
+.ft B
+Not_found
+.ft R
+because the first group itself was not matched\&.
+
+.sp
+
+.I val group_beginning 
+: 
+.B int -> int
+.sp
+
+.ft B
+group_beginning n
+.ft R
+returns the position of the first character
+of the substring that was matched by the 
+.ft B
+n
+.ft R
+th group of
+the regular expression that was matched by the last call to a
+matching or searching function (see 
+.ft B
+Str\&.matched_string
+.ft R
+for details)\&.
+
+.sp
+.B "Raises Not_found"
+if the 
+.ft B
+n
+.ft R
+th group of the regular expression
+was not matched\&.
+
+.sp
+.B "Raises Invalid_argument"
+if there are fewer than 
+.ft B
+n
+.ft R
+groups in
+the regular expression\&.
+
+.sp
+
+.I val group_end 
+: 
+.B int -> int
+.sp
+
+.ft B
+group_end n
+.ft R
+returns
+the position of the character following the last character of
+substring that was matched by the 
+.ft B
+n
+.ft R
+th group of the regular
+expression that was matched by the last call to a matching or
+searching function (see 
+.ft B
+Str\&.matched_string
+.ft R
+for details)\&.
+
+.sp
+.B "Raises Not_found"
+if the 
+.ft B
+n
+.ft R
+th group of the regular expression
+was not matched\&.
+
+.sp
+.B "Raises Invalid_argument"
+if there are fewer than 
+.ft B
+n
+.ft R
+groups in
+the regular expression\&.
+
+.sp
+
+.PP
+.SS Replacement
+
+.PP
+
+.I val global_replace 
+: 
+.B regexp -> string -> string -> string
+.sp
+
+.ft B
+global_replace regexp templ s
+.ft R
+returns a string identical to 
+.ft B
+s
+.ft R
+,
+except that all substrings of 
+.ft B
+s
+.ft R
+that match 
+.ft B
+regexp
+.ft R
+have been
+replaced by 
+.ft B
+templ
+.ft R
+\&. The replacement template 
+.ft B
+templ
+.ft R
+can contain
+.ft B
+\(rs1
+.ft R
+, 
+.ft B
+\(rs2
+.ft R
+, etc; these sequences will be replaced by the text
+matched by the corresponding group in the regular expression\&.
+.ft B
+\(rs0
+.ft R
+stands for the text matched by the whole regular expression\&.
+
+.sp
+
+.I val replace_first 
+: 
+.B regexp -> string -> string -> string
+.sp
+Same as 
+.ft B
+Str\&.global_replace
+.ft R
+, except that only the first substring
+matching the regular expression is replaced\&.
+
+.sp
+
+.I val global_substitute 
+: 
+.B regexp -> (string -> string) -> string -> string
+.sp
+
+.ft B
+global_substitute regexp subst s
+.ft R
+returns a string identical
+to 
+.ft B
+s
+.ft R
+, except that all substrings of 
+.ft B
+s
+.ft R
+that match 
+.ft B
+regexp
+.ft R
+have been replaced by the result of function 
+.ft B
+subst
+.ft R
+\&. The
+function 
+.ft B
+subst
+.ft R
+is called once for each matching substring,
+and receives 
+.ft B
+s
+.ft R
+(the whole text) as argument\&.
+
+.sp
+
+.I val substitute_first 
+: 
+.B regexp -> (string -> string) -> string -> string
+.sp
+Same as 
+.ft B
+Str\&.global_substitute
+.ft R
+, except that only the first substring
+matching the regular expression is replaced\&.
+
+.sp
+
+.I val replace_matched 
+: 
+.B string -> string -> string
+.sp
+
+.ft B
+replace_matched repl s
+.ft R
+returns the replacement text 
+.ft B
+repl
+.ft R
+in which 
+.ft B
+\(rs1
+.ft R
+, 
+.ft B
+\(rs2
+.ft R
+, etc\&. have been replaced by the text
+matched by the corresponding groups in the regular expression
+that was matched by the last call to a matching or searching
+function (see 
+.ft B
+Str\&.matched_string
+.ft R
+for details)\&.
+.ft B
+s
+.ft R
+must be the same string that was passed to the matching or
+searching function\&.
+
+.sp
+
+.PP
+.SS Splitting
+
+.PP
+
+.I val split 
+: 
+.B regexp -> string -> string list
+.sp
+
+.ft B
+split r s
+.ft R
+splits 
+.ft B
+s
+.ft R
+into substrings, taking as delimiters
+the substrings that match 
+.ft B
+r
+.ft R
+, and returns the list of substrings\&.
+For instance, 
+.ft B
+split (regexp "[ \(rst]+") s
+.ft R
+splits 
+.ft B
+s
+.ft R
+into
+blank\-separated words\&.  An occurrence of the delimiter at the
+beginning or at the end of the string is ignored\&.
+
+.sp
+
+.I val bounded_split 
+: 
+.B regexp -> string -> int -> string list
+.sp
+Same as 
+.ft B
+Str\&.split
+.ft R
+, but splits into at most 
+.ft B
+n
+.ft R
+substrings,
+where 
+.ft B
+n
+.ft R
+is the extra integer parameter\&.
+
+.sp
+
+.I val split_delim 
+: 
+.B regexp -> string -> string list
+.sp
+Same as 
+.ft B
+Str\&.split
+.ft R
+but occurrences of the
+delimiter at the beginning and at the end of the string are
+recognized and returned as empty strings in the result\&.
+For instance, 
+.ft B
+split_delim (regexp " ") " abc "
+.ft R
+returns 
+.ft B
+[""; "abc"; ""]
+.ft R
+, while 
+.ft B
+split
+.ft R
+with the same
+arguments returns 
+.ft B
+["abc"]
+.ft R
+\&.
+
+.sp
+
+.I val bounded_split_delim 
+: 
+.B regexp -> string -> int -> string list
+.sp
+Same as 
+.ft B
+Str\&.bounded_split
+.ft R
+, but occurrences of the
+delimiter at the beginning and at the end of the string are
+recognized and returned as empty strings in the result\&.
+
+.sp
+.I type split_result 
+=
+ | Text
+.B of 
+.B string
+ | Delim
+.B of 
+.B string
+ 
+.sp
+
+.sp
+
+.I val full_split 
+: 
+.B regexp -> string -> split_result list
+.sp
+Same as 
+.ft B
+Str\&.split_delim
+.ft R
+, but returns
+the delimiters as well as the substrings contained between
+delimiters\&.  The former are tagged 
+.ft B
+Delim
+.ft R
+in the result list;
+the latter are tagged 
+.ft B
+Text
+.ft R
+\&.  For instance,
+.ft B
+full_split (regexp "[{}]") "{ab}"
+.ft R
+returns
+.ft B
+[Delim "{"; Text "ab"; Delim "}"]
+.ft R
+\&.
+
+.sp
+
+.I val bounded_full_split 
+: 
+.B regexp -> string -> int -> split_result list
+.sp
+Same as 
+.ft B
+Str\&.bounded_split_delim
+.ft R
+, but returns
+the delimiters as well as the substrings contained between
+delimiters\&.  The former are tagged 
+.ft B
+Delim
+.ft R
+in the result list;
+the latter are tagged 
+.ft B
+Text
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Extracting substrings
+
+.PP
+
+.I val string_before 
+: 
+.B string -> int -> string
+.sp
+
+.ft B
+string_before s n
+.ft R
+returns the substring of all characters of 
+.ft B
+s
+.ft R
+that precede position 
+.ft B
+n
+.ft R
+(excluding the character at
+position 
+.ft B
+n
+.ft R
+)\&.
+
+.sp
+
+.I val string_after 
+: 
+.B string -> int -> string
+.sp
+
+.ft B
+string_after s n
+.ft R
+returns the substring of all characters of 
+.ft B
+s
+.ft R
+that follow position 
+.ft B
+n
+.ft R
+(including the character at
+position 
+.ft B
+n
+.ft R
+)\&.
+
+.sp
+
+.I val first_chars 
+: 
+.B string -> int -> string
+.sp
+
+.ft B
+first_chars s n
+.ft R
+returns the first 
+.ft B
+n
+.ft R
+characters of 
+.ft B
+s
+.ft R
+\&.
+This is the same function as 
+.ft B
+Str\&.string_before
+.ft R
+\&.
+
+.sp
+
+.I val last_chars 
+: 
+.B string -> int -> string
+.sp
+
+.ft B
+last_chars s n
+.ft R
+returns the last 
+.ft B
+n
+.ft R
+characters of 
+.ft B
+s
+.ft R
+\&.
+
+.sp

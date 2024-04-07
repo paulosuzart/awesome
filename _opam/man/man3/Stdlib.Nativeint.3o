@@ -1,0 +1,737 @@
+.TH "Stdlib.Nativeint" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Nativeint \- no description
+.SH Module
+Module   Stdlib.Nativeint
+.SH Documentation
+.sp
+Module
+.BI "Nativeint"
+ : 
+.B (module Stdlib__Nativeint)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val zero 
+: 
+.B nativeint
+.sp
+The native integer 0\&.
+
+.sp
+
+.I val one 
+: 
+.B nativeint
+.sp
+The native integer 1\&.
+
+.sp
+
+.I val minus_one 
+: 
+.B nativeint
+.sp
+The native integer \-1\&.
+
+.sp
+
+.I val neg 
+: 
+.B nativeint -> nativeint
+.sp
+Unary negation\&.
+
+.sp
+
+.I val add 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Addition\&.
+
+.sp
+
+.I val sub 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Subtraction\&.
+
+.sp
+
+.I val mul 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Multiplication\&.
+
+.sp
+
+.I val div 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Integer division\&. This division rounds the real quotient of
+its arguments towards zero, as specified for 
+.ft B
+(/)
+.ft R
+\&.
+
+.sp
+.B "Raises Division_by_zero"
+if the second
+argument is zero\&.
+
+.sp
+
+.I val unsigned_div 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Same as 
+.ft B
+Nativeint\&.div
+.ft R
+, except that arguments and result are interpreted as     unsigned native integers\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val rem 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Integer remainder\&.  If 
+.ft B
+y
+.ft R
+is not zero, the result
+of 
+.ft B
+Nativeint\&.rem x y
+.ft R
+satisfies the following properties:
+.ft B
+Nativeint\&.zero <= Nativeint\&.rem x y < Nativeint\&.abs y
+.ft R
+and
+.ft B
+x = Nativeint\&.add (Nativeint\&.mul (Nativeint\&.div x y) y)
+.br
+\&                      (Nativeint\&.rem x y)
+.ft R
+\&.
+If 
+.ft B
+y = 0
+.ft R
+, 
+.ft B
+Nativeint\&.rem x y
+.ft R
+raises 
+.ft B
+Division_by_zero
+.ft R
+\&.
+
+.sp
+
+.I val unsigned_rem 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Same as 
+.ft B
+Nativeint\&.rem
+.ft R
+, except that arguments and result are interpreted as     unsigned native integers\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val succ 
+: 
+.B nativeint -> nativeint
+.sp
+Successor\&.
+.ft B
+Nativeint\&.succ x
+.ft R
+is 
+.ft B
+Nativeint\&.add x Nativeint\&.one
+.ft R
+\&.
+
+.sp
+
+.I val pred 
+: 
+.B nativeint -> nativeint
+.sp
+Predecessor\&.
+.ft B
+Nativeint\&.pred x
+.ft R
+is 
+.ft B
+Nativeint\&.sub x Nativeint\&.one
+.ft R
+\&.
+
+.sp
+
+.I val abs 
+: 
+.B nativeint -> nativeint
+.sp
+
+.ft B
+abs x
+.ft R
+is the absolute value of 
+.ft B
+x
+.ft R
+\&. On 
+.ft B
+min_int
+.ft R
+this
+is 
+.ft B
+min_int
+.ft R
+itself and thus remains negative\&.
+
+.sp
+
+.I val size 
+: 
+.B int
+.sp
+The size in bits of a native integer\&.  This is equal to 
+.ft B
+32
+.ft R
+on a 32\-bit platform and to 
+.ft B
+64
+.ft R
+on a 64\-bit platform\&.
+
+.sp
+
+.I val max_int 
+: 
+.B nativeint
+.sp
+The greatest representable native integer,
+either 2^31 \- 1 on a 32\-bit platform,
+or 2^63 \- 1 on a 64\-bit platform\&.
+
+.sp
+
+.I val min_int 
+: 
+.B nativeint
+.sp
+The smallest representable native integer,
+either \-2^31 on a 32\-bit platform,
+or \-2^63 on a 64\-bit platform\&.
+
+.sp
+
+.I val logand 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Bitwise logical and\&.
+
+.sp
+
+.I val logor 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Bitwise logical or\&.
+
+.sp
+
+.I val logxor 
+: 
+.B nativeint -> nativeint -> nativeint
+.sp
+Bitwise logical exclusive or\&.
+
+.sp
+
+.I val lognot 
+: 
+.B nativeint -> nativeint
+.sp
+Bitwise logical negation\&.
+
+.sp
+
+.I val shift_left 
+: 
+.B nativeint -> int -> nativeint
+.sp
+
+.ft B
+Nativeint\&.shift_left x y
+.ft R
+shifts 
+.ft B
+x
+.ft R
+to the left by 
+.ft B
+y
+.ft R
+bits\&.
+The result is unspecified if 
+.ft B
+y < 0
+.ft R
+or 
+.ft B
+y >= bitsize
+.ft R
+,
+where 
+.ft B
+bitsize
+.ft R
+is 
+.ft B
+32
+.ft R
+on a 32\-bit platform and
+.ft B
+64
+.ft R
+on a 64\-bit platform\&.
+
+.sp
+
+.I val shift_right 
+: 
+.B nativeint -> int -> nativeint
+.sp
+
+.ft B
+Nativeint\&.shift_right x y
+.ft R
+shifts 
+.ft B
+x
+.ft R
+to the right by 
+.ft B
+y
+.ft R
+bits\&.
+This is an arithmetic shift: the sign bit of 
+.ft B
+x
+.ft R
+is replicated
+and inserted in the vacated bits\&.
+The result is unspecified if 
+.ft B
+y < 0
+.ft R
+or 
+.ft B
+y >= bitsize
+.ft R
+\&.
+
+.sp
+
+.I val shift_right_logical 
+: 
+.B nativeint -> int -> nativeint
+.sp
+
+.ft B
+Nativeint\&.shift_right_logical x y
+.ft R
+shifts 
+.ft B
+x
+.ft R
+to the right
+by 
+.ft B
+y
+.ft R
+bits\&.
+This is a logical shift: zeroes are inserted in the vacated bits
+regardless of the sign of 
+.ft B
+x
+.ft R
+\&.
+The result is unspecified if 
+.ft B
+y < 0
+.ft R
+or 
+.ft B
+y >= bitsize
+.ft R
+\&.
+
+.sp
+
+.I val of_int 
+: 
+.B int -> nativeint
+.sp
+Convert the given integer (type 
+.ft B
+int
+.ft R
+) to a native integer
+(type 
+.ft B
+nativeint
+.ft R
+)\&.
+
+.sp
+
+.I val to_int 
+: 
+.B nativeint -> int
+.sp
+Convert the given native integer (type 
+.ft B
+nativeint
+.ft R
+) to an
+integer (type 
+.ft B
+int
+.ft R
+)\&.  The high\-order bit is lost during
+the conversion\&.
+
+.sp
+
+.I val unsigned_to_int 
+: 
+.B nativeint -> int option
+.sp
+Same as 
+.ft B
+Nativeint\&.to_int
+.ft R
+, but interprets the argument as an unsigned integer\&.
+Returns 
+.ft B
+None
+.ft R
+if the unsigned value of the argument cannot fit into an
+.ft B
+int
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val of_float 
+: 
+.B float -> nativeint
+.sp
+Convert the given floating\-point number to a native integer,
+discarding the fractional part (truncate towards 0)\&.
+If the truncated floating\-point number is outside the range
+[
+.ft B
+Nativeint\&.min_int
+.ft R
+, 
+.ft B
+Nativeint\&.max_int
+.ft R
+], no exception is raised,
+and an unspecified, platform\-dependent integer is returned\&.
+
+.sp
+
+.I val to_float 
+: 
+.B nativeint -> float
+.sp
+Convert the given native integer to a floating\-point number\&.
+
+.sp
+
+.I val of_int32 
+: 
+.B int32 -> nativeint
+.sp
+Convert the given 32\-bit integer (type 
+.ft B
+int32
+.ft R
+)
+to a native integer\&.
+
+.sp
+
+.I val to_int32 
+: 
+.B nativeint -> int32
+.sp
+Convert the given native integer to a
+32\-bit integer (type 
+.ft B
+int32
+.ft R
+)\&.  On 64\-bit platforms,
+the 64\-bit native integer is taken modulo 2^32,
+i\&.e\&. the top 32 bits are lost\&.  On 32\-bit platforms,
+the conversion is exact\&.
+
+.sp
+
+.I val of_string 
+: 
+.B string -> nativeint
+.sp
+Convert the given string to a native integer\&.
+The string is read in decimal (by default, or if the string
+begins with 
+.ft B
+0u
+.ft R
+) or in hexadecimal, octal or binary if the
+string begins with 
+.ft B
+0x
+.ft R
+, 
+.ft B
+0o
+.ft R
+or 
+.ft B
+0b
+.ft R
+respectively\&.
+.sp
+The 
+.ft B
+0u
+.ft R
+prefix reads the input as an unsigned integer in the range
+.ft B
+[0, 2*Nativeint\&.max_int+1]
+.ft R
+\&.  If the input exceeds 
+.ft B
+Nativeint\&.max_int
+.ft R
+it is converted to the signed integer
+.ft B
+Int64\&.min_int + input \- Nativeint\&.max_int \- 1
+.ft R
+\&.
+
+.sp
+.B "Raises Failure"
+if the given string is not
+a valid representation of an integer, or if the integer represented
+exceeds the range of integers representable in type 
+.ft B
+nativeint
+.ft R
+\&.
+
+.sp
+
+.I val of_string_opt 
+: 
+.B string -> nativeint option
+.sp
+Same as 
+.ft B
+of_string
+.ft R
+, but return 
+.ft B
+None
+.ft R
+instead of raising\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val to_string 
+: 
+.B nativeint -> string
+.sp
+Return the string representation of its argument, in decimal\&.
+
+.sp
+.I type t 
+= 
+.B nativeint
+
+.sp
+An alias for the type of native integers\&.
+
+.sp
+
+.I val compare 
+: 
+.B t -> t -> int
+.sp
+The comparison function for native integers, with the same specification as
+.ft B
+compare
+.ft R
+\&.  Along with the type 
+.ft B
+t
+.ft R
+, this function 
+.ft B
+compare
+.ft R
+allows the module 
+.ft B
+Nativeint
+.ft R
+to be passed as argument to the functors
+.ft B
+Set\&.Make
+.ft R
+and 
+.ft B
+Map\&.Make
+.ft R
+\&.
+
+.sp
+
+.I val unsigned_compare 
+: 
+.B t -> t -> int
+.sp
+Same as 
+.ft B
+Nativeint\&.compare
+.ft R
+, except that arguments are interpreted as unsigned
+native integers\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+The equal function for native ints\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val min 
+: 
+.B t -> t -> t
+.sp
+Return the smaller of the two arguments\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val max 
+: 
+.B t -> t -> t
+.sp
+Return the greater of the two arguments\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val seeded_hash 
+: 
+.B int -> t -> int
+.sp
+A seeded hash function for native ints, with the same output value as
+.ft B
+Hashtbl\&.seeded_hash
+.ft R
+\&. This function allows this module to be passed as
+argument to the functor 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val hash 
+: 
+.B t -> int
+.sp
+An unseeded hash function for native ints, with the same output value as
+.ft B
+Hashtbl\&.hash
+.ft R
+\&. This function allows this module to be passed as argument
+to the functor 
+.ft B
+Hashtbl\&.Make
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp

@@ -1,0 +1,33 @@
+(lang dune 3.15)
+(name gmap)
+(version 0.3.0)
+(sections (lib .) (libexec .) (doc ../../doc/gmap))
+(files
+ (lib
+  (META
+   dune-package
+   gmap.a
+   gmap.cma
+   gmap.cmi
+   gmap.cmt
+   gmap.cmti
+   gmap.cmx
+   gmap.cmxa
+   gmap.ml
+   gmap.mli
+   opam))
+ (libexec (gmap.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name gmap)
+ (kind normal)
+ (archives (byte gmap.cma) (native gmap.cmxa))
+ (plugins (byte gmap.cma) (native gmap.cmxs))
+ (native_archives gmap.a)
+ (main_module_name Gmap)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name gmap)
+   (visibility public)
+   (source (path Gmap) (intf (path gmap.mli)) (impl (path gmap.ml))))))

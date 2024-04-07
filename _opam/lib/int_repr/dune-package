@@ -1,0 +1,59 @@
+(lang dune 3.15)
+(name int_repr)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/int_repr))
+(files
+ (lib
+  (META
+   dune-package
+   int_repr.a
+   int_repr.cma
+   int_repr.cmi
+   int_repr.cmt
+   int_repr.cmti
+   int_repr.cmx
+   int_repr.cmxa
+   int_repr.ml
+   int_repr.mli
+   opam))
+ (libexec (int_repr.cmxs))
+ (doc (CHANGES.md LICENSE.md)))
+(library
+ (name int_repr)
+ (kind normal)
+ (archives (byte int_repr.cma) (native int_repr.cmxa))
+ (plugins (byte int_repr.cma) (native int_repr.cmxs))
+ (native_archives int_repr.a)
+ (requires
+  base
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_here.runtime-lib
+  ppx_assert.runtime-lib
+  ppx_bench.runtime-lib
+  bin_prot
+  fieldslib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  typerep
+  variantslib
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime
+  base_quickcheck)
+ (main_module_name Int_repr)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name int_repr)
+   (visibility public)
+   (source
+    (path Int_repr)
+    (intf (path int_repr.mli))
+    (impl (path int_repr.ml))))))

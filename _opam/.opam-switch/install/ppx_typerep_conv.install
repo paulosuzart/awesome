@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_typerep_conv/META"
+  "_build/install/default/lib/ppx_typerep_conv/dune-package"
+  "_build/install/default/lib/ppx_typerep_conv/opam"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.a"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.cma"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.cmi"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.cmt"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.cmti"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.cmx"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.cmxa"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.ml"
+  "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_typerep_conv/CHANGES.md"
+  "_build/install/default/doc/ppx_typerep_conv/LICENSE.md"
+  "_build/install/default/doc/ppx_typerep_conv/README.md"
+]
+libexec: "_build/install/default/lib/ppx_typerep_conv/ppx_typerep_conv.cmxs"

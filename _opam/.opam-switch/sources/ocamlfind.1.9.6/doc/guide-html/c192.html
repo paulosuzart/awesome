@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>A new frontend for ocamlc</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="User's Guide"
+HREF="p35.html"><LINK
+REL="PREVIOUS"
+TITLE="Querying descendants"
+HREF="x180.html"><LINK
+REL="NEXT"
+TITLE="Toploops and runtime systems"
+HREF="x231.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x180.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x231.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN192"
+></A
+>Chapter 4. A new frontend for ocamlc</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="c192.html#AEN194"
+>Compiling and linking</A
+></DT
+><DT
+><A
+HREF="x231.html"
+>Toploops and runtime systems</A
+></DT
+><DT
+><A
+HREF="x265.html"
+>Multi-threaded applications</A
+></DT
+><DT
+><A
+HREF="x274.html"
+>Support for gprof-enabled modules</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN194"
+>Compiling and linking</A
+></H1
+><P
+>There are compiler frontends for the four compilers ocamlc, ocamlopt,
+ocamlmktop, and ocamlcp. They are simply called by specifying the name
+of the compiler as first argument to ocamlfind, i.e.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc ...arguments...
+ocamlfind ocamlopt ...arguments...
+ocamlfind ocamlmktop ...arguments...
+ocamlfind ocamlcp ...arguments...</PRE
+><P
+>In addition to the compiler options handled by the compilers
+themselves, the following options are available:</P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+>-package &lt;name&gt;: Causes that the package &lt;name&gt; is added to
+the package list, and that -I options are added for every package, and
+all direct or indirect ancestors.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>-linkpkg: Causes that the archives of the packages in the package list
+and all their direct or indirect ancestors are added in topological
+order to the command line before the first file to compile or to
+link. Packages specified by -dontlink are not linked in, though.
+Furthermore, the linker options of these packages are added in
+reverse topological order at the end of the command line.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>-predicates &lt;predicate-list&gt;: The named predicates are included
+in the list of predicates. Note that there are some predicates set by
+default, see below.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>-dontlink &lt;name&gt;: Specifies that the package &lt;name&gt; and
+all its direct or indirect ancestors should not be linked in.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>-passopt &lt;opt&gt;: The option &lt;opt&gt; is passed directly to the
+underlying compiler. This is especially needed to pass undocumented
+options to the compiler.</P
+></LI
+></UL
+><P
+>If you only want to compile, i.e. the -c option is in effect, you
+normally only need the -package option.</P
+><P
+>Depending on the compiler and on the given options, some predicates
+are set by default:</P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+>byte: The predicate "byte" is set when ocamlc, ocamlcp, or ocamlmktop
+is used to compile or link.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>native: The predicate "native" is set when ocamlopt is used to compile
+or to link.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>toploop: The predicate "toploop" is set when a toploop is being executed</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>create_toploop: The predicate "toploop" is set when ocamlmktop is used to
+compile or to link a toploop</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>gprof: The predicate "gprof" is set when ocamlopt with -p option is
+invoked.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>mt: The predicate "mt" is set when the -thread or the -vmthread option is in effect.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>mt_posix: The predicate "mt_posix" is set together with "mt" if the
+POSIX thread implementation is selected.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>mt_vm: The predicate "mt_vm" is set together with "mt" if the bytecode
+thread implementation is selected.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>autolink: The predicate "autolink" is set if the OCaml compiler can perform
+automatic linking. This predicate is never set if the -noautolink option is
+in effect.</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x180.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x231.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Querying descendants</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p35.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Toploops and runtime systems</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

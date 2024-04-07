@@ -1,0 +1,9 @@
+depexts: [
+  ["linux-headers"] {os-distribution = "alpine"}
+]
+available: [os = "linux"]
+license: ["ISC" "MIT"]
+x-ci-accept-failures: [
+  "centos-7" # default C compiler does not support stdatomic.h
+  "oraclelinux-7" # default C compiler does not support stdatomic.h
+]

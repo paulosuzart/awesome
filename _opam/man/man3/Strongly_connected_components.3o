@@ -1,0 +1,37 @@
+.TH "Strongly_connected_components" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Strongly_connected_components \- Kosaraju's algorithm for strongly connected components.
+.SH Module
+Module   Strongly_connected_components
+.SH Documentation
+.sp
+Module
+.BI "Strongly_connected_components"
+ : 
+.B sig end
+
+.sp
+Kosaraju\&'s algorithm for strongly connected components\&.
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I module type S = 
+.B sig end
+
+.sp
+
+.sp
+.I module Make : 
+.B functor (Id : Identifiable.S) -> sig end
+
+.sp
+
+.sp

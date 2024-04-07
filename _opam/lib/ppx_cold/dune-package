@@ -1,0 +1,37 @@
+(lang dune 3.15)
+(name ppx_cold)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_cold))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_cold.a
+   ppx_cold.cma
+   ppx_cold.cmi
+   ppx_cold.cmt
+   ppx_cold.cmti
+   ppx_cold.cmx
+   ppx_cold.cmxa
+   ppx_cold.ml
+   ppx_cold.mli))
+ (libexec (ppx.exe ppx_cold.cmxs))
+ (doc (LICENSE.md README.md)))
+(library
+ (name ppx_cold)
+ (kind ppx_rewriter)
+ (archives (byte ppx_cold.cma) (native ppx_cold.cmxa))
+ (plugins (byte ppx_cold.cma) (native ppx_cold.cmxs))
+ (native_archives ppx_cold.a)
+ (requires base ppxlib.ast ppxlib)
+ (main_module_name Ppx_cold)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_cold)
+   (visibility public)
+   (source
+    (path Ppx_cold)
+    (intf (path ppx_cold.mli))
+    (impl (path ppx_cold.ml))))))

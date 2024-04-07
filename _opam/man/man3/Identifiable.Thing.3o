@@ -1,0 +1,45 @@
+.TH "Identifiable.Thing" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Identifiable.Thing \- no description
+.SH Module type
+Module type   Identifiable.Thing
+.SH Documentation
+.sp
+Module type
+.BI "Thing"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+.I include Hashtbl.HashedType
+.sp
+
+.sp
+.I include Map.OrderedType
+.sp
+
+.sp
+
+.I val output 
+: 
+.B out_channel -> t -> unit
+.sp
+
+.sp
+
+.I val print 
+: 
+.B Format.formatter -> t -> unit
+.sp
+
+.sp

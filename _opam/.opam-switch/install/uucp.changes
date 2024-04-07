@@ -1,0 +1,141 @@
+opam-version: "2.0"
+added: [
+  "doc/uucp" {"D"}
+  "doc/uucp/CHANGES.md" {"F:a5f53fc5402e5916b7c27ec15817bc76"}
+  "doc/uucp/LICENSE.md" {"F:82b52b23c0774a0f349cd1d9bc2de619"}
+  "doc/uucp/README.md" {"F:d7bc48aa850294cfdf7003b3e997758c"}
+  "doc/uucp/examples.ml" {"F:05451dd231ef22c2d7d892e900cf8119"}
+  "doc/uucp/odoc-pages/index.mld" {"F:3a730382e15df5ebe45b735774bd4969"}
+  "doc/uucp/odoc-pages/unicode.mld" {"F:11abe735f7e57e3aa16d827db83ce13c"}
+  "lib/uucp" {"D"}
+  "lib/uucp/META" {"F:b99f6b192ab5dd94c51f587b5b54f812"}
+  "lib/uucp/opam" {"F:582082da4434c4a42c3b22bbf6f9e3f3"}
+  "lib/uucp/uucp.a" {"F:04dc3d6e8d0d56e17a767d36289686c3"}
+  "lib/uucp/uucp.cma" {"F:fe7f3d0743f5278fceccc34cbc6f21ca"}
+  "lib/uucp/uucp.cmi" {"F:a495d5bff376e894a1c2c1259eb0b14b"}
+  "lib/uucp/uucp.cmti" {"F:cf4bf870dd016c9d2b070a854a7e275c"}
+  "lib/uucp/uucp.cmx" {"F:5ac6bc6ff717903d1b1069b95979db19"}
+  "lib/uucp/uucp.cmxa" {"F:219df10ff3ecd88d731f2599163ad58b"}
+  "lib/uucp/uucp.cmxs" {"F:1c2eb41af60a295bd4737a981702a14a"}
+  "lib/uucp/uucp.mli" {"F:a36542bfb84b56363e82bbc0ac815a33"}
+  "lib/uucp/uucp__age.cmi" {"F:e6028ff93df3b1c3414bbbeebdeb5162"}
+  "lib/uucp/uucp__age.cmti" {"F:18fc91ce2c0703f708ef841c3691f907"}
+  "lib/uucp/uucp__age.cmx" {"F:e9393a20bffef7af6b5697fd63d4d4fa"}
+  "lib/uucp/uucp__age.mli" {"F:1f259c5cb0c4726ba63c61ebd2ca128c"}
+  "lib/uucp/uucp__alpha.cmi" {"F:ffcec6d947cf0934a3c53e7c4f04969e"}
+  "lib/uucp/uucp__alpha.cmti" {"F:2b8f7c56c6a1c6b7ce317509fa4f2977"}
+  "lib/uucp/uucp__alpha.cmx" {"F:e924c797605cfebd19fc5b8544e16dca"}
+  "lib/uucp/uucp__alpha.mli" {"F:19f221c83d00cce3a493acbeb480a866"}
+  "lib/uucp/uucp__block.cmi" {"F:86d8e90bca4e0ddd73f1945fbf1cb773"}
+  "lib/uucp/uucp__block.cmti" {"F:b40b405255463a6cf70948ed41503d3d"}
+  "lib/uucp/uucp__block.cmx" {"F:55a4c352251e6e4c2eb14fd94ca75c4e"}
+  "lib/uucp/uucp__block.mli" {"F:71006b3acc8f05da03eea1a3732b3528"}
+  "lib/uucp/uucp__break.cmi" {"F:79194c3b423a24247327215882024fab"}
+  "lib/uucp/uucp__break.cmti" {"F:12bc00a9960475518b5818c35636b1b0"}
+  "lib/uucp/uucp__break.cmx" {"F:f28c8220c332f2445f7aeb6a274b7cad"}
+  "lib/uucp/uucp__break.mli" {"F:1adfd6381e0a845e4525ef92e37a8f93"}
+  "lib/uucp/uucp__case.cmi" {"F:31e66b303658d0f6741ceab7655ccc4e"}
+  "lib/uucp/uucp__case.cmti" {"F:6c2fa7e1d6174ca94edaf57b2103a925"}
+  "lib/uucp/uucp__case.cmx" {"F:8cce88a936194599d4c7139d1c0bdd44"}
+  "lib/uucp/uucp__case.mli" {"F:480816f17208665402b1e23961154bc2"}
+  "lib/uucp/uucp__case_fold.cmi" {"F:2e24280f1c33df750273bc54eff21bca"}
+  "lib/uucp/uucp__case_fold.cmti" {"F:c0a592052cb139c9c27dea8d59a4866d"}
+  "lib/uucp/uucp__case_fold.cmx" {"F:3ad79b5e4d926d3f61b1ded843805ef2"}
+  "lib/uucp/uucp__case_fold.mli" {"F:186669127a0b2196e463836f35cc1f3f"}
+  "lib/uucp/uucp__case_map.cmi" {"F:c5eb5f89fc9de4b3fe2205455057ad40"}
+  "lib/uucp/uucp__case_map.cmti" {"F:d6104d753dab1432f5a803d8ac52e73b"}
+  "lib/uucp/uucp__case_map.cmx" {"F:0565179a72d416cca54a025308b332e0"}
+  "lib/uucp/uucp__case_map.mli" {"F:b0d196336431e4de1b681a494838f90f"}
+  "lib/uucp/uucp__case_nfkc.cmi" {"F:12749e6ec363a5567c2da980315ee7d9"}
+  "lib/uucp/uucp__case_nfkc.cmti" {"F:01a2b187022712ab4aa66bab0192cd14"}
+  "lib/uucp/uucp__case_nfkc.cmx" {"F:d6bba5a3b41ec4805c37bbafd657f3f8"}
+  "lib/uucp/uucp__case_nfkc.mli" {"F:eaa39ce13e8cac1f929315602522a4e9"}
+  "lib/uucp/uucp__case_nfkc_simple.cmi"
+    {"F:195c3d8387ef9141d3ffec547d69ca7c"}
+  "lib/uucp/uucp__case_nfkc_simple.cmti"
+    {"F:f5dabc786e9f9a8ff8c3a4a6592e01cf"}
+  "lib/uucp/uucp__case_nfkc_simple.cmx"
+    {"F:40f97471165060cea987387dc499cd71"}
+  "lib/uucp/uucp__case_nfkc_simple.mli"
+    {"F:b514d8329f65127118afca275e3b1b20"}
+  "lib/uucp/uucp__cjk.cmi" {"F:79603e3779444cbe2cc7556d131433b1"}
+  "lib/uucp/uucp__cjk.cmti" {"F:ea2ac5e21924aecb2f0efb646dd4f2f6"}
+  "lib/uucp/uucp__cjk.cmx" {"F:5ca374917ad7557a52518dc2bff1af6d"}
+  "lib/uucp/uucp__cjk.mli" {"F:a0fd0091bc72bd00958f66e08adadce1"}
+  "lib/uucp/uucp__emoji.cmi" {"F:6fb54d98b9ab1b6e594e6f6b45a88a78"}
+  "lib/uucp/uucp__emoji.cmti" {"F:a9bcd387213352640c8f2111443c5b24"}
+  "lib/uucp/uucp__emoji.cmx" {"F:ba8d73eded2638dc35e6118e5043c0bd"}
+  "lib/uucp/uucp__emoji.mli" {"F:68775bce01d45d61f579f7feb6d096d4"}
+  "lib/uucp/uucp__func.cmi" {"F:9fd620fd9003e8708290ac13c684bd73"}
+  "lib/uucp/uucp__func.cmti" {"F:e1471682db0b06dde5e125079decdcc6"}
+  "lib/uucp/uucp__func.cmx" {"F:07ce17ef26004457efcedac9126bc8ad"}
+  "lib/uucp/uucp__func.mli" {"F:1befb3d01cfef44c2ce9b82311846924"}
+  "lib/uucp/uucp__gc.cmi" {"F:c646fde1a8e292019f834cccc85b8da1"}
+  "lib/uucp/uucp__gc.cmti" {"F:09de979c9785d60d072afb4ca07ec88e"}
+  "lib/uucp/uucp__gc.cmx" {"F:a047e91fc47d4bb58dc705c62641d26b"}
+  "lib/uucp/uucp__gc.mli" {"F:742ca79de53d1f5891baa0b66fa63284"}
+  "lib/uucp/uucp__gen.cmi" {"F:45a35055bd9c32a95ffd8ae9283f1ef0"}
+  "lib/uucp/uucp__gen.cmti" {"F:07647e1f718cde324c649f7be91d3239"}
+  "lib/uucp/uucp__gen.cmx" {"F:57a09974a1a09a8f69549da822d959e1"}
+  "lib/uucp/uucp__gen.mli" {"F:41d800c9037559c81d7683ff83246f14"}
+  "lib/uucp/uucp__hangul.cmi" {"F:123820eee24994bb3c6b9cdb85f97594"}
+  "lib/uucp/uucp__hangul.cmti" {"F:733d527a725097c22d974167a4704892"}
+  "lib/uucp/uucp__hangul.cmx" {"F:55d98744ddc5451b8f348831515a1f8c"}
+  "lib/uucp/uucp__hangul.mli" {"F:07ca1ea9719a83cc3e7d8c22a077d5c5"}
+  "lib/uucp/uucp__id.cmi" {"F:13d10cc8e120aaa0ba8a79705cf63b2f"}
+  "lib/uucp/uucp__id.cmti" {"F:02ec9fb65e04f45342b23d0d05b31029"}
+  "lib/uucp/uucp__id.cmx" {"F:3d611edbb3925a237e977330a4b0421e"}
+  "lib/uucp/uucp__id.mli" {"F:67ffc1e1e7ccdf1a8e7df1af9197f3b2"}
+  "lib/uucp/uucp__name.cmi" {"F:d93dd380da4c93c112564ae1631c5783"}
+  "lib/uucp/uucp__name.cmti" {"F:70a23d6493c359c697ebdbbd5dfe1a43"}
+  "lib/uucp/uucp__name.cmx" {"F:1a4e3dbc4be2b3e57296273002321c4d"}
+  "lib/uucp/uucp__name.mli" {"F:518a984364bc5af38a9ca22b451f0b66"}
+  "lib/uucp/uucp__num.cmi" {"F:320f20d2ce61349cc966f0bfd6682395"}
+  "lib/uucp/uucp__num.cmti" {"F:7a52e3c5863c8ce70431dc976416999e"}
+  "lib/uucp/uucp__num.cmx" {"F:7eaaa8a988d6f2df7c8e4773252a9506"}
+  "lib/uucp/uucp__num.mli" {"F:f9b9ddb3e33b3f74f86af37265d6579a"}
+  "lib/uucp/uucp__script.cmi" {"F:fc59b02fa67dfd86d0613cefeb805fc6"}
+  "lib/uucp/uucp__script.cmti" {"F:7507d77f655c243f0aa23ef4e5e68937"}
+  "lib/uucp/uucp__script.cmx" {"F:45ac921f0955c534f837542f33e06f93"}
+  "lib/uucp/uucp__script.mli" {"F:b03e524f0281812c4916d6cc59373071"}
+  "lib/uucp/uucp__white.cmi" {"F:0cf58a2a7683fd06c13caec8cde52364"}
+  "lib/uucp/uucp__white.cmti" {"F:bcae0ee5b7e998a521813efb57ae1186"}
+  "lib/uucp/uucp__white.cmx" {"F:36b3b36be9eb1706d4e21b6b462f7ae9"}
+  "lib/uucp/uucp__white.mli" {"F:359d946ea392447dcd65072142c9969a"}
+  "lib/uucp/uucp_age_data.cmx" {"F:4440d9206fe313614ed300a47879f841"}
+  "lib/uucp/uucp_alpha_data.cmx" {"F:ad8618eb6f237c5c487334d8eb98a507"}
+  "lib/uucp/uucp_block_base.cmx" {"F:1cea9c654c246d4bdaf97748d4c48a85"}
+  "lib/uucp/uucp_block_data.cmx" {"F:dae6375c95ec25be2d8f27bba0b2794e"}
+  "lib/uucp/uucp_break_base.cmx" {"F:b99b2622799b74238fb261cbaf43a10b"}
+  "lib/uucp/uucp_break_data.cmx" {"F:77e98db325a712d15f875901881c7ebd"}
+  "lib/uucp/uucp_case_data.cmx" {"F:123e57aa3f7177a48fe62f615ef90cb2"}
+  "lib/uucp/uucp_case_fold_data.cmx" {"F:92f8242fe792211f0cc4b1398fe5d78a"}
+  "lib/uucp/uucp_case_map_data.cmx" {"F:5b47c385b612354ca4b089bf3b633f5d"}
+  "lib/uucp/uucp_case_nfkc_data.cmx" {"F:52413f9169df3db48f254159154d8350"}
+  "lib/uucp/uucp_case_nfkc_simple_data.cmx"
+    {"F:6699b7a7235a7df9e747ee86c8e8209a"}
+  "lib/uucp/uucp_cjk_data.cmx" {"F:fd865c483460a529ca65b3914309db4d"}
+  "lib/uucp/uucp_cmap.cmx" {"F:02ccb919aa48f066be58d4c6c915c8f0"}
+  "lib/uucp/uucp_emoji_data.cmx" {"F:28ae7227bcb04a00328d20cba5a157e1"}
+  "lib/uucp/uucp_fmt.cmx" {"F:88a115eec16500a4c653db8337d11cd2"}
+  "lib/uucp/uucp_func_data.cmx" {"F:5b3ee1c31f7bebed8617f8e5e2692587"}
+  "lib/uucp/uucp_gc_base.cmx" {"F:6ed6321553d3b84000f93944db83ed04"}
+  "lib/uucp/uucp_gc_data.cmx" {"F:fe0cf3bad19de7a31ed56ef0db3eb9e5"}
+  "lib/uucp/uucp_gen_data.cmx" {"F:ab331e05bd94712448155f11b17155bd"}
+  "lib/uucp/uucp_hangul_base.cmx" {"F:1b6d8d0d04e1a155a3ca26bff9636037"}
+  "lib/uucp/uucp_hangul_data.cmx" {"F:b47d14582847da2e1e3fb6201e31c932"}
+  "lib/uucp/uucp_id_data.cmx" {"F:54ac558263b1980265d0b1c49e6fbff6"}
+  "lib/uucp/uucp_name_base.cmx" {"F:315ee35bcc5b06b24e0fdbf6bbc440d1"}
+  "lib/uucp/uucp_name_data.cmx" {"F:ba303fca29a565720347b7981207eaca"}
+  "lib/uucp/uucp_num_base.cmx" {"F:1137ad58ec08731d12db01aac678c406"}
+  "lib/uucp/uucp_num_data.cmx" {"F:106d3add319c8b5ac5bfa59a2429c9ff"}
+  "lib/uucp/uucp_rmap.cmx" {"F:ccc9ba124467f55624518dfc41cad65d"}
+  "lib/uucp/uucp_script_base.cmx" {"F:dbc73f48310f18a5e41cb9aa3fe62a12"}
+  "lib/uucp/uucp_script_data.cmx" {"F:054ef5083258d75766fe143f26f55ebf"}
+  "lib/uucp/uucp_tmap.cmx" {"F:76037f7188f402c7fcb3ae7f16dd708e"}
+  "lib/uucp/uucp_tmap5bytes.cmx" {"F:fb8e2591ee449871dbe66cbe206e8335"}
+  "lib/uucp/uucp_tmapbool.cmx" {"F:94dcc35eb9ce8ed8e2ba1c51a69bb38b"}
+  "lib/uucp/uucp_tmapbyte.cmx" {"F:1823132683910e2c24117f57812ba6cd"}
+  "lib/uucp/uucp_version_data.cmx" {"F:bf8828f41e4632ca453cfe7cc4e1d800"}
+  "lib/uucp/uucp_white_data.cmx" {"F:3d0cff0f4e78318cf14e80d9c61e2634"}
+]

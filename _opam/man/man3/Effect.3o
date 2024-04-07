@@ -1,0 +1,99 @@
+.TH "Effect" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Effect \- no description
+.SH Module
+Module   Effect
+.SH Documentation
+.sp
+Module
+.BI "Effect"
+ : 
+.B sig end
+
+.sp
+.B Alert unstable.
+The Effect interface may change in incompatible ways in the future.
+
+.sp
+
+.sp
+.sp
+
+.PP
+Effects\&.
+.sp
+See \&'Language extensions/Effect handlers\&' section in the manual\&.
+.PP
+.I type 
+.B _
+.I t 
+= ..
+
+.sp
+The type of effects\&.
+
+.sp
+
+.I exception Unhandled 
+.B : 
+.B 'a t
+.B -> 
+.B exn
+
+.sp
+
+.ft B
+Unhandled e
+.ft R
+is raised when effect 
+.ft B
+e
+.ft R
+is performed and there is no
+handler for it\&.
+
+.sp
+
+.I exception Continuation_already_resumed 
+
+.sp
+Exception raised when a continuation is continued or discontinued more
+than once\&.
+
+.sp
+
+.I val perform 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+perform e
+.ft R
+performs an effect 
+.ft B
+e
+.ft R
+\&.
+
+.sp
+.B "Raises Unhandled"
+if there is no handler for 
+.ft B
+e
+.ft R
+\&.
+
+.sp
+.I module Deep : 
+.B sig end
+
+.sp
+
+.sp
+.I module Shallow : 
+.B sig end
+
+.sp
+
+.sp

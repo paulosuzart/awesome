@@ -1,0 +1,20 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/int_repr/META"
+  "_build/install/default/lib/int_repr/dune-package"
+  "_build/install/default/lib/int_repr/int_repr.a"
+  "_build/install/default/lib/int_repr/int_repr.cma"
+  "_build/install/default/lib/int_repr/int_repr.cmi"
+  "_build/install/default/lib/int_repr/int_repr.cmt"
+  "_build/install/default/lib/int_repr/int_repr.cmti"
+  "_build/install/default/lib/int_repr/int_repr.cmx"
+  "_build/install/default/lib/int_repr/int_repr.cmxa"
+  "_build/install/default/lib/int_repr/int_repr.ml"
+  "_build/install/default/lib/int_repr/int_repr.mli"
+  "_build/install/default/lib/int_repr/opam"
+]
+doc: [
+  "_build/install/default/doc/int_repr/CHANGES.md"
+  "_build/install/default/doc/int_repr/LICENSE.md"
+]
+libexec: "_build/install/default/lib/int_repr/int_repr.cmxs"

@@ -1,0 +1,7 @@
+version = "0.17.4"
+description = ""
+requires = "eio ptime.clock.os tls"
+archive(byte) = "tls_eio.cma"
+archive(native) = "tls_eio.cmxa"
+plugin(byte) = "tls_eio.cma"
+plugin(native) = "tls_eio.cmxs"

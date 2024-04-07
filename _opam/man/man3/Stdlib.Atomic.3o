@@ -1,0 +1,361 @@
+.TH "Stdlib.Atomic" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Atomic \- no description
+.SH Module
+Module   Stdlib.Atomic
+.SH Documentation
+.sp
+Module
+.BI "Atomic"
+ : 
+.B (module Stdlib__Atomic)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B !'a
+.I t 
+
+.sp
+An atomic (mutable) reference to a value of type 
+.ft B
+\&'a
+.ft R
+\&.
+
+.sp
+
+.I val make 
+: 
+.B 'a -> 'a t
+.sp
+Create an atomic reference\&.
+
+.sp
+
+.I val get 
+: 
+.B 'a t -> 'a
+.sp
+Get the current value of the atomic reference\&.
+
+.sp
+
+.I val set 
+: 
+.B 'a t -> 'a -> unit
+.sp
+Set a new value for the atomic reference\&.
+
+.sp
+
+.I val exchange 
+: 
+.B 'a t -> 'a -> 'a
+.sp
+Set a new value for the atomic reference, and return the current value\&.
+
+.sp
+
+.I val compare_and_set 
+: 
+.B 'a t -> 'a -> 'a -> bool
+.sp
+
+.ft B
+compare_and_set r seen v
+.ft R
+sets the new value of 
+.ft B
+r
+.ft R
+to 
+.ft B
+v
+.ft R
+only
+if its current value is physically equal to 
+.ft B
+seen
+.ft R
+\-\- the
+comparison and the set occur atomically\&. Returns 
+.ft B
+true
+.ft R
+if the
+comparison succeeded (so the set happened) and 
+.ft B
+false
+.ft R
+otherwise\&.
+
+.sp
+
+.I val fetch_and_add 
+: 
+.B int t -> int -> int
+.sp
+
+.ft B
+fetch_and_add r n
+.ft R
+atomically increments the value of 
+.ft B
+r
+.ft R
+by 
+.ft B
+n
+.ft R
+,
+and returns the current value (before the increment)\&.
+
+.sp
+
+.I val incr 
+: 
+.B int t -> unit
+.sp
+
+.ft B
+incr r
+.ft R
+atomically increments the value of 
+.ft B
+r
+.ft R
+by 
+.ft B
+1
+.ft R
+\&.
+
+.sp
+
+.I val decr 
+: 
+.B int t -> unit
+.sp
+
+.ft B
+decr r
+.ft R
+atomically decrements the value of 
+.ft B
+r
+.ft R
+by 
+.ft B
+1
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Examples
+.sp
+.SS Basic Thread Coordination
+.sp
+A basic use case is to have global counters that are updated in a
+thread\-safe way, for example to keep some sorts of metrics
+over IOs performed by the program\&. Another basic use case is to coordinate
+the termination of threads in a given program, for example when one thread
+finds an answer, or when the program is shut down by the user\&.
+.sp
+Here, for example, we\&'re going to try to find a number whose hash
+satisfies a basic property\&. To do that, we\&'ll run multiple threads which
+will try random numbers until they find one that works\&.
+.sp
+Of course the output below is a sample run and will change every time
+the program is run\&.
+.sp
+
+.EX
+.ft B
+.br
+\&    (* use for termination *)
+.br
+\&    let stop_all_threads = Atomic\&.make false
+.br
+\&
+.br
+\&    (* total number of individual attempts to find a number *)
+.br
+\&    let num_attempts = Atomic\&.make 0
+.br
+\&
+.br
+\&    (* find a number that satisfies [p], by\&.\&.\&. trying random numbers
+.br
+\&       until one fits\&. *)
+.br
+\&    let find_number_where (p:int \-> bool) =
+.br
+\&      let rand = Random\&.State\&.make_self_init() in
+.br
+\&      while not (Atomic\&.get stop_all_threads) do
+.br
+\&
+.br
+\&        let n = Random\&.State\&.full_int rand max_int in
+.br
+\&        ignore (Atomic\&.fetch_and_add num_attempts 1 : int);
+.br
+\&
+.br
+\&        if p (Hashtbl\&.hash n) then (
+.br
+\&          Printf\&.printf "found %d (hash=%d)\(rsn%!" n (Hashtbl\&.hash n);
+.br
+\&          Atomic\&.set stop_all_threads true; (* signal all threads to stop *)
+.br
+\&        )
+.br
+\&      done;;
+.br
+\&
+.br
+\&
+.br
+\&    (* run multiple domains to search for a [n] where [hash n <= 100] *)
+.br
+\&    let () =
+.br
+\&      let criterion n = n <= 100 in
+.br
+\&      let threads =
+.br
+\&        Array\&.init 8
+.br
+\&          (fun _ \-> Domain\&.spawn (fun () \-> find_number_where criterion))
+.br
+\&      in
+.br
+\&      Array\&.iter Domain\&.join threads;
+.br
+\&      Printf\&.printf "total number of attempts: %d\(rsn%!"
+.br
+\&        (Atomic\&.get num_attempts) ;;
+.br
+\&
+.br
+\&    \- : unit = ()
+.br
+\&    found 1651745641680046833 (hash=33)
+.br
+\&    total number of attempts: 30230350
+.br
+\&    
+.ft R
+.EE
+.sp
+.SS Treiber Stack
+.sp
+Another example is a basic
+Treiber stack
+(a thread\-safe stack) that can be safely shared between threads\&.
+.sp
+Note how both 
+.ft B
+push
+.ft R
+and 
+.ft B
+pop
+.ft R
+are recursive, because they attempt to
+swap the new stack (with one more, or one fewer, element) with the old
+stack\&.
+This is optimistic concurrency: each iteration of, say, 
+.ft B
+push stack x
+.ft R
+gets the old stack 
+.ft B
+l
+.ft R
+, and hopes that by the time it tries to replace
+.ft B
+l
+.ft R
+with 
+.ft B
+x::l
+.ft R
+, nobody else has had time to modify the list\&. If the
+.ft B
+compare_and_set
+.ft R
+fails it means we were too optimistic, and must try
+again\&.
+.sp
+
+.EX
+.ft B
+.br
+\&    type \&'a stack = \&'a list Atomic\&.t
+.br
+\&
+.br
+\&    let rec push (stack: _ stack) elt : unit =
+.br
+\&      let cur = Atomic\&.get stack in
+.br
+\&      let success = Atomic\&.compare_and_set stack cur (elt :: cur) in
+.br
+\&      if not success then
+.br
+\&        push stack elt
+.br
+\&
+.br
+\&    let rec pop (stack: _ stack) : _ option =
+.br
+\&      let cur = Atomic\&.get stack in
+.br
+\&      match cur with
+.br
+\&      | [] \-> None
+.br
+\&      | x :: tail \->
+.br
+\&        let success = Atomic\&.compare_and_set stack cur tail in
+.br
+\&        if success then Some x
+.br
+\&        else pop stack
+.br
+\&
+.br
+\&    # let st = Atomic\&.make []
+.br
+\&    # push st 1
+.br
+\&    \- : unit = ()
+.br
+\&    # push st 2
+.br
+\&    \- : unit = ()
+.br
+\&    # pop st
+.br
+\&    \- : int option = Some 2
+.br
+\&    # pop st
+.br
+\&    \- : int option = Some 1
+.br
+\&    # pop st
+.br
+\&    \- : int option = None
+.br
+\&    
+.ft R
+.EE
+.PP

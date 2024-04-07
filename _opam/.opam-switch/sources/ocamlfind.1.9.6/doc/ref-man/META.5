@@ -1,0 +1,613 @@
+.TH "META" "5" "The findlib package manager for OCaml" "User Manual"
+.SH "NAME"
+.ft R
+META - [File that specifies metainformation of OCaml packages]\c
+.SH "GRAMMAR"
+.ft R
+.ft R
+.ft B
+.nf
+\&\ \ \ \ \ \ \ \ \ metafile\ ::=\ entry*\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ entry\ ::=\ assignment\ |\ addition\ |\ subpackage\c
+\&
+.br
+\&\ \ \ \ \ \ \ subpackage\ ::=\ "package"\ pkgname\ '('\ metafile\ ')'\c
+\&
+.br
+\&\ \ \ \ \ \ \ assignment\ ::=\ variable_name\ [\ formal_predicates\ ]\ '='\ \ value\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ addition\ ::=\ variable_name\ [\ formal_predicates\ ]\ '+='\ value\c
+\&
+.br
+formal_predicates\ ::=\ '('\ formal_predicate\ {\ ','\ formal_predicate\ }\ ')'\c
+\&
+.br
+\&\ \ \ \ variable_name\ ::=\ name\c
+\&
+.br
+\&\ formal_predicate\ ::=\ name\ |\ '-'\ name\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ \ name\ ::=\ [\ 'A'-'Z'\ 'a'-'z'\ '0'-'9'\ '_'\ '.'\ ]+\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ pkgname\ ::=\ '"'\ (character\ but\ not\ '.')*\ '"'\c
+\&
+.br
+\&\ \ \ \ \ \ \ \ \ \ \ \ value\ ::=\ '"'\ character*\ '"'\c
+.ft R
+.fi
+.SH "DESCRIPTION"
+.ft R
+.ft R
+If a package directory contains a file with the fixed name "META" it\c
+\&  
+is interpreted as described here. The file is a sequence of entries\c
+\&  
+following the given grammar; every entry defines a variable under a\c
+\&  
+certain condition given by the list of formal predicates, or it\c
+\&  
+introduces a subpackage.\c
+.PP
+.ft R
+There is a list of predefined variables and a list of standard\c
+\&  
+predicates. These variables define: required packages, description, version\c
+\&  
+information, directories, archive files, and linker options. The\c
+\&  
+predicates denote circumstances of the application of the variables:\c
+\&  
+whether the bytecode or the native compiler is used, if there is a\c
+\&  
+toploop compiled in, details of multi-threading execution, details of\c
+\&  
+profiling. 
+.SH "DETAILS OF THE FILE FORMAT"
+.ft R
+.ft R
+The file consists of a sequence of entries which must be formed as the\c
+\&  
+grammar prescribes. The lexical tokens are names, values, and\c
+\&  
+interpunctuation like '(', ',' and so on. Note that linefeeds do not\c
+\&  
+play a special role, i.e. an entry definition may be given in more than\c
+\&  
+one line, or several definitions may occur on a single line. There may\c
+\&  
+be comments which begin with '#' and run until the end of the line.\c
+.PP
+.ft R
+Names are sequences of the characters A-Z, a-z, 0-9, or _. Names\c
+\&  
+containing capital letters and names beginning with digits are\c
+\&  
+allowed but not recommended.\c
+.PP
+.ft R
+Values are enclosed between double quotes. Values may contain any\c
+\&  
+character. The characters " and \e must be preceded by backslashes. 
+.PP
+.ft R
+Package names must not contain the '.' character because it is used\c
+\&  
+as delimiter of compound names.\c
+.SH "MAIN PACKAGES AND SUBPACKAGES"
+.ft R
+.ft R
+The outermost variable assignments and additions belong to the main\c
+\&  
+package. The name of the main package is not defined within META;\c
+\&  
+it is either the name of the directory containing META or the suffix\c
+\&  
+of the META file (if the name of the META file is formed like\c
+\&  
+META.name).\c
+.PP
+.ft R
+The keyword 
+package\c
+\& starts the definition\c
+\&  
+of a subpackage. There must not be two such definitions with the\c
+\&  
+same name. Within the parantheses, the variable assignments and\c
+\&  
+additions refer to the subpackage. It is allowed that a subpackage\c
+\&  
+contains further subpackages.\c
+.PP
+.ft R
+The package name following 
+package\c
+\&  
+is the local name relative to the main package, i.e. the\c
+\&  
+name of the main package is not mentioned. At all other places,\c
+\&  
+however, the subpackage must be prefixed by the name of the\c
+\&  
+containing package, separated by a '.'.\c
+.PP
+.ft R
+Subpackages are independent of the containing package, except\c
+\&  
+that the subpackage points to the same installation directory as\c
+\&  
+the containing package (i.e. the location of the installation directory\c
+\&  
+is inherited from the containing package).\c
+.SH "SEMANTICS OF VARIABLE DEFINITIONS"
+.ft R
+.ft R
+In order to determine the value of a variable, first all assignments\c
+\&  
+are inspected, and the most specific assignment is taken (if there is\c
+\&  
+none, the empty string will be taken as value). In a second step,\c
+\&  
+all additions are gone through one after the other in the order\c
+\&  
+they occur in the file, and the values of all matching additions are\c
+\&  
+appended to the current value. In the following, it is further\c
+\&  
+clarified which assignment is the most specific, which additions\c
+\&  
+actually match, and how the details of the value addition look like.\c
+.PP
+.ft R
+The most specific assignment is selected upon a set of actual\c
+\&  
+predicates, i.e. the set of predicates that are assumed to be true.\c
+\&  
+The predicates occuring in the definitions of assignments and\c
+\&  
+additions are called formal predicates. They may be positive or\c
+\&  
+negative; the latter are prepended by a '-' sign. In order to\c
+\&  
+determine the value after the evaluation of the assignments, the\c
+\&  
+following rules apply: 
+.PP
+.ft R
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+An assignment can only be used if all positive formal\c
+\&  
+predicates are included in the set of actual predicates, and if all\c
+\&  
+negative formal predicates are not included in the set of actual\c
+\&  
+predicates. Such an assignment is called\c
+\&  
+.ft B
+applicable\c
+.ft R
+\&. If there is no such assignment, the\c
+\&  
+variable will have no value. 
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+If there is more than one applicable assignment, the definition with\c
+\&  
+the biggest number of formal predicates is selected.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+If there is still more than one applicable assignment, both applicable 
+\&  
+and with a maximum number of formal predicates, the definition that is defined\c
+\&  
+first is selected.\c
+.RE
+.ft R
+.PP
+.ft R
+.ft R
+An addition is matching when all positive formal predicates are\c
+\&  
+included in the set of actual predicates, and all negative formal\c
+\&  
+predicates are not included.\c
+.PP
+.ft R
+The value of an addition is appended to the current value with\c
+\&  
+implicit white space as separator.\c
+.SH "VARIABLES"
+.ft R
+.ft R
+There is a set of variables with predefined meaning:\c
+.PP
+.ft R
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The\c
+\&  
+variable "directory" redefines the location of the package\c
+\&  
+directory. Normally, the META file is the first file read in the\c
+\&  
+package directory, and before any other file is read, the "directory"\c
+\&  
+variable is evaluated in order to see if the package directory must be\c
+\&  
+changed. The value of the "directory" variable is determined with an\c
+\&  
+empty set of actual predicates. The value must be either: an absolute\c
+\&  
+path name of the alternate directory, or a path name relative to the\c
+\&  
+stdlib directory of OCaml (written "+path"), or a normal relative path\c
+\&  
+name (without special syntax). In the latter case, the interpretation\c
+\&  
+depends on whether it is contained in a main or sub package, and\c
+\&  
+whether the standard repository layout or the alternate layout is in\c
+\&  
+effect (see 
+site-lib\c
+\& for these terms).\c
+\&  
+For a main package in standard layout the base directory is the\c
+\&  
+directory physically containing the META file, and the relative path\c
+\&  
+is interpreted for this base directory. For a main package in\c
+\&  
+alternate layout the base directory is the directory physically\c
+\&  
+containing the META.pkg files. The base directory for subpackages is\c
+\&  
+the package directory of the containing package. (In the case\c
+\&  
+that a subpackage definition does not have a "directory" setting,\c
+\&  
+the subpackage simply inherits the package directory of the containing\c
+\&  
+package. By writing a "directory" directive one can change this\c
+\&  
+location again.)\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "requires" specifies the list of required packages. The\c
+\&  
+names of the packages must be separated by white space and/or commas.\c
+\&  
+The names must be fully qualified (i.e. when they refer to a subpackage,\c
+\&  
+the names of all containing packages must be prepended, separated by\c
+\&  
+\&'.').\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "description" may include a short description of the\c
+\&  
+package (displayed by 
+ocamlfind list\c
+).\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "version" specifies the version string.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "archive" specifies the list of archive files. These\c
+\&  
+files should be given either as (1) plain names without any directory\c
+\&  
+information; they are only searched in the package directory.\c
+\&  
+(2) Or they have the form "+path" in which case the files are looked up\c
+\&  
+relative to the standard library. (3) Or they have the form "@name/file"\c
+\&  
+in which case the files are looked up in the package directory\c
+\&  
+of another package. (4) Or they are given as absolute paths.\c
+.PP
+.ft R
+The\c
+\&  
+names of the files must be separated by white space and/or commas.\c
+\&  
+In the preprocessor stage, the archive files are passed as extensions\c
+\&  
+to the preprocessor (camlp4) call. In the linker stage (-linkpkg), the archive\c
+\&  
+files are linked. In the compiler stage, the archive files are ignored.\c
+.PP
+.ft R
+Note that "archive" should only be used for archive files that are\c
+\&  
+intended to be included in executables or loaded into toploops. For\c
+\&  
+modules loaded at runtime there is the separate variable "plugin".\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "plugin" specifies the plugin archives of the package.\c
+\&  
+These can be dynamically loaded with the 
+Fl_dynload\c
+\&  
+module. The plugin archives can have ".cmo", ".cma", or ".cmxs" suffix.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "linkopts" specifies additional linker options.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "error" can be used to signal error conditions. When\c
+\&  
+this variable is applicable, the ocaml compilers are stopped, and\c
+\&  
+an error message is printed. The message is the value of the variable.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "warning" can be used to signal warnings. When\c
+\&  
+this variable is applicable, the warning is printed, but the\c
+\&  
+compilation continues. The message is the value of the variable.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "exists_if" can be used to disable subpackages. The\c
+\&  
+value of "exists_if" is a file; the subpackage is hidden if this\c
+\&  
+file does not exist. You can also enumerate several files, and the\c
+\&  
+subpackage is hidden if none of the files exist.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "ppx" is a command that is added to the compiler invocation\c
+\&  
+via the -ppx option (available since OCaml-4.01). If the command is\c
+\&  
+relative to the current directory (e.g. ./cmd), the command is expected\c
+\&  
+in the package directory. The special forms as defined for "archive"\c
+\&  
+are also available (e.g. @otherpkg/cmd). Additional arguments can be\c
+\&  
+specified on the ocamlfind command line with the -ppxopt option\c
+\&  
+or the "ppxopt" variable.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The variable "ppxopt" is a set of options that are added to the ppx\c
+\&  
+rewriter invocation. The contents of the variable consists of one or\c
+\&  
+several whitespace-separated parts. Every part consists of several\c
+\&  
+comma-separated subparts; the first subpart indicates the package\c
+\&  
+that contains the ppx rewriter invocation, the rest contain the options\c
+\&  
+to be appended. If the option is a path relative to the current directory\c
+\&  
+(e.g. ./foo.cma), the path is expanded relative to the package directory.\c
+\&  
+The special forms as defined for "archive" are also available\c
+\&  
+(e.g. @otherpkg/foo.cma).\c
+.RE
+.ft R
+.PP
+.ft R
+.ft R
+It is possible to define additional variables but there is currently\c
+\&  
+no software interpreting them.\c
+.SH "PREDICATES"
+.ft R
+.ft R
+There is a list of standard predicates:\c
+.PP
+.ft R
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "byte" predicate means that the bytecode compiler is used.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "native" predicate means that the native compiler is used.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "toploop" predicate means that the toploop is available in the\c
+\&  
+linked program. It is only set when the toploop is running, not when\c
+\&  
+the toploop is generated.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "create_toploop" predicate means that a toploop is created (using\c
+\&  
+ocamlmktop).\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "mt" predicate means that the program is multi-threaded.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "mt_posix" predicate means that in the case "mt" is set, too, the\c
+\&  
+POSIX libraries are used to implement threads.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "mt_vm" predicate means that in the case "mt" is set, too, the\c
+\&  
+VM-based libraries are used to implement threads.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "gprof" predicate means that in the case "native" is set, too, the\c
+\&  
+program is compiled for profiling\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "autolink" predicate means that ocamlc can/will perform automatic linking.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "preprocessor" predicate means that the META variables are scanned for\c
+\&  
+preprocessor options.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+The "syntax" predicate means that the -syntax option is present on the\c
+\&  
+command line.\c
+.RE
+.ft R
+.sp
+.RS "7m"
+.ft R
+\&\h'-3m'\z\(bu\h'3m'\c
+.ft R
+Legacy: The "plugin" predicate could be used in some versions of findlib\c
+\&  
+to select cmxs archives instead of cmxa archives. This use is still possible\c
+\&  
+but discouraged.\c
+.RE
+.ft R
+.PP
+.ft R
+.ft R
+In addition to these predicates, there are package predicates\c
+\&  
+for every package that is finally selected. Of course, this kind of\c
+\&  
+predicate must not be used to select "directory" and "requires"\c
+\&  
+variables, but for the other variables they are perfectly valid.\c
+\&  
+The package predicates have the form "pkg_" plus the name of the\c
+\&  
+package (fully qualified).\c

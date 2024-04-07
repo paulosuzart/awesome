@@ -1,0 +1,2473 @@
+(lang dune 3.15)
+(name core)
+(version v0.16.2)
+(sections (lib .) (libexec .) (doc ../../doc/core) (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   arg.ml
+   arg.mli
+   array.ml
+   array.mli
+   bag.ml
+   bag.mli
+   bag_intf.ml
+   base_for_tests/base_for_tests.a
+   base_for_tests/base_for_tests.cma
+   base_for_tests/base_for_tests.cmi
+   base_for_tests/base_for_tests.cmt
+   base_for_tests/base_for_tests.cmx
+   base_for_tests/base_for_tests.cmxa
+   base_for_tests/base_for_tests.ml
+   base_for_tests/base_for_tests__Test_binary_searchable.cmi
+   base_for_tests/base_for_tests__Test_binary_searchable.cmt
+   base_for_tests/base_for_tests__Test_binary_searchable.cmti
+   base_for_tests/base_for_tests__Test_binary_searchable.cmx
+   base_for_tests/base_for_tests__Test_binary_searchable_intf.cmi
+   base_for_tests/base_for_tests__Test_binary_searchable_intf.cmt
+   base_for_tests/base_for_tests__Test_binary_searchable_intf.cmx
+   base_for_tests/base_for_tests__Test_blit.cmi
+   base_for_tests/base_for_tests__Test_blit.cmt
+   base_for_tests/base_for_tests__Test_blit.cmti
+   base_for_tests/base_for_tests__Test_blit.cmx
+   base_for_tests/base_for_tests__Test_blit_intf.cmi
+   base_for_tests/base_for_tests__Test_blit_intf.cmt
+   base_for_tests/base_for_tests__Test_blit_intf.cmx
+   base_for_tests/test_binary_searchable.ml
+   base_for_tests/test_binary_searchable.mli
+   base_for_tests/test_binary_searchable_intf.ml
+   base_for_tests/test_blit.ml
+   base_for_tests/test_blit.mli
+   base_for_tests/test_blit_intf.ml
+   bigbuffer.ml
+   bigbuffer.mli
+   bigbuffer_internal.ml
+   bigbuffer_internal.mli
+   bigstring.ml
+   bigstring.mli
+   bigsubstring.ml
+   bigsubstring.mli
+   binable.ml
+   binable.mli
+   binable0.ml
+   binable0.mli
+   binable_intf.ml
+   binary_searchable.ml
+   binary_searchable.mli
+   binary_searchable_intf.ml
+   blang.ml
+   blang.mli
+   blit.ml
+   blit.mli
+   blit_intf.ml
+   bool.ml
+   bool.mli
+   bounded_index.ml
+   bounded_index.mli
+   bounded_index_intf.ml
+   byte_units.ml
+   byte_units.mli
+   byte_units0.ml
+   byte_units0.mli
+   bytes.ml
+   bytes.mli
+   char.ml
+   char.mli
+   command/command.a
+   command/command.cma
+   command/command.cmi
+   command/command.cmt
+   command/command.cmti
+   command/command.cmx
+   command/command.cmxa
+   command/command.ml
+   command/command.mli
+   command/command__.cmi
+   command/command__.cmt
+   command/command__.cmx
+   command/command__.ml
+   command/command__Command_intf.cmi
+   command/command__Command_intf.cmt
+   command/command__Command_intf.cmx
+   command/command__Env_var.cmi
+   command/command__Env_var.cmt
+   command/command__Env_var.cmti
+   command/command__Env_var.cmx
+   command/command__Import.cmi
+   command/command__Import.cmt
+   command/command__Import.cmx
+   command/command__Shape.cmi
+   command/command__Shape.cmt
+   command/command__Shape.cmti
+   command/command__Shape.cmx
+   command/command_intf.ml
+   command/env_var.ml
+   command/env_var.mli
+   command/import.ml
+   command/shape.ml
+   command/shape.mli
+   command_internal.ml
+   command_shape.ml
+   command_shape.mli
+   comparable.ml
+   comparable.mli
+   comparable_intf.ml
+   comparator.ml
+   comparator.mli
+   container.ml
+   container.mli
+   container_intf.ml
+   core.a
+   core.cma
+   core.cmi
+   core.cmt
+   core.cmx
+   core.cmxa
+   core.ml
+   core__.cmi
+   core__.cmt
+   core__.cmx
+   core__.ml
+   core__Arg.cmi
+   core__Arg.cmt
+   core__Arg.cmti
+   core__Arg.cmx
+   core__Array.cmi
+   core__Array.cmt
+   core__Array.cmti
+   core__Array.cmx
+   core__Bag.cmi
+   core__Bag.cmt
+   core__Bag.cmti
+   core__Bag.cmx
+   core__Bag_intf.cmi
+   core__Bag_intf.cmt
+   core__Bag_intf.cmx
+   core__Bigbuffer.cmi
+   core__Bigbuffer.cmt
+   core__Bigbuffer.cmti
+   core__Bigbuffer.cmx
+   core__Bigbuffer_internal.cmi
+   core__Bigbuffer_internal.cmt
+   core__Bigbuffer_internal.cmti
+   core__Bigbuffer_internal.cmx
+   core__Bigstring.cmi
+   core__Bigstring.cmt
+   core__Bigstring.cmti
+   core__Bigstring.cmx
+   core__Bigsubstring.cmi
+   core__Bigsubstring.cmt
+   core__Bigsubstring.cmti
+   core__Bigsubstring.cmx
+   core__Binable.cmi
+   core__Binable.cmt
+   core__Binable.cmti
+   core__Binable.cmx
+   core__Binable0.cmi
+   core__Binable0.cmt
+   core__Binable0.cmti
+   core__Binable0.cmx
+   core__Binable_intf.cmi
+   core__Binable_intf.cmt
+   core__Binable_intf.cmx
+   core__Binary_searchable.cmi
+   core__Binary_searchable.cmt
+   core__Binary_searchable.cmti
+   core__Binary_searchable.cmx
+   core__Binary_searchable_intf.cmi
+   core__Binary_searchable_intf.cmt
+   core__Binary_searchable_intf.cmx
+   core__Blang.cmi
+   core__Blang.cmt
+   core__Blang.cmti
+   core__Blang.cmx
+   core__Blit.cmi
+   core__Blit.cmt
+   core__Blit.cmti
+   core__Blit.cmx
+   core__Blit_intf.cmi
+   core__Blit_intf.cmt
+   core__Blit_intf.cmx
+   core__Bool.cmi
+   core__Bool.cmt
+   core__Bool.cmti
+   core__Bool.cmx
+   core__Bounded_index.cmi
+   core__Bounded_index.cmt
+   core__Bounded_index.cmti
+   core__Bounded_index.cmx
+   core__Bounded_index_intf.cmi
+   core__Bounded_index_intf.cmt
+   core__Bounded_index_intf.cmx
+   core__Byte_units.cmi
+   core__Byte_units.cmt
+   core__Byte_units.cmti
+   core__Byte_units.cmx
+   core__Byte_units0.cmi
+   core__Byte_units0.cmt
+   core__Byte_units0.cmti
+   core__Byte_units0.cmx
+   core__Bytes.cmi
+   core__Bytes.cmt
+   core__Bytes.cmti
+   core__Bytes.cmx
+   core__Char.cmi
+   core__Char.cmt
+   core__Char.cmti
+   core__Char.cmx
+   core__Command_internal.cmi
+   core__Command_internal.cmt
+   core__Command_internal.cmx
+   core__Command_shape.cmi
+   core__Command_shape.cmt
+   core__Command_shape.cmti
+   core__Command_shape.cmx
+   core__Comparable.cmi
+   core__Comparable.cmt
+   core__Comparable.cmti
+   core__Comparable.cmx
+   core__Comparable_intf.cmi
+   core__Comparable_intf.cmt
+   core__Comparable_intf.cmx
+   core__Comparator.cmi
+   core__Comparator.cmt
+   core__Comparator.cmti
+   core__Comparator.cmx
+   core__Container.cmi
+   core__Container.cmt
+   core__Container.cmti
+   core__Container.cmx
+   core__Container_intf.cmi
+   core__Container_intf.cmt
+   core__Container_intf.cmx
+   core__Core_bin_prot.cmi
+   core__Core_bin_prot.cmt
+   core__Core_bin_prot.cmti
+   core__Core_bin_prot.cmx
+   core__Core_pervasives.cmi
+   core__Core_pervasives.cmt
+   core__Core_pervasives.cmti
+   core__Core_pervasives.cmx
+   core__Core_sys.cmi
+   core__Core_sys.cmt
+   core__Core_sys.cmti
+   core__Core_sys.cmx
+   core__Date.cmi
+   core__Date.cmt
+   core__Date.cmti
+   core__Date.cmx
+   core__Date0.cmi
+   core__Date0.cmt
+   core__Date0.cmti
+   core__Date0.cmx
+   core__Date0_intf.cmi
+   core__Date0_intf.cmt
+   core__Date0_intf.cmx
+   core__Date_intf.cmi
+   core__Date_intf.cmt
+   core__Date_intf.cmx
+   core__Day_of_week.cmi
+   core__Day_of_week.cmt
+   core__Day_of_week.cmti
+   core__Day_of_week.cmx
+   core__Day_of_week_intf.cmi
+   core__Day_of_week_intf.cmt
+   core__Day_of_week_intf.cmx
+   core__Debug.cmi
+   core__Debug.cmt
+   core__Debug.cmti
+   core__Debug.cmx
+   core__Deprecate_pipe_bang.cmi
+   core__Deprecate_pipe_bang.cmt
+   core__Deprecate_pipe_bang.cmti
+   core__Deprecate_pipe_bang.cmx
+   core__Deque.cmi
+   core__Deque.cmt
+   core__Deque.cmti
+   core__Deque.cmx
+   core__Deriving_hash.cmi
+   core__Deriving_hash.cmt
+   core__Deriving_hash.cmti
+   core__Deriving_hash.cmx
+   core__Deriving_hash_intf.cmi
+   core__Deriving_hash_intf.cmt
+   core__Deriving_hash_intf.cmx
+   core__Digit_string_helpers.cmi
+   core__Digit_string_helpers.cmt
+   core__Digit_string_helpers.cmti
+   core__Digit_string_helpers.cmx
+   core__Doubly_linked.cmi
+   core__Doubly_linked.cmt
+   core__Doubly_linked.cmti
+   core__Doubly_linked.cmx
+   core__Doubly_linked_intf.cmi
+   core__Doubly_linked_intf.cmt
+   core__Doubly_linked_intf.cmx
+   core__Either.cmi
+   core__Either.cmt
+   core__Either.cmti
+   core__Either.cmx
+   core__Error.cmi
+   core__Error.cmt
+   core__Error.cmti
+   core__Error.cmx
+   core__Fdeque.cmi
+   core__Fdeque.cmt
+   core__Fdeque.cmti
+   core__Fdeque.cmx
+   core__Filename.cmi
+   core__Filename.cmt
+   core__Filename.cmti
+   core__Filename.cmx
+   core__Float.cmi
+   core__Float.cmt
+   core__Float.cmti
+   core__Float.cmx
+   core__Float_with_finite_only_serialization.cmi
+   core__Float_with_finite_only_serialization.cmt
+   core__Float_with_finite_only_serialization.cmti
+   core__Float_with_finite_only_serialization.cmx
+   core__Fn.cmi
+   core__Fn.cmt
+   core__Fn.cmti
+   core__Fn.cmx
+   core__Fqueue.cmi
+   core__Fqueue.cmt
+   core__Fqueue.cmti
+   core__Fqueue.cmx
+   core__Gc.cmi
+   core__Gc.cmt
+   core__Gc.cmti
+   core__Gc.cmx
+   core__Hash_queue.cmi
+   core__Hash_queue.cmt
+   core__Hash_queue.cmti
+   core__Hash_queue.cmx
+   core__Hash_queue_intf.cmi
+   core__Hash_queue_intf.cmt
+   core__Hash_queue_intf.cmx
+   core__Hash_set.cmi
+   core__Hash_set.cmt
+   core__Hash_set.cmti
+   core__Hash_set.cmx
+   core__Hash_set_intf.cmi
+   core__Hash_set_intf.cmt
+   core__Hash_set_intf.cmx
+   core__Hashable.cmi
+   core__Hashable.cmt
+   core__Hashable.cmti
+   core__Hashable.cmx
+   core__Hashable_intf.cmi
+   core__Hashable_intf.cmt
+   core__Hashable_intf.cmx
+   core__Hashtbl.cmi
+   core__Hashtbl.cmt
+   core__Hashtbl.cmti
+   core__Hashtbl.cmx
+   core__Hashtbl_intf.cmi
+   core__Hashtbl_intf.cmt
+   core__Hashtbl_intf.cmx
+   core__Hexdump.cmi
+   core__Hexdump.cmt
+   core__Hexdump.cmti
+   core__Hexdump.cmx
+   core__Hexdump_intf.cmi
+   core__Hexdump_intf.cmt
+   core__Hexdump_intf.cmx
+   core__Host_and_port.cmi
+   core__Host_and_port.cmt
+   core__Host_and_port.cmti
+   core__Host_and_port.cmx
+   core__Identifiable.cmi
+   core__Identifiable.cmt
+   core__Identifiable.cmti
+   core__Identifiable.cmx
+   core__Identifiable_intf.cmi
+   core__Identifiable_intf.cmt
+   core__Identifiable_intf.cmx
+   core__Immediate_option.cmi
+   core__Immediate_option.cmt
+   core__Immediate_option.cmti
+   core__Immediate_option.cmx
+   core__Immediate_option_intf.cmi
+   core__Immediate_option_intf.cmt
+   core__Immediate_option_intf.cmx
+   core__Import.cmi
+   core__Import.cmt
+   core__Import.cmx
+   core__Indexed_container.cmi
+   core__Indexed_container.cmt
+   core__Indexed_container.cmti
+   core__Indexed_container.cmx
+   core__Indexed_container_intf.cmi
+   core__Indexed_container_intf.cmt
+   core__Indexed_container_intf.cmx
+   core__Info.cmi
+   core__Info.cmt
+   core__Info.cmti
+   core__Info.cmx
+   core__Info_intf.cmi
+   core__Info_intf.cmt
+   core__Info_intf.cmx
+   core__Int.cmi
+   core__Int.cmt
+   core__Int.cmti
+   core__Int.cmx
+   core__Int32.cmi
+   core__Int32.cmt
+   core__Int32.cmti
+   core__Int32.cmx
+   core__Int63.cmi
+   core__Int63.cmt
+   core__Int63.cmti
+   core__Int63.cmx
+   core__Int64.cmi
+   core__Int64.cmt
+   core__Int64.cmti
+   core__Int64.cmx
+   core__Int_intf.cmi
+   core__Int_intf.cmt
+   core__Int_intf.cmx
+   core__Interfaces.cmi
+   core__Interfaces.cmt
+   core__Interfaces.cmx
+   core__Lazy.cmi
+   core__Lazy.cmt
+   core__Lazy.cmti
+   core__Lazy.cmx
+   core__Linked_queue.cmi
+   core__Linked_queue.cmt
+   core__Linked_queue.cmti
+   core__Linked_queue.cmx
+   core__List.cmi
+   core__List.cmt
+   core__List.cmti
+   core__List.cmx
+   core__List0.cmi
+   core__List0.cmt
+   core__List0.cmti
+   core__List0.cmx
+   core__Make_stable.cmi
+   core__Make_stable.cmt
+   core__Make_stable.cmti
+   core__Make_stable.cmx
+   core__Make_substring.cmi
+   core__Make_substring.cmt
+   core__Make_substring.cmti
+   core__Make_substring.cmx
+   core__Make_substring_intf.cmi
+   core__Make_substring_intf.cmt
+   core__Make_substring_intf.cmx
+   core__Map.cmi
+   core__Map.cmt
+   core__Map.cmti
+   core__Map.cmx
+   core__Map_intf.cmi
+   core__Map_intf.cmt
+   core__Map_intf.cmx
+   core__Maybe_bound.cmi
+   core__Maybe_bound.cmt
+   core__Maybe_bound.cmti
+   core__Maybe_bound.cmx
+   core__Md5.cmi
+   core__Md5.cmt
+   core__Md5.cmti
+   core__Md5.cmx
+   core__Memo.cmi
+   core__Memo.cmt
+   core__Memo.cmti
+   core__Memo.cmx
+   core__Month.cmi
+   core__Month.cmt
+   core__Month.cmti
+   core__Month.cmx
+   core__Month_intf.cmi
+   core__Month_intf.cmt
+   core__Month_intf.cmx
+   core__Nativeint.cmi
+   core__Nativeint.cmt
+   core__Nativeint.cmti
+   core__Nativeint.cmx
+   core__Never_returns.cmi
+   core__Never_returns.cmt
+   core__Never_returns.cmti
+   core__Never_returns.cmx
+   core__No_polymorphic_compare.cmi
+   core__No_polymorphic_compare.cmt
+   core__No_polymorphic_compare.cmti
+   core__No_polymorphic_compare.cmx
+   core__Nothing.cmi
+   core__Nothing.cmt
+   core__Nothing.cmti
+   core__Nothing.cmx
+   core__Ofday_float.cmi
+   core__Ofday_float.cmt
+   core__Ofday_float.cmti
+   core__Ofday_float.cmx
+   core__Ofday_helpers.cmi
+   core__Ofday_helpers.cmt
+   core__Ofday_helpers.cmti
+   core__Ofday_helpers.cmx
+   core__Ofday_intf.cmi
+   core__Ofday_intf.cmt
+   core__Ofday_intf.cmx
+   core__Ofday_ns.cmi
+   core__Ofday_ns.cmt
+   core__Ofday_ns.cmti
+   core__Ofday_ns.cmx
+   core__Only_in_test.cmi
+   core__Only_in_test.cmt
+   core__Only_in_test.cmti
+   core__Only_in_test.cmx
+   core__Option.cmi
+   core__Option.cmt
+   core__Option.cmti
+   core__Option.cmx
+   core__Option_array.cmi
+   core__Option_array.cmt
+   core__Option_array.cmti
+   core__Option_array.cmx
+   core__Optional_syntax.cmi
+   core__Optional_syntax.cmt
+   core__Optional_syntax.cmti
+   core__Optional_syntax.cmx
+   core__Optional_syntax_intf.cmi
+   core__Optional_syntax_intf.cmt
+   core__Optional_syntax_intf.cmx
+   core__Or_error.cmi
+   core__Or_error.cmt
+   core__Or_error.cmti
+   core__Or_error.cmx
+   core__Ordered_collection_common.cmi
+   core__Ordered_collection_common.cmt
+   core__Ordered_collection_common.cmti
+   core__Ordered_collection_common.cmx
+   core__Ordering.cmi
+   core__Ordering.cmt
+   core__Ordering.cmti
+   core__Ordering.cmx
+   core__Percent.cmi
+   core__Percent.cmt
+   core__Percent.cmti
+   core__Percent.cmx
+   core__Perms.cmi
+   core__Perms.cmt
+   core__Perms.cmti
+   core__Perms.cmx
+   core__Pid.cmi
+   core__Pid.cmt
+   core__Pid.cmti
+   core__Pid.cmx
+   core__Printexc.cmi
+   core__Printexc.cmt
+   core__Printexc.cmti
+   core__Printexc.cmx
+   core__Printf.cmi
+   core__Printf.cmt
+   core__Printf.cmti
+   core__Printf.cmx
+   core__Queue.cmi
+   core__Queue.cmt
+   core__Queue.cmti
+   core__Queue.cmx
+   core__Queue_intf.cmi
+   core__Queue_intf.cmt
+   core__Queue_intf.cmx
+   core__Quickcheck.cmi
+   core__Quickcheck.cmt
+   core__Quickcheck.cmti
+   core__Quickcheck.cmx
+   core__Quickcheck_intf.cmi
+   core__Quickcheck_intf.cmt
+   core__Quickcheck_intf.cmx
+   core__Quickcheckable.cmi
+   core__Quickcheckable.cmt
+   core__Quickcheckable.cmti
+   core__Quickcheckable.cmx
+   core__Quickcheckable_intf.cmi
+   core__Quickcheckable_intf.cmt
+   core__Quickcheckable_intf.cmx
+   core__Ref.cmi
+   core__Ref.cmt
+   core__Ref.cmti
+   core__Ref.cmx
+   core__Result.cmi
+   core__Result.cmt
+   core__Result.cmti
+   core__Result.cmx
+   core__Robustly_comparable.cmi
+   core__Robustly_comparable.cmt
+   core__Robustly_comparable.cmx
+   core__Sequence.cmi
+   core__Sequence.cmt
+   core__Sequence.cmti
+   core__Sequence.cmx
+   core__Set.cmi
+   core__Set.cmt
+   core__Set.cmti
+   core__Set.cmx
+   core__Set_intf.cmi
+   core__Set_intf.cmt
+   core__Set_intf.cmx
+   core__Set_once.cmi
+   core__Set_once.cmt
+   core__Set_once.cmti
+   core__Set_once.cmx
+   core__Sexp.cmi
+   core__Sexp.cmt
+   core__Sexp.cmti
+   core__Sexp.cmx
+   core__Sexpable.cmi
+   core__Sexpable.cmt
+   core__Sexpable.cmti
+   core__Sexpable.cmx
+   core__Sign.cmi
+   core__Sign.cmt
+   core__Sign.cmti
+   core__Sign.cmx
+   core__Sign_or_nan.cmi
+   core__Sign_or_nan.cmt
+   core__Sign_or_nan.cmti
+   core__Sign_or_nan.cmx
+   core__Signal.cmi
+   core__Signal.cmt
+   core__Signal.cmti
+   core__Signal.cmx
+   core__Source_code_position.cmi
+   core__Source_code_position.cmt
+   core__Source_code_position.cmti
+   core__Source_code_position.cmx
+   core__Source_code_position0.cmi
+   core__Source_code_position0.cmt
+   core__Source_code_position0.cmti
+   core__Source_code_position0.cmx
+   core__Span_float.cmi
+   core__Span_float.cmt
+   core__Span_float.cmti
+   core__Span_float.cmx
+   core__Span_helpers.cmi
+   core__Span_helpers.cmt
+   core__Span_helpers.cmti
+   core__Span_helpers.cmx
+   core__Span_intf.cmi
+   core__Span_intf.cmt
+   core__Span_intf.cmx
+   core__Span_ns.cmi
+   core__Span_ns.cmt
+   core__Span_ns.cmti
+   core__Span_ns.cmx
+   core__Stable.cmi
+   core__Stable.cmt
+   core__Stable.cmx
+   core__Stable_comparable.cmi
+   core__Stable_comparable.cmt
+   core__Stable_comparable.cmx
+   core__Stable_int63able.cmi
+   core__Stable_int63able.cmt
+   core__Stable_int63able.cmx
+   core__Stable_internal.cmi
+   core__Stable_internal.cmt
+   core__Stable_internal.cmx
+   core__Stable_module_types.cmi
+   core__Stable_module_types.cmt
+   core__Stable_module_types.cmx
+   core__Stable_unit_test.cmi
+   core__Stable_unit_test.cmt
+   core__Stable_unit_test.cmti
+   core__Stable_unit_test.cmx
+   core__Stable_unit_test_intf.cmi
+   core__Stable_unit_test_intf.cmt
+   core__Stable_unit_test_intf.cmx
+   core__Stack.cmi
+   core__Stack.cmt
+   core__Stack.cmti
+   core__Stack.cmx
+   core__Std_internal.cmi
+   core__Std_internal.cmt
+   core__Std_internal.cmx
+   core__String.cmi
+   core__String.cmt
+   core__String.cmti
+   core__String.cmx
+   core__String_id.cmi
+   core__String_id.cmt
+   core__String_id.cmti
+   core__String_id.cmx
+   core__String_id_intf.cmi
+   core__String_id_intf.cmt
+   core__String_id_intf.cmx
+   core__Substring.cmi
+   core__Substring.cmt
+   core__Substring.cmti
+   core__Substring.cmx
+   core__Substring_intf.cmi
+   core__Substring_intf.cmt
+   core__Substring_intf.cmx
+   core__T.cmi
+   core__T.cmt
+   core__T.cmx
+   core__Time.cmi
+   core__Time.cmt
+   core__Time.cmti
+   core__Time.cmx
+   core__Time0_intf.cmi
+   core__Time0_intf.cmt
+   core__Time0_intf.cmx
+   core__Time_float.cmi
+   core__Time_float.cmt
+   core__Time_float.cmti
+   core__Time_float.cmx
+   core__Time_float0.cmi
+   core__Time_float0.cmt
+   core__Time_float0.cmti
+   core__Time_float0.cmx
+   core__Time_intf.cmi
+   core__Time_intf.cmt
+   core__Time_intf.cmx
+   core__Time_ns.cmi
+   core__Time_ns.cmt
+   core__Time_ns.cmti
+   core__Time_ns.cmx
+   core__Time_ns_alternate_sexp.cmi
+   core__Time_ns_alternate_sexp.cmt
+   core__Time_ns_alternate_sexp.cmti
+   core__Time_ns_alternate_sexp.cmx
+   core__Time_ns_intf.cmi
+   core__Time_ns_intf.cmt
+   core__Time_ns_intf.cmx
+   core__Tuple.cmi
+   core__Tuple.cmt
+   core__Tuple.cmti
+   core__Tuple.cmx
+   core__Type_equal.cmi
+   core__Type_equal.cmt
+   core__Type_equal.cmti
+   core__Type_equal.cmx
+   core__Type_equal_intf.cmi
+   core__Type_equal_intf.cmt
+   core__Type_equal_intf.cmx
+   core__Type_immediacy.cmi
+   core__Type_immediacy.cmt
+   core__Type_immediacy.cmti
+   core__Type_immediacy.cmx
+   core__Uniform_array.cmi
+   core__Uniform_array.cmt
+   core__Uniform_array.cmti
+   core__Uniform_array.cmx
+   core__Union_find.cmi
+   core__Union_find.cmt
+   core__Union_find.cmti
+   core__Union_find.cmx
+   core__Unique_id.cmi
+   core__Unique_id.cmt
+   core__Unique_id.cmti
+   core__Unique_id.cmx
+   core__Unique_id_intf.cmi
+   core__Unique_id_intf.cmt
+   core__Unique_id_intf.cmx
+   core__Unit.cmi
+   core__Unit.cmt
+   core__Unit.cmti
+   core__Unit.cmx
+   core__Unit_of_time.cmi
+   core__Unit_of_time.cmt
+   core__Unit_of_time.cmti
+   core__Unit_of_time.cmx
+   core__Validated.cmi
+   core__Validated.cmt
+   core__Validated.cmti
+   core__Validated.cmx
+   core__Validated_intf.cmi
+   core__Validated_intf.cmt
+   core__Validated_intf.cmx
+   core__Zone.cmi
+   core__Zone.cmt
+   core__Zone.cmti
+   core__Zone.cmx
+   core__Zone_intf.cmi
+   core__Zone_intf.cmt
+   core__Zone_intf.cmx
+   core_bin_prot.ml
+   core_bin_prot.mli
+   core_pervasives.ml
+   core_pervasives.mli
+   core_sys.ml
+   core_sys.mli
+   date.ml
+   date.mli
+   date0.ml
+   date0.mli
+   date0_intf.ml
+   date_intf.ml
+   day_of_week.ml
+   day_of_week.mli
+   day_of_week_intf.ml
+   debug.ml
+   debug.mli
+   deprecate_pipe_bang.ml
+   deprecate_pipe_bang.mli
+   deque.ml
+   deque.mli
+   deriving_hash.ml
+   deriving_hash.mli
+   deriving_hash_intf.ml
+   digit_string_helpers.ml
+   digit_string_helpers.mli
+   doubly_linked.ml
+   doubly_linked.mli
+   doubly_linked_intf.ml
+   dune-package
+   either.ml
+   either.mli
+   error.ml
+   error.mli
+   fdeque.ml
+   fdeque.mli
+   filename.ml
+   filename.mli
+   filename_base/filename_base.a
+   filename_base/filename_base.cma
+   filename_base/filename_base.cmi
+   filename_base/filename_base.cmt
+   filename_base/filename_base.cmti
+   filename_base/filename_base.cmx
+   filename_base/filename_base.cmxa
+   filename_base/filename_base.ml
+   filename_base/filename_base.mli
+   float.ml
+   float.mli
+   float_with_finite_only_serialization.ml
+   float_with_finite_only_serialization.mli
+   fn.ml
+   fn.mli
+   fqueue.ml
+   fqueue.mli
+   gc.ml
+   gc.mli
+   hash_queue.ml
+   hash_queue.mli
+   hash_queue_intf.ml
+   hash_set.ml
+   hash_set.mli
+   hash_set_intf.ml
+   hashable.ml
+   hashable.mli
+   hashable_intf.ml
+   hashtbl.ml
+   hashtbl.mli
+   hashtbl_intf.ml
+   heap_block/heap_block.a
+   heap_block/heap_block.cma
+   heap_block/heap_block.cmi
+   heap_block/heap_block.cmt
+   heap_block/heap_block.cmti
+   heap_block/heap_block.cmx
+   heap_block/heap_block.cmxa
+   heap_block/heap_block.ml
+   heap_block/heap_block.mli
+   heap_block/libheap_block_stubs.a
+   heap_block/runtime.js
+   hexdump.ml
+   hexdump.mli
+   hexdump_intf.ml
+   host_and_port.ml
+   host_and_port.mli
+   identifiable.ml
+   identifiable.mli
+   identifiable_intf.ml
+   immediate_option.ml
+   immediate_option.mli
+   immediate_option_intf.ml
+   import.ml
+   indexed_container.ml
+   indexed_container.mli
+   indexed_container_intf.ml
+   info.ml
+   info.mli
+   info_intf.ml
+   int.ml
+   int.mli
+   int32.ml
+   int32.mli
+   int63.ml
+   int63.mli
+   int64.ml
+   int64.mli
+   int_intf.ml
+   interfaces.ml
+   lazy.ml
+   lazy.mli
+   libcore_stubs.a
+   linked_queue.ml
+   linked_queue.mli
+   list.ml
+   list.mli
+   list0.ml
+   list0.mli
+   make_stable.ml
+   make_stable.mli
+   make_substring.ml
+   make_substring.mli
+   make_substring_intf.ml
+   map.ml
+   map.mli
+   map_intf.ml
+   maybe_bound.ml
+   maybe_bound.mli
+   md5.ml
+   md5.mli
+   memo.ml
+   memo.mli
+   month.ml
+   month.mli
+   month_intf.ml
+   nativeint.ml
+   nativeint.mli
+   never_returns.ml
+   never_returns.mli
+   no_polymorphic_compare.ml
+   no_polymorphic_compare.mli
+   nothing.ml
+   nothing.mli
+   ofday_float.ml
+   ofday_float.mli
+   ofday_helpers.ml
+   ofday_helpers.mli
+   ofday_intf.ml
+   ofday_ns.ml
+   ofday_ns.mli
+   only_in_test.ml
+   only_in_test.mli
+   opam
+   option.ml
+   option.mli
+   option_array.ml
+   option_array.mli
+   optional_syntax.ml
+   optional_syntax.mli
+   optional_syntax_intf.ml
+   or_error.ml
+   or_error.mli
+   ordered_collection_common.ml
+   ordered_collection_common.mli
+   ordering.ml
+   ordering.mli
+   percent.ml
+   percent.mli
+   perms.ml
+   perms.mli
+   pid.ml
+   pid.mli
+   printexc.ml
+   printexc.mli
+   printf.ml
+   printf.mli
+   queue.ml
+   queue.mli
+   queue_intf.ml
+   quickcheck.ml
+   quickcheck.mli
+   quickcheck_intf.ml
+   quickcheckable.ml
+   quickcheckable.mli
+   quickcheckable_intf.ml
+   ref.ml
+   ref.mli
+   result.ml
+   result.mli
+   robustly_comparable.ml
+   runtime.js
+   sequence.ml
+   sequence.mli
+   set.ml
+   set.mli
+   set_intf.ml
+   set_once.ml
+   set_once.mli
+   sexp.ml
+   sexp.mli
+   sexpable.ml
+   sexpable.mli
+   sign.ml
+   sign.mli
+   sign_or_nan.ml
+   sign_or_nan.mli
+   signal.ml
+   signal.mli
+   source_code_position.ml
+   source_code_position.mli
+   source_code_position0.ml
+   source_code_position0.mli
+   span_float.ml
+   span_float.mli
+   span_helpers.ml
+   span_helpers.mli
+   span_intf.ml
+   span_ns.ml
+   span_ns.mli
+   stable.ml
+   stable_comparable.ml
+   stable_int63able.ml
+   stable_internal.ml
+   stable_module_types.ml
+   stable_unit_test.ml
+   stable_unit_test.mli
+   stable_unit_test_intf.ml
+   stack.ml
+   stack.mli
+   std_internal.ml
+   strftime.js
+   string.ml
+   string.mli
+   string_id.ml
+   string_id.mli
+   string_id_intf.ml
+   substring.ml
+   substring.mli
+   substring_intf.ml
+   t.ml
+   time.ml
+   time.mli
+   time0_intf.ml
+   time_float.ml
+   time_float.mli
+   time_float0.ml
+   time_float0.mli
+   time_intf.ml
+   time_ns.ml
+   time_ns.mli
+   time_ns_alternate_sexp.ml
+   time_ns_alternate_sexp.mli
+   time_ns_intf.ml
+   time_ns_stubs.h
+   top/core_install_printers.ml
+   top/core_top.cma
+   top/core_top.cmi
+   top/core_top.cmt
+   top/core_top.ml
+   top/core_top__Core_install_printers.cmi
+   top/core_top__Core_install_printers.cmt
+   tuple.ml
+   tuple.mli
+   type_equal.ml
+   type_equal.mli
+   type_equal_intf.ml
+   type_immediacy.ml
+   type_immediacy.mli
+   uniform_array.ml
+   uniform_array.mli
+   union_find.ml
+   union_find.mli
+   unique_id.ml
+   unique_id.mli
+   unique_id_intf.ml
+   unit.ml
+   unit.mli
+   unit_of_time.ml
+   unit_of_time.mli
+   univ_map/univ_map.a
+   univ_map/univ_map.cma
+   univ_map/univ_map.cmi
+   univ_map/univ_map.cmt
+   univ_map/univ_map.cmti
+   univ_map/univ_map.cmx
+   univ_map/univ_map.cmxa
+   univ_map/univ_map.ml
+   univ_map/univ_map.mli
+   univ_map/univ_map__.cmi
+   univ_map/univ_map__.cmt
+   univ_map/univ_map__.cmx
+   univ_map/univ_map__.ml
+   univ_map/univ_map__Univ_map_intf.cmi
+   univ_map/univ_map__Univ_map_intf.cmt
+   univ_map/univ_map__Univ_map_intf.cmx
+   univ_map/univ_map_intf.ml
+   validate/validate.a
+   validate/validate.cma
+   validate/validate.cmi
+   validate/validate.cmt
+   validate/validate.cmti
+   validate/validate.cmx
+   validate/validate.cmxa
+   validate/validate.ml
+   validate/validate.mli
+   validated.ml
+   validated.mli
+   validated_intf.ml
+   zone.ml
+   zone.mli
+   zone_intf.ml))
+ (libexec
+  (base_for_tests/base_for_tests.cmxs
+   command/command.cmxs
+   core.cmxs
+   filename_base/filename_base.cmxs
+   heap_block/heap_block.cmxs
+   univ_map/univ_map.cmxs
+   validate/validate.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md odoc-pages/index.mld))
+ (stublibs (dllcore_stubs.so dllheap_block_stubs.so)))
+(library
+ (name core)
+ (kind normal)
+ (archives (byte core.cma) (native core.cmxa))
+ (plugins (byte core.cma) (native core.cmxs))
+ (foreign_objects
+  array_stubs.o
+  bigstring_stubs.o
+  gc_stubs.o
+  md5_stubs.o
+  time_ns_stubs.o)
+ (foreign_archives (archives (for all) (files libcore_stubs.a)))
+ (foreign_dll_files ../stublibs/dllcore_stubs.so)
+ (native_archives core.a)
+ (jsoo_runtime strftime.js runtime.js)
+ (requires
+  base
+  base_bigstring
+  core.base_for_tests
+  base_quickcheck
+  bin_prot
+  core.command
+  fieldslib
+  core.filename_base
+  core.heap_block
+  jane-street-headers
+  base.md5
+  ppx_assert.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_inline_test.runtime-lib
+  sexplib
+  splittable_random
+  stdio
+  time_now
+  typerep
+  core.univ_map
+  core.validate
+  variantslib
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_here.runtime-lib
+  ppx_bench.runtime-lib
+  ppx_inline_test.config
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime)
+ (main_module_name Core)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name core__)
+     (visibility public)
+     (kind alias)
+     (source (path Core__) (impl (path core__.ml-gen))))
+    (name Core)
+    (modules
+     (module
+      (obj_name core__Arg)
+      (visibility public)
+      (source (path Arg) (intf (path arg.mli)) (impl (path arg.ml))))
+     (module
+      (obj_name core__Array)
+      (visibility public)
+      (source (path Array) (intf (path array.mli)) (impl (path array.ml))))
+     (module
+      (obj_name core__Bag)
+      (visibility public)
+      (source (path Bag) (intf (path bag.mli)) (impl (path bag.ml))))
+     (module
+      (obj_name core__Bag_intf)
+      (visibility public)
+      (source (path Bag_intf) (impl (path bag_intf.ml))))
+     (module
+      (obj_name core__Bigbuffer)
+      (visibility public)
+      (source
+       (path Bigbuffer)
+       (intf (path bigbuffer.mli))
+       (impl (path bigbuffer.ml))))
+     (module
+      (obj_name core__Bigbuffer_internal)
+      (visibility public)
+      (source
+       (path Bigbuffer_internal)
+       (intf (path bigbuffer_internal.mli))
+       (impl (path bigbuffer_internal.ml))))
+     (module
+      (obj_name core__Bigstring)
+      (visibility public)
+      (source
+       (path Bigstring)
+       (intf (path bigstring.mli))
+       (impl (path bigstring.ml))))
+     (module
+      (obj_name core__Bigsubstring)
+      (visibility public)
+      (source
+       (path Bigsubstring)
+       (intf (path bigsubstring.mli))
+       (impl (path bigsubstring.ml))))
+     (module
+      (obj_name core__Binable)
+      (visibility public)
+      (source
+       (path Binable)
+       (intf (path binable.mli))
+       (impl (path binable.ml))))
+     (module
+      (obj_name core__Binable0)
+      (visibility public)
+      (source
+       (path Binable0)
+       (intf (path binable0.mli))
+       (impl (path binable0.ml))))
+     (module
+      (obj_name core__Binable_intf)
+      (visibility public)
+      (source (path Binable_intf) (impl (path binable_intf.ml))))
+     (module
+      (obj_name core__Binary_searchable)
+      (visibility public)
+      (source
+       (path Binary_searchable)
+       (intf (path binary_searchable.mli))
+       (impl (path binary_searchable.ml))))
+     (module
+      (obj_name core__Binary_searchable_intf)
+      (visibility public)
+      (source
+       (path Binary_searchable_intf)
+       (impl (path binary_searchable_intf.ml))))
+     (module
+      (obj_name core__Blang)
+      (visibility public)
+      (source (path Blang) (intf (path blang.mli)) (impl (path blang.ml))))
+     (module
+      (obj_name core__Blit)
+      (visibility public)
+      (source (path Blit) (intf (path blit.mli)) (impl (path blit.ml))))
+     (module
+      (obj_name core__Blit_intf)
+      (visibility public)
+      (source (path Blit_intf) (impl (path blit_intf.ml))))
+     (module
+      (obj_name core__Bool)
+      (visibility public)
+      (source (path Bool) (intf (path bool.mli)) (impl (path bool.ml))))
+     (module
+      (obj_name core__Bounded_index)
+      (visibility public)
+      (source
+       (path Bounded_index)
+       (intf (path bounded_index.mli))
+       (impl (path bounded_index.ml))))
+     (module
+      (obj_name core__Bounded_index_intf)
+      (visibility public)
+      (source (path Bounded_index_intf) (impl (path bounded_index_intf.ml))))
+     (module
+      (obj_name core__Byte_units)
+      (visibility public)
+      (source
+       (path Byte_units)
+       (intf (path byte_units.mli))
+       (impl (path byte_units.ml))))
+     (module
+      (obj_name core__Byte_units0)
+      (visibility public)
+      (source
+       (path Byte_units0)
+       (intf (path byte_units0.mli))
+       (impl (path byte_units0.ml))))
+     (module
+      (obj_name core__Bytes)
+      (visibility public)
+      (source (path Bytes) (intf (path bytes.mli)) (impl (path bytes.ml))))
+     (module
+      (obj_name core__Char)
+      (visibility public)
+      (source (path Char) (intf (path char.mli)) (impl (path char.ml))))
+     (module
+      (obj_name core__Command_internal)
+      (visibility public)
+      (source (path Command_internal) (impl (path command_internal.ml))))
+     (module
+      (obj_name core__Command_shape)
+      (visibility public)
+      (source
+       (path Command_shape)
+       (intf (path command_shape.mli))
+       (impl (path command_shape.ml))))
+     (module
+      (obj_name core__Comparable)
+      (visibility public)
+      (source
+       (path Comparable)
+       (intf (path comparable.mli))
+       (impl (path comparable.ml))))
+     (module
+      (obj_name core__Comparable_intf)
+      (visibility public)
+      (source (path Comparable_intf) (impl (path comparable_intf.ml))))
+     (module
+      (obj_name core__Comparator)
+      (visibility public)
+      (source
+       (path Comparator)
+       (intf (path comparator.mli))
+       (impl (path comparator.ml))))
+     (module
+      (obj_name core__Container)
+      (visibility public)
+      (source
+       (path Container)
+       (intf (path container.mli))
+       (impl (path container.ml))))
+     (module
+      (obj_name core__Container_intf)
+      (visibility public)
+      (source (path Container_intf) (impl (path container_intf.ml))))
+     (module
+      (obj_name core)
+      (visibility public)
+      (source (path Core) (impl (path core.ml))))
+     (module
+      (obj_name core__Core_bin_prot)
+      (visibility public)
+      (source
+       (path Core_bin_prot)
+       (intf (path core_bin_prot.mli))
+       (impl (path core_bin_prot.ml))))
+     (module
+      (obj_name core__Core_pervasives)
+      (visibility public)
+      (source
+       (path Core_pervasives)
+       (intf (path core_pervasives.mli))
+       (impl (path core_pervasives.ml))))
+     (module
+      (obj_name core__Core_sys)
+      (visibility public)
+      (source
+       (path Core_sys)
+       (intf (path core_sys.mli))
+       (impl (path core_sys.ml))))
+     (module
+      (obj_name core__Date)
+      (visibility public)
+      (source (path Date) (intf (path date.mli)) (impl (path date.ml))))
+     (module
+      (obj_name core__Date0)
+      (visibility public)
+      (source (path Date0) (intf (path date0.mli)) (impl (path date0.ml))))
+     (module
+      (obj_name core__Date0_intf)
+      (visibility public)
+      (source (path Date0_intf) (impl (path date0_intf.ml))))
+     (module
+      (obj_name core__Date_intf)
+      (visibility public)
+      (source (path Date_intf) (impl (path date_intf.ml))))
+     (module
+      (obj_name core__Day_of_week)
+      (visibility public)
+      (source
+       (path Day_of_week)
+       (intf (path day_of_week.mli))
+       (impl (path day_of_week.ml))))
+     (module
+      (obj_name core__Day_of_week_intf)
+      (visibility public)
+      (source (path Day_of_week_intf) (impl (path day_of_week_intf.ml))))
+     (module
+      (obj_name core__Debug)
+      (visibility public)
+      (source (path Debug) (intf (path debug.mli)) (impl (path debug.ml))))
+     (module
+      (obj_name core__Deprecate_pipe_bang)
+      (visibility public)
+      (source
+       (path Deprecate_pipe_bang)
+       (intf (path deprecate_pipe_bang.mli))
+       (impl (path deprecate_pipe_bang.ml))))
+     (module
+      (obj_name core__Deque)
+      (visibility public)
+      (source (path Deque) (intf (path deque.mli)) (impl (path deque.ml))))
+     (module
+      (obj_name core__Deriving_hash)
+      (visibility public)
+      (source
+       (path Deriving_hash)
+       (intf (path deriving_hash.mli))
+       (impl (path deriving_hash.ml))))
+     (module
+      (obj_name core__Deriving_hash_intf)
+      (visibility public)
+      (source (path Deriving_hash_intf) (impl (path deriving_hash_intf.ml))))
+     (module
+      (obj_name core__Digit_string_helpers)
+      (visibility public)
+      (source
+       (path Digit_string_helpers)
+       (intf (path digit_string_helpers.mli))
+       (impl (path digit_string_helpers.ml))))
+     (module
+      (obj_name core__Doubly_linked)
+      (visibility public)
+      (source
+       (path Doubly_linked)
+       (intf (path doubly_linked.mli))
+       (impl (path doubly_linked.ml))))
+     (module
+      (obj_name core__Doubly_linked_intf)
+      (visibility public)
+      (source (path Doubly_linked_intf) (impl (path doubly_linked_intf.ml))))
+     (module
+      (obj_name core__Either)
+      (visibility public)
+      (source (path Either) (intf (path either.mli)) (impl (path either.ml))))
+     (module
+      (obj_name core__Error)
+      (visibility public)
+      (source (path Error) (intf (path error.mli)) (impl (path error.ml))))
+     (module
+      (obj_name core__Fdeque)
+      (visibility public)
+      (source (path Fdeque) (intf (path fdeque.mli)) (impl (path fdeque.ml))))
+     (module
+      (obj_name core__Filename)
+      (visibility public)
+      (source
+       (path Filename)
+       (intf (path filename.mli))
+       (impl (path filename.ml))))
+     (module
+      (obj_name core__Float)
+      (visibility public)
+      (source (path Float) (intf (path float.mli)) (impl (path float.ml))))
+     (module
+      (obj_name core__Float_with_finite_only_serialization)
+      (visibility public)
+      (source
+       (path Float_with_finite_only_serialization)
+       (intf (path float_with_finite_only_serialization.mli))
+       (impl (path float_with_finite_only_serialization.ml))))
+     (module
+      (obj_name core__Fn)
+      (visibility public)
+      (source (path Fn) (intf (path fn.mli)) (impl (path fn.ml))))
+     (module
+      (obj_name core__Fqueue)
+      (visibility public)
+      (source (path Fqueue) (intf (path fqueue.mli)) (impl (path fqueue.ml))))
+     (module
+      (obj_name core__Gc)
+      (visibility public)
+      (source (path Gc) (intf (path gc.mli)) (impl (path gc.ml))))
+     (module
+      (obj_name core__Hash_queue)
+      (visibility public)
+      (source
+       (path Hash_queue)
+       (intf (path hash_queue.mli))
+       (impl (path hash_queue.ml))))
+     (module
+      (obj_name core__Hash_queue_intf)
+      (visibility public)
+      (source (path Hash_queue_intf) (impl (path hash_queue_intf.ml))))
+     (module
+      (obj_name core__Hash_set)
+      (visibility public)
+      (source
+       (path Hash_set)
+       (intf (path hash_set.mli))
+       (impl (path hash_set.ml))))
+     (module
+      (obj_name core__Hash_set_intf)
+      (visibility public)
+      (source (path Hash_set_intf) (impl (path hash_set_intf.ml))))
+     (module
+      (obj_name core__Hashable)
+      (visibility public)
+      (source
+       (path Hashable)
+       (intf (path hashable.mli))
+       (impl (path hashable.ml))))
+     (module
+      (obj_name core__Hashable_intf)
+      (visibility public)
+      (source (path Hashable_intf) (impl (path hashable_intf.ml))))
+     (module
+      (obj_name core__Hashtbl)
+      (visibility public)
+      (source
+       (path Hashtbl)
+       (intf (path hashtbl.mli))
+       (impl (path hashtbl.ml))))
+     (module
+      (obj_name core__Hashtbl_intf)
+      (visibility public)
+      (source (path Hashtbl_intf) (impl (path hashtbl_intf.ml))))
+     (module
+      (obj_name core__Hexdump)
+      (visibility public)
+      (source
+       (path Hexdump)
+       (intf (path hexdump.mli))
+       (impl (path hexdump.ml))))
+     (module
+      (obj_name core__Hexdump_intf)
+      (visibility public)
+      (source (path Hexdump_intf) (impl (path hexdump_intf.ml))))
+     (module
+      (obj_name core__Host_and_port)
+      (visibility public)
+      (source
+       (path Host_and_port)
+       (intf (path host_and_port.mli))
+       (impl (path host_and_port.ml))))
+     (module
+      (obj_name core__Identifiable)
+      (visibility public)
+      (source
+       (path Identifiable)
+       (intf (path identifiable.mli))
+       (impl (path identifiable.ml))))
+     (module
+      (obj_name core__Identifiable_intf)
+      (visibility public)
+      (source (path Identifiable_intf) (impl (path identifiable_intf.ml))))
+     (module
+      (obj_name core__Immediate_option)
+      (visibility public)
+      (source
+       (path Immediate_option)
+       (intf (path immediate_option.mli))
+       (impl (path immediate_option.ml))))
+     (module
+      (obj_name core__Immediate_option_intf)
+      (visibility public)
+      (source
+       (path Immediate_option_intf)
+       (impl (path immediate_option_intf.ml))))
+     (module
+      (obj_name core__Import)
+      (visibility public)
+      (source (path Import) (impl (path import.ml))))
+     (module
+      (obj_name core__Indexed_container)
+      (visibility public)
+      (source
+       (path Indexed_container)
+       (intf (path indexed_container.mli))
+       (impl (path indexed_container.ml))))
+     (module
+      (obj_name core__Indexed_container_intf)
+      (visibility public)
+      (source
+       (path Indexed_container_intf)
+       (impl (path indexed_container_intf.ml))))
+     (module
+      (obj_name core__Info)
+      (visibility public)
+      (source (path Info) (intf (path info.mli)) (impl (path info.ml))))
+     (module
+      (obj_name core__Info_intf)
+      (visibility public)
+      (source (path Info_intf) (impl (path info_intf.ml))))
+     (module
+      (obj_name core__Int)
+      (visibility public)
+      (source (path Int) (intf (path int.mli)) (impl (path int.ml))))
+     (module
+      (obj_name core__Int32)
+      (visibility public)
+      (source (path Int32) (intf (path int32.mli)) (impl (path int32.ml))))
+     (module
+      (obj_name core__Int63)
+      (visibility public)
+      (source (path Int63) (intf (path int63.mli)) (impl (path int63.ml))))
+     (module
+      (obj_name core__Int64)
+      (visibility public)
+      (source (path Int64) (intf (path int64.mli)) (impl (path int64.ml))))
+     (module
+      (obj_name core__Int_intf)
+      (visibility public)
+      (source (path Int_intf) (impl (path int_intf.ml))))
+     (module
+      (obj_name core__Interfaces)
+      (visibility public)
+      (source (path Interfaces) (impl (path interfaces.ml))))
+     (module
+      (obj_name core__Lazy)
+      (visibility public)
+      (source (path Lazy) (intf (path lazy.mli)) (impl (path lazy.ml))))
+     (module
+      (obj_name core__Linked_queue)
+      (visibility public)
+      (source
+       (path Linked_queue)
+       (intf (path linked_queue.mli))
+       (impl (path linked_queue.ml))))
+     (module
+      (obj_name core__List)
+      (visibility public)
+      (source (path List) (intf (path list.mli)) (impl (path list.ml))))
+     (module
+      (obj_name core__List0)
+      (visibility public)
+      (source (path List0) (intf (path list0.mli)) (impl (path list0.ml))))
+     (module
+      (obj_name core__Make_stable)
+      (visibility public)
+      (source
+       (path Make_stable)
+       (intf (path make_stable.mli))
+       (impl (path make_stable.ml))))
+     (module
+      (obj_name core__Make_substring)
+      (visibility public)
+      (source
+       (path Make_substring)
+       (intf (path make_substring.mli))
+       (impl (path make_substring.ml))))
+     (module
+      (obj_name core__Make_substring_intf)
+      (visibility public)
+      (source (path Make_substring_intf) (impl (path make_substring_intf.ml))))
+     (module
+      (obj_name core__Map)
+      (visibility public)
+      (source (path Map) (intf (path map.mli)) (impl (path map.ml))))
+     (module
+      (obj_name core__Map_intf)
+      (visibility public)
+      (source (path Map_intf) (impl (path map_intf.ml))))
+     (module
+      (obj_name core__Maybe_bound)
+      (visibility public)
+      (source
+       (path Maybe_bound)
+       (intf (path maybe_bound.mli))
+       (impl (path maybe_bound.ml))))
+     (module
+      (obj_name core__Md5)
+      (visibility public)
+      (source (path Md5) (intf (path md5.mli)) (impl (path md5.ml))))
+     (module
+      (obj_name core__Memo)
+      (visibility public)
+      (source (path Memo) (intf (path memo.mli)) (impl (path memo.ml))))
+     (module
+      (obj_name core__Month)
+      (visibility public)
+      (source (path Month) (intf (path month.mli)) (impl (path month.ml))))
+     (module
+      (obj_name core__Month_intf)
+      (visibility public)
+      (source (path Month_intf) (impl (path month_intf.ml))))
+     (module
+      (obj_name core__Nativeint)
+      (visibility public)
+      (source
+       (path Nativeint)
+       (intf (path nativeint.mli))
+       (impl (path nativeint.ml))))
+     (module
+      (obj_name core__Never_returns)
+      (visibility public)
+      (source
+       (path Never_returns)
+       (intf (path never_returns.mli))
+       (impl (path never_returns.ml))))
+     (module
+      (obj_name core__No_polymorphic_compare)
+      (visibility public)
+      (source
+       (path No_polymorphic_compare)
+       (intf (path no_polymorphic_compare.mli))
+       (impl (path no_polymorphic_compare.ml))))
+     (module
+      (obj_name core__Nothing)
+      (visibility public)
+      (source
+       (path Nothing)
+       (intf (path nothing.mli))
+       (impl (path nothing.ml))))
+     (module
+      (obj_name core__Ofday_float)
+      (visibility public)
+      (source
+       (path Ofday_float)
+       (intf (path ofday_float.mli))
+       (impl (path ofday_float.ml))))
+     (module
+      (obj_name core__Ofday_helpers)
+      (visibility public)
+      (source
+       (path Ofday_helpers)
+       (intf (path ofday_helpers.mli))
+       (impl (path ofday_helpers.ml))))
+     (module
+      (obj_name core__Ofday_intf)
+      (visibility public)
+      (source (path Ofday_intf) (impl (path ofday_intf.ml))))
+     (module
+      (obj_name core__Ofday_ns)
+      (visibility public)
+      (source
+       (path Ofday_ns)
+       (intf (path ofday_ns.mli))
+       (impl (path ofday_ns.ml))))
+     (module
+      (obj_name core__Only_in_test)
+      (visibility public)
+      (source
+       (path Only_in_test)
+       (intf (path only_in_test.mli))
+       (impl (path only_in_test.ml))))
+     (module
+      (obj_name core__Option)
+      (visibility public)
+      (source (path Option) (intf (path option.mli)) (impl (path option.ml))))
+     (module
+      (obj_name core__Option_array)
+      (visibility public)
+      (source
+       (path Option_array)
+       (intf (path option_array.mli))
+       (impl (path option_array.ml))))
+     (module
+      (obj_name core__Optional_syntax)
+      (visibility public)
+      (source
+       (path Optional_syntax)
+       (intf (path optional_syntax.mli))
+       (impl (path optional_syntax.ml))))
+     (module
+      (obj_name core__Optional_syntax_intf)
+      (visibility public)
+      (source
+       (path Optional_syntax_intf)
+       (impl (path optional_syntax_intf.ml))))
+     (module
+      (obj_name core__Or_error)
+      (visibility public)
+      (source
+       (path Or_error)
+       (intf (path or_error.mli))
+       (impl (path or_error.ml))))
+     (module
+      (obj_name core__Ordered_collection_common)
+      (visibility public)
+      (source
+       (path Ordered_collection_common)
+       (intf (path ordered_collection_common.mli))
+       (impl (path ordered_collection_common.ml))))
+     (module
+      (obj_name core__Ordering)
+      (visibility public)
+      (source
+       (path Ordering)
+       (intf (path ordering.mli))
+       (impl (path ordering.ml))))
+     (module
+      (obj_name core__Percent)
+      (visibility public)
+      (source
+       (path Percent)
+       (intf (path percent.mli))
+       (impl (path percent.ml))))
+     (module
+      (obj_name core__Perms)
+      (visibility public)
+      (source (path Perms) (intf (path perms.mli)) (impl (path perms.ml))))
+     (module
+      (obj_name core__Pid)
+      (visibility public)
+      (source (path Pid) (intf (path pid.mli)) (impl (path pid.ml))))
+     (module
+      (obj_name core__Printexc)
+      (visibility public)
+      (source
+       (path Printexc)
+       (intf (path printexc.mli))
+       (impl (path printexc.ml))))
+     (module
+      (obj_name core__Printf)
+      (visibility public)
+      (source (path Printf) (intf (path printf.mli)) (impl (path printf.ml))))
+     (module
+      (obj_name core__Queue)
+      (visibility public)
+      (source (path Queue) (intf (path queue.mli)) (impl (path queue.ml))))
+     (module
+      (obj_name core__Queue_intf)
+      (visibility public)
+      (source (path Queue_intf) (impl (path queue_intf.ml))))
+     (module
+      (obj_name core__Quickcheck)
+      (visibility public)
+      (source
+       (path Quickcheck)
+       (intf (path quickcheck.mli))
+       (impl (path quickcheck.ml))))
+     (module
+      (obj_name core__Quickcheck_intf)
+      (visibility public)
+      (source (path Quickcheck_intf) (impl (path quickcheck_intf.ml))))
+     (module
+      (obj_name core__Quickcheckable)
+      (visibility public)
+      (source
+       (path Quickcheckable)
+       (intf (path quickcheckable.mli))
+       (impl (path quickcheckable.ml))))
+     (module
+      (obj_name core__Quickcheckable_intf)
+      (visibility public)
+      (source (path Quickcheckable_intf) (impl (path quickcheckable_intf.ml))))
+     (module
+      (obj_name core__Ref)
+      (visibility public)
+      (source (path Ref) (intf (path ref.mli)) (impl (path ref.ml))))
+     (module
+      (obj_name core__Result)
+      (visibility public)
+      (source (path Result) (intf (path result.mli)) (impl (path result.ml))))
+     (module
+      (obj_name core__Robustly_comparable)
+      (visibility public)
+      (source (path Robustly_comparable) (impl (path robustly_comparable.ml))))
+     (module
+      (obj_name core__Sequence)
+      (visibility public)
+      (source
+       (path Sequence)
+       (intf (path sequence.mli))
+       (impl (path sequence.ml))))
+     (module
+      (obj_name core__Set)
+      (visibility public)
+      (source (path Set) (intf (path set.mli)) (impl (path set.ml))))
+     (module
+      (obj_name core__Set_intf)
+      (visibility public)
+      (source (path Set_intf) (impl (path set_intf.ml))))
+     (module
+      (obj_name core__Set_once)
+      (visibility public)
+      (source
+       (path Set_once)
+       (intf (path set_once.mli))
+       (impl (path set_once.ml))))
+     (module
+      (obj_name core__Sexp)
+      (visibility public)
+      (source (path Sexp) (intf (path sexp.mli)) (impl (path sexp.ml))))
+     (module
+      (obj_name core__Sexpable)
+      (visibility public)
+      (source
+       (path Sexpable)
+       (intf (path sexpable.mli))
+       (impl (path sexpable.ml))))
+     (module
+      (obj_name core__Sign)
+      (visibility public)
+      (source (path Sign) (intf (path sign.mli)) (impl (path sign.ml))))
+     (module
+      (obj_name core__Sign_or_nan)
+      (visibility public)
+      (source
+       (path Sign_or_nan)
+       (intf (path sign_or_nan.mli))
+       (impl (path sign_or_nan.ml))))
+     (module
+      (obj_name core__Signal)
+      (visibility public)
+      (source (path Signal) (intf (path signal.mli)) (impl (path signal.ml))))
+     (module
+      (obj_name core__Source_code_position)
+      (visibility public)
+      (source
+       (path Source_code_position)
+       (intf (path source_code_position.mli))
+       (impl (path source_code_position.ml))))
+     (module
+      (obj_name core__Source_code_position0)
+      (visibility public)
+      (source
+       (path Source_code_position0)
+       (intf (path source_code_position0.mli))
+       (impl (path source_code_position0.ml))))
+     (module
+      (obj_name core__Span_float)
+      (visibility public)
+      (source
+       (path Span_float)
+       (intf (path span_float.mli))
+       (impl (path span_float.ml))))
+     (module
+      (obj_name core__Span_helpers)
+      (visibility public)
+      (source
+       (path Span_helpers)
+       (intf (path span_helpers.mli))
+       (impl (path span_helpers.ml))))
+     (module
+      (obj_name core__Span_intf)
+      (visibility public)
+      (source (path Span_intf) (impl (path span_intf.ml))))
+     (module
+      (obj_name core__Span_ns)
+      (visibility public)
+      (source
+       (path Span_ns)
+       (intf (path span_ns.mli))
+       (impl (path span_ns.ml))))
+     (module
+      (obj_name core__Stable)
+      (visibility public)
+      (source (path Stable) (impl (path stable.ml))))
+     (module
+      (obj_name core__Stable_comparable)
+      (visibility public)
+      (source (path Stable_comparable) (impl (path stable_comparable.ml))))
+     (module
+      (obj_name core__Stable_int63able)
+      (visibility public)
+      (source (path Stable_int63able) (impl (path stable_int63able.ml))))
+     (module
+      (obj_name core__Stable_internal)
+      (visibility public)
+      (source (path Stable_internal) (impl (path stable_internal.ml))))
+     (module
+      (obj_name core__Stable_module_types)
+      (visibility public)
+      (source (path Stable_module_types) (impl (path stable_module_types.ml))))
+     (module
+      (obj_name core__Stable_unit_test)
+      (visibility public)
+      (source
+       (path Stable_unit_test)
+       (intf (path stable_unit_test.mli))
+       (impl (path stable_unit_test.ml))))
+     (module
+      (obj_name core__Stable_unit_test_intf)
+      (visibility public)
+      (source
+       (path Stable_unit_test_intf)
+       (impl (path stable_unit_test_intf.ml))))
+     (module
+      (obj_name core__Stack)
+      (visibility public)
+      (source (path Stack) (intf (path stack.mli)) (impl (path stack.ml))))
+     (module
+      (obj_name core__Std_internal)
+      (visibility public)
+      (source (path Std_internal) (impl (path std_internal.ml))))
+     (module
+      (obj_name core__String)
+      (visibility public)
+      (source (path String) (intf (path string.mli)) (impl (path string.ml))))
+     (module
+      (obj_name core__String_id)
+      (visibility public)
+      (source
+       (path String_id)
+       (intf (path string_id.mli))
+       (impl (path string_id.ml))))
+     (module
+      (obj_name core__String_id_intf)
+      (visibility public)
+      (source (path String_id_intf) (impl (path string_id_intf.ml))))
+     (module
+      (obj_name core__Substring)
+      (visibility public)
+      (source
+       (path Substring)
+       (intf (path substring.mli))
+       (impl (path substring.ml))))
+     (module
+      (obj_name core__Substring_intf)
+      (visibility public)
+      (source (path Substring_intf) (impl (path substring_intf.ml))))
+     (module
+      (obj_name core__T)
+      (visibility public)
+      (source (path T) (impl (path t.ml))))
+     (module
+      (obj_name core__Time)
+      (visibility public)
+      (source (path Time) (intf (path time.mli)) (impl (path time.ml))))
+     (module
+      (obj_name core__Time0_intf)
+      (visibility public)
+      (source (path Time0_intf) (impl (path time0_intf.ml))))
+     (module
+      (obj_name core__Time_float)
+      (visibility public)
+      (source
+       (path Time_float)
+       (intf (path time_float.mli))
+       (impl (path time_float.ml))))
+     (module
+      (obj_name core__Time_float0)
+      (visibility public)
+      (source
+       (path Time_float0)
+       (intf (path time_float0.mli))
+       (impl (path time_float0.ml))))
+     (module
+      (obj_name core__Time_intf)
+      (visibility public)
+      (source (path Time_intf) (impl (path time_intf.ml))))
+     (module
+      (obj_name core__Time_ns)
+      (visibility public)
+      (source
+       (path Time_ns)
+       (intf (path time_ns.mli))
+       (impl (path time_ns.ml))))
+     (module
+      (obj_name core__Time_ns_alternate_sexp)
+      (visibility public)
+      (source
+       (path Time_ns_alternate_sexp)
+       (intf (path time_ns_alternate_sexp.mli))
+       (impl (path time_ns_alternate_sexp.ml))))
+     (module
+      (obj_name core__Time_ns_intf)
+      (visibility public)
+      (source (path Time_ns_intf) (impl (path time_ns_intf.ml))))
+     (module
+      (obj_name core__Tuple)
+      (visibility public)
+      (source (path Tuple) (intf (path tuple.mli)) (impl (path tuple.ml))))
+     (module
+      (obj_name core__Type_equal)
+      (visibility public)
+      (source
+       (path Type_equal)
+       (intf (path type_equal.mli))
+       (impl (path type_equal.ml))))
+     (module
+      (obj_name core__Type_equal_intf)
+      (visibility public)
+      (source (path Type_equal_intf) (impl (path type_equal_intf.ml))))
+     (module
+      (obj_name core__Type_immediacy)
+      (visibility public)
+      (source
+       (path Type_immediacy)
+       (intf (path type_immediacy.mli))
+       (impl (path type_immediacy.ml))))
+     (module
+      (obj_name core__Uniform_array)
+      (visibility public)
+      (source
+       (path Uniform_array)
+       (intf (path uniform_array.mli))
+       (impl (path uniform_array.ml))))
+     (module
+      (obj_name core__Union_find)
+      (visibility public)
+      (source
+       (path Union_find)
+       (intf (path union_find.mli))
+       (impl (path union_find.ml))))
+     (module
+      (obj_name core__Unique_id)
+      (visibility public)
+      (source
+       (path Unique_id)
+       (intf (path unique_id.mli))
+       (impl (path unique_id.ml))))
+     (module
+      (obj_name core__Unique_id_intf)
+      (visibility public)
+      (source (path Unique_id_intf) (impl (path unique_id_intf.ml))))
+     (module
+      (obj_name core__Unit)
+      (visibility public)
+      (source (path Unit) (intf (path unit.mli)) (impl (path unit.ml))))
+     (module
+      (obj_name core__Unit_of_time)
+      (visibility public)
+      (source
+       (path Unit_of_time)
+       (intf (path unit_of_time.mli))
+       (impl (path unit_of_time.ml))))
+     (module
+      (obj_name core__Validated)
+      (visibility public)
+      (source
+       (path Validated)
+       (intf (path validated.mli))
+       (impl (path validated.ml))))
+     (module
+      (obj_name core__Validated_intf)
+      (visibility public)
+      (source (path Validated_intf) (impl (path validated_intf.ml))))
+     (module
+      (obj_name core__Zone)
+      (visibility public)
+      (source (path Zone) (intf (path zone.mli)) (impl (path zone.ml))))
+     (module
+      (obj_name core__Zone_intf)
+      (visibility public)
+      (source (path Zone_intf) (impl (path zone_intf.ml))))))
+   (wrapped true))))
+(library
+ (name core.base_for_tests)
+ (kind normal)
+ (archives
+  (byte base_for_tests/base_for_tests.cma)
+  (native base_for_tests/base_for_tests.cmxa))
+ (plugins
+  (byte base_for_tests/base_for_tests.cma)
+  (native base_for_tests/base_for_tests.cmxs))
+ (native_archives base_for_tests/base_for_tests.a)
+ (requires
+  base
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_here.runtime-lib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib)
+ (main_module_name Base_for_tests)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name base_for_tests)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Base_for_tests)
+      (impl (path base_for_tests/base_for_tests.ml-gen))))
+    (name Base_for_tests)
+    (modules
+     (module
+      (obj_name base_for_tests__Test_binary_searchable)
+      (visibility public)
+      (source
+       (path Test_binary_searchable)
+       (intf (path base_for_tests/test_binary_searchable.mli))
+       (impl (path base_for_tests/test_binary_searchable.ml))))
+     (module
+      (obj_name base_for_tests__Test_binary_searchable_intf)
+      (visibility public)
+      (source
+       (path Test_binary_searchable_intf)
+       (impl (path base_for_tests/test_binary_searchable_intf.ml))))
+     (module
+      (obj_name base_for_tests__Test_blit)
+      (visibility public)
+      (source
+       (path Test_blit)
+       (intf (path base_for_tests/test_blit.mli))
+       (impl (path base_for_tests/test_blit.ml))))
+     (module
+      (obj_name base_for_tests__Test_blit_intf)
+      (visibility public)
+      (source
+       (path Test_blit_intf)
+       (impl (path base_for_tests/test_blit_intf.ml))))))
+   (wrapped true))))
+(library
+ (name core.command)
+ (kind normal)
+ (archives (byte command/command.cma) (native command/command.cmxa))
+ (plugins (byte command/command.cma) (native command/command.cmxs))
+ (native_archives command/command.a)
+ (requires
+  base
+  core.filename_base
+  stdio
+  core.univ_map
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_here.runtime-lib
+  ppx_assert.runtime-lib
+  ppx_bench.runtime-lib
+  bin_prot
+  fieldslib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  typerep
+  variantslib
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime
+  base_quickcheck)
+ (main_module_name Command)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name command__)
+     (visibility public)
+     (kind alias)
+     (source (path Command__) (impl (path command/command__.ml-gen))))
+    (name Command)
+    (modules
+     (module
+      (obj_name command)
+      (visibility public)
+      (source
+       (path Command)
+       (intf (path command/command.mli))
+       (impl (path command/command.ml))))
+     (module
+      (obj_name command__Command_intf)
+      (visibility public)
+      (source (path Command_intf) (impl (path command/command_intf.ml))))
+     (module
+      (obj_name command__Env_var)
+      (visibility public)
+      (source
+       (path Env_var)
+       (intf (path command/env_var.mli))
+       (impl (path command/env_var.ml))))
+     (module
+      (obj_name command__Import)
+      (visibility public)
+      (source (path Import) (impl (path command/import.ml))))
+     (module
+      (obj_name command__Shape)
+      (visibility public)
+      (source
+       (path Shape)
+       (intf (path command/shape.mli))
+       (impl (path command/shape.ml))))))
+   (wrapped true))))
+(library
+ (name core.filename_base)
+ (kind normal)
+ (archives
+  (byte filename_base/filename_base.cma)
+  (native filename_base/filename_base.cmxa))
+ (plugins
+  (byte filename_base/filename_base.cma)
+  (native filename_base/filename_base.cmxs))
+ (native_archives filename_base/filename_base.a)
+ (requires
+  base
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_here.runtime-lib
+  ppx_assert.runtime-lib
+  ppx_bench.runtime-lib
+  bin_prot
+  fieldslib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  typerep
+  variantslib
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime
+  base_quickcheck)
+ (main_module_name Filename_base)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name filename_base)
+   (visibility public)
+   (source
+    (path Filename_base)
+    (intf (path filename_base/filename_base.mli))
+    (impl (path filename_base/filename_base.ml))))))
+(library
+ (name core.heap_block)
+ (kind normal)
+ (archives
+  (byte heap_block/heap_block.cma)
+  (native heap_block/heap_block.cmxa))
+ (plugins
+  (byte heap_block/heap_block.cma)
+  (native heap_block/heap_block.cmxs))
+ (foreign_objects heap_block/heap_block_stubs.o)
+ (foreign_archives
+  (archives (for all) (files heap_block/libheap_block_stubs.a)))
+ (foreign_dll_files ../stublibs/dllheap_block_stubs.so)
+ (native_archives heap_block/heap_block.a)
+ (jsoo_runtime heap_block/runtime.js)
+ (requires
+  base
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_here.runtime-lib
+  ppx_assert.runtime-lib
+  ppx_bench.runtime-lib
+  bin_prot
+  fieldslib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  typerep
+  variantslib
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime
+  base_quickcheck)
+ (main_module_name Heap_block)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name heap_block)
+   (visibility public)
+   (source
+    (path Heap_block)
+    (intf (path heap_block/heap_block.mli))
+    (impl (path heap_block/heap_block.ml))))))
+(library
+ (name core.top)
+ (kind normal)
+ (archives (byte top/core_top.cma))
+ (plugins (byte top/core_top.cma))
+ (requires compiler-libs.toplevel core)
+ (main_module_name Core_top)
+ (modes byte)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name core_top)
+     (visibility public)
+     (kind alias)
+     (source (path Core_top) (impl (path top/core_top.ml-gen))))
+    (name Core_top)
+    (modules
+     (module
+      (obj_name core_top__Core_install_printers)
+      (visibility public)
+      (source
+       (path Core_install_printers)
+       (impl (path top/core_install_printers.ml))))))
+   (wrapped true))))
+(library
+ (name core.univ_map)
+ (kind normal)
+ (archives (byte univ_map/univ_map.cma) (native univ_map/univ_map.cmxa))
+ (plugins (byte univ_map/univ_map.cma) (native univ_map/univ_map.cmxs))
+ (native_archives univ_map/univ_map.a)
+ (requires
+  base
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_here.runtime-lib
+  ppx_assert.runtime-lib
+  ppx_bench.runtime-lib
+  bin_prot
+  fieldslib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  typerep
+  variantslib
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime
+  base_quickcheck)
+ (main_module_name Univ_map)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name univ_map__)
+     (visibility public)
+     (kind alias)
+     (source (path Univ_map__) (impl (path univ_map/univ_map__.ml-gen))))
+    (name Univ_map)
+    (modules
+     (module
+      (obj_name univ_map)
+      (visibility public)
+      (source
+       (path Univ_map)
+       (intf (path univ_map/univ_map.mli))
+       (impl (path univ_map/univ_map.ml))))
+     (module
+      (obj_name univ_map__Univ_map_intf)
+      (visibility public)
+      (source (path Univ_map_intf) (impl (path univ_map/univ_map_intf.ml))))))
+   (wrapped true))))
+(library
+ (name core.validate)
+ (kind normal)
+ (archives (byte validate/validate.cma) (native validate/validate.cmxa))
+ (plugins (byte validate/validate.cma) (native validate/validate.cmxs))
+ (native_archives validate/validate.a)
+ (requires
+  base
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_here.runtime-lib
+  ppx_assert.runtime-lib
+  ppx_bench.runtime-lib
+  bin_prot
+  fieldslib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  typerep
+  variantslib
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime
+  base_quickcheck)
+ (main_module_name Validate)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name validate)
+   (visibility public)
+   (source
+    (path Validate)
+    (intf (path validate/validate.mli))
+    (impl (path validate/validate.ml))))))

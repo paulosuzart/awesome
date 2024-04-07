@@ -1,0 +1,44 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_optcomp" {"D"}
+  "doc/ppx_optcomp/CHANGES.md" {"F:afbfad20601780c92257284013399bd1"}
+  "doc/ppx_optcomp/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_optcomp/README.md" {"F:925e6707a0c910c82f2744af21a71a1b"}
+  "lib/ppx_optcomp" {"D"}
+  "lib/ppx_optcomp/META" {"F:65a105b0d0e4fca4420b917f9567bc6d"}
+  "lib/ppx_optcomp/cparser.ml" {"F:33bd0d4629b042ead3a75c3977b8718b"}
+  "lib/ppx_optcomp/dune-package" {"F:d427ac70cd316d583f55f954f1ba1b35"}
+  "lib/ppx_optcomp/interpreter.ml" {"F:58901e1cf1c26d0e6f663f2c46f322e6"}
+  "lib/ppx_optcomp/opam" {"F:9f238dead4d42bd3796d598f319604e0"}
+  "lib/ppx_optcomp/ppx_optcomp.a" {"F:1ecdc3826cb226296a710dfe4fcf53f2"}
+  "lib/ppx_optcomp/ppx_optcomp.cma" {"F:467d1d05442a581b62f517379c884f6b"}
+  "lib/ppx_optcomp/ppx_optcomp.cmi" {"F:418294bb676da2d2f27774e148de9b7d"}
+  "lib/ppx_optcomp/ppx_optcomp.cmt" {"F:e78a1d1d33fcc4d96c49e39ff1bcc981"}
+  "lib/ppx_optcomp/ppx_optcomp.cmx" {"F:eebfedc533203fadaab01b7c663bfe7d"}
+  "lib/ppx_optcomp/ppx_optcomp.cmxa" {"F:d50b5e828e5399c488da1c39e5862260"}
+  "lib/ppx_optcomp/ppx_optcomp.cmxs" {"F:e48af400b6d951489f6695bca118188e"}
+  "lib/ppx_optcomp/ppx_optcomp.ml" {"F:f4ae4fec91c72d33425bfc617d8fed31"}
+  "lib/ppx_optcomp/ppx_optcomp__.cmi" {"F:3254476b0635f8a4d0e6dafb4e1761ca"}
+  "lib/ppx_optcomp/ppx_optcomp__.cmt" {"F:3760fa361a3d5cd8ac3719d160a0838a"}
+  "lib/ppx_optcomp/ppx_optcomp__.cmx" {"F:5cd8f7178abff3557dfe1574beb66565"}
+  "lib/ppx_optcomp/ppx_optcomp__.ml" {"F:43f9df20d0b63c62031f4a60d473b6f0"}
+  "lib/ppx_optcomp/ppx_optcomp__Cparser.cmi"
+    {"F:bdea982c47d9f3eeae21772a7353c15a"}
+  "lib/ppx_optcomp/ppx_optcomp__Cparser.cmt"
+    {"F:a609026d1ed127ba6835109c736ed6c5"}
+  "lib/ppx_optcomp/ppx_optcomp__Cparser.cmx"
+    {"F:3fa7012a48fc229592e61ff5a96435aa"}
+  "lib/ppx_optcomp/ppx_optcomp__Interpreter.cmi"
+    {"F:e051685cdaaaf5f236ce1f1b748b2341"}
+  "lib/ppx_optcomp/ppx_optcomp__Interpreter.cmt"
+    {"F:d9ddc2dbd51d0aea2aa21282471e247f"}
+  "lib/ppx_optcomp/ppx_optcomp__Interpreter.cmx"
+    {"F:629b2581c64e405fdb523d72415f2d3b"}
+  "lib/ppx_optcomp/ppx_optcomp__Token.cmi"
+    {"F:a3c0d7db7f6e13a3e8abf3674c5bf326"}
+  "lib/ppx_optcomp/ppx_optcomp__Token.cmt"
+    {"F:5ce166125739a2b3420f7f01ee44ad03"}
+  "lib/ppx_optcomp/ppx_optcomp__Token.cmx"
+    {"F:bca2f6a9865209d6895d5e9ff648bb1f"}
+  "lib/ppx_optcomp/token.ml" {"F:a6e83f4bf9672fa3305e06c4b2cca23e"}
+]

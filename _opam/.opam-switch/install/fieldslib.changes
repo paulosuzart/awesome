@@ -1,0 +1,18 @@
+opam-version: "2.0"
+added: [
+  "doc/fieldslib" {"D"}
+  "doc/fieldslib/CHANGES.md" {"F:45352af458ae7075cf88f7a4a6730844"}
+  "doc/fieldslib/LICENSE.md" {"F:cd683914b88b9d15fc83634e2743c77a"}
+  "lib/fieldslib" {"D"}
+  "lib/fieldslib/META" {"F:a27ed6c0ae69527d760d9a1bdecd5495"}
+  "lib/fieldslib/dune-package" {"F:75dd45c0d8a2519d9c6a91eb81b1f0a0"}
+  "lib/fieldslib/fieldslib.a" {"F:273363721918ae4f22497ffd58d6b1ff"}
+  "lib/fieldslib/fieldslib.cma" {"F:68adf9d0257ab0b47847298cdb78187b"}
+  "lib/fieldslib/fieldslib.cmi" {"F:de13a3798c3646bf5176660c42f10d86"}
+  "lib/fieldslib/fieldslib.cmt" {"F:1160c3eb95f816ccb750d6be84a93b7e"}
+  "lib/fieldslib/fieldslib.cmx" {"F:58e9a33e535d935671ca8434d2c9adc5"}
+  "lib/fieldslib/fieldslib.cmxa" {"F:5d4fd28730582f4722e75dc8fa3c45ee"}
+  "lib/fieldslib/fieldslib.cmxs" {"F:c7b8c348ddacfddb567ddf61c906529d"}
+  "lib/fieldslib/fieldslib.ml" {"F:cd0646bcc1fbbfbefd52c552822944ef"}
+  "lib/fieldslib/opam" {"F:eb19be56f21f72e5f9794651f80c6c8f"}
+]

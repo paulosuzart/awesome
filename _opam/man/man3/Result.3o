@@ -1,0 +1,656 @@
+.TH "Result" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Result \- Result values.
+.SH Module
+Module   Result
+.SH Documentation
+.sp
+Module
+.BI "Result"
+ : 
+.B sig end
+
+.sp
+Result values\&.
+.sp
+Result values handle computation results and errors in an explicit
+and declarative manner without resorting to exceptions\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Results
+
+.PP
+.I type 
+.B ('a, 'e)
+.I t 
+= 
+.B ('a, 'e) result
+=
+ | Ok
+.B of 
+.B 'a
+ | Error
+.B of 
+.B 'e
+ 
+.sp
+The type for result values\&. Either a value 
+.ft B
+Ok v
+.ft R
+or an error 
+.ft B
+Error e
+.ft R
+\&.
+
+.sp
+
+.I val ok 
+: 
+.B 'a -> ('a, 'e) result
+.sp
+
+.ft B
+ok v
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+\&.
+
+.sp
+
+.I val error 
+: 
+.B 'e -> ('a, 'e) result
+.sp
+
+.ft B
+error e
+.ft R
+is 
+.ft B
+Error e
+.ft R
+\&.
+
+.sp
+
+.I val value 
+: 
+.B ('a, 'e) result -> default:'a -> 'a
+.sp
+
+.ft B
+value r ~default
+.ft R
+is 
+.ft B
+v
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+and 
+.ft B
+default
+.ft R
+otherwise\&.
+
+.sp
+
+.I val get_ok 
+: 
+.B ('a, 'e) result -> 'a
+.sp
+
+.ft B
+get_ok r
+.ft R
+is 
+.ft B
+v
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+and raise otherwise\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error _
+.ft R
+\&.
+
+.sp
+
+.I val get_error 
+: 
+.B ('a, 'e) result -> 'e
+.sp
+
+.ft B
+get_error r
+.ft R
+is 
+.ft B
+e
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error e
+.ft R
+and raise otherwise\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok _
+.ft R
+\&.
+
+.sp
+
+.I val bind 
+: 
+.B ('a, 'e) result ->
+.B   ('a -> ('b, 'e) result) -> ('b, 'e) result
+.sp
+
+.ft B
+bind r f
+.ft R
+is 
+.ft B
+f v
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+and 
+.ft B
+r
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error _
+.ft R
+\&.
+
+.sp
+
+.I val join 
+: 
+.B (('a, 'e) result, 'e) result -> ('a, 'e) result
+.sp
+
+.ft B
+join rr
+.ft R
+is 
+.ft B
+r
+.ft R
+if 
+.ft B
+rr
+.ft R
+is 
+.ft B
+Ok r
+.ft R
+and 
+.ft B
+rr
+.ft R
+if 
+.ft B
+rr
+.ft R
+is 
+.ft B
+Error _
+.ft R
+\&.
+
+.sp
+
+.I val map 
+: 
+.B ('a -> 'b) -> ('a, 'e) result -> ('b, 'e) result
+.sp
+
+.ft B
+map f r
+.ft R
+is 
+.ft B
+Ok (f v)
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+and 
+.ft B
+r
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error _
+.ft R
+\&.
+
+.sp
+
+.I val map_error 
+: 
+.B ('e -> 'f) -> ('a, 'e) result -> ('a, 'f) result
+.sp
+
+.ft B
+map_error f r
+.ft R
+is 
+.ft B
+Error (f e)
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error e
+.ft R
+and 
+.ft B
+r
+.ft R
+if
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok _
+.ft R
+\&.
+
+.sp
+
+.I val fold 
+: 
+.B ok:('a -> 'c) -> error:('e -> 'c) -> ('a, 'e) result -> 'c
+.sp
+
+.ft B
+fold ~ok ~error r
+.ft R
+is 
+.ft B
+ok v
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+and 
+.ft B
+error e
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error e
+.ft R
+\&.
+
+.sp
+
+.I val iter 
+: 
+.B ('a -> unit) -> ('a, 'e) result -> unit
+.sp
+
+.ft B
+iter f r
+.ft R
+is 
+.ft B
+f v
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+and 
+.ft B
+()
+.ft R
+otherwise\&.
+
+.sp
+
+.I val iter_error 
+: 
+.B ('e -> unit) -> ('a, 'e) result -> unit
+.sp
+
+.ft B
+iter_error f r
+.ft R
+is 
+.ft B
+f e
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error e
+.ft R
+and 
+.ft B
+()
+.ft R
+otherwise\&.
+
+.sp
+
+.PP
+.SS Predicates and comparisons
+
+.PP
+
+.I val is_ok 
+: 
+.B ('a, 'e) result -> bool
+.sp
+
+.ft B
+is_ok r
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok _
+.ft R
+\&.
+
+.sp
+
+.I val is_error 
+: 
+.B ('a, 'e) result -> bool
+.sp
+
+.ft B
+is_error r
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error _
+.ft R
+\&.
+
+.sp
+
+.I val equal 
+: 
+.B ok:('a -> 'a -> bool) ->
+.B   error:('e -> 'e -> bool) ->
+.B   ('a, 'e) result -> ('a, 'e) result -> bool
+.sp
+
+.ft B
+equal ~ok ~error r0 r1
+.ft R
+tests equality of 
+.ft B
+r0
+.ft R
+and 
+.ft B
+r1
+.ft R
+using 
+.ft B
+ok
+.ft R
+and 
+.ft B
+error
+.ft R
+to respectively compare values wrapped by 
+.ft B
+Ok _
+.ft R
+and
+.ft B
+Error _
+.ft R
+\&.
+
+.sp
+
+.I val compare 
+: 
+.B ok:('a -> 'a -> int) ->
+.B   error:('e -> 'e -> int) ->
+.B   ('a, 'e) result -> ('a, 'e) result -> int
+.sp
+
+.ft B
+compare ~ok ~error r0 r1
+.ft R
+totally orders 
+.ft B
+r0
+.ft R
+and 
+.ft B
+r1
+.ft R
+using 
+.ft B
+ok
+.ft R
+and
+.ft B
+error
+.ft R
+to respectively compare values wrapped by 
+.ft B
+Ok _ 
+.ft R
+and 
+.ft B
+Error _
+.ft R
+\&.
+.ft B
+Ok _
+.ft R
+values are smaller than 
+.ft B
+Error _
+.ft R
+values\&.
+
+.sp
+
+.PP
+.SS Converting
+
+.PP
+
+.I val to_option 
+: 
+.B ('a, 'e) result -> 'a option
+.sp
+
+.ft B
+to_option r
+.ft R
+is 
+.ft B
+r
+.ft R
+as an option, mapping 
+.ft B
+Ok v
+.ft R
+to 
+.ft B
+Some v
+.ft R
+and
+.ft B
+Error _
+.ft R
+to 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val to_list 
+: 
+.B ('a, 'e) result -> 'a list
+.sp
+
+.ft B
+to_list r
+.ft R
+is 
+.ft B
+[v]
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+and 
+.ft B
+[]
+.ft R
+otherwise\&.
+
+.sp
+
+.I val to_seq 
+: 
+.B ('a, 'e) result -> 'a Seq.t
+.sp
+
+.ft B
+to_seq r
+.ft R
+is 
+.ft B
+r
+.ft R
+as a sequence\&. 
+.ft B
+Ok v
+.ft R
+is the singleton sequence
+containing 
+.ft B
+v
+.ft R
+and 
+.ft B
+Error _
+.ft R
+is the empty sequence\&.
+
+.sp

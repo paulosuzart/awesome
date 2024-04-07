@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/stringext" {"D"}
+  "doc/stringext/CHANGES.md" {"F:ff792daba229816d1633dede9040bd63"}
+  "doc/stringext/LICENSE.md" {"F:08b1eb4e15de2c7abb0c0024c79a2ec4"}
+  "doc/stringext/README.md" {"F:679582750d756ae35b977f647d55cf4e"}
+  "lib/stringext" {"D"}
+  "lib/stringext/META" {"F:0d510cc1c79e372fb68811e8e62dc240"}
+  "lib/stringext/dune-package" {"F:ef9944254381939577c4eb86171190d9"}
+  "lib/stringext/opam" {"F:7a3c98975d10a4b815407ae9429a4a79"}
+  "lib/stringext/stringext.a" {"F:f4ce8a2507e7770880156f0bfe628015"}
+  "lib/stringext/stringext.cma" {"F:c023c80ab206b629cae5765b9287f53c"}
+  "lib/stringext/stringext.cmi" {"F:1afddc91a98a7db1554d9e88f22dcfec"}
+  "lib/stringext/stringext.cmt" {"F:6c76e814f547751e26c8d92a881a3b0a"}
+  "lib/stringext/stringext.cmti" {"F:e30a70c7bdaaed0fbeb686be92d7dc88"}
+  "lib/stringext/stringext.cmx" {"F:1ed0473c4b6c37d253c7aba840705f0e"}
+  "lib/stringext/stringext.cmxa" {"F:02ea40e9f88ff11d91eb3d9ef1dd278e"}
+  "lib/stringext/stringext.cmxs" {"F:5636d4671a495fb730b52f15991bc4ec"}
+  "lib/stringext/stringext.ml" {"F:b4085bfed03d0bc04a5de146fedceda6"}
+  "lib/stringext/stringext.mli" {"F:eeaca8d050be8d3cc57ff4dd5ada04f5"}
+]

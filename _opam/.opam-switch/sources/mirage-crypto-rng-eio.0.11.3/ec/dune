@@ -1,0 +1,23 @@
+(library
+ (name mirage_crypto_ec)
+ (public_name mirage-crypto-ec)
+ (libraries cstruct eqaf mirage-crypto mirage-crypto-rng)
+ (foreign_stubs
+  (language c)
+  (names p224_stubs np224_stubs p256_stubs np256_stubs p384_stubs np384_stubs
+    p521_stubs np521_stubs curve25519_stubs)
+  (include_dirs ../src/native)
+  (flags
+   (:standard -DNDEBUG)
+   (:include cflags_optimized.sexp))))
+
+(env
+ (dev
+  (c_flags (:include cflags_warn.sexp))))
+
+(include_subdirs unqualified)
+
+(rule
+ (targets cflags_optimized.sexp cflags_warn.sexp)
+ (action
+  (run ../config/cfg.exe)))

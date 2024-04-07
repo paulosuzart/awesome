@@ -1,0 +1,26 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_enumerate.cma"
+archive(ppx_driver,native) = "ppx_enumerate.cmxa"
+plugin(ppx_driver,byte) = "ppx_enumerate.cma"
+plugin(ppx_driver,native) = "ppx_enumerate.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "ppx_enumerate.runtime-lib"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_enumerate.runtime-lib"
+requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppx_enumerate"
+library_kind = "ppx_deriver"
+package "runtime-lib" (
+  directory = "runtime-lib"
+  version = "v0.16.0"
+  description = "Runtime library for ppx_enumerate"
+  requires = ""
+  archive(byte) = "ppx_enumerate_lib.cma"
+  archive(native) = "ppx_enumerate_lib.cmxa"
+  plugin(byte) = "ppx_enumerate_lib.cma"
+  plugin(native) = "ppx_enumerate_lib.cmxs"
+)

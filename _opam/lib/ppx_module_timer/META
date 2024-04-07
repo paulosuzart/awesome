@@ -1,0 +1,33 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_module_timer.cma"
+archive(ppx_driver,native) = "ppx_module_timer.cmxa"
+plugin(ppx_driver,byte) = "ppx_module_timer.cma"
+plugin(ppx_driver,native) = "ppx_module_timer.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "ppx_module_timer.runtime"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_module_timer.runtime"
+ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+library_kind = "ppx_rewriter"
+package "runtime" (
+  directory = "runtime"
+  version = "v0.16.0"
+  description = ""
+  requires =
+  "base
+   ppx_compare.runtime-lib
+   ppx_enumerate.runtime-lib
+   ppx_hash.runtime-lib
+   ppx_sexp_conv.runtime-lib
+   sexplib0
+   stdio
+   time_now"
+  archive(byte) = "ppx_module_timer_runtime.cma"
+  archive(native) = "ppx_module_timer_runtime.cmxa"
+  plugin(byte) = "ppx_module_timer_runtime.cma"
+  plugin(native) = "ppx_module_timer_runtime.cmxs"
+)

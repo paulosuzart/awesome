@@ -1,0 +1,98 @@
+.\" Pipe this output to groff -m man -K utf8 -T utf8 | less -R
+.\"
+.mso an.tmac
+.TH "DUNE-INIT" 1 "" "Dune 3.15.0" "Dune Manual"
+.\" Disable hyphenation and ragged-right
+.nh
+.ad l
+.SH NAME
+.P
+dune\N'45'init \N'45' Command group for initializing Dune components\N'46'
+.SH SYNOPSIS
+.sp -1
+.P
+\fBdune init proj NAME [PATH] [OPTION]\N'46'\N'46'\N'46' \fR
+.sp -1
+.P
+\fBdune init exec NAME [PATH] [OPTION]\N'46'\N'46'\N'46' \fR
+.sp -1
+.P
+\fBdune init lib NAME [PATH] [OPTION]\N'46'\N'46'\N'46' \fR
+.sp -1
+.P
+\fBdune init test NAME [PATH] [OPTION]\N'46'\N'46'\N'46' \fR
+.SH DESCRIPTION
+.P
+\fBdune init COMPONENT NAME [PATH] [OPTION]\N'46'\N'46'\N'46'\fR initializes a new dune configuration for a component of the kind specified by the subcommand \fBCOMPONENT\fR, named \fBNAME\fR, with fields determined by the supplied \fBOPTION\fRs\N'46'
+.P
+Run a subcommand with \fB \N'45'\N'45'help\fR for for details on it\N'39's supported arguments
+.P
+If the optional \fBPATH\fR is provided, it must be a path to a directory, and the component will be created there\N'46' Otherwise, it is created in a child of the current working directory, called \fB NAME\fR\N'46' To initialize a component in the current working directory, use `\N'46'` as the \fBPATH\fR\N'46'
+.P
+Any prefix of a \fBCOMMAND\fR\N'39's name can be supplied in place of full name (as illustrated in the synopsis)\N'46'
+.P
+For more details, see https://dune\N'46'readthedocs\N'46'io/en/stable/usage\N'46'html#initializing\N'45'components
+.SH COMMANDS
+.TP 4
+\fBexecutable\fR [\fIOPTION\fR]… \fINAME\fR [\fIPATH\fR]
+A binary executable\N'46'
+.TP 4
+\fBlibrary\fR [\fIOPTION\fR]… \fINAME\fR [\fIPATH\fR]
+An OCaml library\N'46'
+.TP 4
+\fBproject\fR [\fIOPTION\fR]… \fINAME\fR [\fIPATH\fR]
+A project is a predefined composition of components arranged in a standard directory structure\N'46' The kind of project initialized is determined by the value of the \fB\N'45'\N'45'kind\fR flag and defaults to an executable project, composed of a library, an executable, and a test component\N'46'
+.TP 4
+\fBtest\fR [\fIOPTION\fR]… \fINAME\fR [\fIPATH\fR]
+A test harness\N'46' (For inline tests, use the \fB\N'45'\N'45'inline\N'45'tests\fR flag along with the other component kinds\N'46')
+.SH COMMON OPTIONS
+.TP 4
+\fB\N'45'\N'45'help\fR[=\fIFMT\fR] (default=\fBauto\fR)
+Show this help in format \fIFMT\fR\N'46' The value \fIFMT\fR must be one of \fBauto\fR, \fBpager\fR, \fBgroff\fR or \fBplain\fR\N'46' With \fBauto\fR, the format is \fBpager\fR or \fBplain\fR whenever the \fBTERM\fR env var is \fBdumb\fR or undefined\N'46'
+.TP 4
+\fB\N'45'\N'45'version\fR
+Show version information\N'46'
+.SH EXIT STATUS
+.P
+\fBdune init\fR exits with:
+.TP 4
+0
+on success\N'46'
+.TP 4
+1
+if an error happened\N'46'
+.TP 4
+130
+if it was interrupted by a signal\N'46'
+.SH EXAMPLES
+.TP 4
+1\N'46'
+Generate a project skeleton for an executable named `myproj\N'39' in a new directory named `myproj\N'39', depending on the bos library and using inline tests along with ppx_inline_test:
+.P
+.nf
+      dune init proj myproj \N'45'\N'45'libs bos \N'45'\N'45'ppx ppx_inline_test \N'45'\N'45'inline\N'45'tests
+.fi
+.TP 4
+2\N'46'
+Configure an executable component named `myexe\N'39' in a dune file in the current directory:
+.P
+.nf
+      dune init exe myexe
+.fi
+.TP 4
+3\N'46'
+Configure a library component named `mylib\N'39' in a dune file in the \N'46'/src directory depending on the core and cmdliner libraries, the ppx_let and ppx_inline_test preprocessors, and declared as using inline tests:
+.P
+.nf
+      dune init lib mylib src \N'45'\N'45'libs core,cmdliner \N'45'\N'45'ppx ppx_let,ppx_inline_test \N'45'\N'45'inline\N'45'tests
+.fi
+.TP 4
+4\N'46'
+Configure a test component named `mytest\N'39' in a dune file in the \N'46'/test directory that depends on `mylib\N'39':
+.P
+.nf
+      dune init test mytest test \N'45'\N'45'libs mylib
+.fi
+.SH SEE ALSO
+.P
+dune(1)

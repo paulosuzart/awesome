@@ -1,0 +1,77 @@
+.TH "Ephemeron.Kn" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ephemeron.Kn \- Ephemerons with arbitrary number of keys of the same type.
+.SH Module
+Module   Ephemeron.Kn
+.SH Documentation
+.sp
+Module
+.BI "Kn"
+ : 
+.B sig end
+
+.sp
+Ephemerons with arbitrary number of keys of the same type\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B ('k, 'd)
+.I t 
+
+.sp
+an ephemeron with an arbitrary number of keys
+of the same type
+
+.sp
+
+.I val make 
+: 
+.B 'k array -> 'd -> ('k, 'd) t
+.sp
+Same as 
+.ft B
+Ephemeron\&.K1\&.make
+.ft R
+
+
+.sp
+
+.I val query 
+: 
+.B ('k, 'd) t -> 'k array -> 'd option
+.sp
+Same as 
+.ft B
+Ephemeron\&.K1\&.query
+.ft R
+
+
+.sp
+.I module Make : 
+.B functor (H : Hashtbl.HashedType) -> sig end
+
+.sp
+Functor building an implementation of a weak hash table
+
+.sp
+.I module MakeSeeded : 
+.B functor (H : Hashtbl.SeededHashedType) -> sig end
+
+.sp
+Functor building an implementation of a weak hash table\&.
+The seed is similar to the one of 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.I module Bucket : 
+.B sig end
+
+.sp
+
+.sp

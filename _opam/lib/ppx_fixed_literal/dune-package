@@ -1,0 +1,37 @@
+(lang dune 3.15)
+(name ppx_fixed_literal)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_fixed_literal))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_fixed_literal.a
+   ppx_fixed_literal.cma
+   ppx_fixed_literal.cmi
+   ppx_fixed_literal.cmt
+   ppx_fixed_literal.cmti
+   ppx_fixed_literal.cmx
+   ppx_fixed_literal.cmxa
+   ppx_fixed_literal.ml
+   ppx_fixed_literal.mli))
+ (libexec (ppx.exe ppx_fixed_literal.cmxs))
+ (doc (LICENSE.md)))
+(library
+ (name ppx_fixed_literal)
+ (kind ppx_rewriter)
+ (archives (byte ppx_fixed_literal.cma) (native ppx_fixed_literal.cmxa))
+ (plugins (byte ppx_fixed_literal.cma) (native ppx_fixed_literal.cmxs))
+ (native_archives ppx_fixed_literal.a)
+ (requires base ppxlib.ast ppxlib)
+ (main_module_name Ppx_fixed_literal)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_fixed_literal)
+   (visibility public)
+   (source
+    (path Ppx_fixed_literal)
+    (intf (path ppx_fixed_literal.mli))
+    (impl (path ppx_fixed_literal.ml))))))

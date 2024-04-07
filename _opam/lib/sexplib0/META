@@ -1,0 +1,7 @@
+version = "v0.16.0"
+description = ""
+requires = ""
+archive(byte) = "sexplib0.cma"
+archive(native) = "sexplib0.cmxa"
+plugin(byte) = "sexplib0.cma"
+plugin(native) = "sexplib0.cmxs"

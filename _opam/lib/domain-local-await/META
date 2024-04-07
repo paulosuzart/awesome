@@ -1,0 +1,7 @@
+version = "1.0.1"
+description = ""
+requires = "thread-table"
+archive(byte) = "Domain_local_await.cma"
+archive(native) = "Domain_local_await.cmxa"
+plugin(byte) = "Domain_local_await.cma"
+plugin(native) = "Domain_local_await.cmxs"

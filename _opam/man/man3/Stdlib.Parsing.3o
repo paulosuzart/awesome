@@ -1,0 +1,222 @@
+.TH "Stdlib.Parsing" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Parsing \- no description
+.SH Module
+Module   Stdlib.Parsing
+.SH Documentation
+.sp
+Module
+.BI "Parsing"
+ : 
+.B (module Stdlib__Parsing)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val symbol_start 
+: 
+.B unit -> int
+.sp
+
+.ft B
+symbol_start
+.ft R
+and 
+.ft B
+Parsing\&.symbol_end
+.ft R
+are to be called in the
+action part of a grammar rule only\&. They return the offset of the
+string that matches the left\-hand side of the rule: 
+.ft B
+symbol_start()
+.ft R
+returns the offset of the first character; 
+.ft B
+symbol_end()
+.ft R
+returns the
+offset after the last character\&. The first character in a file is at
+offset 0\&.
+
+.sp
+
+.I val symbol_end 
+: 
+.B unit -> int
+.sp
+See 
+.ft B
+Parsing\&.symbol_start
+.ft R
+\&.
+
+.sp
+
+.I val rhs_start 
+: 
+.B int -> int
+.sp
+Same as 
+.ft B
+Parsing\&.symbol_start
+.ft R
+and 
+.ft B
+Parsing\&.symbol_end
+.ft R
+, but
+return the offset of the string matching the 
+.ft B
+n
+.ft R
+th item on the
+right\-hand side of the rule, where 
+.ft B
+n
+.ft R
+is the integer parameter
+to 
+.ft B
+rhs_start
+.ft R
+and 
+.ft B
+rhs_end
+.ft R
+\&. 
+.ft B
+n
+.ft R
+is 1 for the leftmost item\&.
+
+.sp
+
+.I val rhs_end 
+: 
+.B int -> int
+.sp
+See 
+.ft B
+Parsing\&.rhs_start
+.ft R
+\&.
+
+.sp
+
+.I val symbol_start_pos 
+: 
+.B unit -> Lexing.position
+.sp
+Same as 
+.ft B
+symbol_start
+.ft R
+, but return a 
+.ft B
+position
+.ft R
+instead of an offset\&.
+
+.sp
+
+.I val symbol_end_pos 
+: 
+.B unit -> Lexing.position
+.sp
+Same as 
+.ft B
+symbol_end
+.ft R
+, but return a 
+.ft B
+position
+.ft R
+instead of an offset\&.
+
+.sp
+
+.I val rhs_start_pos 
+: 
+.B int -> Lexing.position
+.sp
+Same as 
+.ft B
+rhs_start
+.ft R
+, but return a 
+.ft B
+position
+.ft R
+instead of an offset\&.
+
+.sp
+
+.I val rhs_end_pos 
+: 
+.B int -> Lexing.position
+.sp
+Same as 
+.ft B
+rhs_end
+.ft R
+, but return a 
+.ft B
+position
+.ft R
+instead of an offset\&.
+
+.sp
+
+.I val clear_parser 
+: 
+.B unit -> unit
+.sp
+Empty the parser stack\&. Call it just after a parsing function
+has returned, to remove all pointers from the parser stack
+to structures that were built by semantic actions during parsing\&.
+This is optional, but lowers the memory requirements of the
+programs\&.
+
+.sp
+
+.I exception Parse_error 
+
+.sp
+Raised when a parser encounters a syntax error\&.
+Can also be raised from the action part of a grammar rule,
+to initiate error recovery\&.
+
+.sp
+
+.I val set_trace 
+: 
+.B bool -> bool
+.sp
+Control debugging support for 
+.ft B
+ocamlyacc
+.ft R
+\-generated parsers\&.
+After 
+.ft B
+Parsing\&.set_trace true
+.ft R
+, the pushdown automaton that
+executes the parsers prints a trace of its actions (reading a token,
+shifting a state, reducing by a rule) on standard output\&.
+.ft B
+Parsing\&.set_trace false
+.ft R
+turns this debugging trace off\&.
+The boolean returned is the previous state of the trace flag\&.
+
+.sp
+.B "Since"
+3.11
+
+.sp

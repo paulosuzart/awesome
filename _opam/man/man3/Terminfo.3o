@@ -1,0 +1,69 @@
+.TH "Terminfo" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Terminfo \- Basic interface to the terminfo database
+.SH Module
+Module   Terminfo
+.SH Documentation
+.sp
+Module
+.BI "Terminfo"
+ : 
+.B sig end
+
+.sp
+Basic interface to the terminfo database
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type status 
+=
+ | Uninitialised
+ | Bad_term
+ | Good_term
+ 
+.sp
+
+.sp
+
+.I val setup 
+: 
+.B out_channel -> status
+.sp
+
+.sp
+
+.I val num_lines 
+: 
+.B out_channel -> int
+.sp
+
+.sp
+
+.I val backup 
+: 
+.B out_channel -> int -> unit
+.sp
+
+.sp
+
+.I val standout 
+: 
+.B out_channel -> bool -> unit
+.sp
+
+.sp
+
+.I val resume 
+: 
+.B out_channel -> int -> unit
+.sp
+
+.sp

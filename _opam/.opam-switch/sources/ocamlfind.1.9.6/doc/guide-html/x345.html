@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Glue code</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Complex packages"
+HREF="c278.html"><LINK
+REL="PREVIOUS"
+TITLE="Subpackages"
+HREF="x338.html"><LINK
+REL="NEXT"
+TITLE="Plugins"
+HREF="x352.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x338.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Complex packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x352.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN345"
+>Glue code</A
+></H1
+><P
+>Imagine we have two packages p and q that are normally
+independent, i.e. one can link p without q, and q without p. However,
+when both p and q are used in the same program, it is expected that
+they cooperate with each other. Of course, this situation can be
+modeled with the help of subpackages (a real-world example of this are
+p=lablgtk and q=lablgl).</P
+><P
+>The idea is as follows: p has a subpackage p.for_q that contains
+code with special features for q, and q has a subpackage q.use_p that
+depends on p, p.for_q, and q, and that contains the code using the 
+special features of p. Expressed in META files, p would define
+
+<PRE
+CLASS="PROGRAMLISTING"
+># META file for p:
+requires = "..."
+archive = "..."
+
+package "for_q" (
+  requires = "p"
+  archive = "..."
+)</PRE
+>
+
+and q would define
+
+<PRE
+CLASS="PROGRAMLISTING"
+># META file for q:
+requires = "..."
+archive = "..."
+
+package "use_p" (
+  requires = "q,p.for_q"
+  archive = "..."
+)</PRE
+>
+
+Of couse, the program using both libraries must explicitly enable
+the subpackages by mentioning "q.use_p" on the ocamlfind command line,
+otherwise the glue code would be omitted.</P
+><P
+>Unfortunately, it is not possible to use the package predicates
+pkg_p and pkg_q to add archives depending on whether the other
+package is also selected. The problem is that the order cannot
+be specified, i.e. whether p must be linked first or q.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x338.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x352.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Subpackages</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c278.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Plugins</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

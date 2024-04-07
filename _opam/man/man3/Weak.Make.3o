@@ -1,0 +1,370 @@
+.TH "Weak.Make" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Weak.Make \- Functor building an implementation of the weak hash set structure.
+.SH Module
+Module   Weak.Make
+.SH Documentation
+.sp
+Module
+.BI "Make"
+ : 
+.B functor (H : Hashtbl.HashedType) -> sig end
+
+.sp
+Functor building an implementation of the weak hash set structure\&.
+.ft B
+H\&.equal
+.ft R
+can\&'t be the physical equality, since only shallow
+copies of the elements in the set are given to it\&.
+
+.sp
+.B "Parameters:"
+.sp
+"H"
+
+.B Stdlib.Hashtbl.HashedType
+
+
+
+
+
+.sp
+.sp
+.I type data 
+
+.sp
+The type of the elements stored in the table\&.
+
+.sp
+.I type t 
+
+.sp
+The type of tables that contain elements of type 
+.ft B
+data
+.ft R
+\&.
+Note that weak hash sets cannot be marshaled using
+.ft B
+output_value
+.ft R
+or the functions of the 
+.ft B
+Marshal
+.ft R
+module\&.
+
+.sp
+
+.I val create 
+: 
+.B int -> t
+.sp
+
+.ft B
+create n
+.ft R
+creates a new empty weak hash set, of initial
+size 
+.ft B
+n
+.ft R
+\&.  The table will grow as needed\&.
+
+.sp
+
+.I val clear 
+: 
+.B t -> unit
+.sp
+Remove all elements from the table\&.
+
+.sp
+
+.I val merge 
+: 
+.B t -> data -> data
+.sp
+
+.ft B
+merge t x
+.ft R
+returns an instance of 
+.ft B
+x
+.ft R
+found in 
+.ft B
+t
+.ft R
+if any,
+or else adds 
+.ft B
+x
+.ft R
+to 
+.ft B
+t
+.ft R
+and return 
+.ft B
+x
+.ft R
+\&.
+
+.sp
+
+.I val add 
+: 
+.B t -> data -> unit
+.sp
+
+.ft B
+add t x
+.ft R
+adds 
+.ft B
+x
+.ft R
+to 
+.ft B
+t
+.ft R
+\&.  If there is already an instance
+of 
+.ft B
+x
+.ft R
+in 
+.ft B
+t
+.ft R
+, it is unspecified which one will be
+returned by subsequent calls to 
+.ft B
+find
+.ft R
+and 
+.ft B
+merge
+.ft R
+\&.
+
+.sp
+
+.I val remove 
+: 
+.B t -> data -> unit
+.sp
+
+.ft B
+remove t x
+.ft R
+removes from 
+.ft B
+t
+.ft R
+one instance of 
+.ft B
+x
+.ft R
+\&.  Does
+nothing if there is no instance of 
+.ft B
+x
+.ft R
+in 
+.ft B
+t
+.ft R
+\&.
+
+.sp
+
+.I val find 
+: 
+.B t -> data -> data
+.sp
+
+.ft B
+find t x
+.ft R
+returns an instance of 
+.ft B
+x
+.ft R
+found in 
+.ft B
+t
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if there is no such element\&.
+
+.sp
+
+.I val find_opt 
+: 
+.B t -> data -> data option
+.sp
+
+.ft B
+find_opt t x
+.ft R
+returns an instance of 
+.ft B
+x
+.ft R
+found in 
+.ft B
+t
+.ft R
+or 
+.ft B
+None
+.ft R
+if there is no such element\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_all 
+: 
+.B t -> data -> data list
+.sp
+
+.ft B
+find_all t x
+.ft R
+returns a list of all the instances of 
+.ft B
+x
+.ft R
+found in 
+.ft B
+t
+.ft R
+\&.
+
+.sp
+
+.I val mem 
+: 
+.B t -> data -> bool
+.sp
+
+.ft B
+mem t x
+.ft R
+returns 
+.ft B
+true
+.ft R
+if there is at least one instance
+of 
+.ft B
+x
+.ft R
+in 
+.ft B
+t
+.ft R
+, false otherwise\&.
+
+.sp
+
+.I val iter 
+: 
+.B (data -> unit) -> t -> unit
+.sp
+
+.ft B
+iter f t
+.ft R
+calls 
+.ft B
+f
+.ft R
+on each element of 
+.ft B
+t
+.ft R
+, in some unspecified
+order\&.  It is not specified what happens if 
+.ft B
+f
+.ft R
+tries to change
+.ft B
+t
+.ft R
+itself\&.
+
+.sp
+
+.I val fold 
+: 
+.B (data -> 'acc -> 'acc) -> t -> 'acc -> 'acc
+.sp
+
+.ft B
+fold f t init
+.ft R
+computes 
+.ft B
+(f d1 (\&.\&.\&. (f dN init)))
+.ft R
+where
+.ft B
+d1 \&.\&.\&. dN
+.ft R
+are the elements of 
+.ft B
+t
+.ft R
+in some unspecified order\&.
+It is not specified what happens if 
+.ft B
+f
+.ft R
+tries to change 
+.ft B
+t
+.ft R
+itself\&.
+
+.sp
+
+.I val count 
+: 
+.B t -> int
+.sp
+Count the number of elements in the table\&.  
+.ft B
+count t
+.ft R
+gives the
+same result as 
+.ft B
+fold (fun _ n \-> n+1) t 0
+.ft R
+but does not delay the
+deallocation of the dead elements\&.
+
+.sp
+
+.I val stats 
+: 
+.B t -> int * int * int * int * int * int
+.sp
+Return statistics on the table\&.  The numbers are, in order:
+table length, number of entries, sum of bucket lengths,
+smallest bucket length, median bucket length, biggest bucket length\&.
+
+.sp

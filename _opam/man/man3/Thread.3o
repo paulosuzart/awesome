@@ -1,0 +1,515 @@
+.TH "Thread" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Thread \- Lightweight threads for Posix 1003.1c and Win32.
+.SH Module
+Module   Thread
+.SH Documentation
+.sp
+Module
+.BI "Thread"
+ : 
+.B sig end
+
+.sp
+Lightweight threads for Posix 
+.ft B
+1003\&.1c
+.ft R
+and Win32\&.
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type of thread handles\&.
+
+.sp
+
+.PP
+.SS Thread creation and termination
+
+.PP
+
+.I val create 
+: 
+.B ('a -> 'b) -> 'a -> t
+.sp
+
+.ft B
+Thread\&.create funct arg
+.ft R
+creates a new thread of control,
+in which the function application 
+.ft B
+funct arg
+.ft R
+is executed concurrently with the other threads of the domain\&.
+The application of 
+.ft B
+Thread\&.create
+.ft R
+returns the handle of the newly created thread\&.
+The new thread terminates when the application 
+.ft B
+funct arg
+.ft R
+returns, either normally or by raising the 
+.ft B
+Thread\&.Exit
+.ft R
+exception
+or by raising any other uncaught exception\&.
+In the last case, the uncaught exception is printed on standard error,
+but not propagated back to the parent thread\&. Similarly, the
+result of the application 
+.ft B
+funct arg
+.ft R
+is discarded and not
+directly accessible to the parent thread\&.
+.sp
+See also 
+.ft B
+Domain\&.spawn
+.ft R
+if you want parallel execution instead\&.
+
+.sp
+
+.I val self 
+: 
+.B unit -> t
+.sp
+Return the handle for the thread currently executing\&.
+
+.sp
+
+.I val id 
+: 
+.B t -> int
+.sp
+Return the identifier of the given thread\&. A thread identifier
+is an integer that identifies uniquely the thread\&.
+It can be used to build data structures indexed by threads\&.
+
+.sp
+
+.I exception Exit 
+
+.sp
+Exception raised by user code to initiate termination of the
+current thread\&.
+In a thread created by 
+.ft B
+Thread\&.create
+.ft R
+.ft B
+funct
+.ft R
+.ft B
+arg
+.ft R
+, if the
+.ft B
+Thread\&.Exit
+.ft R
+exception reaches the top of the application
+.ft B
+funct arg
+.ft R
+, it has the effect of terminating the current thread
+silently\&.  In other contexts, there is no implicit handling of the
+.ft B
+Thread\&.Exit
+.ft R
+exception\&.
+
+.sp
+
+.I val exit 
+: 
+.B unit -> unit
+.sp
+.B "Deprecated."
+Use \&'raise Thread\&.Exit\&' instead\&.
+
+.sp
+Raise the 
+.ft B
+Thread\&.Exit
+.ft R
+exception\&.
+In a thread created by 
+.ft B
+Thread\&.create
+.ft R
+, this will cause the thread
+to terminate prematurely, unless the thread function handles the
+exception itself\&.  
+.ft B
+Fun\&.protect
+.ft R
+finalizers and catch\-all
+exception handlers will be executed\&.
+.sp
+To make it clear that an exception is raised and will trigger
+finalizers and catch\-all exception handlers, it is recommended
+to write 
+.ft B
+raise Thread\&.Exit
+.ft R
+instead of 
+.ft B
+Thread\&.exit ()
+.ft R
+\&.
+
+.sp
+.B "Before5.0"
+A different implementation was used, not based on raising
+an exception, and not running finalizers and catch\-all handlers\&.
+The previous implementation had a different behavior when called
+outside of a thread created by 
+.ft B
+Thread\&.create
+.ft R
+\&.
+
+
+.sp
+
+.PP
+.SS Suspending threads
+
+.PP
+
+.I val delay 
+: 
+.B float -> unit
+.sp
+
+.ft B
+delay d
+.ft R
+suspends the execution of the calling thread for
+.ft B
+d
+.ft R
+seconds\&. The other program threads continue to run during
+this time\&.
+
+.sp
+
+.I val join 
+: 
+.B t -> unit
+.sp
+
+.ft B
+join th
+.ft R
+suspends the execution of the calling thread
+until the thread 
+.ft B
+th
+.ft R
+has terminated\&.
+
+.sp
+
+.I val yield 
+: 
+.B unit -> unit
+.sp
+Re\-schedule the calling thread without suspending it\&.
+This function can be used to give scheduling hints,
+telling the scheduler that now is a good time to
+switch to other threads\&.
+
+.sp
+
+.PP
+.SS Waiting for file descriptors or processes
+
+.PP
+
+.PP
+The functions below are leftovers from an earlier, VM\-based threading
+system\&.  The 
+.ft B
+Unix
+.ft R
+module provides equivalent functionality, in
+a more general and more standard\-conformant manner\&.  It is recommended
+to use 
+.ft B
+Unix
+.ft R
+functions directly\&.
+.PP
+
+.I val wait_timed_read 
+: 
+.B Unix.file_descr -> float -> bool
+.sp
+.B "Deprecated."
+Use Unix\&.select instead\&.
+
+.sp
+See 
+.ft B
+Thread\&.wait_timed_write
+.ft R
+\&.
+
+.sp
+
+.I val wait_timed_write 
+: 
+.B Unix.file_descr -> float -> bool
+.sp
+.B "Deprecated."
+Use Unix\&.select instead\&.
+
+.sp
+Suspend the execution of the calling thread until at least
+one character or EOF is available for reading (
+.ft B
+wait_timed_read
+.ft R
+) or
+one character can be written without blocking (
+.ft B
+wait_timed_write
+.ft R
+)
+on the given Unix file descriptor\&. Wait for at most
+the amount of time given as second argument (in seconds)\&.
+Return 
+.ft B
+true
+.ft R
+if the file descriptor is ready for input/output
+and 
+.ft B
+false
+.ft R
+if the timeout expired\&.
+The same functionality can be achieved with 
+.ft B
+Unix\&.select
+.ft R
+\&.
+
+.sp
+
+.I val select 
+: 
+.B Unix.file_descr list ->
+.B   Unix.file_descr list ->
+.B   Unix.file_descr list ->
+.B   float -> Unix.file_descr list * Unix.file_descr list * Unix.file_descr list
+.sp
+.B "Deprecated."
+Use Unix\&.select instead\&.
+
+.sp
+Same function as 
+.ft B
+Unix\&.select
+.ft R
+\&.
+Suspend the execution of the calling thread until input/output
+becomes possible on the given Unix file descriptors\&.
+The arguments and results have the same meaning as for
+.ft B
+Unix\&.select
+.ft R
+\&.
+
+.sp
+
+.I val wait_pid 
+: 
+.B int -> int * Unix.process_status
+.sp
+.B "Deprecated."
+Use Unix\&.waitpid instead\&.
+
+.sp
+Same function as 
+.ft B
+Unix\&.waitpid
+.ft R
+\&.
+.ft B
+wait_pid p
+.ft R
+suspends the execution of the calling thread
+until the process specified by the process identifier 
+.ft B
+p
+.ft R
+terminates\&. Returns the pid of the child caught and
+its termination status, as per 
+.ft B
+Unix\&.wait
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Management of signals
+
+.PP
+
+.PP
+Signal handling follows the POSIX thread model: signals generated
+by a thread are delivered to that thread; signals generated externally
+are delivered to one of the threads that does not block it\&.
+Each thread possesses a set of blocked signals, which can be modified
+using 
+.ft B
+Thread\&.sigmask
+.ft R
+\&.  This set is inherited at thread creation time\&.
+Per\-thread signal masks are supported only by the system thread library
+under Unix, but not under Win32, nor by the VM thread library\&.
+.PP
+
+.I val sigmask 
+: 
+.B Unix.sigprocmask_command -> int list -> int list
+.sp
+
+.ft B
+sigmask cmd sigs
+.ft R
+changes the set of blocked signals for the
+calling thread\&.
+If 
+.ft B
+cmd
+.ft R
+is 
+.ft B
+SIG_SETMASK
+.ft R
+, blocked signals are set to those in
+the list 
+.ft B
+sigs
+.ft R
+\&.
+If 
+.ft B
+cmd
+.ft R
+is 
+.ft B
+SIG_BLOCK
+.ft R
+, the signals in 
+.ft B
+sigs
+.ft R
+are added to
+the set of blocked signals\&.
+If 
+.ft B
+cmd
+.ft R
+is 
+.ft B
+SIG_UNBLOCK
+.ft R
+, the signals in 
+.ft B
+sigs
+.ft R
+are removed
+from the set of blocked signals\&.
+.ft B
+sigmask
+.ft R
+returns the set of previously blocked signals for the thread\&.
+
+.sp
+
+.I val wait_signal 
+: 
+.B int list -> int
+.sp
+
+.ft B
+wait_signal sigs
+.ft R
+suspends the execution of the calling thread
+until the process receives one of the signals specified in the
+list 
+.ft B
+sigs
+.ft R
+\&.  It then returns the number of the signal received\&.
+Signal handlers attached to the signals in 
+.ft B
+sigs
+.ft R
+will not
+be invoked\&.  The signals 
+.ft B
+sigs
+.ft R
+are expected to be blocked before
+calling 
+.ft B
+wait_signal
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Uncaught exceptions
+
+.PP
+
+.I val default_uncaught_exception_handler 
+: 
+.B exn -> unit
+.sp
+
+.ft B
+Thread\&.default_uncaught_exception_handler
+.ft R
+will print the thread\&'s id,
+exception and backtrace (if available)\&.
+
+.sp
+
+.I val set_uncaught_exception_handler 
+: 
+.B (exn -> unit) -> unit
+.sp
+
+.ft B
+Thread\&.set_uncaught_exception_handler fn
+.ft R
+registers 
+.ft B
+fn
+.ft R
+as the handler
+for uncaught exceptions\&.
+.sp
+If the newly set uncaught exception handler raise an exception,
+.ft B
+Thread\&.default_uncaught_exception_handler
+.ft R
+will be called\&.
+
+.sp

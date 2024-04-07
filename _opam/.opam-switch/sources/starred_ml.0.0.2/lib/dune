@@ -1,0 +1,4 @@
+(library
+ (name starred_ml)
+ (preprocess (pps ppx_deriving_yojson ppx_deriving.show ppx_deriving.ord))
+ (libraries ppx_deriving_yojson))

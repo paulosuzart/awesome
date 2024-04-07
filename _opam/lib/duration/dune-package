@@ -1,0 +1,36 @@
+(lang dune 3.15)
+(name duration)
+(version 0.2.1)
+(sections (lib .) (libexec .) (doc ../../doc/duration))
+(files
+ (lib
+  (META
+   dune-package
+   duration.a
+   duration.cma
+   duration.cmi
+   duration.cmt
+   duration.cmti
+   duration.cmx
+   duration.cmxa
+   duration.ml
+   duration.mli
+   opam))
+ (libexec (duration.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name duration)
+ (kind normal)
+ (archives (byte duration.cma) (native duration.cmxa))
+ (plugins (byte duration.cma) (native duration.cmxs))
+ (native_archives duration.a)
+ (main_module_name Duration)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name duration)
+   (visibility public)
+   (source
+    (path Duration)
+    (intf (path duration.mli))
+    (impl (path duration.ml))))))

@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/csexp/META"
+  "_build/install/default/lib/csexp/csexp.a"
+  "_build/install/default/lib/csexp/csexp.cma"
+  "_build/install/default/lib/csexp/csexp.cmi"
+  "_build/install/default/lib/csexp/csexp.cmt"
+  "_build/install/default/lib/csexp/csexp.cmti"
+  "_build/install/default/lib/csexp/csexp.cmx"
+  "_build/install/default/lib/csexp/csexp.cmxa"
+  "_build/install/default/lib/csexp/csexp.ml"
+  "_build/install/default/lib/csexp/csexp.mli"
+  "_build/install/default/lib/csexp/dune-package"
+  "_build/install/default/lib/csexp/opam"
+]
+doc: [
+  "_build/install/default/doc/csexp/CHANGES.md"
+  "_build/install/default/doc/csexp/LICENSE.md"
+  "_build/install/default/doc/csexp/README.md"
+]
+libexec: "_build/install/default/lib/csexp/csexp.cmxs"

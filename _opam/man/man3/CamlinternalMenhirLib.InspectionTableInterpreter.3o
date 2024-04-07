@@ -1,0 +1,31 @@
+.TH "CamlinternalMenhirLib.InspectionTableInterpreter" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.InspectionTableInterpreter \- no description
+.SH Module
+Module   CamlinternalMenhirLib.InspectionTableInterpreter
+.SH Documentation
+.sp
+Module
+.BI "InspectionTableInterpreter"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module Symbols : 
+.B functor (T : sig end) -> sig end
+
+.sp
+
+.sp
+.I module Make : 
+.B functor (TT : TableFormat.TABLES) (IT : sig end) (ET : sig end) (E : sig end)
+.B   -> sig end
+
+.sp
+
+.sp

@@ -1,0 +1,46 @@
+(lang dune 3.15)
+(name splittable_random)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/splittable_random))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   splittable_random.a
+   splittable_random.cma
+   splittable_random.cmi
+   splittable_random.cmt
+   splittable_random.cmti
+   splittable_random.cmx
+   splittable_random.cmxa
+   splittable_random.ml
+   splittable_random.mli))
+ (libexec (splittable_random.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name splittable_random)
+ (kind normal)
+ (archives (byte splittable_random.cma) (native splittable_random.cmxa))
+ (plugins (byte splittable_random.cma) (native splittable_random.cmxs))
+ (native_archives splittable_random.a)
+ (requires
+  base
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_here.runtime-lib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_bench.runtime-lib
+  ppx_compare.runtime-lib
+  ppx_assert.runtime-lib)
+ (main_module_name Splittable_random)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name splittable_random)
+   (visibility public)
+   (source
+    (path Splittable_random)
+    (intf (path splittable_random.mli))
+    (impl (path splittable_random.ml))))))

@@ -1,0 +1,45 @@
+opam-version: "2.0"
+added: [
+  "doc/eio_linux" {"D"}
+  "doc/eio_linux/CHANGES.md" {"F:1b55e672250975f24595d49656d48380"}
+  "doc/eio_linux/LICENSE.md" {"F:06e13767200a87a3ee1de75b80bf3a2b"}
+  "doc/eio_linux/README.md" {"F:fc784beaabc8ee43bc51b2dd5bfe5278"}
+  "lib/eio_linux" {"D"}
+  "lib/eio_linux/META" {"F:5c175045345c657c87f2866247ecd173"}
+  "lib/eio_linux/dune-package" {"F:0c5d035af164eb85f657d3d2c109f114"}
+  "lib/eio_linux/eio_linux.a" {"F:4efcbc51954648860bf2186b4e435747"}
+  "lib/eio_linux/eio_linux.cma" {"F:c6caaf7bdc0867caf7469677854d5c2c"}
+  "lib/eio_linux/eio_linux.cmi" {"F:24b36b4bed29c65f8780017b522575b9"}
+  "lib/eio_linux/eio_linux.cmt" {"F:0a57e69e1929be094c34e80a356be3c8"}
+  "lib/eio_linux/eio_linux.cmti" {"F:a32c2fc495a7c5935ee2d19844022127"}
+  "lib/eio_linux/eio_linux.cmx" {"F:642023c88b63e8c740b62978a87ba9bb"}
+  "lib/eio_linux/eio_linux.cmxa" {"F:49efaa6bf64ebdbb4d9fbe4c7a57524c"}
+  "lib/eio_linux/eio_linux.cmxs" {"F:cb6a374587662199504c053070834393"}
+  "lib/eio_linux/eio_linux.ml" {"F:c551c643b0af5247c93245e8934401cb"}
+  "lib/eio_linux/eio_linux.mli" {"F:6e2d76e5ff19d13f0545957055b79a53"}
+  "lib/eio_linux/eio_linux__.cmi" {"F:c134fdc7ab155df62089b3a39bc19505"}
+  "lib/eio_linux/eio_linux__.cmt" {"F:ed8454430a1f629285f037f86eed42fd"}
+  "lib/eio_linux/eio_linux__.cmx" {"F:da0c99a7a3ec50c88a3d6901de78a217"}
+  "lib/eio_linux/eio_linux__.ml" {"F:da681b88652702027d7d6ff58bdc3035"}
+  "lib/eio_linux/eio_linux__Err.cmi" {"F:6adb9621e5c265cc9cc286a4d1036837"}
+  "lib/eio_linux/eio_linux__Err.cmt" {"F:d5ee771ee5f50b9766fa518657d0663d"}
+  "lib/eio_linux/eio_linux__Err.cmx" {"F:77c86828f70dfe9c5505c0cf3b968d8f"}
+  "lib/eio_linux/eio_linux__Low_level.cmi"
+    {"F:c28039afdf7a49994796fb33d7e862ea"}
+  "lib/eio_linux/eio_linux__Low_level.cmt"
+    {"F:555ad021f7e7203338e5ce5fbf4e147e"}
+  "lib/eio_linux/eio_linux__Low_level.cmti"
+    {"F:b05efeb3e522f14dbac1ab4c2dc5137f"}
+  "lib/eio_linux/eio_linux__Low_level.cmx"
+    {"F:44c2c6dcfe04552225f03c3f5847fc4e"}
+  "lib/eio_linux/eio_linux__Sched.cmi" {"F:69fb735dc186a4abaaab931676809356"}
+  "lib/eio_linux/eio_linux__Sched.cmt" {"F:d152e08857ca97f6a675f95c3d9f1090"}
+  "lib/eio_linux/eio_linux__Sched.cmx" {"F:d97791c62eb5199e1907af61188945b3"}
+  "lib/eio_linux/err.ml" {"F:19f93f643407af89e119a09479ec7be8"}
+  "lib/eio_linux/libeio_linux_stubs.a" {"F:76b90518e54d84a4e180632fd048e219"}
+  "lib/eio_linux/low_level.ml" {"F:effd1033e3f146093147644663b63282"}
+  "lib/eio_linux/low_level.mli" {"F:a949bfaf1911364662ab7c787f6b28d8"}
+  "lib/eio_linux/opam" {"F:1ff9845e55b8066a763aa2d494e326fc"}
+  "lib/eio_linux/sched.ml" {"F:1f1862012d445efc5ee8dc0cda8041af"}
+  "lib/stublibs/dlleio_linux_stubs.so" {"F:a1179767917e54c52ac315101cc67859"}
+]

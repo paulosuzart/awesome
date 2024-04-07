@@ -1,0 +1,41 @@
+(lang dune 3.15)
+(name ppx_ignore_instrumentation)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_ignore_instrumentation))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_ignore_instrumentation.a
+   ppx_ignore_instrumentation.cma
+   ppx_ignore_instrumentation.cmi
+   ppx_ignore_instrumentation.cmt
+   ppx_ignore_instrumentation.cmti
+   ppx_ignore_instrumentation.cmx
+   ppx_ignore_instrumentation.cmxa
+   ppx_ignore_instrumentation.ml
+   ppx_ignore_instrumentation.mli))
+ (libexec (ppx.exe ppx_ignore_instrumentation.cmxs))
+ (doc (LICENSE.md README.md)))
+(library
+ (name ppx_ignore_instrumentation)
+ (kind ppx_rewriter)
+ (archives
+  (byte ppx_ignore_instrumentation.cma)
+  (native ppx_ignore_instrumentation.cmxa))
+ (plugins
+  (byte ppx_ignore_instrumentation.cma)
+  (native ppx_ignore_instrumentation.cmxs))
+ (native_archives ppx_ignore_instrumentation.a)
+ (requires ppxlib.ast ppxlib)
+ (main_module_name Ppx_ignore_instrumentation)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_ignore_instrumentation)
+   (visibility public)
+   (source
+    (path Ppx_ignore_instrumentation)
+    (intf (path ppx_ignore_instrumentation.mli))
+    (impl (path ppx_ignore_instrumentation.ml))))))

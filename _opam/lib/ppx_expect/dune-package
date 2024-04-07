@@ -1,0 +1,579 @@
+(lang dune 3.15)
+(name ppx_expect)
+(version v0.16.0)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/ppx_expect)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   collector/check_backtraces.ml
+   collector/check_backtraces.mli
+   collector/expect_test_collector.a
+   collector/expect_test_collector.cma
+   collector/expect_test_collector.cmi
+   collector/expect_test_collector.cmt
+   collector/expect_test_collector.cmti
+   collector/expect_test_collector.cmx
+   collector/expect_test_collector.cmxa
+   collector/expect_test_collector.ml
+   collector/expect_test_collector.mli
+   collector/expect_test_collector__.cmi
+   collector/expect_test_collector__.cmt
+   collector/expect_test_collector__.cmx
+   collector/expect_test_collector__.ml
+   collector/expect_test_collector__Check_backtraces.cmi
+   collector/expect_test_collector__Check_backtraces.cmt
+   collector/expect_test_collector__Check_backtraces.cmti
+   collector/expect_test_collector__Check_backtraces.cmx
+   collector/libexpect_test_collector_stubs.a
+   collector/runtime.js
+   common/expect_test_common.a
+   common/expect_test_common.cma
+   common/expect_test_common.cmi
+   common/expect_test_common.cmt
+   common/expect_test_common.cmx
+   common/expect_test_common.cmxa
+   common/expect_test_common.ml
+   common/expect_test_common__.cmi
+   common/expect_test_common__.cmt
+   common/expect_test_common__.cmx
+   common/expect_test_common__.ml
+   common/expect_test_common__Expectation.cmi
+   common/expect_test_common__Expectation.cmt
+   common/expect_test_common__Expectation.cmti
+   common/expect_test_common__Expectation.cmx
+   common/expect_test_common__File.cmi
+   common/expect_test_common__File.cmt
+   common/expect_test_common__File.cmti
+   common/expect_test_common__File.cmx
+   common/expect_test_common__Import.cmi
+   common/expect_test_common__Import.cmt
+   common/expect_test_common__Import.cmx
+   common/expectation.ml
+   common/expectation.mli
+   common/file.ml
+   common/file.mli
+   common/import.ml
+   config/expect_test_config.a
+   config/expect_test_config.cma
+   config/expect_test_config.cmi
+   config/expect_test_config.cmt
+   config/expect_test_config.cmti
+   config/expect_test_config.cmx
+   config/expect_test_config.cmxa
+   config/expect_test_config.ml
+   config/expect_test_config.mli
+   config_types/expect_test_config_types.a
+   config_types/expect_test_config_types.cma
+   config_types/expect_test_config_types.cmi
+   config_types/expect_test_config_types.cmt
+   config_types/expect_test_config_types.cmti
+   config_types/expect_test_config_types.cmx
+   config_types/expect_test_config_types.cmxa
+   config_types/expect_test_config_types.ml
+   config_types/expect_test_config_types.mli
+   config_types/expect_test_config_types__.cmi
+   config_types/expect_test_config_types__.cmt
+   config_types/expect_test_config_types__.cmx
+   config_types/expect_test_config_types__.ml
+   config_types/expect_test_config_types__Expect_test_config_types_intf.cmi
+   config_types/expect_test_config_types__Expect_test_config_types_intf.cmt
+   config_types/expect_test_config_types__Expect_test_config_types_intf.cmx
+   config_types/expect_test_config_types_intf.ml
+   dune-package
+   evaluator/ppx_expect_evaluator.a
+   evaluator/ppx_expect_evaluator.cma
+   evaluator/ppx_expect_evaluator.cmi
+   evaluator/ppx_expect_evaluator.cmt
+   evaluator/ppx_expect_evaluator.cmti
+   evaluator/ppx_expect_evaluator.cmx
+   evaluator/ppx_expect_evaluator.cmxa
+   evaluator/ppx_expect_evaluator.ml
+   evaluator/ppx_expect_evaluator.mli
+   expect_extension.ml
+   expect_extension.mli
+   main.ml
+   main.mli
+   make_corrected_file/import.ml
+   make_corrected_file/make_corrected_file.a
+   make_corrected_file/make_corrected_file.cma
+   make_corrected_file/make_corrected_file.cmi
+   make_corrected_file/make_corrected_file.cmt
+   make_corrected_file/make_corrected_file.cmti
+   make_corrected_file/make_corrected_file.cmx
+   make_corrected_file/make_corrected_file.cmxa
+   make_corrected_file/make_corrected_file.ml
+   make_corrected_file/make_corrected_file.mli
+   make_corrected_file/make_corrected_file__.cmi
+   make_corrected_file/make_corrected_file__.cmt
+   make_corrected_file/make_corrected_file__.cmx
+   make_corrected_file/make_corrected_file__.ml
+   make_corrected_file/make_corrected_file__Import.cmi
+   make_corrected_file/make_corrected_file__Import.cmt
+   make_corrected_file/make_corrected_file__Import.cmx
+   matcher/choose_tag.ml
+   matcher/choose_tag.mli
+   matcher/cst.ml
+   matcher/cst.mli
+   matcher/expect_test_matcher.a
+   matcher/expect_test_matcher.cma
+   matcher/expect_test_matcher.cmi
+   matcher/expect_test_matcher.cmt
+   matcher/expect_test_matcher.cmx
+   matcher/expect_test_matcher.cmxa
+   matcher/expect_test_matcher.ml
+   matcher/expect_test_matcher__.cmi
+   matcher/expect_test_matcher__.cmt
+   matcher/expect_test_matcher__.cmx
+   matcher/expect_test_matcher__.ml
+   matcher/expect_test_matcher__Choose_tag.cmi
+   matcher/expect_test_matcher__Choose_tag.cmt
+   matcher/expect_test_matcher__Choose_tag.cmti
+   matcher/expect_test_matcher__Choose_tag.cmx
+   matcher/expect_test_matcher__Cst.cmi
+   matcher/expect_test_matcher__Cst.cmt
+   matcher/expect_test_matcher__Cst.cmti
+   matcher/expect_test_matcher__Cst.cmx
+   matcher/expect_test_matcher__Fmt.cmi
+   matcher/expect_test_matcher__Fmt.cmt
+   matcher/expect_test_matcher__Fmt.cmti
+   matcher/expect_test_matcher__Fmt.cmx
+   matcher/expect_test_matcher__Import.cmi
+   matcher/expect_test_matcher__Import.cmt
+   matcher/expect_test_matcher__Import.cmx
+   matcher/expect_test_matcher__Lexer.cmi
+   matcher/expect_test_matcher__Lexer.cmt
+   matcher/expect_test_matcher__Lexer.cmti
+   matcher/expect_test_matcher__Lexer.cmx
+   matcher/expect_test_matcher__Matcher.cmi
+   matcher/expect_test_matcher__Matcher.cmt
+   matcher/expect_test_matcher__Matcher.cmti
+   matcher/expect_test_matcher__Matcher.cmx
+   matcher/expect_test_matcher__Reconcile.cmi
+   matcher/expect_test_matcher__Reconcile.cmt
+   matcher/expect_test_matcher__Reconcile.cmti
+   matcher/expect_test_matcher__Reconcile.cmx
+   matcher/fmt.ml
+   matcher/fmt.mli
+   matcher/import.ml
+   matcher/lexer.ml
+   matcher/lexer.mli
+   matcher/matcher.ml
+   matcher/matcher.mli
+   matcher/reconcile.ml
+   matcher/reconcile.mli
+   opam
+   payload/ppx_expect_payload.a
+   payload/ppx_expect_payload.cma
+   payload/ppx_expect_payload.cmi
+   payload/ppx_expect_payload.cmt
+   payload/ppx_expect_payload.cmti
+   payload/ppx_expect_payload.cmx
+   payload/ppx_expect_payload.cmxa
+   payload/ppx_expect_payload.ml
+   payload/ppx_expect_payload.mli
+   ppx_expect.a
+   ppx_expect.cma
+   ppx_expect.cmi
+   ppx_expect.cmt
+   ppx_expect.cmx
+   ppx_expect.cmxa
+   ppx_expect.ml
+   ppx_expect__Expect_extension.cmi
+   ppx_expect__Expect_extension.cmt
+   ppx_expect__Expect_extension.cmti
+   ppx_expect__Expect_extension.cmx
+   ppx_expect__Main.cmi
+   ppx_expect__Main.cmt
+   ppx_expect__Main.cmti
+   ppx_expect__Main.cmx))
+ (libexec
+  (collector/expect_test_collector.cmxs
+   common/expect_test_common.cmxs
+   config/expect_test_config.cmxs
+   config_types/expect_test_config_types.cmxs
+   evaluator/ppx_expect_evaluator.cmxs
+   make_corrected_file/make_corrected_file.cmxs
+   matcher/expect_test_matcher.cmxs
+   payload/ppx_expect_payload.cmxs
+   ppx.exe
+   ppx_expect.cmxs))
+ (doc (CHANGES.md LICENSE.md README.org))
+ (stublibs (dllexpect_test_collector_stubs.so)))
+(library
+ (name ppx_expect)
+ (kind ppx_rewriter)
+ (archives (byte ppx_expect.cma) (native ppx_expect.cmxa))
+ (plugins (byte ppx_expect.cma) (native ppx_expect.cmxs))
+ (native_archives ppx_expect.a)
+ (requires
+  base
+  ppx_expect.common
+  ppx_expect.payload
+  ppxlib.ast
+  ppxlib
+  ppx_inline_test
+  ppx_inline_test.libname
+  ppx_here.expander)
+ (ppx_runtime_deps ppx_expect.collector ppx_expect.config)
+ (main_module_name Ppx_expect)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_expect)
+     (visibility public)
+     (kind alias)
+     (source (path Ppx_expect) (impl (path ppx_expect.ml-gen))))
+    (name Ppx_expect)
+    (modules
+     (module
+      (obj_name ppx_expect__Expect_extension)
+      (visibility public)
+      (source
+       (path Expect_extension)
+       (intf (path expect_extension.mli))
+       (impl (path expect_extension.ml))))
+     (module
+      (obj_name ppx_expect__Main)
+      (visibility public)
+      (source (path Main) (intf (path main.mli)) (impl (path main.ml))))))
+   (wrapped true)))
+ (inline_tests.backend
+  (runner_libraries ppx_expect.evaluator)
+  (flags :standard)
+  (extends ppx_inline_test)))
+(library
+ (name ppx_expect.collector)
+ (kind normal)
+ (synopsis "Runtime library for ppx_expect")
+ (archives
+  (byte collector/expect_test_collector.cma)
+  (native collector/expect_test_collector.cmxa))
+ (plugins
+  (byte collector/expect_test_collector.cma)
+  (native collector/expect_test_collector.cmxs))
+ (foreign_objects collector/expect_test_collector_stubs.o)
+ (foreign_archives
+  (archives (for all) (files collector/libexpect_test_collector_stubs.a)))
+ (foreign_dll_files ../stublibs/dllexpect_test_collector_stubs.so)
+ (native_archives collector/expect_test_collector.a)
+ (jsoo_runtime collector/runtime.js)
+ (requires
+  ppx_expect.common
+  ppx_expect.config_types
+  ppx_inline_test.runtime-lib)
+ (main_module_name Expect_test_collector)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name expect_test_collector__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Expect_test_collector__)
+      (impl (path collector/expect_test_collector__.ml-gen))))
+    (name Expect_test_collector)
+    (modules
+     (module
+      (obj_name expect_test_collector__Check_backtraces)
+      (visibility public)
+      (source
+       (path Check_backtraces)
+       (intf (path collector/check_backtraces.mli))
+       (impl (path collector/check_backtraces.ml))))
+     (module
+      (obj_name expect_test_collector)
+      (visibility public)
+      (source
+       (path Expect_test_collector)
+       (intf (path collector/expect_test_collector.mli))
+       (impl (path collector/expect_test_collector.ml))))))
+   (wrapped true))))
+(library
+ (name ppx_expect.common)
+ (kind normal)
+ (synopsis "Shared parts for ppx_expect")
+ (archives
+  (byte common/expect_test_common.cma)
+  (native common/expect_test_common.cmxa))
+ (plugins
+  (byte common/expect_test_common.cma)
+  (native common/expect_test_common.cmxs))
+ (native_archives common/expect_test_common.a)
+ (requires base)
+ (main_module_name Expect_test_common)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name expect_test_common__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Expect_test_common__)
+      (impl (path common/expect_test_common__.ml-gen))))
+    (name Expect_test_common)
+    (modules
+     (module
+      (obj_name expect_test_common)
+      (visibility public)
+      (source
+       (path Expect_test_common)
+       (impl (path common/expect_test_common.ml))))
+     (module
+      (obj_name expect_test_common__Expectation)
+      (visibility public)
+      (source
+       (path Expectation)
+       (intf (path common/expectation.mli))
+       (impl (path common/expectation.ml))))
+     (module
+      (obj_name expect_test_common__File)
+      (visibility public)
+      (source
+       (path File)
+       (intf (path common/file.mli))
+       (impl (path common/file.ml))))
+     (module
+      (obj_name expect_test_common__Import)
+      (visibility public)
+      (source (path Import) (impl (path common/import.ml))))))
+   (wrapped true))))
+(library
+ (name ppx_expect.config)
+ (kind normal)
+ (synopsis "Default runtime configuration for ppx_expect")
+ (archives
+  (byte config/expect_test_config.cma)
+  (native config/expect_test_config.cmxa))
+ (plugins
+  (byte config/expect_test_config.cma)
+  (native config/expect_test_config.cmxs))
+ (native_archives config/expect_test_config.a)
+ (requires ppx_expect.config_types)
+ (main_module_name Expect_test_config)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name expect_test_config)
+   (visibility public)
+   (source
+    (path Expect_test_config)
+    (intf (path config/expect_test_config.mli))
+    (impl (path config/expect_test_config.ml))))))
+(library
+ (name ppx_expect.config_types)
+ (kind normal)
+ (synopsis "Runtime configuration options for ppx_expect")
+ (archives
+  (byte config_types/expect_test_config_types.cma)
+  (native config_types/expect_test_config_types.cmxa))
+ (plugins
+  (byte config_types/expect_test_config_types.cma)
+  (native config_types/expect_test_config_types.cmxs))
+ (native_archives config_types/expect_test_config_types.a)
+ (main_module_name Expect_test_config_types)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name expect_test_config_types__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Expect_test_config_types__)
+      (impl (path config_types/expect_test_config_types__.ml-gen))))
+    (name Expect_test_config_types)
+    (modules
+     (module
+      (obj_name expect_test_config_types)
+      (visibility public)
+      (source
+       (path Expect_test_config_types)
+       (intf (path config_types/expect_test_config_types.mli))
+       (impl (path config_types/expect_test_config_types.ml))))
+     (module
+      (obj_name expect_test_config_types__Expect_test_config_types_intf)
+      (visibility public)
+      (source
+       (path Expect_test_config_types_intf)
+       (impl (path config_types/expect_test_config_types_intf.ml))))))
+   (wrapped true))))
+(library
+ (name ppx_expect.evaluator)
+ (kind normal)
+ (archives
+  (byte evaluator/ppx_expect_evaluator.cma)
+  (native evaluator/ppx_expect_evaluator.cmxa))
+ (plugins
+  (byte evaluator/ppx_expect_evaluator.cma)
+  (native evaluator/ppx_expect_evaluator.cmxs))
+ (native_archives evaluator/ppx_expect_evaluator.a)
+ (requires
+  base
+  stdio
+  ppx_expect.common
+  ppx_expect.collector
+  ppx_expect.matcher
+  ppx_expect.make_corrected_file
+  ppxlib.print_diff)
+ (main_module_name Ppx_expect_evaluator)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_expect_evaluator)
+   (visibility public)
+   (source
+    (path Ppx_expect_evaluator)
+    (intf (path evaluator/ppx_expect_evaluator.mli))
+    (impl (path evaluator/ppx_expect_evaluator.ml))))))
+(library
+ (name ppx_expect.make_corrected_file)
+ (kind normal)
+ (archives
+  (byte make_corrected_file/make_corrected_file.cma)
+  (native make_corrected_file/make_corrected_file.cmxa))
+ (plugins
+  (byte make_corrected_file/make_corrected_file.cma)
+  (native make_corrected_file/make_corrected_file.cmxs))
+ (native_archives make_corrected_file/make_corrected_file.a)
+ (requires base ppxlib.print_diff stdio)
+ (main_module_name Make_corrected_file)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name make_corrected_file__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Make_corrected_file__)
+      (impl (path make_corrected_file/make_corrected_file__.ml-gen))))
+    (name Make_corrected_file)
+    (modules
+     (module
+      (obj_name make_corrected_file__Import)
+      (visibility public)
+      (source (path Import) (impl (path make_corrected_file/import.ml))))
+     (module
+      (obj_name make_corrected_file)
+      (visibility public)
+      (source
+       (path Make_corrected_file)
+       (intf (path make_corrected_file/make_corrected_file.mli))
+       (impl (path make_corrected_file/make_corrected_file.ml))))))
+   (wrapped true))))
+(library
+ (name ppx_expect.matcher)
+ (kind normal)
+ (archives
+  (byte matcher/expect_test_matcher.cma)
+  (native matcher/expect_test_matcher.cmxa))
+ (plugins
+  (byte matcher/expect_test_matcher.cma)
+  (native matcher/expect_test_matcher.cmxs))
+ (native_archives matcher/expect_test_matcher.a)
+ (requires
+  base
+  re
+  ppx_expect.common
+  ppx_expect.config_types
+  ppx_inline_test.runtime-lib)
+ (main_module_name Expect_test_matcher)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name expect_test_matcher__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Expect_test_matcher__)
+      (impl (path matcher/expect_test_matcher__.ml-gen))))
+    (name Expect_test_matcher)
+    (modules
+     (module
+      (obj_name expect_test_matcher__Choose_tag)
+      (visibility public)
+      (source
+       (path Choose_tag)
+       (intf (path matcher/choose_tag.mli))
+       (impl (path matcher/choose_tag.ml))))
+     (module
+      (obj_name expect_test_matcher__Cst)
+      (visibility public)
+      (source
+       (path Cst)
+       (intf (path matcher/cst.mli))
+       (impl (path matcher/cst.ml))))
+     (module
+      (obj_name expect_test_matcher)
+      (visibility public)
+      (source
+       (path Expect_test_matcher)
+       (impl (path matcher/expect_test_matcher.ml))))
+     (module
+      (obj_name expect_test_matcher__Fmt)
+      (visibility public)
+      (source
+       (path Fmt)
+       (intf (path matcher/fmt.mli))
+       (impl (path matcher/fmt.ml))))
+     (module
+      (obj_name expect_test_matcher__Import)
+      (visibility public)
+      (source (path Import) (impl (path matcher/import.ml))))
+     (module
+      (obj_name expect_test_matcher__Lexer)
+      (visibility public)
+      (source
+       (path Lexer)
+       (intf (path matcher/lexer.mli))
+       (impl (path matcher/lexer.ml))))
+     (module
+      (obj_name expect_test_matcher__Matcher)
+      (visibility public)
+      (source
+       (path Matcher)
+       (intf (path matcher/matcher.mli))
+       (impl (path matcher/matcher.ml))))
+     (module
+      (obj_name expect_test_matcher__Reconcile)
+      (visibility public)
+      (source
+       (path Reconcile)
+       (intf (path matcher/reconcile.mli))
+       (impl (path matcher/reconcile.ml))))))
+   (wrapped true))))
+(library
+ (name ppx_expect.payload)
+ (kind normal)
+ (archives
+  (byte payload/ppx_expect_payload.cma)
+  (native payload/ppx_expect_payload.cmxa))
+ (plugins
+  (byte payload/ppx_expect_payload.cma)
+  (native payload/ppx_expect_payload.cmxs))
+ (native_archives payload/ppx_expect_payload.a)
+ (requires ppx_expect.common ppxlib.ast ppxlib)
+ (main_module_name Ppx_expect_payload)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_expect_payload)
+   (visibility public)
+   (source
+    (path Ppx_expect_payload)
+    (intf (path payload/ppx_expect_payload.mli))
+    (impl (path payload/ppx_expect_payload.ml))))))

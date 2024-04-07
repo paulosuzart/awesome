@@ -1,0 +1,37 @@
+(lang dune 3.15)
+(name ppx_globalize)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_globalize))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_globalize.a
+   ppx_globalize.cma
+   ppx_globalize.cmi
+   ppx_globalize.cmt
+   ppx_globalize.cmti
+   ppx_globalize.cmx
+   ppx_globalize.cmxa
+   ppx_globalize.ml
+   ppx_globalize.mli))
+ (libexec (ppx_globalize.cmxs))
+ (doc (CHANGES.md LICENSE.md)))
+(library
+ (name ppx_globalize)
+ (kind ppx_deriver)
+ (archives (byte ppx_globalize.cma) (native ppx_globalize.cmxa))
+ (plugins (byte ppx_globalize.cma) (native ppx_globalize.cmxs))
+ (native_archives ppx_globalize.a)
+ (requires base ppxlib.ast ppxlib)
+ (main_module_name Ppx_globalize)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_globalize)
+   (visibility public)
+   (source
+    (path Ppx_globalize)
+    (intf (path ppx_globalize.mli))
+    (impl (path ppx_globalize.ml))))))

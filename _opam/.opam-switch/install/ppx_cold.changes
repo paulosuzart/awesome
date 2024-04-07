@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_cold" {"D"}
+  "doc/ppx_cold/LICENSE.md" {"F:93afbebc0e066419e584932bf74cc496"}
+  "doc/ppx_cold/README.md" {"F:52130ec88fd33869c4d7de8e397475bd"}
+  "lib/ppx_cold" {"D"}
+  "lib/ppx_cold/META" {"F:258a04dc7a64aabdd20beb0a00f9d68e"}
+  "lib/ppx_cold/dune-package" {"F:c6faf9a0bc23ed12f56b5fc7011e3586"}
+  "lib/ppx_cold/opam" {"F:914e47c8834d4d68bbda182b8e0b52f2"}
+  "lib/ppx_cold/ppx.exe" {"F:3225c597f22cace1082ef35d88c10b91"}
+  "lib/ppx_cold/ppx_cold.a" {"F:1a9cc9782e9dc96f71927e3a569da4cd"}
+  "lib/ppx_cold/ppx_cold.cma" {"F:5fc1a2944a5b3f0d62bc542dd0947691"}
+  "lib/ppx_cold/ppx_cold.cmi" {"F:01c4d960a174cbba0aa2dcdd27fdcf7b"}
+  "lib/ppx_cold/ppx_cold.cmt" {"F:450cb9e7b9278a57276ee6f45b62bb1b"}
+  "lib/ppx_cold/ppx_cold.cmti" {"F:a919d773bd94bdddfec0b48d03468f7f"}
+  "lib/ppx_cold/ppx_cold.cmx" {"F:1f0ba1aa833ade0206494cceb05bf1cc"}
+  "lib/ppx_cold/ppx_cold.cmxa" {"F:e2a481385e8f8143b35924812c218c75"}
+  "lib/ppx_cold/ppx_cold.cmxs" {"F:696a7ea0bb15f6fcd0bed0b9294e8663"}
+  "lib/ppx_cold/ppx_cold.ml" {"F:6f64f9dc792b198b1a2b1e56c28fd4a6"}
+  "lib/ppx_cold/ppx_cold.mli" {"F:db241404d5f7d797d3826fc11fa34611"}
+]

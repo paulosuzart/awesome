@@ -1,0 +1,61 @@
+.TH "CamlinternalMenhirLib.IncrementalEngine.SYMBOLS" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.IncrementalEngine.SYMBOLS \- no description
+.SH Module type
+Module type   CamlinternalMenhirLib.IncrementalEngine.SYMBOLS
+.SH Documentation
+.sp
+Module type
+.BI "SYMBOLS"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I terminal 
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I nonterminal 
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I symbol 
+=
+ | T
+.B : 
+.B 'a0 terminal
+.B -> 
+.B 'a0 symbol
+ | N
+.B : 
+.B 'a1 nonterminal
+.B -> 
+.B 'a1 symbol
+ 
+.sp
+
+.sp
+.I type xsymbol 
+=
+ | X
+.B : 
+.B 'a symbol
+.B -> 
+.B xsymbol
+ 
+.sp
+
+.sp

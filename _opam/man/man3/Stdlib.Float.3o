@@ -1,0 +1,1792 @@
+.TH "Stdlib.Float" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Float \- no description
+.SH Module
+Module   Stdlib.Float
+.SH Documentation
+.sp
+Module
+.BI "Float"
+ : 
+.B (module Stdlib__Float)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val zero 
+: 
+.B float
+.sp
+The floating point 0\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val one 
+: 
+.B float
+.sp
+The floating\-point 1\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val minus_one 
+: 
+.B float
+.sp
+The floating\-point \-1\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val neg 
+: 
+.B float -> float
+.sp
+Unary negation\&.
+
+.sp
+
+.I val add 
+: 
+.B float -> float -> float
+.sp
+Floating\-point addition\&.
+
+.sp
+
+.I val sub 
+: 
+.B float -> float -> float
+.sp
+Floating\-point subtraction\&.
+
+.sp
+
+.I val mul 
+: 
+.B float -> float -> float
+.sp
+Floating\-point multiplication\&.
+
+.sp
+
+.I val div 
+: 
+.B float -> float -> float
+.sp
+Floating\-point division\&.
+
+.sp
+
+.I val fma 
+: 
+.B float -> float -> float -> float
+.sp
+
+.ft B
+fma x y z
+.ft R
+returns 
+.ft B
+x * y + z
+.ft R
+, with a best effort for computing
+this expression with a single rounding, using either hardware
+instructions (providing full IEEE compliance) or a software
+emulation\&.
+.sp
+On 64\-bit Cygwin, 64\-bit mingw\-w64 and MSVC 2017 and earlier, this function
+may be emulated owing to known bugs on limitations on these platforms\&.
+Note: since software emulation of the fma is costly, make sure that you are
+using hardware fma support if performance matters\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val rem 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+rem a b
+.ft R
+returns the remainder of 
+.ft B
+a
+.ft R
+with respect to 
+.ft B
+b
+.ft R
+\&.  The returned
+value is 
+.ft B
+a \-\&. n *\&. b
+.ft R
+, where 
+.ft B
+n
+.ft R
+is the quotient 
+.ft B
+a /\&. b
+.ft R
+rounded towards
+zero to an integer\&.
+
+.sp
+
+.I val succ 
+: 
+.B float -> float
+.sp
+
+.ft B
+succ x
+.ft R
+returns the floating point number right after 
+.ft B
+x
+.ft R
+i\&.e\&.,
+the smallest floating\-point number greater than 
+.ft B
+x
+.ft R
+\&.  See also
+.ft B
+Float\&.next_after
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pred 
+: 
+.B float -> float
+.sp
+
+.ft B
+pred x
+.ft R
+returns the floating\-point number right before 
+.ft B
+x
+.ft R
+i\&.e\&.,
+the greatest floating\-point number smaller than 
+.ft B
+x
+.ft R
+\&.  See also
+.ft B
+Float\&.next_after
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val abs 
+: 
+.B float -> float
+.sp
+
+.ft B
+abs f
+.ft R
+returns the absolute value of 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+
+.I val infinity 
+: 
+.B float
+.sp
+Positive infinity\&.
+
+.sp
+
+.I val neg_infinity 
+: 
+.B float
+.sp
+Negative infinity\&.
+
+.sp
+
+.I val nan 
+: 
+.B float
+.sp
+A special floating\-point value denoting the result of an
+undefined operation such as 
+.ft B
+0\&.0 /\&. 0\&.0
+.ft R
+\&.  Stands for
+\&'not a number\&'\&.  Any floating\-point operation with 
+.ft B
+nan
+.ft R
+as
+argument returns 
+.ft B
+nan
+.ft R
+as result, unless otherwise specified in
+IEEE 754 standard\&.  As for floating\-point comparisons,
+.ft B
+=
+.ft R
+, 
+.ft B
+<
+.ft R
+, 
+.ft B
+<=
+.ft R
+, 
+.ft B
+>
+.ft R
+and 
+.ft B
+>=
+.ft R
+return 
+.ft B
+false
+.ft R
+and 
+.ft B
+<>
+.ft R
+returns 
+.ft B
+true
+.ft R
+if one or both of their arguments is 
+.ft B
+nan
+.ft R
+\&.
+.sp
+
+.ft B
+nan
+.ft R
+is 
+.ft B
+quiet_nan
+.ft R
+since 5\&.1; it was a signaling NaN before\&.
+
+.sp
+
+.I val signaling_nan 
+: 
+.B float
+.sp
+Signaling NaN\&. The corresponding signals do not raise OCaml exception,
+but the value can be useful for interoperability with C libraries\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val quiet_nan 
+: 
+.B float
+.sp
+Quiet NaN\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val pi 
+: 
+.B float
+.sp
+The constant pi\&.
+
+.sp
+
+.I val max_float 
+: 
+.B float
+.sp
+The largest positive finite value of type 
+.ft B
+float
+.ft R
+\&.
+
+.sp
+
+.I val min_float 
+: 
+.B float
+.sp
+The smallest positive, non\-zero, non\-denormalized value of type 
+.ft B
+float
+.ft R
+\&.
+
+.sp
+
+.I val epsilon 
+: 
+.B float
+.sp
+The difference between 
+.ft B
+1\&.0
+.ft R
+and the smallest exactly representable
+floating\-point number greater than 
+.ft B
+1\&.0
+.ft R
+\&.
+
+.sp
+
+.I val is_finite 
+: 
+.B float -> bool
+.sp
+
+.ft B
+is_finite x
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+x
+.ft R
+is finite i\&.e\&., not infinite and
+not 
+.ft B
+Float\&.nan
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val is_infinite 
+: 
+.B float -> bool
+.sp
+
+.ft B
+is_infinite x
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+x
+.ft R
+is 
+.ft B
+Float\&.infinity
+.ft R
+or
+.ft B
+Float\&.neg_infinity
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val is_nan 
+: 
+.B float -> bool
+.sp
+
+.ft B
+is_nan x
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+x
+.ft R
+is not a number (see 
+.ft B
+Float\&.nan
+.ft R
+)\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val is_integer 
+: 
+.B float -> bool
+.sp
+
+.ft B
+is_integer x
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+x
+.ft R
+is an integer\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val of_int 
+: 
+.B int -> float
+.sp
+Convert an integer to floating\-point\&.
+
+.sp
+
+.I val to_int 
+: 
+.B float -> int
+.sp
+Truncate the given floating\-point number to an integer\&.
+The result is unspecified if the argument is 
+.ft B
+nan
+.ft R
+or falls outside the
+range of representable integers\&.
+
+.sp
+
+.I val of_string 
+: 
+.B string -> float
+.sp
+Convert the given string to a float\&.  The string is read in decimal
+(by default) or in hexadecimal (marked by 
+.ft B
+0x
+.ft R
+or 
+.ft B
+0X
+.ft R
+)\&.
+The format of decimal floating\-point numbers is
+.ft B
+[\-] dd\&.ddd (e|E) [+|\-] dd 
+.ft R
+, where 
+.ft B
+d
+.ft R
+stands for a decimal digit\&.
+The format of hexadecimal floating\-point numbers is
+.ft B
+[\-] 0(x|X) hh\&.hhh (p|P) [+|\-] dd 
+.ft R
+, where 
+.ft B
+h
+.ft R
+stands for an
+hexadecimal digit and 
+.ft B
+d
+.ft R
+for a decimal digit\&.
+In both cases, at least one of the integer and fractional parts must be
+given; the exponent part is optional\&.
+The 
+.ft B
+_
+.ft R
+(underscore) character can appear anywhere in the string
+and is ignored\&.
+Depending on the execution platforms, other representations of
+floating\-point numbers can be accepted, but should not be relied upon\&.
+
+.sp
+.B "Raises Failure"
+if the given string is not a valid
+representation of a float\&.
+
+.sp
+
+.I val of_string_opt 
+: 
+.B string -> float option
+.sp
+Same as 
+.ft B
+of_string
+.ft R
+, but returns 
+.ft B
+None
+.ft R
+instead of raising\&.
+
+.sp
+
+.I val to_string 
+: 
+.B float -> string
+.sp
+Return a string representation of a floating\-point number\&.
+.sp
+This conversion can involve a loss of precision\&. For greater control over
+the manner in which the number is printed, see 
+.ft B
+Printf
+.ft R
+\&.
+.sp
+This function is an alias for 
+.ft B
+string_of_float
+.ft R
+\&.
+
+.sp
+.I type fpclass 
+= 
+.B fpclass
+=
+ | FP_normal  (* Normal number, none of the below
+ *)
+ | FP_subnormal  (* Number very close to 0\&.0, has reduced precision
+ *)
+ | FP_zero  (* Number is 0\&.0 or \-0\&.0
+ *)
+ | FP_infinite  (* Number is positive or negative infinity
+ *)
+ | FP_nan  (* Not a number: result of an undefined operation
+ *)
+ 
+.sp
+The five classes of floating\-point numbers, as determined by
+the 
+.ft B
+Float\&.classify_float
+.ft R
+function\&.
+
+.sp
+
+.I val classify_float 
+: 
+.B float -> fpclass
+.sp
+Return the class of the given floating\-point number:
+normal, subnormal, zero, infinite, or not a number\&.
+
+.sp
+
+.I val pow 
+: 
+.B float -> float -> float
+.sp
+Exponentiation\&.
+
+.sp
+
+.I val sqrt 
+: 
+.B float -> float
+.sp
+Square root\&.
+
+.sp
+
+.I val cbrt 
+: 
+.B float -> float
+.sp
+Cube root\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val exp 
+: 
+.B float -> float
+.sp
+Exponential\&.
+
+.sp
+
+.I val exp2 
+: 
+.B float -> float
+.sp
+Base 2 exponential function\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val log 
+: 
+.B float -> float
+.sp
+Natural logarithm\&.
+
+.sp
+
+.I val log10 
+: 
+.B float -> float
+.sp
+Base 10 logarithm\&.
+
+.sp
+
+.I val log2 
+: 
+.B float -> float
+.sp
+Base 2 logarithm\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val expm1 
+: 
+.B float -> float
+.sp
+
+.ft B
+expm1 x
+.ft R
+computes 
+.ft B
+exp x \-\&. 1\&.0
+.ft R
+, giving numerically\-accurate results
+even if 
+.ft B
+x
+.ft R
+is close to 
+.ft B
+0\&.0
+.ft R
+\&.
+
+.sp
+
+.I val log1p 
+: 
+.B float -> float
+.sp
+
+.ft B
+log1p x
+.ft R
+computes 
+.ft B
+log(1\&.0 +\&. x)
+.ft R
+(natural logarithm),
+giving numerically\-accurate results even if 
+.ft B
+x
+.ft R
+is close to 
+.ft B
+0\&.0
+.ft R
+\&.
+
+.sp
+
+.I val cos 
+: 
+.B float -> float
+.sp
+Cosine\&.  Argument is in radians\&.
+
+.sp
+
+.I val sin 
+: 
+.B float -> float
+.sp
+Sine\&.  Argument is in radians\&.
+
+.sp
+
+.I val tan 
+: 
+.B float -> float
+.sp
+Tangent\&.  Argument is in radians\&.
+
+.sp
+
+.I val acos 
+: 
+.B float -> float
+.sp
+Arc cosine\&.  The argument must fall within the range 
+.ft B
+[\-1\&.0, 1\&.0]
+.ft R
+\&.
+Result is in radians and is between 
+.ft B
+0\&.0
+.ft R
+and 
+.ft B
+pi
+.ft R
+\&.
+
+.sp
+
+.I val asin 
+: 
+.B float -> float
+.sp
+Arc sine\&.  The argument must fall within the range 
+.ft B
+[\-1\&.0, 1\&.0]
+.ft R
+\&.
+Result is in radians and is between 
+.ft B
+\-pi/2
+.ft R
+and 
+.ft B
+pi/2
+.ft R
+\&.
+
+.sp
+
+.I val atan 
+: 
+.B float -> float
+.sp
+Arc tangent\&.
+Result is in radians and is between 
+.ft B
+\-pi/2
+.ft R
+and 
+.ft B
+pi/2
+.ft R
+\&.
+
+.sp
+
+.I val atan2 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+atan2 y x
+.ft R
+returns the arc tangent of 
+.ft B
+y /\&. x
+.ft R
+\&.  The signs of 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+are used to determine the quadrant of the result\&.
+Result is in radians and is between 
+.ft B
+\-pi
+.ft R
+and 
+.ft B
+pi
+.ft R
+\&.
+
+.sp
+
+.I val hypot 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+hypot x y
+.ft R
+returns 
+.ft B
+sqrt(x *\&. x +\&. y *\&. y)
+.ft R
+, that is, the length
+of the hypotenuse of a right\-angled triangle with sides of length
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+, or, equivalently, the distance of the point 
+.ft B
+(x,y)
+.ft R
+to origin\&.  If one of 
+.ft B
+x
+.ft R
+or 
+.ft B
+y
+.ft R
+is infinite, returns 
+.ft B
+infinity
+.ft R
+even if the other is 
+.ft B
+nan
+.ft R
+\&.
+
+.sp
+
+.I val cosh 
+: 
+.B float -> float
+.sp
+Hyperbolic cosine\&.  Argument is in radians\&.
+
+.sp
+
+.I val sinh 
+: 
+.B float -> float
+.sp
+Hyperbolic sine\&.  Argument is in radians\&.
+
+.sp
+
+.I val tanh 
+: 
+.B float -> float
+.sp
+Hyperbolic tangent\&.  Argument is in radians\&.
+
+.sp
+
+.I val acosh 
+: 
+.B float -> float
+.sp
+Hyperbolic arc cosine\&.  The argument must fall within the range
+.ft B
+[1\&.0, inf]
+.ft R
+\&.
+Result is in radians and is between 
+.ft B
+0\&.0
+.ft R
+and 
+.ft B
+inf
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val asinh 
+: 
+.B float -> float
+.sp
+Hyperbolic arc sine\&.  The argument and result range over the entire
+real line\&.
+Result is in radians\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val atanh 
+: 
+.B float -> float
+.sp
+Hyperbolic arc tangent\&.  The argument must fall within the range
+.ft B
+[\-1\&.0, 1\&.0]
+.ft R
+\&.
+Result is in radians and ranges over the entire real line\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val erf 
+: 
+.B float -> float
+.sp
+Error function\&.  The argument ranges over the entire real line\&.
+The result is always within 
+.ft B
+[\-1\&.0, 1\&.0]
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val erfc 
+: 
+.B float -> float
+.sp
+Complementary error function (
+.ft B
+erfc x = 1 \- erf x
+.ft R
+)\&.
+The argument ranges over the entire real line\&.
+The result is always within 
+.ft B
+[\-1\&.0, 1\&.0]
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val trunc 
+: 
+.B float -> float
+.sp
+
+.ft B
+trunc x
+.ft R
+rounds 
+.ft B
+x
+.ft R
+to the nearest integer whose absolute value is
+less than or equal to 
+.ft B
+x
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val round 
+: 
+.B float -> float
+.sp
+
+.ft B
+round x
+.ft R
+rounds 
+.ft B
+x
+.ft R
+to the nearest integer with ties (fractional
+values of 0\&.5) rounded away from zero, regardless of the current
+rounding direction\&.  If 
+.ft B
+x
+.ft R
+is an integer, 
+.ft B
++0\&.
+.ft R
+, 
+.ft B
+\-0\&.
+.ft R
+, 
+.ft B
+nan
+.ft R
+, or
+infinite, 
+.ft B
+x
+.ft R
+itself is returned\&.
+.sp
+On 64\-bit mingw\-w64, this function may be emulated owing to a bug in the
+C runtime library (CRT) on this platform\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val ceil 
+: 
+.B float -> float
+.sp
+Round above to an integer value\&.
+.ft B
+ceil f
+.ft R
+returns the least integer value greater than or equal to 
+.ft B
+f
+.ft R
+\&.
+The result is returned as a float\&.
+
+.sp
+
+.I val floor 
+: 
+.B float -> float
+.sp
+Round below to an integer value\&.
+.ft B
+floor f
+.ft R
+returns the greatest integer value less than or
+equal to 
+.ft B
+f
+.ft R
+\&.
+The result is returned as a float\&.
+
+.sp
+
+.I val next_after 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+next_after x y
+.ft R
+returns the next representable floating\-point
+value following 
+.ft B
+x
+.ft R
+in the direction of 
+.ft B
+y
+.ft R
+\&.  More precisely, if
+.ft B
+y
+.ft R
+is greater (resp\&. less) than 
+.ft B
+x
+.ft R
+, it returns the smallest
+(resp\&. largest) representable number greater (resp\&. less) than 
+.ft B
+x
+.ft R
+\&.
+If 
+.ft B
+x
+.ft R
+equals 
+.ft B
+y
+.ft R
+, the function returns 
+.ft B
+y
+.ft R
+\&.  If 
+.ft B
+x
+.ft R
+or 
+.ft B
+y
+.ft R
+is
+.ft B
+nan
+.ft R
+, a 
+.ft B
+nan
+.ft R
+is returned\&.
+Note that 
+.ft B
+next_after max_float infinity = infinity
+.ft R
+and that
+.ft B
+next_after 0\&. infinity
+.ft R
+is the smallest denormalized positive number\&.
+If 
+.ft B
+x
+.ft R
+is the smallest denormalized positive number,
+.ft B
+next_after x 0\&. = 0\&.
+.ft R
+
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val copy_sign 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+copy_sign x y
+.ft R
+returns a float whose absolute value is that of 
+.ft B
+x
+.ft R
+and whose sign is that of 
+.ft B
+y
+.ft R
+\&.  If 
+.ft B
+x
+.ft R
+is 
+.ft B
+nan
+.ft R
+, returns 
+.ft B
+nan
+.ft R
+\&.
+If 
+.ft B
+y
+.ft R
+is 
+.ft B
+nan
+.ft R
+, returns either 
+.ft B
+x
+.ft R
+or 
+.ft B
+\-\&. x
+.ft R
+, but it is not
+specified which\&.
+
+.sp
+
+.I val sign_bit 
+: 
+.B float -> bool
+.sp
+
+.ft B
+sign_bit x
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if the sign bit of 
+.ft B
+x
+.ft R
+is set\&.
+For example 
+.ft B
+sign_bit 1\&.
+.ft R
+and 
+.ft B
+signbit 0\&.
+.ft R
+are 
+.ft B
+false
+.ft R
+while
+.ft B
+sign_bit (\-1\&.)
+.ft R
+and 
+.ft B
+sign_bit (\-0\&.)
+.ft R
+are 
+.ft B
+true
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val frexp 
+: 
+.B float -> float * int
+.sp
+
+.ft B
+frexp f
+.ft R
+returns the pair of the significant
+and the exponent of 
+.ft B
+f
+.ft R
+\&.  When 
+.ft B
+f
+.ft R
+is zero, the
+significant 
+.ft B
+x
+.ft R
+and the exponent 
+.ft B
+n
+.ft R
+of 
+.ft B
+f
+.ft R
+are equal to
+zero\&.  When 
+.ft B
+f
+.ft R
+is non\-zero, they are defined by
+.ft B
+f = x *\&. 2 ** n
+.ft R
+and 
+.ft B
+0\&.5 <= x < 1\&.0
+.ft R
+\&.
+
+.sp
+
+.I val ldexp 
+: 
+.B float -> int -> float
+.sp
+
+.ft B
+ldexp x n
+.ft R
+returns 
+.ft B
+x *\&. 2 ** n
+.ft R
+\&.
+
+.sp
+
+.I val modf 
+: 
+.B float -> float * float
+.sp
+
+.ft B
+modf f
+.ft R
+returns the pair of the fractional and integral
+part of 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.I type t 
+= 
+.B float
+
+.sp
+An alias for the type of floating\-point numbers\&.
+
+.sp
+
+.I val compare 
+: 
+.B t -> t -> int
+.sp
+
+.ft B
+compare x y
+.ft R
+returns 
+.ft B
+0
+.ft R
+if 
+.ft B
+x
+.ft R
+is equal to 
+.ft B
+y
+.ft R
+, a negative integer if 
+.ft B
+x
+.ft R
+is less than 
+.ft B
+y
+.ft R
+, and a positive integer if 
+.ft B
+x
+.ft R
+is greater than
+.ft B
+y
+.ft R
+\&. 
+.ft B
+compare
+.ft R
+treats 
+.ft B
+nan
+.ft R
+as equal to itself and less than any other float
+value\&.  This treatment of 
+.ft B
+nan
+.ft R
+ensures that 
+.ft B
+compare
+.ft R
+defines a total
+ordering relation\&.
+
+.sp
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+The equal function for floating\-point numbers, compared using 
+.ft B
+Float\&.compare
+.ft R
+\&.
+
+.sp
+
+.I val min 
+: 
+.B t -> t -> t
+.sp
+
+.ft B
+min x y
+.ft R
+returns the minimum of 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+\&.  It returns 
+.ft B
+nan
+.ft R
+when 
+.ft B
+x
+.ft R
+or 
+.ft B
+y
+.ft R
+is 
+.ft B
+nan
+.ft R
+\&.  Moreover 
+.ft B
+min (\-0\&.) (+0\&.) = \-0\&.
+.ft R
+
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val max 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+max x y
+.ft R
+returns the maximum of 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+\&.  It returns 
+.ft B
+nan
+.ft R
+when 
+.ft B
+x
+.ft R
+or 
+.ft B
+y
+.ft R
+is 
+.ft B
+nan
+.ft R
+\&.  Moreover 
+.ft B
+max (\-0\&.) (+0\&.) = +0\&.
+.ft R
+
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val min_max 
+: 
+.B float -> float -> float * float
+.sp
+
+.ft B
+min_max x y
+.ft R
+is 
+.ft B
+(min x y, max x y)
+.ft R
+, just more efficient\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val min_num 
+: 
+.B t -> t -> t
+.sp
+
+.ft B
+min_num x y
+.ft R
+returns the minimum of 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+treating 
+.ft B
+nan
+.ft R
+as
+missing values\&.  If both 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+are 
+.ft B
+nan
+.ft R
+, 
+.ft B
+nan
+.ft R
+is returned\&.
+Moreover 
+.ft B
+min_num (\-0\&.) (+0\&.) = \-0\&.
+.ft R
+
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val max_num 
+: 
+.B t -> t -> t
+.sp
+
+.ft B
+max_num x y
+.ft R
+returns the maximum of 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+treating 
+.ft B
+nan
+.ft R
+as
+missing values\&.  If both 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+are 
+.ft B
+nan
+.ft R
+.ft B
+nan
+.ft R
+is returned\&.
+Moreover 
+.ft B
+max_num (\-0\&.) (+0\&.) = +0\&.
+.ft R
+
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val min_max_num 
+: 
+.B float -> float -> float * float
+.sp
+
+.ft B
+min_max_num x y
+.ft R
+is 
+.ft B
+(min_num x y, max_num x y)
+.ft R
+, just more
+efficient\&.  Note that in particular 
+.ft B
+min_max_num x nan = (x, x)
+.ft R
+and 
+.ft B
+min_max_num nan y = (y, y)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val seeded_hash 
+: 
+.B int -> t -> int
+.sp
+A seeded hash function for floats, with the same output value as
+.ft B
+Hashtbl\&.seeded_hash
+.ft R
+\&. This function allows this module to be passed as
+argument to the functor 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val hash 
+: 
+.B t -> int
+.sp
+An unseeded hash function for floats, with the same output value as
+.ft B
+Hashtbl\&.hash
+.ft R
+\&. This function allows this module to be passed as argument
+to the functor 
+.ft B
+Hashtbl\&.Make
+.ft R
+\&.
+
+.sp
+.I module Array : 
+.B sig end
+
+.sp
+Float arrays with packed representation\&.
+
+.sp
+.I module ArrayLabels : 
+.B sig end
+
+.sp
+Float arrays with packed representation (labeled functions)\&.
+
+.sp

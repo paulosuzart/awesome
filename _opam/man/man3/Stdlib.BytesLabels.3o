@@ -1,0 +1,3208 @@
+.TH "Stdlib.BytesLabels" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.BytesLabels \- no description
+.SH Module
+Module   Stdlib.BytesLabels
+.SH Documentation
+.sp
+Module
+.BI "BytesLabels"
+ : 
+.B (module Stdlib__BytesLabels)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val length 
+: 
+.B bytes -> int
+.sp
+Return the length (number of bytes) of the argument\&.
+
+.sp
+
+.I val get 
+: 
+.B bytes -> int -> char
+.sp
+
+.ft B
+get s n
+.ft R
+returns the byte at index 
+.ft B
+n
+.ft R
+in argument 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is not a valid index in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val set 
+: 
+.B bytes -> int -> char -> unit
+.sp
+
+.ft B
+set s n c
+.ft R
+modifies 
+.ft B
+s
+.ft R
+in place, replacing the byte at index 
+.ft B
+n
+.ft R
+with 
+.ft B
+c
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is not a valid index in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val create 
+: 
+.B int -> bytes
+.sp
+
+.ft B
+create n
+.ft R
+returns a new byte sequence of length 
+.ft B
+n
+.ft R
+\&. The
+sequence is uninitialized and contains arbitrary bytes\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n < 0
+.ft R
+or 
+.ft B
+n > 
+.ft R
+.ft B
+Sys\&.max_string_length
+.ft R
+\&.
+
+.sp
+
+.I val make 
+: 
+.B int -> char -> bytes
+.sp
+
+.ft B
+make n c
+.ft R
+returns a new byte sequence of length 
+.ft B
+n
+.ft R
+, filled with
+the byte 
+.ft B
+c
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n < 0
+.ft R
+or 
+.ft B
+n > 
+.ft R
+.ft B
+Sys\&.max_string_length
+.ft R
+\&.
+
+.sp
+
+.I val init 
+: 
+.B int -> f:(int -> char) -> bytes
+.sp
+
+.ft B
+init n f
+.ft R
+returns a fresh byte sequence of length 
+.ft B
+n
+.ft R
+,
+with character 
+.ft B
+i
+.ft R
+initialized to the result of 
+.ft B
+f i
+.ft R
+(in increasing
+index order)\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n < 0
+.ft R
+or 
+.ft B
+n > 
+.ft R
+.ft B
+Sys\&.max_string_length
+.ft R
+\&.
+
+.sp
+
+.I val empty 
+: 
+.B bytes
+.sp
+A byte sequence of size 0\&.
+
+.sp
+
+.I val copy 
+: 
+.B bytes -> bytes
+.sp
+Return a new byte sequence that contains the same bytes as the
+argument\&.
+
+.sp
+
+.I val of_string 
+: 
+.B string -> bytes
+.sp
+Return a new byte sequence that contains the same bytes as the
+given string\&.
+
+.sp
+
+.I val to_string 
+: 
+.B bytes -> string
+.sp
+Return a new string that contains the same bytes as the given byte
+sequence\&.
+
+.sp
+
+.I val sub 
+: 
+.B bytes -> pos:int -> len:int -> bytes
+.sp
+
+.ft B
+sub s ~pos ~len
+.ft R
+returns a new byte sequence of length 
+.ft B
+len
+.ft R
+,
+containing the subsequence of 
+.ft B
+s
+.ft R
+that starts at position 
+.ft B
+pos
+.ft R
+and has length 
+.ft B
+len
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a
+valid range of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val sub_string 
+: 
+.B bytes -> pos:int -> len:int -> string
+.sp
+Same as 
+.ft B
+BytesLabels\&.sub
+.ft R
+but return a string instead of a byte sequence\&.
+
+.sp
+
+.I val extend 
+: 
+.B bytes -> left:int -> right:int -> bytes
+.sp
+
+.ft B
+extend s ~left ~right
+.ft R
+returns a new byte sequence that contains
+the bytes of 
+.ft B
+s
+.ft R
+, with 
+.ft B
+left
+.ft R
+uninitialized bytes prepended and
+.ft B
+right
+.ft R
+uninitialized bytes appended to it\&. If 
+.ft B
+left
+.ft R
+or 
+.ft B
+right
+.ft R
+is negative, then bytes are removed (instead of appended) from
+the corresponding side of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05 in BytesLabels
+
+.sp
+.B "Raises Invalid_argument"
+if the result length is negative or
+longer than 
+.ft B
+Sys\&.max_string_length
+.ft R
+bytes\&.
+
+.sp
+
+.I val fill 
+: 
+.B bytes -> pos:int -> len:int -> char -> unit
+.sp
+
+.ft B
+fill s ~pos ~len c
+.ft R
+modifies 
+.ft B
+s
+.ft R
+in place, replacing 
+.ft B
+len
+.ft R
+characters with 
+.ft B
+c
+.ft R
+, starting at 
+.ft B
+pos
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a
+valid range of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val blit 
+: 
+.B src:bytes -> src_pos:int -> dst:bytes -> dst_pos:int -> len:int -> unit
+.sp
+
+.ft B
+blit ~src ~src_pos ~dst ~dst_pos ~len
+.ft R
+copies 
+.ft B
+len
+.ft R
+bytes from byte
+sequence 
+.ft B
+src
+.ft R
+, starting at index 
+.ft B
+src_pos
+.ft R
+, to byte sequence 
+.ft B
+dst
+.ft R
+,
+starting at index 
+.ft B
+dst_pos
+.ft R
+\&. It works correctly even if 
+.ft B
+src
+.ft R
+and 
+.ft B
+dst
+.ft R
+are
+the same byte sequence, and the source and destination intervals
+overlap\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+src_pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not
+designate a valid range of 
+.ft B
+src
+.ft R
+, or if 
+.ft B
+dst_pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid range of 
+.ft B
+dst
+.ft R
+\&.
+
+.sp
+
+.I val blit_string 
+: 
+.B src:string -> src_pos:int -> dst:bytes -> dst_pos:int -> len:int -> unit
+.sp
+
+.ft B
+blit_string ~src ~src_pos ~dst ~dst_pos ~len
+.ft R
+copies 
+.ft B
+len
+.ft R
+bytes from
+string 
+.ft B
+src
+.ft R
+, starting at index 
+.ft B
+src_pos
+.ft R
+, to byte sequence 
+.ft B
+dst
+.ft R
+,
+starting at index 
+.ft B
+dst_pos
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05 in BytesLabels
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+src_pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not
+designate a valid range of 
+.ft B
+src
+.ft R
+, or if 
+.ft B
+dst_pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid range of 
+.ft B
+dst
+.ft R
+\&.
+
+.sp
+
+.I val concat 
+: 
+.B sep:bytes -> bytes list -> bytes
+.sp
+
+.ft B
+concat ~sep sl
+.ft R
+concatenates the list of byte sequences 
+.ft B
+sl
+.ft R
+,
+inserting the separator byte sequence 
+.ft B
+sep
+.ft R
+between each, and
+returns the result as a new byte sequence\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the result is longer than
+.ft B
+Sys\&.max_string_length
+.ft R
+bytes\&.
+
+.sp
+
+.I val cat 
+: 
+.B bytes -> bytes -> bytes
+.sp
+
+.ft B
+cat s1 s2
+.ft R
+concatenates 
+.ft B
+s1
+.ft R
+and 
+.ft B
+s2
+.ft R
+and returns the result
+as a new byte sequence\&.
+
+.sp
+.B "Since"
+4.05 in BytesLabels
+
+.sp
+.B "Raises Invalid_argument"
+if the result is longer than
+.ft B
+Sys\&.max_string_length
+.ft R
+bytes\&.
+
+.sp
+
+.I val iter 
+: 
+.B f:(char -> unit) -> bytes -> unit
+.sp
+
+.ft B
+iter ~f s
+.ft R
+applies function 
+.ft B
+f
+.ft R
+in turn to all the bytes of 
+.ft B
+s
+.ft R
+\&.
+It is equivalent to 
+.ft B
+f (get s 0); f (get s 1); \&.\&.\&.; f (get s
+.br
+\&    (length s \- 1)); ()
+.ft R
+\&.
+
+.sp
+
+.I val iteri 
+: 
+.B f:(int -> char -> unit) -> bytes -> unit
+.sp
+Same as 
+.ft B
+BytesLabels\&.iter
+.ft R
+, but the function is applied to the index of
+the byte as first argument and the byte itself as second
+argument\&.
+
+.sp
+
+.I val map 
+: 
+.B f:(char -> char) -> bytes -> bytes
+.sp
+
+.ft B
+map ~f s
+.ft R
+applies function 
+.ft B
+f
+.ft R
+in turn to all the bytes of 
+.ft B
+s
+.ft R
+(in
+increasing index order) and stores the resulting bytes in a new sequence
+that is returned as the result\&.
+
+.sp
+
+.I val mapi 
+: 
+.B f:(int -> char -> char) -> bytes -> bytes
+.sp
+
+.ft B
+mapi ~f s
+.ft R
+calls 
+.ft B
+f
+.ft R
+with each character of 
+.ft B
+s
+.ft R
+and its
+index (in increasing index order) and stores the resulting bytes
+in a new sequence that is returned as the result\&.
+
+.sp
+
+.I val fold_left 
+: 
+.B f:('acc -> char -> 'acc) -> init:'acc -> bytes -> 'acc
+.sp
+
+.ft B
+fold_left f x s
+.ft R
+computes
+.ft B
+f (\&.\&.\&. (f (f x (get s 0)) (get s 1)) \&.\&.\&.) (get s (n\-1))
+.ft R
+,
+where 
+.ft B
+n
+.ft R
+is the length of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val fold_right 
+: 
+.B f:(char -> 'acc -> 'acc) -> bytes -> init:'acc -> 'acc
+.sp
+
+.ft B
+fold_right f s x
+.ft R
+computes
+.ft B
+f (get s 0) (f (get s 1) ( \&.\&.\&. (f (get s (n\-1)) x) \&.\&.\&.))
+.ft R
+,
+where 
+.ft B
+n
+.ft R
+is the length of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val for_all 
+: 
+.B f:(char -> bool) -> bytes -> bool
+.sp
+
+.ft B
+for_all p s
+.ft R
+checks if all characters in 
+.ft B
+s
+.ft R
+satisfy the predicate 
+.ft B
+p
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val exists 
+: 
+.B f:(char -> bool) -> bytes -> bool
+.sp
+
+.ft B
+exists p s
+.ft R
+checks if at least one character of 
+.ft B
+s
+.ft R
+satisfies the predicate
+.ft B
+p
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val trim 
+: 
+.B bytes -> bytes
+.sp
+Return a copy of the argument, without leading and trailing
+whitespace\&. The bytes regarded as whitespace are the ASCII
+characters 
+.ft B
+\&' \&'
+.ft R
+, 
+.ft B
+\&'\(rs012\&'
+.ft R
+, 
+.ft B
+\&'\(rsn\&'
+.ft R
+, 
+.ft B
+\&'\(rsr\&'
+.ft R
+, and 
+.ft B
+\&'\(rst\&'
+.ft R
+\&.
+
+.sp
+
+.I val escaped 
+: 
+.B bytes -> bytes
+.sp
+Return a copy of the argument, with special characters represented
+by escape sequences, following the lexical conventions of OCaml\&.
+All characters outside the ASCII printable range (32\&.\&.126) are
+escaped, as well as backslash and double\-quote\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the result is longer than
+.ft B
+Sys\&.max_string_length
+.ft R
+bytes\&.
+
+.sp
+
+.I val index 
+: 
+.B bytes -> char -> int
+.sp
+
+.ft B
+index s c
+.ft R
+returns the index of the first occurrence of byte 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val index_opt 
+: 
+.B bytes -> char -> int option
+.sp
+
+.ft B
+index_opt s c
+.ft R
+returns the index of the first occurrence of byte 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+or 
+.ft B
+None
+.ft R
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val rindex 
+: 
+.B bytes -> char -> int
+.sp
+
+.ft B
+rindex s c
+.ft R
+returns the index of the last occurrence of byte 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val rindex_opt 
+: 
+.B bytes -> char -> int option
+.sp
+
+.ft B
+rindex_opt s c
+.ft R
+returns the index of the last occurrence of byte 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+or 
+.ft B
+None
+.ft R
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val index_from 
+: 
+.B bytes -> int -> char -> int
+.sp
+
+.ft B
+index_from s i c
+.ft R
+returns the index of the first occurrence of
+byte 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+after position 
+.ft B
+i
+.ft R
+\&.  
+.ft B
+index s c
+.ft R
+is
+equivalent to 
+.ft B
+index_from s 0 c
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+after position 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+
+.I val index_from_opt 
+: 
+.B bytes -> int -> char -> int option
+.sp
+
+.ft B
+index_from_opt s i c
+.ft R
+returns the index of the first occurrence of
+byte 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+after position 
+.ft B
+i
+.ft R
+or 
+.ft B
+None
+.ft R
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+after position 
+.ft B
+i
+.ft R
+\&.
+.ft B
+index_opt s c
+.ft R
+is equivalent to 
+.ft B
+index_from_opt s 0 c
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val rindex_from 
+: 
+.B bytes -> int -> char -> int
+.sp
+
+.ft B
+rindex_from s i c
+.ft R
+returns the index of the last occurrence of
+byte 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+before position 
+.ft B
+i+1
+.ft R
+\&.  
+.ft B
+rindex s c
+.ft R
+is equivalent
+to 
+.ft B
+rindex_from s (length s \- 1) c
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i+1
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if 
+.ft B
+c
+.ft R
+does not occur in 
+.ft B
+s
+.ft R
+before position 
+.ft B
+i+1
+.ft R
+\&.
+
+.sp
+
+.I val rindex_from_opt 
+: 
+.B bytes -> int -> char -> int option
+.sp
+
+.ft B
+rindex_from_opt s i c
+.ft R
+returns the index of the last occurrence
+of byte 
+.ft B
+c
+.ft R
+in 
+.ft B
+s
+.ft R
+before position 
+.ft B
+i+1
+.ft R
+or 
+.ft B
+None
+.ft R
+if 
+.ft B
+c
+.ft R
+does not
+occur in 
+.ft B
+s
+.ft R
+before position 
+.ft B
+i+1
+.ft R
+\&.  
+.ft B
+rindex_opt s c
+.ft R
+is equivalent to
+.ft B
+rindex_from s (length s \- 1) c
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i+1
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val contains 
+: 
+.B bytes -> char -> bool
+.sp
+
+.ft B
+contains s c
+.ft R
+tests if byte 
+.ft B
+c
+.ft R
+appears in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val contains_from 
+: 
+.B bytes -> int -> char -> bool
+.sp
+
+.ft B
+contains_from s start c
+.ft R
+tests if byte 
+.ft B
+c
+.ft R
+appears in 
+.ft B
+s
+.ft R
+after
+position 
+.ft B
+start
+.ft R
+\&.  
+.ft B
+contains s c
+.ft R
+is equivalent to 
+.ft B
+contains_from
+.br
+\&    s 0 c
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+start
+.ft R
+is not a valid position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val rcontains_from 
+: 
+.B bytes -> int -> char -> bool
+.sp
+
+.ft B
+rcontains_from s stop c
+.ft R
+tests if byte 
+.ft B
+c
+.ft R
+appears in 
+.ft B
+s
+.ft R
+before
+position 
+.ft B
+stop+1
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+stop < 0
+.ft R
+or 
+.ft B
+stop+1
+.ft R
+is not a valid
+position in 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val uppercase_ascii 
+: 
+.B bytes -> bytes
+.sp
+Return a copy of the argument, with all lowercase letters
+translated to uppercase, using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val lowercase_ascii 
+: 
+.B bytes -> bytes
+.sp
+Return a copy of the argument, with all uppercase letters
+translated to lowercase, using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val capitalize_ascii 
+: 
+.B bytes -> bytes
+.sp
+Return a copy of the argument, with the first character set to uppercase,
+using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val uncapitalize_ascii 
+: 
+.B bytes -> bytes
+.sp
+Return a copy of the argument, with the first character set to lowercase,
+using the US\-ASCII character set\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.I type t 
+= 
+.B bytes
+
+.sp
+An alias for the type of byte sequences\&.
+
+.sp
+
+.I val compare 
+: 
+.B t -> t -> int
+.sp
+The comparison function for byte sequences, with the same
+specification as 
+.ft B
+compare
+.ft R
+\&.  Along with the type 
+.ft B
+t
+.ft R
+,
+this function 
+.ft B
+compare
+.ft R
+allows the module 
+.ft B
+Bytes
+.ft R
+to be passed as
+argument to the functors 
+.ft B
+Set\&.Make
+.ft R
+and 
+.ft B
+Map\&.Make
+.ft R
+\&.
+
+.sp
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+The equality function for byte sequences\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val starts_with 
+: 
+.B prefix:bytes -> bytes -> bool
+.sp
+
+.ft B
+starts_with 
+.ft R
+.ft B
+~prefix s
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+s
+.ft R
+starts with
+.ft B
+prefix
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val ends_with 
+: 
+.B suffix:bytes -> bytes -> bool
+.sp
+
+.ft B
+ends_with 
+.ft R
+.ft B
+~suffix s
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+s
+.ft R
+ends with 
+.ft B
+suffix
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.PP
+.SS Unsafe conversions (for advanced users)
+.sp
+This section describes unsafe, low\-level conversion functions
+between 
+.ft B
+bytes
+.ft R
+and 
+.ft B
+string
+.ft R
+\&. They do not copy the internal data;
+used improperly, they can break the immutability invariant on
+strings provided by the 
+.ft B
+\-safe\-string
+.ft R
+option\&. They are available for
+expert library authors, but for most purposes you should use the
+always\-correct 
+.ft B
+BytesLabels\&.to_string
+.ft R
+and 
+.ft B
+BytesLabels\&.of_string
+.ft R
+instead\&.
+.PP
+
+.I val unsafe_to_string 
+: 
+.B bytes -> string
+.sp
+Unsafely convert a byte sequence into a string\&.
+.sp
+To reason about the use of 
+.ft B
+unsafe_to_string
+.ft R
+, it is convenient to
+consider an "ownership" discipline\&. A piece of code that
+manipulates some data "owns" it; there are several disjoint ownership
+modes, including:
+.sp
+\-Unique ownership: the data may be accessed and mutated
+.sp
+\-Shared ownership: the data has several owners, that may only
+access it, not mutate it\&.
+
+Unique ownership is linear: passing the data to another piece of
+code means giving up ownership (we cannot write the
+data again)\&. A unique owner may decide to make the data shared
+(giving up mutation rights on it), but shared data may not become
+uniquely\-owned again\&.
+.sp
+
+.ft B
+unsafe_to_string s
+.ft R
+can only be used when the caller owns the byte
+sequence 
+.ft B
+s
+.ft R
+\-\- either uniquely or as shared immutable data\&. The
+caller gives up ownership of 
+.ft B
+s
+.ft R
+, and gains ownership of the
+returned string\&.
+.sp
+There are two valid use\-cases that respect this ownership
+discipline:
+.sp
+1\&. Creating a string by initializing and mutating a byte sequence
+that is never changed after initialization is performed\&.
+.sp
+
+.EX
+.ft B
+.br
+\&let string_init len f : string =
+.br
+\&  let s = Bytes\&.create len in
+.br
+\&  for i = 0 to len \- 1 do Bytes\&.set s i (f i) done;
+.br
+\&  Bytes\&.unsafe_to_string s
+.br
+\&   
+.ft R
+.EE
+.sp
+This function is safe because the byte sequence 
+.ft B
+s
+.ft R
+will never be
+accessed or mutated after 
+.ft B
+unsafe_to_string
+.ft R
+is called\&. The
+.ft B
+string_init
+.ft R
+code gives up ownership of 
+.ft B
+s
+.ft R
+, and returns the
+ownership of the resulting string to its caller\&.
+.sp
+Note that it would be unsafe if 
+.ft B
+s
+.ft R
+was passed as an additional
+parameter to the function 
+.ft B
+f
+.ft R
+as it could escape this way and be
+mutated in the future \-\- 
+.ft B
+string_init
+.ft R
+would give up ownership of
+.ft B
+s
+.ft R
+to pass it to 
+.ft B
+f
+.ft R
+, and could not call 
+.ft B
+unsafe_to_string
+.ft R
+safely\&.
+.sp
+We have provided the 
+.ft B
+String\&.init
+.ft R
+, 
+.ft B
+String\&.map
+.ft R
+and
+.ft B
+String\&.mapi
+.ft R
+functions to cover most cases of building
+new strings\&. You should prefer those over 
+.ft B
+to_string
+.ft R
+or
+.ft B
+unsafe_to_string
+.ft R
+whenever applicable\&.
+.sp
+2\&. Temporarily giving ownership of a byte sequence to a function
+that expects a uniquely owned string and returns ownership back, so
+that we can mutate the sequence again after the call ended\&.
+.sp
+
+.EX
+.ft B
+.br
+\&let bytes_length (s : bytes) =
+.br
+\&  String\&.length (Bytes\&.unsafe_to_string s)
+.br
+\&   
+.ft R
+.EE
+.sp
+In this use\-case, we do not promise that 
+.ft B
+s
+.ft R
+will never be mutated
+after the call to 
+.ft B
+bytes_length s
+.ft R
+\&. The 
+.ft B
+String\&.length
+.ft R
+function
+temporarily borrows unique ownership of the byte sequence
+(and sees it as a 
+.ft B
+string
+.ft R
+), but returns this ownership back to
+the caller, which may assume that 
+.ft B
+s
+.ft R
+is still a valid byte
+sequence after the call\&. Note that this is only correct because we
+know that 
+.ft B
+String\&.length
+.ft R
+does not capture its argument \-\- it could
+escape by a side\-channel such as a memoization combinator\&.
+.sp
+The caller may not mutate 
+.ft B
+s
+.ft R
+while the string is borrowed (it has
+temporarily given up ownership)\&. This affects concurrent programs,
+but also higher\-order functions: if 
+.ft B
+String\&.length
+.ft R
+returned
+a closure to be called later, 
+.ft B
+s
+.ft R
+should not be mutated until this
+closure is fully applied and returns ownership\&.
+
+.sp
+
+.I val unsafe_of_string 
+: 
+.B string -> bytes
+.sp
+Unsafely convert a shared string to a byte sequence that should
+not be mutated\&.
+.sp
+The same ownership discipline that makes 
+.ft B
+unsafe_to_string
+.ft R
+correct applies to 
+.ft B
+unsafe_of_string
+.ft R
+: you may use it if you were
+the owner of the 
+.ft B
+string
+.ft R
+value, and you will own the return
+.ft B
+bytes
+.ft R
+in the same mode\&.
+.sp
+In practice, unique ownership of string values is extremely
+difficult to reason about correctly\&. You should always assume
+strings are shared, never uniquely owned\&.
+.sp
+For example, string literals are implicitly shared by the
+compiler, so you never uniquely own them\&.
+.sp
+
+.EX
+.ft B
+.br
+\&let incorrect = Bytes\&.unsafe_of_string "hello"
+.br
+\&let s = Bytes\&.of_string "hello"
+.br
+\&    
+.ft R
+.EE
+.sp
+The first declaration is incorrect, because the string literal
+.ft B
+"hello"
+.ft R
+could be shared by the compiler with other parts of the
+program, and mutating 
+.ft B
+incorrect
+.ft R
+is a bug\&. You must always use
+the second version, which performs a copy and is thus correct\&.
+.sp
+Assuming unique ownership of strings that are not string
+literals, but are (partly) built from string literals, is also
+incorrect\&. For example, mutating 
+.ft B
+unsafe_of_string ("foo" ^ s)
+.ft R
+could mutate the shared string 
+.ft B
+"foo"
+.ft R
+\-\- assuming a rope\-like
+representation of strings\&. More generally, functions operating on
+strings will assume shared ownership, they do not preserve unique
+ownership\&. It is thus incorrect to assume unique ownership of the
+result of 
+.ft B
+unsafe_of_string
+.ft R
+\&.
+.sp
+The only case we have reasonable confidence is safe is if the
+produced 
+.ft B
+bytes
+.ft R
+is shared \-\- used as an immutable byte
+sequence\&. This is possibly useful for incremental migration of
+low\-level programs that manipulate immutable sequences of bytes
+(for example 
+.ft B
+Marshal\&.from_bytes
+.ft R
+) and previously used the
+.ft B
+string
+.ft R
+type for this purpose\&.
+
+.sp
+
+.I val split_on_char 
+: 
+.B sep:char -> bytes -> bytes list
+.sp
+
+.ft B
+split_on_char sep s
+.ft R
+returns the list of all (possibly empty)
+subsequences of 
+.ft B
+s
+.ft R
+that are delimited by the 
+.ft B
+sep
+.ft R
+character\&.
+.sp
+The function\&'s output is specified by the following invariants:
+.sp
+.sp
+\-The list is not empty\&.
+.sp
+\-Concatenating its elements using 
+.ft B
+sep
+.ft R
+as a separator returns a
+byte sequence equal to the input (
+.ft B
+Bytes\&.concat (Bytes\&.make 1 sep)
+.br
+\&      (Bytes\&.split_on_char sep s) = s
+.ft R
+)\&.
+.sp
+\-No byte sequence in the result contains the 
+.ft B
+sep
+.ft R
+character\&.
+
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.PP
+.SS Iterators
+
+.PP
+
+.I val to_seq 
+: 
+.B t -> char Seq.t
+.sp
+Iterate on the string, in increasing index order\&. Modifications of the
+string during iteration will be reflected in the sequence\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seqi 
+: 
+.B t -> (int * char) Seq.t
+.sp
+Iterate on the string, in increasing order, yielding indices along chars
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B char Seq.t -> t
+.sp
+Create a string from the generator
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.PP
+.SS UTF codecs and validations
+
+.PP
+
+.PP
+.SS UTF-8
+
+.PP
+
+.I val get_utf_8_uchar 
+: 
+.B t -> int -> Uchar.utf_decode
+.sp
+
+.ft B
+get_utf_8_uchar b i
+.ft R
+decodes an UTF\-8 character at index 
+.ft B
+i
+.ft R
+in
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val set_utf_8_uchar 
+: 
+.B t -> int -> Uchar.t -> int
+.sp
+
+.ft B
+set_utf_8_uchar b i u
+.ft R
+UTF\-8 encodes 
+.ft B
+u
+.ft R
+at index 
+.ft B
+i
+.ft R
+in 
+.ft B
+b
+.ft R
+and returns the number of bytes 
+.ft B
+n
+.ft R
+that were written starting
+at 
+.ft B
+i
+.ft R
+\&. If 
+.ft B
+n
+.ft R
+is 
+.ft B
+0
+.ft R
+there was not enough space to encode 
+.ft B
+u
+.ft R
+at 
+.ft B
+i
+.ft R
+and 
+.ft B
+b
+.ft R
+was left untouched\&. Otherwise a new character can
+be encoded at 
+.ft B
+i + n
+.ft R
+\&.
+
+.sp
+
+.I val is_valid_utf_8 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_valid_utf_8 b
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+b
+.ft R
+contains valid
+UTF\-8 data\&.
+
+.sp
+
+.PP
+.SS UTF-16BE
+
+.PP
+
+.I val get_utf_16be_uchar 
+: 
+.B t -> int -> Uchar.utf_decode
+.sp
+
+.ft B
+get_utf_16be_uchar b i
+.ft R
+decodes an UTF\-16BE character at index
+.ft B
+i
+.ft R
+in 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val set_utf_16be_uchar 
+: 
+.B t -> int -> Uchar.t -> int
+.sp
+
+.ft B
+set_utf_16be_uchar b i u
+.ft R
+UTF\-16BE encodes 
+.ft B
+u
+.ft R
+at index 
+.ft B
+i
+.ft R
+in 
+.ft B
+b
+.ft R
+and returns the number of bytes 
+.ft B
+n
+.ft R
+that were written starting
+at 
+.ft B
+i
+.ft R
+\&. If 
+.ft B
+n
+.ft R
+is 
+.ft B
+0
+.ft R
+there was not enough space to encode 
+.ft B
+u
+.ft R
+at 
+.ft B
+i
+.ft R
+and 
+.ft B
+b
+.ft R
+was left untouched\&. Otherwise a new character can
+be encoded at 
+.ft B
+i + n
+.ft R
+\&.
+
+.sp
+
+.I val is_valid_utf_16be 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_valid_utf_16be b
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+b
+.ft R
+contains valid
+UTF\-16BE data\&.
+
+.sp
+
+.PP
+.SS UTF-16LE
+
+.PP
+
+.I val get_utf_16le_uchar 
+: 
+.B t -> int -> Uchar.utf_decode
+.sp
+
+.ft B
+get_utf_16le_uchar b i
+.ft R
+decodes an UTF\-16LE character at index
+.ft B
+i
+.ft R
+in 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val set_utf_16le_uchar 
+: 
+.B t -> int -> Uchar.t -> int
+.sp
+
+.ft B
+set_utf_16le_uchar b i u
+.ft R
+UTF\-16LE encodes 
+.ft B
+u
+.ft R
+at index 
+.ft B
+i
+.ft R
+in 
+.ft B
+b
+.ft R
+and returns the number of bytes 
+.ft B
+n
+.ft R
+that were written starting
+at 
+.ft B
+i
+.ft R
+\&. If 
+.ft B
+n
+.ft R
+is 
+.ft B
+0
+.ft R
+there was not enough space to encode 
+.ft B
+u
+.ft R
+at 
+.ft B
+i
+.ft R
+and 
+.ft B
+b
+.ft R
+was left untouched\&. Otherwise a new character can
+be encoded at 
+.ft B
+i + n
+.ft R
+\&.
+
+.sp
+
+.I val is_valid_utf_16le 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_valid_utf_16le b
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+b
+.ft R
+contains valid
+UTF\-16LE data\&.
+
+.sp
+
+.PP
+.SS Binary encoding/decoding of integers
+
+.PP
+
+.PP
+The functions in this section binary encode and decode integers to
+and from byte sequences\&.
+.sp
+All following functions raise 
+.ft B
+Invalid_argument
+.ft R
+if the space
+needed at index 
+.ft B
+i
+.ft R
+to decode or encode the integer is not
+available\&.
+.sp
+Little\-endian (resp\&. big\-endian) encoding means that least
+(resp\&. most) significant bytes are stored first\&.  Big\-endian is
+also known as network byte order\&.  Native\-endian encoding is
+either little\-endian or big\-endian depending on 
+.ft B
+Sys\&.big_endian
+.ft R
+\&.
+.sp
+32\-bit and 64\-bit integers are represented by the 
+.ft B
+int32
+.ft R
+and
+.ft B
+int64
+.ft R
+types, which can be interpreted either as signed or
+unsigned numbers\&.
+.sp
+8\-bit and 16\-bit integers are represented by the 
+.ft B
+int
+.ft R
+type,
+which has more bits than the binary encoding\&.  These extra bits
+are handled as follows:
+.sp
+\-Functions that decode signed (resp\&. unsigned) 8\-bit or 16\-bit
+integers represented by 
+.ft B
+int
+.ft R
+values sign\-extend
+(resp\&. zero\-extend) their result\&.
+.sp
+\-Functions that encode 8\-bit or 16\-bit integers represented by
+.ft B
+int
+.ft R
+values truncate their input to their least significant
+bytes\&.
+
+.PP
+
+.I val get_uint8 
+: 
+.B bytes -> int -> int
+.sp
+
+.ft B
+get_uint8 b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s unsigned 8\-bit integer starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int8 
+: 
+.B bytes -> int -> int
+.sp
+
+.ft B
+get_int8 b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s signed 8\-bit integer starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_uint16_ne 
+: 
+.B bytes -> int -> int
+.sp
+
+.ft B
+get_uint16_ne b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s native\-endian unsigned 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_uint16_be 
+: 
+.B bytes -> int -> int
+.sp
+
+.ft B
+get_uint16_be b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s big\-endian unsigned 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_uint16_le 
+: 
+.B bytes -> int -> int
+.sp
+
+.ft B
+get_uint16_le b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s little\-endian unsigned 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int16_ne 
+: 
+.B bytes -> int -> int
+.sp
+
+.ft B
+get_int16_ne b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s native\-endian signed 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int16_be 
+: 
+.B bytes -> int -> int
+.sp
+
+.ft B
+get_int16_be b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s big\-endian signed 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int16_le 
+: 
+.B bytes -> int -> int
+.sp
+
+.ft B
+get_int16_le b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s little\-endian signed 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int32_ne 
+: 
+.B bytes -> int -> int32
+.sp
+
+.ft B
+get_int32_ne b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s native\-endian 32\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int32_be 
+: 
+.B bytes -> int -> int32
+.sp
+
+.ft B
+get_int32_be b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s big\-endian 32\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int32_le 
+: 
+.B bytes -> int -> int32
+.sp
+
+.ft B
+get_int32_le b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s little\-endian 32\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int64_ne 
+: 
+.B bytes -> int -> int64
+.sp
+
+.ft B
+get_int64_ne b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s native\-endian 64\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int64_be 
+: 
+.B bytes -> int -> int64
+.sp
+
+.ft B
+get_int64_be b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s big\-endian 64\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val get_int64_le 
+: 
+.B bytes -> int -> int64
+.sp
+
+.ft B
+get_int64_le b i
+.ft R
+is 
+.ft B
+b
+.ft R
+\&'s little\-endian 64\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_uint8 
+: 
+.B bytes -> int -> int -> unit
+.sp
+
+.ft B
+set_uint8 b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s unsigned 8\-bit integer starting at byte index
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int8 
+: 
+.B bytes -> int -> int -> unit
+.sp
+
+.ft B
+set_int8 b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s signed 8\-bit integer starting at byte index
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_uint16_ne 
+: 
+.B bytes -> int -> int -> unit
+.sp
+
+.ft B
+set_uint16_ne b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s native\-endian unsigned 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_uint16_be 
+: 
+.B bytes -> int -> int -> unit
+.sp
+
+.ft B
+set_uint16_be b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s big\-endian unsigned 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_uint16_le 
+: 
+.B bytes -> int -> int -> unit
+.sp
+
+.ft B
+set_uint16_le b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s little\-endian unsigned 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int16_ne 
+: 
+.B bytes -> int -> int -> unit
+.sp
+
+.ft B
+set_int16_ne b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s native\-endian signed 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int16_be 
+: 
+.B bytes -> int -> int -> unit
+.sp
+
+.ft B
+set_int16_be b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s big\-endian signed 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int16_le 
+: 
+.B bytes -> int -> int -> unit
+.sp
+
+.ft B
+set_int16_le b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s little\-endian signed 16\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int32_ne 
+: 
+.B bytes -> int -> int32 -> unit
+.sp
+
+.ft B
+set_int32_ne b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s native\-endian 32\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int32_be 
+: 
+.B bytes -> int -> int32 -> unit
+.sp
+
+.ft B
+set_int32_be b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s big\-endian 32\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int32_le 
+: 
+.B bytes -> int -> int32 -> unit
+.sp
+
+.ft B
+set_int32_le b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s little\-endian 32\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int64_ne 
+: 
+.B bytes -> int -> int64 -> unit
+.sp
+
+.ft B
+set_int64_ne b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s native\-endian 64\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int64_be 
+: 
+.B bytes -> int -> int64 -> unit
+.sp
+
+.ft B
+set_int64_be b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s big\-endian 64\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val set_int64_le 
+: 
+.B bytes -> int -> int64 -> unit
+.sp
+
+.ft B
+set_int64_le b i v
+.ft R
+sets 
+.ft B
+b
+.ft R
+\&'s little\-endian 64\-bit integer
+starting at byte index 
+.ft B
+i
+.ft R
+to 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.PP
+.SS Byte sequences and concurrency safety
+.sp
+Care must be taken when concurrently accessing byte sequences from
+multiple domains: accessing a byte sequence will never crash a program,
+but unsynchronized accesses might yield surprising
+(non\-sequentially\-consistent) results\&.
+.sp
+.SS Atomicity
+.sp
+Every byte sequence operation that accesses more than one byte is not
+atomic\&. This includes iteration and scanning\&.
+.sp
+For example, consider the following program:
+.EX
+.ft B
+let size = 100_000_000
+.br
+\&let b = Bytes\&.make size  \&' \&'
+.br
+\&let update b f ()  =
+.br
+\&  Bytes\&.iteri (fun i x \-> Bytes\&.set b i (Char\&.chr (f (Char\&.code x)))) b
+.br
+\&let d1 = Domain\&.spawn (update b (fun x \-> x + 1))
+.br
+\&let d2 = Domain\&.spawn (update b (fun x \-> 2 * x + 1))
+.br
+\&let () = Domain\&.join d1; Domain\&.join d2
+.br
+\&
+.ft R
+.EE
+the bytes sequence 
+.ft B
+b
+.ft R
+may contain a non\-deterministic mixture
+of 
+.ft B
+\&'!\&'
+.ft R
+, 
+.ft B
+\&'A\&'
+.ft R
+, 
+.ft B
+\&'B\&'
+.ft R
+, and 
+.ft B
+\&'C\&'
+.ft R
+values\&.
+.sp
+After executing this code, each byte of the sequence 
+.ft B
+b
+.ft R
+is either 
+.ft B
+\&'!\&'
+.ft R
+,
+.ft B
+\&'A\&'
+.ft R
+, 
+.ft B
+\&'B\&'
+.ft R
+, or 
+.ft B
+\&'C\&'
+.ft R
+\&. If atomicity is required, then the user must
+implement their own synchronization (for example, using 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.sp
+.SS Data races
+.sp
+If two domains only access disjoint parts of a byte sequence, then the
+observed behaviour is the equivalent to some sequential interleaving of the
+operations from the two domains\&.
+.sp
+A data race is said to occur when two domains access the same byte
+without synchronization and at least one of the accesses is a write\&.
+In the absence of data races, the observed behaviour is equivalent to some
+sequential interleaving of the operations from different domains\&.
+.sp
+Whenever possible, data races should be avoided by using synchronization
+to mediate the accesses to the elements of the sequence\&.
+.sp
+Indeed, in the presence of data races, programs will not crash but the
+observed behaviour may not be equivalent to any sequential interleaving of
+operations from different domains\&. Nevertheless, even in the presence of
+data races, a read operation will return the value of some prior write to
+that location\&.
+.sp
+.SS Mixed-size accesses 
+.sp
+Another subtle point is that if a data race involves mixed\-size writes and
+reads to the same location, the order in which those writes and reads
+are observed by domains is not specified\&.
+For instance, the following code write sequentially a 32\-bit integer and a
+.ft B
+char
+.ft R
+to the same index
+.EX
+.ft B
+.br
+\&let b = Bytes\&.make 10 \&'\(rs000\&'
+.br
+\&let d1 = Domain\&.spawn (fun () \-> Bytes\&.set_int32_ne b 0 100; b\&.[0] <\- \&'d\&' )
+.br
+\&
+.ft R
+.EE
+.sp
+In this situation, a domain that observes the write of \&'d\&' to b\&.
+.ft B
+0
+.ft R
+is not
+guaranteed to also observe the write to indices 
+.ft B
+1
+.ft R
+, 
+.ft B
+2
+.ft R
+, or 
+.ft B
+3
+.ft R
+\&.
+.PP

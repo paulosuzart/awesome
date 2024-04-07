@@ -1,0 +1,83 @@
+.TH "MoreLabels" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+MoreLabels \- Extra labeled libraries.
+.SH Module
+Module   MoreLabels
+.SH Documentation
+.sp
+Module
+.BI "MoreLabels"
+ : 
+.B sig end
+
+.sp
+Extra labeled libraries\&.
+.sp
+This meta\-module provides labelized versions of the 
+.ft B
+MoreLabels\&.Hashtbl
+.ft R
+, 
+.ft B
+MoreLabels\&.Map
+.ft R
+and
+.ft B
+MoreLabels\&.Set
+.ft R
+modules\&.
+.sp
+This module is intended to be used through 
+.ft B
+open MoreLabels
+.ft R
+which replaces
+.ft B
+MoreLabels\&.Hashtbl
+.ft R
+, 
+.ft B
+MoreLabels\&.Map
+.ft R
+, and 
+.ft B
+MoreLabels\&.Set
+.ft R
+with their labeled counterparts\&.
+.sp
+For example:
+.EX
+.ft B
+.br
+\&     open MoreLabels
+.br
+\&
+.br
+\&     Hashtbl\&.iter ~f:(fun ~key ~data \-> g key data) table
+.br
+\&   
+.ft R
+.EE
+
+.sp
+
+.sp
+.sp
+.I module Hashtbl : 
+.B sig end
+
+.sp
+
+.sp
+.I module Map : 
+.B sig end
+
+.sp
+
+.sp
+.I module Set : 
+.B sig end
+
+.sp
+
+.sp

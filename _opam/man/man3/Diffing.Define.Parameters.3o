@@ -1,0 +1,87 @@
+.TH "Diffing.Define.Parameters" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing.Define.Parameters \- no description
+.SH Module type
+Module type   Diffing.Define.Parameters
+.SH Documentation
+.sp
+Module type
+.BI "Parameters"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type update_result 
+
+.sp
+
+.sp
+
+.I val weight 
+: 
+.B Diffing.Define.change -> int
+.sp
+
+.ft B
+weight ch
+.ft R
+returns the weight of the change 
+.ft B
+ch
+.ft R
+\&.
+Used to find the smallest patch\&.
+
+.sp
+
+.I val test 
+: 
+.B D.state -> D.left -> D.right -> (D.eq, D.diff) result
+.sp
+
+.ft B
+test st xl xr
+.ft R
+tests if the elements 
+.ft B
+xl
+.ft R
+and 
+.ft B
+xr
+.ft R
+are
+co  mpatible (
+.ft B
+Ok
+.ft R
+) or not (
+.ft B
+Error
+.ft R
+)\&.
+
+.sp
+
+.I val update 
+: 
+.B Diffing.Define.change -> D.state -> update_result
+.sp
+
+.ft B
+update ch st
+.ft R
+returns the new state after applying a change\&.
+The 
+.ft B
+update_result
+.ft R
+type also contains expansions in the variadic
+case\&.
+
+.sp

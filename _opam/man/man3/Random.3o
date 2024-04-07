@@ -1,0 +1,427 @@
+.TH "Random" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Random \- Pseudo-random number generators (PRNG).
+.SH Module
+Module   Random
+.SH Documentation
+.sp
+Module
+.BI "Random"
+ : 
+.B sig end
+
+.sp
+Pseudo\-random number generators (PRNG)\&.
+.sp
+With multiple domains, each domain has its own generator that evolves
+independently of the generators of other domains\&.  When a domain is
+created, its generator is initialized by splitting the state
+of the generator associated with the parent domain\&.
+.sp
+In contrast, all threads within a domain share the same domain\-local
+generator\&.  Independent generators can be created with the 
+.ft B
+Random\&.split
+.ft R
+function and used with the functions from the 
+.ft B
+Random\&.State
+.ft R
+module\&.
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Basic functions
+
+.PP
+
+.I val init 
+: 
+.B int -> unit
+.sp
+Initialize the domain\-local generator, using the argument as a seed\&.
+The same seed will always yield the same sequence of numbers\&.
+
+.sp
+
+.I val full_init 
+: 
+.B int array -> unit
+.sp
+Same as 
+.ft B
+Random\&.init
+.ft R
+but takes more data as seed\&.
+
+.sp
+
+.I val self_init 
+: 
+.B unit -> unit
+.sp
+Initialize the domain\-local generator with a random seed chosen
+in a system\-dependent way\&.  If 
+.ft B
+/dev/urandom
+.ft R
+is available on the host
+machine, it is used to provide a highly random initial seed\&.  Otherwise, a
+less random seed is computed from system parameters (current time, process
+IDs, domain\-local state)\&.
+
+.sp
+
+.I val bits 
+: 
+.B unit -> int
+.sp
+Return 30 random bits in a nonnegative integer\&.
+
+.sp
+.B "Before5.0"
+used a different algorithm (affects all the following functions)
+
+
+.sp
+
+.I val int 
+: 
+.B int -> int
+.sp
+
+.ft B
+Random\&.int bound
+.ft R
+returns a random integer between 0 (inclusive)
+and 
+.ft B
+bound
+.ft R
+(exclusive)\&.  
+.ft B
+bound
+.ft R
+must be greater than 0 and less
+than 2^30\&.
+
+.sp
+
+.I val full_int 
+: 
+.B int -> int
+.sp
+
+.ft B
+Random\&.full_int bound
+.ft R
+returns a random integer between 0 (inclusive)
+and 
+.ft B
+bound
+.ft R
+(exclusive)\&. 
+.ft B
+bound
+.ft R
+may be any positive integer\&.
+.sp
+If 
+.ft B
+bound
+.ft R
+is less than 2^30, 
+.ft B
+Random\&.full_int bound
+.ft R
+is equal to
+.ft B
+Random\&.int
+.ft R
+.ft B
+bound
+.ft R
+\&. If 
+.ft B
+bound
+.ft R
+is greater than 2^30 (on 64\-bit systems
+or non\-standard environments, such as JavaScript), 
+.ft B
+Random\&.full_int
+.ft R
+returns a value, where 
+.ft B
+Random\&.int
+.ft R
+raises 
+.ft B
+Invalid_argument
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val int32 
+: 
+.B Int32.t -> Int32.t
+.sp
+
+.ft B
+Random\&.int32 bound
+.ft R
+returns a random integer between 0 (inclusive)
+and 
+.ft B
+bound
+.ft R
+(exclusive)\&.  
+.ft B
+bound
+.ft R
+must be greater than 0\&.
+
+.sp
+
+.I val nativeint 
+: 
+.B Nativeint.t -> Nativeint.t
+.sp
+
+.ft B
+Random\&.nativeint bound
+.ft R
+returns a random integer between 0 (inclusive)
+and 
+.ft B
+bound
+.ft R
+(exclusive)\&.  
+.ft B
+bound
+.ft R
+must be greater than 0\&.
+
+.sp
+
+.I val int64 
+: 
+.B Int64.t -> Int64.t
+.sp
+
+.ft B
+Random\&.int64 bound
+.ft R
+returns a random integer between 0 (inclusive)
+and 
+.ft B
+bound
+.ft R
+(exclusive)\&.  
+.ft B
+bound
+.ft R
+must be greater than 0\&.
+
+.sp
+
+.I val float 
+: 
+.B float -> float
+.sp
+
+.ft B
+Random\&.float bound
+.ft R
+returns a random floating\-point number
+between 0 and 
+.ft B
+bound
+.ft R
+(inclusive)\&.  If 
+.ft B
+bound
+.ft R
+is
+negative, the result is negative or zero\&.  If 
+.ft B
+bound
+.ft R
+is 0,
+the result is 0\&.
+
+.sp
+
+.I val bool 
+: 
+.B unit -> bool
+.sp
+
+.ft B
+Random\&.bool ()
+.ft R
+returns 
+.ft B
+true
+.ft R
+or 
+.ft B
+false
+.ft R
+with probability 0\&.5 each\&.
+
+.sp
+
+.I val bits32 
+: 
+.B unit -> Int32.t
+.sp
+
+.ft B
+Random\&.bits32 ()
+.ft R
+returns 32 random bits as an integer between
+.ft B
+Int32\&.min_int
+.ft R
+and 
+.ft B
+Int32\&.max_int
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val bits64 
+: 
+.B unit -> Int64.t
+.sp
+
+.ft B
+Random\&.bits64 ()
+.ft R
+returns 64 random bits as an integer between
+.ft B
+Int64\&.min_int
+.ft R
+and 
+.ft B
+Int64\&.max_int
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val nativebits 
+: 
+.B unit -> Nativeint.t
+.sp
+
+.ft B
+Random\&.nativebits ()
+.ft R
+returns 32 or 64 random bits (depending on
+the bit width of the platform) as an integer between
+.ft B
+Nativeint\&.min_int
+.ft R
+and 
+.ft B
+Nativeint\&.max_int
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.PP
+.SS Advanced functions
+
+.PP
+
+.PP
+The functions from module 
+.ft B
+Random\&.State
+.ft R
+manipulate the current state
+of the random generator explicitly\&.
+This allows using one or several deterministic PRNGs,
+even in a multi\-threaded program, without interference from
+other parts of the program\&.
+.PP
+.I module State : 
+.B sig end
+
+.sp
+
+.sp
+
+.I val get_state 
+: 
+.B unit -> State.t
+.sp
+
+.ft B
+get_state()
+.ft R
+returns a fresh copy of the current state of the
+domain\-local generator (which is used by the basic functions)\&.
+
+.sp
+
+.I val set_state 
+: 
+.B State.t -> unit
+.sp
+
+.ft B
+set_state s
+.ft R
+updates the current state of the domain\-local
+generator (which is used by the basic functions) by copying
+the state 
+.ft B
+s
+.ft R
+into it\&.
+
+.sp
+
+.I val split 
+: 
+.B unit -> State.t
+.sp
+Draw a fresh PRNG state from the current state of the domain\-local
+generator used by the default functions\&.
+(The state of the domain\-local generator is modified\&.)
+See 
+.ft B
+Random\&.State\&.split
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp

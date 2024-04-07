@@ -1,0 +1,71 @@
+.TH "Hashtbl.SeededHashedType" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Hashtbl.SeededHashedType \- The input signature of the functor Hashtbl.MakeSeeded.
+.SH Module type
+Module type   Hashtbl.SeededHashedType
+.SH Documentation
+.sp
+Module type
+.BI "SeededHashedType"
+ = 
+.B sig end
+
+.sp
+The input signature of the functor 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type of the hashtable keys\&.
+
+.sp
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+The equality predicate used to compare keys\&.
+
+.sp
+
+.I val seeded_hash 
+: 
+.B int -> t -> int
+.sp
+A seeded hashing function on keys\&.  The first argument is
+the seed\&.  It must be the case that if 
+.ft B
+equal x y
+.ft R
+is true,
+then 
+.ft B
+seeded_hash seed x = seeded_hash seed y
+.ft R
+for any value of
+.ft B
+seed
+.ft R
+\&.  A suitable choice for 
+.ft B
+seeded_hash
+.ft R
+is the function
+.ft B
+Hashtbl\&.seeded_hash
+.ft R
+below\&.
+
+.sp

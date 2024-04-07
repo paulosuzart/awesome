@@ -1,0 +1,31 @@
+.TH "Ast_helper.Vb" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_helper.Vb \- Value bindings
+.SH Module
+Module   Ast_helper.Vb
+.SH Documentation
+.sp
+Module
+.BI "Vb"
+ : 
+.B sig end
+
+.sp
+Value bindings
+
+.sp
+
+.sp
+.sp
+
+.I val mk 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   ?docs:Docstrings.docs ->
+.B   ?text:Docstrings.text ->
+.B   ?value_constraint:Parsetree.value_constraint ->
+.B   Parsetree.pattern -> Parsetree.expression -> Parsetree.value_binding
+.sp
+
+.sp

@@ -1,0 +1,976 @@
+.TH "Stdlib.Printexc" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Printexc \- no description
+.SH Module
+Module   Stdlib.Printexc
+.SH Documentation
+.sp
+Module
+.BI "Printexc"
+ : 
+.B (module Stdlib__Printexc)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+= 
+.B exn
+= ..
+
+.sp
+The type of exception values\&.
+
+.sp
+
+.I val to_string 
+: 
+.B exn -> string
+.sp
+
+.ft B
+Printexc\&.to_string e
+.ft R
+returns a string representation of
+the exception 
+.ft B
+e
+.ft R
+\&.
+
+.sp
+
+.I val to_string_default 
+: 
+.B exn -> string
+.sp
+
+.ft B
+Printexc\&.to_string_default e
+.ft R
+returns a string representation of the
+exception 
+.ft B
+e
+.ft R
+, ignoring all registered exception printers\&.
+
+.sp
+.B "Since"
+4.09
+
+.sp
+
+.I val print 
+: 
+.B ('a -> 'b) -> 'a -> 'b
+.sp
+
+.ft B
+Printexc\&.print fn x
+.ft R
+applies 
+.ft B
+fn
+.ft R
+to 
+.ft B
+x
+.ft R
+and returns the result\&.
+If the evaluation of 
+.ft B
+fn x
+.ft R
+raises any exception, the
+name of the exception is printed on standard error output,
+and the exception is raised again\&.
+The typical use is to catch and report exceptions that
+escape a function application\&.
+
+.sp
+
+.I val catch 
+: 
+.B ('a -> 'b) -> 'a -> 'b
+.sp
+.B "Deprecated."
+This function is no longer needed\&.
+
+.sp
+
+.ft B
+Printexc\&.catch fn x
+.ft R
+is similar to 
+.ft B
+Printexc\&.print
+.ft R
+, but
+aborts the program with exit code 2 after printing the
+uncaught exception\&.  This function is deprecated: the runtime
+system is now able to print uncaught exceptions as precisely
+as 
+.ft B
+Printexc\&.catch
+.ft R
+does\&.  Moreover, calling 
+.ft B
+Printexc\&.catch
+.ft R
+makes it harder to track the location of the exception
+using the debugger or the stack backtrace facility\&.
+So, do not use 
+.ft B
+Printexc\&.catch
+.ft R
+in new code\&.
+
+.sp
+
+.I val print_backtrace 
+: 
+.B out_channel -> unit
+.sp
+
+.ft B
+Printexc\&.print_backtrace oc
+.ft R
+prints an exception backtrace
+on the output channel 
+.ft B
+oc
+.ft R
+\&.  The backtrace lists the program
+locations where the most\-recently raised exception was raised
+and where it was propagated through function calls\&.
+.sp
+If the call is not inside an exception handler, the returned
+backtrace is unspecified\&. If the call is after some
+exception\-catching code (before in the handler, or in a when\-guard
+during the matching of the exception handler), the backtrace may
+correspond to a later exception than the handled one\&.
+
+.sp
+.B "Since"
+3.11
+
+.sp
+
+.I val get_backtrace 
+: 
+.B unit -> string
+.sp
+
+.ft B
+Printexc\&.get_backtrace ()
+.ft R
+returns a string containing the
+same exception backtrace that 
+.ft B
+Printexc\&.print_backtrace
+.ft R
+would
+print\&. Same restriction usage than 
+.ft B
+Printexc\&.print_backtrace
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.11
+
+.sp
+
+.I val record_backtrace 
+: 
+.B bool -> unit
+.sp
+
+.ft B
+Printexc\&.record_backtrace b
+.ft R
+turns recording of exception backtraces
+on (if 
+.ft B
+b = true
+.ft R
+) or off (if 
+.ft B
+b = false
+.ft R
+)\&.  Initially, backtraces
+are not recorded, unless the 
+.ft B
+b
+.ft R
+flag is given to the program
+through the 
+.ft B
+OCAMLRUNPARAM
+.ft R
+variable\&.
+
+.sp
+.B "Since"
+3.11
+
+.sp
+
+.I val backtrace_status 
+: 
+.B unit -> bool
+.sp
+
+.ft B
+Printexc\&.backtrace_status()
+.ft R
+returns 
+.ft B
+true
+.ft R
+if exception
+backtraces are currently recorded, 
+.ft B
+false
+.ft R
+if not\&.
+
+.sp
+.B "Since"
+3.11
+
+.sp
+
+.I val register_printer 
+: 
+.B (exn -> string option) -> unit
+.sp
+
+.ft B
+Printexc\&.register_printer fn
+.ft R
+registers 
+.ft B
+fn
+.ft R
+as an exception
+printer\&.  The printer should return 
+.ft B
+None
+.ft R
+or raise an exception
+if it does not know how to convert the passed exception, and 
+.ft B
+Some
+.br
+\&    s
+.ft R
+with 
+.ft B
+s
+.ft R
+the resulting string if it can convert the passed
+exception\&. Exceptions raised by the printer are ignored\&.
+.sp
+When converting an exception into a string, the printers will be invoked
+in the reverse order of their registrations, until a printer returns
+a 
+.ft B
+Some s
+.ft R
+value (if no such printer exists, the runtime will use a
+generic printer)\&.
+.sp
+When using this mechanism, one should be aware that an exception backtrace
+is attached to the thread that saw it raised, rather than to the exception
+itself\&. Practically, it means that the code related to 
+.ft B
+fn
+.ft R
+should not use
+the backtrace if it has itself raised an exception before\&.
+
+.sp
+.B "Since"
+3.11.2
+
+.sp
+
+.I val use_printers 
+: 
+.B exn -> string option
+.sp
+
+.ft B
+Printexc\&.use_printers e
+.ft R
+returns 
+.ft B
+None
+.ft R
+if there are no registered
+printers and 
+.ft B
+Some s
+.ft R
+with else as the resulting string otherwise\&.
+
+.sp
+.B "Since"
+4.09
+
+.sp
+
+.PP
+.SS Raw backtraces
+
+.PP
+.I type raw_backtrace 
+
+.sp
+The type 
+.ft B
+raw_backtrace
+.ft R
+stores a backtrace in a low\-level format,
+which can be converted to usable form using 
+.ft B
+raw_backtrace_entries
+.ft R
+and 
+.ft B
+backtrace_slots_of_raw_entry
+.ft R
+below\&.
+.sp
+Converting backtraces to 
+.ft B
+backtrace_slot
+.ft R
+s is slower than capturing the
+backtraces\&. If an application processes many backtraces, it can be useful
+to use 
+.ft B
+raw_backtrace
+.ft R
+to avoid or delay conversion\&.
+.sp
+Raw backtraces cannot be marshalled\&. If you need marshalling, you
+should use the array returned by the 
+.ft B
+backtrace_slots
+.ft R
+function of
+the next section\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+.I type raw_backtrace_entry 
+= private 
+.B int
+
+.sp
+A 
+.ft B
+raw_backtrace_entry
+.ft R
+is an element of a 
+.ft B
+raw_backtrace
+.ft R
+\&.
+.sp
+Each 
+.ft B
+raw_backtrace_entry
+.ft R
+is an opaque integer, whose value is not stable
+between different programs, or even between different runs of the same
+binary\&.
+.sp
+A 
+.ft B
+raw_backtrace_entry
+.ft R
+can be converted to a usable form using
+.ft B
+backtrace_slots_of_raw_entry
+.ft R
+below\&. Note that, due to inlining, a
+single 
+.ft B
+raw_backtrace_entry
+.ft R
+may convert to several 
+.ft B
+backtrace_slot
+.ft R
+s\&.
+Since the values of a 
+.ft B
+raw_backtrace_entry
+.ft R
+are not stable, they cannot
+be marshalled\&. If they are to be converted, the conversion must be done
+by the process that generated them\&.
+.sp
+Again due to inlining, there may be multiple distinct raw_backtrace_entry
+values that convert to equal 
+.ft B
+backtrace_slot
+.ft R
+s\&. However, if two
+.ft B
+raw_backtrace_entry
+.ft R
+s are equal as integers, then they represent the same
+.ft B
+backtrace_slot
+.ft R
+s\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val raw_backtrace_entries 
+: 
+.B raw_backtrace -> raw_backtrace_entry array
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val get_raw_backtrace 
+: 
+.B unit -> raw_backtrace
+.sp
+
+.ft B
+Printexc\&.get_raw_backtrace ()
+.ft R
+returns the same exception
+backtrace that 
+.ft B
+Printexc\&.print_backtrace
+.ft R
+would print, but in
+a raw format\&. Same restriction usage than 
+.ft B
+Printexc\&.print_backtrace
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val print_raw_backtrace 
+: 
+.B out_channel -> raw_backtrace -> unit
+.sp
+Print a raw backtrace in the same format
+.ft B
+Printexc\&.print_backtrace
+.ft R
+uses\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val raw_backtrace_to_string 
+: 
+.B raw_backtrace -> string
+.sp
+Return a string from a raw backtrace, in the same format
+.ft B
+Printexc\&.get_backtrace
+.ft R
+uses\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val raise_with_backtrace 
+: 
+.B exn -> raw_backtrace -> 'a
+.sp
+Reraise the exception using the given raw_backtrace for the
+origin of the exception
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS Current call stack
+
+.PP
+
+.I val get_callstack 
+: 
+.B int -> raw_backtrace
+.sp
+
+.ft B
+Printexc\&.get_callstack n
+.ft R
+returns a description of the top of the
+call stack on the current program point (for the current thread),
+with at most 
+.ft B
+n
+.ft R
+entries\&.  (Note: this function is not related to
+exceptions at all, despite being part of the 
+.ft B
+Printexc
+.ft R
+module\&.)
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.PP
+.SS Uncaught exceptions
+
+.PP
+
+.I val default_uncaught_exception_handler 
+: 
+.B exn -> raw_backtrace -> unit
+.sp
+
+.ft B
+Printexc\&.default_uncaught_exception_handler
+.ft R
+prints the exception and
+backtrace on standard error output\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val set_uncaught_exception_handler 
+: 
+.B (exn -> raw_backtrace -> unit) -> unit
+.sp
+
+.ft B
+Printexc\&.set_uncaught_exception_handler fn
+.ft R
+registers 
+.ft B
+fn
+.ft R
+as the handler
+for uncaught exceptions\&. The default handler is
+.ft B
+Printexc\&.default_uncaught_exception_handler
+.ft R
+\&.
+.sp
+Note that when 
+.ft B
+fn
+.ft R
+is called all the functions registered with
+.ft B
+at_exit
+.ft R
+have already been called\&. Because of this you must
+make sure any output channel 
+.ft B
+fn
+.ft R
+writes on is flushed\&.
+.sp
+Also note that exceptions raised by user code in the interactive toplevel
+are not passed to this function as they are caught by the toplevel itself\&.
+.sp
+If 
+.ft B
+fn
+.ft R
+raises an exception, both the exceptions passed to 
+.ft B
+fn
+.ft R
+and raised
+by 
+.ft B
+fn
+.ft R
+will be printed with their respective backtrace\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.PP
+.SS Manipulation of backtrace information
+.sp
+These functions are used to traverse the slots of a raw backtrace
+and extract information from them in a programmer\-friendly format\&.
+.PP
+.I type backtrace_slot 
+
+.sp
+The abstract type 
+.ft B
+backtrace_slot
+.ft R
+represents a single slot of
+a backtrace\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val backtrace_slots 
+: 
+.B raw_backtrace -> backtrace_slot array option
+.sp
+Returns the slots of a raw backtrace, or 
+.ft B
+None
+.ft R
+if none of them
+contain useful information\&.
+.sp
+In the return array, the slot at index 
+.ft B
+0
+.ft R
+corresponds to the most
+recent function call, raise, or primitive 
+.ft B
+get_backtrace
+.ft R
+call in
+the trace\&.
+.sp
+Some possible reasons for returning 
+.ft B
+None
+.ft R
+are as follow:
+.sp
+\-none of the slots in the trace come from modules compiled with
+debug information (
+.ft B
+\-g
+.ft R
+)
+.sp
+\-the program is a bytecode program that has not been linked with
+debug information enabled (
+.ft B
+ocamlc \-g
+.ft R
+)
+
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val backtrace_slots_of_raw_entry 
+: 
+.B raw_backtrace_entry -> backtrace_slot array option
+.sp
+Returns the slots of a single raw backtrace entry, or 
+.ft B
+None
+.ft R
+if this
+entry lacks debug information\&.
+.sp
+Slots are returned in the same order as 
+.ft B
+backtrace_slots
+.ft R
+: the slot
+at index 
+.ft B
+0
+.ft R
+is the most recent call, raise, or primitive, and
+subsequent slots represent callers\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+.I type location 
+= {
+ filename : 
+.B string
+;
+ line_number : 
+.B int
+;
+ start_char : 
+.B int
+;
+ end_char : 
+.B int
+;
+ }
+
+.sp
+The type of location information found in backtraces\&. 
+.ft B
+start_char
+.ft R
+and 
+.ft B
+end_char
+.ft R
+are positions relative to the beginning of the
+line\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+.I module Slot : 
+.B sig end
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.PP
+.SS Raw backtrace slots
+
+.PP
+.I type raw_backtrace_slot 
+
+.sp
+This type is used to iterate over the slots of a 
+.ft B
+raw_backtrace
+.ft R
+\&.
+For most purposes, 
+.ft B
+backtrace_slots_of_raw_entry
+.ft R
+is easier to use\&.
+.sp
+Like 
+.ft B
+raw_backtrace_entry
+.ft R
+, values of this type are process\-specific and
+must absolutely not be marshalled, and are unsafe to use for this reason
+(marshalling them may not fail, but un\-marshalling and using the result
+will result in undefined behavior)\&.
+.sp
+Elements of this type can still be compared and hashed: when two elements
+are equal, then they represent the same source location (the converse is not
+necessarily true in presence of inlining, for example)\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val raw_backtrace_length 
+: 
+.B raw_backtrace -> int
+.sp
+
+.ft B
+raw_backtrace_length bckt
+.ft R
+returns the number of slots in the
+backtrace 
+.ft B
+bckt
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val get_raw_backtrace_slot 
+: 
+.B raw_backtrace -> int -> raw_backtrace_slot
+.sp
+
+.ft B
+get_raw_backtrace_slot bckt pos
+.ft R
+returns the slot in position 
+.ft B
+pos
+.ft R
+in the
+backtrace 
+.ft B
+bckt
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val convert_raw_backtrace_slot 
+: 
+.B raw_backtrace_slot -> backtrace_slot
+.sp
+Extracts the user\-friendly 
+.ft B
+backtrace_slot
+.ft R
+from a low\-level
+.ft B
+raw_backtrace_slot
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val get_raw_backtrace_next_slot 
+: 
+.B raw_backtrace_slot -> raw_backtrace_slot option
+.sp
+
+.ft B
+get_raw_backtrace_next_slot slot
+.ft R
+returns the next slot inlined, if any\&.
+.sp
+Sample code to iterate over all frames (inlined and non\-inlined):
+.EX
+.ft B
+.br
+\&      (* Iterate over inlined frames *)
+.br
+\&      let rec iter_raw_backtrace_slot f slot =
+.br
+\&        f slot;
+.br
+\&        match get_raw_backtrace_next_slot slot with
+.br
+\&        | None \-> ()
+.br
+\&        | Some slot\&' \-> iter_raw_backtrace_slot f slot\&'
+.br
+\&
+.br
+\&      (* Iterate over stack frames *)
+.br
+\&      let iter_raw_backtrace f bt =
+.br
+\&        for i = 0 to raw_backtrace_length bt \- 1 do
+.br
+\&          iter_raw_backtrace_slot f (get_raw_backtrace_slot bt i)
+.br
+\&        done
+.br
+\&    
+.ft R
+.EE
+
+.sp
+.B "Since"
+4.04
+
+.sp
+
+.PP
+.SS Exception slots
+
+.PP
+
+.I val exn_slot_id 
+: 
+.B exn -> int
+.sp
+
+.ft B
+Printexc\&.exn_slot_id
+.ft R
+returns an integer which uniquely identifies
+the constructor used to create the exception value 
+.ft B
+exn
+.ft R
+(in the current runtime)\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val exn_slot_name 
+: 
+.B exn -> string
+.sp
+
+.ft B
+Printexc\&.exn_slot_name exn
+.ft R
+returns the internal name of the constructor
+used to create the exception value 
+.ft B
+exn
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp

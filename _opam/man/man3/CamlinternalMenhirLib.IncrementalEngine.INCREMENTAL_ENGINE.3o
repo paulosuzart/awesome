@@ -1,0 +1,308 @@
+.TH "CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE \- no description
+.SH Module type
+Module type   CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE
+.SH Documentation
+.sp
+Module type
+.BI "INCREMENTAL_ENGINE"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type token 
+
+.sp
+
+.sp
+.I type production 
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I env 
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I checkpoint 
+= private
+ | InputNeeded
+.B of 
+.B 'a env
+ | Shifting
+.B of 
+.B 'a env
+.B    * 'a env * 
+.B   bool
+ | AboutToReduce
+.B of 
+.B 'a env
+.B    * production
+ | HandlingError
+.B of 
+.B 'a env
+ | Accepted
+.B of 
+.B 'a
+ | Rejected
+ 
+.sp
+
+.sp
+
+.I val offer 
+: 
+.B 'a checkpoint ->
+.B   token *
+.B   CamlinternalMenhirLib.IncrementalEngine.position *
+.B   CamlinternalMenhirLib.IncrementalEngine.position ->
+.B   'a checkpoint
+.sp
+
+.sp
+.I type strategy 
+= 
+.B [ `Legacy | `Simplified ]
+
+.sp
+
+.sp
+
+.I val resume 
+: 
+.B ?strategy:strategy ->
+.B   'a checkpoint ->
+.B   'a checkpoint
+.sp
+
+.sp
+.I type supplier 
+= 
+.B unit ->
+.B   token *
+.B   CamlinternalMenhirLib.IncrementalEngine.position *
+.B   CamlinternalMenhirLib.IncrementalEngine.position
+
+.sp
+
+.sp
+
+.I val lexer_lexbuf_to_supplier 
+: 
+.B (Lexing.lexbuf ->
+.B    token) ->
+.B   Lexing.lexbuf ->
+.B   supplier
+.sp
+
+.sp
+
+.I val loop 
+: 
+.B ?strategy:strategy ->
+.B   supplier ->
+.B   'a checkpoint ->
+.B   'a
+.sp
+
+.sp
+
+.I val loop_handle 
+: 
+.B ('a -> 'answer) ->
+.B   ('a checkpoint ->
+.B    'answer) ->
+.B   supplier ->
+.B   'a checkpoint ->
+.B   'answer
+.sp
+
+.sp
+
+.I val loop_handle_undo 
+: 
+.B ('a -> 'answer) ->
+.B   ('a checkpoint ->
+.B    'a checkpoint ->
+.B    'answer) ->
+.B   supplier ->
+.B   'a checkpoint ->
+.B   'answer
+.sp
+
+.sp
+
+.I val shifts 
+: 
+.B 'a checkpoint ->
+.B   'a env option
+.sp
+
+.sp
+
+.I val acceptable 
+: 
+.B 'a checkpoint ->
+.B   token ->
+.B   CamlinternalMenhirLib.IncrementalEngine.position -> bool
+.sp
+
+.sp
+.I type 
+.B 'a
+.I lr1state 
+
+.sp
+
+.sp
+
+.I val number 
+: 
+.B 'a lr1state -> int
+.sp
+
+.sp
+
+.I val production_index 
+: 
+.B production -> int
+.sp
+
+.sp
+
+.I val find_production 
+: 
+.B int -> production
+.sp
+
+.sp
+.I type element 
+=
+ | Element
+.B : 
+.B 'a lr1state * 'a
+.B    * CamlinternalMenhirLib.IncrementalEngine.position
+.B    * CamlinternalMenhirLib.IncrementalEngine.position
+.B -> 
+.B element
+ 
+.sp
+
+.sp
+.I type stack 
+= 
+.B element
+.B   CamlinternalMenhirLib.General.stream
+
+.sp
+
+.sp
+
+.I val stack 
+: 
+.B 'a env ->
+.B   stack
+.sp
+
+.sp
+
+.I val top 
+: 
+.B 'a env ->
+.B   element option
+.sp
+
+.sp
+
+.I val pop_many 
+: 
+.B int ->
+.B   'a env ->
+.B   'a env option
+.sp
+
+.sp
+
+.I val get 
+: 
+.B int ->
+.B   'a env ->
+.B   element option
+.sp
+
+.sp
+
+.I val current_state_number 
+: 
+.B 'a env -> int
+.sp
+
+.sp
+
+.I val equal 
+: 
+.B 'a env ->
+.B   'a env -> bool
+.sp
+
+.sp
+
+.I val positions 
+: 
+.B 'a env ->
+.B   CamlinternalMenhirLib.IncrementalEngine.position *
+.B   CamlinternalMenhirLib.IncrementalEngine.position
+.sp
+
+.sp
+
+.I val env_has_default_reduction 
+: 
+.B 'a env -> bool
+.sp
+
+.sp
+
+.I val state_has_default_reduction 
+: 
+.B 'a lr1state ->
+.B   bool
+.sp
+
+.sp
+
+.I val pop 
+: 
+.B 'a env ->
+.B   'a env option
+.sp
+
+.sp
+
+.I val force_reduction 
+: 
+.B production ->
+.B   'a env ->
+.B   'a env
+.sp
+
+.sp
+
+.I val input_needed 
+: 
+.B 'a env ->
+.B   'a checkpoint
+.sp
+
+.sp

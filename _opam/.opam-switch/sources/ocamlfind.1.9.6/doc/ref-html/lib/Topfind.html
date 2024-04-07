@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Fl_dynload.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Findlib" rel="Chapter" href="Findlib.html">
+<link title="Fl_package_base" rel="Chapter" href="Fl_package_base.html">
+<link title="Fl_metascanner" rel="Chapter" href="Fl_metascanner.html">
+<link title="Fl_dynload" rel="Chapter" href="Fl_dynload.html">
+<link title="Topfind" rel="Chapter" href="Topfind.html"><link title="Directives" rel="Section" href="#1_Directives">
+<link title="Functions and variables" rel="Section" href="#1_Functionsandvariables">
+<title>The Findlib Library : Topfind</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Fl_dynload.html" title="Fl_dynload">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Topfind.html">Topfind</a></h1>
+
+<pre><span id="MODULETopfind"><span class="keyword">module</span> Topfind</span>: <code class="code">sig</code> <a href="Topfind.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>Load packages from toploops and scripts</p>
+
+<p>The <code class="code">Topfind</code> module is part of the <code class="code">findlib</code> package. The module
+ depends on the presence of a toploop. When building a toploop, it is
+ automatically linked in if "findlib" is linked in, e.g.</p>
+<pre class="codepre"><code class="code"> ocamlfind ocamlmktop ...options... -package findlib -linkpkg 
+ </code></pre>
+<p>When the platform supports DLLs, another possibility to get a toploop
+ with findlib directives is to load the file "topfind" (normally installed
+ in the standard library directory):</p>
+<pre class="codepre"><code class="code"> $ ocaml
+         Objective Caml version 3.04
+ # #use "topfind";;
+ Findlib has been successfully loaded. Additional directives:
+   #require "package";;      to load a package
+   #list;;                   to list the available packages
+   #camlp4o;;                to load camlp4 (standard syntax)
+   #camlp4r;;                to load camlp4 (revised syntax)
+   Topfind.reset();;         to force that packages will be reloaded
+ ~ : unit = ()
+ # _
+ </code></pre>
+<p>This works even in scripts (but the startup message is suppressed in this
+ case).</p>
+
+<p>The module is not thread-safe; if used in a multi-threaded script, all
+ packgage loading must have happened before the first thread forks.</p>
+
+<p>The Topfind module contains some functions simplifying package loading
+ in scripts. Most important, there is a new directive <code class="code">#require</code> for
+ the same purpose (see below).</p>
+
+<p>The <code class="code">Topfind</code> module needs some initialization, in particular the 
+ <code class="code">predicates</code> variable needs to be
+ set, and the packages already compiled into the toploop needs to be
+ declared by the <code class="code">don't_load</code>
+ function. If the toploop has been built by <code class="code">ocamlfind</code>,
+ the necessary initialization is
+ automatically compiled in.</p>
+</div>
+</div>
+<hr width="100%">
+<h2 id="1_Directives">Directives</h2>
+<p>This module also defines the following directives for the toploop:</p>
+
+<ul>
+<li><code class="code">#require "&lt;package&gt;"</code>
+   loads the package (and if necessary the prerequisites of the package)</li>
+<li><code class="code">#camlp4o</code>
+   loads camlp4 and selects standard syntax</li>
+<li><code class="code">#camlp4r</code>
+   loads camlp4 and selects revised syntax</li>
+<li><code class="code">#list</code>
+   lists the available packages (calls external command "ocamlfind")</li>
+<li><code class="code">#thread</code>
+   enables multi-threading if possible</li>
+<li><code class="code">#predicates "p1,p2,..."</code>
+   adds these predicates</li>
+</ul>
+<h2 id="1_Functionsandvariables">Functions and variables</h2>
+<pre><span id="VALpredicates"><span class="keyword">val</span> predicates</span> : <code class="type">string list Stdlib.ref</code></pre><div class="info ">
+<div class="info-desc">
+<p>The list of predicates used for package loading</p>
+</div>
+</div>
+
+<pre><span id="VALadd_predicates"><span class="keyword">val</span> add_predicates</span> : <code class="type">string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Adds predicates to the list of predicates</p>
+</div>
+</div>
+
+<pre><span id="VALsyntax"><span class="keyword">val</span> syntax</span> : <code class="type">string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Emulates the <code class="code">-syntax</code> option</p>
+</div>
+</div>
+
+<pre><span id="VALstandard_syntax"><span class="keyword">val</span> standard_syntax</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Adds predicates that select the standard syntax. Same as
+ <code class="code">syntax "camlp4o"</code></p>
+</div>
+</div>
+
+<pre><span id="VALrevised_syntax"><span class="keyword">val</span> revised_syntax</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Adds predicates that select the revised syntax. Same as 
+ <code class="code">syntax "camlp4r"</code></p>
+</div>
+</div>
+
+<pre><span id="VALdon't_load"><span class="keyword">val</span> don't_load</span> : <code class="type">string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>The packages named in pkglist are added to the list of packages which
+ are already loaded.</p>
+</div>
+</div>
+
+<pre><span id="VALdon't_load_deeply"><span class="keyword">val</span> don't_load_deeply</span> : <code class="type">string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>The packages named in pkglist and all direct and indirect ancestors
+ are added to the list of packages which are already loaded.</p>
+</div>
+</div>
+
+<pre><span id="VALload"><span class="keyword">val</span> load</span> : <code class="type">string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>The packages from the passed package list are loaded, from left to
+ right, but packages that have already been loaded are left out.</p>
+</div>
+</div>
+
+<pre><span id="VALload_deeply"><span class="keyword">val</span> load_deeply</span> : <code class="type">string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>The packages from the passed package list and all direct or indirect 
+ ancestors are loaded in topological order. Packages that have already
+ been loaded are left out.</p>
+</div>
+</div>
+
+<pre><span id="VALreset"><span class="keyword">val</span> reset</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>All entries in the list of loaded packages that have been added by
+ <code class="code">load</code> or <code class="code">load_deeply</code> functions are removed from this list. This
+ means that if you execute the same <code class="code">load</code> or <code class="code">load_deeply</code> functions
+ again, the packages will be reloaded.</p>
+</div>
+</div>
+
+<pre><span id="VALannounce"><span class="keyword">val</span> announce</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Output the startup message</p>
+</div>
+</div>
+
+<pre><span id="VALlog"><span class="keyword">val</span> log</span> : <code class="type">(string -> unit) Stdlib.ref</code></pre><div class="info ">
+<div class="info-desc">
+<p>Function used to log messages from this module.</p>
+</div>
+</div>
+</body></html>

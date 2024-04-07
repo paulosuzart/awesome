@@ -1,0 +1,57 @@
+.TH "Misc.Stdlib" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.Stdlib \- no description
+.SH Module
+Module   Misc.Stdlib
+.SH Documentation
+.sp
+Module
+.BI "Stdlib"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module List : 
+.B sig end
+
+.sp
+.SS Extensions to the List module
+
+
+.sp
+.I module Option : 
+.B sig end
+
+.sp
+.SS Extensions to the Option module
+
+
+.sp
+.I module Array : 
+.B sig end
+
+.sp
+.SS Extensions to the Array module
+
+
+.sp
+.I module String : 
+.B sig end
+
+.sp
+.SS Extensions to the String module
+
+
+.sp
+
+.I val compare 
+: 
+.B 'a -> 'a -> int
+.sp
+
+.sp

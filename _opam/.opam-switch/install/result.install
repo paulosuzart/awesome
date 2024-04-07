@@ -1,0 +1,19 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/result/META"
+  "_build/install/default/lib/result/dune-package"
+  "_build/install/default/lib/result/opam"
+  "_build/install/default/lib/result/result.a"
+  "_build/install/default/lib/result/result.cma"
+  "_build/install/default/lib/result/result.cmi"
+  "_build/install/default/lib/result/result.cmt"
+  "_build/install/default/lib/result/result.cmx"
+  "_build/install/default/lib/result/result.cmxa"
+  "_build/install/default/lib/result/result.ml"
+]
+doc: [
+  "_build/install/default/doc/result/CHANGES.md"
+  "_build/install/default/doc/result/LICENSE.md"
+  "_build/install/default/doc/result/README.md"
+]
+libexec: "_build/install/default/lib/result/result.cmxs"

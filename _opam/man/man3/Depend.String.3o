@@ -1,0 +1,54 @@
+.TH "Depend.String" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Depend.String \- no description
+.SH Module
+Module   Depend.String
+.SH Documentation
+.sp
+Module
+.BI "String"
+ : 
+.B (module Misc.Stdlib.String)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I include String
+.sp
+
+.sp
+.I module Set : 
+.B sig end
+
+.sp
+
+.sp
+.I module Map : 
+.B sig end
+
+.sp
+
+.sp
+.I module Tbl : 
+.B sig end
+
+.sp
+
+.sp
+
+.I val print 
+: 
+.B Format.formatter -> t -> unit
+.sp
+
+.sp
+
+.I val for_all 
+: 
+.B (char -> bool) -> t -> bool
+.sp
+
+.sp

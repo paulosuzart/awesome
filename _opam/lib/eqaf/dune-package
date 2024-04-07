@@ -1,0 +1,111 @@
+(lang dune 3.15)
+(name eqaf)
+(version 0.9)
+(sections (lib .) (libexec .) (doc ../../doc/eqaf))
+(files
+ (lib
+  (META
+   bigstring/eqaf_bigstring.a
+   bigstring/eqaf_bigstring.cma
+   bigstring/eqaf_bigstring.cmi
+   bigstring/eqaf_bigstring.cmt
+   bigstring/eqaf_bigstring.cmti
+   bigstring/eqaf_bigstring.cmx
+   bigstring/eqaf_bigstring.cmxa
+   bigstring/eqaf_bigstring.ml
+   bigstring/eqaf_bigstring.mli
+   cstruct/eqaf_cstruct.a
+   cstruct/eqaf_cstruct.cma
+   cstruct/eqaf_cstruct.cmi
+   cstruct/eqaf_cstruct.cmt
+   cstruct/eqaf_cstruct.cmti
+   cstruct/eqaf_cstruct.cmx
+   cstruct/eqaf_cstruct.cmxa
+   cstruct/eqaf_cstruct.ml
+   cstruct/eqaf_cstruct.mli
+   dune-package
+   eqaf.a
+   eqaf.cma
+   eqaf.cmi
+   eqaf.cmt
+   eqaf.cmti
+   eqaf.cmx
+   eqaf.cmxa
+   eqaf.ml
+   eqaf.mli
+   eqaf__.cmi
+   eqaf__.cmt
+   eqaf__.cmx
+   eqaf__.ml
+   eqaf__Unsafe.cmi
+   eqaf__Unsafe.cmt
+   eqaf__Unsafe.cmx
+   opam
+   unsafe.ml))
+ (libexec (bigstring/eqaf_bigstring.cmxs cstruct/eqaf_cstruct.cmxs eqaf.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name eqaf)
+ (kind normal)
+ (archives (byte eqaf.cma) (native eqaf.cmxa))
+ (plugins (byte eqaf.cma) (native eqaf.cmxs))
+ (native_archives eqaf.a)
+ (main_module_name Eqaf)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eqaf__)
+     (visibility public)
+     (kind alias)
+     (source (path Eqaf__) (impl (path eqaf__.ml-gen))))
+    (name Eqaf)
+    (modules
+     (module
+      (obj_name eqaf)
+      (visibility public)
+      (source (path Eqaf) (intf (path eqaf.mli)) (impl (path eqaf.ml))))
+     (module
+      (obj_name eqaf__Unsafe)
+      (visibility public)
+      (source (path Unsafe) (impl (path unsafe.ml))))))
+   (wrapped true))))
+(library
+ (name eqaf.bigstring)
+ (kind normal)
+ (archives
+  (byte bigstring/eqaf_bigstring.cma)
+  (native bigstring/eqaf_bigstring.cmxa))
+ (plugins
+  (byte bigstring/eqaf_bigstring.cma)
+  (native bigstring/eqaf_bigstring.cmxs))
+ (native_archives bigstring/eqaf_bigstring.a)
+ (requires eqaf)
+ (main_module_name Eqaf_bigstring)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name eqaf_bigstring)
+   (visibility public)
+   (source
+    (path Eqaf_bigstring)
+    (intf (path bigstring/eqaf_bigstring.mli))
+    (impl (path bigstring/eqaf_bigstring.ml))))))
+(library
+ (name eqaf.cstruct)
+ (kind normal)
+ (archives (byte cstruct/eqaf_cstruct.cma) (native cstruct/eqaf_cstruct.cmxa))
+ (plugins (byte cstruct/eqaf_cstruct.cma) (native cstruct/eqaf_cstruct.cmxs))
+ (native_archives cstruct/eqaf_cstruct.a)
+ (requires cstruct eqaf.bigstring)
+ (main_module_name Eqaf_cstruct)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name eqaf_cstruct)
+   (visibility public)
+   (source
+    (path Eqaf_cstruct)
+    (intf (path cstruct/eqaf_cstruct.mli))
+    (impl (path cstruct/eqaf_cstruct.ml))))))

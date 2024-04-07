@@ -1,0 +1,215 @@
+(lang dune 3.15)
+(name x509)
+(version 0.16.5)
+(sections (lib .) (libexec .) (doc ../../doc/x509))
+(files
+ (lib
+  (.private/x509__Algorithm.cmi
+   .private/x509__Algorithm.cmt
+   .private/x509__Asn_grammars.cmi
+   .private/x509__Asn_grammars.cmt
+   .private/x509__Authenticator.cmi
+   .private/x509__Authenticator.cmt
+   .private/x509__Certificate.cmi
+   .private/x509__Certificate.cmt
+   .private/x509__Crl.cmi
+   .private/x509__Crl.cmt
+   .private/x509__Distinguished_name.cmi
+   .private/x509__Distinguished_name.cmt
+   .private/x509__Extension.cmi
+   .private/x509__Extension.cmt
+   .private/x509__General_name.cmi
+   .private/x509__General_name.cmt
+   .private/x509__Host.cmi
+   .private/x509__Host.cmt
+   .private/x509__Key_type.cmi
+   .private/x509__Key_type.cmt
+   .private/x509__P12.cmi
+   .private/x509__P12.cmt
+   .private/x509__Pem.cmi
+   .private/x509__Pem.cmt
+   .private/x509__Private_key.cmi
+   .private/x509__Private_key.cmt
+   .private/x509__Public_key.cmi
+   .private/x509__Public_key.cmt
+   .private/x509__Rc2.cmi
+   .private/x509__Rc2.cmt
+   .private/x509__Registry.cmi
+   .private/x509__Registry.cmt
+   .private/x509__Signing_request.cmi
+   .private/x509__Signing_request.cmt
+   .private/x509__Validation.cmi
+   .private/x509__Validation.cmt
+   META
+   algorithm.ml
+   asn_grammars.ml
+   authenticator.ml
+   certificate.ml
+   crl.ml
+   distinguished_name.ml
+   dune-package
+   extension.ml
+   general_name.ml
+   host.ml
+   key_type.ml
+   ocsp.ml
+   opam
+   p12.ml
+   pem.ml
+   private_key.ml
+   public_key.ml
+   rc2.ml
+   registry.ml
+   signing_request.ml
+   validation.ml
+   x509.a
+   x509.cma
+   x509.cmi
+   x509.cmt
+   x509.cmti
+   x509.cmx
+   x509.cmxa
+   x509.ml
+   x509.mli
+   x509__.cmi
+   x509__.cmt
+   x509__.cmx
+   x509__.ml
+   x509__Algorithm.cmx
+   x509__Asn_grammars.cmx
+   x509__Authenticator.cmx
+   x509__Certificate.cmx
+   x509__Crl.cmx
+   x509__Distinguished_name.cmx
+   x509__Extension.cmx
+   x509__General_name.cmx
+   x509__Host.cmx
+   x509__Key_type.cmx
+   x509__Ocsp.cmi
+   x509__Ocsp.cmt
+   x509__Ocsp.cmx
+   x509__P12.cmx
+   x509__Pem.cmx
+   x509__Private_key.cmx
+   x509__Public_key.cmx
+   x509__Rc2.cmx
+   x509__Registry.cmx
+   x509__Signing_request.cmx
+   x509__Validation.cmx))
+ (libexec (x509.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name x509)
+ (kind normal)
+ (archives (byte x509.cma) (native x509.cmxa))
+ (plugins (byte x509.cma) (native x509.cmxs))
+ (native_archives x509.a)
+ (requires
+  asn1-combinators
+  fmt
+  ptime
+  cstruct
+  mirage-crypto
+  mirage-crypto-pk
+  gmap
+  domain-name
+  base64
+  logs
+  mirage-crypto-ec
+  pbkdf
+  mirage-crypto-rng
+  ipaddr)
+ (main_module_name X509)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name x509__)
+     (visibility public)
+     (kind alias)
+     (source (path X509__) (impl (path x509__.ml-gen))))
+    (name X509)
+    (modules
+     (module
+      (obj_name x509__Algorithm)
+      (visibility private)
+      (source (path Algorithm) (impl (path algorithm.ml))))
+     (module
+      (obj_name x509__Asn_grammars)
+      (visibility private)
+      (source (path Asn_grammars) (impl (path asn_grammars.ml))))
+     (module
+      (obj_name x509__Authenticator)
+      (visibility private)
+      (source (path Authenticator) (impl (path authenticator.ml))))
+     (module
+      (obj_name x509__Certificate)
+      (visibility private)
+      (source (path Certificate) (impl (path certificate.ml))))
+     (module
+      (obj_name x509__Crl)
+      (visibility private)
+      (source (path Crl) (impl (path crl.ml))))
+     (module
+      (obj_name x509__Distinguished_name)
+      (visibility private)
+      (source (path Distinguished_name) (impl (path distinguished_name.ml))))
+     (module
+      (obj_name x509__Extension)
+      (visibility private)
+      (source (path Extension) (impl (path extension.ml))))
+     (module
+      (obj_name x509__General_name)
+      (visibility private)
+      (source (path General_name) (impl (path general_name.ml))))
+     (module
+      (obj_name x509__Host)
+      (visibility private)
+      (source (path Host) (impl (path host.ml))))
+     (module
+      (obj_name x509__Key_type)
+      (visibility private)
+      (source (path Key_type) (impl (path key_type.ml))))
+     (module
+      (obj_name x509__Ocsp)
+      (visibility public)
+      (source (path Ocsp) (impl (path ocsp.ml))))
+     (module
+      (obj_name x509__P12)
+      (visibility private)
+      (source (path P12) (impl (path p12.ml))))
+     (module
+      (obj_name x509__Pem)
+      (visibility private)
+      (source (path Pem) (impl (path pem.ml))))
+     (module
+      (obj_name x509__Private_key)
+      (visibility private)
+      (source (path Private_key) (impl (path private_key.ml))))
+     (module
+      (obj_name x509__Public_key)
+      (visibility private)
+      (source (path Public_key) (impl (path public_key.ml))))
+     (module
+      (obj_name x509__Rc2)
+      (visibility private)
+      (source (path Rc2) (impl (path rc2.ml))))
+     (module
+      (obj_name x509__Registry)
+      (visibility private)
+      (source (path Registry) (impl (path registry.ml))))
+     (module
+      (obj_name x509__Signing_request)
+      (visibility private)
+      (source (path Signing_request) (impl (path signing_request.ml))))
+     (module
+      (obj_name x509__Validation)
+      (visibility private)
+      (source (path Validation) (impl (path validation.ml))))
+     (module
+      (obj_name x509)
+      (visibility public)
+      (source (path X509) (intf (path x509.mli)) (impl (path x509.ml))))))
+   (wrapped true))))

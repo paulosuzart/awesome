@@ -1,0 +1,31 @@
+opam-version: "2.0"
+added: [
+  "doc/splittable_random" {"D"}
+  "doc/splittable_random/CHANGES.md" {"F:4d93a8361b313f27f1ef102d07380451"}
+  "doc/splittable_random/LICENSE.md" {"F:e328ff5884a6efa0b43cc3d14c67a63a"}
+  "doc/splittable_random/README.md" {"F:2836299b57c781d733f4c488cf53e94a"}
+  "lib/splittable_random" {"D"}
+  "lib/splittable_random/META" {"F:f14f6cd5c0007a8b44301834eb13ba79"}
+  "lib/splittable_random/dune-package" {"F:4e2b6363bac2f83c4b54efed4d5d5703"}
+  "lib/splittable_random/opam" {"F:544a1e2ea507e716521f8daa400f92ae"}
+  "lib/splittable_random/splittable_random.a"
+    {"F:c39dd3c2f1f0646634871c64a7c38fa0"}
+  "lib/splittable_random/splittable_random.cma"
+    {"F:87d7d6bc7f5b2425b12a6c7ef2e85cc1"}
+  "lib/splittable_random/splittable_random.cmi"
+    {"F:151e1d7a1d8478e40e44b11b51cb4a20"}
+  "lib/splittable_random/splittable_random.cmt"
+    {"F:f76118925343d8331179c56d38ca6b2a"}
+  "lib/splittable_random/splittable_random.cmti"
+    {"F:5c4688110a553b596ea70d13f9a661a3"}
+  "lib/splittable_random/splittable_random.cmx"
+    {"F:3ec3598277fdedc429e66cc7dbc28d36"}
+  "lib/splittable_random/splittable_random.cmxa"
+    {"F:df967310119f484490e2632b16ebc589"}
+  "lib/splittable_random/splittable_random.cmxs"
+    {"F:d208392f053986c95eec99702596218d"}
+  "lib/splittable_random/splittable_random.ml"
+    {"F:76de8fa7593dac4fa1802a86e1d397b7"}
+  "lib/splittable_random/splittable_random.mli"
+    {"F:e0f5fae87e73fddd3e4a37984ad0b5d2"}
+]

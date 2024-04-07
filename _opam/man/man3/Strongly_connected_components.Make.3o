@@ -1,0 +1,79 @@
+.TH "Strongly_connected_components.Make" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Strongly_connected_components.Make \- no description
+.SH Module
+Module   Strongly_connected_components.Make
+.SH Documentation
+.sp
+Module
+.BI "Make"
+ : 
+.B functor (Id : Identifiable.S) -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"Id"
+
+.B Identifiable.S
+
+
+
+
+
+.sp
+.sp
+.I module Id : 
+.B Identifiable.S
+
+.sp
+
+.sp
+.I type directed_graph 
+= 
+.B Id.Set.t Id.Map.t
+
+.sp
+If (a \-> set) belongs to the map, it means that there are edges
+from 
+.ft B
+a
+.ft R
+to every element of 
+.ft B
+set
+.ft R
+\&.  It is assumed that no edge
+points to a vertex not represented in the map\&.
+
+.sp
+.I type component 
+=
+ | Has_loop
+.B of 
+.B Id.t list
+ | No_loop
+.B of 
+.B Id.t
+ 
+.sp
+
+.sp
+
+.I val connected_components_sorted_from_roots_to_leaf 
+: 
+.B directed_graph ->
+.B   component array
+.sp
+
+.sp
+
+.I val component_graph 
+: 
+.B directed_graph ->
+.B   (component * int list) array
+.sp
+
+.sp

@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/hkdf/META"
+  "_build/install/default/lib/hkdf/dune-package"
+  "_build/install/default/lib/hkdf/hkdf.a"
+  "_build/install/default/lib/hkdf/hkdf.cma"
+  "_build/install/default/lib/hkdf/hkdf.cmi"
+  "_build/install/default/lib/hkdf/hkdf.cmt"
+  "_build/install/default/lib/hkdf/hkdf.cmti"
+  "_build/install/default/lib/hkdf/hkdf.cmx"
+  "_build/install/default/lib/hkdf/hkdf.cmxa"
+  "_build/install/default/lib/hkdf/hkdf.ml"
+  "_build/install/default/lib/hkdf/hkdf.mli"
+  "_build/install/default/lib/hkdf/opam"
+]
+doc: [
+  "_build/install/default/doc/hkdf/CHANGES.md"
+  "_build/install/default/doc/hkdf/LICENSE.md"
+  "_build/install/default/doc/hkdf/README.md"
+]
+libexec: "_build/install/default/lib/hkdf/hkdf.cmxs"

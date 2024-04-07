@@ -1,0 +1,97 @@
+(lang dune 3.15)
+(name ppx_jane)
+(version v0.16.0)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/ppx_jane))
+(files
+ (lib
+  (META
+   dune-package
+   kernel/ppx_jane_kernel.a
+   kernel/ppx_jane_kernel.cma
+   kernel/ppx_jane_kernel.cmi
+   kernel/ppx_jane_kernel.cmt
+   kernel/ppx_jane_kernel.cmx
+   kernel/ppx_jane_kernel.cmxa
+   kernel/ppx_jane_kernel.ml
+   opam
+   ppx_jane.a
+   ppx_jane.cma
+   ppx_jane.cmi
+   ppx_jane.cmt
+   ppx_jane.cmx
+   ppx_jane.cmxa
+   ppx_jane.ml))
+ (libexec (kernel/ppx.exe kernel/ppx_jane_kernel.cmxs ppx.exe ppx_jane.cmxs))
+ (bin (ppx-jane))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_jane)
+ (kind ppx_rewriter)
+ (archives (byte ppx_jane.cma) (native ppx_jane.cmxa))
+ (plugins (byte ppx_jane.cma) (native ppx_jane.cmxs))
+ (native_archives ppx_jane.a)
+ (requires
+  ppx_jane.kernel
+  ppx_expect
+  ppx_log
+  base_quickcheck.ppx_quickcheck
+  ppx_stable)
+ (main_module_name Ppx_jane)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_jane)
+     (visibility public)
+     (kind alias)
+     (source (path Ppx_jane) (impl (path ppx_jane.ml-gen))))
+    (name Ppx_jane))
+   (wrapped true))))
+(library
+ (name ppx_jane.kernel)
+ (kind ppx_rewriter)
+ (archives
+  (byte kernel/ppx_jane_kernel.cma)
+  (native kernel/ppx_jane_kernel.cmxa))
+ (plugins
+  (byte kernel/ppx_jane_kernel.cma)
+  (native kernel/ppx_jane_kernel.cmxs))
+ (native_archives kernel/ppx_jane_kernel.a)
+ (requires
+  ppx_base
+  ppx_assert
+  ppx_bench
+  ppx_bin_prot
+  ppx_custom_printf
+  ppx_disable_unused_warnings
+  ppx_fields_conv
+  ppx_fixed_literal
+  ppx_here
+  ppx_inline_test
+  ppx_let
+  ppx_module_timer
+  ppx_optional
+  ppx_pipebang
+  ppx_sexp_message
+  ppx_sexp_value
+  ppx_stable_witness
+  ppx_string
+  ppx_tydi
+  ppx_typerep_conv
+  ppx_variants_conv
+  ppx_ignore_instrumentation)
+ (main_module_name Ppx_jane_kernel)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_jane_kernel)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppx_jane_kernel)
+      (impl (path kernel/ppx_jane_kernel.ml-gen))))
+    (name Ppx_jane_kernel))
+   (wrapped true))))

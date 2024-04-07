@@ -1,0 +1,70 @@
+.TH "CamlinternalMenhirLib.InspectionTableInterpreter.Symbols" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.InspectionTableInterpreter.Symbols \- no description
+.SH Module
+Module   CamlinternalMenhirLib.InspectionTableInterpreter.Symbols
+.SH Documentation
+.sp
+Module
+.BI "Symbols"
+ : 
+.B functor (T : sig end) -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"T"
+
+.B sig end
+
+
+
+
+
+.sp
+.sp
+.I type 
+.B 'a
+.I terminal 
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I nonterminal 
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I symbol 
+=
+ | T
+.B : 
+.B 'a0 terminal
+.B -> 
+.B 'a0 symbol
+ | N
+.B : 
+.B 'a1 nonterminal
+.B -> 
+.B 'a1 symbol
+ 
+.sp
+
+.sp
+.I type xsymbol 
+=
+ | X
+.B : 
+.B 'a symbol
+.B -> 
+.B xsymbol
+ 
+.sp
+
+.sp

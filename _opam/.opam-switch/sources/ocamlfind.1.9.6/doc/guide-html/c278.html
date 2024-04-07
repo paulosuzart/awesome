@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Complex packages</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="User's Guide"
+HREF="p35.html"><LINK
+REL="PREVIOUS"
+TITLE="Support for gprof-enabled modules"
+HREF="x274.html"><LINK
+REL="NEXT"
+TITLE="Defining additional predicates"
+HREF="x311.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x274.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x311.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN278"
+></A
+>Chapter 5. Complex packages</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="c278.html#AEN280"
+>The standard predicates</A
+></DT
+><DT
+><A
+HREF="x311.html"
+>Defining additional predicates</A
+></DT
+><DT
+><A
+HREF="x326.html"
+>Appending to variables</A
+></DT
+><DT
+><A
+HREF="x338.html"
+>Subpackages</A
+></DT
+><DT
+><A
+HREF="x345.html"
+>Glue code</A
+></DT
+><DT
+><A
+HREF="x352.html"
+>Plugins</A
+></DT
+><DT
+><A
+HREF="x388.html"
+>Lint</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN280"
+>The standard predicates</A
+></H1
+><P
+>Settings in the META file have usually the form:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>varname ( predname1, predname2, ... ) = "value"</PRE
+><P
+>The names in the parantheses are called <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>formal
+predicates</I
+></SPAN
+> and express a condition which must hold such
+that the value on the right side is selected. When querying
+information you can specify a set of <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+> actual
+predicates</I
+></SPAN
+> that are assumed to be true. There are the
+following standard predicates:</P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "byte" predicate means that the bytecode compiler is used.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "native" predicate means that the native compiler is used.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "toploop" predicate means that the toploop is available in the
+linked program.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "mt" predicate means that the program is multi-threaded.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "mt_posix" predicate means that in the case "mt" is set, too, the
+POSIX libraries are used to implement threads.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "mt_vm" predicate means that in the case "mt" is set, too, the
+VM-based libraries are used to implement threads.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "gprof" predicate means that in the case "native" is set, too, the
+program is compiled for profiling</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The "autolink" predicate indicates that ocamlc is able to perform
+automatic linking.</P
+></LI
+></UL
+><P
+>It is possible to have more predicates indicating different
+environments; just use them, it is not necessary to declare them
+anywhere.</P
+><P
+>The value which is selected for a variable depends on the set of
+assumed predicates. In order to get selected, all formal predicates
+must be included in the set of actual predicates; if still
+multiple values fulfill this condition, the value with the maximum
+number of formal predicates is used; and if still in doubt, the first
+of these in the META file is taken.</P
+><P
+>It is possible to negate a formal predicate: Just prepend a minus
+sign to it, e.g. var(p,-q). In this case, it is required that the
+negated predicates are false (not contained in the set of actual predicates).</P
+><P
+>For all variables that are evaluated after the dependency analysis,
+findlib adds the so-called package predicates to the set of actual
+predicates. For every selected package p the predicate pkg_p 
+(with the fixed prefix "pkg_") is added. One application of this
+are compatibility checks: The special <TT
+CLASS="LITERAL"
+>error</TT
+> variable
+is evaluated after dependency analysis, but before anything else
+is done. For example, to state that package p is incompatible with
+package q one can add to the META file of p:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>error(pkg_q) = "Package p is incompatible with q"</PRE
+>
+
+The value of <TT
+CLASS="LITERAL"
+>error</TT
+> is printed as message in the
+case the condition is true.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x274.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x311.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Support for gprof-enabled modules</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p35.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Defining additional predicates</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

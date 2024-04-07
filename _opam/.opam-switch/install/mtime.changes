@@ -1,0 +1,42 @@
+opam-version: "2.0"
+added: [
+  "doc/mtime" {"D"}
+  "doc/mtime/CHANGES.md" {"F:aca9ec7c26e17b9183c251af4244d7d2"}
+  "doc/mtime/LICENSE.md" {"F:58970b74849669dab85bd55c1bf919d6"}
+  "doc/mtime/README.md" {"F:bd216b3f2fda63599a00e51624b4061c"}
+  "doc/mtime/min_clock.ml" {"F:ee00e57d407f249ce644910ba5ef5661"}
+  "doc/mtime/odoc-pages/index.mld" {"F:fa4ab2ee20f09a513fb781b1d83eb289"}
+  "lib/mtime" {"D"}
+  "lib/mtime/META" {"F:30b60958838a2b5647197c776784a9e6"}
+  "lib/mtime/clock/os/libmtime_clock_stubs.a"
+    {"F:a0b70720389a99902f5fde6894214fa7"}
+  "lib/mtime/clock/os/mtime_clock.a" {"F:2019c84b4a30dfe39e885d62afd036f3"}
+  "lib/mtime/clock/os/mtime_clock.cma" {"F:292e78e053713f18ed3268a75d21ef31"}
+  "lib/mtime/clock/os/mtime_clock.cmi" {"F:8e6a93f66f8477460319cb4d757a2ef0"}
+  "lib/mtime/clock/os/mtime_clock.cmti"
+    {"F:aeeb50cb5661d708448e817c342533d9"}
+  "lib/mtime/clock/os/mtime_clock.cmx" {"F:eea2016d672aeb5d96c29a3b75f1d632"}
+  "lib/mtime/clock/os/mtime_clock.cmxa"
+    {"F:66ff31791abd541aed862a5265f7c9e3"}
+  "lib/mtime/clock/os/mtime_clock.cmxs"
+    {"F:cf6c73a239fd6b37220b75bd4bd3518a"}
+  "lib/mtime/clock/os/mtime_clock.mli" {"F:ef17e59775113626e8cf7516c3a7a6f5"}
+  "lib/mtime/clock/os/runtime.js" {"F:02f482b1fb65699434454dd2af90afb7"}
+  "lib/mtime/mtime.a" {"F:aae3f43735c87c32491bed0e822c1f24"}
+  "lib/mtime/mtime.cma" {"F:7d87405d70ce5116264576b6baf31735"}
+  "lib/mtime/mtime.cmi" {"F:6ad2a90f810938319d736ce1cf726feb"}
+  "lib/mtime/mtime.cmti" {"F:77763654ccdbe55447bd804db1be4968"}
+  "lib/mtime/mtime.cmx" {"F:bffc02ffb31e0ef45f66d76856408c1a"}
+  "lib/mtime/mtime.cmxa" {"F:2493742d8c220ebe7fa169026b8305d8"}
+  "lib/mtime/mtime.cmxs" {"F:2dc24608f2be58643f396c141faf730d"}
+  "lib/mtime/mtime.mli" {"F:a67a1d9e352fab78b6016f5ec9b41623"}
+  "lib/mtime/mtime_top_init.ml" {"F:2d0ed86f61f742bb9cf30d09eda01231"}
+  "lib/mtime/opam" {"F:0b97da00546996f82826e83f6af68ca1"}
+  "lib/mtime/top/mtime_top.a" {"F:ef481842f240815693135e22c2c7b734"}
+  "lib/mtime/top/mtime_top.cma" {"F:bea032353faf67d20c7641e17b807af2"}
+  "lib/mtime/top/mtime_top.cmx" {"F:0b02f3b7db565560b9969e68ddb7015d"}
+  "lib/mtime/top/mtime_top.cmxa" {"F:a799e48410f50dba534e2a3f15b799df"}
+  "lib/mtime/top/mtime_top.cmxs" {"F:e8881b40b5b70964471a708d7fceb5fe"}
+  "lib/stublibs/dllmtime_clock_stubs.so"
+    {"F:dafb46f776b7a9840fe6d0e651ac1ae8"}
+]

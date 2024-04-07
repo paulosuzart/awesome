@@ -1,0 +1,29 @@
+.TH "Ast_helper.Opn" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_helper.Opn \- Opens
+.SH Module
+Module   Ast_helper.Opn
+.SH Documentation
+.sp
+Module
+.BI "Opn"
+ : 
+.B sig end
+
+.sp
+Opens
+
+.sp
+
+.sp
+.sp
+
+.I val mk 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   ?docs:Docstrings.docs ->
+.B   ?override:Asttypes.override_flag -> 'a -> 'a Parsetree.open_infos
+.sp
+
+.sp

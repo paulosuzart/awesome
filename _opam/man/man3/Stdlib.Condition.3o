@@ -1,0 +1,185 @@
+.TH "Stdlib.Condition" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Condition \- no description
+.SH Module
+Module   Stdlib.Condition
+.SH Documentation
+.sp
+Module
+.BI "Condition"
+ : 
+.B (module Stdlib__Condition)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type of condition variables\&.
+
+.sp
+
+.I val create 
+: 
+.B unit -> t
+.sp
+
+.ft B
+create()
+.ft R
+creates and returns a new condition variable\&.
+This condition variable should be associated (in the programmer\&'s mind)
+with a certain mutex 
+.ft B
+m
+.ft R
+and with a certain property P of the data
+structure that is protected by the mutex 
+.ft B
+m
+.ft R
+\&.
+
+.sp
+
+.I val wait 
+: 
+.B t -> Mutex.t -> unit
+.sp
+The call 
+.ft B
+wait c m
+.ft R
+is permitted only if 
+.ft B
+m
+.ft R
+is the mutex associated
+with the condition variable 
+.ft B
+c
+.ft R
+, and only if 
+.ft B
+m
+.ft R
+is currently locked\&.
+This call atomically unlocks the mutex 
+.ft B
+m
+.ft R
+and suspends the
+current thread on the condition variable 
+.ft B
+c
+.ft R
+\&. This thread can
+later be woken up after the condition variable 
+.ft B
+c
+.ft R
+has been signaled
+via 
+.ft B
+Condition\&.signal
+.ft R
+or 
+.ft B
+Condition\&.broadcast
+.ft R
+; however, it can also be woken up for
+no reason\&. The mutex 
+.ft B
+m
+.ft R
+is locked again before 
+.ft B
+wait
+.ft R
+returns\&. One
+cannot assume that the property P associated with the condition
+variable 
+.ft B
+c
+.ft R
+holds when 
+.ft B
+wait
+.ft R
+returns; one must explicitly test
+whether P holds after calling 
+.ft B
+wait
+.ft R
+\&.
+
+.sp
+
+.I val signal 
+: 
+.B t -> unit
+.sp
+
+.ft B
+signal c
+.ft R
+wakes up one of the threads waiting on the condition
+variable 
+.ft B
+c
+.ft R
+, if there is one\&. If there is none, this call has
+no effect\&.
+.sp
+It is recommended to call 
+.ft B
+signal c
+.ft R
+inside a critical section,
+that is, while the mutex 
+.ft B
+m
+.ft R
+associated with 
+.ft B
+c
+.ft R
+is locked\&.
+
+.sp
+
+.I val broadcast 
+: 
+.B t -> unit
+.sp
+
+.ft B
+broadcast c
+.ft R
+wakes up all threads waiting on the condition
+variable 
+.ft B
+c
+.ft R
+\&. If there are none, this call has no effect\&.
+.sp
+It is recommended to call 
+.ft B
+broadcast c
+.ft R
+inside a critical section,
+that is, while the mutex 
+.ft B
+m
+.ft R
+associated with 
+.ft B
+c
+.ft R
+is locked\&.
+
+.sp

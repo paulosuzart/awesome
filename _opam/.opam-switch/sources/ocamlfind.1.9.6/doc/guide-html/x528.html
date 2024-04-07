@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>How do I express conflicts?</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQs"
+HREF="c429.html"><LINK
+REL="PREVIOUS"
+TITLE="Why do some people install the .cmx files?"
+HREF="x524.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x524.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. FAQs</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+>&nbsp;</TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN528"
+>How do I express conflicts?</A
+></H1
+><P
+>A conflict means that a certain combination of packages
+and package features will not work. A number of conflict conditions
+can be expressed:</P
+><P
+></P
+><UL
+><LI
+><P
+>To state that a package will not work if a certain
+predicate is set, use the <TT
+CLASS="LITERAL"
+>error</TT
+> variable. For example,
+when package p does not work for multi-threaded programs:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>error(mt) = "Package p is incompatible with multi-threaded programs"</PRE
+>
+
+This works for other standard predicates, too.</P
+></LI
+><LI
+><P
+>To state that a package will not work together with
+another package, it is possible to make <TT
+CLASS="LITERAL"
+>error</TT
+> dependent
+on package predicates. For example, when package p does not work
+together with q:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>error(pkg_q) = "Package p is incompatible with package q"</PRE
+>
+
+This also works with subpackages (e.g. <TT
+CLASS="LITERAL"
+>pkg_q.q_sub</TT
+>).
+	    </P
+></LI
+><LI
+><P
+>If an error is too much, it might be a good idea to
+              just inform the user about possible problems. In this case
+              you can emit a warning instead:
+            </P
+><PRE
+CLASS="PROGRAMLISTING"
+>warning(pkg_q) = "Using package p and q together is a really bad idea"</PRE
+></LI
+></UL
+><P
+>Note that such error conditions should only be added if there is
+absolutely no chance to get the combination of packages and features running.
+For example, in the case of multi-threaded programs it is often possible
+to add wrappers around unsafe libraries to fix the incompatibility.
+	</P
+><P
+>It is not possible to express incompatibilities between package
+versions. Such incompatibilities should be detected when software is
+installed, not when it is used.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x524.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Why do some people install the .cmx files?</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c429.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

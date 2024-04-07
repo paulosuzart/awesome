@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Does findlib support linking of applications as well as
+packages?</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQs"
+HREF="c429.html"><LINK
+REL="PREVIOUS"
+TITLE="Why does findlib not automatically include the -custom option if
+linked with C code?"
+HREF="x443.html"><LINK
+REL="NEXT"
+TITLE="	  Does Findlib support camlp4?
+        "
+HREF="x461.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x443.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. FAQs</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x461.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN449"
+>Does findlib support linking of applications as well as
+packages?</A
+></H1
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Short answer:</I
+></SPAN
+> Yes, but it is not very obvious</P
+><P
+>Applications also depend on other components, they have predicates, sometimes
+they need linker options; there seems to be only little difference between
+applications (stand-alone programs) and packages. If you want to use the
+findlib mechanisms for applications, too, the following trick helps.</P
+><P
+>The environment variable <TT
+CLASS="LITERAL"
+>OCAMLPATH</TT
+> may contain a
+colon-separated path of possible sitelib locations. It is allowed to include
+"." into the path (Shell commands follow):
+
+<PRE
+CLASS="PROGRAMLISTING"
+>OCAMLPATH=.
+export OCAMLPATH</PRE
+>
+
+This makes ".", i.e.  your current directory, another sitelib location. You may
+now put the components of your applications into subdirectories together with
+META files; the hierarchy might look as follows:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>./Makefile                          global Makefile
+./localpkg1/META                    first local package directory: Contains META
+./localpkg1/...                     ... and more
+./localpkg2/META                    second local package dir: Contains META
+./localpkg2/...                     ... and more
+...</PRE
+>
+
+From findlib's point of view, these directories are now package directories,
+and you can refer to them on the command line:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o ... -linkpkg -package localpkg1,localpkg2,...</PRE
+>
+
+If you do not want subdirectories, you can also refer to the META file in the
+same directory by the name ".", e.g.:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o ... -linkpkg -package .</PRE
+>
+
+In this case, the linking information will be taken from
+<TT
+CLASS="LITERAL"
+>./META</TT
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x443.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x461.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Why does findlib not automatically include the -custom option if
+linked with C code?</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c429.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Does Findlib support camlp4?</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

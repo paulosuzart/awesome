@@ -1,0 +1,24 @@
+.TH "CamlinternalMenhirLib.TableFormat" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.TableFormat \- no description
+.SH Module
+Module   CamlinternalMenhirLib.TableFormat
+.SH Documentation
+.sp
+Module
+.BI "TableFormat"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module type TABLES = 
+.B sig end
+
+.sp
+
+.sp

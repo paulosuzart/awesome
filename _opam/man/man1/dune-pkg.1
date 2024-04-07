@@ -1,0 +1,59 @@
+.\" Pipe this output to groff -m man -K utf8 -T utf8 | less -R
+.\"
+.mso an.tmac
+.TH "DUNE-PKG" 1 "" "Dune 3.15.0" "Dune Manual"
+.\" Disable hyphenation and ragged-right
+.nh
+.ad l
+.SH NAME
+.P
+dune\N'45'pkg \N'45' Experimental package management
+.SH SYNOPSIS
+.P
+\fBdune pkg\fR \fICOMMAND\fR …
+.SH DESCRIPTION
+.P
+Commands for doing package management with dune
+.SH COMMANDS
+.TP 4
+\fBlock\fR [\fIOPTION\fR]… [\fILOCKDIRS\fR]…
+Create a lockfile
+.TP 4
+\fBoutdated\fR [\fIOPTION\fR]… [\fILOCKDIRS\fR]…
+Check for outdated packages
+.TP 4
+\fBprint\N'45'solver\N'45'env\fR [\fIOPTION\fR]… [\fILOCKDIRS\fR]…
+Print a description of the environment that would be used to solve dependencies and then exit without attempting to solve the dependencies or generate the lockfile\N'46' Intended to be used to debug situations where no solution can be found to a project\N'39's dependencies\N'46'
+.TP 4
+\fBvalidate\N'45'lockdir\fR [\fIOPTION\fR]… [\fILOCKDIRS\fR]…
+Validate that a lockdir contains a solution for local packages
+.SH COMMON OPTIONS
+.P
+These options are common to all commands\N'46'
+.TP 4
+\fB\N'45'\N'45'help\fR[=\fIFMT\fR] (default=\fBauto\fR)
+Show this help in format \fIFMT\fR\N'46' The value \fIFMT\fR must be one of \fBauto\fR, \fBpager\fR, \fBgroff\fR or \fBplain\fR\N'46' With \fBauto\fR, the format is \fBpager\fR or \fBplain\fR whenever the \fBTERM\fR env var is \fBdumb\fR or undefined\N'46'
+.TP 4
+\fB\N'45'\N'45'version\fR
+Show version information\N'46'
+.SH MORE HELP
+.P
+Use `\fBdune\fR \fICOMMAND\fR \N'45'\N'45'help\N'39' for help on a single command\N'46'
+.SH EXIT STATUS
+.P
+\fBdune pkg\fR exits with:
+.TP 4
+0
+on success\N'46'
+.TP 4
+1
+if an error happened\N'46'
+.TP 4
+130
+if it was interrupted by a signal\N'46'
+.SH BUGS
+.P
+Check bug reports at https://github\N'46'com/ocaml/dune/issues
+.SH SEE ALSO
+.P
+dune(1)

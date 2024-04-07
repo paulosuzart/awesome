@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Querying descendants</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Dependency analysis of packages"
+HREF="c161.html"><LINK
+REL="PREVIOUS"
+TITLE="Dependency analysis of packages"
+HREF="c161.html"><LINK
+REL="NEXT"
+TITLE="A new frontend for ocamlc"
+HREF="c192.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c161.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Dependency analysis of packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c192.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN180"
+>Querying descendants</A
+></H1
+><P
+>It is often useful to find out the descendants of a package, i.e. all
+direct or indirect users of the package. There is another "ocamlfind"
+subcommand that allows us to query descendants. For example, to get
+the direct and indirect users of p, type in</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind query -descendants p</PRE
+><P
+>The set of packages that are possible descendants is determined as
+follows:
+
+<P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+>All packages located in directories mentioned in the environment
+variable OCAMLPATH are candidates. Note that only package directories
+containing META files are taken.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>The packages in the default package directory are candidates, too.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>If there are two packages with the same name, only the first
+counts, i.e. the first in OCAMLPATH, then the one in the default directory.</P
+></LI
+></UL
+>
+
+After this set has been determined, the complete dependency graph is
+constructed on it. As the descendants are queried, the dependencies
+are read in the inverse way compared with queries of the ancestors.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c161.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c192.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Dependency analysis of packages</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c161.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>A new frontend for ocamlc</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

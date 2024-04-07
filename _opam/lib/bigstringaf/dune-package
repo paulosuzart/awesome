@@ -1,0 +1,47 @@
+(lang dune 3.15)
+(name bigstringaf)
+(version 0.9.1)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/bigstringaf)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   bigstringaf.a
+   bigstringaf.cma
+   bigstringaf.cmi
+   bigstringaf.cmt
+   bigstringaf.cmti
+   bigstringaf.cmx
+   bigstringaf.cmxa
+   bigstringaf.ml
+   bigstringaf.mli
+   dune-package
+   libbigstringaf_stubs.a
+   opam
+   runtime.js))
+ (libexec (bigstringaf.cmxs))
+ (doc (CHANGES.md LICENSE README.md))
+ (stublibs (dllbigstringaf_stubs.so)))
+(library
+ (name bigstringaf)
+ (kind normal)
+ (archives (byte bigstringaf.cma) (native bigstringaf.cmxa))
+ (plugins (byte bigstringaf.cma) (native bigstringaf.cmxs))
+ (foreign_objects bigstringaf_stubs.o)
+ (foreign_archives (archives (for all) (files libbigstringaf_stubs.a)))
+ (foreign_dll_files ../stublibs/dllbigstringaf_stubs.so)
+ (native_archives bigstringaf.a)
+ (jsoo_runtime runtime.js)
+ (main_module_name Bigstringaf)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name bigstringaf)
+   (visibility public)
+   (source
+    (path Bigstringaf)
+    (intf (path bigstringaf.mli))
+    (impl (path bigstringaf.ml))))))

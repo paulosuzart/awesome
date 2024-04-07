@@ -1,0 +1,18 @@
+opam-version: "2.0"
+added: [
+  "doc/variantslib" {"D"}
+  "doc/variantslib/CHANGES.md" {"F:06214eb70c7b9a72973ffd5256aa7105"}
+  "doc/variantslib/LICENSE.md" {"F:cd683914b88b9d15fc83634e2743c77a"}
+  "lib/variantslib" {"D"}
+  "lib/variantslib/META" {"F:d45385ab434786600a65996a36b25c0d"}
+  "lib/variantslib/dune-package" {"F:b9005ba5e8081b46c8b76c28da07dc17"}
+  "lib/variantslib/opam" {"F:9e3e9319b55038de7f2dd65113c17604"}
+  "lib/variantslib/variantslib.a" {"F:c993ccb80baa3ea6960c6f8577b6ccf1"}
+  "lib/variantslib/variantslib.cma" {"F:1db90c13d2f206a6874d78e28be27d71"}
+  "lib/variantslib/variantslib.cmi" {"F:8d2528f487f8961a3a8cb9d639ccf3bf"}
+  "lib/variantslib/variantslib.cmt" {"F:59e2360dab2fbe4dd8488aba00742d80"}
+  "lib/variantslib/variantslib.cmx" {"F:7114434e4609a9345eb399b598034dc5"}
+  "lib/variantslib/variantslib.cmxa" {"F:c7655e0a6456f471b84b5a08b392484e"}
+  "lib/variantslib/variantslib.cmxs" {"F:1e0176ee728de4d8b98c4717c61f16c1"}
+  "lib/variantslib/variantslib.ml" {"F:85b416e151a3bbd9618d4cffc89203aa"}
+]

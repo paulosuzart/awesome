@@ -1,0 +1,7 @@
+version = "3.15.0"
+description = ""
+requires = "csexp unix"
+archive(byte) = "configurator.cma"
+archive(native) = "configurator.cmxa"
+plugin(byte) = "configurator.cma"
+plugin(native) = "configurator.cmxs"

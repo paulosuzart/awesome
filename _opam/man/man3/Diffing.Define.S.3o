@@ -1,0 +1,43 @@
+.TH "Diffing.Define.S" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing.Define.S \- no description
+.SH Module type
+Module type   Diffing.Define.S
+.SH Documentation
+.sp
+Module type
+.BI "S"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val diff 
+: 
+.B D.state -> D.left array -> D.right array -> Diffing.Define.patch
+.sp
+
+.ft B
+diff state l r
+.ft R
+computes the optimal patch between 
+.ft B
+l
+.ft R
+and 
+.ft B
+r
+.ft R
+,
+using the initial state 
+.ft B
+state
+.ft R
+\&.
+
+.sp

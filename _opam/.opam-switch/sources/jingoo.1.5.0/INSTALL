@@ -1,0 +1,23 @@
+Dependencies
+============
+
+1. ocaml (>= 4.04.0)
+2. dune (>= 1.4.0)
+3. re
+4. uutf (>= 0.9.4)
+5. uucp
+6. ppx_deriving
+7. menhir
+8. ounit (>= 2.0.0, for test)
+
+Installing
+==========
+
+(1) Install in manual way.
+
+make
+sudo make install
+
+(2) Install by opam.
+
+opam install jingoo

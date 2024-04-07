@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/pbkdf/META"
+  "_build/install/default/lib/pbkdf/dune-package"
+  "_build/install/default/lib/pbkdf/opam"
+  "_build/install/default/lib/pbkdf/pbkdf.a"
+  "_build/install/default/lib/pbkdf/pbkdf.cma"
+  "_build/install/default/lib/pbkdf/pbkdf.cmi"
+  "_build/install/default/lib/pbkdf/pbkdf.cmt"
+  "_build/install/default/lib/pbkdf/pbkdf.cmti"
+  "_build/install/default/lib/pbkdf/pbkdf.cmx"
+  "_build/install/default/lib/pbkdf/pbkdf.cmxa"
+  "_build/install/default/lib/pbkdf/pbkdf.ml"
+  "_build/install/default/lib/pbkdf/pbkdf.mli"
+]
+doc: [
+  "_build/install/default/doc/pbkdf/CHANGES.md"
+  "_build/install/default/doc/pbkdf/LICENSE.md"
+  "_build/install/default/doc/pbkdf/README.md"
+]
+libexec: "_build/install/default/lib/pbkdf/pbkdf.cmxs"

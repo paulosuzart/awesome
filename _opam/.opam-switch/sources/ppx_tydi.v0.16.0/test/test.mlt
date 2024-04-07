@@ -1,0 +1,90 @@
+module T = struct
+  type a = A
+  type b = B
+  type r = { foo : int }
+  type s = { bar : int }
+end
+
+include struct
+  open T
+
+  let a = A
+  let b = B
+  let r = { foo = 1 }
+  let s = { bar = 1 }
+end
+
+(* $MDX part-begin=simple-bad *)
+let () =
+  let { foo } = r in
+  ignore (foo : int)
+;;
+
+[%%expect {|
+Line _, characters _-_:
+Error: Unbound record field foo
+|}]
+
+(* $MDX part-end *)
+
+(* $MDX part-begin=simple-good *)
+let () =
+  let%tydi { foo } = r in
+  ignore (foo : int)
+;;
+
+(* $MDX part-end *)
+
+(* let-and *)
+let (_ : T.a) =
+  let%tydi { foo = _ } = r
+  and { bar = _ } = s in
+  A
+;;
+
+(* let-rec *)
+let () =
+  let%tydi rec { foo = _ } = r in
+  ()
+;;
+
+[%%expect {|
+Line _:
+Error: [let rec] is not supported.
+|}]
+
+(* ppx_tydi is not allowed on a top-level let (structure item). *)
+let%tydi A = a
+
+[%%expect
+  {|
+Line _, characters _-_:
+Error: Extension `tydi' was not translated.
+       Hint: `tydi' is available for expressions but is used here in the
+       context of
+       a structure item.
+       Did you put it at the wrong level?
+|}]
+
+(* works on variants too *)
+
+let (_ : T.b) =
+  let%tydi A = a in
+  B
+;;
+
+(* ppx_tydi preserves disambiguation of return value, unlike function-based approaches
+   like let%map.Monad.Ident *)
+let (_ : T.a) =
+  let%tydi { foo = _ } = r in
+  A
+;;
+
+(* This is what let%map.Monad.Ident generates. We expand manually to avoid depending on
+   ppx_let. *)
+let (_ : T.a) = r |> fun { foo = _ } -> A
+
+[%%expect {|
+Line _, characters _-_:
+Error: Unbound constructor A
+|}]

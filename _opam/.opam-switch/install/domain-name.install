@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/domain-name/META"
+  "_build/install/default/lib/domain-name/domain_name.a"
+  "_build/install/default/lib/domain-name/domain_name.cma"
+  "_build/install/default/lib/domain-name/domain_name.cmi"
+  "_build/install/default/lib/domain-name/domain_name.cmt"
+  "_build/install/default/lib/domain-name/domain_name.cmti"
+  "_build/install/default/lib/domain-name/domain_name.cmx"
+  "_build/install/default/lib/domain-name/domain_name.cmxa"
+  "_build/install/default/lib/domain-name/domain_name.ml"
+  "_build/install/default/lib/domain-name/domain_name.mli"
+  "_build/install/default/lib/domain-name/dune-package"
+  "_build/install/default/lib/domain-name/opam"
+]
+doc: [
+  "_build/install/default/doc/domain-name/CHANGES.md"
+  "_build/install/default/doc/domain-name/LICENSE.md"
+  "_build/install/default/doc/domain-name/README.md"
+]
+libexec: "_build/install/default/lib/domain-name/domain_name.cmxs"

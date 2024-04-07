@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/lwt-dllist" {"D"}
+  "doc/lwt-dllist/CHANGES.md" {"F:163bc6260f2b58b5e6af191a405693c3"}
+  "doc/lwt-dllist/LICENSE.md" {"F:19b5d9061141f7ab05cfcfdd4404ed08"}
+  "doc/lwt-dllist/README.md" {"F:0b4d45eb979b4f99fff866e9eb63c52f"}
+  "lib/lwt-dllist" {"D"}
+  "lib/lwt-dllist/META" {"F:1225355fcb9ac1ee58f95a1d1c0c1bb8"}
+  "lib/lwt-dllist/dune-package" {"F:9ea70ab2fecf1aaaceb74c3c313f7e9c"}
+  "lib/lwt-dllist/lwt_dllist.a" {"F:26447171704da5b5a0d9567b2048115a"}
+  "lib/lwt-dllist/lwt_dllist.cma" {"F:f4464ae2d5d27fe0fb7263b36c1202c1"}
+  "lib/lwt-dllist/lwt_dllist.cmi" {"F:34421f0734be80b0f30acb58993b4c6d"}
+  "lib/lwt-dllist/lwt_dllist.cmt" {"F:bc5fbff7506a8b4df5c04b2e48da134b"}
+  "lib/lwt-dllist/lwt_dllist.cmti" {"F:8557d7ebd1a9d20f16b94b8cef1a7ae1"}
+  "lib/lwt-dllist/lwt_dllist.cmx" {"F:e083c0aaf5f844e960827f85181b3871"}
+  "lib/lwt-dllist/lwt_dllist.cmxa" {"F:6faaff21d688a86eb0ff5350ab53aea1"}
+  "lib/lwt-dllist/lwt_dllist.cmxs" {"F:dee187dc79874b21cb0a0af55d18bde4"}
+  "lib/lwt-dllist/lwt_dllist.ml" {"F:254a2c6728c42d4e595e44465cbe56e8"}
+  "lib/lwt-dllist/lwt_dllist.mli" {"F:382b97ede3c4b4e1aeeff114195f2959"}
+  "lib/lwt-dllist/opam" {"F:2597bd4df3e60f55d812071167c1e73e"}
+]

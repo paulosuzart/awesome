@@ -1,0 +1,202 @@
+.TH "Diffing_with_keys" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing_with_keys \- When diffing lists where each element has a distinct key, we can refine the diffing patch by introducing two composite edit moves: swaps and moves.
+.SH Module
+Module   Diffing_with_keys
+.SH Documentation
+.sp
+Module
+.BI "Diffing_with_keys"
+ : 
+.B sig end
+
+.sp
+When diffing lists where each element has a distinct key, we can refine
+the diffing patch by introducing two composite edit moves: swaps and moves\&.
+.sp
+
+.ft B
+Swap
+.ft R
+s exchange the position of two elements\&. 
+.ft B
+Swap
+.ft R
+cost is set to
+.ft B
+2 * change \- epsilon
+.ft R
+\&.
+.ft B
+Move
+.ft R
+s change the position of one element\&. 
+.ft B
+Move
+.ft R
+cost is set to
+.ft B
+delete + addition \- epsilon
+.ft R
+\&.
+.sp
+When the cost 
+.ft B
+delete + addition
+.ft R
+is greater than 
+.ft B
+change
+.ft R
+and with those
+specific weights, the optimal patch with 
+.ft B
+Swap
+.ft R
+s and 
+.ft B
+Move
+.ft R
+s can be computed
+directly and cheaply from the original optimal patch\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I with_pos 
+= {
+ pos : 
+.B int
+;
+ data : 
+.B 'a
+;
+ }
+
+.sp
+
+.sp
+
+.I val with_pos 
+: 
+.B 'a list -> 'a with_pos list
+.sp
+
+.sp
+.I type 
+.B ('l, 'r, 'diff)
+.I mismatch 
+=
+ | Name
+.B of {
+ pos : 
+.B int
+;
+ got : 
+.B string
+;
+ expected : 
+.B string
+;
+ types_match : 
+.B bool
+;
+ }
+ | Type
+.B of {
+ pos : 
+.B int
+;
+ got : 
+.B 'l
+;
+ expected : 
+.B 'r
+;
+ reason : 
+.B 'diff
+;
+ }
+ 
+.sp
+
+.sp
+.I type 
+.B ('l, 'r, 'diff)
+.I change 
+=
+ | Change
+.B of 
+.B ('l, 'r, 'diff) mismatch
+ | Swap
+.B of {
+ pos : 
+.B int * int
+;
+ first : 
+.B string
+;
+ last : 
+.B string
+;
+ }
+ | Move
+.B of {
+ name : 
+.B string
+;
+ got : 
+.B int
+;
+ expected : 
+.B int
+;
+ }
+ | Insert
+.B of {
+ pos : 
+.B int
+;
+ insert : 
+.B 'r
+;
+ }
+ | Delete
+.B of {
+ pos : 
+.B int
+;
+ delete : 
+.B 'l
+;
+ }
+ 
+.sp
+This specialized version of changes introduces two composite
+changes: 
+.ft B
+Move
+.ft R
+and 
+.ft B
+Swap
+.ft R
+
+
+.sp
+
+.I val prefix 
+: 
+.B Format.formatter -> ('l, 'r, 'diff) change -> unit
+.sp
+
+.sp
+.I module Define : 
+.B functor (D : sig end) -> sig end
+
+.sp
+
+.sp

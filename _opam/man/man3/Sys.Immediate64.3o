@@ -1,0 +1,50 @@
+.TH "Sys.Immediate64" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Sys.Immediate64 \- no description
+.SH Module
+Module   Sys.Immediate64
+.SH Documentation
+.sp
+Module
+.BI "Immediate64"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+This module allows to define a type 
+.ft B
+t
+.ft R
+with the 
+.ft B
+immediate64
+.ft R
+attribute\&. This attribute means that the type is immediate on 64
+bit architectures\&. On other architectures, it might or might not
+be immediate\&.
+.PP
+.I module type Non_immediate = 
+.B sig end
+
+.sp
+
+.sp
+.I module type Immediate = 
+.B sig end
+
+.sp
+
+.sp
+.I module Make : 
+.B functor (Immediate : Immediate) (Non_immediate : Non_immediate) -> sig end
+
+.sp
+
+.sp

@@ -1,0 +1,38 @@
+opam-version: "2.0"
+added: [
+  "doc/stdio" {"D"}
+  "doc/stdio/CHANGES.md" {"F:b091613b0ae8d1ae49e996fbbce009e8"}
+  "doc/stdio/LICENSE.md" {"F:809d8824c11bf5dba3923a8a5635174b"}
+  "doc/stdio/README.md" {"F:e2984ba9a28b63df38c3b3f08464477f"}
+  "doc/stdio/odoc-pages/index.mld" {"F:0f56e299b2c70b989a153ad02d14b1b0"}
+  "lib/stdio" {"D"}
+  "lib/stdio/META" {"F:ced9d58cbf7e4289281fc5d464710ff2"}
+  "lib/stdio/dune-package" {"F:e88339e2d9cdc3a76b0ea3b6b2707061"}
+  "lib/stdio/in_channel.ml" {"F:86309bb57fa9dedb76e3878eb52b1615"}
+  "lib/stdio/in_channel.mli" {"F:6d42e2cce2e1c9ac2c39f065c5e5c167"}
+  "lib/stdio/opam" {"F:878fb9acbbaa39690cd88c9be03fad5c"}
+  "lib/stdio/out_channel.ml" {"F:685bf83ae83d59eff15ac979da7f7c9c"}
+  "lib/stdio/out_channel.mli" {"F:30b7df68587a8a3f1488ac214d6cd6d7"}
+  "lib/stdio/stdio.a" {"F:1eabfd72f8725171811b9cad2df7421a"}
+  "lib/stdio/stdio.cma" {"F:9be49288f65a1fad2a41383983849e97"}
+  "lib/stdio/stdio.cmi" {"F:f84b8b642f2034dfeebf05381148c51a"}
+  "lib/stdio/stdio.cmt" {"F:6d848bd752497c81763af49aac58c243"}
+  "lib/stdio/stdio.cmti" {"F:cb17776ee917fd1f00461b4ca19b7dba"}
+  "lib/stdio/stdio.cmx" {"F:6c7bd587bb8ffd849ae75115d020fd7b"}
+  "lib/stdio/stdio.cmxa" {"F:12f56d5a06caa948f06994161993321d"}
+  "lib/stdio/stdio.cmxs" {"F:ddc61f49b46c947c61928de828b8e82e"}
+  "lib/stdio/stdio.ml" {"F:dd5b37b3665fe3bd9b4f82062bb21216"}
+  "lib/stdio/stdio.mli" {"F:9e1205efb61c119f460a4efecbda981d"}
+  "lib/stdio/stdio__.cmi" {"F:9cfb0d0a7fdfab30a2e5bc87f582170a"}
+  "lib/stdio/stdio__.cmt" {"F:935fe652d9aacaa7aa1b2356e45d6325"}
+  "lib/stdio/stdio__.cmx" {"F:751c31f771c17449f4b6125f2137e2d3"}
+  "lib/stdio/stdio__.ml" {"F:f0c6e6e94283910e2ad564eec8184db8"}
+  "lib/stdio/stdio__In_channel.cmi" {"F:5e5aa13b61a2b56e7fbf4793170102d9"}
+  "lib/stdio/stdio__In_channel.cmt" {"F:11c85d7cd2e09e22bf15480bc18a70ec"}
+  "lib/stdio/stdio__In_channel.cmti" {"F:73dc868aa6e96dad4a676800fbeb0a2c"}
+  "lib/stdio/stdio__In_channel.cmx" {"F:9245478278b7425a720455ce1e908ba5"}
+  "lib/stdio/stdio__Out_channel.cmi" {"F:b9ec585c26360d66d9e2b222080ce3f7"}
+  "lib/stdio/stdio__Out_channel.cmt" {"F:09d6388098ff041d8337a6c7ae728fde"}
+  "lib/stdio/stdio__Out_channel.cmti" {"F:77f6473cc26df50bd60452e069b4c2f3"}
+  "lib/stdio/stdio__Out_channel.cmx" {"F:453c5c112af980426e3ef3b93d54deb9"}
+]

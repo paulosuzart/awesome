@@ -1,0 +1,51 @@
+.TH "Identifiable.S" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Identifiable.S \- no description
+.SH Module type
+Module type   Identifiable.S
+.SH Documentation
+.sp
+Module type
+.BI "S"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+.I module T : 
+.B sig end
+
+.sp
+
+.sp
+.I include Identifiable.Thing
+.sp
+
+.sp
+.I module Set : 
+.B sig end
+
+.sp
+
+.sp
+.I module Map : 
+.B sig end
+
+.sp
+
+.sp
+.I module Tbl : 
+.B sig end
+
+.sp
+
+.sp

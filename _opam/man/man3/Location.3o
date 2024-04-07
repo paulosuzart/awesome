@@ -1,0 +1,1090 @@
+.TH "Location" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Location \- Source code locations (ranges of positions), used in parsetree.
+.SH Module
+Module   Location
+.SH Documentation
+.sp
+Module
+.BI "Location"
+ : 
+.B sig end
+
+.sp
+Source code locations (ranges of positions), used in parsetree\&.
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type t 
+= 
+.B Warnings.loc
+= {
+ loc_start : 
+.B Lexing.position
+;
+ loc_end : 
+.B Lexing.position
+;
+ loc_ghost : 
+.B bool
+;
+ }
+
+.sp
+
+.sp
+
+.PP
+Note on the use of Lexing\&.position in this module\&.
+If 
+.ft B
+pos_fname = ""
+.ft R
+, then use 
+.ft B
+!input_name
+.ft R
+instead\&.
+If 
+.ft B
+pos_lnum = \-1
+.ft R
+, then 
+.ft B
+pos_bol = 0
+.ft R
+\&. Use 
+.ft B
+pos_cnum
+.ft R
+and
+re\-parse the file to get the line and character numbers\&.
+Else all fields are correct\&.
+.PP
+
+.I val none 
+: 
+.B t
+.sp
+An arbitrary value of type 
+.ft B
+t
+.ft R
+; describes an empty ghost range\&.
+
+.sp
+
+.I val is_none 
+: 
+.B t -> bool
+.sp
+True for 
+.ft B
+Location\&.none
+.ft R
+, false any other location
+
+.sp
+
+.I val in_file 
+: 
+.B string -> t
+.sp
+Return an empty ghost range located in a given file\&.
+
+.sp
+
+.I val init 
+: 
+.B Lexing.lexbuf -> string -> unit
+.sp
+Set the file name and line number of the 
+.ft B
+lexbuf
+.ft R
+to be the start
+of the named file\&.
+
+.sp
+
+.I val curr 
+: 
+.B Lexing.lexbuf -> t
+.sp
+Get the location of the current token from the 
+.ft B
+lexbuf
+.ft R
+\&.
+
+.sp
+
+.I val symbol_rloc 
+: 
+.B unit -> t
+.sp
+
+.sp
+
+.I val symbol_gloc 
+: 
+.B unit -> t
+.sp
+
+.sp
+
+.I val rhs_loc 
+: 
+.B int -> t
+.sp
+
+.ft B
+rhs_loc n
+.ft R
+returns the location of the symbol at position 
+.ft B
+n
+.ft R
+, starting
+at 1, in the current parser rule\&.
+
+.sp
+
+.I val rhs_interval 
+: 
+.B int -> int -> t
+.sp
+
+.sp
+
+.I val get_pos_info 
+: 
+.B Lexing.position -> string * int * int
+.sp
+file, line, char
+
+.sp
+.I type 
+.B 'a
+.I loc 
+= {
+ txt : 
+.B 'a
+;
+ loc : 
+.B t
+;
+ }
+
+.sp
+
+.sp
+
+.I val mknoloc 
+: 
+.B 'a -> 'a loc
+.sp
+
+.sp
+
+.I val mkloc 
+: 
+.B 'a -> t -> 'a loc
+.sp
+
+.sp
+
+.PP
+.SS Input info
+
+.PP
+
+.I val input_name 
+: 
+.B string ref
+.sp
+
+.sp
+
+.I val input_lexbuf 
+: 
+.B Lexing.lexbuf option ref
+.sp
+
+.sp
+
+.I val input_phrase_buffer 
+: 
+.B Buffer.t option ref
+.sp
+
+.sp
+
+.PP
+.SS Toplevel-specific functions
+
+.PP
+
+.I val echo_eof 
+: 
+.B unit -> unit
+.sp
+
+.sp
+
+.I val separate_new_message 
+: 
+.B Format.formatter -> unit
+.sp
+
+.sp
+
+.I val reset 
+: 
+.B unit -> unit
+.sp
+
+.sp
+
+.PP
+.SS Rewriting path 
+
+.PP
+
+.I val rewrite_absolute_path 
+: 
+.B string -> string
+.sp
+
+.ft B
+rewrite_absolute_path path
+.ft R
+rewrites 
+.ft B
+path
+.ft R
+to honor the
+BUILD_PATH_PREFIX_MAP variable
+if it is set\&. It does not check whether 
+.ft B
+path
+.ft R
+is absolute or not\&.
+The result is as follows:
+.sp
+\-If BUILD_PATH_PREFIX_MAP is not set, just return 
+.ft B
+path
+.ft R
+\&.
+.sp
+\-otherwise, rewrite using the mapping (and if there are no
+matching prefixes that will just return 
+.ft B
+path
+.ft R
+)\&.
+
+See
+the BUILD_PATH_PREFIX_MAP spec
+
+.sp
+
+.I val rewrite_find_first_existing 
+: 
+.B string -> string option
+.sp
+
+.ft B
+rewrite_find_first_existing path
+.ft R
+uses a BUILD_PATH_PREFIX_MAP mapping
+and tries to find a source in mapping
+that maps to a result that exists in the file system\&.
+There are the following return values:
+.sp
+\-
+.ft B
+None
+.ft R
+, means either
+.sp
+\-BUILD_PATH_PREFIX_MAP is not set and 
+.ft B
+path
+.ft R
+does not exists, or
+.sp
+\-no source prefixes of 
+.ft B
+path
+.ft R
+in the mapping were found,
+
+.sp
+\-
+.ft B
+Some target
+.ft R
+, means 
+.ft B
+target
+.ft R
+exists and either
+.sp
+\-BUILD_PATH_PREFIX_MAP is not set and 
+.ft B
+target
+.ft R
+= 
+.ft B
+path
+.ft R
+, or
+.sp
+\-
+.ft B
+target
+.ft R
+is the first file (in priority
+order) that 
+.ft B
+path
+.ft R
+mapped to that exists in the file system\&.
+
+.sp
+\-
+.ft B
+Not_found
+.ft R
+raised, means some source prefixes in the map
+were found that matched 
+.ft B
+path
+.ft R
+, but none of them existed
+in the file system\&. The caller should catch this and issue
+an appropriate error message\&.
+
+See
+the BUILD_PATH_PREFIX_MAP spec
+
+.sp
+
+.I val rewrite_find_all_existing_dirs 
+: 
+.B string -> string list
+.sp
+
+.ft B
+rewrite_find_all_existing_dirs dir
+.ft R
+accumulates a list of existing
+directories, 
+.ft B
+dirs
+.ft R
+, that are the result of mapping a potentially
+abstract directory, 
+.ft B
+dir
+.ft R
+, over all the mapping pairs in the
+BUILD_PATH_PREFIX_MAP environment variable, if any\&. The list 
+.ft B
+dirs
+.ft R
+will be in priority order (head as highest priority)\&.
+.sp
+The possible results are:
+.sp
+\-
+.ft B
+[]
+.ft R
+, means either
+.sp
+\-BUILD_PATH_PREFIX_MAP is not set and 
+.ft B
+dir
+.ft R
+is not an existing
+directory, or
+.sp
+\-if set, then there were no matching prefixes of 
+.ft B
+dir
+.ft R
+\&.
+
+.sp
+\-
+.ft B
+Some dirs
+.ft R
+, means dirs are the directories found\&. Either
+.sp
+\-BUILD_PATH_PREFIX_MAP is not set and 
+.ft B
+dirs = [dir]
+.ft R
+, or
+.sp
+\-it was set and 
+.ft B
+dirs
+.ft R
+are the mapped existing directories\&.
+
+.sp
+\-Not_found raised, means some source prefixes in the map
+were found that matched 
+.ft B
+dir
+.ft R
+, but none of mapping results
+were existing directories (possibly due to misconfiguration)\&.
+The caller should catch this and issue an appropriate error
+message\&.
+
+See
+the BUILD_PATH_PREFIX_MAP spec
+
+.sp
+
+.I val absolute_path 
+: 
+.B string -> string
+.sp
+
+.ft B
+absolute_path path
+.ft R
+first makes an absolute path, 
+.ft B
+s
+.ft R
+from 
+.ft B
+path
+.ft R
+,
+prepending the current working directory if 
+.ft B
+path
+.ft R
+was relative\&.
+Then 
+.ft B
+s
+.ft R
+is rewritten using 
+.ft B
+rewrite_absolute_path
+.ft R
+\&.
+Finally the result is normalized by eliminating instances of
+.ft B
+\&'\&.\&'
+.ft R
+or 
+.ft B
+\&'\&.\&.\&'
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Printing locations
+
+.PP
+
+.I val show_filename 
+: 
+.B string -> string
+.sp
+In \-absname mode, return the absolute path for this filename\&.
+Otherwise, returns the filename unchanged\&.
+
+.sp
+
+.I val print_filename 
+: 
+.B Format.formatter -> string -> unit
+.sp
+
+.sp
+
+.I val print_loc 
+: 
+.B Format.formatter -> t -> unit
+.sp
+
+.sp
+
+.I val print_locs 
+: 
+.B Format.formatter -> t list -> unit
+.sp
+
+.sp
+
+.PP
+.SS Toplevel-specific location highlighting
+
+.PP
+
+.I val highlight_terminfo 
+: 
+.B Lexing.lexbuf -> Format.formatter -> t list -> unit
+.sp
+
+.sp
+
+.PP
+.SS Reporting errors and warnings
+
+.PP
+
+.PP
+.SS The type of reports and report printers
+
+.PP
+.I type msg 
+= 
+.B (Format.formatter -> unit) loc
+
+.sp
+
+.sp
+
+.I val msg 
+: 
+.B ?loc:t ->
+.B   ('a, Format.formatter, unit, msg) format4 -> 'a
+.sp
+
+.sp
+.I type report_kind 
+=
+ | Report_error
+ | Report_warning
+.B of 
+.B string
+ | Report_warning_as_error
+.B of 
+.B string
+ | Report_alert
+.B of 
+.B string
+ | Report_alert_as_error
+.B of 
+.B string
+ 
+.sp
+
+.sp
+.I type report 
+= {
+ kind : 
+.B report_kind
+;
+ main : 
+.B msg
+;
+ sub : 
+.B msg list
+;
+ }
+
+.sp
+
+.sp
+.I type report_printer 
+= {
+ pp : 
+.B report_printer -> Format.formatter -> report -> unit
+;
+ pp_report_kind : 
+.B report_printer ->
+.B   report -> Format.formatter -> report_kind -> unit
+;
+ pp_main_loc : 
+.B report_printer ->
+.B   report -> Format.formatter -> t -> unit
+;
+ pp_main_txt : 
+.B report_printer ->
+.B   report ->
+.B   Format.formatter -> (Format.formatter -> unit) -> unit
+;
+ pp_submsgs : 
+.B report_printer ->
+.B   report -> Format.formatter -> msg list -> unit
+;
+ pp_submsg : 
+.B report_printer ->
+.B   report -> Format.formatter -> msg -> unit
+;
+ pp_submsg_loc : 
+.B report_printer ->
+.B   report -> Format.formatter -> t -> unit
+;
+ pp_submsg_txt : 
+.B report_printer ->
+.B   report ->
+.B   Format.formatter -> (Format.formatter -> unit) -> unit
+;
+ }
+
+.sp
+A printer for 
+.ft B
+report
+.ft R
+s, defined using open\-recursion\&.
+The goal is to make it easy to define new printers by re\-using code from
+existing ones\&.
+
+.sp
+
+.PP
+.SS Report printers used in the compiler
+
+.PP
+
+.I val batch_mode_printer 
+: 
+.B report_printer
+.sp
+
+.sp
+
+.I val terminfo_toplevel_printer 
+: 
+.B Lexing.lexbuf -> report_printer
+.sp
+
+.sp
+
+.I val best_toplevel_printer 
+: 
+.B unit -> report_printer
+.sp
+Detects the terminal capabilities and selects an adequate printer
+
+.sp
+
+.PP
+.SS Printing a report
+
+.PP
+
+.I val print_report 
+: 
+.B Format.formatter -> report -> unit
+.sp
+Display an error or warning report\&.
+
+.sp
+
+.I val report_printer 
+: 
+.B (unit -> report_printer) ref
+.sp
+Hook for redefining the printer of reports\&.
+.sp
+The hook is a 
+.ft B
+unit \-> report_printer
+.ft R
+and not simply a 
+.ft B
+report_printer
+.ft R
+:
+this is useful so that it can detect the type of the output (a file, a
+terminal, \&.\&.\&.) and select a printer accordingly\&.
+
+.sp
+
+.I val default_report_printer 
+: 
+.B unit -> report_printer
+.sp
+Original report printer for use in hooks\&.
+
+.sp
+
+.PP
+.SS Reporting warnings
+
+.PP
+
+.PP
+.SS Converting a Warnings.t into a report
+
+.PP
+
+.I val report_warning 
+: 
+.B t -> Warnings.t -> report option
+.sp
+
+.ft B
+report_warning loc w
+.ft R
+produces a report for the given warning 
+.ft B
+w
+.ft R
+, or
+.ft B
+None
+.ft R
+if the warning is not to be printed\&.
+
+.sp
+
+.I val warning_reporter 
+: 
+.B (t -> Warnings.t -> report option) ref
+.sp
+Hook for intercepting warnings\&.
+
+.sp
+
+.I val default_warning_reporter 
+: 
+.B t -> Warnings.t -> report option
+.sp
+Original warning reporter for use in hooks\&.
+
+.sp
+
+.PP
+.SS Printing warnings
+
+.PP
+
+.I val formatter_for_warnings 
+: 
+.B Format.formatter ref
+.sp
+
+.sp
+
+.I val print_warning 
+: 
+.B t -> Format.formatter -> Warnings.t -> unit
+.sp
+Prints a warning\&. This is simply the composition of 
+.ft B
+report_warning
+.ft R
+and
+.ft B
+print_report
+.ft R
+\&.
+
+.sp
+
+.I val prerr_warning 
+: 
+.B t -> Warnings.t -> unit
+.sp
+Same as 
+.ft B
+print_warning
+.ft R
+, but uses 
+.ft B
+!formatter_for_warnings
+.ft R
+as output
+formatter\&.
+
+.sp
+
+.PP
+.SS Reporting alerts
+
+.PP
+
+.PP
+.SS Converting an Alert.t into a report
+
+.PP
+
+.I val report_alert 
+: 
+.B t -> Warnings.alert -> report option
+.sp
+
+.ft B
+report_alert loc w
+.ft R
+produces a report for the given alert 
+.ft B
+w
+.ft R
+, or
+.ft B
+None
+.ft R
+if the alert is not to be printed\&.
+
+.sp
+
+.I val alert_reporter 
+: 
+.B (t -> Warnings.alert -> report option) ref
+.sp
+Hook for intercepting alerts\&.
+
+.sp
+
+.I val default_alert_reporter 
+: 
+.B t -> Warnings.alert -> report option
+.sp
+Original alert reporter for use in hooks\&.
+
+.sp
+
+.PP
+.SS Printing alerts
+
+.PP
+
+.I val print_alert 
+: 
+.B t -> Format.formatter -> Warnings.alert -> unit
+.sp
+Prints an alert\&. This is simply the composition of 
+.ft B
+report_alert
+.ft R
+and
+.ft B
+print_report
+.ft R
+\&.
+
+.sp
+
+.I val prerr_alert 
+: 
+.B t -> Warnings.alert -> unit
+.sp
+Same as 
+.ft B
+print_alert
+.ft R
+, but uses 
+.ft B
+!formatter_for_warnings
+.ft R
+as output
+formatter\&.
+
+.sp
+
+.I val deprecated 
+: 
+.B ?def:t -> ?use:t -> t -> string -> unit
+.sp
+Prints a deprecation alert\&.
+
+.sp
+
+.I val alert 
+: 
+.B ?def:t ->
+.B   ?use:t -> kind:string -> t -> string -> unit
+.sp
+Prints an arbitrary alert\&.
+
+.sp
+
+.I val auto_include_alert 
+: 
+.B string -> unit
+.sp
+Prints an alert that \-I +lib has been automatically added to the load
+path
+
+.sp
+
+.I val deprecated_script_alert 
+: 
+.B string -> unit
+.sp
+
+.ft B
+deprecated_script_alert command
+.ft R
+prints an alert that 
+.ft B
+command foo
+.ft R
+has
+been deprecated in favour of 
+.ft B
+command \&./foo
+.ft R
+
+
+.sp
+
+.PP
+.SS Reporting errors
+
+.PP
+.I type error 
+= 
+.B report
+
+.sp
+An 
+.ft B
+error
+.ft R
+is a 
+.ft B
+report
+.ft R
+which 
+.ft B
+report_kind
+.ft R
+must be 
+.ft B
+Report_error
+.ft R
+\&.
+
+.sp
+
+.I val error 
+: 
+.B ?loc:t -> ?sub:msg list -> string -> error
+.sp
+
+.sp
+
+.I val errorf 
+: 
+.B ?loc:t ->
+.B   ?sub:msg list ->
+.B   ('a, Format.formatter, unit, error) format4 -> 'a
+.sp
+
+.sp
+
+.I val error_of_printer 
+: 
+.B ?loc:t ->
+.B   ?sub:msg list ->
+.B   (Format.formatter -> 'a -> unit) -> 'a -> error
+.sp
+
+.sp
+
+.I val error_of_printer_file 
+: 
+.B (Format.formatter -> 'a -> unit) -> 'a -> error
+.sp
+
+.sp
+
+.PP
+.SS Automatically reporting errors for raised exceptions
+
+.PP
+
+.I val register_error_of_exn 
+: 
+.B (exn -> error option) -> unit
+.sp
+Each compiler module which defines a custom type of exception
+which can surface as a user\-visible error should register
+a "printer" for this exception using 
+.ft B
+register_error_of_exn
+.ft R
+\&.
+The result of the printer is an 
+.ft B
+error
+.ft R
+value containing
+a location, a message, and optionally sub\-messages (each of them
+being located as well)\&.
+
+.sp
+
+.I val error_of_exn 
+: 
+.B exn -> [ `Already_displayed | `Ok of error ] option
+.sp
+
+.sp
+
+.I exception Error 
+.B of 
+.B error
+
+.sp
+Raising 
+.ft B
+Error e
+.ft R
+signals an error 
+.ft B
+e
+.ft R
+; the exception will be caught and the
+error will be printed\&.
+
+.sp
+
+.I exception Already_displayed_error 
+
+.sp
+Raising 
+.ft B
+Already_displayed_error
+.ft R
+signals an error which has already been
+printed\&. The exception will be caught, but nothing will be printed
+
+.sp
+
+.I val raise_errorf 
+: 
+.B ?loc:t ->
+.B   ?sub:msg list ->
+.B   ('a, Format.formatter, unit, 'b) format4 -> 'a
+.sp
+
+.sp
+
+.I val report_exception 
+: 
+.B Format.formatter -> exn -> unit
+.sp
+Reraise the exception if it is unknown\&.
+
+.sp

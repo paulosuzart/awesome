@@ -1,0 +1,11 @@
+_build
+
+tmp
+*~
+\.\#*
+\#*#
+
+gmon.out
+perf.data*
+rondom
+*.json

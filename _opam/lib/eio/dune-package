@@ -1,0 +1,850 @@
+(lang dune 3.15)
+(name eio)
+(version v1.0)
+(sections (lib .) (libexec .) (doc ../../doc/eio) (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   buf_read.ml
+   buf_read.mli
+   buf_write.ml
+   buf_write.mli
+   condition.ml
+   condition.mli
+   core/broadcast.ml
+   core/broadcast.mli
+   core/cancel.ml
+   core/cells.ml
+   core/cells.mli
+   core/debug.ml
+   core/dla.ml
+   core/eio__core.a
+   core/eio__core.cma
+   core/eio__core.cmi
+   core/eio__core.cmt
+   core/eio__core.cmti
+   core/eio__core.cmx
+   core/eio__core.cmxa
+   core/eio__core.ml
+   core/eio__core.mli
+   core/eio__core__.cmi
+   core/eio__core__.cmt
+   core/eio__core__.cmx
+   core/eio__core__.ml
+   core/eio__core__Broadcast.cmi
+   core/eio__core__Broadcast.cmt
+   core/eio__core__Broadcast.cmti
+   core/eio__core__Broadcast.cmx
+   core/eio__core__Cancel.cmi
+   core/eio__core__Cancel.cmt
+   core/eio__core__Cancel.cmx
+   core/eio__core__Cells.cmi
+   core/eio__core__Cells.cmt
+   core/eio__core__Cells.cmti
+   core/eio__core__Cells.cmx
+   core/eio__core__Debug.cmi
+   core/eio__core__Debug.cmt
+   core/eio__core__Debug.cmx
+   core/eio__core__Dla.cmi
+   core/eio__core__Dla.cmt
+   core/eio__core__Dla.cmx
+   core/eio__core__Exn.cmi
+   core/eio__core__Exn.cmt
+   core/eio__core__Exn.cmx
+   core/eio__core__Fiber.cmi
+   core/eio__core__Fiber.cmt
+   core/eio__core__Fiber.cmx
+   core/eio__core__Promise.cmi
+   core/eio__core__Promise.cmt
+   core/eio__core__Promise.cmx
+   core/eio__core__Single_waiter.cmi
+   core/eio__core__Single_waiter.cmt
+   core/eio__core__Single_waiter.cmx
+   core/eio__core__Suspend.cmi
+   core/eio__core__Suspend.cmt
+   core/eio__core__Suspend.cmx
+   core/eio__core__Switch.cmi
+   core/eio__core__Switch.cmt
+   core/eio__core__Switch.cmx
+   core/eio__core__Trace.cmi
+   core/eio__core__Trace.cmt
+   core/eio__core__Trace.cmti
+   core/eio__core__Trace.cmx
+   core/exn.ml
+   core/fiber.ml
+   core/promise.ml
+   core/single_waiter.ml
+   core/suspend.ml
+   core/switch.ml
+   core/trace.ml
+   core/trace.mli
+   domain_manager.ml
+   domain_manager.mli
+   dune-package
+   eio.a
+   eio.cma
+   eio.cmi
+   eio.cmt
+   eio.cmti
+   eio.cmx
+   eio.cmxa
+   eio.ml
+   eio.mli
+   eio__.cmi
+   eio__.cmt
+   eio__.cmx
+   eio__.ml
+   eio__Buf_read.cmi
+   eio__Buf_read.cmt
+   eio__Buf_read.cmti
+   eio__Buf_read.cmx
+   eio__Buf_write.cmi
+   eio__Buf_write.cmt
+   eio__Buf_write.cmti
+   eio__Buf_write.cmx
+   eio__Condition.cmi
+   eio__Condition.cmt
+   eio__Condition.cmti
+   eio__Condition.cmx
+   eio__Domain_manager.cmi
+   eio__Domain_manager.cmt
+   eio__Domain_manager.cmti
+   eio__Domain_manager.cmx
+   eio__Eio_mutex.cmi
+   eio__Eio_mutex.cmt
+   eio__Eio_mutex.cmti
+   eio__Eio_mutex.cmx
+   eio__Executor_pool.cmi
+   eio__Executor_pool.cmt
+   eio__Executor_pool.cmti
+   eio__Executor_pool.cmx
+   eio__File.cmi
+   eio__File.cmt
+   eio__File.cmti
+   eio__File.cmx
+   eio__Flow.cmi
+   eio__Flow.cmt
+   eio__Flow.cmti
+   eio__Flow.cmx
+   eio__Fs.cmi
+   eio__Fs.cmt
+   eio__Fs.cmx
+   eio__Hook.cmi
+   eio__Hook.cmt
+   eio__Hook.cmx
+   eio__Lazy.cmi
+   eio__Lazy.cmt
+   eio__Lazy.cmti
+   eio__Lazy.cmx
+   eio__Net.cmi
+   eio__Net.cmt
+   eio__Net.cmti
+   eio__Net.cmx
+   eio__Path.cmi
+   eio__Path.cmt
+   eio__Path.cmti
+   eio__Path.cmx
+   eio__Pool.cmi
+   eio__Pool.cmt
+   eio__Pool.cmti
+   eio__Pool.cmx
+   eio__Process.cmi
+   eio__Process.cmt
+   eio__Process.cmti
+   eio__Process.cmx
+   eio__Resource.cmi
+   eio__Resource.cmt
+   eio__Resource.cmti
+   eio__Resource.cmx
+   eio__Sem_state.cmi
+   eio__Sem_state.cmt
+   eio__Sem_state.cmx
+   eio__Semaphore.cmi
+   eio__Semaphore.cmt
+   eio__Semaphore.cmti
+   eio__Semaphore.cmx
+   eio__Std.cmi
+   eio__Std.cmt
+   eio__Std.cmti
+   eio__Std.cmx
+   eio__Stream.cmi
+   eio__Stream.cmt
+   eio__Stream.cmti
+   eio__Stream.cmx
+   eio__Sync.cmi
+   eio__Sync.cmt
+   eio__Sync.cmti
+   eio__Sync.cmx
+   eio__Time.cmi
+   eio__Time.cmt
+   eio__Time.cmti
+   eio__Time.cmx
+   eio__Waiters.cmi
+   eio__Waiters.cmt
+   eio__Waiters.cmti
+   eio__Waiters.cmx
+   eio_mutex.ml
+   eio_mutex.mli
+   executor_pool.ml
+   executor_pool.mli
+   file.ml
+   file.mli
+   flow.ml
+   flow.mli
+   fs.ml
+   hook.ml
+   lazy.ml
+   lazy.mli
+   mock/action.ml
+   mock/backend.ml
+   mock/backend.mli
+   mock/clock.ml
+   mock/clock.mli
+   mock/domain_manager.ml
+   mock/domain_manager.mli
+   mock/eio_mock.a
+   mock/eio_mock.cma
+   mock/eio_mock.cmi
+   mock/eio_mock.cmt
+   mock/eio_mock.cmti
+   mock/eio_mock.cmx
+   mock/eio_mock.cmxa
+   mock/eio_mock.ml
+   mock/eio_mock.mli
+   mock/eio_mock__.cmi
+   mock/eio_mock__.cmt
+   mock/eio_mock__.cmx
+   mock/eio_mock__.ml
+   mock/eio_mock__Action.cmi
+   mock/eio_mock__Action.cmt
+   mock/eio_mock__Action.cmx
+   mock/eio_mock__Backend.cmi
+   mock/eio_mock__Backend.cmt
+   mock/eio_mock__Backend.cmti
+   mock/eio_mock__Backend.cmx
+   mock/eio_mock__Clock.cmi
+   mock/eio_mock__Clock.cmt
+   mock/eio_mock__Clock.cmti
+   mock/eio_mock__Clock.cmx
+   mock/eio_mock__Domain_manager.cmi
+   mock/eio_mock__Domain_manager.cmt
+   mock/eio_mock__Domain_manager.cmti
+   mock/eio_mock__Domain_manager.cmx
+   mock/eio_mock__Flow.cmi
+   mock/eio_mock__Flow.cmt
+   mock/eio_mock__Flow.cmx
+   mock/eio_mock__Handler.cmi
+   mock/eio_mock__Handler.cmt
+   mock/eio_mock__Handler.cmx
+   mock/eio_mock__Net.cmi
+   mock/eio_mock__Net.cmt
+   mock/eio_mock__Net.cmx
+   mock/flow.ml
+   mock/handler.ml
+   mock/net.ml
+   net.ml
+   net.mli
+   opam
+   path.ml
+   path.mli
+   pool.ml
+   pool.mli
+   process.ml
+   process.mli
+   resource.ml
+   resource.mli
+   runtime_events/eio_runtime_events.a
+   runtime_events/eio_runtime_events.cma
+   runtime_events/eio_runtime_events.cmi
+   runtime_events/eio_runtime_events.cmt
+   runtime_events/eio_runtime_events.cmti
+   runtime_events/eio_runtime_events.cmx
+   runtime_events/eio_runtime_events.cmxa
+   runtime_events/eio_runtime_events.ml
+   runtime_events/eio_runtime_events.mli
+   sem_state.ml
+   semaphore.ml
+   semaphore.mli
+   std.ml
+   std.mli
+   stream.ml
+   stream.mli
+   sync.ml
+   sync.mli
+   time.ml
+   time.mli
+   unix/cap.ml
+   unix/cap.mli
+   unix/eio_unix.a
+   unix/eio_unix.cma
+   unix/eio_unix.cmi
+   unix/eio_unix.cmt
+   unix/eio_unix.cmti
+   unix/eio_unix.cmx
+   unix/eio_unix.cmxa
+   unix/eio_unix.ml
+   unix/eio_unix.mli
+   unix/eio_unix__.cmi
+   unix/eio_unix__.cmt
+   unix/eio_unix__.cmx
+   unix/eio_unix__.ml
+   unix/eio_unix__Cap.cmi
+   unix/eio_unix__Cap.cmt
+   unix/eio_unix__Cap.cmti
+   unix/eio_unix__Cap.cmx
+   unix/eio_unix__Fd.cmi
+   unix/eio_unix__Fd.cmt
+   unix/eio_unix__Fd.cmti
+   unix/eio_unix__Fd.cmx
+   unix/eio_unix__Fork_action.cmi
+   unix/eio_unix__Fork_action.cmt
+   unix/eio_unix__Fork_action.cmti
+   unix/eio_unix__Fork_action.cmx
+   unix/eio_unix__Inherit_fds.cmi
+   unix/eio_unix__Inherit_fds.cmt
+   unix/eio_unix__Inherit_fds.cmti
+   unix/eio_unix__Inherit_fds.cmx
+   unix/eio_unix__Net.cmi
+   unix/eio_unix__Net.cmt
+   unix/eio_unix__Net.cmti
+   unix/eio_unix__Net.cmx
+   unix/eio_unix__Pi.cmi
+   unix/eio_unix__Pi.cmt
+   unix/eio_unix__Pi.cmti
+   unix/eio_unix__Pi.cmx
+   unix/eio_unix__Private.cmi
+   unix/eio_unix__Private.cmt
+   unix/eio_unix__Private.cmx
+   unix/eio_unix__Process.cmi
+   unix/eio_unix__Process.cmt
+   unix/eio_unix__Process.cmti
+   unix/eio_unix__Process.cmx
+   unix/eio_unix__Rcfd.cmi
+   unix/eio_unix__Rcfd.cmt
+   unix/eio_unix__Rcfd.cmti
+   unix/eio_unix__Rcfd.cmx
+   unix/eio_unix__Resource.cmi
+   unix/eio_unix__Resource.cmt
+   unix/eio_unix__Resource.cmx
+   unix/eio_unix__Thread_pool.cmi
+   unix/eio_unix__Thread_pool.cmt
+   unix/eio_unix__Thread_pool.cmti
+   unix/eio_unix__Thread_pool.cmx
+   unix/eio_unix__Types.cmi
+   unix/eio_unix__Types.cmt
+   unix/eio_unix__Types.cmx
+   unix/fd.ml
+   unix/fd.mli
+   unix/fork_action.ml
+   unix/fork_action.mli
+   unix/inherit_fds.ml
+   unix/inherit_fds.mli
+   unix/libeio_unix_stubs.a
+   unix/net.ml
+   unix/net.mli
+   unix/pi.ml
+   unix/pi.mli
+   unix/private.ml
+   unix/process.ml
+   unix/process.mli
+   unix/rcfd.ml
+   unix/rcfd.mli
+   unix/resource.ml
+   unix/thread_pool.ml
+   unix/thread_pool.mli
+   unix/types.ml
+   utils/eio_utils.a
+   utils/eio_utils.cma
+   utils/eio_utils.cmi
+   utils/eio_utils.cmt
+   utils/eio_utils.cmx
+   utils/eio_utils.cmxa
+   utils/eio_utils.ml
+   utils/eio_utils__.cmi
+   utils/eio_utils__.cmt
+   utils/eio_utils__.cmx
+   utils/eio_utils__.ml
+   utils/eio_utils__Lf_queue.cmi
+   utils/eio_utils__Lf_queue.cmt
+   utils/eio_utils__Lf_queue.cmti
+   utils/eio_utils__Lf_queue.cmx
+   utils/eio_utils__Suspended.cmi
+   utils/eio_utils__Suspended.cmt
+   utils/eio_utils__Suspended.cmx
+   utils/eio_utils__Zzz.cmi
+   utils/eio_utils__Zzz.cmt
+   utils/eio_utils__Zzz.cmti
+   utils/eio_utils__Zzz.cmx
+   utils/lf_queue.ml
+   utils/lf_queue.mli
+   utils/suspended.ml
+   utils/zzz.ml
+   utils/zzz.mli
+   waiters.ml
+   waiters.mli))
+ (libexec
+  (core/eio__core.cmxs
+   eio.cmxs
+   mock/eio_mock.cmxs
+   runtime_events/eio_runtime_events.cmxs
+   unix/eio_unix.cmxs
+   utils/eio_utils.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md))
+ (stublibs (dlleio_unix_stubs.so)))
+(library
+ (name eio)
+ (kind normal)
+ (archives (byte eio.cma) (native eio.cmxa))
+ (plugins (byte eio.cma) (native eio.cmxs))
+ (native_archives eio.a)
+ (requires eio.core cstruct lwt-dllist fmt bigstringaf optint mtime)
+ (main_module_name Eio)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eio__)
+     (visibility public)
+     (kind alias)
+     (source (path Eio__) (impl (path eio__.ml-gen))))
+    (name Eio)
+    (modules
+     (module
+      (obj_name eio__Buf_read)
+      (visibility public)
+      (source
+       (path Buf_read)
+       (intf (path buf_read.mli))
+       (impl (path buf_read.ml))))
+     (module
+      (obj_name eio__Buf_write)
+      (visibility public)
+      (source
+       (path Buf_write)
+       (intf (path buf_write.mli))
+       (impl (path buf_write.ml))))
+     (module
+      (obj_name eio__Condition)
+      (visibility public)
+      (source
+       (path Condition)
+       (intf (path condition.mli))
+       (impl (path condition.ml))))
+     (module
+      (obj_name eio__Domain_manager)
+      (visibility public)
+      (source
+       (path Domain_manager)
+       (intf (path domain_manager.mli))
+       (impl (path domain_manager.ml))))
+     (module
+      (obj_name eio)
+      (visibility public)
+      (source (path Eio) (intf (path eio.mli)) (impl (path eio.ml))))
+     (module
+      (obj_name eio__Eio_mutex)
+      (visibility public)
+      (source
+       (path Eio_mutex)
+       (intf (path eio_mutex.mli))
+       (impl (path eio_mutex.ml))))
+     (module
+      (obj_name eio__Executor_pool)
+      (visibility public)
+      (source
+       (path Executor_pool)
+       (intf (path executor_pool.mli))
+       (impl (path executor_pool.ml))))
+     (module
+      (obj_name eio__File)
+      (visibility public)
+      (source (path File) (intf (path file.mli)) (impl (path file.ml))))
+     (module
+      (obj_name eio__Flow)
+      (visibility public)
+      (source (path Flow) (intf (path flow.mli)) (impl (path flow.ml))))
+     (module
+      (obj_name eio__Fs)
+      (visibility public)
+      (source (path Fs) (impl (path fs.ml))))
+     (module
+      (obj_name eio__Hook)
+      (visibility public)
+      (source (path Hook) (impl (path hook.ml))))
+     (module
+      (obj_name eio__Lazy)
+      (visibility public)
+      (source (path Lazy) (intf (path lazy.mli)) (impl (path lazy.ml))))
+     (module
+      (obj_name eio__Net)
+      (visibility public)
+      (source (path Net) (intf (path net.mli)) (impl (path net.ml))))
+     (module
+      (obj_name eio__Path)
+      (visibility public)
+      (source (path Path) (intf (path path.mli)) (impl (path path.ml))))
+     (module
+      (obj_name eio__Pool)
+      (visibility public)
+      (source (path Pool) (intf (path pool.mli)) (impl (path pool.ml))))
+     (module
+      (obj_name eio__Process)
+      (visibility public)
+      (source
+       (path Process)
+       (intf (path process.mli))
+       (impl (path process.ml))))
+     (module
+      (obj_name eio__Resource)
+      (visibility public)
+      (source
+       (path Resource)
+       (intf (path resource.mli))
+       (impl (path resource.ml))))
+     (module
+      (obj_name eio__Sem_state)
+      (visibility public)
+      (source (path Sem_state) (impl (path sem_state.ml))))
+     (module
+      (obj_name eio__Semaphore)
+      (visibility public)
+      (source
+       (path Semaphore)
+       (intf (path semaphore.mli))
+       (impl (path semaphore.ml))))
+     (module
+      (obj_name eio__Std)
+      (visibility public)
+      (source (path Std) (intf (path std.mli)) (impl (path std.ml))))
+     (module
+      (obj_name eio__Stream)
+      (visibility public)
+      (source (path Stream) (intf (path stream.mli)) (impl (path stream.ml))))
+     (module
+      (obj_name eio__Sync)
+      (visibility public)
+      (source (path Sync) (intf (path sync.mli)) (impl (path sync.ml))))
+     (module
+      (obj_name eio__Time)
+      (visibility public)
+      (source (path Time) (intf (path time.mli)) (impl (path time.ml))))
+     (module
+      (obj_name eio__Waiters)
+      (visibility public)
+      (source
+       (path Waiters)
+       (intf (path waiters.mli))
+       (impl (path waiters.ml))))))
+   (wrapped true))))
+(library
+ (name eio.core)
+ (kind normal)
+ (archives (byte core/eio__core.cma) (native core/eio__core.cmxa))
+ (plugins (byte core/eio__core.cma) (native core/eio__core.cmxs))
+ (native_archives core/eio__core.a)
+ (requires
+  cstruct
+  hmap
+  lwt-dllist
+  fmt
+  optint
+  domain-local-await
+  eio.runtime_events)
+ (main_module_name Eio__core)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eio__core__)
+     (visibility public)
+     (kind alias)
+     (source (path Eio__core__) (impl (path core/eio__core__.ml-gen))))
+    (name Eio__core)
+    (modules
+     (module
+      (obj_name eio__core__Broadcast)
+      (visibility public)
+      (source
+       (path Broadcast)
+       (intf (path core/broadcast.mli))
+       (impl (path core/broadcast.ml))))
+     (module
+      (obj_name eio__core__Cancel)
+      (visibility public)
+      (source (path Cancel) (impl (path core/cancel.ml))))
+     (module
+      (obj_name eio__core__Cells)
+      (visibility public)
+      (source
+       (path Cells)
+       (intf (path core/cells.mli))
+       (impl (path core/cells.ml))))
+     (module
+      (obj_name eio__core__Debug)
+      (visibility public)
+      (source (path Debug) (impl (path core/debug.ml))))
+     (module
+      (obj_name eio__core__Dla)
+      (visibility public)
+      (source (path Dla) (impl (path core/dla.ml))))
+     (module
+      (obj_name eio__core)
+      (visibility public)
+      (source
+       (path Eio__core)
+       (intf (path core/eio__core.mli))
+       (impl (path core/eio__core.ml))))
+     (module
+      (obj_name eio__core__Exn)
+      (visibility public)
+      (source (path Exn) (impl (path core/exn.ml))))
+     (module
+      (obj_name eio__core__Fiber)
+      (visibility public)
+      (source (path Fiber) (impl (path core/fiber.ml))))
+     (module
+      (obj_name eio__core__Promise)
+      (visibility public)
+      (source (path Promise) (impl (path core/promise.ml))))
+     (module
+      (obj_name eio__core__Single_waiter)
+      (visibility public)
+      (source (path Single_waiter) (impl (path core/single_waiter.ml))))
+     (module
+      (obj_name eio__core__Suspend)
+      (visibility public)
+      (source (path Suspend) (impl (path core/suspend.ml))))
+     (module
+      (obj_name eio__core__Switch)
+      (visibility public)
+      (source (path Switch) (impl (path core/switch.ml))))
+     (module
+      (obj_name eio__core__Trace)
+      (visibility public)
+      (source
+       (path Trace)
+       (intf (path core/trace.mli))
+       (impl (path core/trace.ml))))))
+   (wrapped true))))
+(library
+ (name eio.mock)
+ (kind normal)
+ (archives (byte mock/eio_mock.cma) (native mock/eio_mock.cmxa))
+ (plugins (byte mock/eio_mock.cma) (native mock/eio_mock.cmxs))
+ (native_archives mock/eio_mock.a)
+ (requires eio eio.utils)
+ (main_module_name Eio_mock)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eio_mock__)
+     (visibility public)
+     (kind alias)
+     (source (path Eio_mock__) (impl (path mock/eio_mock__.ml-gen))))
+    (name Eio_mock)
+    (modules
+     (module
+      (obj_name eio_mock__Action)
+      (visibility public)
+      (source (path Action) (impl (path mock/action.ml))))
+     (module
+      (obj_name eio_mock__Backend)
+      (visibility public)
+      (source
+       (path Backend)
+       (intf (path mock/backend.mli))
+       (impl (path mock/backend.ml))))
+     (module
+      (obj_name eio_mock__Clock)
+      (visibility public)
+      (source
+       (path Clock)
+       (intf (path mock/clock.mli))
+       (impl (path mock/clock.ml))))
+     (module
+      (obj_name eio_mock__Domain_manager)
+      (visibility public)
+      (source
+       (path Domain_manager)
+       (intf (path mock/domain_manager.mli))
+       (impl (path mock/domain_manager.ml))))
+     (module
+      (obj_name eio_mock)
+      (visibility public)
+      (source
+       (path Eio_mock)
+       (intf (path mock/eio_mock.mli))
+       (impl (path mock/eio_mock.ml))))
+     (module
+      (obj_name eio_mock__Flow)
+      (visibility public)
+      (source (path Flow) (impl (path mock/flow.ml))))
+     (module
+      (obj_name eio_mock__Handler)
+      (visibility public)
+      (source (path Handler) (impl (path mock/handler.ml))))
+     (module
+      (obj_name eio_mock__Net)
+      (visibility public)
+      (source (path Net) (impl (path mock/net.ml))))))
+   (wrapped true))))
+(library
+ (name eio.runtime_events)
+ (kind normal)
+ (archives
+  (byte runtime_events/eio_runtime_events.cma)
+  (native runtime_events/eio_runtime_events.cmxa))
+ (plugins
+  (byte runtime_events/eio_runtime_events.cma)
+  (native runtime_events/eio_runtime_events.cmxs))
+ (native_archives runtime_events/eio_runtime_events.a)
+ (requires runtime_events)
+ (main_module_name Eio_runtime_events)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name eio_runtime_events)
+   (visibility public)
+   (source
+    (path Eio_runtime_events)
+    (intf (path runtime_events/eio_runtime_events.mli))
+    (impl (path runtime_events/eio_runtime_events.ml))))))
+(library
+ (name eio.unix)
+ (kind normal)
+ (archives (byte unix/eio_unix.cma) (native unix/eio_unix.cmxa))
+ (plugins (byte unix/eio_unix.cma) (native unix/eio_unix.cmxs))
+ (foreign_objects unix/cap.o unix/fork_action.o unix/stubs.o)
+ (foreign_archives (archives (for all) (files unix/libeio_unix_stubs.a)))
+ (foreign_dll_files ../stublibs/dlleio_unix_stubs.so)
+ (native_archives unix/eio_unix.a)
+ (requires eio eio.utils unix threads mtime.clock.os)
+ (main_module_name Eio_unix)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eio_unix__)
+     (visibility public)
+     (kind alias)
+     (source (path Eio_unix__) (impl (path unix/eio_unix__.ml-gen))))
+    (name Eio_unix)
+    (modules
+     (module
+      (obj_name eio_unix__Cap)
+      (visibility public)
+      (source (path Cap) (intf (path unix/cap.mli)) (impl (path unix/cap.ml))))
+     (module
+      (obj_name eio_unix)
+      (visibility public)
+      (source
+       (path Eio_unix)
+       (intf (path unix/eio_unix.mli))
+       (impl (path unix/eio_unix.ml))))
+     (module
+      (obj_name eio_unix__Fd)
+      (visibility public)
+      (source (path Fd) (intf (path unix/fd.mli)) (impl (path unix/fd.ml))))
+     (module
+      (obj_name eio_unix__Fork_action)
+      (visibility public)
+      (source
+       (path Fork_action)
+       (intf (path unix/fork_action.mli))
+       (impl (path unix/fork_action.ml))))
+     (module
+      (obj_name eio_unix__Inherit_fds)
+      (visibility public)
+      (source
+       (path Inherit_fds)
+       (intf (path unix/inherit_fds.mli))
+       (impl (path unix/inherit_fds.ml))))
+     (module
+      (obj_name eio_unix__Net)
+      (visibility public)
+      (source (path Net) (intf (path unix/net.mli)) (impl (path unix/net.ml))))
+     (module
+      (obj_name eio_unix__Pi)
+      (visibility public)
+      (source (path Pi) (intf (path unix/pi.mli)) (impl (path unix/pi.ml))))
+     (module
+      (obj_name eio_unix__Private)
+      (visibility public)
+      (source (path Private) (impl (path unix/private.ml))))
+     (module
+      (obj_name eio_unix__Process)
+      (visibility public)
+      (source
+       (path Process)
+       (intf (path unix/process.mli))
+       (impl (path unix/process.ml))))
+     (module
+      (obj_name eio_unix__Rcfd)
+      (visibility public)
+      (source
+       (path Rcfd)
+       (intf (path unix/rcfd.mli))
+       (impl (path unix/rcfd.ml))))
+     (module
+      (obj_name eio_unix__Resource)
+      (visibility public)
+      (source (path Resource) (impl (path unix/resource.ml))))
+     (module
+      (obj_name eio_unix__Thread_pool)
+      (visibility public)
+      (source
+       (path Thread_pool)
+       (intf (path unix/thread_pool.mli))
+       (impl (path unix/thread_pool.ml))))
+     (module
+      (obj_name eio_unix__Types)
+      (visibility public)
+      (source (path Types) (impl (path unix/types.ml))))))
+   (wrapped true))))
+(library
+ (name eio.utils)
+ (kind normal)
+ (archives (byte utils/eio_utils.cma) (native utils/eio_utils.cmxa))
+ (plugins (byte utils/eio_utils.cma) (native utils/eio_utils.cmxs))
+ (native_archives utils/eio_utils.a)
+ (requires eio psq fmt optint)
+ (main_module_name Eio_utils)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eio_utils__)
+     (visibility public)
+     (kind alias)
+     (source (path Eio_utils__) (impl (path utils/eio_utils__.ml-gen))))
+    (name Eio_utils)
+    (modules
+     (module
+      (obj_name eio_utils)
+      (visibility public)
+      (source (path Eio_utils) (impl (path utils/eio_utils.ml))))
+     (module
+      (obj_name eio_utils__Lf_queue)
+      (visibility public)
+      (source
+       (path Lf_queue)
+       (intf (path utils/lf_queue.mli))
+       (impl (path utils/lf_queue.ml))))
+     (module
+      (obj_name eio_utils__Suspended)
+      (visibility public)
+      (source (path Suspended) (impl (path utils/suspended.ml))))
+     (module
+      (obj_name eio_utils__Zzz)
+      (visibility public)
+      (source
+       (path Zzz)
+       (intf (path utils/zzz.mli))
+       (impl (path utils/zzz.ml))))))
+   (wrapped true))))

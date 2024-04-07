@@ -1,0 +1,10 @@
+(executable
+  (name test)
+  (libraries jingoo unix dynlink re uutf uucp oUnit)
+)
+
+(alias
+  (name runtest)
+  (action
+     (setenv OUNIT_TESTDATA_DIR "%%%ROOT_DIR%%%/tests/data" (run ./test.exe) ) )
+)

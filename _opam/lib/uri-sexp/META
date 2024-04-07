@@ -1,0 +1,7 @@
+version = "4.4.0"
+description = ""
+requires = "ppx_sexp_conv.runtime-lib sexplib0 uri"
+archive(byte) = "uri_sexp.cma"
+archive(native) = "uri_sexp.cmxa"
+plugin(byte) = "uri_sexp.cma"
+plugin(native) = "uri_sexp.cmxs"

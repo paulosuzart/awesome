@@ -1,0 +1,2905 @@
+.TH "Stdlib.Seq" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Seq \- no description
+.SH Module
+Module   Stdlib.Seq
+.SH Documentation
+.sp
+Module
+.BI "Seq"
+ : 
+.B (module Stdlib__Seq)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+= 
+.B unit -> 'a node
+
+.sp
+A sequence 
+.ft B
+xs
+.ft R
+of type 
+.ft B
+\&'a t
+.ft R
+is a delayed list of elements of
+type 
+.ft B
+\&'a
+.ft R
+\&. Such a sequence is queried by performing a function
+application 
+.ft B
+xs()
+.ft R
+\&. This function application returns a node,
+allowing the caller to determine whether the sequence is empty
+or nonempty, and in the latter case, to obtain its head and tail\&.
+
+.sp
+.I type 
+.B 'a
+.I node 
+=
+ | Nil
+ | Cons
+.B of 
+.B 'a * 'a t
+ 
+.sp
+A node is either 
+.ft B
+Nil
+.ft R
+, which means that the sequence is empty,
+or 
+.ft B
+Cons (x, xs)
+.ft R
+, which means that 
+.ft B
+x
+.ft R
+is the first element
+of the sequence and that 
+.ft B
+xs
+.ft R
+is the remainder of the sequence\&.
+
+.sp
+
+.PP
+.SS Consuming sequences
+
+.PP
+
+.PP
+The functions in this section consume their argument, a sequence, either
+partially or completely:
+.sp
+\-
+.ft B
+is_empty
+.ft R
+and 
+.ft B
+uncons
+.ft R
+consume the sequence down to depth 1\&.
+That is, they demand the first argument of the sequence, if there is one\&.
+.sp
+\-
+.ft B
+iter
+.ft R
+, 
+.ft B
+fold_left
+.ft R
+, 
+.ft B
+length
+.ft R
+, etc\&., consume the sequence all the way to
+its end\&. They terminate only if the sequence is finite\&.
+.sp
+\-
+.ft B
+for_all
+.ft R
+, 
+.ft B
+exists
+.ft R
+, 
+.ft B
+find
+.ft R
+, etc\&. consume the sequence down to a certain
+depth, which is a priori unpredictable\&.
+
+Similarly, among the functions that consume two sequences,
+one can distinguish two groups:
+.sp
+\-
+.ft B
+iter2
+.ft R
+and 
+.ft B
+fold_left2
+.ft R
+consume both sequences all the way
+to the end, provided the sequences have the same length\&.
+.sp
+\-
+.ft B
+for_all2
+.ft R
+, 
+.ft B
+exists2
+.ft R
+, 
+.ft B
+equal
+.ft R
+, 
+.ft B
+compare
+.ft R
+consume the sequences down
+to a certain depth, which is a priori unpredictable\&.
+
+The functions that consume two sequences can be applied to two sequences
+of distinct lengths: in that case, the excess elements in the longer
+sequence are ignored\&. (It may be the case that one excess element is
+demanded, even though this element is not used\&.)
+.sp
+None of the functions in this section is lazy\&. These functions
+are consumers: they force some computation to take place\&.
+.PP
+
+.I val is_empty 
+: 
+.B 'a t -> bool
+.sp
+
+.ft B
+is_empty xs
+.ft R
+determines whether the sequence 
+.ft B
+xs
+.ft R
+is empty\&.
+.sp
+It is recommended that the sequence 
+.ft B
+xs
+.ft R
+be persistent\&.
+Indeed, 
+.ft B
+is_empty xs
+.ft R
+demands the head of the sequence 
+.ft B
+xs
+.ft R
+,
+so, if 
+.ft B
+xs
+.ft R
+is ephemeral, it may be the case that 
+.ft B
+xs
+.ft R
+cannot
+be used any more after this call has taken place\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val uncons 
+: 
+.B 'a t -> ('a * 'a t) option
+.sp
+If 
+.ft B
+xs
+.ft R
+is empty, then 
+.ft B
+uncons xs
+.ft R
+is 
+.ft B
+None
+.ft R
+\&.
+.sp
+If 
+.ft B
+xs
+.ft R
+is nonempty, then 
+.ft B
+uncons xs
+.ft R
+is 
+.ft B
+Some (x, ys)
+.ft R
+where 
+.ft B
+x
+.ft R
+is the
+head of the sequence and 
+.ft B
+ys
+.ft R
+its tail\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val length 
+: 
+.B 'a t -> int
+.sp
+
+.ft B
+length xs
+.ft R
+is the length of the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+The sequence 
+.ft B
+xs
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val iter 
+: 
+.B ('a -> unit) -> 'a t -> unit
+.sp
+
+.ft B
+iter f xs
+.ft R
+invokes 
+.ft B
+f x
+.ft R
+successively
+for every element 
+.ft B
+x
+.ft R
+of the sequence 
+.ft B
+xs
+.ft R
+,
+from left to right\&.
+.sp
+It terminates only if the sequence 
+.ft B
+xs
+.ft R
+is finite\&.
+
+.sp
+
+.I val fold_left 
+: 
+.B ('acc -> 'a -> 'acc) -> 'acc -> 'a t -> 'acc
+.sp
+
+.ft B
+fold_left f _ xs
+.ft R
+invokes 
+.ft B
+f _ x
+.ft R
+successively
+for every element 
+.ft B
+x
+.ft R
+of the sequence 
+.ft B
+xs
+.ft R
+,
+from left to right\&.
+.sp
+An accumulator of type 
+.ft B
+\&'a
+.ft R
+is threaded through the calls to 
+.ft B
+f
+.ft R
+\&.
+.sp
+It terminates only if the sequence 
+.ft B
+xs
+.ft R
+is finite\&.
+
+.sp
+
+.I val iteri 
+: 
+.B (int -> 'a -> unit) -> 'a t -> unit
+.sp
+
+.ft B
+iteri f xs
+.ft R
+invokes 
+.ft B
+f i x
+.ft R
+successively
+for every element 
+.ft B
+x
+.ft R
+located at index 
+.ft B
+i
+.ft R
+in the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+It terminates only if the sequence 
+.ft B
+xs
+.ft R
+is finite\&.
+.sp
+
+.ft B
+iteri f xs
+.ft R
+is equivalent to
+.ft B
+iter (fun (i, x) \-> f i x) (zip (ints 0) xs)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val fold_lefti 
+: 
+.B ('acc -> int -> 'a -> 'acc) -> 'acc -> 'a t -> 'acc
+.sp
+
+.ft B
+fold_lefti f _ xs
+.ft R
+invokes 
+.ft B
+f _ i x
+.ft R
+successively
+for every element 
+.ft B
+x
+.ft R
+located at index 
+.ft B
+i
+.ft R
+of the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+An accumulator of type 
+.ft B
+\&'b
+.ft R
+is threaded through the calls to 
+.ft B
+f
+.ft R
+\&.
+.sp
+It terminates only if the sequence 
+.ft B
+xs
+.ft R
+is finite\&.
+.sp
+
+.ft B
+fold_lefti f accu xs
+.ft R
+is equivalent to
+.ft B
+fold_left (fun accu (i, x) \-> f accu i x) accu (zip (ints 0) xs)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val for_all 
+: 
+.B ('a -> bool) -> 'a t -> bool
+.sp
+
+.ft B
+for_all p xs
+.ft R
+determines whether all elements 
+.ft B
+x
+.ft R
+of the sequence 
+.ft B
+xs
+.ft R
+satisfy 
+.ft B
+p x
+.ft R
+\&.
+.sp
+The sequence 
+.ft B
+xs
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val exists 
+: 
+.B ('a -> bool) -> 'a t -> bool
+.sp
+
+.ft B
+exists xs p
+.ft R
+determines whether at least one element 
+.ft B
+x
+.ft R
+of the sequence 
+.ft B
+xs
+.ft R
+satisfies 
+.ft B
+p x
+.ft R
+\&.
+.sp
+The sequence 
+.ft B
+xs
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val find 
+: 
+.B ('a -> bool) -> 'a t -> 'a option
+.sp
+
+.ft B
+find p xs
+.ft R
+returns 
+.ft B
+Some x
+.ft R
+, where 
+.ft B
+x
+.ft R
+is the first element of the
+sequence 
+.ft B
+xs
+.ft R
+that satisfies 
+.ft B
+p x
+.ft R
+, if there is such an element\&.
+.sp
+It returns 
+.ft B
+None
+.ft R
+if there is no such element\&.
+.sp
+The sequence 
+.ft B
+xs
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val find_index 
+: 
+.B ('a -> bool) -> 'a t -> int option
+.sp
+
+.ft B
+find_index p xs
+.ft R
+returns 
+.ft B
+Some i
+.ft R
+, where 
+.ft B
+i
+.ft R
+is the index of the first
+element of the sequence 
+.ft B
+xs
+.ft R
+that satisfies 
+.ft B
+p x
+.ft R
+, if there is such an
+element\&.
+.sp
+It returns 
+.ft B
+None
+.ft R
+if there is no such element\&.
+.sp
+The sequence 
+.ft B
+xs
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val find_map 
+: 
+.B ('a -> 'b option) -> 'a t -> 'b option
+.sp
+
+.ft B
+find_map f xs
+.ft R
+returns 
+.ft B
+Some y
+.ft R
+, where 
+.ft B
+x
+.ft R
+is the first element of the
+sequence 
+.ft B
+xs
+.ft R
+such that 
+.ft B
+f x = Some _
+.ft R
+, if there is such an element,
+and where 
+.ft B
+y
+.ft R
+is defined by 
+.ft B
+f x = Some y
+.ft R
+\&.
+.sp
+It returns 
+.ft B
+None
+.ft R
+if there is no such element\&.
+.sp
+The sequence 
+.ft B
+xs
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val find_mapi 
+: 
+.B (int -> 'a -> 'b option) -> 'a t -> 'b option
+.sp
+Same as 
+.ft B
+find_map
+.ft R
+, but the predicate is applied to the index of
+the element as first argument (counting from 0), and the element
+itself as second argument\&.
+.sp
+The sequence 
+.ft B
+xs
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val iter2 
+: 
+.B ('a -> 'b -> unit) -> 'a t -> 'b t -> unit
+.sp
+
+.ft B
+iter2 f xs ys
+.ft R
+invokes 
+.ft B
+f x y
+.ft R
+successively for every pair 
+.ft B
+(x, y)
+.ft R
+of
+elements drawn synchronously from the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+\&.
+.sp
+If the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+have different lengths, then
+iteration stops as soon as one sequence is exhausted;
+the excess elements in the other sequence are ignored\&.
+.sp
+Iteration terminates only if at least one of the sequences
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+is finite\&.
+.sp
+
+.ft B
+iter2 f xs ys
+.ft R
+is equivalent to
+.ft B
+iter (fun (x, y) \-> f x y) (zip xs ys)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val fold_left2 
+: 
+.B ('acc -> 'a -> 'b -> 'acc) -> 'acc -> 'a t -> 'b t -> 'acc
+.sp
+
+.ft B
+fold_left2 f _ xs ys
+.ft R
+invokes 
+.ft B
+f _ x y
+.ft R
+successively
+for every pair 
+.ft B
+(x, y)
+.ft R
+of elements drawn synchronously
+from the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+\&.
+.sp
+An accumulator of type 
+.ft B
+\&'a
+.ft R
+is threaded through the calls to 
+.ft B
+f
+.ft R
+\&.
+.sp
+If the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+have different lengths, then
+iteration stops as soon as one sequence is exhausted;
+the excess elements in the other sequence are ignored\&.
+.sp
+Iteration terminates only if at least one of the sequences
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+is finite\&.
+.sp
+
+.ft B
+fold_left2 f accu xs ys
+.ft R
+is equivalent to
+.ft B
+fold_left (fun accu (x, y) \-> f accu x y) (zip xs ys)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val for_all2 
+: 
+.B ('a -> 'b -> bool) -> 'a t -> 'b t -> bool
+.sp
+
+.ft B
+for_all2 p xs ys
+.ft R
+determines whether all pairs 
+.ft B
+(x, y)
+.ft R
+of elements
+drawn synchronously from the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+satisfy 
+.ft B
+p x y
+.ft R
+\&.
+.sp
+If the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+have different lengths, then
+iteration stops as soon as one sequence is exhausted;
+the excess elements in the other sequence are ignored\&.
+In particular, if 
+.ft B
+xs
+.ft R
+or 
+.ft B
+ys
+.ft R
+is empty, then
+.ft B
+for_all2 p xs ys
+.ft R
+is true\&. This is where
+.ft B
+for_all2
+.ft R
+and 
+.ft B
+equal
+.ft R
+differ: 
+.ft B
+equal eq xs ys
+.ft R
+can
+be true only if 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+have the same length\&.
+.sp
+At least one of the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+must be finite\&.
+.sp
+
+.ft B
+for_all2 p xs ys
+.ft R
+is equivalent to 
+.ft B
+for_all (fun b \-> b) (map2 p xs ys)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val exists2 
+: 
+.B ('a -> 'b -> bool) -> 'a t -> 'b t -> bool
+.sp
+
+.ft B
+exists2 p xs ys
+.ft R
+determines whether some pair 
+.ft B
+(x, y)
+.ft R
+of elements
+drawn synchronously from the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+satisfies 
+.ft B
+p x y
+.ft R
+\&.
+.sp
+If the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+have different lengths, then
+iteration must stop as soon as one sequence is exhausted;
+the excess elements in the other sequence are ignored\&.
+.sp
+At least one of the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+must be finite\&.
+.sp
+
+.ft B
+exists2 p xs ys
+.ft R
+is equivalent to 
+.ft B
+exists (fun b \-> b) (map2 p xs ys)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val equal 
+: 
+.B ('a -> 'b -> bool) -> 'a t -> 'b t -> bool
+.sp
+Provided the function 
+.ft B
+eq
+.ft R
+defines an equality on elements,
+.ft B
+equal eq xs ys
+.ft R
+determines whether the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+are pointwise equal\&.
+.sp
+At least one of the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val compare 
+: 
+.B ('a -> 'b -> int) -> 'a t -> 'b t -> int
+.sp
+Provided the function 
+.ft B
+cmp
+.ft R
+defines a preorder on elements,
+.ft B
+compare cmp xs ys
+.ft R
+compares the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+according to the lexicographic preorder\&.
+.sp
+For more details on comparison functions, see 
+.ft B
+Array\&.sort
+.ft R
+\&.
+.sp
+At least one of the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+must be finite\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.PP
+.SS Constructing sequences
+
+.PP
+
+.PP
+The functions in this section are lazy: that is, they return sequences
+whose elements are computed only when demanded\&.
+.PP
+
+.I val empty 
+: 
+.B 'a t
+.sp
+
+.ft B
+empty
+.ft R
+is the empty sequence\&.
+It has no elements\&. Its length is 0\&.
+
+.sp
+
+.I val return 
+: 
+.B 'a -> 'a t
+.sp
+
+.ft B
+return x
+.ft R
+is the sequence whose sole element is 
+.ft B
+x
+.ft R
+\&.
+Its length is 1\&.
+
+.sp
+
+.I val cons 
+: 
+.B 'a -> 'a t -> 'a t
+.sp
+
+.ft B
+cons x xs
+.ft R
+is the sequence that begins with the element 
+.ft B
+x
+.ft R
+,
+followed with the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+Writing 
+.ft B
+cons (f()) xs
+.ft R
+causes the function call 
+.ft B
+f()
+.ft R
+to take place immediately\&. For this call to be delayed until the
+sequence is queried, one must instead write
+.ft B
+(fun () \-> Cons(f(), xs))
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val init 
+: 
+.B int -> (int -> 'a) -> 'a t
+.sp
+
+.ft B
+init n f
+.ft R
+is the sequence 
+.ft B
+f 0; f 1; \&.\&.\&.; f (n\-1)
+.ft R
+\&.
+.sp
+
+.ft B
+n
+.ft R
+must be nonnegative\&.
+.sp
+If desired, the infinite sequence 
+.ft B
+f 0; f 1; \&.\&.\&.
+.ft R
+can be defined as 
+.ft B
+map f (ints 0)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is negative\&.
+
+.sp
+
+.I val unfold 
+: 
+.B ('b -> ('a * 'b) option) -> 'b -> 'a t
+.sp
+
+.ft B
+unfold
+.ft R
+constructs a sequence
+out of a step function and an initial state\&.
+.sp
+If 
+.ft B
+f u
+.ft R
+is 
+.ft B
+None
+.ft R
+then
+.ft B
+unfold f u
+.ft R
+is the empty sequence\&.
+If 
+.ft B
+f u
+.ft R
+is 
+.ft B
+Some (x, u\&')
+.ft R
+then
+.ft B
+unfold f u
+.ft R
+is the nonempty sequence 
+.ft B
+cons x (unfold f u\&')
+.ft R
+\&.
+.sp
+For example, 
+.ft B
+unfold (function [] \-> None | h :: t \-> Some (h, t)) l
+.ft R
+is equivalent to 
+.ft B
+List\&.to_seq l
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val repeat 
+: 
+.B 'a -> 'a t
+.sp
+
+.ft B
+repeat x
+.ft R
+is the infinite sequence
+where the element 
+.ft B
+x
+.ft R
+is repeated indefinitely\&.
+.sp
+
+.ft B
+repeat x
+.ft R
+is equivalent to 
+.ft B
+cycle (return x)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val forever 
+: 
+.B (unit -> 'a) -> 'a t
+.sp
+
+.ft B
+forever f
+.ft R
+is an infinite sequence where every element is produced
+(on demand) by the function call 
+.ft B
+f()
+.ft R
+\&.
+.sp
+For instance,
+.ft B
+forever Random\&.bool
+.ft R
+is an infinite sequence of random bits\&.
+.sp
+
+.ft B
+forever f
+.ft R
+is equivalent to 
+.ft B
+map f (repeat ())
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val cycle 
+: 
+.B 'a t -> 'a t
+.sp
+
+.ft B
+cycle xs
+.ft R
+is the infinite sequence that consists of an infinite
+number of repetitions of the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+If 
+.ft B
+xs
+.ft R
+is an empty sequence,
+then 
+.ft B
+cycle xs
+.ft R
+is empty as well\&.
+.sp
+Consuming (a prefix of) the sequence 
+.ft B
+cycle xs
+.ft R
+once
+can cause the sequence 
+.ft B
+xs
+.ft R
+to be consumed more than once\&.
+Therefore, 
+.ft B
+xs
+.ft R
+must be persistent\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val iterate 
+: 
+.B ('a -> 'a) -> 'a -> 'a t
+.sp
+
+.ft B
+iterate f x
+.ft R
+is the infinite sequence whose elements are
+.ft B
+x
+.ft R
+, 
+.ft B
+f x
+.ft R
+, 
+.ft B
+f (f x)
+.ft R
+, and so on\&.
+.sp
+In other words, it is the orbit of the function 
+.ft B
+f
+.ft R
+,
+starting at 
+.ft B
+x
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.PP
+.SS Transforming sequences
+
+.PP
+
+.PP
+The functions in this section are lazy: that is, they return sequences
+whose elements are computed only when demanded\&.
+.PP
+
+.I val map 
+: 
+.B ('a -> 'b) -> 'a t -> 'b t
+.sp
+
+.ft B
+map f xs
+.ft R
+is the image of the sequence 
+.ft B
+xs
+.ft R
+through the
+transformation 
+.ft B
+f
+.ft R
+\&.
+.sp
+If 
+.ft B
+xs
+.ft R
+is the sequence 
+.ft B
+x0; x1; \&.\&.\&.
+.ft R
+then
+.ft B
+map f xs
+.ft R
+is the sequence 
+.ft B
+f x0; f x1; \&.\&.\&.
+.ft R
+\&.
+
+.sp
+
+.I val mapi 
+: 
+.B (int -> 'a -> 'b) -> 'a t -> 'b t
+.sp
+
+.ft B
+mapi
+.ft R
+is analogous to 
+.ft B
+map
+.ft R
+, but applies the function 
+.ft B
+f
+.ft R
+to
+an index and an element\&.
+.sp
+
+.ft B
+mapi f xs
+.ft R
+is equivalent to 
+.ft B
+map2 f (ints 0) xs
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val filter 
+: 
+.B ('a -> bool) -> 'a t -> 'a t
+.sp
+
+.ft B
+filter p xs
+.ft R
+is the sequence of the elements 
+.ft B
+x
+.ft R
+of 
+.ft B
+xs
+.ft R
+that satisfy 
+.ft B
+p x
+.ft R
+\&.
+.sp
+In other words, 
+.ft B
+filter p xs
+.ft R
+is the sequence 
+.ft B
+xs
+.ft R
+,
+deprived of the elements 
+.ft B
+x
+.ft R
+such that 
+.ft B
+p x
+.ft R
+is false\&.
+
+.sp
+
+.I val filter_map 
+: 
+.B ('a -> 'b option) -> 'a t -> 'b t
+.sp
+
+.ft B
+filter_map f xs
+.ft R
+is the sequence of the elements 
+.ft B
+y
+.ft R
+such that
+.ft B
+f x = Some y
+.ft R
+, where 
+.ft B
+x
+.ft R
+ranges over 
+.ft B
+xs
+.ft R
+\&.
+.sp
+
+.ft B
+filter_map f xs
+.ft R
+is equivalent to
+.ft B
+map Option\&.get (filter Option\&.is_some (map f xs))
+.ft R
+\&.
+
+.sp
+
+.I val scan 
+: 
+.B ('b -> 'a -> 'b) -> 'b -> 'a t -> 'b t
+.sp
+If 
+.ft B
+xs
+.ft R
+is a sequence 
+.ft B
+[x0; x1; x2; \&.\&.\&.]
+.ft R
+, then
+.ft B
+scan f a0 xs
+.ft R
+is a sequence of accumulators
+.ft B
+[a0; a1; a2; \&.\&.\&.]
+.ft R
+where 
+.ft B
+a1
+.ft R
+is 
+.ft B
+f a0 x0
+.ft R
+, 
+.ft B
+a2
+.ft R
+is 
+.ft B
+f a1 x1
+.ft R
+, and so on\&.
+.sp
+Thus, 
+.ft B
+scan f a0 xs
+.ft R
+is conceptually related to
+.ft B
+fold_left f a0 xs
+.ft R
+\&. However, instead of performing an
+eager iteration and immediately returning the final accumulator,
+it returns a sequence of accumulators\&.
+.sp
+For instance, 
+.ft B
+scan (+) 0
+.ft R
+transforms a sequence of integers
+into the sequence of its partial sums\&.
+.sp
+If 
+.ft B
+xs
+.ft R
+has length 
+.ft B
+n
+.ft R
+then 
+.ft B
+scan f a0 xs
+.ft R
+has length 
+.ft B
+n+1
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val take 
+: 
+.B int -> 'a t -> 'a t
+.sp
+
+.ft B
+take n xs
+.ft R
+is the sequence of the first 
+.ft B
+n
+.ft R
+elements of 
+.ft B
+xs
+.ft R
+\&.
+.sp
+If 
+.ft B
+xs
+.ft R
+has fewer than 
+.ft B
+n
+.ft R
+elements,
+then 
+.ft B
+take n xs
+.ft R
+is equivalent to 
+.ft B
+xs
+.ft R
+\&.
+.sp
+
+.ft B
+n
+.ft R
+must be nonnegative\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is negative\&.
+
+.sp
+
+.I val drop 
+: 
+.B int -> 'a t -> 'a t
+.sp
+
+.ft B
+drop n xs
+.ft R
+is the sequence 
+.ft B
+xs
+.ft R
+, deprived of its first 
+.ft B
+n
+.ft R
+elements\&.
+.sp
+If 
+.ft B
+xs
+.ft R
+has fewer than 
+.ft B
+n
+.ft R
+elements,
+then 
+.ft B
+drop n xs
+.ft R
+is empty\&.
+.sp
+
+.ft B
+n
+.ft R
+must be nonnegative\&.
+.sp
+
+.ft B
+drop
+.ft R
+is lazy: the first 
+.ft B
+n+1
+.ft R
+elements of the sequence 
+.ft B
+xs
+.ft R
+are demanded only when the first element of 
+.ft B
+drop n xs
+.ft R
+is
+demanded\&. For this reason, 
+.ft B
+drop 1 xs
+.ft R
+is not equivalent
+to 
+.ft B
+tail xs
+.ft R
+, which queries 
+.ft B
+xs
+.ft R
+immediately\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is negative\&.
+
+.sp
+
+.I val take_while 
+: 
+.B ('a -> bool) -> 'a t -> 'a t
+.sp
+
+.ft B
+take_while p xs
+.ft R
+is the longest prefix of the sequence 
+.ft B
+xs
+.ft R
+where every element 
+.ft B
+x
+.ft R
+satisfies 
+.ft B
+p x
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val drop_while 
+: 
+.B ('a -> bool) -> 'a t -> 'a t
+.sp
+
+.ft B
+drop_while p xs
+.ft R
+is the sequence 
+.ft B
+xs
+.ft R
+, deprived of the prefix
+.ft B
+take_while p xs
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val group 
+: 
+.B ('a -> 'a -> bool) -> 'a t -> 'a t t
+.sp
+Provided the function 
+.ft B
+eq
+.ft R
+defines an equality on elements,
+.ft B
+group eq xs
+.ft R
+is the sequence of the maximal runs
+of adjacent duplicate elements of the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+Every element of 
+.ft B
+group eq xs
+.ft R
+is a nonempty sequence of equal elements\&.
+.sp
+The concatenation 
+.ft B
+concat (group eq xs)
+.ft R
+is equal to 
+.ft B
+xs
+.ft R
+\&.
+.sp
+Consuming 
+.ft B
+group eq xs
+.ft R
+, and consuming the sequences that it contains,
+can cause 
+.ft B
+xs
+.ft R
+to be consumed more than once\&. Therefore, 
+.ft B
+xs
+.ft R
+must be
+persistent\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val memoize 
+: 
+.B 'a t -> 'a t
+.sp
+The sequence 
+.ft B
+memoize xs
+.ft R
+has the same elements as the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+Regardless of whether 
+.ft B
+xs
+.ft R
+is ephemeral or persistent,
+.ft B
+memoize xs
+.ft R
+is persistent: even if it is queried several times,
+.ft B
+xs
+.ft R
+is queried at most once\&.
+.sp
+The construction of the sequence 
+.ft B
+memoize xs
+.ft R
+internally relies on
+suspensions provided by the module 
+.ft B
+Lazy
+.ft R
+\&. These suspensions are
+not thread\-safe\&. Therefore, the sequence 
+.ft B
+memoize xs
+.ft R
+must not be queried by multiple threads concurrently\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I exception Forced_twice 
+
+.sp
+This exception is raised when a sequence returned by 
+.ft B
+Seq\&.once
+.ft R
+(or a suffix of it) is queried more than once\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val once 
+: 
+.B 'a t -> 'a t
+.sp
+The sequence 
+.ft B
+once xs
+.ft R
+has the same elements as the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+Regardless of whether 
+.ft B
+xs
+.ft R
+is ephemeral or persistent,
+.ft B
+once xs
+.ft R
+is an ephemeral sequence: it can be queried at most once\&.
+If it (or a suffix of it) is queried more than once, then the exception
+.ft B
+Forced_twice
+.ft R
+is raised\&. This can be useful, while debugging or testing,
+to ensure that a sequence is consumed at most once\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+.B "Raises Forced_twice"
+if 
+.ft B
+once xs
+.ft R
+, or a suffix of it,
+is queried more than once\&.
+
+.sp
+
+.I val transpose 
+: 
+.B 'a t t -> 'a t t
+.sp
+If 
+.ft B
+xss
+.ft R
+is a matrix (a sequence of rows), then 
+.ft B
+transpose xss
+.ft R
+is
+the sequence of the columns of the matrix 
+.ft B
+xss
+.ft R
+\&.
+.sp
+The rows of the matrix 
+.ft B
+xss
+.ft R
+are not required to have the same length\&.
+.sp
+The matrix 
+.ft B
+xss
+.ft R
+is not required to be finite (in either direction)\&.
+.sp
+The matrix 
+.ft B
+xss
+.ft R
+must be persistent\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.PP
+.SS Combining sequences
+
+.PP
+
+.I val append 
+: 
+.B 'a t -> 'a t -> 'a t
+.sp
+
+.ft B
+append xs ys
+.ft R
+is the concatenation of the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+\&.
+.sp
+Its elements are the elements of 
+.ft B
+xs
+.ft R
+, followed by the elements of 
+.ft B
+ys
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val concat 
+: 
+.B 'a t t -> 'a t
+.sp
+If 
+.ft B
+xss
+.ft R
+is a sequence of sequences,
+then 
+.ft B
+concat xss
+.ft R
+is its concatenation\&.
+.sp
+If 
+.ft B
+xss
+.ft R
+is the sequence 
+.ft B
+xs0; xs1; \&.\&.\&.
+.ft R
+then
+.ft B
+concat xss
+.ft R
+is the sequence 
+.ft B
+xs0 @ xs1 @ \&.\&.\&.
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val flat_map 
+: 
+.B ('a -> 'b t) -> 'a t -> 'b t
+.sp
+
+.ft B
+flat_map f xs
+.ft R
+is equivalent to 
+.ft B
+concat (map f xs)
+.ft R
+\&.
+
+.sp
+
+.I val concat_map 
+: 
+.B ('a -> 'b t) -> 'a t -> 'b t
+.sp
+
+.ft B
+concat_map f xs
+.ft R
+is equivalent to 
+.ft B
+concat (map f xs)
+.ft R
+\&.
+.sp
+
+.ft B
+concat_map
+.ft R
+is an alias for 
+.ft B
+flat_map
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val zip 
+: 
+.B 'a t -> 'b t -> ('a * 'b) t
+.sp
+
+.ft B
+zip xs ys
+.ft R
+is the sequence of pairs 
+.ft B
+(x, y)
+.ft R
+drawn synchronously from the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+\&.
+.sp
+If the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+have different lengths, then
+the sequence ends as soon as one sequence is exhausted;
+the excess elements in the other sequence are ignored\&.
+.sp
+
+.ft B
+zip xs ys
+.ft R
+is equivalent to 
+.ft B
+map2 (fun a b \-> (a, b)) xs ys
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val map2 
+: 
+.B ('a -> 'b -> 'c) -> 'a t -> 'b t -> 'c t
+.sp
+
+.ft B
+map2 f xs ys
+.ft R
+is the sequence of the elements 
+.ft B
+f x y
+.ft R
+,
+where the pairs 
+.ft B
+(x, y)
+.ft R
+are drawn synchronously from the
+sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+\&.
+.sp
+If the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+have different lengths, then
+the sequence ends as soon as one sequence is exhausted;
+the excess elements in the other sequence are ignored\&.
+.sp
+
+.ft B
+map2 f xs ys
+.ft R
+is equivalent to 
+.ft B
+map (fun (x, y) \-> f x y) (zip xs ys)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val interleave 
+: 
+.B 'a t -> 'a t -> 'a t
+.sp
+
+.ft B
+interleave xs ys
+.ft R
+is the sequence that begins with the first element of
+.ft B
+xs
+.ft R
+, continues with the first element of 
+.ft B
+ys
+.ft R
+, and so on\&.
+.sp
+When one of the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+is exhausted,
+.ft B
+interleave xs ys
+.ft R
+continues with the rest of the other sequence\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val sorted_merge 
+: 
+.B ('a -> 'a -> int) -> 'a t -> 'a t -> 'a t
+.sp
+If the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+are sorted according to the total preorder
+.ft B
+cmp
+.ft R
+, then 
+.ft B
+sorted_merge cmp xs ys
+.ft R
+is the sorted sequence obtained by
+merging the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+\&.
+.sp
+For more details on comparison functions, see 
+.ft B
+Array\&.sort
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val product 
+: 
+.B 'a t -> 'b t -> ('a * 'b) t
+.sp
+
+.ft B
+product xs ys
+.ft R
+is the Cartesian product of the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+\&.
+.sp
+For every element 
+.ft B
+x
+.ft R
+of 
+.ft B
+xs
+.ft R
+and for every element 
+.ft B
+y
+.ft R
+of 
+.ft B
+ys
+.ft R
+,
+the pair 
+.ft B
+(x, y)
+.ft R
+appears once as an element of 
+.ft B
+product xs ys
+.ft R
+\&.
+.sp
+The order in which the pairs appear is unspecified\&.
+.sp
+The sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+are not required to be finite\&.
+.sp
+The sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+must be persistent\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val map_product 
+: 
+.B ('a -> 'b -> 'c) -> 'a t -> 'b t -> 'c t
+.sp
+The sequence 
+.ft B
+map_product f xs ys
+.ft R
+is the image through 
+.ft B
+f
+.ft R
+of the Cartesian product of the sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+\&.
+.sp
+For every element 
+.ft B
+x
+.ft R
+of 
+.ft B
+xs
+.ft R
+and for every element 
+.ft B
+y
+.ft R
+of 
+.ft B
+ys
+.ft R
+,
+the element 
+.ft B
+f x y
+.ft R
+appears once as an element of 
+.ft B
+map_product f xs ys
+.ft R
+\&.
+.sp
+The order in which these elements appear is unspecified\&.
+.sp
+The sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+are not required to be finite\&.
+.sp
+The sequences 
+.ft B
+xs
+.ft R
+and 
+.ft B
+ys
+.ft R
+must be persistent\&.
+.sp
+
+.ft B
+map_product f xs ys
+.ft R
+is equivalent to
+.ft B
+map (fun (x, y) \-> f x y) (product xs ys)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.PP
+.SS Splitting a sequence into two sequences
+
+.PP
+
+.I val unzip 
+: 
+.B ('a * 'b) t -> 'a t * 'b t
+.sp
+
+.ft B
+unzip
+.ft R
+transforms a sequence of pairs into a pair of sequences\&.
+.sp
+
+.ft B
+unzip xs
+.ft R
+is equivalent to 
+.ft B
+(map fst xs, map snd xs)
+.ft R
+\&.
+.sp
+Querying either of the sequences returned by 
+.ft B
+unzip xs
+.ft R
+causes 
+.ft B
+xs
+.ft R
+to be queried\&.
+Therefore, querying both of them
+causes 
+.ft B
+xs
+.ft R
+to be queried twice\&.
+Thus, 
+.ft B
+xs
+.ft R
+must be persistent and cheap\&.
+If that is not the case, use 
+.ft B
+unzip (memoize xs)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val split 
+: 
+.B ('a * 'b) t -> 'a t * 'b t
+.sp
+
+.ft B
+split
+.ft R
+is an alias for 
+.ft B
+unzip
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val partition_map 
+: 
+.B ('a -> ('b, 'c) Either.t) -> 'a t -> 'b t * 'c t
+.sp
+
+.ft B
+partition_map f xs
+.ft R
+returns a pair of sequences 
+.ft B
+(ys, zs)
+.ft R
+, where:
+.sp
+.sp
+\-
+.ft B
+ys
+.ft R
+is the sequence of the elements 
+.ft B
+y
+.ft R
+such that
+.ft B
+f x = Left y
+.ft R
+, where 
+.ft B
+x
+.ft R
+ranges over 
+.ft B
+xs
+.ft R
+;
+
+.sp
+\-
+.ft B
+zs
+.ft R
+is the sequence of the elements 
+.ft B
+z
+.ft R
+such that
+.ft B
+f x = Right z
+.ft R
+, where 
+.ft B
+x
+.ft R
+ranges over 
+.ft B
+xs
+.ft R
+\&.
+
+.ft B
+partition_map f xs
+.ft R
+is equivalent to a pair of
+.ft B
+filter_map Either\&.find_left (map f xs)
+.ft R
+and
+.ft B
+filter_map Either\&.find_right (map f xs)
+.ft R
+\&.
+.sp
+Querying either of the sequences returned by 
+.ft B
+partition_map f xs
+.ft R
+causes 
+.ft B
+xs
+.ft R
+to be queried\&.
+Therefore, querying both of them
+causes 
+.ft B
+xs
+.ft R
+to be queried twice\&.
+Thus, 
+.ft B
+xs
+.ft R
+must be persistent and cheap\&.
+If that is not the case, use 
+.ft B
+partition_map f (memoize xs)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val partition 
+: 
+.B ('a -> bool) -> 'a t -> 'a t * 'a t
+.sp
+
+.ft B
+partition p xs
+.ft R
+returns a pair of the subsequence of the elements
+of 
+.ft B
+xs
+.ft R
+that satisfy 
+.ft B
+p
+.ft R
+and the subsequence of the elements of
+.ft B
+xs
+.ft R
+that do not satisfy 
+.ft B
+p
+.ft R
+\&.
+.sp
+
+.ft B
+partition p xs
+.ft R
+is equivalent to
+.ft B
+filter p xs, filter (fun x \-> not (p x)) xs
+.ft R
+\&.
+.sp
+Consuming both of the sequences returned by 
+.ft B
+partition p xs
+.ft R
+causes
+.ft B
+xs
+.ft R
+to be consumed twice and causes the function 
+.ft B
+f
+.ft R
+to be applied
+twice to each element of the list\&.
+Therefore, 
+.ft B
+f
+.ft R
+should be pure and cheap\&.
+Furthermore, 
+.ft B
+xs
+.ft R
+should be persistent and cheap\&.
+If that is not the case, use 
+.ft B
+partition p (memoize xs)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.PP
+.SS Converting between sequences and dispensers
+
+.PP
+
+.PP
+A dispenser is a representation of a sequence as a function of type
+.ft B
+unit \-> \&'a option
+.ft R
+\&. Every time this function is invoked, it returns
+the next element of the sequence\&. When there are no more elements,
+it returns 
+.ft B
+None
+.ft R
+\&. A dispenser has mutable internal state, therefore
+is ephemeral: the sequence that it represents can be consumed at most
+once\&.
+.PP
+
+.I val of_dispenser 
+: 
+.B (unit -> 'a option) -> 'a t
+.sp
+
+.ft B
+of_dispenser it
+.ft R
+is the sequence of the elements produced by the
+dispenser 
+.ft B
+it
+.ft R
+\&. It is an ephemeral sequence: it can be consumed at most
+once\&. If a persistent sequence is needed, use
+.ft B
+memoize (of_dispenser it)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.I val to_dispenser 
+: 
+.B 'a t -> unit -> 'a option
+.sp
+
+.ft B
+to_dispenser xs
+.ft R
+is a fresh dispenser on the sequence 
+.ft B
+xs
+.ft R
+\&.
+.sp
+This dispenser has mutable internal state,
+which is not protected by a lock;
+so, it must not be used by several threads concurrently\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp
+
+.PP
+.SS Sequences of integers
+
+.PP
+
+.I val ints 
+: 
+.B int -> int t
+.sp
+
+.ft B
+ints i
+.ft R
+is the infinite sequence of the integers beginning at 
+.ft B
+i
+.ft R
+and
+counting up\&.
+
+.sp
+.B "Since"
+4.14
+
+.sp

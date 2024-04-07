@@ -1,0 +1,594 @@
+.TH "Bigarray.Array3" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Bigarray.Array3 \- Three-dimensional arrays.
+.SH Module
+Module   Bigarray.Array3
+.SH Documentation
+.sp
+Module
+.BI "Array3"
+ : 
+.B sig end
+
+.sp
+Three\-dimensional arrays\&. The 
+.ft B
+Array3
+.ft R
+structure provides operations
+similar to those of 
+.ft B
+Bigarray\&.Genarray
+.ft R
+, but specialized to the case
+of three\-dimensional arrays\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B (!'a, !'b, !'c)
+.I t 
+
+.sp
+The type of three\-dimensional Bigarrays whose elements have
+OCaml type 
+.ft B
+\&'a
+.ft R
+, representation kind 
+.ft B
+\&'b
+.ft R
+, and memory layout 
+.ft B
+\&'c
+.ft R
+\&.
+
+.sp
+
+.I val create 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> int -> int -> int -> ('a, 'b, 'c) t
+.sp
+
+.ft B
+Array3\&.create kind layout dim1 dim2 dim3
+.ft R
+returns a new Bigarray of
+three dimensions, whose size is 
+.ft B
+dim1
+.ft R
+in the first dimension,
+.ft B
+dim2
+.ft R
+in the second dimension, and 
+.ft B
+dim3
+.ft R
+in the third\&.
+.ft B
+kind
+.ft R
+and 
+.ft B
+layout
+.ft R
+determine the array element kind and
+the array layout as described for 
+.ft B
+Bigarray\&.Genarray\&.create
+.ft R
+\&.
+
+.sp
+
+.I val init 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout ->
+.B   int ->
+.B   int -> int -> (int -> int -> int -> 'a) -> ('a, 'b, 'c) t
+.sp
+
+.ft B
+Array3\&.init kind layout dim1 dim2 dim3 f
+.ft R
+returns a new Bigarray 
+.ft B
+b
+.ft R
+of three dimensions, whose size is 
+.ft B
+dim1
+.ft R
+in the first dimension,
+.ft B
+dim2
+.ft R
+in the second dimension, and 
+.ft B
+dim3
+.ft R
+in the third\&.
+.ft B
+kind
+.ft R
+and 
+.ft B
+layout
+.ft R
+determine the array element kind and the array
+layout as described for 
+.ft B
+Bigarray\&.Genarray\&.create
+.ft R
+\&.
+.sp
+Each element 
+.ft B
+Array3\&.get b i j k
+.ft R
+of the array is initialized to
+the result of 
+.ft B
+f i j k
+.ft R
+\&.
+.sp
+In other words, 
+.ft B
+Array3\&.init kind layout dim1 dim2 dim3 f
+.ft R
+tabulates
+the results of 
+.ft B
+f
+.ft R
+applied to the indices of a new Bigarray whose
+layout is described by 
+.ft B
+kind
+.ft R
+, 
+.ft B
+layout
+.ft R
+, 
+.ft B
+dim1
+.ft R
+, 
+.ft B
+dim2
+.ft R
+and 
+.ft B
+dim3
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val dim1 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+Return the first dimension of the given three\-dimensional Bigarray\&.
+
+.sp
+
+.I val dim2 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+Return the second dimension of the given three\-dimensional Bigarray\&.
+
+.sp
+
+.I val dim3 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+Return the third dimension of the given three\-dimensional Bigarray\&.
+
+.sp
+
+.I val kind 
+: 
+.B ('a, 'b, 'c) t -> ('a, 'b) Bigarray.kind
+.sp
+Return the kind of the given Bigarray\&.
+
+.sp
+
+.I val layout 
+: 
+.B ('a, 'b, 'c) t -> 'c Bigarray.layout
+.sp
+Return the layout of the given Bigarray\&.
+
+.sp
+
+.I val change_layout 
+: 
+.B ('a, 'b, 'c) t ->
+.B   'd Bigarray.layout -> ('a, 'b, 'd) t
+.sp
+
+.ft B
+Array3\&.change_layout a layout
+.ft R
+returns a Bigarray with the
+specified 
+.ft B
+layout
+.ft R
+, sharing the data with 
+.ft B
+a
+.ft R
+(and hence having
+the same dimensions as 
+.ft B
+a
+.ft R
+)\&. No copying of elements is involved: the
+new array and the original array share the same storage space\&.
+The dimensions are reversed, such that 
+.ft B
+get v [| a; b; c |]
+.ft R
+in
+C layout becomes 
+.ft B
+get v [| c+1; b+1; a+1 |]
+.ft R
+in Fortran layout\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val size_in_bytes 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+
+.ft B
+size_in_bytes a
+.ft R
+is the number of elements in 
+.ft B
+a
+.ft R
+multiplied by 
+.ft B
+a
+.ft R
+\&'s 
+.ft B
+Bigarray\&.kind_size_in_bytes
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val get 
+: 
+.B ('a, 'b, 'c) t -> int -> int -> int -> 'a
+.sp
+
+.ft B
+Array3\&.get a x y z
+.ft R
+, also written 
+.ft B
+a\&.{x,y,z}
+.ft R
+,
+returns the element of 
+.ft B
+a
+.ft R
+at coordinates (
+.ft B
+x
+.ft R
+, 
+.ft B
+y
+.ft R
+, 
+.ft B
+z
+.ft R
+)\&.
+.ft B
+x
+.ft R
+, 
+.ft B
+y
+.ft R
+and 
+.ft B
+z
+.ft R
+must be within the bounds of 
+.ft B
+a
+.ft R
+,
+as described for 
+.ft B
+Bigarray\&.Genarray\&.get
+.ft R
+;
+otherwise, 
+.ft B
+Invalid_argument
+.ft R
+is raised\&.
+
+.sp
+
+.I val set 
+: 
+.B ('a, 'b, 'c) t -> int -> int -> int -> 'a -> unit
+.sp
+
+.ft B
+Array3\&.set a x y v
+.ft R
+, or alternatively 
+.ft B
+a\&.{x,y,z} <\- v
+.ft R
+,
+stores the value 
+.ft B
+v
+.ft R
+at coordinates (
+.ft B
+x
+.ft R
+, 
+.ft B
+y
+.ft R
+, 
+.ft B
+z
+.ft R
+) in 
+.ft B
+a
+.ft R
+\&.
+.ft B
+x
+.ft R
+, 
+.ft B
+y
+.ft R
+and 
+.ft B
+z
+.ft R
+must be within the bounds of 
+.ft B
+a
+.ft R
+,
+as described for 
+.ft B
+Bigarray\&.Genarray\&.set
+.ft R
+;
+otherwise, 
+.ft B
+Invalid_argument
+.ft R
+is raised\&.
+
+.sp
+
+.I val sub_left 
+: 
+.B ('a, 'b, Bigarray.c_layout) t ->
+.B   int -> int -> ('a, 'b, Bigarray.c_layout) t
+.sp
+Extract a three\-dimensional sub\-array of the given
+three\-dimensional Bigarray by restricting the first dimension\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.sub_left
+.ft R
+for more details\&.  
+.ft B
+Array3\&.sub_left
+.ft R
+applies only to arrays with C layout\&.
+
+.sp
+
+.I val sub_right 
+: 
+.B ('a, 'b, Bigarray.fortran_layout) t ->
+.B   int -> int -> ('a, 'b, Bigarray.fortran_layout) t
+.sp
+Extract a three\-dimensional sub\-array of the given
+three\-dimensional Bigarray by restricting the second dimension\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.sub_right
+.ft R
+for more details\&.  
+.ft B
+Array3\&.sub_right
+.ft R
+applies only to arrays with Fortran layout\&.
+
+.sp
+
+.I val slice_left_1 
+: 
+.B ('a, 'b, Bigarray.c_layout) t ->
+.B   int -> int -> ('a, 'b, Bigarray.c_layout) Bigarray.Array1.t
+.sp
+Extract a one\-dimensional slice of the given three\-dimensional
+Bigarray by fixing the first two coordinates\&.
+The integer parameters are the coordinates of the slice to
+extract\&.  See 
+.ft B
+Bigarray\&.Genarray\&.slice_left
+.ft R
+for more details\&.
+.ft B
+Array3\&.slice_left_1
+.ft R
+applies only to arrays with C layout\&.
+
+.sp
+
+.I val slice_right_1 
+: 
+.B ('a, 'b, Bigarray.fortran_layout) t ->
+.B   int -> int -> ('a, 'b, Bigarray.fortran_layout) Bigarray.Array1.t
+.sp
+Extract a one\-dimensional slice of the given three\-dimensional
+Bigarray by fixing the last two coordinates\&.
+The integer parameters are the coordinates of the slice to
+extract\&.  See 
+.ft B
+Bigarray\&.Genarray\&.slice_right
+.ft R
+for more details\&.
+.ft B
+Array3\&.slice_right_1
+.ft R
+applies only to arrays with Fortran
+layout\&.
+
+.sp
+
+.I val slice_left_2 
+: 
+.B ('a, 'b, Bigarray.c_layout) t ->
+.B   int -> ('a, 'b, Bigarray.c_layout) Bigarray.Array2.t
+.sp
+Extract a  two\-dimensional slice of the given three\-dimensional
+Bigarray by fixing the first coordinate\&.
+The integer parameter is the first coordinate of the slice to
+extract\&.  See 
+.ft B
+Bigarray\&.Genarray\&.slice_left
+.ft R
+for more details\&.
+.ft B
+Array3\&.slice_left_2
+.ft R
+applies only to arrays with C layout\&.
+
+.sp
+
+.I val slice_right_2 
+: 
+.B ('a, 'b, Bigarray.fortran_layout) t ->
+.B   int -> ('a, 'b, Bigarray.fortran_layout) Bigarray.Array2.t
+.sp
+Extract a two\-dimensional slice of the given
+three\-dimensional Bigarray by fixing the last coordinate\&.
+The integer parameter is the coordinate of the slice
+to extract\&.  See 
+.ft B
+Bigarray\&.Genarray\&.slice_right
+.ft R
+for more details\&.
+.ft B
+Array3\&.slice_right_2
+.ft R
+applies only to arrays with Fortran
+layout\&.
+
+.sp
+
+.I val blit 
+: 
+.B ('a, 'b, 'c) t -> ('a, 'b, 'c) t -> unit
+.sp
+Copy the first Bigarray to the second Bigarray\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.blit
+.ft R
+for more details\&.
+
+.sp
+
+.I val fill 
+: 
+.B ('a, 'b, 'c) t -> 'a -> unit
+.sp
+Fill the given Bigarray with the given value\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.fill
+.ft R
+for more details\&.
+
+.sp
+
+.I val of_array 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> 'a array array array -> ('a, 'b, 'c) t
+.sp
+Build a three\-dimensional Bigarray initialized from the
+given array of arrays of arrays\&.
+
+.sp
+
+.I val unsafe_get 
+: 
+.B ('a, 'b, 'c) t -> int -> int -> int -> 'a
+.sp
+Like 
+.ft B
+Bigarray\&.Array3\&.get
+.ft R
+, but bounds checking is not always
+performed\&.
+
+.sp
+
+.I val unsafe_set 
+: 
+.B ('a, 'b, 'c) t -> int -> int -> int -> 'a -> unit
+.sp
+Like 
+.ft B
+Bigarray\&.Array3\&.set
+.ft R
+, but bounds checking is not always
+performed\&.
+
+.sp

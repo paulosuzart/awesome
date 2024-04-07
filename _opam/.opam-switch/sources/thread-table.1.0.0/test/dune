@@ -1,0 +1,4 @@
+(test
+ (name test)
+ (modules test)
+ (libraries thread-table threads alcotest))

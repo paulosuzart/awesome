@@ -1,0 +1,44 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_sexp_message/META"
+  "_build/install/default/lib/ppx_sexp_message/dune-package"
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.a"
+    {"expander/ppx_sexp_message_expander.a"}
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cma"
+    {"expander/ppx_sexp_message_expander.cma"}
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmi"
+    {"expander/ppx_sexp_message_expander.cmi"}
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmt"
+    {"expander/ppx_sexp_message_expander.cmt"}
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmti"
+    {"expander/ppx_sexp_message_expander.cmti"}
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmx"
+    {"expander/ppx_sexp_message_expander.cmx"}
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmxa"
+    {"expander/ppx_sexp_message_expander.cmxa"}
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.ml"
+    {"expander/ppx_sexp_message_expander.ml"}
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.mli"
+    {"expander/ppx_sexp_message_expander.mli"}
+  "_build/install/default/lib/ppx_sexp_message/opam"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.a"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.cma"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.cmi"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.cmt"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.cmti"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.cmx"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.cmxa"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.ml"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_sexp_message/CHANGES.md"
+  "_build/install/default/doc/ppx_sexp_message/LICENSE.md"
+  "_build/install/default/doc/ppx_sexp_message/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmxs"
+    {"expander/ppx_sexp_message_expander.cmxs"}
+  "_build/install/default/lib/ppx_sexp_message/ppx.exe"
+  "_build/install/default/lib/ppx_sexp_message/ppx_sexp_message.cmxs"
+]

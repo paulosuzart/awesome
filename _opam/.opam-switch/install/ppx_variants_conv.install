@@ -1,0 +1,22 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_variants_conv/META"
+  "_build/install/default/lib/ppx_variants_conv/dune-package"
+  "_build/install/default/lib/ppx_variants_conv/opam"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.a"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.cma"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.cmi"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.cmt"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.cmti"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.cmx"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.cmxa"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.ml"
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_variants_conv/CHANGES.md"
+  "_build/install/default/doc/ppx_variants_conv/LICENSE.md"
+  "_build/install/default/doc/ppx_variants_conv/README.md"
+]
+libexec:
+  "_build/install/default/lib/ppx_variants_conv/ppx_variants_conv.cmxs"

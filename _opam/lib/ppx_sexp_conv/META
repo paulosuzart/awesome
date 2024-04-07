@@ -1,0 +1,36 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "ppx_sexp_conv.expander ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_sexp_conv.cma"
+archive(ppx_driver,native) = "ppx_sexp_conv.cmxa"
+plugin(ppx_driver,byte) = "ppx_sexp_conv.cma"
+plugin(ppx_driver,native) = "ppx_sexp_conv.cmxs"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_sexp_conv.runtime-lib sexplib0"
+requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppx_sexp_conv"
+library_kind = "ppx_deriver"
+package "expander" (
+  directory = "expander"
+  version = "v0.16.0"
+  description = "Expander for ppx_sexp_conv"
+  requires = "base ppxlib ppxlib.ast ppxlib.metaquot_lifters"
+  archive(byte) = "ppx_sexp_conv_expander.cma"
+  archive(native) = "ppx_sexp_conv_expander.cmxa"
+  plugin(byte) = "ppx_sexp_conv_expander.cma"
+  plugin(native) = "ppx_sexp_conv_expander.cmxs"
+  # This is what dune uses to find out the runtime dependencies of
+  # a preprocessor
+  ppx_runtime_deps = "ppx_sexp_conv.runtime-lib sexplib0"
+)
+package "runtime-lib" (
+  directory = "runtime-lib"
+  version = "v0.16.0"
+  description = "Runtime library for ppx_sexp_conv"
+  requires = "sexplib0"
+  archive(byte) = "ppx_sexp_conv_lib.cma"
+  archive(native) = "ppx_sexp_conv_lib.cmxa"
+  plugin(byte) = "ppx_sexp_conv_lib.cma"
+  plugin(native) = "ppx_sexp_conv_lib.cmxs"
+)

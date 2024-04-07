@@ -1,0 +1,70 @@
+.TH "Identifiable.Tbl" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Identifiable.Tbl \- no description
+.SH Module type
+Module type   Identifiable.Tbl
+.SH Documentation
+.sp
+Module type
+.BI "Tbl"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module T : 
+.B sig end
+
+.sp
+
+.sp
+.I include Hashtbl.S
+.sp
+
+.sp
+
+.I val to_list 
+: 
+.B 'a t -> (T.t * 'a) list
+.sp
+
+.sp
+
+.I val of_list 
+: 
+.B (T.t * 'a) list -> 'a t
+.sp
+
+.sp
+
+.I val to_map 
+: 
+.B 'a t -> 'a Stdlib.Map.Make(T).t
+.sp
+
+.sp
+
+.I val of_map 
+: 
+.B 'a Stdlib.Map.Make(T).t -> 'a t
+.sp
+
+.sp
+
+.I val memoize 
+: 
+.B 'a t -> (key -> 'a) -> key -> 'a
+.sp
+
+.sp
+
+.I val map 
+: 
+.B 'a t -> ('a -> 'b) -> 'b t
+.sp
+
+.sp

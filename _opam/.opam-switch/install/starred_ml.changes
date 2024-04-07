@@ -1,0 +1,12 @@
+opam-version: "2.0"
+added: [
+  "bin/starred_ml" {"F:e8cdc590eaa03c90f5bdc0333a5453b1"}
+  "doc/starred_ml" {"D"}
+  "doc/starred_ml/CHANGES.md" {"F:a72ac11af77e27a6d97fb55e40ae3d46"}
+  "doc/starred_ml/LICENSE" {"F:65d3616852dbf7b1a6d4b53b00626032"}
+  "doc/starred_ml/README.md" {"F:d2766914a08e1e13920a074c7e9fb6b2"}
+  "lib/starred_ml" {"D"}
+  "lib/starred_ml/META" {"F:d41d8cd98f00b204e9800998ecf8427e"}
+  "lib/starred_ml/dune-package" {"F:fb1efdc1ccef8b8b82579ffff6187eb3"}
+  "lib/starred_ml/opam" {"F:e6170aab06161313e12ca1f6ffa4de64"}
+]

@@ -1,0 +1,82 @@
+(lang dune 3.15)
+(name http)
+(version v6.0.0_beta2)
+(sections (lib .) (libexec .) (doc ../../doc/http))
+(files
+ (lib
+  (META
+   __private__/http_bytebuffer/.public_cmi/http_bytebuffer.cmi
+   __private__/http_bytebuffer/.public_cmi/http_bytebuffer.cmt
+   __private__/http_bytebuffer/.public_cmi/http_bytebuffer__Bytebuffer.cmi
+   __private__/http_bytebuffer/.public_cmi/http_bytebuffer__Bytebuffer.cmt
+   __private__/http_bytebuffer/.public_cmi/http_bytebuffer__Bytebuffer.cmti
+   __private__/http_bytebuffer/bytebuffer.ml
+   __private__/http_bytebuffer/bytebuffer.mli
+   __private__/http_bytebuffer/http_bytebuffer.a
+   __private__/http_bytebuffer/http_bytebuffer.cma
+   __private__/http_bytebuffer/http_bytebuffer.cmx
+   __private__/http_bytebuffer/http_bytebuffer.cmxa
+   __private__/http_bytebuffer/http_bytebuffer.ml
+   __private__/http_bytebuffer/http_bytebuffer__Bytebuffer.cmx
+   dune-package
+   http.a
+   http.cma
+   http.cmi
+   http.cmt
+   http.cmti
+   http.cmx
+   http.cmxa
+   http.ml
+   http.mli
+   opam))
+ (libexec (__private__/http_bytebuffer/http_bytebuffer.cmxs http.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name http)
+ (kind normal)
+ (synopsis "HTTP types designed for interoperability")
+ (archives (byte http.cma) (native http.cmxa))
+ (plugins (byte http.cma) (native http.cmxs))
+ (native_archives http.a)
+ (main_module_name Http)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name http)
+   (visibility public)
+   (source (path Http) (intf (path http.mli)) (impl (path http.ml))))))
+(library
+ (name http.__private__.http_bytebuffer)
+ (kind normal)
+ (archives
+  (byte __private__/http_bytebuffer/http_bytebuffer.cma)
+  (native __private__/http_bytebuffer/http_bytebuffer.cmxa))
+ (plugins
+  (byte __private__/http_bytebuffer/http_bytebuffer.cma)
+  (native __private__/http_bytebuffer/http_bytebuffer.cmxs))
+ (native_archives __private__/http_bytebuffer/http_bytebuffer.a)
+ (main_module_name Http_bytebuffer)
+ (modes byte native)
+ (obj_dir
+  (public_cmi_ocaml_dir .public_cmi)
+  (public_cmi_melange_dir melange/.public_cmi_melange))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name http_bytebuffer)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Http_bytebuffer)
+      (impl (path __private__/http_bytebuffer/http_bytebuffer.ml-gen))))
+    (name Http_bytebuffer)
+    (modules
+     (module
+      (obj_name http_bytebuffer__Bytebuffer)
+      (visibility public)
+      (source
+       (path Bytebuffer)
+       (intf (path __private__/http_bytebuffer/bytebuffer.mli))
+       (impl (path __private__/http_bytebuffer/bytebuffer.ml))))))
+   (wrapped true))))

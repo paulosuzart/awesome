@@ -1,0 +1,111 @@
+.TH "CamlinternalMenhirLib.TableFormat.TABLES" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.TableFormat.TABLES \- no description
+.SH Module type
+Module type   CamlinternalMenhirLib.TableFormat.TABLES
+.SH Documentation
+.sp
+Module type
+.BI "TABLES"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type token 
+
+.sp
+
+.sp
+
+.I val token2terminal 
+: 
+.B token -> int
+.sp
+
+.sp
+
+.I val error_terminal 
+: 
+.B int
+.sp
+
+.sp
+
+.I val token2value 
+: 
+.B token -> Obj.t
+.sp
+
+.sp
+
+.I val default_reduction 
+: 
+.B CamlinternalMenhirLib.PackedIntArray.t
+.sp
+
+.sp
+
+.I val error 
+: 
+.B int * string
+.sp
+
+.sp
+
+.I val action 
+: 
+.B CamlinternalMenhirLib.PackedIntArray.t *
+.B   CamlinternalMenhirLib.PackedIntArray.t
+.sp
+
+.sp
+
+.I val lhs 
+: 
+.B CamlinternalMenhirLib.PackedIntArray.t
+.sp
+
+.sp
+
+.I val goto 
+: 
+.B CamlinternalMenhirLib.PackedIntArray.t *
+.B   CamlinternalMenhirLib.PackedIntArray.t
+.sp
+
+.sp
+
+.I val start 
+: 
+.B int
+.sp
+
+.sp
+
+.I val semantic_action 
+: 
+.B ((int, Obj.t, token)
+.B    CamlinternalMenhirLib.EngineTypes.env ->
+.B    (int, Obj.t) CamlinternalMenhirLib.EngineTypes.stack)
+.B   array
+.sp
+
+.sp
+
+.I exception Error 
+
+.sp
+
+.sp
+
+.I val trace 
+: 
+.B (string array * string array) option
+.sp
+
+.sp

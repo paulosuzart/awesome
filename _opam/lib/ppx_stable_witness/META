@@ -1,0 +1,36 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_stable_witness.cma"
+archive(ppx_driver,native) = "ppx_stable_witness.cmxa"
+plugin(ppx_driver,byte) = "ppx_stable_witness.cma"
+plugin(ppx_driver,native) = "ppx_stable_witness.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "ppx_stable_witness.runtime"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_stable_witness.runtime"
+requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppx_stable_witness"
+library_kind = "ppx_deriver"
+package "runtime" (
+  directory = "runtime"
+  version = "v0.16.0"
+  description = ""
+  requires = "ppx_stable_witness.stable_witness"
+  archive(byte) = "ppx_stable_witness_runtime.cma"
+  archive(native) = "ppx_stable_witness_runtime.cmxa"
+  plugin(byte) = "ppx_stable_witness_runtime.cma"
+  plugin(native) = "ppx_stable_witness_runtime.cmxs"
+)
+package "stable_witness" (
+  directory = "stable_witness"
+  version = "v0.16.0"
+  description = ""
+  requires = ""
+  archive(byte) = "stable_witness.cma"
+  archive(native) = "stable_witness.cmxa"
+  plugin(byte) = "stable_witness.cma"
+  plugin(native) = "stable_witness.cmxs"
+)

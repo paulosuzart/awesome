@@ -1,0 +1,43 @@
+opam-version: "2.0"
+added: [
+  "doc/logs" {"D"}
+  "doc/logs/CHANGES.md" {"F:0d6b75f23dfe0955d47249a7cf278ca9"}
+  "doc/logs/LICENSE.md" {"F:22036f68b7eb0ed6cbedf1e253566e46"}
+  "doc/logs/README.md" {"F:4149746b3f6602ac0c521231ce7fadff"}
+  "doc/logs/tags.ml" {"F:2feeebe7e68c8628da873a087724247a"}
+  "doc/logs/tool.ml" {"F:cb6e956af35b3da6991459706d8f0a07"}
+  "lib/logs" {"D"}
+  "lib/logs/META" {"F:db6139b2e5d44a0c12722eff08544717"}
+  "lib/logs/logs.a" {"F:11b2e8164e5113280f333997fd281d38"}
+  "lib/logs/logs.cma" {"F:7760d57b771b6b441b48d9e122f8a602"}
+  "lib/logs/logs.cmi" {"F:3d574e330040a21decbfcf1a8051a7c3"}
+  "lib/logs/logs.cmti" {"F:8e60c9085b9d7a2d5fe502a59a9873dc"}
+  "lib/logs/logs.cmx" {"F:1b9b882635526bb621fdef0836917acb"}
+  "lib/logs/logs.cmxa" {"F:3ad7e2796d29e3f5fb0b02f72424af8e"}
+  "lib/logs/logs.cmxs" {"F:8b79f21904c69c2f728d97af79a78a3c"}
+  "lib/logs/logs.mli" {"F:fd8ff7cd10f1d9f33e09177f2dd05937"}
+  "lib/logs/logs_fmt.a" {"F:6e986e090accc1a9b82c40e429b02001"}
+  "lib/logs/logs_fmt.cma" {"F:50309af554cd7012de580f3207919427"}
+  "lib/logs/logs_fmt.cmi" {"F:063d727d0699ac5caf370b4b5fbc94f2"}
+  "lib/logs/logs_fmt.cmti" {"F:40ae5f13759a4f23c8114aa14ec473b9"}
+  "lib/logs/logs_fmt.cmx" {"F:8249589933c1fe5c2000a4573650c80d"}
+  "lib/logs/logs_fmt.cmxa" {"F:997481e7edd9a533b55448557b2045ef"}
+  "lib/logs/logs_fmt.cmxs" {"F:61ce82096c4064561b776ed620d848ec"}
+  "lib/logs/logs_fmt.mli" {"F:9ef10995a19d09db9ffa4d85b86c84f8"}
+  "lib/logs/logs_fmt_top_init.ml" {"F:27936f05677a0fd179c21663bd96a31e"}
+  "lib/logs/logs_threaded.a" {"F:58f00293afa85924f6ec717967694051"}
+  "lib/logs/logs_threaded.cma" {"F:f3568b823213bb6d5f266648d1637ce5"}
+  "lib/logs/logs_threaded.cmi" {"F:c06aa6ef7d9b22d5244c71cbe6b0dc32"}
+  "lib/logs/logs_threaded.cmti" {"F:997fbb440a700b45133fc03da5753f15"}
+  "lib/logs/logs_threaded.cmx" {"F:17a3a6c046a430f47be7ef663119b228"}
+  "lib/logs/logs_threaded.cmxa" {"F:f5cc7fad240ca2834f9e7134db35b9dd"}
+  "lib/logs/logs_threaded.cmxs" {"F:210783fcb5db846c9f778e3a502ecc8d"}
+  "lib/logs/logs_threaded.mli" {"F:937224ca506fbbb79fe169a69b6cdab6"}
+  "lib/logs/logs_top.a" {"F:ea50b2b1ecf7b16d13540b3305dd99e3"}
+  "lib/logs/logs_top.cma" {"F:271fc3238aee46d01b0480d1ee7e4bf8"}
+  "lib/logs/logs_top.cmx" {"F:55762adb5eb9ea968473ee2655a219f1"}
+  "lib/logs/logs_top.cmxa" {"F:662c0ad8e4418a25350a9227dbafe029"}
+  "lib/logs/logs_top.cmxs" {"F:ea279c31c0102a4d7cc80d21f6340faf"}
+  "lib/logs/logs_top_init.ml" {"F:734b78ab75edc57c65661a427d7c7dc8"}
+  "lib/logs/opam" {"F:2c289c005966faf08ba6da570481680a"}
+]

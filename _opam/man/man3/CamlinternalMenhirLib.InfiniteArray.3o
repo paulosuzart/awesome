@@ -1,0 +1,129 @@
+.TH "CamlinternalMenhirLib.InfiniteArray" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.InfiniteArray \- no description
+.SH Module
+Module   CamlinternalMenhirLib.InfiniteArray
+.SH Documentation
+.sp
+Module
+.BI "InfiniteArray"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+
+.sp
+This module implements infinite arrays\&. *
+
+.sp
+
+.I val make 
+: 
+.B 'a -> 'a t
+.sp
+
+.ft B
+make x
+.ft R
+creates an infinite array, where every slot contains 
+.ft B
+x
+.ft R
+\&. *
+
+.sp
+
+.I val get 
+: 
+.B 'a t -> int -> 'a
+.sp
+
+.ft B
+get a i
+.ft R
+returns the element contained at offset 
+.ft B
+i
+.ft R
+in the array 
+.ft B
+a
+.ft R
+\&.
+Slots are numbered 0 and up\&. *
+
+.sp
+
+.I val set 
+: 
+.B 'a t -> int -> 'a -> unit
+.sp
+
+.ft B
+set a i x
+.ft R
+sets the element contained at offset 
+.ft B
+i
+.ft R
+in the array
+.ft B
+a
+.ft R
+to 
+.ft B
+x
+.ft R
+\&. Slots are numbered 0 and up\&. *
+
+.sp
+
+.I val extent 
+: 
+.B 'a t -> int
+.sp
+
+.ft B
+extent a
+.ft R
+is the length of an initial segment of the array 
+.ft B
+a
+.ft R
+that is sufficiently large to contain all 
+.ft B
+set
+.ft R
+operations ever
+performed\&. In other words, all elements beyond that segment have
+the default value\&.
+
+.sp
+
+.I val domain 
+: 
+.B 'a t -> 'a array
+.sp
+
+.ft B
+domain a
+.ft R
+is a fresh copy of an initial segment of the array 
+.ft B
+a
+.ft R
+whose length is 
+.ft B
+extent a
+.ft R
+\&.
+
+.sp

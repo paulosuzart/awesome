@@ -1,0 +1,171 @@
+(lang dune 3.15)
+(name typerep)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/typerep))
+(files
+ (lib
+  (META
+   dune-package
+   make_typename.ml
+   make_typename.mli
+   named_intf.ml
+   opam
+   std.ml
+   std_internal.ml
+   std_internal.mli
+   type_abstract.ml
+   type_abstract.mli
+   type_equal.ml
+   type_equal.mli
+   type_generic.ml
+   type_generic.mli
+   type_generic_intf.ml
+   typename.ml
+   typename.mli
+   typerep_lib.a
+   typerep_lib.cma
+   typerep_lib.cmi
+   typerep_lib.cmt
+   typerep_lib.cmx
+   typerep_lib.cmxa
+   typerep_lib.ml
+   typerep_lib__Make_typename.cmi
+   typerep_lib__Make_typename.cmt
+   typerep_lib__Make_typename.cmti
+   typerep_lib__Make_typename.cmx
+   typerep_lib__Named_intf.cmi
+   typerep_lib__Named_intf.cmt
+   typerep_lib__Named_intf.cmx
+   typerep_lib__Std.cmi
+   typerep_lib__Std.cmt
+   typerep_lib__Std.cmx
+   typerep_lib__Std_internal.cmi
+   typerep_lib__Std_internal.cmt
+   typerep_lib__Std_internal.cmti
+   typerep_lib__Std_internal.cmx
+   typerep_lib__Type_abstract.cmi
+   typerep_lib__Type_abstract.cmt
+   typerep_lib__Type_abstract.cmti
+   typerep_lib__Type_abstract.cmx
+   typerep_lib__Type_equal.cmi
+   typerep_lib__Type_equal.cmt
+   typerep_lib__Type_equal.cmti
+   typerep_lib__Type_equal.cmx
+   typerep_lib__Type_generic.cmi
+   typerep_lib__Type_generic.cmt
+   typerep_lib__Type_generic.cmti
+   typerep_lib__Type_generic.cmx
+   typerep_lib__Type_generic_intf.cmi
+   typerep_lib__Type_generic_intf.cmt
+   typerep_lib__Type_generic_intf.cmx
+   typerep_lib__Typename.cmi
+   typerep_lib__Typename.cmt
+   typerep_lib__Typename.cmti
+   typerep_lib__Typename.cmx
+   typerep_lib__Typerep_obj.cmi
+   typerep_lib__Typerep_obj.cmt
+   typerep_lib__Typerep_obj.cmti
+   typerep_lib__Typerep_obj.cmx
+   typerep_lib__Typerepable.cmi
+   typerep_lib__Typerepable.cmt
+   typerep_lib__Typerepable.cmx
+   typerep_lib__Variant_and_record_intf.cmi
+   typerep_lib__Variant_and_record_intf.cmt
+   typerep_lib__Variant_and_record_intf.cmx
+   typerep_obj.ml
+   typerep_obj.mli
+   typerepable.ml
+   variant_and_record_intf.ml))
+ (libexec (typerep_lib.cmxs))
+ (doc (CHANGES.md LICENSE.md)))
+(library
+ (name typerep)
+ (kind normal)
+ (archives (byte typerep_lib.cma) (native typerep_lib.cmxa))
+ (plugins (byte typerep_lib.cma) (native typerep_lib.cmxs))
+ (native_archives typerep_lib.a)
+ (requires base)
+ (main_module_name Typerep_lib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name typerep_lib)
+     (visibility public)
+     (kind alias)
+     (source (path Typerep_lib) (impl (path typerep_lib.ml-gen))))
+    (name Typerep_lib)
+    (modules
+     (module
+      (obj_name typerep_lib__Make_typename)
+      (visibility public)
+      (source
+       (path Make_typename)
+       (intf (path make_typename.mli))
+       (impl (path make_typename.ml))))
+     (module
+      (obj_name typerep_lib__Named_intf)
+      (visibility public)
+      (source (path Named_intf) (impl (path named_intf.ml))))
+     (module
+      (obj_name typerep_lib__Std)
+      (visibility public)
+      (source (path Std) (impl (path std.ml))))
+     (module
+      (obj_name typerep_lib__Std_internal)
+      (visibility public)
+      (source
+       (path Std_internal)
+       (intf (path std_internal.mli))
+       (impl (path std_internal.ml))))
+     (module
+      (obj_name typerep_lib__Type_abstract)
+      (visibility public)
+      (source
+       (path Type_abstract)
+       (intf (path type_abstract.mli))
+       (impl (path type_abstract.ml))))
+     (module
+      (obj_name typerep_lib__Type_equal)
+      (visibility public)
+      (source
+       (path Type_equal)
+       (intf (path type_equal.mli))
+       (impl (path type_equal.ml))))
+     (module
+      (obj_name typerep_lib__Type_generic)
+      (visibility public)
+      (source
+       (path Type_generic)
+       (intf (path type_generic.mli))
+       (impl (path type_generic.ml))))
+     (module
+      (obj_name typerep_lib__Type_generic_intf)
+      (visibility public)
+      (source (path Type_generic_intf) (impl (path type_generic_intf.ml))))
+     (module
+      (obj_name typerep_lib__Typename)
+      (visibility public)
+      (source
+       (path Typename)
+       (intf (path typename.mli))
+       (impl (path typename.ml))))
+     (module
+      (obj_name typerep_lib__Typerep_obj)
+      (visibility public)
+      (source
+       (path Typerep_obj)
+       (intf (path typerep_obj.mli))
+       (impl (path typerep_obj.ml))))
+     (module
+      (obj_name typerep_lib__Typerepable)
+      (visibility public)
+      (source (path Typerepable) (impl (path typerepable.ml))))
+     (module
+      (obj_name typerep_lib__Variant_and_record_intf)
+      (visibility public)
+      (source
+       (path Variant_and_record_intf)
+       (impl (path variant_and_record_intf.ml))))))
+   (wrapped true))))

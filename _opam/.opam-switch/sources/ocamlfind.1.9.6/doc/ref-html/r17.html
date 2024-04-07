@@ -1,0 +1,2643 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>ocamlfind</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib Reference Manual"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Commands"
+HREF="p15.html"><LINK
+REL="PREVIOUS"
+TITLE="Commands"
+HREF="p15.html"><LINK
+REL="NEXT"
+TITLE="Files"
+HREF="p757.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib Reference Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="p15.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="p757.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="AEN17"
+></A
+>ocamlfind</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="OCAMLFIND"
+></A
+><H2
+>Name</H2
+>ocamlfind&nbsp;--&nbsp;[Command-line interface of the Package manager]</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN25"
+></A
+><H2
+>SYNOPSIS</H2
+><PRE
+CLASS="SYNOPSIS"
+>       <A
+HREF="r17.html#OCAMLFIND.QUERY"
+>ocamlfind query [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>package_name</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.OCAMLC"
+>ocamlfind ocamlc [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.OCAMLCP"
+>ocamlfind ocamlcp [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.OCAMLMKTOP"
+>ocamlfind ocamlmktop [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.OCAMLOPT"
+>ocamlfind ocamlopt [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.OCAMLDOC"
+>ocamlfind ocamldoc [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.OCAMLDEP"
+>ocamlfind ocamldep [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.OCAMLMKLIB"
+>ocamlfind ocamlmklib [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.OCAMLBROWSER"
+>ocamlfind ocamlbrowser [-help | other options]</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.INSTALL"
+>ocamlfind install [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>package_name</I
+></TT
+> <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.REMOVE"
+>ocamlfind remove [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>package_name</I
+></TT
+></A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.LIST"
+>ocamlfind lint <TT
+CLASS="REPLACEABLE"
+><I
+>META</I
+></TT
+></A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.LIST"
+>ocamlfind list [-describe]</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.PRINTPPX"
+>ocamlfind printppx [-help | other options] <TT
+CLASS="REPLACEABLE"
+><I
+>package_name</I
+></TT
+> ...</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.PRINTCONF"
+>ocamlfind printconf [ variable ]</A
+>
+   or: <A
+HREF="r17.html#OCAMLFIND.PKGCMD"
+>ocamlfind <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+>/<TT
+CLASS="REPLACEABLE"
+><I
+>command</I
+></TT
+> <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> ...</A
+>
+
+Optional toolchain selection by:
+  <A
+HREF="r17.html#OCAMLFIND.TOOLCHAIN"
+>ocamlfind -toolchain <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+> ...</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN62"
+></A
+><H2
+><A
+NAME="OCAMLFIND.QUERY"
+></A
+>
+  THE "query" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN65"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind query [ -predicates <TT
+CLASS="REPLACEABLE"
+><I
+>p</I
+></TT
+>  | 
+                  -format <TT
+CLASS="REPLACEABLE"
+><I
+>f</I
+></TT
+> |
+                  -long-format | -l |
+                  -i-format |
+                  -l-format | 
+                  -a-format |
+                  -o-format | 
+	          -p-format |
+                  -prefix <TT
+CLASS="REPLACEABLE"
+><I
+>p</I
+></TT
+> |
+                  -separator <TT
+CLASS="REPLACEABLE"
+><I
+>s</I
+></TT
+> | 
+                  -suffix <TT
+CLASS="REPLACEABLE"
+><I
+>s</I
+></TT
+> |
+                  -pp |
+                  -descendants | -d |
+                  -recursive  | -r
+                  -qe | -qo] <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN74"
+></A
+><H3
+>Description</H3
+><P
+> This command looks packages up, sorts them optionally, and
+prints attributes of them. If the option -recursive (short: -r) is not
+specified, exactly the packages given on the command line are looked
+up; if -recursive is present, the packages and all their ancestors, or
+if -descendants (short: -d) is present, too, all their descendants are printed.</P
+><P
+>Package lookup and the selection of the attributes of the packages can
+be modified by specifying predicates; without a -predicates option the
+empty set of predicates is used. Note that even the lookup is
+influenced by the set of actual predicates as the "requires" variables
+may be conditional.</P
+><P
+>What is printed about a package depends on the specified format; there
+are a number of options that modify the format. Some formats denote
+sets of values (such as -format %a), in which case multiple output
+records are printed for every package. (It is even possible to specify
+formats denoting the Cartesian product of sets, such as -format %a%o,
+but this does not make sense.) Before the first output record the
+prefix is printed, and the suffix after the last record. Between two
+records the separator is printed.</P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN79"
+></A
+><H3
+>Options</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>-predicates <TT
+CLASS="REPLACEABLE"
+><I
+>p</I
+></TT
+></DT
+><DD
+><P
+>Sets the set of actual predicates. The argument
+  <TT
+CLASS="REPLACEABLE"
+><I
+>p</I
+></TT
+> is a list of predicate names separated
+  by commas and/or whitespace. If multiple -predicates options are
+  given, the union of all specified sets is effectively used.</P
+></DD
+><DT
+>-format <TT
+CLASS="REPLACEABLE"
+><I
+>f</I
+></TT
+></DT
+><DD
+><P
+>Sets the format to the string
+  <TT
+CLASS="REPLACEABLE"
+><I
+>f</I
+></TT
+>. Characters preceded by a percent sign
+  are interpreted as placeholders; all other characters mean
+  themselves. The defined placeholders are listed below.
+  The default format is "%d".</P
+></DD
+><DT
+>-long-format or -l</DT
+><DD
+><P
+>Sets the format such that all relevant variables are printed.</P
+></DD
+><DT
+>-i-format</DT
+><DD
+><P
+>Same as -format "-I %d", i.e. directory options for ocamlc are printed.</P
+></DD
+><DT
+>-l-format</DT
+><DD
+><P
+>Same as -format "-ccopt -L%d", i.e. directory options for the
+linker backend are printed.</P
+></DD
+><DT
+>-a-format</DT
+><DD
+><P
+>Same as -format "%+a", i.e. archive file names are printed.</P
+></DD
+><DT
+>-o-format</DT
+><DD
+><P
+>Same as -format "%o", i.e. linker options are printed.</P
+></DD
+><DT
+>-p-format</DT
+><DD
+><P
+>Same as -format "%p", i.e. package names are printed.</P
+></DD
+><DT
+>-prefix <TT
+CLASS="REPLACEABLE"
+><I
+>p</I
+></TT
+></DT
+><DD
+><P
+>Sets the prefix that is printed before the first output record
+  to the given string. The default prefix is the empty string.</P
+></DD
+><DT
+>-suffix <TT
+CLASS="REPLACEABLE"
+><I
+>s</I
+></TT
+></DT
+><DD
+><P
+>Sets the suffix that is printed after the last output record
+  to the given string. The default suffix is the empty string.</P
+></DD
+><DT
+>-separator <TT
+CLASS="REPLACEABLE"
+><I
+>s</I
+></TT
+></DT
+><DD
+><P
+>Sets the separator that is printed between output records to
+  the given string. The default separator is a linefeed character.</P
+></DD
+><DT
+>-recursive or -r</DT
+><DD
+><P
+>Not only the packages given on the command line are queried
+  but also all ancestors or descendants. If the option -descendants is
+  specified, too, the descendants are printed, otherwise the
+  ancestors. The packages are topologically sorted.</P
+></DD
+><DT
+>-descendants -d</DT
+><DD
+><P
+>Instead of the ancestors the descendants of the
+  given packages are queried. This option implies <TT
+CLASS="LITERAL"
+>-recursive</TT
+>.</P
+></DD
+><DT
+>-pp</DT
+><DD
+><P
+>Query preprocessor packages (camlp4 syntax extensions). Normally
+it is not needed to set -predicates, except you need the archives (then add
+-predicates byte). This option implies <TT
+CLASS="LITERAL"
+>-recursive</TT
+>.</P
+></DD
+><DT
+>-qe</DT
+><DD
+><P
+>Do not print most errors to stderr, just set the exit code</P
+></DD
+><DT
+>-qo</DT
+><DD
+><P
+>Do not print the regular output.</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN155"
+></A
+><H3
+>Placeholders meaningful in the -format option</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>%%</DT
+><DD
+><P
+>Replaced by a single percent sign</P
+></DD
+><DT
+>%p</DT
+><DD
+><P
+>Replaced by the package name</P
+></DD
+><DT
+>%d</DT
+><DD
+><P
+>Replaced by the package directory</P
+></DD
+><DT
+>%m</DT
+><DD
+><P
+>Replaced by the path to the META file (new since findlib-1.6)</P
+></DD
+><DT
+>%D</DT
+><DD
+><P
+>Replaced by the package description</P
+></DD
+><DT
+>%v</DT
+><DD
+><P
+>Replaced by the version string</P
+></DD
+><DT
+>%a</DT
+><DD
+><P
+>Replaced by the archive filename. If there is more
+  than one archive, a separate output record is printed for every archive.</P
+></DD
+><DT
+>%+a</DT
+><DD
+><P
+>Like %a, but the filenames are converted to absolute
+  paths ("+" and "@" notations are resolved)</P
+></DD
+><DT
+>%A</DT
+><DD
+><P
+>Replaced by the list of archive filenames.</P
+></DD
+><DT
+>%+A</DT
+><DD
+><P
+>Like %A, but the filenames are converted to absolute
+  paths ("+" and "@" notations are resolved)</P
+></DD
+><DT
+>%o</DT
+><DD
+><P
+>Replaced by one linker option. If there is more than
+  one option, a separate output record is printed for every option.</P
+></DD
+><DT
+>%O</DT
+><DD
+><P
+>Replaced by the list of linker options.</P
+></DD
+><DT
+>%(<TT
+CLASS="REPLACEABLE"
+><I
+>property</I
+></TT
+>)</DT
+><DD
+><P
+>Replaced by the value of the property named in parentheses,
+or the empty string if not defined.</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN211"
+></A
+><H2
+><A
+NAME="OCAMLFIND.OCAMLC"
+></A
+>
+  <A
+NAME="OCAMLFIND.OCAMLCP"
+></A
+>
+  <A
+NAME="OCAMLFIND.OCAMLOPT"
+></A
+>
+  <A
+NAME="OCAMLFIND.OCAMLMKTOP"
+></A
+>
+  THE SUBCOMMANDS "ocamlc", "ocamlcp", "ocamlopt", and "ocamlmktop"</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN217"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ( ocamlc | ocamlcp | ocamlopt | ocamlmktop )
+          [ -package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+> |
+            -linkpkg |
+	    -predicates <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+> |
+            -dontlink <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+> |
+	    -syntax <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+> |
+            -ppopt <TT
+CLASS="REPLACEABLE"
+><I
+>camlp4-arg</I
+></TT
+> |
+            -ppxopt <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+>,<TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> |
+            -dllpath-pkg <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+> |
+            -dllpath-all |
+	    -passopt <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> |
+            -passrest <TT
+CLASS="REPLACEABLE"
+><I
+>arg...</I
+></TT
+> |
+            -only-show |
+	    <TT
+CLASS="REPLACEABLE"
+><I
+>standard-option</I
+></TT
+> ]
+          <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN232"
+></A
+><H3
+>Description</H3
+><P
+>These subcommands are drivers for the compilers with the same names,
+i.e. "ocamlfind ocamlc" is a driver for "ocamlc", and so on. The
+subcommands understand all documented options of the compilers (here
+called <TT
+CLASS="REPLACEABLE"
+><I
+>standard-options</I
+></TT
+>), but also a few
+more options. If these subcommands are invoked only with standard
+options, they behave as if the underlying compiler had been called
+directly. The extra options modify this.</P
+><P
+>Internally, these subcommands transform the given list of options and
+file arguments into an invocation of the driven compiler. This
+transformation only adds options and files, and the relative order of
+the options and files passed directly is unchanged.</P
+><P
+>If there are -package options, additional directory search specifiers
+will be included ("-I", and "-ccopt -I"), such that files of all named
+packages and all ancestors can be found.</P
+><P
+>The -linkpkg option causes that the packages listed in the -package
+options and all necessary ancestors are linked in. This means that the
+archive files implementing the packages are inserted into the list of
+file arguments.</P
+><P
+>As the package database is queried a set of predicates is needed. Most
+predicates are set automatically, see below, but additional predicates
+can be given by a -predicates option.</P
+><P
+>If there is a <TT
+CLASS="LITERAL"
+>-syntax</TT
+> option, the drivers assume that
+a preprocessor is to be used. In this case, the preprocessor command
+is built first in a preprocessor stage, and this command is passed to the
+compiler using the <TT
+CLASS="LITERAL"
+>-pp</TT
+> option. The set of predicates
+in the preprocessor stage is different from the set in the compiler/linker
+stage.</P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN243"
+></A
+><H3
+>Options for compiling and linking</H3
+><P
+>Here, only the additional options not interpreted by the compiler but
+by the driver itself, and options with additional effects are explained.
+Some options are only meaningful for the preprocessor call, and are
+explained below.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>-package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+></DT
+><DD
+><P
+>Adds the listed package names to the set of included
+  packages. The package names may be separated by commas and/or
+  whitespace. In the transformed command, for every package of the set
+  of included packages and for any ancestor a directory search option
+  is inserted after the already given options. This means that
+  "-I" and "-ccopt -I" options are added for every package directory.
+  </P
+></DD
+><DT
+>-linkpkg</DT
+><DD
+><P
+>Causes that in the transformed command all archives
+  of the packages specified by -packages and all their ancestors are
+  added to the file arguments. More precisely, these archives are
+  inserted before the first given file argument. Furthermore, "-ccopt
+  -L" options for all package directories, and the linker options of
+  the selected packages are added, too. Note that the archives are
+  inserted in topological order while the linker options are added in
+  reverse toplogical order.</P
+></DD
+><DT
+>-predicates <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+></DT
+><DD
+><P
+>Adds the given predicates to the set of actual
+  predicates. The predicates must be separated by commas and/or
+  whitespace. </P
+></DD
+><DT
+>-dontlink <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+></DT
+><DD
+><P
+>This option modifies the behaviour of
+  -linkpkg. Packages specified here and all ancestors are not linked
+  in. Again the packages are separated by commas and/or whitespace.</P
+></DD
+><DT
+>-dllpath-pkg <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+></DT
+><DD
+><P
+>For these packages <TT
+CLASS="LITERAL"
+>-dllpath</TT
+> options
+  are added to the compiler command. This may be useful when the ld.conf
+  file is not properly configured.</P
+></DD
+><DT
+>-dllpath-all</DT
+><DD
+><P
+>For all linked packages <TT
+CLASS="LITERAL"
+>-dllpath</TT
+> options
+  are added to the compiler command. This may be useful when the ld.conf
+  file is not properly configured.</P
+></DD
+><DT
+>-passopt <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+></DT
+><DD
+><P
+>The argument <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> is
+  passed directly to the underlying compiler. This is needed to
+  specify undocumented compiler options.</P
+></DD
+><DT
+>-passrest <TT
+CLASS="REPLACEABLE"
+><I
+>arg...</I
+></TT
+></DT
+><DD
+><P
+>All following arguments <TT
+CLASS="REPLACEABLE"
+><I
+>arg...</I
+></TT
+> are
+  passed directly to the underlying compiler. This is needed to
+  specify undocumented compiler options.</P
+></DD
+><DT
+>-only-show</DT
+><DD
+><P
+>Only prints the constructed command (ocamlc/ocamlopt) to
+  stdout, but does not execute the command. (This is for the unlikely event
+  that you need a wrapper around ocamlfind.)</P
+></DD
+><DT
+>-verbose</DT
+><DD
+><P
+>This standard option is interpreted by the driver, too.</P
+></DD
+><DT
+>-thread</DT
+><DD
+><P
+>This standard option causes that the predicate "mt"
+  is added to the set of actual predicates. If POSIX threads are available,
+  the predicate "mt_posix" is selected, too. If only VM threads are
+  available, the predicate "mt_vm" is included into the set, and the
+  compiler switch is changed into -vmthread.</P
+><P
+>Note that the presence of the "mt" predicate triggers special
+fixup of the dependency graph (see below).</P
+></DD
+><DT
+>-vmthread</DT
+><DD
+><P
+>This standard option causes that the predicates "mt"
+  and "mt_vm" are added to the set of actual predicates.</P
+><P
+>Note that the presence of the "mt" predicate triggers special
+fixup of the dependency graph (see below).</P
+></DD
+><DT
+>-p</DT
+><DD
+><P
+>This standard option of "ocamlopt" causes that the
+  predicate "gprof" is added to the set of actual predicates.</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN311"
+></A
+><H3
+>Options for preprocessing</H3
+><P
+>The options relevant for the preprocessor are the following:</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>-package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+></DT
+><DD
+><P
+>These packages are considered while looking up the
+  preprocessor arguments. (It does not cause problems that the same
+  -package option is used for this purpose, because the set of predicates
+  is different.) It is recommended to mention at least <TT
+CLASS="LITERAL"
+>camlp4</TT
+>
+  here if the preprocessor is going to be used.
+  </P
+></DD
+><DT
+>-syntax <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+></DT
+><DD
+><P
+>These predicates are assumed to be true in addition
+  to the standard preprocessor predicates. See below for a list.</P
+></DD
+><DT
+>-ppopt <TT
+CLASS="REPLACEABLE"
+><I
+>camlp4-arg</I
+></TT
+></DT
+><DD
+><P
+>This argument is passed to the camlp4 call.
+  </P
+></DD
+><DT
+>-ppxopt <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+>,<TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+></DT
+><DD
+><P
+>Add <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> to the ppx
+      preprocessor invocation specified via the "ppx" property in
+      the META file of <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+>.
+  </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN339"
+></A
+><H3
+>Predicates for compiling and linking</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>byte</DT
+><DD
+><P
+>The "byte" predicate means that one of the bytecode compilers is
+used. It is automatically included into the predicate set if the
+"ocamlc", "ocamlcp", or "ocamlmktop" compiler is used.</P
+></DD
+><DT
+>native</DT
+><DD
+><P
+>The "native" predicate means that the native compiler is used. It is
+automatically included into the predicate set if the "ocamlopt"
+compiler is used.</P
+></DD
+><DT
+>toploop</DT
+><DD
+><P
+>The "toploop" predicate means that the toploop is available in the
+linked program. This predicate is only set when the toploop is actually
+being executed, not when the toploop is created (this changed in version
+1.0.4 of findlib).</P
+></DD
+><DT
+>create_toploop</DT
+><DD
+><P
+>This predicate means that a toploop is being created (using
+ocamlmktop).</P
+></DD
+><DT
+>mt</DT
+><DD
+><P
+>The "mt" predicate means that the program is multi-threaded. It is
+automatically included into the predicate set if the -thread option is
+given. </P
+></DD
+><DT
+>mt_posix</DT
+><DD
+><P
+>The "mt_posix" predicate means that in the case "mt" is set, too, the
+POSIX libraries are used to implement threads. "mt_posix" is automatically
+included into the predicate set if the variable "type_of_threads" in the
+META description of the "threads" package has the value "posix". This
+is normally the case if "findlib" is configured for POSIX threads.</P
+></DD
+><DT
+>mt_vm</DT
+><DD
+><P
+>The "mt_vm" predicate means that in the case "mt" is set, too, the
+VM thread emulation is used to implement multi-threading.</P
+></DD
+><DT
+>gprof</DT
+><DD
+><P
+>The "gprof" predicate means that in the case "native" is set, too, the
+program is compiled for profiling. It is automatically included into
+the predicate set if "ocamlopt" is used and the -p option is in
+effect.</P
+></DD
+><DT
+>autolink</DT
+><DD
+><P
+>The "autolink" predicate means that ocamlc is able to perform automatic
+linking. It is automatically included into the predicate set if ocamlc
+knows automatic linking (from version 3.00), but it is not set if the
+-noautolink option is set.</P
+></DD
+><DT
+>syntax</DT
+><DD
+><P
+>This predicate is set if there is a <TT
+CLASS="LITERAL"
+>-syntax</TT
+>
+  option. It is set both for the preprocessor and the compiler/linker stage,
+  and it can be used to find out whether the preprocessor is enabled or not.
+  </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN383"
+></A
+><H3
+>Predicates for preprocessing</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>preprocessor</DT
+><DD
+><P
+>This predicate is always set while looking up the
+  preprocessor arguments. It can be used to distinguish between the
+  preprocessor stage and the compiler/linker stage.</P
+></DD
+><DT
+>syntax</DT
+><DD
+><P
+>This predicate is set if there is a <TT
+CLASS="LITERAL"
+>-syntax</TT
+>
+  option. It is set both for the preprocessor and the compiler/linker stage,
+  and it can be used to find out whether the preprocessor is enabled or not.
+  </P
+></DD
+><DT
+>camlp4o</DT
+><DD
+><P
+>This is the reserved predicate for the standard OCaml syntax.
+  It can be used in the <TT
+CLASS="LITERAL"
+>-syntax</TT
+> predicate list.
+  </P
+></DD
+><DT
+>camlp4r</DT
+><DD
+><P
+>This is the reserved predicate for the revised OCaml syntax.
+  It can be used in the <TT
+CLASS="LITERAL"
+>-syntax</TT
+> predicate list.
+  </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN405"
+></A
+><H3
+>Special behaviour of "ocamlmktop"</H3
+><P
+> As there is a special module <TT
+CLASS="LITERAL"
+>Topfind</TT
+> that
+supports loading of packages in scripts, the "ocamlmktop" subcommand
+can add initialization code for this module.  This extra code is
+linked into the executable if "findlib" is in the set of effectively
+linked packages.  </P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN409"
+></A
+><H3
+>Fixup of the dependency graph for multi-threading</H3
+><P
+>For a number of reasons the presence of the "mt" predicate triggers
+that (1) the package "threads" is added to the list of required packages
+and (2) the package "threads" becomes prerequisite of all other packages
+(except of itself and a few hardcoded exceptions). The effect is that
+the options -thread and -vmthread automatically select the "threads"
+package, and that "threads" is inserted at the right position in the
+package list.</P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN412"
+></A
+><H3
+>Extended file naming</H3
+><P
+>At a number of places one can not only refer to files by absolute
+or relative path names, but also by extended names. These have two
+major forms: "+<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>"
+refers to the subdirectory <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+> of the
+standard library directory, and "@<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>"
+refers to the package directory of the package <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>.
+Both forms can be continued by a path, e.g. "@netstring/netstring_top.cma".</P
+><P
+>You can use extended names: (1) With <TT
+CLASS="LITERAL"
+>-I</TT
+> options,
+(2) as normal file arguments of the compiler, (3) in the 
+"archive" property of packages.</P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN421"
+></A
+><H3
+>How to set the names of the compiler executables</H3
+><P
+> Normally, the OCaml bytecode compiler can be called under the name
+<TT
+CLASS="LITERAL"
+>ocamlc</TT
+>. However, this is not always true; sometimes a
+different name is chosen.</P
+><P
+> You can instruct ocamlfind to call executables with other names than
+<TT
+CLASS="LITERAL"
+>ocamlc</TT
+>, <TT
+CLASS="LITERAL"
+>ocamlopt</TT
+>,
+<TT
+CLASS="LITERAL"
+>ocamlmktop</TT
+>, and <TT
+CLASS="LITERAL"
+>ocamlcp</TT
+>. If present,
+the environment variable <TT
+CLASS="LITERAL"
+>OCAMLFIND_COMMANDS</TT
+> is interpreted
+as a mapping from the standard names to the actual names of the executables. It
+must have the following format:
+
+<PRE
+CLASS="PROGRAMLISTING"
+><TT
+CLASS="REPLACEABLE"
+><I
+>standardname1</I
+></TT
+>=<TT
+CLASS="REPLACEABLE"
+><I
+>actualname1</I
+></TT
+> <TT
+CLASS="REPLACEABLE"
+><I
+>standardname2</I
+></TT
+>=<TT
+CLASS="REPLACEABLE"
+><I
+>actualname2</I
+></TT
+> ...</PRE
+></P
+><P
+>Example: You may set <TT
+CLASS="LITERAL"
+>OCAMLFIND_COMMANDS</TT
+> as follows:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>OCAMLFIND_COMMANDS='ocamlc=ocamlc-3.00 ocamlopt=ocamlopt-3.00'
+export OCAMLFIND_COMMANDS</PRE
+></P
+><P
+>Alternatively, you can change the configuration file
+<A
+HREF="r865.html#FINDLIB.CONF"
+>findlib.conf</A
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN441"
+></A
+><H2
+><A
+NAME="OCAMLFIND.OCAMLMKLIB"
+></A
+>
+  THE SUBCOMMAND "ocamlmklib"</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN444"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlmklib
+          [ -package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+> |
+	    -predicates <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+> |
+            -dllpath-pkg <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+> |
+            -dllpath-all |
+	    -passopt <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> |
+            -passrest <TT
+CLASS="REPLACEABLE"
+><I
+>arg...</I
+></TT
+> |
+	    <TT
+CLASS="REPLACEABLE"
+><I
+>standard-option</I
+></TT
+> ]
+            <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN454"
+></A
+><H3
+>Description</H3
+><P
+>This is a wrapper around ocamlmklib, and creates library archives and
+DLLs. In addition to the standard options, one can use -package to
+add the search path of packages. Note that no predicates are set by default -
+the wrapper does not know whether this is about byte or native code linking.</P
+><P
+>This wrapper is mostly provided for completeness.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN458"
+></A
+><H2
+><A
+NAME="OCAMLFIND.OCAMLDEP"
+></A
+>
+  THE "ocamldep" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN461"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamldep [-package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+> |
+                    -syntax <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+> |
+                    -ppopt <TT
+CLASS="REPLACEABLE"
+><I
+>camlp4-arg</I
+></TT
+> |
+                    -passopt <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> |
+                    -passrest <TT
+CLASS="REPLACEABLE"
+><I
+>arg...</I
+></TT
+> |
+                    -verbose |
+                    <TT
+CLASS="REPLACEABLE"
+><I
+>standard-option</I
+></TT
+>] <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN471"
+></A
+><H3
+>Description</H3
+><P
+>This command is a driver for the tool <TT
+CLASS="LITERAL"
+>ocamldep</TT
+> of the
+OCaml distribution. This driver is only useful in conjunction with
+the preprocessor camlp4; otherwise it does not provide more functions
+than <TT
+CLASS="LITERAL"
+>ocamldep</TT
+> itself.</P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN476"
+></A
+><H3
+>Options</H3
+><P
+>Here, only the additional options not interpreted by <TT
+CLASS="LITERAL"
+>ocamldep</TT
+>
+but
+by the driver itself, and options with additional effects are explained.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>-package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+></DT
+><DD
+><P
+>The packages named here are only used to look up the
+preprocessor options. The package <TT
+CLASS="LITERAL"
+>camlp4</TT
+> should be
+specified anyway, but further packages that add capabilities to the
+preprocessor can also be passed.</P
+></DD
+><DT
+>-syntax <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+></DT
+><DD
+><P
+>The predicates that are in effect during the look-up
+of the preprocessor options. At least, either <TT
+CLASS="LITERAL"
+>camlp4o</TT
+>
+(selecting the normal syntax), or <TT
+CLASS="LITERAL"
+>camlp4r</TT
+> (selecting
+the revised syntax) should be specified.</P
+></DD
+><DT
+>-ppopt <TT
+CLASS="REPLACEABLE"
+><I
+>camlp4-arg</I
+></TT
+></DT
+><DD
+><P
+>An option that is passed through to the camlp4 call.</P
+></DD
+><DT
+>-passopt <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+></DT
+><DD
+><P
+>An option that is passed through to the ocamldep call.</P
+></DD
+><DT
+>-passrest <TT
+CLASS="REPLACEABLE"
+><I
+>arg...</I
+></TT
+></DT
+><DD
+><P
+>All further arguments are passed down to ocamldep
+  unprocessed</P
+></DD
+><DT
+>-verbose</DT
+><DD
+><P
+>Displays the resulting ocamldep command (for debugging)</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN513"
+></A
+><H3
+>Example</H3
+><P
+>A typical way of using this driver:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamldep -package camlp4,xstrp4 -syntax camlp4r file1.ml file2.ml</PRE
+>
+
+This command outputs the dependencies of <TT
+CLASS="LITERAL"
+>file1.ml</TT
+> and
+<TT
+CLASS="LITERAL"
+>file2.ml</TT
+>, although these modules make use of the
+syntax extensions provided by <TT
+CLASS="LITERAL"
+>xstrp4</TT
+> and are written
+in revised syntax.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN520"
+></A
+><H2
+><A
+NAME="OCAMLFIND.OCAMLBROWSER"
+></A
+>
+  THE "ocamlbrowser" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN523"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlbrowser [-package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+> |
+                        -all |
+                        -passopt <TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> 
+                        -passrest ]</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN528"
+></A
+><H3
+>Description</H3
+><P
+>This driver calls the <TT
+CLASS="LITERAL"
+>ocamlbrowser</TT
+> with package options.
+With <TT
+CLASS="LITERAL"
+>-package</TT
+>, the specified packages are included into
+the search path of the browser, and the modules of these packages become
+visible (in addition to the standard library). The option <TT
+CLASS="LITERAL"
+>-all</TT
+> causes that all packages are selected that are managed by findlib.</P
+><P
+>As for other drivers, the options <TT
+CLASS="LITERAL"
+>-passopt</TT
+> and
+<TT
+CLASS="LITERAL"
+>-passrest</TT
+> can be used
+to pass arguments directly to the <TT
+CLASS="LITERAL"
+>ocamlbrowser</TT
+> program.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN538"
+></A
+><H2
+><A
+NAME="OCAMLFIND.OCAMLDOC"
+></A
+>
+  THE SUBCOMMAND "ocamldoc"</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN541"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamldoc
+          [ -package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+> |
+	    -predicates <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+> |
+	    -syntax <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+> |
+            -ppopt <TT
+CLASS="REPLACEABLE"
+><I
+>camlp4-arg</I
+></TT
+> |
+	    <TT
+CLASS="REPLACEABLE"
+><I
+>standard-option</I
+></TT
+> ]
+          <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN550"
+></A
+><H3
+>Description</H3
+><P
+>This subcommand is a driver for ocamldoc. It undestands all options
+ocamldoc supports plus the mentioned findlib options. Basically,
+the -package options are translated into -I options, and the selected
+syntax options are translated into camlp4 options.</P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN553"
+></A
+><H3
+>Options</H3
+><P
+>Here, only the additional options not interpreted by <TT
+CLASS="LITERAL"
+>ocamldep</TT
+>
+but
+by the driver itself, and options with additional effects are explained.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>-package <TT
+CLASS="REPLACEABLE"
+><I
+>package-name-list</I
+></TT
+></DT
+><DD
+><P
+>Adds the listed package names to the set of included
+  packages. The package names may be separated by commas and/or
+  whitespace. In the transformed command, for every package of the set
+  of included packages and for any ancestor a directory search option
+  is inserted after the already given options. This means that
+  "-I" options are added for every package directory.
+  </P
+></DD
+><DT
+>-predicates <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+></DT
+><DD
+><P
+>Adds the given predicates to the set of actual
+  predicates. The predicates must be separated by commas and/or
+  whitespace. </P
+></DD
+><DT
+>-syntax <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+></DT
+><DD
+><P
+>The predicates that are in effect during the look-up
+of the preprocessor options. At least, either <TT
+CLASS="LITERAL"
+>camlp4o</TT
+>
+(selecting the normal syntax), or <TT
+CLASS="LITERAL"
+>camlp4r</TT
+> (selecting
+the revised syntax) should be specified.</P
+></DD
+><DT
+>-ppopt <TT
+CLASS="REPLACEABLE"
+><I
+>camlp4-arg</I
+></TT
+></DT
+><DD
+><P
+>An option that is passed through to the camlp4 call.</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN580"
+></A
+><H2
+><A
+NAME="OCAMLFIND.INSTALL"
+></A
+>
+  THE "install" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN583"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind install [ -destdir <TT
+CLASS="REPLACEABLE"
+><I
+>directory</I
+></TT
+> ]
+                  [ -metadir <TT
+CLASS="REPLACEABLE"
+><I
+>directory</I
+></TT
+> ]
+	          [ -ldconf <TT
+CLASS="REPLACEABLE"
+><I
+>path</I
+></TT
+> ]
+                  [ -dont-add-directory-directive ]
+                  [ -patch-version <TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+> ]
+                  [ -patch-rmpkg <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+> ]
+                  [ -patch-archives ]
+	          [ -dll ] [ -nodll ] [ -optional ] [ -add ]
+                  <TT
+CLASS="REPLACEABLE"
+><I
+>package_name</I
+></TT
+> <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN593"
+></A
+><H3
+>Description</H3
+><P
+>This subcommand installs a new package either at the default location
+(see the variable <TT
+CLASS="LITERAL"
+>destdir</TT
+> of
+<A
+HREF="r865.html#FINDLIB.CONF"
+>findlib.conf</A
+>), or in the directory
+specified by the -destdir option. This
+means that a new package directory is created and that the files on
+the command line are copied to this directory. It is required that a
+<TT
+CLASS="LITERAL"
+>META</TT
+> file is one of the files copied to the target
+directory.</P
+><P
+>Note that package directories should be flat (no
+subdirectories). Existing packages are never overwritten.</P
+><P
+>It is possible to have a separate directory for all the META files. If
+you want that, you have either to set the variable
+<TT
+CLASS="LITERAL"
+>metadir</TT
+> of 
+<A
+HREF="r865.html#FINDLIB.CONF"
+>findlib.conf</A
+>, or to specify the
+-metadir option. In this case, the file called META is copied to the
+specified directory and renamed to META.p (where p is the package
+name), while all the other files are copied to the package
+directory as usual. Furthermore, the META file is modified such that the
+<TT
+CLASS="LITERAL"
+>directory</TT
+> variable contains the path of the package
+directory. </P
+><P
+> 
+The option -dont-add-directory-directive prevents the installer from
+adding a <TT
+CLASS="LITERAL"
+>directory</TT
+> variable.</P
+><P
+>If there are files ending in the suffixes <TT
+CLASS="LITERAL"
+>.so</TT
+> or
+<TT
+CLASS="LITERAL"
+>.dll</TT
+>, the package directory will be added to the
+DLL configuration file <TT
+CLASS="LITERAL"
+>ld.conf</TT
+>, such that the dynamic
+loader can find the DLL. The location of this file can be overriden by
+the -ldconf option. To turn this feature off, use "-ldconf ignore";
+this causes that the ld.conf file is not modified.</P
+><P
+>However, if there is a stublibs directory in site-lib, the DLLs are not
+installed in the package directory, but in this directory that is
+shared by all packages that are installed at the same location.
+In this case, the configuration file <TT
+CLASS="LITERAL"
+>ld.conf</TT
+> is
+not modified, so you do not need to say "-ldconf ignore" if you
+prefer this style of installation.</P
+><P
+>The options -dll and -nodll can be used to control exactly which files
+are considered as DLLs and which not. By default, the mentioned
+suffix rule is in effect: files ending in ".so" (Unix) or ".dll"
+(Windows) are DLLs. The switch -dll changes this, and all following
+files are considered as DLLs, regardless of their suffix. The switch 
+-nodll expresses that the following files are not DLLs, even if they
+have a DLL-like suffix. For example, in the following call the files
+f1 and f2 are handled by the suffix rule; f3 and f4 are DLLs anyway;
+and f5 and f6 are not DLLs:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind install p f1 f2 -dll f3 f4 -nodll f5 f6</PRE
+></P
+><P
+>The switch -optional declares that all following files are optional,
+i.e. the command will not fail if files do not exist.</P
+><P
+>The -patch options may be used to change the contents of the META files
+while it is being installed. The option -patch-version changes the
+contents of the top-level "version" variable. The option -patch-rmpkg
+removes the given subpackage. The option -patch-archives is experimental,
+in particular it removes all non-existing files from "archive" variables,
+and even whole subpackages if the archives are missing.</P
+><P
+>The effect of -add is to add further files to an already installed
+packages.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN617"
+></A
+><H2
+><A
+NAME="OCAMLFIND.REMOVE"
+></A
+>
+  THE "remove" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN620"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind remove [ -destdir <TT
+CLASS="REPLACEABLE"
+><I
+>directory</I
+></TT
+> ]
+                 [ -metadir <TT
+CLASS="REPLACEABLE"
+><I
+>directory</I
+></TT
+> ]
+                 [ -ldconf <TT
+CLASS="REPLACEABLE"
+><I
+>path</I
+></TT
+> ]
+                 <TT
+CLASS="REPLACEABLE"
+><I
+>package_name</I
+></TT
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN627"
+></A
+><H3
+>Description</H3
+><P
+>The package will removed if it is installed at the default location 
+(see the variable <TT
+CLASS="LITERAL"
+>destdir</TT
+> of
+<A
+HREF="r865.html#FINDLIB.CONF"
+>findlib.conf</A
+>). If the package
+resides at a different location, it will not be removed by default;
+however, you can pass an alternate directory for packages by the
+-destdir option. (This must be the same directory as specified at
+installation time.)</P
+><P
+>Note that package directories should be flat (no subdirectories); this
+subcommand cannot remove deep package directories. </P
+><P
+>If you have a separate directory for META files, you must either
+configure this directory by the <TT
+CLASS="LITERAL"
+>metadir</TT
+> variable
+of <A
+HREF="r865.html#FINDLIB.CONF"
+>findlib.conf</A
+>, or by specifying
+the -metadir option.</P
+><P
+> 
+The command does not fail if the package and/or the META
+file cannot be located. You will get a warning only in this case.</P
+><P
+>If the package directory is mentioned in the <TT
+CLASS="LITERAL"
+>ld.conf</TT
+>
+configuration file for DLLs, it will be tried to remove this entry
+from the file. The location of this file can be overriden by
+the -ldconf option. To turn this feature off, use "-ldconf ignore";
+this causes that the ld.conf file is not modified.</P
+><P
+>If there is a stublibs directory, it is checked whether the package
+owns any of the files in this directory, and the owned files will
+be deleted.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN640"
+></A
+><H2
+><A
+NAME="OCAMLFIND.LIST"
+></A
+>
+  THE "list" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN643"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind list [-describe]</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN646"
+></A
+><H3
+>Description</H3
+><P
+>This command lists all packages in the search path. The option -describe
+outputs the package descriptions, too.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN649"
+></A
+><H2
+><A
+NAME="OCAMLFIND.PRINTPPX"
+></A
+>
+  THE "printppx" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN652"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind printppx
+          [ -predicates <TT
+CLASS="REPLACEABLE"
+><I
+>pred-name-list</I
+></TT
+> ]
+          [ -ppxopt <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+>,<TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+> ]
+          <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN659"
+></A
+><H3
+>Description</H3
+><P
+>This command prints the ppx preprocessor options as they would
+occur in an OCaml compiler invocation for the packages listed in
+the command. The output includes one "-ppx" option for each
+preprocessor. The possible options have the same meaning as for
+"ocamlfind ocamlc". The option "-predicates" adds assumed
+predicates and
+"-ppxopt <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+>,<TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+>"
+adds "<TT
+CLASS="REPLACEABLE"
+><I
+>arg</I
+></TT
+>" to the ppx invocation of
+package <TT
+CLASS="REPLACEABLE"
+><I
+>package</I
+></TT
+>.</P
+><P
+>The output of "ocamlfind printppx" will contain quotes
+"<TT
+CLASS="LITERAL"
+>"</TT
+>" for ppx commands that contain
+space-separated arguments. In this case <TT
+CLASS="LITERAL"
+>$(ocamlfind
+printppx ...)</TT
+> won't work as naively expected, because
+many shells (including bash and dash) perform field splitting on
+the result of command substitutions without honoring quotes.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN669"
+></A
+><H2
+><A
+NAME="OCAMLFIND.LINT"
+></A
+>
+  THE "lint" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN672"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind lint <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN676"
+></A
+><H3
+>Description</H3
+><P
+>Checks the META file, and reports possible problems.</P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN679"
+></A
+><H2
+><A
+NAME="OCAMLFIND.PRINTCONF"
+></A
+>
+  THE "printconf" SUBCOMMAND</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN682"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind printconf [ conf | path | destdir | metadir | metapath | stdlib | ldconf ]</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN685"
+></A
+><H3
+>Description</H3
+><P
+>This command prints the effective configuration after reading the
+configuration file, and after applying the various environment
+variables overriding settings. When called without arguments, the command
+prints all configuration options in a human-readable form. When called
+with an argument, only the value of the requested option is printed without
+explaining texts:</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="LITERAL"
+>conf</TT
+></DT
+><DD
+><P
+>Prints the location of the configuration file findlib.conf
+  </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>path</TT
+></DT
+><DD
+><P
+>Prints the search path for packages. The members of the
+  path are separated by linefeeds.</P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>destdir</TT
+></DT
+><DD
+><P
+>Prints the location where package are installed and
+  removed by default.</P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>metadir</TT
+></DT
+><DD
+><P
+>Prints the location where META files are installed and
+  removed (if the alternative layout is used).</P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>metapath</TT
+></DT
+><DD
+><P
+>Prints the path where the META file is installed for
+a fictive package. The name of the package is marked with '%s' in the
+path. For instance, this command could output "/some/path/%s/META" or
+"/some/path/META.%s", depending on the layout.</P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>stdlib</TT
+></DT
+><DD
+><P
+>Prints the location of the standard library.</P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>ldconf</TT
+></DT
+><DD
+><P
+>Prints the location of the ld.conf file</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN724"
+></A
+><H2
+><A
+NAME="OCAMLFIND.PKGCMD"
+></A
+>
+  THE SUBCOMMAND CALLING PACKAGE PROGRAMS</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN727"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind <TT
+CLASS="REPLACEABLE"
+><I
+>pkg</I
+></TT
+>/<TT
+CLASS="REPLACEABLE"
+><I
+>cmd</I
+></TT
+> <TT
+CLASS="REPLACEABLE"
+><I
+>argument</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN733"
+></A
+><H3
+>Description</H3
+><P
+>This subcommand is useful to call programs that are installed in
+package directories. It looks up the directory for 
+<TT
+CLASS="REPLACEABLE"
+><I
+>pkg</I
+></TT
+> and calls the command named
+<TT
+CLASS="REPLACEABLE"
+><I
+>cmd</I
+></TT
+> in this directory. The remaining arguments
+are passed to this command.</P
+><P
+>argv(0) contains the absolute path to the command, and argv(1) and
+the following argv entries contain the arguments. The working directory
+is not changed.</P
+><P
+>Example: To call the program "x" that is installed in package "p",
+with arguments "y" and "z", run:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind p/x y z</PRE
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN741"
+></A
+><H2
+>  CONFIGURATION FILE, ENVIRONMENT VARIABLES</H2
+><P
+> The configuration file and environment variables are documented
+in the manual page for
+ <A
+HREF="r865.html#FINDLIB.CONF"
+>findlib.conf</A
+>.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN745"
+></A
+><H2
+><A
+NAME="OCAMLFIND.TOOLCHAIN"
+></A
+>
+  HOW TO SET THE TOOLCHAIN</H2
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN748"
+></A
+><H3
+>Synopsis</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind -toolchain <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+> ...</PRE
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN752"
+></A
+><H3
+>Description</H3
+><P
+>The -toolchain option can be given before any other command,
+e.g.
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind -toolchain foo ocamlc -c file.ml</PRE
+>
+compiles file.ml with toolchain "foo". By selecting toolchains one
+can switch to different command sets. For instance, the toolchain
+"foo" may consist of a patched ocamlc compiler. 
+See <A
+HREF="r865.html#FINDLIB.CONF"
+>findlib.conf</A
+> how to
+configure toolchains.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="p15.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="p757.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Commands</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p15.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Files</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

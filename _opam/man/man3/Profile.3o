@@ -1,0 +1,131 @@
+.TH "Profile" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Profile \- Compiler performance recording
+.SH Module
+Module   Profile
+.SH Documentation
+.sp
+Module
+.BI "Profile"
+ : 
+.B sig end
+
+.sp
+Compiler performance recording
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type file 
+= 
+.B string
+
+.sp
+
+.sp
+
+.I val reset 
+: 
+.B unit -> unit
+.sp
+erase all recorded profile information
+
+.sp
+
+.I val record_call 
+: 
+.B ?accumulate:bool -> string -> (unit -> 'a) -> 'a
+.sp
+
+.ft B
+record_call pass f
+.ft R
+calls 
+.ft B
+f
+.ft R
+and records its profile information\&.
+
+.sp
+
+.I val record 
+: 
+.B ?accumulate:bool -> string -> ('a -> 'b) -> 'a -> 'b
+.sp
+
+.ft B
+record pass f arg
+.ft R
+records the profile information of 
+.ft B
+f arg
+.ft R
+
+
+.sp
+.I type column 
+= 
+.B [ `Abs_top_heap | `Alloc | `Time | `Top_heap ]
+
+.sp
+
+.sp
+
+.I val print 
+: 
+.B Format.formatter -> column list -> unit
+.sp
+Prints the selected recorded profiling information to the formatter\&.
+
+.sp
+
+.PP
+Command line flags
+.PP
+
+.I val options_doc 
+: 
+.B string
+.sp
+
+.sp
+
+.I val all_columns 
+: 
+.B column list
+.sp
+
+.sp
+
+.PP
+A few pass names that are needed in several places, and shared to
+avoid typos\&.
+.PP
+
+.I val generate 
+: 
+.B string
+.sp
+
+.sp
+
+.I val transl 
+: 
+.B string
+.sp
+
+.sp
+
+.I val typing 
+: 
+.B string
+.sp
+
+.sp

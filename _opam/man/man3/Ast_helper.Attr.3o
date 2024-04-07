@@ -1,0 +1,28 @@
+.TH "Ast_helper.Attr" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_helper.Attr \-  Attributes 
+.SH Module
+Module   Ast_helper.Attr
+.SH Documentation
+.sp
+Module
+.BI "Attr"
+ : 
+.B sig end
+
+.sp
+.SS Attributes
+
+
+.sp
+
+.sp
+.sp
+
+.I val mk 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   Ast_helper.str -> Parsetree.payload -> Parsetree.attribute
+.sp
+
+.sp

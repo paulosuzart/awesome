@@ -1,0 +1,7 @@
+version = "0.4.0"
+description = ""
+requires = ""
+archive(byte) = "domain_name.cma"
+archive(native) = "domain_name.cmxa"
+plugin(byte) = "domain_name.cma"
+plugin(native) = "domain_name.cmxs"

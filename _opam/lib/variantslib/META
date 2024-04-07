@@ -1,0 +1,7 @@
+version = "v0.16.0"
+description = ""
+requires = "base"
+archive(byte) = "variantslib.cma"
+archive(native) = "variantslib.cmxa"
+plugin(byte) = "variantslib.cma"
+plugin(native) = "variantslib.cmxs"

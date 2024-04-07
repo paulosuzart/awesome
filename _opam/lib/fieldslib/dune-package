@@ -1,0 +1,32 @@
+(lang dune 3.15)
+(name fieldslib)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/fieldslib))
+(files
+ (lib
+  (META
+   dune-package
+   fieldslib.a
+   fieldslib.cma
+   fieldslib.cmi
+   fieldslib.cmt
+   fieldslib.cmx
+   fieldslib.cmxa
+   fieldslib.ml
+   opam))
+ (libexec (fieldslib.cmxs))
+ (doc (CHANGES.md LICENSE.md)))
+(library
+ (name fieldslib)
+ (kind normal)
+ (archives (byte fieldslib.cma) (native fieldslib.cmxa))
+ (plugins (byte fieldslib.cma) (native fieldslib.cmxs))
+ (native_archives fieldslib.a)
+ (requires base)
+ (main_module_name Fieldslib)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name fieldslib)
+   (visibility public)
+   (source (path Fieldslib) (impl (path fieldslib.ml))))))

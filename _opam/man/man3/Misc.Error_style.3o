@@ -1,0 +1,33 @@
+.TH "Misc.Error_style" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.Error_style \- no description
+.SH Module
+Module   Misc.Error_style
+.SH Documentation
+.sp
+Module
+.BI "Error_style"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type setting 
+=
+ | Contextual
+ | Short
+ 
+.sp
+
+.sp
+
+.I val default_setting 
+: 
+.B setting
+.sp
+
+.sp

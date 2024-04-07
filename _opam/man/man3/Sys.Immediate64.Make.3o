@@ -1,0 +1,59 @@
+.TH "Sys.Immediate64.Make" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Sys.Immediate64.Make \- no description
+.SH Module
+Module   Sys.Immediate64.Make
+.SH Documentation
+.sp
+Module
+.BI "Make"
+ : 
+.B functor (Immediate : Immediate) (Non_immediate : Non_immediate) -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"Immediate"
+
+.B Sys.Immediate64.Immediate
+
+
+.sp
+"Non_immediate"
+
+.B Sys.Immediate64.Non_immediate
+
+
+
+
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I repr 
+=
+ | Immediate
+.B : 
+.B Sys.Immediate64.Immediate.t repr
+ | Non_immediate
+.B : 
+.B Sys.Immediate64.Non_immediate.t repr
+ 
+.sp
+
+.sp
+
+.I val repr 
+: 
+.B t repr
+.sp
+
+.sp

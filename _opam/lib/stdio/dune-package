@@ -1,0 +1,74 @@
+(lang dune 3.15)
+(name stdio)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/stdio))
+(files
+ (lib
+  (META
+   dune-package
+   in_channel.ml
+   in_channel.mli
+   opam
+   out_channel.ml
+   out_channel.mli
+   stdio.a
+   stdio.cma
+   stdio.cmi
+   stdio.cmt
+   stdio.cmti
+   stdio.cmx
+   stdio.cmxa
+   stdio.ml
+   stdio.mli
+   stdio__.cmi
+   stdio__.cmt
+   stdio__.cmx
+   stdio__.ml
+   stdio__In_channel.cmi
+   stdio__In_channel.cmt
+   stdio__In_channel.cmti
+   stdio__In_channel.cmx
+   stdio__Out_channel.cmi
+   stdio__Out_channel.cmt
+   stdio__Out_channel.cmti
+   stdio__Out_channel.cmx))
+ (libexec (stdio.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md odoc-pages/index.mld)))
+(library
+ (name stdio)
+ (kind normal)
+ (archives (byte stdio.cma) (native stdio.cmxa))
+ (plugins (byte stdio.cma) (native stdio.cmxs))
+ (native_archives stdio.a)
+ (requires base)
+ (main_module_name Stdio)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name stdio__)
+     (visibility public)
+     (kind alias)
+     (source (path Stdio__) (impl (path stdio__.ml-gen))))
+    (name Stdio)
+    (modules
+     (module
+      (obj_name stdio__In_channel)
+      (visibility public)
+      (source
+       (path In_channel)
+       (intf (path in_channel.mli))
+       (impl (path in_channel.ml))))
+     (module
+      (obj_name stdio__Out_channel)
+      (visibility public)
+      (source
+       (path Out_channel)
+       (intf (path out_channel.mli))
+       (impl (path out_channel.ml))))
+     (module
+      (obj_name stdio)
+      (visibility public)
+      (source (path Stdio) (intf (path stdio.mli)) (impl (path stdio.ml))))))
+   (wrapped true))))

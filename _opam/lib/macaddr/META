@@ -1,0 +1,17 @@
+version = "5.5.0"
+description = ""
+requires = ""
+archive(byte) = "macaddr.cma"
+archive(native) = "macaddr.cmxa"
+plugin(byte) = "macaddr.cma"
+plugin(native) = "macaddr.cmxs"
+package "top" (
+  directory = "top"
+  version = "5.5.0"
+  description = ""
+  requires = "compiler-libs macaddr"
+  archive(byte) = "macaddr_top.cma"
+  archive(native) = "macaddr_top.cmxa"
+  plugin(byte) = "macaddr_top.cma"
+  plugin(native) = "macaddr_top.cmxs"
+)

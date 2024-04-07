@@ -1,0 +1,91 @@
+.TH "Ccomp" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ccomp \- Compiling C files and building C libraries
+.SH Module
+Module   Ccomp
+.SH Documentation
+.sp
+Module
+.BI "Ccomp"
+ : 
+.B sig end
+
+.sp
+Compiling C files and building C libraries
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.I val command 
+: 
+.B string -> int
+.sp
+
+.sp
+
+.I val run_command 
+: 
+.B string -> unit
+.sp
+
+.sp
+
+.I val compile_file 
+: 
+.B ?output:string -> ?opt:string -> ?stable_name:string -> string -> int
+.sp
+
+.sp
+
+.I val create_archive 
+: 
+.B string -> string list -> int
+.sp
+
+.sp
+
+.I val quote_files 
+: 
+.B response_files:bool -> string list -> string
+.sp
+
+.sp
+
+.I val quote_optfile 
+: 
+.B string option -> string
+.sp
+
+.sp
+.I type link_mode 
+=
+ | Exe
+ | Dll
+ | MainDll
+ | Partial
+ 
+.sp
+
+.sp
+
+.I val call_linker 
+: 
+.B link_mode -> string -> string list -> string -> int
+.sp
+
+.sp
+
+.I val linker_is_flexlink 
+: 
+.B bool
+.sp
+
+.sp

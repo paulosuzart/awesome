@@ -1,0 +1,19 @@
+opam-version: "2.0"
+added: [
+  "doc/jst-config" {"D"}
+  "doc/jst-config/LICENSE.md" {"F:93afbebc0e066419e584932bf74cc496"}
+  "lib/jst-config" {"D"}
+  "lib/jst-config/META" {"F:7ef9f0b85d60c12e1c59a6a5f55e1dfe"}
+  "lib/jst-config/config.h" {"F:10cb95d68b293db4834346364320f643"}
+  "lib/jst-config/config_h.a" {"F:7a9cde37b7bf45180c8f2906e2c721bc"}
+  "lib/jst-config/config_h.cma" {"F:c8c775b921914ad075a022d6ef108093"}
+  "lib/jst-config/config_h.cmi" {"F:8c1f686745d77f0a4232dcde3879df66"}
+  "lib/jst-config/config_h.cmt" {"F:0988c3c465601a8d425a49135ddfdb63"}
+  "lib/jst-config/config_h.cmx" {"F:978070d9d180f8bfb30f3b8f3ba82270"}
+  "lib/jst-config/config_h.cmxa" {"F:36068a95b34122f390dfc6230680734e"}
+  "lib/jst-config/config_h.cmxs" {"F:9411457101e6585e3132532d9b2b9646"}
+  "lib/jst-config/config_h.ml" {"F:93fd6c71e5b0012319ab63274560024e"}
+  "lib/jst-config/dune-package" {"F:1b0427a30192e612095a393018d2dd46"}
+  "lib/jst-config/opam" {"F:f0c5eda979a995dd74da66c310611235"}
+  "lib/jst-config/thread_id.h" {"F:2adea928611f65935d0c134f82318487"}
+]

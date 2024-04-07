@@ -1,0 +1,25 @@
+opam-version: "2.0"
+added: [
+  "doc/regex_parser_intf" {"D"}
+  "doc/regex_parser_intf/LICENSE.md" {"F:6b8b5c86def9e1a566e8b47a3bdc0c72"}
+  "lib/regex_parser_intf" {"D"}
+  "lib/regex_parser_intf/META" {"F:061f6e99b0a31679612a5704a16bb1b9"}
+  "lib/regex_parser_intf/dune-package" {"F:83f68a0431290895894c2e3eb5ecd017"}
+  "lib/regex_parser_intf/opam" {"F:004725a6bcbaa728ec36c9ed2156059d"}
+  "lib/regex_parser_intf/regex_parser_intf.a"
+    {"F:9f4c51d219a62c1f8849af4a1c866640"}
+  "lib/regex_parser_intf/regex_parser_intf.cma"
+    {"F:928235dfa2b0f955b00e3d421c1af6d5"}
+  "lib/regex_parser_intf/regex_parser_intf.cmi"
+    {"F:1386259910bf80b386ae3a05e496fdf6"}
+  "lib/regex_parser_intf/regex_parser_intf.cmt"
+    {"F:315733a1dd4ad6f25cdcb6270aaa6742"}
+  "lib/regex_parser_intf/regex_parser_intf.cmx"
+    {"F:a3d5351d054fcd373237aba2d7abdd9b"}
+  "lib/regex_parser_intf/regex_parser_intf.cmxa"
+    {"F:e36bf858bfbf9585ffe274b25ac2977c"}
+  "lib/regex_parser_intf/regex_parser_intf.cmxs"
+    {"F:b2322cd094b04ddd4c0b47171a73663b"}
+  "lib/regex_parser_intf/regex_parser_intf.ml"
+    {"F:deb4c0d2a6c41e2e10b311b073099740"}
+]

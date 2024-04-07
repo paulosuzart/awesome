@@ -1,0 +1,38 @@
+(lang dune 3.15)
+(name ppx_variants_conv)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_variants_conv))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_variants_conv.a
+   ppx_variants_conv.cma
+   ppx_variants_conv.cmi
+   ppx_variants_conv.cmt
+   ppx_variants_conv.cmti
+   ppx_variants_conv.cmx
+   ppx_variants_conv.cmxa
+   ppx_variants_conv.ml
+   ppx_variants_conv.mli))
+ (libexec (ppx_variants_conv.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_variants_conv)
+ (kind ppx_deriver)
+ (archives (byte ppx_variants_conv.cma) (native ppx_variants_conv.cmxa))
+ (plugins (byte ppx_variants_conv.cma) (native ppx_variants_conv.cmxs))
+ (native_archives ppx_variants_conv.a)
+ (requires base ppxlib.ast ppxlib)
+ (ppx_runtime_deps variantslib)
+ (main_module_name Ppx_variants_conv)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_variants_conv)
+   (visibility public)
+   (source
+    (path Ppx_variants_conv)
+    (intf (path ppx_variants_conv.mli))
+    (impl (path ppx_variants_conv.ml))))))

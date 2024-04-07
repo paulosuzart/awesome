@@ -1,0 +1,191 @@
+opam-version: "2.0"
+added: [
+  "doc/parsexp" {"D"}
+  "doc/parsexp/CHANGES.md" {"F:2113117af7d5b7287d5bcd7efd25e3b8"}
+  "doc/parsexp/LICENSE.md" {"F:809d8824c11bf5dba3923a8a5635174b"}
+  "doc/parsexp/README.org" {"F:6bea1c5444d49e6b8aee8623f5f806e7"}
+  "lib/parsexp" {"D"}
+  "lib/parsexp/META" {"F:fb9271a16061f8993e9a95aae1f4e964"}
+  "lib/parsexp/automaton.ml" {"F:817efa778fb66f99c834c5d9fa9c09d7"}
+  "lib/parsexp/automaton.mli" {"F:e0b75c8fba3159d63ba2904b4378d445"}
+  "lib/parsexp/automaton_action.ml" {"F:a3bda450c6e3d6ad3ea41315f8e06409"}
+  "lib/parsexp/automaton_action.mli" {"F:afd55ff5828c71f0ef583024e8bb5dac"}
+  "lib/parsexp/automaton_intf.ml" {"F:f1e609c5a902ed6d64c3776bcfce1dc6"}
+  "lib/parsexp/automaton_stack.ml" {"F:740905b6902dd882db5e691a44ab8d90"}
+  "lib/parsexp/automaton_stack.mli" {"F:8c8083e0ba69e00e0aa0c0b9382b3150"}
+  "lib/parsexp/automaton_stack_intf.ml"
+    {"F:ed9fcfd1b33383e805ffeddeeb914488"}
+  "lib/parsexp/automaton_state.ml" {"F:4e3f56de72cbb0c569e2d665c8ece4ca"}
+  "lib/parsexp/automaton_state.mli" {"F:b6814c86b1ae0072916d53dd58e83835"}
+  "lib/parsexp/automaton_state_intf.ml"
+    {"F:6003ae97041356875506fccdbfb8f768"}
+  "lib/parsexp/automaton_tables.ml" {"F:415ed654e41352b64176d23ffaffdfe9"}
+  "lib/parsexp/automaton_tables.mli" {"F:78f7085c009fbbafc02d782ab0a8a09a"}
+  "lib/parsexp/conv.ml" {"F:21b2d07129d239e19248a56872d37d07"}
+  "lib/parsexp/conv.mli" {"F:4147df25b0e7dfc7fb77ca1b087044bd"}
+  "lib/parsexp/conv_error.ml" {"F:755fb31fb215431463ea191879a671ce"}
+  "lib/parsexp/conv_error.mli" {"F:08aeff2a8f8abcaaa731a2da6619fe0e"}
+  "lib/parsexp/conv_intf.ml" {"F:6329e949fa2d09ac82ecb1430b106aa9"}
+  "lib/parsexp/cst.ml" {"F:75e6bbd10c61384b4ca0eb318fe9201f"}
+  "lib/parsexp/cst.mli" {"F:d68bb5fc301b43917a18925b0d3e3da7"}
+  "lib/parsexp/dune-package" {"F:e8727ac3a05e453ba2d43a93378f97fc"}
+  "lib/parsexp/import.ml" {"F:f115a9885216e1d373ecbcca1cb15c15"}
+  "lib/parsexp/of_sexp_error.ml" {"F:d68ab85fbe2de156572001945684a1f8"}
+  "lib/parsexp/of_sexp_error.mli" {"F:fdeaf83e5afab2db60c595685f4ce8e8"}
+  "lib/parsexp/old_parser_cont_state.ml"
+    {"F:a0045b34d2d7c6cc5e5d9a37800cfa0c"}
+  "lib/parsexp/old_parser_cont_state.mli"
+    {"F:570a0e657c1bfcf537f06b9f0f9c22a1"}
+  "lib/parsexp/opam" {"F:64f6bd2dce4c62eb3ac6f9a827fba950"}
+  "lib/parsexp/parse_error.ml" {"F:dbac22a180267c970d4bdbdc27c8a8d5"}
+  "lib/parsexp/parse_error.mli" {"F:f842048faf8c3b891742935c54eb293e"}
+  "lib/parsexp/parse_error_intf.ml" {"F:7272ff8db885e8af1fdd9017a6e45e7c"}
+  "lib/parsexp/parser.ml" {"F:a2050e3411f78ff517abac1311ac9ff9"}
+  "lib/parsexp/parser.mli" {"F:f08f10027e0cf45f776b21a4386047f7"}
+  "lib/parsexp/parser_intf.ml" {"F:5bb964b195300843e3253cb442cf57c5"}
+  "lib/parsexp/parsexp.a" {"F:8d9f4d8aefca01b29ec06ac6c855bde0"}
+  "lib/parsexp/parsexp.cma" {"F:2044d9c9f6beb42a00d9aaa6f30eaa0d"}
+  "lib/parsexp/parsexp.cmi" {"F:62869062330c68ea9bd583354c159740"}
+  "lib/parsexp/parsexp.cmt" {"F:1531c90cd036ee53612a5f6df620b9d0"}
+  "lib/parsexp/parsexp.cmti" {"F:64b1968d54ff612ed3cd8b34f9080308"}
+  "lib/parsexp/parsexp.cmx" {"F:4cc3a1822bbea9fd14d62b73c5b31768"}
+  "lib/parsexp/parsexp.cmxa" {"F:1b0186b88f4aeb000a88b7414ccef6f7"}
+  "lib/parsexp/parsexp.cmxs" {"F:c1fb049f53ef7289f97d41676c96d684"}
+  "lib/parsexp/parsexp.ml" {"F:bec5ef2b7d694eb21317a1d4f85abcff"}
+  "lib/parsexp/parsexp.mli" {"F:078a1bd054f18343c9d15dd1ee8e7518"}
+  "lib/parsexp/parsexp__.cmi" {"F:9bee3c11b24f669d59a29b325c913b41"}
+  "lib/parsexp/parsexp__.cmt" {"F:6907d7465b0572cdd2f1a71fa599d996"}
+  "lib/parsexp/parsexp__.cmx" {"F:d1ebb00a963d32e65b2791d575a2b6c1"}
+  "lib/parsexp/parsexp__.ml" {"F:6f89ba0587302a1b50dbf63fa7654d7a"}
+  "lib/parsexp/parsexp__Automaton.cmi" {"F:db5fd7079567ded5df75797f16778741"}
+  "lib/parsexp/parsexp__Automaton.cmt" {"F:50f30d06c1aa7dced0d3511bef2a7760"}
+  "lib/parsexp/parsexp__Automaton.cmti"
+    {"F:0343deaf148252965ec6daece45df5c0"}
+  "lib/parsexp/parsexp__Automaton.cmx" {"F:bd9fe8a698417d51022b1b71259df7fe"}
+  "lib/parsexp/parsexp__Automaton_action.cmi"
+    {"F:bc96d89cf33c2736f2e39811010281fb"}
+  "lib/parsexp/parsexp__Automaton_action.cmt"
+    {"F:2fcd31fb8c08d3b33bc529ad95258641"}
+  "lib/parsexp/parsexp__Automaton_action.cmti"
+    {"F:b5eeb22b9a41f4b6704bc384138006cd"}
+  "lib/parsexp/parsexp__Automaton_action.cmx"
+    {"F:1e41a92f1502fcf3830d2f83b48cc5a0"}
+  "lib/parsexp/parsexp__Automaton_intf.cmi"
+    {"F:f8a9fde7696665675b85e05813de2286"}
+  "lib/parsexp/parsexp__Automaton_intf.cmt"
+    {"F:d9fef5c57d23dc459dd6c4adf95eefb5"}
+  "lib/parsexp/parsexp__Automaton_intf.cmx"
+    {"F:8993e787cd56e77afc842f48f6574eac"}
+  "lib/parsexp/parsexp__Automaton_stack.cmi"
+    {"F:e3fb73ffd8e64997dc0173c180fdd397"}
+  "lib/parsexp/parsexp__Automaton_stack.cmt"
+    {"F:2e446915b434467f109b6f45f10e52d1"}
+  "lib/parsexp/parsexp__Automaton_stack.cmti"
+    {"F:11d7d835dcfbcc9c3f2b6bdb6175a2a5"}
+  "lib/parsexp/parsexp__Automaton_stack.cmx"
+    {"F:2ffb8a1d003cce1899b50568a787ff9f"}
+  "lib/parsexp/parsexp__Automaton_stack_intf.cmi"
+    {"F:aeb69cf7461d666563e32e41e96bb299"}
+  "lib/parsexp/parsexp__Automaton_stack_intf.cmt"
+    {"F:128def7bab9a1338b9fb9eedb70f098f"}
+  "lib/parsexp/parsexp__Automaton_stack_intf.cmx"
+    {"F:879f20fb1175be1b5c5fa80b50890f63"}
+  "lib/parsexp/parsexp__Automaton_state.cmi"
+    {"F:76303c2f33f83b480b93d4f717f4ec48"}
+  "lib/parsexp/parsexp__Automaton_state.cmt"
+    {"F:f0498d688743067641e81abb8697b625"}
+  "lib/parsexp/parsexp__Automaton_state.cmti"
+    {"F:fba55f4dc2aa3f7fc534db344b8d8b72"}
+  "lib/parsexp/parsexp__Automaton_state.cmx"
+    {"F:8e02c296a9d28855fb6a4a757c2ed4c9"}
+  "lib/parsexp/parsexp__Automaton_state_intf.cmi"
+    {"F:f46dfd65d6d6dd304822dfdb6d9a07e3"}
+  "lib/parsexp/parsexp__Automaton_state_intf.cmt"
+    {"F:f74a71f2430cbbd3f063e1234a2f4270"}
+  "lib/parsexp/parsexp__Automaton_state_intf.cmx"
+    {"F:11a44e32daf1b63f3e663adfa9c3b8fc"}
+  "lib/parsexp/parsexp__Automaton_tables.cmi"
+    {"F:2326fac81cf8ee890f839513ac103ad2"}
+  "lib/parsexp/parsexp__Automaton_tables.cmt"
+    {"F:2ab099a2131ab14ea1d65ea2a83a14ea"}
+  "lib/parsexp/parsexp__Automaton_tables.cmti"
+    {"F:60c5209f8c1897f730cdb667350eb762"}
+  "lib/parsexp/parsexp__Automaton_tables.cmx"
+    {"F:57c9e61a0efa4bbaae3642f7db12774c"}
+  "lib/parsexp/parsexp__Conv.cmi" {"F:ea0e373528b755562e526c0cf7b073cc"}
+  "lib/parsexp/parsexp__Conv.cmt" {"F:7c50f42503188f92d6ff63db3bb19125"}
+  "lib/parsexp/parsexp__Conv.cmti" {"F:5965173597c4208f4b2156bbb1897dc1"}
+  "lib/parsexp/parsexp__Conv.cmx" {"F:df0b64170940edee809becc9895e78db"}
+  "lib/parsexp/parsexp__Conv_error.cmi"
+    {"F:051f28e7232f827ff8402c8c703b03eb"}
+  "lib/parsexp/parsexp__Conv_error.cmt"
+    {"F:596d8c19508d645961748d7882594b4c"}
+  "lib/parsexp/parsexp__Conv_error.cmti"
+    {"F:a6b220d5339aa02ac2d6eb0b751c13d8"}
+  "lib/parsexp/parsexp__Conv_error.cmx"
+    {"F:03fd1822154ffef16d888ec4567ec56b"}
+  "lib/parsexp/parsexp__Conv_intf.cmi" {"F:13aca2abf0461346570f6310482a4dc6"}
+  "lib/parsexp/parsexp__Conv_intf.cmt" {"F:300c55e1d5198f3ad7e63770d92a462c"}
+  "lib/parsexp/parsexp__Conv_intf.cmx" {"F:3368aaf2d9e8c8358b3b286bd35d6c6c"}
+  "lib/parsexp/parsexp__Cst.cmi" {"F:1ee1e9675d76ed4f21c50ca70a9ac796"}
+  "lib/parsexp/parsexp__Cst.cmt" {"F:66f00ea560a634f1a446c06c2185ca5d"}
+  "lib/parsexp/parsexp__Cst.cmti" {"F:da913f57c46d9b1dd7948c47287f16fd"}
+  "lib/parsexp/parsexp__Cst.cmx" {"F:6fa2a1de98657e2b1794d5ea1da182f2"}
+  "lib/parsexp/parsexp__Import.cmi" {"F:b69431c20454fb4bdb9676dd7d8efa49"}
+  "lib/parsexp/parsexp__Import.cmt" {"F:ad4ca81f4ce39e935e5549f51fcc3fdf"}
+  "lib/parsexp/parsexp__Import.cmx" {"F:337ef7d3bd18485ac668cfc5baa026d3"}
+  "lib/parsexp/parsexp__Of_sexp_error.cmi"
+    {"F:3791368369f291ebf82787634860074b"}
+  "lib/parsexp/parsexp__Of_sexp_error.cmt"
+    {"F:0a604c75673466e55f90eee061983693"}
+  "lib/parsexp/parsexp__Of_sexp_error.cmti"
+    {"F:912c6578b88ed63804238c9a42bd1a15"}
+  "lib/parsexp/parsexp__Of_sexp_error.cmx"
+    {"F:a3616ae33078ebcb6b4eaeaeef73bc5a"}
+  "lib/parsexp/parsexp__Old_parser_cont_state.cmi"
+    {"F:f8688e3885f06c94bf1db6efa7264cac"}
+  "lib/parsexp/parsexp__Old_parser_cont_state.cmt"
+    {"F:81a407f80ba79f8fe7adbc81b0a5588d"}
+  "lib/parsexp/parsexp__Old_parser_cont_state.cmti"
+    {"F:4f9ac0bd5ecfbf5a41e292922c5ac65a"}
+  "lib/parsexp/parsexp__Old_parser_cont_state.cmx"
+    {"F:f87afa86e94881b2af9cee10e102fed3"}
+  "lib/parsexp/parsexp__Parse_error.cmi"
+    {"F:92a6bc87abd15ff9e35b218b0190a0bf"}
+  "lib/parsexp/parsexp__Parse_error.cmt"
+    {"F:8a4e9b95e99cf3da42b3f2b9e7ddfc13"}
+  "lib/parsexp/parsexp__Parse_error.cmti"
+    {"F:3474db1376cab4eb0e4b876f4a69b779"}
+  "lib/parsexp/parsexp__Parse_error.cmx"
+    {"F:054ae34eb222d8da5cd9f6149a0c0392"}
+  "lib/parsexp/parsexp__Parse_error_intf.cmi"
+    {"F:83ee600dd7605e494479377de1d8af1f"}
+  "lib/parsexp/parsexp__Parse_error_intf.cmt"
+    {"F:32607faa2b43d901408df4f130433938"}
+  "lib/parsexp/parsexp__Parse_error_intf.cmx"
+    {"F:499c06fc221c1194594517cd6416bf6b"}
+  "lib/parsexp/parsexp__Parser.cmi" {"F:2203fca9d6b3d466368547dfdde05f8a"}
+  "lib/parsexp/parsexp__Parser.cmt" {"F:219a87eab89b82e8520d32b303008e3b"}
+  "lib/parsexp/parsexp__Parser.cmti" {"F:d21e1cbc3dd0ad3866f8902648d04818"}
+  "lib/parsexp/parsexp__Parser.cmx" {"F:097d4c8130a3531ff3d7ace607978734"}
+  "lib/parsexp/parsexp__Parser_intf.cmi"
+    {"F:71347e3ee24920513e72733e5fc7646f"}
+  "lib/parsexp/parsexp__Parser_intf.cmt"
+    {"F:50e75232115e6b34288f6a51eb8db3ab"}
+  "lib/parsexp/parsexp__Parser_intf.cmx"
+    {"F:18f96b64da082571c1e2fec8f316b045"}
+  "lib/parsexp/parsexp__Parsexp_intf.cmi"
+    {"F:5d7482abff1852163d0a081e7f40421c"}
+  "lib/parsexp/parsexp__Parsexp_intf.cmt"
+    {"F:9a29b8935756f8aad6e27097689b8c0b"}
+  "lib/parsexp/parsexp__Parsexp_intf.cmx"
+    {"F:94c658e4d0a2fa5d6ca1b4b22a29b480"}
+  "lib/parsexp/parsexp__Positions.cmi" {"F:f5e28c405047dcaa7bbb8d30440b88da"}
+  "lib/parsexp/parsexp__Positions.cmt" {"F:0ebeaa72680fc6f689f1e4d3ad86bb0a"}
+  "lib/parsexp/parsexp__Positions.cmti"
+    {"F:9ef2cde4a4cd6a2f6b9f524196fc578c"}
+  "lib/parsexp/parsexp__Positions.cmx" {"F:5005ebb3b9f534d25de89cc72941c8af"}
+  "lib/parsexp/parsexp_intf.ml" {"F:a9b3d792bd5efe9e99cea518add946aa"}
+  "lib/parsexp/positions.ml" {"F:d8c37ddc59b5571652262d38a5d36868"}
+  "lib/parsexp/positions.mli" {"F:bd3ccc9c6a8e72a2d3a3ba5a7947f40a"}
+]

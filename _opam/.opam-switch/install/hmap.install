@@ -1,0 +1,18 @@
+opam-version: "2.0"
+lib: [
+  "_build/opam" {"opam"}
+  "_build/pkg/META" {"META"}
+  "_build/src/hmap.a" {"hmap.a"}
+  "_build/src/hmap.cma" {"hmap.cma"}
+  "_build/src/hmap.cmi" {"hmap.cmi"}
+  "?_build/src/hmap.cmti" {"hmap.cmti"}
+  "_build/src/hmap.cmx" {"hmap.cmx"}
+  "_build/src/hmap.cmxa" {"hmap.cmxa"}
+  "_build/src/hmap.cmxs" {"hmap.cmxs"}
+  "_build/src/hmap.mli" {"hmap.mli"}
+]
+doc: [
+  "_build/CHANGES.md" {"CHANGES.md"}
+  "_build/LICENSE.md" {"LICENSE.md"}
+  "_build/README.md" {"README.md"}
+]

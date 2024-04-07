@@ -1,0 +1,43 @@
+(lang dune 3.15)
+(name jane-street-headers)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/jane-street-headers))
+(files
+ (lib
+  (META
+   core_params.h
+   dune-package
+   jane_common.h
+   jane_street_headers.a
+   jane_street_headers.cma
+   jane_street_headers.cmi
+   jane_street_headers.cmt
+   jane_street_headers.cmx
+   jane_street_headers.cmxa
+   jane_street_headers.ml
+   ocaml_utils.h
+   ocaml_utils_macros.h
+   opam
+   unix_utils.h))
+ (libexec (jane_street_headers.cmxs))
+ (doc (LICENSE.md README.org)))
+(library
+ (name jane-street-headers)
+ (kind normal)
+ (archives (byte jane_street_headers.cma) (native jane_street_headers.cmxa))
+ (plugins (byte jane_street_headers.cma) (native jane_street_headers.cmxs))
+ (native_archives jane_street_headers.a)
+ (main_module_name Jane_street_headers)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name jane_street_headers)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Jane_street_headers)
+      (impl (path jane_street_headers.ml-gen))))
+    (name Jane_street_headers))
+   (wrapped true))))

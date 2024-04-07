@@ -1,0 +1,87 @@
+.TH "CamlinternalMenhirLib.EngineTypes" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.EngineTypes \- no description
+.SH Module
+Module   CamlinternalMenhirLib.EngineTypes
+.SH Documentation
+.sp
+Module
+.BI "EngineTypes"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B ('state, 'semantic_value)
+.I stack 
+= {
+ state : 
+.B 'state
+;
+ semv : 
+.B 'semantic_value
+;
+ startp : 
+.B Lexing.position
+;
+ endp : 
+.B Lexing.position
+;
+ next : 
+.B ('state, 'semantic_value) stack
+;
+ }
+
+.sp
+
+.sp
+.I type 
+.B ('state, 'semantic_value, 'token)
+.I env 
+= {
+ error : 
+.B bool
+;
+ triple : 
+.B 'token * Lexing.position * Lexing.position
+;
+ stack : 
+.B ('state, 'semantic_value) stack
+;
+ current : 
+.B 'state
+;
+ }
+
+.sp
+
+.sp
+.I module type TABLE = 
+.B sig end
+
+.sp
+
+.sp
+.I module type MONOLITHIC_ENGINE = 
+.B sig end
+
+.sp
+
+.sp
+.I module type INCREMENTAL_ENGINE_START = 
+.B sig end
+
+.sp
+
+.sp
+.I module type ENGINE = 
+.B sig end
+
+.sp
+
+.sp

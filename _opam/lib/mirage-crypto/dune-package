@@ -1,0 +1,156 @@
+(lang dune 3.15)
+(name mirage-crypto)
+(version 0.11.3)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/mirage-crypto)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (.private/mirage_crypto__Aead.cmi
+   .private/mirage_crypto__Aead.cmt
+   .private/mirage_crypto__Ccm.cmi
+   .private/mirage_crypto__Ccm.cmt
+   .private/mirage_crypto__Chacha20.cmi
+   .private/mirage_crypto__Chacha20.cmt
+   .private/mirage_crypto__Cipher_block.cmi
+   .private/mirage_crypto__Cipher_block.cmt
+   .private/mirage_crypto__Cipher_stream.cmi
+   .private/mirage_crypto__Cipher_stream.cmt
+   .private/mirage_crypto__Hash.cmi
+   .private/mirage_crypto__Hash.cmt
+   .private/mirage_crypto__Native.cmi
+   .private/mirage_crypto__Native.cmt
+   .private/mirage_crypto__Poly1305.cmi
+   .private/mirage_crypto__Poly1305.cmt
+   .private/mirage_crypto__Uncommon.cmi
+   .private/mirage_crypto__Uncommon.cmt
+   META
+   aead.ml
+   ccm.ml
+   chacha20.ml
+   cipher_block.ml
+   cipher_stream.ml
+   dune-package
+   hash.ml
+   libmirage_crypto_stubs.a
+   mirage_crypto.a
+   mirage_crypto.cma
+   mirage_crypto.cmi
+   mirage_crypto.cmt
+   mirage_crypto.cmti
+   mirage_crypto.cmx
+   mirage_crypto.cmxa
+   mirage_crypto.ml
+   mirage_crypto.mli
+   mirage_crypto__.cmi
+   mirage_crypto__.cmt
+   mirage_crypto__.cmx
+   mirage_crypto__.ml
+   mirage_crypto__Aead.cmx
+   mirage_crypto__Ccm.cmx
+   mirage_crypto__Chacha20.cmx
+   mirage_crypto__Cipher_block.cmx
+   mirage_crypto__Cipher_stream.cmx
+   mirage_crypto__Hash.cmx
+   mirage_crypto__Native.cmx
+   mirage_crypto__Poly1305.cmx
+   mirage_crypto__Uncommon.cmx
+   native.ml
+   opam
+   poly1305.ml
+   uncommon.ml))
+ (libexec (mirage_crypto.cmxs))
+ (doc
+  (CHANGES.md
+   LICENSE.md
+   LICENSE.md.mirage-crypto-ec
+   LICENSE.md.mirage-crypto-rng-mirage
+   README.md))
+ (stublibs (dllmirage_crypto_stubs.so)))
+(library
+ (name mirage-crypto)
+ (kind normal)
+ (archives (byte mirage_crypto.cma) (native mirage_crypto.cmxa))
+ (plugins (byte mirage_crypto.cma) (native mirage_crypto.cmxs))
+ (foreign_objects
+  aes_aesni.o
+  aes_generic.o
+  chacha.o
+  chacha_generic.o
+  des_generic.o
+  detect_cpu_features.o
+  entropy_cpu_stubs.o
+  ghash_ctmul.o
+  ghash_generic.o
+  ghash_pclmul.o
+  hash_stubs.o
+  md5.o
+  misc.o
+  misc_sse.o
+  poly1305-donna.o
+  sha1.o
+  sha256.o
+  sha512.o)
+ (foreign_archives (archives (for all) (files libmirage_crypto_stubs.a)))
+ (foreign_dll_files ../stublibs/dllmirage_crypto_stubs.so)
+ (native_archives mirage_crypto.a)
+ (requires cstruct eqaf.cstruct)
+ (main_module_name Mirage_crypto)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name mirage_crypto__)
+     (visibility public)
+     (kind alias)
+     (source (path Mirage_crypto__) (impl (path mirage_crypto__.ml-gen))))
+    (name Mirage_crypto)
+    (modules
+     (module
+      (obj_name mirage_crypto__Aead)
+      (visibility private)
+      (source (path Aead) (impl (path aead.ml))))
+     (module
+      (obj_name mirage_crypto__Ccm)
+      (visibility private)
+      (source (path Ccm) (impl (path ccm.ml))))
+     (module
+      (obj_name mirage_crypto__Chacha20)
+      (visibility private)
+      (source (path Chacha20) (impl (path chacha20.ml))))
+     (module
+      (obj_name mirage_crypto__Cipher_block)
+      (visibility private)
+      (source (path Cipher_block) (impl (path cipher_block.ml))))
+     (module
+      (obj_name mirage_crypto__Cipher_stream)
+      (visibility private)
+      (source (path Cipher_stream) (impl (path cipher_stream.ml))))
+     (module
+      (obj_name mirage_crypto__Hash)
+      (visibility private)
+      (source (path Hash) (impl (path hash.ml))))
+     (module
+      (obj_name mirage_crypto)
+      (visibility public)
+      (source
+       (path Mirage_crypto)
+       (intf (path mirage_crypto.mli))
+       (impl (path mirage_crypto.ml))))
+     (module
+      (obj_name mirage_crypto__Native)
+      (visibility private)
+      (source (path Native) (impl (path native.ml))))
+     (module
+      (obj_name mirage_crypto__Poly1305)
+      (visibility private)
+      (source (path Poly1305) (impl (path poly1305.ml))))
+     (module
+      (obj_name mirage_crypto__Uncommon)
+      (visibility private)
+      (source (path Uncommon) (impl (path uncommon.ml))))))
+   (wrapped true))))

@@ -1,0 +1,25 @@
+.TH "CamlinternalMenhirLib.StaticVersion" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.StaticVersion \- no description
+.SH Module
+Module   CamlinternalMenhirLib.StaticVersion
+.SH Documentation
+.sp
+Module
+.BI "StaticVersion"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val require_20210419 
+: 
+.B unit
+.sp
+
+.sp

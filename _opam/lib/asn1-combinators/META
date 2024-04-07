@@ -1,0 +1,7 @@
+version = "0.2.6"
+description = "Embed typed ASN.1 grammars in OCaml"
+requires = "cstruct ptime zarith"
+archive(byte) = "asn1_combinators.cma"
+archive(native) = "asn1_combinators.cmxa"
+plugin(byte) = "asn1_combinators.cma"
+plugin(native) = "asn1_combinators.cmxs"

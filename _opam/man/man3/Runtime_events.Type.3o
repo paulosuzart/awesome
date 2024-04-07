@@ -1,0 +1,72 @@
+.TH "Runtime_events.Type" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Runtime_events.Type \- no description
+.SH Module
+Module   Runtime_events.Type
+.SH Documentation
+.sp
+Module
+.BI "Type"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+
+.sp
+The type for a user event content type
+
+.sp
+
+.I val unit 
+: 
+.B unit t
+.sp
+An event that has no data associated with it
+
+.sp
+.I type span 
+=
+ | Begin
+ | End
+ 
+.sp
+
+.sp
+
+.I val span 
+: 
+.B span t
+.sp
+An event that has a beginning and an end
+
+.sp
+
+.I val int 
+: 
+.B int t
+.sp
+An event containing an integer value
+
+.sp
+
+.I val register 
+: 
+.B encode:(bytes -> 'a -> int) ->
+.B   decode:(bytes -> int -> 'a) -> 'a t
+.sp
+Registers a custom type by providing an encoder and a decoder\&. The encoder
+writes the value in the provided buffer and returns the number of bytes
+written\&. The decoder gets a slice of the buffer of specified length, and
+returns the decoded value\&.
+.sp
+The maximum value length is 1024 bytes\&.
+
+.sp

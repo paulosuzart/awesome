@@ -1,0 +1,41 @@
+(lang dune 3.15)
+(name ppx_disable_unused_warnings)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_disable_unused_warnings))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_disable_unused_warnings.a
+   ppx_disable_unused_warnings.cma
+   ppx_disable_unused_warnings.cmi
+   ppx_disable_unused_warnings.cmt
+   ppx_disable_unused_warnings.cmti
+   ppx_disable_unused_warnings.cmx
+   ppx_disable_unused_warnings.cmxa
+   ppx_disable_unused_warnings.ml
+   ppx_disable_unused_warnings.mli))
+ (libexec (ppx.exe ppx_disable_unused_warnings.cmxs))
+ (doc (LICENSE.md README.md)))
+(library
+ (name ppx_disable_unused_warnings)
+ (kind ppx_rewriter)
+ (archives
+  (byte ppx_disable_unused_warnings.cma)
+  (native ppx_disable_unused_warnings.cmxa))
+ (plugins
+  (byte ppx_disable_unused_warnings.cma)
+  (native ppx_disable_unused_warnings.cmxs))
+ (native_archives ppx_disable_unused_warnings.a)
+ (requires base ppxlib.ast ppxlib)
+ (main_module_name Ppx_disable_unused_warnings)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_disable_unused_warnings)
+   (visibility public)
+   (source
+    (path Ppx_disable_unused_warnings)
+    (intf (path ppx_disable_unused_warnings.mli))
+    (impl (path ppx_disable_unused_warnings.ml))))))

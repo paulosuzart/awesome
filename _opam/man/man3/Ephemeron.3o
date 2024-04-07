@@ -1,0 +1,160 @@
+.TH "Ephemeron" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ephemeron \- Ephemerons and weak hash tables.
+.SH Module
+Module   Ephemeron
+.SH Documentation
+.sp
+Module
+.BI "Ephemeron"
+ : 
+.B sig end
+
+.sp
+Ephemerons and weak hash tables\&.
+.sp
+Ephemerons and weak hash tables are useful when one wants to cache
+or memorize the computation of a function, as long as the
+arguments and the function are used, without creating memory leaks
+by continuously keeping old computation results that are not
+useful anymore because one argument or the function is freed\&. An
+implementation using 
+.ft B
+Hashtbl\&.t
+.ft R
+is not suitable because all
+associations would keep the arguments and the result in memory\&.
+.sp
+Ephemerons can also be used for "adding" a field to an arbitrary
+boxed OCaml value: you can attach some information to a value
+created by an external library without memory leaks\&.
+.sp
+Ephemerons hold some keys and one or no data\&. They are all boxed
+OCaml values\&. The keys of an ephemeron have the same behavior
+as weak pointers according to the garbage collector\&. In fact
+OCaml weak pointers are implemented as ephemerons without data\&.
+.sp
+The keys and data of an ephemeron are said to be full if they
+point to a value, or empty if the value has never been set, has
+been unset, or was erased by the GC\&. In the function that accesses
+the keys or data these two states are represented by the 
+.ft B
+option
+.ft R
+type\&.
+.sp
+The data is considered by the garbage collector alive if all the
+full keys are alive and if the ephemeron is alive\&. When one of the
+keys is not considered alive anymore by the GC, the data is
+emptied from the ephemeron\&. The data could be alive for another
+reason and in that case the GC will not free it, but the ephemeron
+will not hold the data anymore\&.
+.sp
+The ephemerons complicate the notion of liveness of values, because
+it is not anymore an equivalence with the reachability from root
+value by usual pointers (not weak and not ephemerons)\&. With ephemerons
+the notion of liveness is constructed by the least fixpoint of:
+A value is alive if:
+.sp
+\-it is a root value
+.sp
+\-it is reachable from alive value by usual pointers
+.sp
+\-it is the data of an alive ephemeron with all its full keys alive
+
+Notes:
+.sp
+\-All the types defined in this module cannot be marshaled
+using 
+.ft B
+output_value
+.ft R
+or the functions of the
+.ft B
+Marshal
+.ft R
+module\&.
+
+Ephemerons are defined in a language agnostic way in this paper:
+B\&. Hayes, Ephemerons: A New Finalization Mechanism, OOPSLA\&'97
+
+.sp
+.B "Since"
+4.03
+
+.sp
+.B Alert unsynchronized_access.
+Unsynchronized accesses to weak hash tables are a programming error.
+
+.sp
+
+.sp
+.sp
+
+.PP
+Unsynchronized accesses
+.PP
+
+.PP
+Unsynchronized accesses to a weak hash table may lead to an invalid
+weak hash table state\&. Thus, concurrent accesses to a buffer must be
+synchronized (for instance with a 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.PP
+.I module type S = 
+.B sig end
+
+.sp
+The output signature of the functors 
+.ft B
+Ephemeron\&.K1\&.Make
+.ft R
+and 
+.ft B
+Ephemeron\&.K2\&.Make
+.ft R
+\&.
+These hash tables are weak in the keys\&. If all the keys of a binding are
+alive the binding is kept, but if one of the keys of the binding
+is dead then the binding is removed\&.
+
+.sp
+.I module type SeededS = 
+.B sig end
+
+.sp
+The output signature of the functors 
+.ft B
+Ephemeron\&.K1\&.MakeSeeded
+.ft R
+and 
+.ft B
+Ephemeron\&.K2\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.I module K1 : 
+.B sig end
+
+.sp
+Ephemerons with one key\&.
+
+.sp
+.I module K2 : 
+.B sig end
+
+.sp
+Ephemerons with two keys\&.
+
+.sp
+.I module Kn : 
+.B sig end
+
+.sp
+Ephemerons with arbitrary number of keys of the same type\&.
+
+.sp

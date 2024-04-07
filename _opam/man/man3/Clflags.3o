@@ -1,0 +1,1299 @@
+.TH "Clflags" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Clflags \- Command line flags
+.SH Module
+Module   Clflags
+.SH Documentation
+.sp
+Module
+.BI "Clflags"
+ : 
+.B sig end
+
+.sp
+Command line flags
+
+.sp
+
+.sp
+.sp
+.I module Int_arg_helper : 
+.B sig end
+
+.sp
+Optimization parameters represented as ints indexed by round number\&.
+
+.sp
+.I module Float_arg_helper : 
+.B sig end
+
+.sp
+Optimization parameters represented as floats indexed by round number\&.
+
+.sp
+.I type inlining_arguments 
+= {
+ inline_call_cost : 
+.B int option
+;
+ inline_alloc_cost : 
+.B int option
+;
+ inline_prim_cost : 
+.B int option
+;
+ inline_branch_cost : 
+.B int option
+;
+ inline_indirect_cost : 
+.B int option
+;
+ inline_lifting_benefit : 
+.B int option
+;
+ inline_branch_factor : 
+.B float option
+;
+ inline_max_depth : 
+.B int option
+;
+ inline_max_unroll : 
+.B int option
+;
+ inline_threshold : 
+.B float option
+;
+ inline_toplevel_threshold : 
+.B int option
+;
+ }
+
+.sp
+
+.sp
+
+.I val classic_arguments 
+: 
+.B inlining_arguments
+.sp
+
+.sp
+
+.I val o1_arguments 
+: 
+.B inlining_arguments
+.sp
+
+.sp
+
+.I val o2_arguments 
+: 
+.B inlining_arguments
+.sp
+
+.sp
+
+.I val o3_arguments 
+: 
+.B inlining_arguments
+.sp
+
+.sp
+
+.I val use_inlining_arguments_set 
+: 
+.B ?round:int -> inlining_arguments -> unit
+.sp
+Set all the inlining arguments for a round\&.
+The default is set if no round is provided\&.
+
+.sp
+
+.I val objfiles 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val ccobjs 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val dllibs 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val cmi_file 
+: 
+.B string option ref
+.sp
+
+.sp
+
+.I val compile_only 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val output_name 
+: 
+.B string option ref
+.sp
+
+.sp
+
+.I val include_dirs 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val no_std_include 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val no_cwd 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val print_types 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val make_archive 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val debug 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val debug_full 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val unsafe 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val use_linscan 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val link_everything 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val custom_runtime 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val no_check_prims 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val bytecode_compatible_32 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val output_c_object 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val output_complete_object 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val output_complete_executable 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val all_ccopts 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val classic 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val nopervasives 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val match_context_rows 
+: 
+.B int ref
+.sp
+
+.sp
+
+.I val safer_matching 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val open_modules 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val preprocessor 
+: 
+.B string option ref
+.sp
+
+.sp
+
+.I val all_ppx 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val absname 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val annotations 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val binary_annotations 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val use_threads 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val noassert 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val verbose 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val noprompt 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val nopromptcont 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val init_file 
+: 
+.B string option ref
+.sp
+
+.sp
+
+.I val noinit 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val noversion 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val use_prims 
+: 
+.B string ref
+.sp
+
+.sp
+
+.I val use_runtime 
+: 
+.B string ref
+.sp
+
+.sp
+
+.I val plugin 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val principal 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val real_paths 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val recursive_types 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val strict_sequence 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val strict_formats 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val applicative_functors 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val make_runtime 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val c_compiler 
+: 
+.B string option ref
+.sp
+
+.sp
+
+.I val no_auto_link 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dllpaths 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val make_package 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val for_package 
+: 
+.B string option ref
+.sp
+
+.sp
+
+.I val error_size 
+: 
+.B int ref
+.sp
+
+.sp
+
+.I val float_const_prop 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val transparent_modules 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val unique_ids 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val locations 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_source 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_parsetree 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_typedtree 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_shape 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_rawlambda 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_lambda 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_rawclambda 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_clambda 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_rawflambda 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_flambda 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_flambda_let 
+: 
+.B int option ref
+.sp
+
+.sp
+
+.I val dump_instr 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val keep_camlprimc_file 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val keep_asm_file 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val optimize_for_speed 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_cmm 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_selection 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_cse 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_live 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_spill 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_split 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_interf 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_prefer 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_regalloc 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_reload 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_scheduling 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_linear 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_interval 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val keep_startup_file 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_combine 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val native_code 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val default_inline_threshold 
+: 
+.B float
+.sp
+
+.sp
+
+.I val inline_threshold 
+: 
+.B Float_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val inlining_report 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val simplify_rounds 
+: 
+.B int option ref
+.sp
+
+.sp
+
+.I val default_simplify_rounds 
+: 
+.B int ref
+.sp
+
+.sp
+
+.I val rounds 
+: 
+.B unit -> int
+.sp
+
+.sp
+
+.I val default_inline_max_unroll 
+: 
+.B int
+.sp
+
+.sp
+
+.I val inline_max_unroll 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val default_inline_toplevel_threshold 
+: 
+.B int
+.sp
+
+.sp
+
+.I val inline_toplevel_threshold 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val default_inline_call_cost 
+: 
+.B int
+.sp
+
+.sp
+
+.I val default_inline_alloc_cost 
+: 
+.B int
+.sp
+
+.sp
+
+.I val default_inline_prim_cost 
+: 
+.B int
+.sp
+
+.sp
+
+.I val default_inline_branch_cost 
+: 
+.B int
+.sp
+
+.sp
+
+.I val default_inline_indirect_cost 
+: 
+.B int
+.sp
+
+.sp
+
+.I val default_inline_lifting_benefit 
+: 
+.B int
+.sp
+
+.sp
+
+.I val inline_call_cost 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val inline_alloc_cost 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val inline_prim_cost 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val inline_branch_cost 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val inline_indirect_cost 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val inline_lifting_benefit 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val default_inline_branch_factor 
+: 
+.B float
+.sp
+
+.sp
+
+.I val inline_branch_factor 
+: 
+.B Float_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val dont_write_files 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val std_include_flag 
+: 
+.B string -> string
+.sp
+
+.sp
+
+.I val std_include_dir 
+: 
+.B unit -> string list
+.sp
+
+.sp
+
+.I val shared 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dlcode 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val pic_code 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val runtime_variant 
+: 
+.B string ref
+.sp
+
+.sp
+
+.I val with_runtime 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val force_slash 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val keep_docs 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val keep_locs 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val opaque 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val profile_columns 
+: 
+.B Profile.column list ref
+.sp
+
+.sp
+
+.I val flambda_invariant_checks 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val unbox_closures 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val unbox_closures_factor 
+: 
+.B int ref
+.sp
+
+.sp
+
+.I val default_unbox_closures_factor 
+: 
+.B int
+.sp
+
+.sp
+
+.I val unbox_free_vars_of_closures 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val unbox_specialised_args 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val clambda_checks 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val cmm_invariants 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val default_inline_max_depth 
+: 
+.B int
+.sp
+
+.sp
+
+.I val inline_max_depth 
+: 
+.B Int_arg_helper.parsed ref
+.sp
+
+.sp
+
+.I val remove_unused_arguments 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_flambda_verbose 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val classic_inlining 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val afl_instrument 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val afl_inst_ratio 
+: 
+.B int ref
+.sp
+
+.sp
+
+.I val function_sections 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val all_passes 
+: 
+.B string list ref
+.sp
+
+.sp
+
+.I val dumped_pass 
+: 
+.B string -> bool
+.sp
+
+.sp
+
+.I val set_dumped_pass 
+: 
+.B string -> bool -> unit
+.sp
+
+.sp
+
+.I val dump_into_file 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val dump_dir 
+: 
+.B string option ref
+.sp
+
+.sp
+.I type 
+.B 'a
+.I env_reader 
+= {
+ parse : 
+.B string -> 'a option
+;
+ print : 
+.B 'a -> string
+;
+ usage : 
+.B string
+;
+ env_var : 
+.B string
+;
+ }
+
+.sp
+
+.sp
+
+.I val color 
+: 
+.B Misc.Color.setting option ref
+.sp
+
+.sp
+
+.I val color_reader 
+: 
+.B Misc.Color.setting env_reader
+.sp
+
+.sp
+
+.I val error_style 
+: 
+.B Misc.Error_style.setting option ref
+.sp
+
+.sp
+
+.I val error_style_reader 
+: 
+.B Misc.Error_style.setting env_reader
+.sp
+
+.sp
+
+.I val unboxed_types 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val insn_sched 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val insn_sched_default 
+: 
+.B bool
+.sp
+
+.sp
+.I module Compiler_pass : 
+.B sig end
+
+.sp
+
+.sp
+
+.I val stop_after 
+: 
+.B Compiler_pass.t option ref
+.sp
+
+.sp
+
+.I val should_stop_after 
+: 
+.B Compiler_pass.t -> bool
+.sp
+
+.sp
+
+.I val set_save_ir_after 
+: 
+.B Compiler_pass.t -> bool -> unit
+.sp
+
+.sp
+
+.I val should_save_ir_after 
+: 
+.B Compiler_pass.t -> bool
+.sp
+
+.sp
+
+.I val arg_spec 
+: 
+.B (string * Arg.spec * string) list ref
+.sp
+
+.sp
+
+.I val add_arguments 
+: 
+.B string -> (string * Arg.spec * string) list -> unit
+.sp
+
+.sp
+
+.I val create_usage_msg 
+: 
+.B string -> string
+.sp
+
+.sp
+
+.I val print_arguments 
+: 
+.B string -> unit
+.sp
+
+.sp
+
+.I val reset_arguments 
+: 
+.B unit -> unit
+.sp
+
+.sp

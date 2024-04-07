@@ -1,0 +1,41 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_deriving_yojson/META"
+  "_build/install/default/lib/ppx_deriving_yojson/dune-package"
+  "_build/install/default/lib/ppx_deriving_yojson/opam"
+  "_build/install/default/lib/ppx_deriving_yojson/ppx_deriving_yojson.a"
+  "_build/install/default/lib/ppx_deriving_yojson/ppx_deriving_yojson.cma"
+  "_build/install/default/lib/ppx_deriving_yojson/ppx_deriving_yojson.cmi"
+  "_build/install/default/lib/ppx_deriving_yojson/ppx_deriving_yojson.cmt"
+  "_build/install/default/lib/ppx_deriving_yojson/ppx_deriving_yojson.cmx"
+  "_build/install/default/lib/ppx_deriving_yojson/ppx_deriving_yojson.cmxa"
+  "_build/install/default/lib/ppx_deriving_yojson/ppx_deriving_yojson.ml"
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.a"
+    {"runtime/ppx_deriving_yojson_runtime.a"}
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cma"
+    {"runtime/ppx_deriving_yojson_runtime.cma"}
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmi"
+    {"runtime/ppx_deriving_yojson_runtime.cmi"}
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmt"
+    {"runtime/ppx_deriving_yojson_runtime.cmt"}
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmti"
+    {"runtime/ppx_deriving_yojson_runtime.cmti"}
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmx"
+    {"runtime/ppx_deriving_yojson_runtime.cmx"}
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmxa"
+    {"runtime/ppx_deriving_yojson_runtime.cmxa"}
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.ml"
+    {"runtime/ppx_deriving_yojson_runtime.ml"}
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.mli"
+    {"runtime/ppx_deriving_yojson_runtime.mli"}
+]
+doc: [
+  "_build/install/default/doc/ppx_deriving_yojson/CHANGELOG.md"
+  "_build/install/default/doc/ppx_deriving_yojson/LICENSE.txt"
+  "_build/install/default/doc/ppx_deriving_yojson/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_deriving_yojson/ppx_deriving_yojson.cmxs"
+  "_build/install/default/lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmxs"
+    {"runtime/ppx_deriving_yojson_runtime.cmxs"}
+]

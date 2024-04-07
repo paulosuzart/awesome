@@ -1,0 +1,90 @@
+.TH "Compression" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Compression \- no description
+.SH Module
+Module   Compression
+.SH Documentation
+.sp
+Module
+.BI "Compression"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val output_value 
+: 
+.B out_channel -> 'a -> unit
+.sp
+
+.ft B
+Compression\&.output_value chan v
+.ft R
+writes the representation
+of 
+.ft B
+v
+.ft R
+on channel 
+.ft B
+chan
+.ft R
+\&.
+If compression is supported, the marshaled data
+representing value 
+.ft B
+v
+.ft R
+is compressed before being written to
+channel 
+.ft B
+chan
+.ft R
+\&.
+If compression is not supported, this function behaves like
+.ft B
+output_value
+.ft R
+\&.
+
+.sp
+
+.I val input_value 
+: 
+.B in_channel -> 'a
+.sp
+
+.ft B
+Compression\&.input_value chan
+.ft R
+reads from channel 
+.ft B
+chan
+.ft R
+the
+byte representation of a structured value, as produced by
+.ft B
+Compression\&.output_value
+.ft R
+, and reconstructs and
+returns the corresponding value\&.
+If compression is not supported, this function behaves like
+.ft B
+input_value
+.ft R
+\&.
+
+.sp
+
+.I val compression_supported 
+: 
+.B bool
+.sp
+Reports whether compression is supported\&.
+
+.sp

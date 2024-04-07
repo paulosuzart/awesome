@@ -1,0 +1,584 @@
+.TH "Queue" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Queue \- First-in first-out queues.
+.SH Module
+Module   Queue
+.SH Documentation
+.sp
+Module
+.BI "Queue"
+ : 
+.B sig end
+
+.sp
+First\-in first\-out queues\&.
+.sp
+This module implements queues (FIFOs), with in\-place modification\&.
+See 
+.ft B
+Queue\&.examples
+.ft R
+below\&.
+
+.sp
+.B Alert unsynchronized_access.
+Unsynchronized accesses to queues are a programming error.
+
+.sp
+
+.sp
+.sp
+
+.PP
+Unsynchronized accesses
+.PP
+
+.PP
+Unsynchronized accesses to a queue may lead to an invalid queue state\&.
+Thus, concurrent accesses to queues must be synchronized (for instance
+with a 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.PP
+.I type 
+.B !'a
+.I t 
+
+.sp
+The type of queues containing elements of type 
+.ft B
+\&'a
+.ft R
+\&.
+
+.sp
+
+.I exception Empty 
+
+.sp
+Raised when 
+.ft B
+Queue\&.take
+.ft R
+or 
+.ft B
+Queue\&.peek
+.ft R
+is applied to an empty queue\&.
+
+.sp
+
+.I val create 
+: 
+.B unit -> 'a t
+.sp
+Return a new queue, initially empty\&.
+
+.sp
+
+.I val add 
+: 
+.B 'a -> 'a t -> unit
+.sp
+
+.ft B
+add x q
+.ft R
+adds the element 
+.ft B
+x
+.ft R
+at the end of the queue 
+.ft B
+q
+.ft R
+\&.
+
+.sp
+
+.I val push 
+: 
+.B 'a -> 'a t -> unit
+.sp
+
+.ft B
+push
+.ft R
+is a synonym for 
+.ft B
+add
+.ft R
+\&.
+
+.sp
+
+.I val take 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+take q
+.ft R
+removes and returns the first element in queue 
+.ft B
+q
+.ft R
+,
+or raises 
+.ft B
+Queue\&.Empty
+.ft R
+if the queue is empty\&.
+
+.sp
+
+.I val take_opt 
+: 
+.B 'a t -> 'a option
+.sp
+
+.ft B
+take_opt q
+.ft R
+removes and returns the first element in queue 
+.ft B
+q
+.ft R
+,
+or returns 
+.ft B
+None
+.ft R
+if the queue is empty\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pop 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+pop
+.ft R
+is a synonym for 
+.ft B
+take
+.ft R
+\&.
+
+.sp
+
+.I val peek 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+peek q
+.ft R
+returns the first element in queue 
+.ft B
+q
+.ft R
+, without removing
+it from the queue, or raises 
+.ft B
+Queue\&.Empty
+.ft R
+if the queue is empty\&.
+
+.sp
+
+.I val peek_opt 
+: 
+.B 'a t -> 'a option
+.sp
+
+.ft B
+peek_opt q
+.ft R
+returns the first element in queue 
+.ft B
+q
+.ft R
+, without removing
+it from the queue, or returns 
+.ft B
+None
+.ft R
+if the queue is empty\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val top 
+: 
+.B 'a t -> 'a
+.sp
+
+.ft B
+top
+.ft R
+is a synonym for 
+.ft B
+peek
+.ft R
+\&.
+
+.sp
+
+.I val clear 
+: 
+.B 'a t -> unit
+.sp
+Discard all elements from a queue\&.
+
+.sp
+
+.I val copy 
+: 
+.B 'a t -> 'a t
+.sp
+Return a copy of the given queue\&.
+
+.sp
+
+.I val is_empty 
+: 
+.B 'a t -> bool
+.sp
+Return 
+.ft B
+true
+.ft R
+if the given queue is empty, 
+.ft B
+false
+.ft R
+otherwise\&.
+
+.sp
+
+.I val length 
+: 
+.B 'a t -> int
+.sp
+Return the number of elements in a queue\&.
+
+.sp
+
+.I val iter 
+: 
+.B ('a -> unit) -> 'a t -> unit
+.sp
+
+.ft B
+iter f q
+.ft R
+applies 
+.ft B
+f
+.ft R
+in turn to all elements of 
+.ft B
+q
+.ft R
+,
+from the least recently entered to the most recently entered\&.
+The queue itself is unchanged\&.
+
+.sp
+
+.I val fold 
+: 
+.B ('acc -> 'a -> 'acc) -> 'acc -> 'a t -> 'acc
+.sp
+
+.ft B
+fold f accu q
+.ft R
+is equivalent to 
+.ft B
+List\&.fold_left f accu l
+.ft R
+,
+where 
+.ft B
+l
+.ft R
+is the list of 
+.ft B
+q
+.ft R
+\&'s elements\&. The queue remains
+unchanged\&.
+
+.sp
+
+.I val transfer 
+: 
+.B 'a t -> 'a t -> unit
+.sp
+
+.ft B
+transfer q1 q2
+.ft R
+adds all of 
+.ft B
+q1
+.ft R
+\&'s elements at the end of
+the queue 
+.ft B
+q2
+.ft R
+, then clears 
+.ft B
+q1
+.ft R
+\&. It is equivalent to the
+sequence 
+.ft B
+iter (fun x \-> add x q2) q1; clear q1
+.ft R
+, but runs
+in constant time\&.
+
+.sp
+
+.PP
+.SS Iterators
+
+.PP
+
+.I val to_seq 
+: 
+.B 'a t -> 'a Seq.t
+.sp
+Iterate on the queue, in front\-to\-back order\&.
+The behavior is not specified if the queue is modified
+during the iteration\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val add_seq 
+: 
+.B 'a t -> 'a Seq.t -> unit
+.sp
+Add the elements from a sequence to the end of the queue\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B 'a Seq.t -> 'a t
+.sp
+Create a queue from a sequence\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.PP
+.SS Examples
+.sp
+.SS Basic Example
+.sp
+A basic example:
+.EX
+.ft B
+.br
+\&    # let q = Queue\&.create ()
+.br
+\&    val q : \&'_weak1 Queue\&.t = <abstr>
+.br
+\&
+.br
+\&
+.br
+\&    # Queue\&.push 1 q; Queue\&.push 2 q; Queue\&.push 3 q
+.br
+\&    \- : unit = ()
+.br
+\&
+.br
+\&    # Queue\&.length q
+.br
+\&    \- : int = 3
+.br
+\&
+.br
+\&    # Queue\&.pop q
+.br
+\&    \- : int = 1
+.br
+\&
+.br
+\&    # Queue\&.pop q
+.br
+\&    \- : int = 2
+.br
+\&
+.br
+\&    # Queue\&.pop q
+.br
+\&    \- : int = 3
+.br
+\&
+.br
+\&    # Queue\&.pop q
+.br
+\&    Exception: Stdlib\&.Queue\&.Empty\&.
+.br
+\&    
+.ft R
+.EE
+.sp
+.SS Search Through a Graph
+.sp
+For a more elaborate example, a classic algorithmic use of queues
+is to implement a BFS (breadth\-first search) through a graph\&.
+.sp
+
+.EX
+.ft B
+.br
+\&     type graph = {
+.br
+\&       edges: (int, int list) Hashtbl\&.t
+.br
+\&     }
+.br
+\&
+.br
+\&    (* Search in graph [g] using BFS, starting from node [start]\&.
+.br
+\&       It returns the first node that satisfies [p], or [None] if
+.br
+\&       no node reachable from [start] satisfies [p]\&.
+.br
+\&    *)
+.br
+\&    let search_for ~(g:graph) ~(start:int) (p:int \-> bool) : int option =
+.br
+\&      let to_explore = Queue\&.create() in
+.br
+\&      let explored = Hashtbl\&.create 16 in
+.br
+\&
+.br
+\&      Queue\&.push start to_explore;
+.br
+\&      let rec loop () =
+.br
+\&        if Queue\&.is_empty to_explore then None
+.br
+\&        else
+.br
+\&          (* node to explore *)
+.br
+\&          let node = Queue\&.pop to_explore in
+.br
+\&          explore_node node
+.br
+\&
+.br
+\&      and explore_node node =
+.br
+\&        if not (Hashtbl\&.mem explored node) then (
+.br
+\&          if p node then Some node (* found *)
+.br
+\&          else (
+.br
+\&            Hashtbl\&.add explored node ();
+.br
+\&            let children =
+.br
+\&              Hashtbl\&.find_opt g\&.edges node
+.br
+\&              |> Option\&.value ~default:[]
+.br
+\&            in
+.br
+\&            List\&.iter (fun child \-> Queue\&.push child to_explore) children;
+.br
+\&            loop()
+.br
+\&          )
+.br
+\&        ) else loop()
+.br
+\&      in
+.br
+\&      loop()
+.br
+\&
+.br
+\&    (* a sample graph *)
+.br
+\&    let my_graph: graph =
+.br
+\&      let edges =
+.br
+\&        List\&.to_seq [
+.br
+\&          1, [2;3];
+.br
+\&          2, [10; 11];
+.br
+\&          3, [4;5];
+.br
+\&          5, [100];
+.br
+\&          11, [0; 20];
+.br
+\&        ]
+.br
+\&        |> Hashtbl\&.of_seq
+.br
+\&      in {edges}
+.br
+\&
+.br
+\&    # search_for ~g:my_graph ~start:1 (fun x \-> x = 30)
+.br
+\&    \- : int option = None
+.br
+\&
+.br
+\&    # search_for ~g:my_graph ~start:1 (fun x \-> x >= 15)
+.br
+\&    \- : int option = Some 20
+.br
+\&
+.br
+\&    # search_for ~g:my_graph ~start:1 (fun x \-> x >= 50)
+.br
+\&    \- : int option = Some 100
+.br
+\&   
+.ft R
+.EE
+.PP

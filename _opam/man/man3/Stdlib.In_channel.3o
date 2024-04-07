@@ -1,0 +1,709 @@
+.TH "Stdlib.In_channel" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.In_channel \- no description
+.SH Module
+Module   Stdlib.In_channel
+.SH Documentation
+.sp
+Module
+.BI "In_channel"
+ : 
+.B (module Stdlib__In_channel)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Channels
+
+.PP
+.I type t 
+= 
+.B in_channel
+
+.sp
+The type of input channel\&.
+
+.sp
+.I type open_flag 
+= 
+.B open_flag
+=
+ | Open_rdonly  (* open for reading\&.
+ *)
+ | Open_wronly  (* open for writing\&.
+ *)
+ | Open_append  (* open for appending: always write at end of file\&.
+ *)
+ | Open_creat  (* create the file if it does not exist\&.
+ *)
+ | Open_trunc  (* empty the file if it already exists\&.
+ *)
+ | Open_excl  (* fail if Open_creat and the file already exists\&.
+ *)
+ | Open_binary  (* open in binary mode (no conversion)\&.
+ *)
+ | Open_text  (* open in text mode (may perform conversions)\&.
+ *)
+ | Open_nonblock  (* open in non\-blocking mode\&.
+ *)
+ 
+.sp
+Opening modes for 
+.ft B
+In_channel\&.open_gen
+.ft R
+\&.
+
+.sp
+
+.I val stdin 
+: 
+.B t
+.sp
+The standard input for the process\&.
+
+.sp
+
+.I val open_bin 
+: 
+.B string -> t
+.sp
+Open the named file for reading, and return a new input channel on that
+file, positioned at the beginning of the file\&.
+
+.sp
+
+.I val open_text 
+: 
+.B string -> t
+.sp
+Same as 
+.ft B
+In_channel\&.open_bin
+.ft R
+, but the file is opened in text mode, so that newline
+translation takes place during reads\&. On operating systems that do not
+distinguish between text mode and binary mode, this function behaves like
+.ft B
+In_channel\&.open_bin
+.ft R
+\&.
+
+.sp
+
+.I val open_gen 
+: 
+.B open_flag list -> int -> string -> t
+.sp
+
+.ft B
+open_gen mode perm filename
+.ft R
+opens the named file for reading, as described
+above\&. The extra arguments 
+.ft B
+mode
+.ft R
+and 
+.ft B
+perm
+.ft R
+specify the opening mode and
+file permissions\&.  
+.ft B
+In_channel\&.open_text
+.ft R
+and 
+.ft B
+In_channel\&.open_bin
+.ft R
+are special cases of this
+function\&.
+
+.sp
+
+.I val with_open_bin 
+: 
+.B string -> (t -> 'a) -> 'a
+.sp
+
+.ft B
+with_open_bin fn f
+.ft R
+opens a channel 
+.ft B
+ic
+.ft R
+on file 
+.ft B
+fn
+.ft R
+and returns 
+.ft B
+f
+.br
+\&    ic
+.ft R
+\&. After 
+.ft B
+f
+.ft R
+returns, either with a value or by raising an exception, 
+.ft B
+ic
+.ft R
+is guaranteed to be closed\&.
+
+.sp
+
+.I val with_open_text 
+: 
+.B string -> (t -> 'a) -> 'a
+.sp
+Like 
+.ft B
+In_channel\&.with_open_bin
+.ft R
+, but the channel is opened in text mode (see
+.ft B
+In_channel\&.open_text
+.ft R
+)\&.
+
+.sp
+
+.I val with_open_gen 
+: 
+.B open_flag list -> int -> string -> (t -> 'a) -> 'a
+.sp
+Like 
+.ft B
+In_channel\&.with_open_bin
+.ft R
+, but can specify the opening mode and file permission,
+in case the file must be created (see 
+.ft B
+In_channel\&.open_gen
+.ft R
+)\&.
+
+.sp
+
+.I val close 
+: 
+.B t -> unit
+.sp
+Close the given channel\&.  Input functions raise a 
+.ft B
+Sys_error
+.ft R
+exception when
+they are applied to a closed input channel, except 
+.ft B
+In_channel\&.close
+.ft R
+, which does
+nothing when applied to an already closed channel\&.
+
+.sp
+
+.I val close_noerr 
+: 
+.B t -> unit
+.sp
+Same as 
+.ft B
+In_channel\&.close
+.ft R
+, but ignore all errors\&.
+
+.sp
+
+.PP
+.SS Input
+
+.PP
+
+.I val input_char 
+: 
+.B t -> char option
+.sp
+Read one character from the given input channel\&.  Returns 
+.ft B
+None
+.ft R
+if there
+are no more characters to read\&.
+
+.sp
+
+.I val input_byte 
+: 
+.B t -> int option
+.sp
+Same as 
+.ft B
+In_channel\&.input_char
+.ft R
+, but return the 8\-bit integer representing the
+character\&. Returns 
+.ft B
+None
+.ft R
+if the end of file was reached\&.
+
+.sp
+
+.I val input_line 
+: 
+.B t -> string option
+.sp
+
+.ft B
+input_line ic
+.ft R
+reads characters from 
+.ft B
+ic
+.ft R
+until a newline or the end of
+file is reached\&.  Returns the string of all characters read, without the
+newline (if any)\&.  Returns 
+.ft B
+None
+.ft R
+if the end of the file has been reached\&.
+In particular, this will be the case if the last line of input is empty\&.
+.sp
+A newline is the character 
+.ft B
+\(rsn
+.ft R
+unless the file is open in text mode and
+.ft B
+Sys\&.win32
+.ft R
+is 
+.ft B
+true
+.ft R
+in which case it is the sequence of characters
+.ft B
+\(rsr\(rsn
+.ft R
+\&.
+
+.sp
+
+.I val really_input_string 
+: 
+.B t -> int -> string option
+.sp
+
+.ft B
+really_input_string ic len
+.ft R
+reads 
+.ft B
+len
+.ft R
+characters from channel 
+.ft B
+ic
+.ft R
+and
+returns them in a new string\&.  Returns 
+.ft B
+None
+.ft R
+if the end of file is reached
+before 
+.ft B
+len
+.ft R
+characters have been read\&.
+.sp
+If the same channel is read concurrently by multiple threads, the returned
+string is not guaranteed to contain contiguous characters from the input\&.
+
+.sp
+
+.I val input_all 
+: 
+.B t -> string
+.sp
+
+.ft B
+input_all ic
+.ft R
+reads all remaining data from 
+.ft B
+ic
+.ft R
+\&.
+.sp
+If the same channel is read concurrently by multiple threads, the returned
+string is not guaranteed to contain contiguous characters from the input\&.
+
+.sp
+
+.I val input_lines 
+: 
+.B t -> string list
+.sp
+
+.ft B
+input_lines ic
+.ft R
+reads lines using 
+.ft B
+In_channel\&.input_line
+.ft R
+until the end of file is reached\&.  It returns the list of all
+lines read, in the order they were read\&.  The newline characters
+that terminate lines are not included in the returned strings\&.
+Empty lines produce empty strings\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.PP
+.SS Advanced input
+
+.PP
+
+.I val input 
+: 
+.B t -> bytes -> int -> int -> int
+.sp
+
+.ft B
+input ic buf pos len
+.ft R
+reads up to 
+.ft B
+len
+.ft R
+characters from the given channel
+.ft B
+ic
+.ft R
+, storing them in byte sequence 
+.ft B
+buf
+.ft R
+, starting at character number
+.ft B
+pos
+.ft R
+\&. It returns the actual number of characters read, between 0 and 
+.ft B
+len
+.ft R
+(inclusive)\&. A return value of 0 means that the end of file was reached\&.
+.sp
+Use 
+.ft B
+In_channel\&.really_input
+.ft R
+to read exactly 
+.ft B
+len
+.ft R
+characters\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid range of
+.ft B
+buf
+.ft R
+\&.
+
+.sp
+
+.I val really_input 
+: 
+.B t -> bytes -> int -> int -> unit option
+.sp
+
+.ft B
+really_input ic buf pos len
+.ft R
+reads 
+.ft B
+len
+.ft R
+characters from channel 
+.ft B
+ic
+.ft R
+,
+storing them in byte sequence 
+.ft B
+buf
+.ft R
+, starting at character number 
+.ft B
+pos
+.ft R
+\&.
+.sp
+Returns 
+.ft B
+None
+.ft R
+if the end of file is reached before 
+.ft B
+len
+.ft R
+characters have
+been read\&.
+.sp
+If the same channel is read concurrently by multiple threads, the bytes
+read by 
+.ft B
+really_input
+.ft R
+are not guaranteed to be contiguous\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid range of
+.ft B
+buf
+.ft R
+\&.
+
+.sp
+
+.I val fold_lines 
+: 
+.B ('acc -> string -> 'acc) -> 'acc -> t -> 'acc
+.sp
+
+.ft B
+fold_lines f init ic
+.ft R
+reads lines from 
+.ft B
+ic
+.ft R
+using 
+.ft B
+In_channel\&.input_line
+.ft R
+until the end of file is reached, and successively passes each line
+to function 
+.ft B
+f
+.ft R
+in the style of a fold\&.
+More precisely, if lines 
+.ft B
+l1, \&.\&.\&., lN
+.ft R
+are read,
+.ft B
+fold_lines f init ic
+.ft R
+computes 
+.ft B
+f (\&.\&.\&. (f (f init l1) l2) \&.\&.\&.) lN
+.ft R
+\&.
+If 
+.ft B
+f
+.ft R
+has no side effects, this is equivalent to
+.ft B
+List\&.fold_left f init (In_channel\&.input_lines ic)
+.ft R
+,
+but is more efficient since it does not construct the list of all
+lines read\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.PP
+.SS Seeking
+
+.PP
+
+.I val seek 
+: 
+.B t -> int64 -> unit
+.sp
+
+.ft B
+seek chan pos
+.ft R
+sets the current reading position to 
+.ft B
+pos
+.ft R
+for channel
+.ft B
+chan
+.ft R
+\&. This works only for regular files\&. On files of other kinds, the
+behavior is unspecified\&.
+
+.sp
+
+.I val pos 
+: 
+.B t -> int64
+.sp
+Return the current reading position for the given channel\&.  For files opened
+in text mode under Windows, the returned position is approximate (owing to
+end\-of\-line conversion); in particular, saving the current position with
+.ft B
+In_channel\&.pos
+.ft R
+, then going back to this position using 
+.ft B
+In_channel\&.seek
+.ft R
+will not work\&.  For
+this programming idiom to work reliably and portably, the file must be
+opened in binary mode\&.
+
+.sp
+
+.PP
+.SS Attributes
+
+.PP
+
+.I val length 
+: 
+.B t -> int64
+.sp
+Return the size (number of characters) of the regular file on which the
+given channel is opened\&.  If the channel is opened on a file that is not a
+regular file, the result is meaningless\&.  The returned size does not take
+into account the end\-of\-line translations that can be performed when reading
+from a channel opened in text mode\&.
+
+.sp
+
+.I val set_binary_mode 
+: 
+.B t -> bool -> unit
+.sp
+
+.ft B
+set_binary_mode ic true
+.ft R
+sets the channel 
+.ft B
+ic
+.ft R
+to binary mode: no
+translations take place during input\&.
+.sp
+
+.ft B
+set_binary_mode ic false
+.ft R
+sets the channel 
+.ft B
+ic
+.ft R
+to text mode: depending
+on the operating system, some translations may take place during input\&.  For
+instance, under Windows, end\-of\-lines will be translated from 
+.ft B
+\(rsr\(rsn
+.ft R
+to
+.ft B
+\(rsn
+.ft R
+\&.
+.sp
+This function has no effect under operating systems that do not distinguish
+between text mode and binary mode\&.
+
+.sp
+
+.I val isatty 
+: 
+.B t -> bool
+.sp
+
+.ft B
+isatty ic
+.ft R
+is 
+.ft B
+true
+.ft R
+if 
+.ft B
+ic
+.ft R
+refers to a terminal or console window,
+.ft B
+false
+.ft R
+otherwise\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.PP
+.SS Examples
+Reading the contents of a file:
+.EX
+.ft B
+.br
+\&      let read_file file = In_channel\&.with_open_bin file In_channel\&.input_all
+.br
+\&    
+.ft R
+.EE
+.sp
+Reading a line from stdin:
+.EX
+.ft B
+.br
+\&      let user_input () = In_channel\&.input_line In_channel\&.stdin
+.br
+\&    
+.ft R
+.EE
+.PP

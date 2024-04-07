@@ -1,0 +1,163 @@
+let pollin = 0x1
+let pollout = 0x4
+let pollerr = 0x8
+let pollhup = 0x10
+let o_rdonly = 0x0
+let o_wronly = 0x1
+let o_rdwr = 0x2
+let o_creat = 0x40
+let o_excl = 0x80
+let o_noctty = 0x100
+let o_trunc = 0x200
+let o_append = 0x400
+let o_nonblock = 0x800
+let o_dsync = 0x1000
+let o_direct = 0x4000
+let o_largefile = 0x0
+let o_directory = 0x10000
+let o_nofollow = 0x20000
+let o_noatime = 0x40000
+let o_cloexec = 0x80000
+let o_sync = 0x101000
+let o_path = 0x200000
+let o_tmpfile = 0x410000
+let at_fdcwd = 0x7fffffffffffff9c
+let iov_max = 0x400
+let sizeof_iovec = 0x10
+let sizeof_kernel_timespec = 0x10
+module Op : sig
+  type t
+  val nop : t
+  val readv : t
+  val writev : t
+  val fsync : t
+  val read_fixed : t
+  val write_fixed : t
+  val poll_add : t
+  val poll_remove : t
+  val sync_file_range : t
+  val sendmsg : t
+  val recvmsg : t
+  val timeout : t
+  val timeout_remove : t
+  val accept : t
+  val async_cancel : t
+  val link_timeout : t
+  val connect : t
+  val fallocate : t
+  val openat : t
+  val close : t
+  val files_update : t
+  val statx : t
+  val read : t
+  val write : t
+  val fadvise : t
+  val madvise : t
+  val send : t
+  val recv : t
+  val openat2 : t
+  val epoll_ctl : t
+  val splice : t
+  val provide_buffers : t
+  val remove_buffers : t
+  val tee : t
+  val shutdown : t
+  val renameat : t
+  val unlinkat : t
+  val mkdirat : t
+  val symlinkat : t
+  val linkat : t
+  val msg_ring : t
+  val fsetxattr : t
+  val setxattr : t
+  val fgetxattr : t
+  val getxattr : t
+  val socket : t
+  val uring_cmd : t
+end = struct
+  type t = int
+  let nop = 0x0
+  let readv = 0x1
+  let writev = 0x2
+  let fsync = 0x3
+  let read_fixed = 0x4
+  let write_fixed = 0x5
+  let poll_add = 0x6
+  let poll_remove = 0x7
+  let sync_file_range = 0x8
+  let sendmsg = 0x9
+  let recvmsg = 0xa
+  let timeout = 0xb
+  let timeout_remove = 0xc
+  let accept = 0xd
+  let async_cancel = 0xe
+  let link_timeout = 0xf
+  let connect = 0x10
+  let fallocate = 0x11
+  let openat = 0x12
+  let close = 0x13
+  let files_update = 0x14
+  let statx = 0x15
+  let read = 0x16
+  let write = 0x17
+  let fadvise = 0x18
+  let madvise = 0x19
+  let send = 0x1a
+  let recv = 0x1b
+  let openat2 = 0x1c
+  let epoll_ctl = 0x1d
+  let splice = 0x1e
+  let provide_buffers = 0x1f
+  let remove_buffers = 0x20
+  let tee = 0x21
+  let shutdown = 0x22
+  let renameat = 0x23
+  let unlinkat = 0x24
+  let mkdirat = 0x25
+  let symlinkat = 0x26
+  let linkat = 0x27
+  let msg_ring = 0x28
+  let fsetxattr = 0x29
+  let setxattr = 0x2a
+  let fgetxattr = 0x2b
+  let getxattr = 0x2c
+  let socket = 0x2d
+  let uring_cmd = 0x2e
+end
+module At = struct
+  let statx_dont_sync = 0x4000
+  let statx_force_sync = 0x2000
+  let statx_sync_as_stat = 0x0
+  let symlink_follow = 0x400
+  let symlink_nofollow = 0x100
+  let no_automount = 0x800
+  let empty_path = 0x1000
+end
+module Statx = struct
+  module Mask = struct
+    let dioalign = 0x0
+    let mnt_id = 0x1000
+    let btime = 0x800
+    let basic_stats = 0x7ff
+    let blocks = 0x400
+    let size = 0x200
+    let ino = 0x100
+    let ctime = 0x80
+    let mtime = 0x40
+    let atime = 0x20
+    let gid = 0x10
+    let uid = 0x8
+    let nlink = 0x4
+    let mode = 0x2
+    let type' = 0x1
+  end
+  module Attr = struct
+    let dax = 0x200000
+    let verity = 0x100000
+    let encrypted = 0x800
+    let nodump = 0x40
+    let append = 0x20
+    let immutable = 0x10
+    let compressed = 0x4
+  end
+end

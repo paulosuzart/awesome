@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/lwt-dllist/META"
+  "_build/install/default/lib/lwt-dllist/dune-package"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.a"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.cma"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.cmi"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.cmt"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.cmti"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.cmx"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.cmxa"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.ml"
+  "_build/install/default/lib/lwt-dllist/lwt_dllist.mli"
+  "_build/install/default/lib/lwt-dllist/opam"
+]
+doc: [
+  "_build/install/default/doc/lwt-dllist/CHANGES.md"
+  "_build/install/default/doc/lwt-dllist/LICENSE.md"
+  "_build/install/default/doc/lwt-dllist/README.md"
+]
+libexec: "_build/install/default/lib/lwt-dllist/lwt_dllist.cmxs"

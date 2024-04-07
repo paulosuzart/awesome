@@ -1,0 +1,115 @@
+.TH "Consistbl.Make" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Consistbl.Make \- no description
+.SH Module
+Module   Consistbl.Make
+.SH Documentation
+.sp
+Module
+.BI "Make"
+ : 
+.B functor (Module_name : sig end) -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"Module_name"
+
+.B sig end
+
+
+
+
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+
+.I val create 
+: 
+.B unit -> t
+.sp
+
+.sp
+
+.I val clear 
+: 
+.B t -> unit
+.sp
+
+.sp
+
+.I val check 
+: 
+.B t -> Module_name.t -> Digest.t -> Misc.filepath -> unit
+.sp
+
+.sp
+
+.I val check_noadd 
+: 
+.B t -> Module_name.t -> Digest.t -> Misc.filepath -> unit
+.sp
+
+.sp
+
+.I val source 
+: 
+.B t -> Module_name.t -> Misc.filepath
+.sp
+
+.sp
+
+.I val extract 
+: 
+.B Module_name.t list ->
+.B   t -> (Module_name.t * Digest.t option) list
+.sp
+
+.sp
+
+.I val extract_map 
+: 
+.B Module_name.Set.t ->
+.B   t -> Digest.t option Module_name.Map.t
+.sp
+
+.sp
+
+.I val filter 
+: 
+.B (Module_name.t -> bool) -> t -> unit
+.sp
+
+.sp
+
+.I exception Inconsistency 
+.B of {
+ unit_name : 
+.B Module_name.t
+;
+ inconsistent_source : 
+.B string
+;
+ original_source : 
+.B string
+;
+ }
+
+.sp
+
+.sp
+
+.I exception Not_available 
+.B of 
+.B Module_name.t
+
+.sp
+
+.sp

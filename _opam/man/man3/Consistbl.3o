@@ -1,0 +1,31 @@
+.TH "Consistbl" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Consistbl \- Consistency tables: for checking consistency of module CRCs
+.SH Module
+Module   Consistbl
+.SH Documentation
+.sp
+Module
+.BI "Consistbl"
+ : 
+.B sig end
+
+.sp
+Consistency tables: for checking consistency of module CRCs
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I module Make : 
+.B functor (Module_name : sig end) -> sig end
+
+.sp
+
+.sp

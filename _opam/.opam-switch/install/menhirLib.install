@@ -1,0 +1,16 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/menhirLib/META"
+  "_build/install/default/lib/menhirLib/dune-package"
+  "_build/install/default/lib/menhirLib/menhirLib.a"
+  "_build/install/default/lib/menhirLib/menhirLib.cma"
+  "_build/install/default/lib/menhirLib/menhirLib.cmi"
+  "_build/install/default/lib/menhirLib/menhirLib.cmt"
+  "_build/install/default/lib/menhirLib/menhirLib.cmti"
+  "_build/install/default/lib/menhirLib/menhirLib.cmx"
+  "_build/install/default/lib/menhirLib/menhirLib.cmxa"
+  "_build/install/default/lib/menhirLib/menhirLib.ml"
+  "_build/install/default/lib/menhirLib/menhirLib.mli"
+]
+doc: "_build/install/default/doc/menhirLib/LICENSE"
+libexec: "_build/install/default/lib/menhirLib/menhirLib.cmxs"

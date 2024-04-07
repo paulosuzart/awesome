@@ -1,0 +1,217 @@
+.TH "Random.State" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Random.State \- no description
+.SH Module
+Module   Random.State
+.SH Documentation
+.sp
+Module
+.BI "State"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type of PRNG states\&.
+
+.sp
+
+.I val make 
+: 
+.B int array -> t
+.sp
+Create a new state and initialize it with the given seed\&.
+
+.sp
+
+.I val make_self_init 
+: 
+.B unit -> t
+.sp
+Create a new state and initialize it with a random seed chosen
+in a system\-dependent way\&.
+The seed is obtained as described in 
+.ft B
+Random\&.self_init
+.ft R
+\&.
+
+.sp
+
+.I val copy 
+: 
+.B t -> t
+.sp
+Return a copy of the given state\&.
+
+.sp
+
+.I val bits 
+: 
+.B t -> int
+.sp
+
+.sp
+
+.I val int 
+: 
+.B t -> int -> int
+.sp
+
+.sp
+
+.I val full_int 
+: 
+.B t -> int -> int
+.sp
+
+.sp
+
+.I val int32 
+: 
+.B t -> Int32.t -> Int32.t
+.sp
+
+.sp
+
+.I val nativeint 
+: 
+.B t -> Nativeint.t -> Nativeint.t
+.sp
+
+.sp
+
+.I val int64 
+: 
+.B t -> Int64.t -> Int64.t
+.sp
+
+.sp
+
+.I val float 
+: 
+.B t -> float -> float
+.sp
+
+.sp
+
+.I val bool 
+: 
+.B t -> bool
+.sp
+
+.sp
+
+.I val bits32 
+: 
+.B t -> Int32.t
+.sp
+
+.sp
+
+.I val bits64 
+: 
+.B t -> Int64.t
+.sp
+
+.sp
+
+.I val nativebits 
+: 
+.B t -> Nativeint.t
+.sp
+These functions are the same as the basic functions, except that they
+use (and update) the given PRNG state instead of the default one\&.
+
+.sp
+
+.I val split 
+: 
+.B t -> t
+.sp
+Draw a fresh PRNG state from the given PRNG state\&.
+(The given PRNG state is modified\&.)
+The new PRNG is statistically independent from the given PRNG\&.
+Data can be drawn from both PRNGs, in any order, without risk of
+correlation\&.  Both PRNGs can be split later, arbitrarily many times\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val to_binary_string 
+: 
+.B t -> string
+.sp
+Serializes the PRNG state into an immutable sequence of bytes\&.
+See 
+.ft B
+Random\&.State\&.of_binary_string
+.ft R
+for deserialization\&.
+.sp
+The 
+.ft B
+string
+.ft R
+type is intended here for serialization only, the
+encoding is not human\-readable and may not be printable\&.
+.sp
+Note that the serialization format may differ across OCaml
+versions\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val of_binary_string 
+: 
+.B string -> t
+.sp
+Deserializes a byte sequence obtained by calling
+.ft B
+Random\&.State\&.to_binary_string
+.ft R
+\&. The resulting PRNG state will produce the
+same random numbers as the state that was passed as input to
+.ft B
+Random\&.State\&.to_binary_string
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+.B "Raises Failure"
+if the input is not in the expected format\&.
+.sp
+Note that the serialization format may differ across OCaml
+versions\&.
+.sp
+Unlike the functions provided by the 
+.ft B
+Marshal
+.ft R
+module, this
+function either produces a valid state or fails cleanly with
+a 
+.ft B
+Failure
+.ft R
+exception\&. It can be safely used on user\-provided,
+untrusted inputs\&.
+
+.sp

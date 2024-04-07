@@ -1,0 +1,48 @@
+.TH "Stdlib.Map" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Map \- no description
+.SH Module
+Module   Stdlib.Map
+.SH Documentation
+.sp
+Module
+.BI "Map"
+ : 
+.B (module Stdlib__Map)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module type OrderedType = 
+.B sig end
+
+.sp
+Input signature of the functor 
+.ft B
+Map\&.Make
+.ft R
+\&.
+
+.sp
+.I module type S = 
+.B sig end
+
+.sp
+Output signature of the functor 
+.ft B
+Map\&.Make
+.ft R
+\&.
+
+.sp
+.I module Make : 
+.B functor (Ord : OrderedType) -> sig end
+
+.sp
+Functor building an implementation of the map structure
+given a totally ordered type\&.
+
+.sp

@@ -1,0 +1,151 @@
+.TH "Local_store" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Local_store \- This module provides some facilities for creating references (and hash tables) which can easily be snapshoted and restored to an arbitrary version.
+.SH Module
+Module   Local_store
+.SH Documentation
+.sp
+Module
+.BI "Local_store"
+ : 
+.B sig end
+
+.sp
+This module provides some facilities for creating references (and hash
+tables) which can easily be snapshoted and restored to an arbitrary version\&.
+.sp
+It is used throughout the frontend (read: typechecker), to register all
+(well, hopefully) the global state\&. Thus making it easy for tools like
+Merlin to go back and forth typechecking different files\&.
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Creators
+
+.PP
+
+.I val s_ref 
+: 
+.B 'a -> 'a ref
+.sp
+Similar to 
+.ft B
+ref
+.ft R
+, except the allocated reference is registered
+into the store\&.
+
+.sp
+
+.I val s_table 
+: 
+.B ('a -> 'b) -> 'a -> 'b ref
+.sp
+Used to register hash tables\&. Those also need to be placed into refs to be
+easily swapped out, but one can\&'t just "snapshot" the initial value to
+create fresh instances, so instead an initializer is required\&.
+.sp
+Use it like this:
+.EX
+.ft B
+.br
+\&      let my_table = s_table Hashtbl\&.create 42
+.br
+\&    
+.ft R
+.EE
+
+.sp
+
+.PP
+.SS State management
+.sp
+Note: all the following functions are currently unused inside the compiler
+codebase\&. Merlin is their only user at the moment\&.
+.PP
+.I type store 
+
+.sp
+
+.sp
+
+.I val fresh 
+: 
+.B unit -> store
+.sp
+Returns a fresh instance of the store\&.
+.sp
+The first time this function is called, it snapshots the value of all the
+registered references, later calls to 
+.ft B
+fresh
+.ft R
+will return instances
+initialized to those values\&.
+
+.sp
+
+.I val with_store 
+: 
+.B store -> (unit -> 'a) -> 'a
+.sp
+
+.ft B
+with_store s f
+.ft R
+resets all the registered references to the value they have
+in 
+.ft B
+s
+.ft R
+for the run of 
+.ft B
+f
+.ft R
+\&.
+If 
+.ft B
+f
+.ft R
+updates any of the registered refs, 
+.ft B
+s
+.ft R
+is updated to remember those
+changes\&.
+
+.sp
+
+.I val reset 
+: 
+.B unit -> unit
+.sp
+Resets all the references to the initial snapshot (i\&.e\&. to the same values
+that new instances start with)\&.
+
+.sp
+
+.I val is_bound 
+: 
+.B unit -> bool
+.sp
+Returns 
+.ft B
+true
+.ft R
+when a store is active (i\&.e\&. when called from the callback
+passed to 
+.ft B
+Local_store\&.with_store
+.ft R
+), 
+.ft B
+false
+.ft R
+otherwise\&.
+
+.sp

@@ -1,0 +1,27 @@
+opam-version: "2.0"
+added: [
+  "doc/tls-eio" {"D"}
+  "doc/tls-eio/CHANGES.md" {"F:b545771c781548f6dadb95c68311055d"}
+  "doc/tls-eio/LICENSE.md" {"F:de5b5d0c1bc509849dc9653f8bcd99ed"}
+  "doc/tls-eio/README.md" {"F:8569f73d7e494bdfef5089b4d54e1b69"}
+  "lib/tls-eio" {"D"}
+  "lib/tls-eio/META" {"F:174c70caf8112bac5143d1f0a4616397"}
+  "lib/tls-eio/dune-package" {"F:e240b9e167c62d43b057efa6388287c2"}
+  "lib/tls-eio/opam" {"F:515a5dc3fab24e722c12b002c4d9ac1d"}
+  "lib/tls-eio/tls_eio.a" {"F:3501b98823c0af47075d424c78ea7304"}
+  "lib/tls-eio/tls_eio.cma" {"F:ada96faa82161a64ef0ec02fb129ba92"}
+  "lib/tls-eio/tls_eio.cmi" {"F:7b26b5f88f8ec3ef3bbacccc18c1a265"}
+  "lib/tls-eio/tls_eio.cmt" {"F:f30972e41d22c503597d2f5fe7f2d0af"}
+  "lib/tls-eio/tls_eio.cmti" {"F:11bfac595ec0d5aae3068ddeed544e2a"}
+  "lib/tls-eio/tls_eio.cmx" {"F:ed5b5bfc8f63fc687552059e5c2a878e"}
+  "lib/tls-eio/tls_eio.cmxa" {"F:960d2e4d9f264237feb7eb900d648916"}
+  "lib/tls-eio/tls_eio.cmxs" {"F:4cf15eb5191c167a2751ff29a5f0ee50"}
+  "lib/tls-eio/tls_eio.ml" {"F:c9837d88e94fcdc6e359de7c1e3dd504"}
+  "lib/tls-eio/tls_eio.mli" {"F:d17972f6be747c436408ccd9d4cc1a86"}
+  "lib/tls-eio/x509_eio.cmi" {"F:01edea199a9409277fd88245eaac9e88"}
+  "lib/tls-eio/x509_eio.cmt" {"F:04880c569cb89fdc945b5d189b18d16d"}
+  "lib/tls-eio/x509_eio.cmti" {"F:2a1e3a5d55366df55885fc7d39e96329"}
+  "lib/tls-eio/x509_eio.cmx" {"F:596a9d17c7469a3ee1e25452b7b00498"}
+  "lib/tls-eio/x509_eio.ml" {"F:2cda1c67b13103f670f5803f6950c548"}
+  "lib/tls-eio/x509_eio.mli" {"F:d775345baad32f2240f51ff4c8920cb5"}
+]

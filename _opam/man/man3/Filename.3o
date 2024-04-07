@@ -1,0 +1,820 @@
+.TH "Filename" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Filename \- Operations on file names.
+.SH Module
+Module   Filename
+.SH Documentation
+.sp
+Module
+.BI "Filename"
+ : 
+.B sig end
+
+.sp
+Operations on file names\&.
+
+.sp
+
+.sp
+.sp
+
+.I val current_dir_name 
+: 
+.B string
+.sp
+The conventional name for the current directory (e\&.g\&. 
+.ft B
+\&.
+.ft R
+in Unix)\&.
+
+.sp
+
+.I val parent_dir_name 
+: 
+.B string
+.sp
+The conventional name for the parent of the current directory
+(e\&.g\&. 
+.ft B
+\&.\&.
+.ft R
+in Unix)\&.
+
+.sp
+
+.I val dir_sep 
+: 
+.B string
+.sp
+The directory separator (e\&.g\&. 
+.ft B
+/
+.ft R
+in Unix)\&.
+
+.sp
+.B "Since"
+3.11.2
+
+.sp
+
+.I val concat 
+: 
+.B string -> string -> string
+.sp
+
+.ft B
+concat dir file
+.ft R
+returns a file name that designates file
+.ft B
+file
+.ft R
+in directory 
+.ft B
+dir
+.ft R
+\&.
+
+.sp
+
+.I val is_relative 
+: 
+.B string -> bool
+.sp
+Return 
+.ft B
+true
+.ft R
+if the file name is relative to the current
+directory, 
+.ft B
+false
+.ft R
+if it is absolute (i\&.e\&. in Unix, starts
+with 
+.ft B
+/
+.ft R
+)\&.
+
+.sp
+
+.I val is_implicit 
+: 
+.B string -> bool
+.sp
+Return 
+.ft B
+true
+.ft R
+if the file name is relative and does not start
+with an explicit reference to the current directory (
+.ft B
+\&./
+.ft R
+or
+.ft B
+\&.\&./
+.ft R
+in Unix), 
+.ft B
+false
+.ft R
+if it starts with an explicit reference
+to the root directory or the current directory\&.
+
+.sp
+
+.I val check_suffix 
+: 
+.B string -> string -> bool
+.sp
+
+.ft B
+check_suffix name suff
+.ft R
+returns 
+.ft B
+true
+.ft R
+if the filename 
+.ft B
+name
+.ft R
+ends with the suffix 
+.ft B
+suff
+.ft R
+\&.
+.sp
+Under Windows ports (including Cygwin), comparison is
+case\-insensitive, relying on 
+.ft B
+String\&.lowercase_ascii
+.ft R
+\&.  Note that
+this does not match exactly the interpretation of case\-insensitive
+filename equivalence from Windows\&.
+
+.sp
+
+.I val chop_suffix 
+: 
+.B string -> string -> string
+.sp
+
+.ft B
+chop_suffix name suff
+.ft R
+removes the suffix 
+.ft B
+suff
+.ft R
+from
+the filename 
+.ft B
+name
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+name
+.ft R
+does not end with the suffix 
+.ft B
+suff
+.ft R
+\&.
+
+.sp
+
+.I val chop_suffix_opt 
+: 
+.B suffix:string -> string -> string option
+.sp
+
+.ft B
+chop_suffix_opt ~suffix filename
+.ft R
+removes the suffix from
+the 
+.ft B
+filename
+.ft R
+if possible, or returns 
+.ft B
+None
+.ft R
+if the
+filename does not end with the suffix\&.
+.sp
+Under Windows ports (including Cygwin), comparison is
+case\-insensitive, relying on 
+.ft B
+String\&.lowercase_ascii
+.ft R
+\&.  Note that
+this does not match exactly the interpretation of case\-insensitive
+filename equivalence from Windows\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val extension 
+: 
+.B string -> string
+.sp
+
+.ft B
+extension name
+.ft R
+is the shortest suffix 
+.ft B
+ext
+.ft R
+of 
+.ft B
+name0
+.ft R
+where:
+.sp
+.sp
+\-
+.ft B
+name0
+.ft R
+is the longest suffix of 
+.ft B
+name
+.ft R
+that does not
+contain a directory separator;
+.sp
+\-
+.ft B
+ext
+.ft R
+starts with a period;
+.sp
+\-
+.ft B
+ext
+.ft R
+is preceded by at least one non\-period character
+in 
+.ft B
+name0
+.ft R
+\&.
+
+If such a suffix does not exist, 
+.ft B
+extension name
+.ft R
+is the empty
+string\&.
+
+.sp
+.B "Since"
+4.04
+
+.sp
+
+.I val remove_extension 
+: 
+.B string -> string
+.sp
+Return the given file name without its extension, as defined
+in 
+.ft B
+Filename\&.extension
+.ft R
+\&. If the extension is empty, the function
+returns the given file name\&.
+.sp
+The following invariant holds for any file name 
+.ft B
+s
+.ft R
+:
+.sp
+
+.ft B
+remove_extension s ^ extension s = s
+.ft R
+
+
+.sp
+.B "Since"
+4.04
+
+.sp
+
+.I val chop_extension 
+: 
+.B string -> string
+.sp
+Same as 
+.ft B
+Filename\&.remove_extension
+.ft R
+, but raise 
+.ft B
+Invalid_argument
+.ft R
+if the given name has an empty extension\&.
+
+.sp
+
+.I val basename 
+: 
+.B string -> string
+.sp
+Split a file name into directory name / base file name\&.
+If 
+.ft B
+name
+.ft R
+is a valid file name, then 
+.ft B
+concat (dirname name) (basename name)
+.ft R
+returns a file name which is equivalent to 
+.ft B
+name
+.ft R
+\&. Moreover,
+after setting the current directory to 
+.ft B
+dirname name
+.ft R
+(with 
+.ft B
+Sys\&.chdir
+.ft R
+),
+references to 
+.ft B
+basename name
+.ft R
+(which is a relative file name)
+designate the same file as 
+.ft B
+name
+.ft R
+before the call to 
+.ft B
+Sys\&.chdir
+.ft R
+\&.
+.sp
+This function conforms to the specification of POSIX\&.1\-2008 for the
+.ft B
+basename
+.ft R
+utility\&.
+
+.sp
+
+.I val dirname 
+: 
+.B string -> string
+.sp
+See 
+.ft B
+Filename\&.basename
+.ft R
+\&.
+This function conforms to the specification of POSIX\&.1\-2008 for the
+.ft B
+dirname
+.ft R
+utility\&.
+
+.sp
+
+.I val null 
+: 
+.B string
+.sp
+
+.ft B
+null
+.ft R
+is 
+.ft B
+"/dev/null"
+.ft R
+on POSIX and 
+.ft B
+"NUL"
+.ft R
+on Windows\&. It represents a
+file on the OS that discards all writes and returns end of file on reads\&.
+
+.sp
+.B "Since"
+4.10
+
+.sp
+
+.I val temp_file 
+: 
+.B ?temp_dir:string -> string -> string -> string
+.sp
+
+.ft B
+temp_file prefix suffix
+.ft R
+returns the name of a
+fresh temporary file in the temporary directory\&.
+The base name of the temporary file is formed by concatenating
+.ft B
+prefix
+.ft R
+, then a suitably chosen integer number, then 
+.ft B
+suffix
+.ft R
+\&.
+The optional argument 
+.ft B
+temp_dir
+.ft R
+indicates the temporary directory
+to use, defaulting to the current result of 
+.ft B
+Filename\&.get_temp_dir_name
+.ft R
+\&.
+The temporary file is created empty, with permissions 
+.ft B
+0o600
+.ft R
+(readable and writable only by the file owner)\&.  The file is
+guaranteed to be different from any other file that existed when
+.ft B
+temp_file
+.ft R
+was called\&.
+
+.sp
+.B "Before3.11.2"
+no ?temp_dir optional argument
+
+
+.sp
+.B "Raises Sys_error"
+if the file could not be created\&.
+
+.sp
+
+.I val open_temp_file 
+: 
+.B ?mode:open_flag list ->
+.B   ?perms:int ->
+.B   ?temp_dir:string -> string -> string -> string * out_channel
+.sp
+Same as 
+.ft B
+Filename\&.temp_file
+.ft R
+, but returns both the name of a fresh
+temporary file, and an output channel opened (atomically) on
+this file\&.  This function is more secure than 
+.ft B
+temp_file
+.ft R
+: there
+is no risk that the temporary file will be modified (e\&.g\&. replaced
+by a symbolic link) before the program opens it\&.  The optional argument
+.ft B
+mode
+.ft R
+is a list of additional flags to control the opening of the file\&.
+It can contain one or several of 
+.ft B
+Open_append
+.ft R
+, 
+.ft B
+Open_binary
+.ft R
+,
+and 
+.ft B
+Open_text
+.ft R
+\&.  The default is 
+.ft B
+[Open_text]
+.ft R
+(open in text mode)\&. The
+file is created with permissions 
+.ft B
+perms
+.ft R
+(defaults to readable and
+writable only by the file owner, 
+.ft B
+0o600
+.ft R
+)\&.
+
+.sp
+.B "Before4.03"
+no ?perms optional argument
+
+
+.sp
+.B "Before3.11.2"
+no ?temp_dir optional argument
+
+
+.sp
+.B "Raises Sys_error"
+if the file could not be opened\&.
+
+.sp
+
+.I val temp_dir 
+: 
+.B ?temp_dir:string -> ?perms:int -> string -> string -> string
+.sp
+
+.ft B
+temp_dir prefix suffix
+.ft R
+creates and returns the name of a fresh
+temporary directory with permissions 
+.ft B
+perms
+.ft R
+(defaults to 0o700)
+inside 
+.ft B
+temp_dir
+.ft R
+\&.  The base name of the temporary directory is
+formed by concatenating 
+.ft B
+prefix
+.ft R
+, then a suitably chosen integer
+number, then 
+.ft B
+suffix
+.ft R
+\&.  The optional argument 
+.ft B
+temp_dir
+.ft R
+indicates
+the temporary directory to use, defaulting to the current result of
+.ft B
+Filename\&.get_temp_dir_name
+.ft R
+\&.  The temporary directory is created
+empty, with permissions 
+.ft B
+0o700
+.ft R
+(readable, writable, and searchable
+only by the file owner)\&.  The directory is guaranteed to be
+different from any other directory that existed when 
+.ft B
+temp_dir
+.ft R
+was
+called\&.
+.sp
+If temp_dir does not exist, this function does not create it\&.  Instead,
+it raises Sys_error\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+.B "Raises Sys_error"
+if the directory could not be created\&.
+
+.sp
+
+.I val get_temp_dir_name 
+: 
+.B unit -> string
+.sp
+The name of the temporary directory:
+Under Unix, the value of the 
+.ft B
+TMPDIR
+.ft R
+environment variable, or "/tmp"
+if the variable is not set\&.
+Under Windows, the value of the 
+.ft B
+TEMP
+.ft R
+environment variable, or "\&."
+if the variable is not set\&.
+The temporary directory can be changed with 
+.ft B
+Filename\&.set_temp_dir_name
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val set_temp_dir_name 
+: 
+.B string -> unit
+.sp
+Change the temporary directory returned by 
+.ft B
+Filename\&.get_temp_dir_name
+.ft R
+and used by 
+.ft B
+Filename\&.temp_file
+.ft R
+and 
+.ft B
+Filename\&.open_temp_file
+.ft R
+\&.
+The temporary directory is a domain\-local value which is inherited
+by child domains\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val quote 
+: 
+.B string -> string
+.sp
+Return a quoted version of a file name, suitable for use as
+one argument in a command line, escaping all meta\-characters\&.
+Warning: under Windows, the output is only suitable for use
+with programs that follow the standard Windows quoting
+conventions\&.
+
+.sp
+
+.I val quote_command 
+: 
+.B string ->
+.B   ?stdin:string -> ?stdout:string -> ?stderr:string -> string list -> string
+.sp
+
+.ft B
+quote_command cmd args
+.ft R
+returns a quoted command line, suitable
+for use as an argument to 
+.ft B
+Sys\&.command
+.ft R
+, 
+.ft B
+Unix\&.system
+.ft R
+, and the
+.ft B
+Unix\&.open_process
+.ft R
+functions\&.
+.sp
+The string 
+.ft B
+cmd
+.ft R
+is the command to call\&.  The list 
+.ft B
+args
+.ft R
+is
+the list of arguments to pass to this command\&.  It can be empty\&.
+.sp
+The optional arguments 
+.ft B
+?stdin
+.ft R
+and 
+.ft B
+?stdout
+.ft R
+and 
+.ft B
+?stderr
+.ft R
+are
+file names used to redirect the standard input, the standard
+output, or the standard error of the command\&.
+If 
+.ft B
+~stdin:f
+.ft R
+is given, a redirection 
+.ft B
+< f
+.ft R
+is performed and the
+standard input of the command reads from file 
+.ft B
+f
+.ft R
+\&.
+If 
+.ft B
+~stdout:f
+.ft R
+is given, a redirection 
+.ft B
+> f
+.ft R
+is performed and the
+standard output of the command is written to file 
+.ft B
+f
+.ft R
+\&.
+If 
+.ft B
+~stderr:f
+.ft R
+is given, a redirection 
+.ft B
+2> f
+.ft R
+is performed and the
+standard error of the command is written to file 
+.ft B
+f
+.ft R
+\&.
+If both 
+.ft B
+~stdout:f
+.ft R
+and 
+.ft B
+~stderr:f
+.ft R
+are given, with the exact
+same file name 
+.ft B
+f
+.ft R
+, a 
+.ft B
+2>&1
+.ft R
+redirection is performed so that the
+standard output and the standard error of the command are interleaved
+and redirected to the same file 
+.ft B
+f
+.ft R
+\&.
+.sp
+Under Unix and Cygwin, the command, the arguments, and the redirections
+if any are quoted using 
+.ft B
+Filename\&.quote
+.ft R
+, then concatenated\&.
+Under Win32, additional quoting is performed as required by the
+.ft B
+cmd\&.exe
+.ft R
+shell that is called by 
+.ft B
+Sys\&.command
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.10
+
+.sp
+.B "Raises Failure"
+if the command cannot be escaped on the current platform\&.
+
+.sp

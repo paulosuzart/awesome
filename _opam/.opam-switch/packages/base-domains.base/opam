@@ -1,0 +1,13 @@
+opam-version: "2.0"
+synopsis: ""
+description:
+  "Domains-based parallelism distributed with the Multicore OCaml compiler\""
+maintainer: "https://github.com/ocaml-multicore/multicore-opam/issues"
+depends: [
+  "ocaml" {>= "5.0"} |
+  "ocaml-variants"
+    {= "4.14.0+domains" | = "4.12.0+domains+effects" | = "4.12.0+domains" |
+     = "4.10.0+multicore" |
+     = "4.10.0+multicore+no-effect-syntax" |
+     = "4.06.1+multicore"}
+]

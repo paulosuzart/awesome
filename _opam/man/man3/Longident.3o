@@ -1,0 +1,144 @@
+.TH "Longident" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Longident \- Long identifiers, used in parsetree.
+.SH Module
+Module   Longident
+.SH Documentation
+.sp
+Module
+.BI "Longident"
+ : 
+.B sig end
+
+.sp
+Long identifiers, used in parsetree\&.
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+.sp
+To print a longident, see 
+.ft B
+Pprintast\&.longident
+.ft R
+, using
+.ft B
+Format\&.asprintf
+.ft R
+to convert to a string\&.
+
+.sp
+
+.sp
+.sp
+.I type t 
+=
+ | Lident
+.B of 
+.B string
+ | Ldot
+.B of 
+.B t * string
+ | Lapply
+.B of 
+.B t * t
+ 
+.sp
+
+.sp
+
+.I val flatten 
+: 
+.B t -> string list
+.sp
+
+.sp
+
+.I val unflatten 
+: 
+.B string list -> t option
+.sp
+For a non\-empty list 
+.ft B
+l
+.ft R
+, 
+.ft B
+unflatten l
+.ft R
+is 
+.ft B
+Some lid
+.ft R
+where 
+.ft B
+lid
+.ft R
+is
+the long identifier created by concatenating the elements of 
+.ft B
+l
+.ft R
+with 
+.ft B
+Ldot
+.ft R
+\&.
+.ft B
+unflatten []
+.ft R
+is 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val last 
+: 
+.B t -> string
+.sp
+
+.sp
+
+.I val parse 
+: 
+.B string -> t
+.sp
+.B "Deprecated."
+this function may misparse its input,
+use "Parse\&.longident" or "Longident\&.unflatten"
+
+.sp
+This function is broken on identifiers that are not just "Word\&.Word\&.word";
+for example, it returns incorrect results on infix operators
+and extended module paths\&.
+.sp
+If you want to generate long identifiers that are a list of
+dot\-separated identifiers, the function 
+.ft B
+Longident\&.unflatten
+.ft R
+is safer and faster\&.
+.ft B
+Longident\&.unflatten
+.ft R
+is available since OCaml 4\&.06\&.0\&.
+.sp
+If you want to parse any identifier correctly, use the long\-identifiers
+functions from the 
+.ft B
+Parse
+.ft R
+module, in particular 
+.ft B
+Parse\&.longident
+.ft R
+\&.
+They are available since OCaml 4\&.11, and also provide proper
+input\-location support\&.
+
+.sp

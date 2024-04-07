@@ -1,0 +1,1706 @@
+.TH "List" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+List \- List operations.
+.SH Module
+Module   List
+.SH Documentation
+.sp
+Module
+.BI "List"
+ : 
+.B sig end
+
+.sp
+List operations\&.
+.sp
+Some functions are flagged as not tail\-recursive\&.  A tail\-recursive
+function uses constant stack space, while a non\-tail\-recursive function
+uses stack space proportional to the length of its list argument, which
+can be a problem with very long lists\&.  When the function takes several
+list arguments, an approximate formula giving stack usage (in some
+unspecified constant unit) is shown in parentheses\&.
+.sp
+The above considerations can usually be ignored if your lists are not
+longer than about 10000 elements\&.
+.sp
+The labeled version of this module can be used as described in the
+.ft B
+StdLabels
+.ft R
+module\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+= 
+.B 'a list
+=
+ | []
+ | (::)
+.B of 
+.B 'a * 'a list
+ 
+.sp
+An alias for the type of lists\&.
+
+.sp
+
+.I val length 
+: 
+.B 'a list -> int
+.sp
+Return the length (number of elements) of the given list\&.
+
+.sp
+
+.I val compare_lengths 
+: 
+.B 'a list -> 'b list -> int
+.sp
+Compare the lengths of two lists\&. 
+.ft B
+compare_lengths l1 l2
+.ft R
+is
+equivalent to 
+.ft B
+compare (length l1) (length l2)
+.ft R
+, except that
+the computation stops after reaching the end of the shortest list\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val compare_length_with 
+: 
+.B 'a list -> int -> int
+.sp
+Compare the length of a list to an integer\&. 
+.ft B
+compare_length_with l len
+.ft R
+is
+equivalent to 
+.ft B
+compare (length l) len
+.ft R
+, except that the computation stops
+after at most 
+.ft B
+len
+.ft R
+iterations on the list\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val is_empty 
+: 
+.B 'a list -> bool
+.sp
+
+.ft B
+is_empty l
+.ft R
+is true if and only if 
+.ft B
+l
+.ft R
+has no elements\&. It is equivalent to
+.ft B
+compare_length_with l 0 = 0
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val cons 
+: 
+.B 'a -> 'a list -> 'a list
+.sp
+
+.ft B
+cons x xs
+.ft R
+is 
+.ft B
+x :: xs
+.ft R
+
+
+.sp
+.B "Since"
+4.03 (4.05 in ListLabels)
+
+.sp
+
+.I val hd 
+: 
+.B 'a list -> 'a
+.sp
+Return the first element of the given list\&.
+
+.sp
+.B "Raises Failure"
+if the list is empty\&.
+
+.sp
+
+.I val tl 
+: 
+.B 'a list -> 'a list
+.sp
+Return the given list without its first element\&.
+
+.sp
+.B "Raises Failure"
+if the list is empty\&.
+
+.sp
+
+.I val nth 
+: 
+.B 'a list -> int -> 'a
+.sp
+Return the 
+.ft B
+n
+.ft R
+\-th element of the given list\&.
+The first element (head of the list) is at position 0\&.
+
+.sp
+.B "Raises Failure"
+if the list is too short\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is negative\&.
+
+.sp
+
+.I val nth_opt 
+: 
+.B 'a list -> int -> 'a option
+.sp
+Return the 
+.ft B
+n
+.ft R
+\-th element of the given list\&.
+The first element (head of the list) is at position 0\&.
+Return 
+.ft B
+None
+.ft R
+if the list is too short\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is negative\&.
+
+.sp
+
+.I val rev 
+: 
+.B 'a list -> 'a list
+.sp
+List reversal\&.
+
+.sp
+
+.I val init 
+: 
+.B int -> (int -> 'a) -> 'a list
+.sp
+
+.ft B
+init len f
+.ft R
+is 
+.ft B
+[f 0; f 1; \&.\&.\&.; f (len\-1)]
+.ft R
+, evaluated left to right\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+len < 0
+.ft R
+\&.
+
+.sp
+
+.I val append 
+: 
+.B 'a list -> 'a list -> 'a list
+.sp
+
+.ft B
+append l0 l1
+.ft R
+appends 
+.ft B
+l1
+.ft R
+to 
+.ft B
+l0
+.ft R
+\&.
+Same function as the infix operator 
+.ft B
+@
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1 this function is tail-recursive.
+
+.sp
+
+.I val rev_append 
+: 
+.B 'a list -> 'a list -> 'a list
+.sp
+
+.ft B
+rev_append l1 l2
+.ft R
+reverses 
+.ft B
+l1
+.ft R
+and concatenates it with 
+.ft B
+l2
+.ft R
+\&.
+This is equivalent to 
+.ft B
+(
+.ft R
+.ft B
+List\&.rev
+.ft R
+.ft B
+l1) @ l2
+.ft R
+\&.
+
+.sp
+
+.I val concat 
+: 
+.B 'a list list -> 'a list
+.sp
+Concatenate a list of lists\&. The elements of the argument are all
+concatenated together (in the same order) to give the result\&.
+Not tail\-recursive
+(length of the argument + length of the longest sub\-list)\&.
+
+.sp
+
+.I val flatten 
+: 
+.B 'a list list -> 'a list
+.sp
+Same as 
+.ft B
+List\&.concat
+.ft R
+\&. Not tail\-recursive
+(length of the argument + length of the longest sub\-list)\&.
+
+.sp
+
+.PP
+.SS Comparison
+
+.PP
+
+.I val equal 
+: 
+.B ('a -> 'a -> bool) -> 'a list -> 'a list -> bool
+.sp
+
+.ft B
+equal eq [a1; \&.\&.\&.; an] [b1; \&.\&.; bm]
+.ft R
+holds when
+the two input lists have the same length, and for each
+pair of elements 
+.ft B
+ai
+.ft R
+, 
+.ft B
+bi
+.ft R
+at the same position we have
+.ft B
+eq ai bi
+.ft R
+\&.
+.sp
+Note: the 
+.ft B
+eq
+.ft R
+function may be called even if the
+lists have different length\&. If you know your equality
+function is costly, you may want to check 
+.ft B
+List\&.compare_lengths
+.ft R
+first\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val compare 
+: 
+.B ('a -> 'a -> int) -> 'a list -> 'a list -> int
+.sp
+
+.ft B
+compare cmp [a1; \&.\&.\&.; an] [b1; \&.\&.\&.; bm]
+.ft R
+performs
+a lexicographic comparison of the two input lists,
+using the same 
+.ft B
+\&'a \-> \&'a \-> int
+.ft R
+interface as 
+.ft B
+compare
+.ft R
+:
+.sp
+.sp
+\-
+.ft B
+a1 :: l1
+.ft R
+is smaller than 
+.ft B
+a2 :: l2
+.ft R
+(negative result)
+if 
+.ft B
+a1
+.ft R
+is smaller than 
+.ft B
+a2
+.ft R
+, or if they are equal (0 result)
+and 
+.ft B
+l1
+.ft R
+is smaller than 
+.ft B
+l2
+.ft R
+
+.sp
+\-the empty list 
+.ft B
+[]
+.ft R
+is strictly smaller than non\-empty lists
+
+Note: the 
+.ft B
+cmp
+.ft R
+function will be called even if the lists have
+different lengths\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.PP
+.SS Iterators
+
+.PP
+
+.I val iter 
+: 
+.B ('a -> unit) -> 'a list -> unit
+.sp
+
+.ft B
+iter f [a1; \&.\&.\&.; an]
+.ft R
+applies function 
+.ft B
+f
+.ft R
+in turn to
+.ft B
+[a1; \&.\&.\&.; an]
+.ft R
+\&. It is equivalent to
+.ft B
+f a1; f a2; \&.\&.\&.; f an
+.ft R
+\&.
+
+.sp
+
+.I val iteri 
+: 
+.B (int -> 'a -> unit) -> 'a list -> unit
+.sp
+Same as 
+.ft B
+List\&.iter
+.ft R
+, but the function is applied to the index of
+the element as first argument (counting from 0), and the element
+itself as second argument\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val map 
+: 
+.B ('a -> 'b) -> 'a list -> 'b list
+.sp
+
+.ft B
+map f [a1; \&.\&.\&.; an]
+.ft R
+applies function 
+.ft B
+f
+.ft R
+to 
+.ft B
+a1, \&.\&.\&., an
+.ft R
+,
+and builds the list 
+.ft B
+[f a1; \&.\&.\&.; f an]
+.ft R
+with the results returned by 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+
+.I val mapi 
+: 
+.B (int -> 'a -> 'b) -> 'a list -> 'b list
+.sp
+Same as 
+.ft B
+List\&.map
+.ft R
+, but the function is applied to the index of
+the element as first argument (counting from 0), and the element
+itself as second argument\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val rev_map 
+: 
+.B ('a -> 'b) -> 'a list -> 'b list
+.sp
+
+.ft B
+rev_map f l
+.ft R
+gives the same result as
+.ft B
+List\&.rev
+.ft R
+.ft B
+(
+.ft R
+.ft B
+List\&.map
+.ft R
+.ft B
+f l)
+.ft R
+, but is more efficient\&.
+
+.sp
+
+.I val filter_map 
+: 
+.B ('a -> 'b option) -> 'a list -> 'b list
+.sp
+
+.ft B
+filter_map f l
+.ft R
+applies 
+.ft B
+f
+.ft R
+to every element of 
+.ft B
+l
+.ft R
+, filters
+out the 
+.ft B
+None
+.ft R
+elements and returns the list of the arguments of
+the 
+.ft B
+Some
+.ft R
+elements\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val concat_map 
+: 
+.B ('a -> 'b list) -> 'a list -> 'b list
+.sp
+
+.ft B
+concat_map f l
+.ft R
+gives the same result as
+.ft B
+List\&.concat
+.ft R
+.ft B
+(
+.ft R
+.ft B
+List\&.map
+.ft R
+.ft B
+f l)
+.ft R
+\&. Tail\-recursive\&.
+
+.sp
+.B "Since"
+4.10
+
+.sp
+
+.I val fold_left_map 
+: 
+.B ('acc -> 'a -> 'acc * 'b) -> 'acc -> 'a list -> 'acc * 'b list
+.sp
+
+.ft B
+fold_left_map
+.ft R
+is  a combination of 
+.ft B
+fold_left
+.ft R
+and 
+.ft B
+map
+.ft R
+that threads an
+accumulator through calls to 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val fold_left 
+: 
+.B ('acc -> 'a -> 'acc) -> 'acc -> 'a list -> 'acc
+.sp
+
+.ft B
+fold_left f init [b1; \&.\&.\&.; bn]
+.ft R
+is
+.ft B
+f (\&.\&.\&. (f (f init b1) b2) \&.\&.\&.) bn
+.ft R
+\&.
+
+.sp
+
+.I val fold_right 
+: 
+.B ('a -> 'acc -> 'acc) -> 'a list -> 'acc -> 'acc
+.sp
+
+.ft B
+fold_right f [a1; \&.\&.\&.; an] init
+.ft R
+is
+.ft B
+f a1 (f a2 (\&.\&.\&. (f an init) \&.\&.\&.))
+.ft R
+\&. Not tail\-recursive\&.
+
+.sp
+
+.PP
+.SS Iterators on two lists
+
+.PP
+
+.I val iter2 
+: 
+.B ('a -> 'b -> unit) -> 'a list -> 'b list -> unit
+.sp
+
+.ft B
+iter2 f [a1; \&.\&.\&.; an] [b1; \&.\&.\&.; bn]
+.ft R
+calls in turn
+.ft B
+f a1 b1; \&.\&.\&.; f an bn
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the two lists are determined
+to have different lengths\&.
+
+.sp
+
+.I val map2 
+: 
+.B ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+.sp
+
+.ft B
+map2 f [a1; \&.\&.\&.; an] [b1; \&.\&.\&.; bn]
+.ft R
+is
+.ft B
+[f a1 b1; \&.\&.\&.; f an bn]
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the two lists are determined
+to have different lengths\&.
+
+.sp
+
+.I val rev_map2 
+: 
+.B ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+.sp
+
+.ft B
+rev_map2 f l1 l2
+.ft R
+gives the same result as
+.ft B
+List\&.rev
+.ft R
+.ft B
+(
+.ft R
+.ft B
+List\&.map2
+.ft R
+.ft B
+f l1 l2)
+.ft R
+, but is more efficient\&.
+
+.sp
+
+.I val fold_left2 
+: 
+.B ('acc -> 'a -> 'b -> 'acc) -> 'acc -> 'a list -> 'b list -> 'acc
+.sp
+
+.ft B
+fold_left2 f init [a1; \&.\&.\&.; an] [b1; \&.\&.\&.; bn]
+.ft R
+is
+.ft B
+f (\&.\&.\&. (f (f init a1 b1) a2 b2) \&.\&.\&.) an bn
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the two lists are determined
+to have different lengths\&.
+
+.sp
+
+.I val fold_right2 
+: 
+.B ('a -> 'b -> 'acc -> 'acc) -> 'a list -> 'b list -> 'acc -> 'acc
+.sp
+
+.ft B
+fold_right2 f [a1; \&.\&.\&.; an] [b1; \&.\&.\&.; bn] init
+.ft R
+is
+.ft B
+f a1 b1 (f a2 b2 (\&.\&.\&. (f an bn init) \&.\&.\&.))
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the two lists are determined
+to have different lengths\&. Not tail\-recursive\&.
+
+.sp
+
+.PP
+.SS List scanning
+
+.PP
+
+.I val for_all 
+: 
+.B ('a -> bool) -> 'a list -> bool
+.sp
+
+.ft B
+for_all f [a1; \&.\&.\&.; an]
+.ft R
+checks if all elements of the list
+satisfy the predicate 
+.ft B
+f
+.ft R
+\&. That is, it returns
+.ft B
+(f a1) && (f a2) && \&.\&.\&. && (f an)
+.ft R
+for a non\-empty list and
+.ft B
+true
+.ft R
+if the list is empty\&.
+
+.sp
+
+.I val exists 
+: 
+.B ('a -> bool) -> 'a list -> bool
+.sp
+
+.ft B
+exists f [a1; \&.\&.\&.; an]
+.ft R
+checks if at least one element of
+the list satisfies the predicate 
+.ft B
+f
+.ft R
+\&. That is, it returns
+.ft B
+(f a1) || (f a2) || \&.\&.\&. || (f an)
+.ft R
+for a non\-empty list and
+.ft B
+false
+.ft R
+if the list is empty\&.
+
+.sp
+
+.I val for_all2 
+: 
+.B ('a -> 'b -> bool) -> 'a list -> 'b list -> bool
+.sp
+Same as 
+.ft B
+List\&.for_all
+.ft R
+, but for a two\-argument predicate\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the two lists are determined
+to have different lengths\&.
+
+.sp
+
+.I val exists2 
+: 
+.B ('a -> 'b -> bool) -> 'a list -> 'b list -> bool
+.sp
+Same as 
+.ft B
+List\&.exists
+.ft R
+, but for a two\-argument predicate\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the two lists are determined
+to have different lengths\&.
+
+.sp
+
+.I val mem 
+: 
+.B 'a -> 'a list -> bool
+.sp
+
+.ft B
+mem a set
+.ft R
+is true if and only if 
+.ft B
+a
+.ft R
+is equal
+to an element of 
+.ft B
+set
+.ft R
+\&.
+
+.sp
+
+.I val memq 
+: 
+.B 'a -> 'a list -> bool
+.sp
+Same as 
+.ft B
+List\&.mem
+.ft R
+, but uses physical equality instead of structural
+equality to compare list elements\&.
+
+.sp
+
+.PP
+.SS List searching
+
+.PP
+
+.I val find 
+: 
+.B ('a -> bool) -> 'a list -> 'a
+.sp
+
+.ft B
+find f l
+.ft R
+returns the first element of the list 
+.ft B
+l
+.ft R
+that satisfies the predicate 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if there is no value that satisfies 
+.ft B
+f
+.ft R
+in the
+list 
+.ft B
+l
+.ft R
+\&.
+
+.sp
+
+.I val find_opt 
+: 
+.B ('a -> bool) -> 'a list -> 'a option
+.sp
+
+.ft B
+find f l
+.ft R
+returns the first element of the list 
+.ft B
+l
+.ft R
+that satisfies the predicate 
+.ft B
+f
+.ft R
+\&.
+Returns 
+.ft B
+None
+.ft R
+if there is no value that satisfies 
+.ft B
+f
+.ft R
+in the
+list 
+.ft B
+l
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_index 
+: 
+.B ('a -> bool) -> 'a list -> int option
+.sp
+
+.ft B
+find_index f xs
+.ft R
+returns 
+.ft B
+Some i
+.ft R
+, where 
+.ft B
+i
+.ft R
+is the index of the first
+element of the list 
+.ft B
+xs
+.ft R
+that satisfies 
+.ft B
+f x
+.ft R
+, if there is such an element\&.
+.sp
+It returns 
+.ft B
+None
+.ft R
+if there is no such element\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val find_map 
+: 
+.B ('a -> 'b option) -> 'a list -> 'b option
+.sp
+
+.ft B
+find_map f l
+.ft R
+applies 
+.ft B
+f
+.ft R
+to the elements of 
+.ft B
+l
+.ft R
+in order,
+and returns the first result of the form 
+.ft B
+Some v
+.ft R
+, or 
+.ft B
+None
+.ft R
+if none exist\&.
+
+.sp
+.B "Since"
+4.10
+
+.sp
+
+.I val find_mapi 
+: 
+.B (int -> 'a -> 'b option) -> 'a list -> 'b option
+.sp
+Same as 
+.ft B
+find_map
+.ft R
+, but the predicate is applied to the index of
+the element as first argument (counting from 0), and the element
+itself as second argument\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val filter 
+: 
+.B ('a -> bool) -> 'a list -> 'a list
+.sp
+
+.ft B
+filter f l
+.ft R
+returns all the elements of the list 
+.ft B
+l
+.ft R
+that satisfy the predicate 
+.ft B
+f
+.ft R
+\&. The order of the elements
+in the input list is preserved\&.
+
+.sp
+
+.I val find_all 
+: 
+.B ('a -> bool) -> 'a list -> 'a list
+.sp
+
+.ft B
+find_all
+.ft R
+is another name for 
+.ft B
+List\&.filter
+.ft R
+\&.
+
+.sp
+
+.I val filteri 
+: 
+.B (int -> 'a -> bool) -> 'a list -> 'a list
+.sp
+Same as 
+.ft B
+List\&.filter
+.ft R
+, but the predicate is applied to the index of
+the element as first argument (counting from 0), and the element
+itself as second argument\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val partition 
+: 
+.B ('a -> bool) -> 'a list -> 'a list * 'a list
+.sp
+
+.ft B
+partition f l
+.ft R
+returns a pair of lists 
+.ft B
+(l1, l2)
+.ft R
+, where
+.ft B
+l1
+.ft R
+is the list of all the elements of 
+.ft B
+l
+.ft R
+that
+satisfy the predicate 
+.ft B
+f
+.ft R
+, and 
+.ft B
+l2
+.ft R
+is the list of all the
+elements of 
+.ft B
+l
+.ft R
+that do not satisfy 
+.ft B
+f
+.ft R
+\&.
+The order of the elements in the input list is preserved\&.
+
+.sp
+
+.I val partition_map 
+: 
+.B ('a -> ('b, 'c) Either.t) -> 'a list -> 'b list * 'c list
+.sp
+
+.ft B
+partition_map f l
+.ft R
+returns a pair of lists 
+.ft B
+(l1, l2)
+.ft R
+such that,
+for each element 
+.ft B
+x
+.ft R
+of the input list 
+.ft B
+l
+.ft R
+:
+.sp
+\-if 
+.ft B
+f x
+.ft R
+is 
+.ft B
+Left y1
+.ft R
+, then 
+.ft B
+y1
+.ft R
+is in 
+.ft B
+l1
+.ft R
+, and
+.sp
+\-if 
+.ft B
+f x
+.ft R
+is 
+.ft B
+Right y2
+.ft R
+, then 
+.ft B
+y2
+.ft R
+is in 
+.ft B
+l2
+.ft R
+\&.
+
+The output elements are included in 
+.ft B
+l1
+.ft R
+and 
+.ft B
+l2
+.ft R
+in the same
+relative order as the corresponding input elements in 
+.ft B
+l
+.ft R
+\&.
+.sp
+In particular, 
+.ft B
+partition_map (fun x \-> if f x then Left x else Right x) l
+.ft R
+is equivalent to 
+.ft B
+partition f l
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.PP
+.SS Association lists
+
+.PP
+
+.I val assoc 
+: 
+.B 'a -> ('a * 'b) list -> 'b
+.sp
+
+.ft B
+assoc a l
+.ft R
+returns the value associated with key 
+.ft B
+a
+.ft R
+in the list of
+pairs 
+.ft B
+l
+.ft R
+\&. That is,
+.ft B
+assoc a [ \&.\&.\&.; (a,b); \&.\&.\&.] = b
+.ft R
+if 
+.ft B
+(a,b)
+.ft R
+is the leftmost binding of 
+.ft B
+a
+.ft R
+in list 
+.ft B
+l
+.ft R
+\&.
+
+.sp
+.B "Raises Not_found"
+if there is no value associated with 
+.ft B
+a
+.ft R
+in the
+list 
+.ft B
+l
+.ft R
+\&.
+
+.sp
+
+.I val assoc_opt 
+: 
+.B 'a -> ('a * 'b) list -> 'b option
+.sp
+
+.ft B
+assoc_opt a l
+.ft R
+returns the value associated with key 
+.ft B
+a
+.ft R
+in the list of
+pairs 
+.ft B
+l
+.ft R
+\&. That is,
+.ft B
+assoc_opt a [ \&.\&.\&.; (a,b); \&.\&.\&.] = Some b
+.ft R
+if 
+.ft B
+(a,b)
+.ft R
+is the leftmost binding of 
+.ft B
+a
+.ft R
+in list 
+.ft B
+l
+.ft R
+\&.
+Returns 
+.ft B
+None
+.ft R
+if there is no value associated with 
+.ft B
+a
+.ft R
+in the
+list 
+.ft B
+l
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val assq 
+: 
+.B 'a -> ('a * 'b) list -> 'b
+.sp
+Same as 
+.ft B
+List\&.assoc
+.ft R
+, but uses physical equality instead of
+structural equality to compare keys\&.
+
+.sp
+
+.I val assq_opt 
+: 
+.B 'a -> ('a * 'b) list -> 'b option
+.sp
+Same as 
+.ft B
+List\&.assoc_opt
+.ft R
+, but uses physical equality instead of
+structural equality to compare keys\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val mem_assoc 
+: 
+.B 'a -> ('a * 'b) list -> bool
+.sp
+Same as 
+.ft B
+List\&.assoc
+.ft R
+, but simply return 
+.ft B
+true
+.ft R
+if a binding exists,
+and 
+.ft B
+false
+.ft R
+if no bindings exist for the given key\&.
+
+.sp
+
+.I val mem_assq 
+: 
+.B 'a -> ('a * 'b) list -> bool
+.sp
+Same as 
+.ft B
+List\&.mem_assoc
+.ft R
+, but uses physical equality instead of
+structural equality to compare keys\&.
+
+.sp
+
+.I val remove_assoc 
+: 
+.B 'a -> ('a * 'b) list -> ('a * 'b) list
+.sp
+
+.ft B
+remove_assoc a l
+.ft R
+returns the list of
+pairs 
+.ft B
+l
+.ft R
+without the first pair with key 
+.ft B
+a
+.ft R
+, if any\&.
+Not tail\-recursive\&.
+
+.sp
+
+.I val remove_assq 
+: 
+.B 'a -> ('a * 'b) list -> ('a * 'b) list
+.sp
+Same as 
+.ft B
+List\&.remove_assoc
+.ft R
+, but uses physical equality instead
+of structural equality to compare keys\&. Not tail\-recursive\&.
+
+.sp
+
+.PP
+.SS Lists of pairs
+
+.PP
+
+.I val split 
+: 
+.B ('a * 'b) list -> 'a list * 'b list
+.sp
+Transform a list of pairs into a pair of lists:
+.ft B
+split [(a1,b1); \&.\&.\&.; (an,bn)]
+.ft R
+is 
+.ft B
+([a1; \&.\&.\&.; an], [b1; \&.\&.\&.; bn])
+.ft R
+\&.
+Not tail\-recursive\&.
+
+.sp
+
+.I val combine 
+: 
+.B 'a list -> 'b list -> ('a * 'b) list
+.sp
+Transform a pair of lists into a list of pairs:
+.ft B
+combine [a1; \&.\&.\&.; an] [b1; \&.\&.\&.; bn]
+.ft R
+is
+.ft B
+[(a1,b1); \&.\&.\&.; (an,bn)]
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the two lists
+have different lengths\&. Not tail\-recursive\&.
+
+.sp
+
+.PP
+.SS Sorting
+
+.PP
+
+.I val sort 
+: 
+.B ('a -> 'a -> int) -> 'a list -> 'a list
+.sp
+Sort a list in increasing order according to a comparison
+function\&. The comparison function must return 0 if its arguments
+compare as equal, a positive integer if the first is greater,
+and a negative integer if the first is smaller (see Array\&.sort for
+a complete specification)\&. For example,
+.ft B
+compare
+.ft R
+is a suitable comparison function\&.
+The resulting list is sorted in increasing order\&.
+.ft B
+List\&.sort
+.ft R
+is guaranteed to run in constant heap space
+(in addition to the size of the result list) and logarithmic
+stack space\&.
+.sp
+The current implementation uses Merge Sort\&. It runs in constant
+heap space and logarithmic stack space\&.
+
+.sp
+
+.I val stable_sort 
+: 
+.B ('a -> 'a -> int) -> 'a list -> 'a list
+.sp
+Same as 
+.ft B
+List\&.sort
+.ft R
+, but the sorting algorithm is guaranteed to
+be stable (i\&.e\&. elements that compare equal are kept in their
+original order)\&.
+.sp
+The current implementation uses Merge Sort\&. It runs in constant
+heap space and logarithmic stack space\&.
+
+.sp
+
+.I val fast_sort 
+: 
+.B ('a -> 'a -> int) -> 'a list -> 'a list
+.sp
+Same as 
+.ft B
+List\&.sort
+.ft R
+or 
+.ft B
+List\&.stable_sort
+.ft R
+, whichever is
+faster on typical input\&.
+
+.sp
+
+.I val sort_uniq 
+: 
+.B ('a -> 'a -> int) -> 'a list -> 'a list
+.sp
+Same as 
+.ft B
+List\&.sort
+.ft R
+, but also remove duplicates\&.
+
+.sp
+.B "Since"
+4.02 (4.03 in ListLabels)
+
+.sp
+
+.I val merge 
+: 
+.B ('a -> 'a -> int) -> 'a list -> 'a list -> 'a list
+.sp
+Merge two lists:
+Assuming that 
+.ft B
+l1
+.ft R
+and 
+.ft B
+l2
+.ft R
+are sorted according to the
+comparison function 
+.ft B
+cmp
+.ft R
+, 
+.ft B
+merge cmp l1 l2
+.ft R
+will return a
+sorted list containing all the elements of 
+.ft B
+l1
+.ft R
+and 
+.ft B
+l2
+.ft R
+\&.
+If several elements compare equal, the elements of 
+.ft B
+l1
+.ft R
+will be
+before the elements of 
+.ft B
+l2
+.ft R
+\&.
+Not tail\-recursive (sum of the lengths of the arguments)\&.
+
+.sp
+
+.PP
+.SS Lists and Sequences
+
+.PP
+
+.I val to_seq 
+: 
+.B 'a list -> 'a Seq.t
+.sp
+Iterate on the list\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B 'a Seq.t -> 'a list
+.sp
+Create a list from a sequence\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp

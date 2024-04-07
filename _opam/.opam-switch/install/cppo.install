@@ -1,0 +1,11 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/cppo/META"
+  "_build/install/default/lib/cppo/dune-package"
+  "_build/install/default/lib/cppo/opam"
+]
+bin: "_build/install/default/bin/cppo"
+doc: [
+  "_build/install/default/doc/cppo/LICENSE.md"
+  "_build/install/default/doc/cppo/README.md"
+]

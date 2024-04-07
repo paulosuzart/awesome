@@ -1,0 +1,22 @@
+opam-version: "2.0"
+added: [
+  "doc/time_now" {"D"}
+  "doc/time_now/LICENSE.md" {"F:93afbebc0e066419e584932bf74cc496"}
+  "lib/stublibs/dlltime_now_stubs.so" {"F:5f4addc8d495f673784a0a4cc48230df"}
+  "lib/time_now" {"D"}
+  "lib/time_now/META" {"F:fc5b5d8f8c0868ed809d13964c87aed0"}
+  "lib/time_now/dune-package" {"F:3b93caaf89abed9bdc146446c5194912"}
+  "lib/time_now/libtime_now_stubs.a" {"F:ccf89c1c3bf2c6f73ba83f7e0731cf29"}
+  "lib/time_now/opam" {"F:a8af5086b0ce1a17449fa288b8694b37"}
+  "lib/time_now/runtime.js" {"F:accdb44b53a52973a72fa30cf8e16b9e"}
+  "lib/time_now/time_now.a" {"F:4c9036bf7eb91d0b39f53452a9a82ba4"}
+  "lib/time_now/time_now.cma" {"F:9e8b103918b79648c90bb3ce3ed9116a"}
+  "lib/time_now/time_now.cmi" {"F:2f821c05e634e35ff850bb73b2f7732f"}
+  "lib/time_now/time_now.cmt" {"F:d5aef072194559f39f1ba12281a209bc"}
+  "lib/time_now/time_now.cmti" {"F:b881de69a8ca0d88bd155ba1705e268a"}
+  "lib/time_now/time_now.cmx" {"F:9b0a58c8d77a27a75f432b234ee96c49"}
+  "lib/time_now/time_now.cmxa" {"F:3544fc571f5bdc650727ef29f49285e9"}
+  "lib/time_now/time_now.cmxs" {"F:5c90befb3d19288c10abf1a980ead8aa"}
+  "lib/time_now/time_now.ml" {"F:31d2a8830672c981b098c967cd7ee75d"}
+  "lib/time_now/time_now.mli" {"F:8a727aab5eb102874a026a0f3e38dc35"}
+]

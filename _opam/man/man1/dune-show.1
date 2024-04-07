@@ -1,0 +1,69 @@
+.\" Pipe this output to groff -m man -K utf8 -T utf8 | less -R
+.\"
+.mso an.tmac
+.TH "DUNE-SHOW" 1 "" "Dune 3.15.0" "Dune Manual"
+.\" Disable hyphenation and ragged-right
+.nh
+.ad l
+.SH NAME
+.P
+dune\N'45'show \N'45' Command group for showing information about the workspace
+.SH SYNOPSIS
+.P
+\fBdune show\fR \fICOMMAND\fR …
+.SH COMMANDS
+.TP 4
+\fBaliases\fR [\fIOPTION\fR]… [\fIDIR\fR]…
+Print aliases in a given directory\N'46' Works similalry to ls\N'46'
+.TP 4
+\fBenv\fR [\fIOPTION\fR]… [\fIPATH\fR]
+Print the environment of a directory
+.TP 4
+\fBexternal\N'45'lib\N'45'deps\fR [\fIOPTION\fR]…
+Print out external libraries needed to build the project\N'46' It\N'39's an approximated set of libraries\N'46'
+.TP 4
+\fBinstalled\N'45'libraries\fR [\fIOPTION\fR]…
+Print out libraries installed on the system\N'46'
+.TP 4
+\fBopam\N'45'files\fR [\fIOPTION\fR]…
+Print information about the opam files that have been discovered\N'46'
+.TP 4
+\fBpackage\N'45'entries\fR [\fIOPTION\fR]…
+prints information about the entries per package
+.TP 4
+\fBpkg\fR \fICOMMAND\fR …
+Subcommands related to package management
+.TP 4
+\fBpp\fR [\fIOPTION\fR]… \fIFILE\fR
+Build a given FILE and print the preprocessed output\N'46'
+.TP 4
+\fBrules\fR [\fIOPTION\fR]… [\fITARGET\fR]…
+Dump rules\N'46'
+.TP 4
+\fBtargets\fR [\fIOPTION\fR]… [\fIDIR\fR]…
+Print targets in a given directory\N'46' Works similalry to ls\N'46'
+.TP 4
+\fBworkspace\fR [\fIOPTION\fR]… [\fIDIRS\fR]…
+Print a description of the workspace\N'39's structure\N'46' If some directories DIRS are provided, then only those directories of the workspace are considered\N'46'
+.SH COMMON OPTIONS
+.TP 4
+\fB\N'45'\N'45'help\fR[=\fIFMT\fR] (default=\fBauto\fR)
+Show this help in format \fIFMT\fR\N'46' The value \fIFMT\fR must be one of \fBauto\fR, \fBpager\fR, \fBgroff\fR or \fBplain\fR\N'46' With \fBauto\fR, the format is \fBpager\fR or \fBplain\fR whenever the \fBTERM\fR env var is \fBdumb\fR or undefined\N'46'
+.TP 4
+\fB\N'45'\N'45'version\fR
+Show version information\N'46'
+.SH EXIT STATUS
+.P
+\fBdune show\fR exits with:
+.TP 4
+0
+on success\N'46'
+.TP 4
+1
+if an error happened\N'46'
+.TP 4
+130
+if it was interrupted by a signal\N'46'
+.SH SEE ALSO
+.P
+dune(1)

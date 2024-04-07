@@ -1,0 +1,37 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_disable_unused_warnings" {"D"}
+  "doc/ppx_disable_unused_warnings/LICENSE.md"
+    {"F:96403f2890fe417564002c251138fbe8"}
+  "doc/ppx_disable_unused_warnings/README.md"
+    {"F:b9e883b3ed10c7575f8f350e3209a864"}
+  "lib/ppx_disable_unused_warnings" {"D"}
+  "lib/ppx_disable_unused_warnings/META"
+    {"F:c3d07093320d158614508132b590611c"}
+  "lib/ppx_disable_unused_warnings/dune-package"
+    {"F:e0e9b65059666253c5692fa107a6c6b2"}
+  "lib/ppx_disable_unused_warnings/opam"
+    {"F:09dbcdd72b03a00b741ce7c97e499874"}
+  "lib/ppx_disable_unused_warnings/ppx.exe"
+    {"F:3aaebb0fc48a4878f3d3dcc1b3fe6856"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.a"
+    {"F:fceab0ae929e346d4d4dfbd99203ef02"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cma"
+    {"F:9dae2982c0c29c4e6afcc8c14bbc480c"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmi"
+    {"F:c06ca05d45ddb94a8448fccb691bb9ef"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmt"
+    {"F:17cfe0c5771890d84846f6a3282f3a0d"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmti"
+    {"F:77b8dc54880f3ae501609bc4eb1787f2"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmx"
+    {"F:2225862856a76f5b3ca9d86754bce62c"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmxa"
+    {"F:d4bd13c5b59813434f1102f543f6e187"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmxs"
+    {"F:584a547f2f39d768774448be8faa2b3e"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.ml"
+    {"F:f38d161c18bfbbe3f85290efbe088943"}
+  "lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.mli"
+    {"F:b9157f2f4526351619cf7baa18145e03"}
+]

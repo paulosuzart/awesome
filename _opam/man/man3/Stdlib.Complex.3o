@@ -1,0 +1,293 @@
+.TH "Stdlib.Complex" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Complex \- no description
+.SH Module
+Module   Stdlib.Complex
+.SH Documentation
+.sp
+Module
+.BI "Complex"
+ : 
+.B (module Stdlib__Complex)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+= {
+ re : 
+.B float
+;
+ im : 
+.B float
+;
+ }
+
+.sp
+The type of complex numbers\&.  
+.ft B
+re
+.ft R
+is the real part and 
+.ft B
+im
+.ft R
+the
+imaginary part\&.
+
+.sp
+
+.I val zero 
+: 
+.B t
+.sp
+The complex number 
+.ft B
+0
+.ft R
+\&.
+
+.sp
+
+.I val one 
+: 
+.B t
+.sp
+The complex number 
+.ft B
+1
+.ft R
+\&.
+
+.sp
+
+.I val i 
+: 
+.B t
+.sp
+The complex number 
+.ft B
+i
+.ft R
+\&.
+
+.sp
+
+.I val neg 
+: 
+.B t -> t
+.sp
+Unary negation\&.
+
+.sp
+
+.I val conj 
+: 
+.B t -> t
+.sp
+Conjugate: given the complex 
+.ft B
+x + i\&.y
+.ft R
+, returns 
+.ft B
+x \- i\&.y
+.ft R
+\&.
+
+.sp
+
+.I val add 
+: 
+.B t -> t -> t
+.sp
+Addition
+
+.sp
+
+.I val sub 
+: 
+.B t -> t -> t
+.sp
+Subtraction
+
+.sp
+
+.I val mul 
+: 
+.B t -> t -> t
+.sp
+Multiplication
+
+.sp
+
+.I val inv 
+: 
+.B t -> t
+.sp
+Multiplicative inverse (
+.ft B
+1/z
+.ft R
+)\&.
+
+.sp
+
+.I val div 
+: 
+.B t -> t -> t
+.sp
+Division
+
+.sp
+
+.I val sqrt 
+: 
+.B t -> t
+.sp
+Square root\&.  The result 
+.ft B
+x + i\&.y
+.ft R
+is such that 
+.ft B
+x > 0
+.ft R
+or
+.ft B
+x = 0
+.ft R
+and 
+.ft B
+y >= 0
+.ft R
+\&.
+This function has a discontinuity along the negative real axis\&.
+
+.sp
+
+.I val norm2 
+: 
+.B t -> float
+.sp
+Norm squared: given 
+.ft B
+x + i\&.y
+.ft R
+, returns 
+.ft B
+x^2 + y^2
+.ft R
+\&.
+
+.sp
+
+.I val norm 
+: 
+.B t -> float
+.sp
+Norm: given 
+.ft B
+x + i\&.y
+.ft R
+, returns 
+.ft B
+sqrt(x^2 + y^2)
+.ft R
+\&.
+
+.sp
+
+.I val arg 
+: 
+.B t -> float
+.sp
+Argument\&.  The argument of a complex number is the angle
+in the complex plane between the positive real axis and a line
+passing through zero and the number\&.  This angle ranges from
+.ft B
+\-pi
+.ft R
+to 
+.ft B
+pi
+.ft R
+\&.  This function has a discontinuity along the
+negative real axis\&.
+
+.sp
+
+.I val polar 
+: 
+.B float -> float -> t
+.sp
+
+.ft B
+polar norm arg
+.ft R
+returns the complex having norm 
+.ft B
+norm
+.ft R
+and argument 
+.ft B
+arg
+.ft R
+\&.
+
+.sp
+
+.I val exp 
+: 
+.B t -> t
+.sp
+Exponentiation\&.  
+.ft B
+exp z
+.ft R
+returns 
+.ft B
+e
+.ft R
+to the 
+.ft B
+z
+.ft R
+power\&.
+
+.sp
+
+.I val log 
+: 
+.B t -> t
+.sp
+Natural logarithm (in base 
+.ft B
+e
+.ft R
+)\&.
+
+.sp
+
+.I val pow 
+: 
+.B t -> t -> t
+.sp
+Power function\&.  
+.ft B
+pow z1 z2
+.ft R
+returns 
+.ft B
+z1
+.ft R
+to the 
+.ft B
+z2
+.ft R
+power\&.
+
+.sp

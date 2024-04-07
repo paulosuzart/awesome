@@ -1,0 +1,82 @@
+(lang dune 3.15)
+(name uring)
+(version v0.8)
+(sections (lib .) (libexec .) (doc ../../doc/uring) (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   config.ml
+   dune-package
+   heap.ml
+   heap.mli
+   liburing.a
+   liburing_stubs.a
+   opam
+   region.ml
+   region.mli
+   uring.a
+   uring.cma
+   uring.cmi
+   uring.cmt
+   uring.cmti
+   uring.cmx
+   uring.cmxa
+   uring.ml
+   uring.mli
+   uring__.cmi
+   uring__.cmt
+   uring__.cmx
+   uring__.ml
+   uring__Config.cmi
+   uring__Config.cmt
+   uring__Config.cmx
+   uring__Heap.cmi
+   uring__Heap.cmt
+   uring__Heap.cmti
+   uring__Heap.cmx
+   uring__Region.cmi
+   uring__Region.cmt
+   uring__Region.cmti
+   uring__Region.cmx))
+ (libexec (uring.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md))
+ (stublibs (dlluring.so dlluring_stubs.so)))
+(library
+ (name uring)
+ (kind normal)
+ (archives (byte uring.cma) (native uring.cmxa))
+ (plugins (byte uring.cma) (native uring.cmxs))
+ (foreign_objects uring_stubs.o)
+ (foreign_archives (archives (for all) (files liburing_stubs.a liburing.a)))
+ (foreign_dll_files ../stublibs/dlluring_stubs.so ../stublibs/dlluring.so)
+ (native_archives uring.a)
+ (requires cstruct fmt optint unix)
+ (main_module_name Uring)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name uring__)
+     (visibility public)
+     (kind alias)
+     (source (path Uring__) (impl (path uring__.ml-gen))))
+    (name Uring)
+    (modules
+     (module
+      (obj_name uring__Config)
+      (visibility public)
+      (source (path Config) (impl (path config.ml))))
+     (module
+      (obj_name uring__Heap)
+      (visibility public)
+      (source (path Heap) (intf (path heap.mli)) (impl (path heap.ml))))
+     (module
+      (obj_name uring__Region)
+      (visibility public)
+      (source (path Region) (intf (path region.mli)) (impl (path region.ml))))
+     (module
+      (obj_name uring)
+      (visibility public)
+      (source (path Uring) (intf (path uring.mli)) (impl (path uring.ml))))))
+   (wrapped true))))

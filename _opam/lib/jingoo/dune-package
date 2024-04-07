@@ -1,0 +1,153 @@
+(lang dune 3.15)
+(name jingoo)
+(version 1.5.0)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/jingoo))
+(files
+ (lib
+  (META
+   dune-package
+   jg_ast_mapper.ml
+   jg_ast_optimize.ml
+   jg_interp.ml
+   jg_lexer.ml
+   jg_parser.ml
+   jg_parser.mli
+   jg_runtime.ml
+   jg_stub.ml
+   jg_stub.mli
+   jg_template.ml
+   jg_template.mli
+   jg_template2.ml
+   jg_template2.mli
+   jg_types.ml
+   jg_types.mli
+   jg_utils.ml
+   jingoo.a
+   jingoo.cma
+   jingoo.cmi
+   jingoo.cmt
+   jingoo.cmx
+   jingoo.cmxa
+   jingoo.ml
+   jingoo__Jg_ast_mapper.cmi
+   jingoo__Jg_ast_mapper.cmt
+   jingoo__Jg_ast_mapper.cmx
+   jingoo__Jg_ast_optimize.cmi
+   jingoo__Jg_ast_optimize.cmt
+   jingoo__Jg_ast_optimize.cmx
+   jingoo__Jg_interp.cmi
+   jingoo__Jg_interp.cmt
+   jingoo__Jg_interp.cmx
+   jingoo__Jg_lexer.cmi
+   jingoo__Jg_lexer.cmt
+   jingoo__Jg_lexer.cmx
+   jingoo__Jg_parser.cmi
+   jingoo__Jg_parser.cmt
+   jingoo__Jg_parser.cmti
+   jingoo__Jg_parser.cmx
+   jingoo__Jg_runtime.cmi
+   jingoo__Jg_runtime.cmt
+   jingoo__Jg_runtime.cmx
+   jingoo__Jg_stub.cmi
+   jingoo__Jg_stub.cmt
+   jingoo__Jg_stub.cmti
+   jingoo__Jg_stub.cmx
+   jingoo__Jg_template.cmi
+   jingoo__Jg_template.cmt
+   jingoo__Jg_template.cmti
+   jingoo__Jg_template.cmx
+   jingoo__Jg_template2.cmi
+   jingoo__Jg_template2.cmt
+   jingoo__Jg_template2.cmti
+   jingoo__Jg_template2.cmx
+   jingoo__Jg_types.cmi
+   jingoo__Jg_types.cmt
+   jingoo__Jg_types.cmti
+   jingoo__Jg_types.cmx
+   jingoo__Jg_utils.cmi
+   jingoo__Jg_utils.cmt
+   jingoo__Jg_utils.cmx
+   opam))
+ (libexec (jingoo.cmxs))
+ (bin (jingoo))
+ (doc (CHANGES LICENSE README.md)))
+(library
+ (name jingoo)
+ (kind normal)
+ (synopsis "jingoo library")
+ (archives (byte jingoo.cma) (native jingoo.cmxa))
+ (plugins (byte jingoo.cma) (native jingoo.cmxs))
+ (native_archives jingoo.a)
+ (requires unix dynlink re uutf uucp ppx_deriving.runtime)
+ (main_module_name Jingoo)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name jingoo)
+     (visibility public)
+     (kind alias)
+     (source (path Jingoo) (impl (path jingoo.ml-gen))))
+    (name Jingoo)
+    (modules
+     (module
+      (obj_name jingoo__Jg_ast_mapper)
+      (visibility public)
+      (source (path Jg_ast_mapper) (impl (path jg_ast_mapper.ml))))
+     (module
+      (obj_name jingoo__Jg_ast_optimize)
+      (visibility public)
+      (source (path Jg_ast_optimize) (impl (path jg_ast_optimize.ml))))
+     (module
+      (obj_name jingoo__Jg_interp)
+      (visibility public)
+      (source (path Jg_interp) (impl (path jg_interp.ml))))
+     (module
+      (obj_name jingoo__Jg_lexer)
+      (visibility public)
+      (source (path Jg_lexer) (impl (path jg_lexer.ml))))
+     (module
+      (obj_name jingoo__Jg_parser)
+      (visibility public)
+      (source
+       (path Jg_parser)
+       (intf (path jg_parser.mli))
+       (impl (path jg_parser.ml))))
+     (module
+      (obj_name jingoo__Jg_runtime)
+      (visibility public)
+      (source (path Jg_runtime) (impl (path jg_runtime.ml))))
+     (module
+      (obj_name jingoo__Jg_stub)
+      (visibility public)
+      (source
+       (path Jg_stub)
+       (intf (path jg_stub.mli))
+       (impl (path jg_stub.ml))))
+     (module
+      (obj_name jingoo__Jg_template)
+      (visibility public)
+      (source
+       (path Jg_template)
+       (intf (path jg_template.mli))
+       (impl (path jg_template.ml))))
+     (module
+      (obj_name jingoo__Jg_template2)
+      (visibility public)
+      (source
+       (path Jg_template2)
+       (intf (path jg_template2.mli))
+       (impl (path jg_template2.ml))))
+     (module
+      (obj_name jingoo__Jg_types)
+      (visibility public)
+      (source
+       (path Jg_types)
+       (intf (path jg_types.mli))
+       (impl (path jg_types.ml))))
+     (module
+      (obj_name jingoo__Jg_utils)
+      (visibility public)
+      (source (path Jg_utils) (impl (path jg_utils.ml))))))
+   (wrapped true))))

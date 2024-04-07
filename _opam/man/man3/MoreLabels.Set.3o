@@ -1,0 +1,114 @@
+.TH "MoreLabels.Set" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+MoreLabels.Set \- no description
+.SH Module
+Module   MoreLabels.Set
+.SH Documentation
+.sp
+Module
+.BI "Set"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+Sets over ordered types\&.
+.sp
+This module implements the set data structure, given a total ordering
+function over the set elements\&. All operations over sets
+are purely applicative (no side\-effects)\&.
+The implementation uses balanced binary trees, and is therefore
+reasonably efficient: insertion and membership take time
+logarithmic in the size of the set, for instance\&.
+.sp
+The 
+.ft B
+MoreLabels\&.Set\&.Make
+.ft R
+functor constructs implementations for any type, given a
+.ft B
+compare
+.ft R
+function\&.
+For instance:
+.EX
+.ft B
+.br
+\&       module IntPairs =
+.br
+\&         struct
+.br
+\&           type t = int * int
+.br
+\&           let compare (x0,y0) (x1,y1) =
+.br
+\&             match Stdlib\&.compare x0 x1 with
+.br
+\&                 0 \-> Stdlib\&.compare y0 y1
+.br
+\&               | c \-> c
+.br
+\&         end
+.br
+\&
+.br
+\&       module PairsSet = Set\&.Make(IntPairs)
+.br
+\&
+.br
+\&       let m = PairsSet\&.(empty |> add (2,3) |> add (5,7) |> add (11,13))
+.br
+\&     
+.ft R
+.EE
+.sp
+This creates a new module 
+.ft B
+PairsSet
+.ft R
+, with a new type 
+.ft B
+PairsSet\&.t
+.ft R
+of sets of 
+.ft B
+int * int
+.ft R
+\&.
+.PP
+.I module type OrderedType = 
+.B sig end
+
+.sp
+Input signature of the functor 
+.ft B
+MoreLabels\&.Set\&.Make
+.ft R
+\&.
+
+.sp
+.I module type S = 
+.B sig end
+
+.sp
+Output signature of the functor 
+.ft B
+MoreLabels\&.Set\&.Make
+.ft R
+\&.
+
+.sp
+.I module Make : 
+.B functor (Ord : OrderedType) -> sig end
+
+.sp
+Functor building an implementation of the set structure
+given a totally ordered type\&.
+
+.sp

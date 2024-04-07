@@ -1,0 +1,107 @@
+(lang dune 3.15)
+(name optint)
+(version 0.3.0)
+(sections (lib .) (libexec .) (doc ../../doc/optint))
+(files
+ (lib
+  (META
+   dune-package
+   int63_emul.ml
+   int63_emul.mli
+   int63_native.ml
+   int63_native.mli
+   integer_interface.ml
+   opam
+   optint.a
+   optint.cma
+   optint.cmi
+   optint.cmt
+   optint.cmti
+   optint.cmx
+   optint.cmxa
+   optint.ml
+   optint.mli
+   optint__.cmi
+   optint__.cmt
+   optint__.cmx
+   optint__.ml
+   optint__Int63_emul.cmi
+   optint__Int63_emul.cmt
+   optint__Int63_emul.cmti
+   optint__Int63_emul.cmx
+   optint__Int63_native.cmi
+   optint__Int63_native.cmt
+   optint__Int63_native.cmti
+   optint__Int63_native.cmx
+   optint__Integer_interface.cmi
+   optint__Integer_interface.cmt
+   optint__Integer_interface.cmx
+   optint__Optint_emul.cmi
+   optint__Optint_emul.cmt
+   optint__Optint_emul.cmti
+   optint__Optint_emul.cmx
+   optint__Optint_native.cmi
+   optint__Optint_native.cmt
+   optint__Optint_native.cmti
+   optint__Optint_native.cmx
+   optint_emul.ml
+   optint_emul.mli
+   optint_native.ml
+   optint_native.mli))
+ (libexec (optint.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name optint)
+ (kind normal)
+ (archives (byte optint.cma) (native optint.cmxa))
+ (plugins (byte optint.cma) (native optint.cmxs))
+ (native_archives optint.a)
+ (main_module_name Optint)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name optint__)
+     (visibility public)
+     (kind alias)
+     (source (path Optint__) (impl (path optint__.ml-gen))))
+    (name Optint)
+    (modules
+     (module
+      (obj_name optint__Int63_emul)
+      (visibility public)
+      (source
+       (path Int63_emul)
+       (intf (path int63_emul.mli))
+       (impl (path int63_emul.ml))))
+     (module
+      (obj_name optint__Int63_native)
+      (visibility public)
+      (source
+       (path Int63_native)
+       (intf (path int63_native.mli))
+       (impl (path int63_native.ml))))
+     (module
+      (obj_name optint__Integer_interface)
+      (visibility public)
+      (source (path Integer_interface) (impl (path integer_interface.ml))))
+     (module
+      (obj_name optint)
+      (visibility public)
+      (source (path Optint) (intf (path optint.mli)) (impl (path optint.ml))))
+     (module
+      (obj_name optint__Optint_emul)
+      (visibility public)
+      (source
+       (path Optint_emul)
+       (intf (path optint_emul.mli))
+       (impl (path optint_emul.ml))))
+     (module
+      (obj_name optint__Optint_native)
+      (visibility public)
+      (source
+       (path Optint_native)
+       (intf (path optint_native.mli))
+       (impl (path optint_native.ml))))))
+   (wrapped true))))

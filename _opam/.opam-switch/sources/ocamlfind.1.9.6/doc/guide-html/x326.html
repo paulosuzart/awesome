@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Appending to variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Complex packages"
+HREF="c278.html"><LINK
+REL="PREVIOUS"
+TITLE="Defining additional predicates"
+HREF="x311.html"><LINK
+REL="NEXT"
+TITLE="Subpackages"
+HREF="x338.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x311.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Complex packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x338.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN326"
+>Appending to variables</A
+></H1
+><P
+>The syntax
+
+<PRE
+CLASS="PROGRAMLISTING"
+>varname ( predname1, predname2, ... ) += "value"</PRE
+>
+
+(note the "+=" operator) can be used to append values to variables
+depending on whether predicates are true. The "+=" lines in the META
+file are evaluated one after the other, and <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>every</I
+></SPAN
+>
+line is selected for which the formal predicates are satisfied, 
+and these lines are added to the current value of the variable. This is
+different from the "=" operator where only the most specific
+assignment is taken.</P
+><P
+>The values are considered as space-separated words when they
+are appended, i.e. the new words are added to the list of current
+words.</P
+><P
+>For example, in the hypothetic META file
+
+<PRE
+CLASS="PROGRAMLISTING"
+>var(p) += "a"
+var(p,q) += "b"</PRE
+>
+
+the value of var is "a b" if both p and q are true, and the value is
+only "a" is only p is true (and the value is empty otherwise). If
+the operator "=" had been used, the value would have been only "b"
+when both p and q are true.</P
+><P
+>In the case that there both "=" and "+=" settings for
+the same variable, a special algorithm is used: First the most specific
+"=" setting is determined, and second all matching "+=" settings are
+appended in the order they appear in the file.</P
+><P
+>Finally, here is a real-world example. Imagine you have an
+archive p.cma and a special extension for the toploop, p_top.cma.
+Furthermore, there is a special debugging version p_dev.cma that
+replaces p.cma during development. You can now simply write
+
+<PRE
+CLASS="PROGRAMLISTING"
+>archive(byte) = "p.cma"
+archive(byte,development) = "p_dev.cma"
+archive(byte,toploop) += "p_top.cma"</PRE
+>
+
+to select <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>either</I
+></SPAN
+> p.cma or p_dev.cma, and append
+p_top.cma for toploops to whatever was selected in the first step.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x311.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x338.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Defining additional predicates</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c278.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Subpackages</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

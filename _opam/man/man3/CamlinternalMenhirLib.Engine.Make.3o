@@ -1,0 +1,27 @@
+.TH "CamlinternalMenhirLib.Engine.Make" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.Engine.Make \- no description
+.SH Module
+Module   CamlinternalMenhirLib.Engine.Make
+.SH Documentation
+.sp
+Module
+.BI "Make"
+ : 
+.B functor (T : EngineTypes.TABLE) -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"T"
+
+.B CamlinternalMenhirLib.EngineTypes.TABLE
+
+
+
+
+
+.sp
+.sp

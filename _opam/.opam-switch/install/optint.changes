@@ -1,0 +1,65 @@
+opam-version: "2.0"
+added: [
+  "doc/optint" {"D"}
+  "doc/optint/CHANGES.md" {"F:e649f80458eb3a455248e6e5986ea948"}
+  "doc/optint/LICENSE.md" {"F:719e93063e9f55f5357fcaa45300a327"}
+  "doc/optint/README.md" {"F:bd4f6aea0efc6d8bd745bed8c31a4621"}
+  "lib/optint" {"D"}
+  "lib/optint/META" {"F:5e0734ef016f298664062344e798fcce"}
+  "lib/optint/dune-package" {"F:dec47de82200aca1a01904d3f0411291"}
+  "lib/optint/int63_emul.ml" {"F:07325e6c4f5256adbe34dee84c6b0344"}
+  "lib/optint/int63_emul.mli" {"F:4ffc8a8a0fbcc27090db6f739a31d076"}
+  "lib/optint/int63_native.ml" {"F:369d5de06397d61fb05e72dc842278f8"}
+  "lib/optint/int63_native.mli" {"F:3806f442c55b603c4b5a469f38bfe5aa"}
+  "lib/optint/integer_interface.ml" {"F:623b1bd4254c323a43cfb8104b571f65"}
+  "lib/optint/opam" {"F:8094d9fe63f8194fcdf65bb407692352"}
+  "lib/optint/optint.a" {"F:f7101265a9c3113201471c897d622699"}
+  "lib/optint/optint.cma" {"F:108e206b02a1ef2ef3d4dbd36c72b98a"}
+  "lib/optint/optint.cmi" {"F:57cab2d929e2e5e54751ad80f0ccfde9"}
+  "lib/optint/optint.cmt" {"F:8caddd532de9d0c59b28c5cd430bce07"}
+  "lib/optint/optint.cmti" {"F:6a8dce67c11b84b55aac12f08ca1ec95"}
+  "lib/optint/optint.cmx" {"F:81bda5a4ff3deecc632807129d63c476"}
+  "lib/optint/optint.cmxa" {"F:f385dfca03b5b668de8957044a7c4ef8"}
+  "lib/optint/optint.cmxs" {"F:45006ccad2b61c74828445df5067dc60"}
+  "lib/optint/optint.ml" {"F:c6d3b4e809d037d11973433ee5d46e33"}
+  "lib/optint/optint.mli" {"F:c63a222bdfef0442954e611284deafb8"}
+  "lib/optint/optint__.cmi" {"F:c6114ffedd619d48c7e746c08e9bb7ad"}
+  "lib/optint/optint__.cmt" {"F:ccdada83b0404d829d1c47d29abdeb4b"}
+  "lib/optint/optint__.cmx" {"F:70e1a6a75b89f9572919ee32d9d46b98"}
+  "lib/optint/optint__.ml" {"F:943c6e6bcb4f8058475c8d0622b12e39"}
+  "lib/optint/optint__Int63_emul.cmi" {"F:9f2c317c9a786fad482739c4fec33e22"}
+  "lib/optint/optint__Int63_emul.cmt" {"F:ac366921738b169867603e5a9fc76372"}
+  "lib/optint/optint__Int63_emul.cmti" {"F:2dbe6f2a412f21b34699cc693d4bfcc4"}
+  "lib/optint/optint__Int63_emul.cmx" {"F:4fa0dfbb66757b2b44acd98ac3e0a308"}
+  "lib/optint/optint__Int63_native.cmi"
+    {"F:b09f170841c4a2167e484a4de121a072"}
+  "lib/optint/optint__Int63_native.cmt"
+    {"F:1a05ce199198884aa6e93072c0c78db5"}
+  "lib/optint/optint__Int63_native.cmti"
+    {"F:1244f82d52f84e1a5bc24e6e91e89eb4"}
+  "lib/optint/optint__Int63_native.cmx"
+    {"F:dc20bb50af0b9a16d266e72dc1fb75e8"}
+  "lib/optint/optint__Integer_interface.cmi"
+    {"F:cab9ed6e502c26f1f1d14334dae416ca"}
+  "lib/optint/optint__Integer_interface.cmt"
+    {"F:e1b2307f1ceb60563534fa96556a2683"}
+  "lib/optint/optint__Integer_interface.cmx"
+    {"F:03edc9cdb8c335afd9da7f0c7426571c"}
+  "lib/optint/optint__Optint_emul.cmi" {"F:76628f71fd7a5486cf0dcea7c8aa5d93"}
+  "lib/optint/optint__Optint_emul.cmt" {"F:7d1c80a1fef88016236a9a167bd52c5f"}
+  "lib/optint/optint__Optint_emul.cmti"
+    {"F:292b3285ad3821c26ea45aad15b1171b"}
+  "lib/optint/optint__Optint_emul.cmx" {"F:a881ac3b60ee3ee6cd4dd7cb715a25aa"}
+  "lib/optint/optint__Optint_native.cmi"
+    {"F:a3fc4a010987dff5a15fd608f163864e"}
+  "lib/optint/optint__Optint_native.cmt"
+    {"F:355e8cd78936904be4ace7b28e2beec9"}
+  "lib/optint/optint__Optint_native.cmti"
+    {"F:124f95033f30133125c4b66e13f05a47"}
+  "lib/optint/optint__Optint_native.cmx"
+    {"F:bf65faa9031e48349c7cf1d586ae577e"}
+  "lib/optint/optint_emul.ml" {"F:25f872106b866bfdb4d80a29b4e97915"}
+  "lib/optint/optint_emul.mli" {"F:18ec6c68f2c5b6bf89c52c42a79146b7"}
+  "lib/optint/optint_native.ml" {"F:f83c8054c4f929d25971d7c8727899f8"}
+  "lib/optint/optint_native.mli" {"F:3806f442c55b603c4b5a469f38bfe5aa"}
+]

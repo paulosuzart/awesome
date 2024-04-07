@@ -1,0 +1,105 @@
+(lang dune 3.15)
+(name mirage-crypto-pk)
+(version 0.11.3)
+(sections (lib .) (libexec .) (doc ../../doc/mirage-crypto-pk))
+(files
+ (lib
+  (.private/mirage_crypto_pk__Common.cmi
+   .private/mirage_crypto_pk__Common.cmt
+   .private/mirage_crypto_pk__Dh.cmi
+   .private/mirage_crypto_pk__Dh.cmt
+   .private/mirage_crypto_pk__Dsa.cmi
+   .private/mirage_crypto_pk__Dsa.cmt
+   .private/mirage_crypto_pk__Rsa.cmi
+   .private/mirage_crypto_pk__Rsa.cmt
+   .private/mirage_crypto_pk__Z_extra.cmi
+   .private/mirage_crypto_pk__Z_extra.cmt
+   META
+   common.ml
+   dh.ml
+   dsa.ml
+   dune-package
+   mirage_crypto_pk.a
+   mirage_crypto_pk.cma
+   mirage_crypto_pk.cmi
+   mirage_crypto_pk.cmt
+   mirage_crypto_pk.cmti
+   mirage_crypto_pk.cmx
+   mirage_crypto_pk.cmxa
+   mirage_crypto_pk.ml
+   mirage_crypto_pk.mli
+   mirage_crypto_pk__.cmi
+   mirage_crypto_pk__.cmt
+   mirage_crypto_pk__.cmx
+   mirage_crypto_pk__.ml
+   mirage_crypto_pk__Common.cmx
+   mirage_crypto_pk__Dh.cmx
+   mirage_crypto_pk__Dsa.cmx
+   mirage_crypto_pk__Rsa.cmx
+   mirage_crypto_pk__Z_extra.cmx
+   opam
+   rsa.ml
+   z_extra.ml))
+ (libexec (mirage_crypto_pk.cmxs))
+ (doc
+  (CHANGES.md
+   LICENSE.md
+   LICENSE.md.mirage-crypto-ec
+   LICENSE.md.mirage-crypto-rng-mirage
+   README.md)))
+(library
+ (name mirage-crypto-pk)
+ (kind normal)
+ (archives (byte mirage_crypto_pk.cma) (native mirage_crypto_pk.cmxa))
+ (plugins (byte mirage_crypto_pk.cma) (native mirage_crypto_pk.cmxs))
+ (native_archives mirage_crypto_pk.a)
+ (requires
+  cstruct
+  zarith
+  mirage-crypto
+  mirage-crypto-rng
+  sexplib0
+  eqaf.cstruct)
+ (main_module_name Mirage_crypto_pk)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name mirage_crypto_pk__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Mirage_crypto_pk__)
+      (impl (path mirage_crypto_pk__.ml-gen))))
+    (name Mirage_crypto_pk)
+    (modules
+     (module
+      (obj_name mirage_crypto_pk__Common)
+      (visibility private)
+      (source (path Common) (impl (path common.ml))))
+     (module
+      (obj_name mirage_crypto_pk__Dh)
+      (visibility private)
+      (source (path Dh) (impl (path dh.ml))))
+     (module
+      (obj_name mirage_crypto_pk__Dsa)
+      (visibility private)
+      (source (path Dsa) (impl (path dsa.ml))))
+     (module
+      (obj_name mirage_crypto_pk)
+      (visibility public)
+      (source
+       (path Mirage_crypto_pk)
+       (intf (path mirage_crypto_pk.mli))
+       (impl (path mirage_crypto_pk.ml))))
+     (module
+      (obj_name mirage_crypto_pk__Rsa)
+      (visibility private)
+      (source (path Rsa) (impl (path rsa.ml))))
+     (module
+      (obj_name mirage_crypto_pk__Z_extra)
+      (visibility private)
+      (source (path Z_extra) (impl (path z_extra.ml))))))
+   (wrapped true))))

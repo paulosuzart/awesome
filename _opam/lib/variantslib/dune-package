@@ -1,0 +1,32 @@
+(lang dune 3.15)
+(name variantslib)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/variantslib))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   variantslib.a
+   variantslib.cma
+   variantslib.cmi
+   variantslib.cmt
+   variantslib.cmx
+   variantslib.cmxa
+   variantslib.ml))
+ (libexec (variantslib.cmxs))
+ (doc (CHANGES.md LICENSE.md)))
+(library
+ (name variantslib)
+ (kind normal)
+ (archives (byte variantslib.cma) (native variantslib.cmxa))
+ (plugins (byte variantslib.cma) (native variantslib.cmxs))
+ (native_archives variantslib.a)
+ (requires base)
+ (main_module_name Variantslib)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name variantslib)
+   (visibility public)
+   (source (path Variantslib) (impl (path variantslib.ml))))))

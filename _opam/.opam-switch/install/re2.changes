@@ -1,0 +1,73 @@
+opam-version: "2.0"
+added: [
+  "doc/re2" {"D"}
+  "doc/re2/CHANGES.md" {"F:ad1d90bd79d332847fbe5c0aaf39747d"}
+  "doc/re2/LICENSE.md" {"F:03dce11fdad30d5b353bc6afd9aaa5ab"}
+  "doc/re2/README.txt" {"F:83adfeec279739b8d17d61dedca940f2"}
+  "lib/re2" {"D"}
+  "lib/re2/META" {"F:2b03dd7052d3270a9e07b906f44e2a35"}
+  "lib/re2/c/libre2_c_stubs.a" {"F:0f326e1f67f91fd7a9fe270a020a0eb0"}
+  "lib/re2/c/re2_c.a" {"F:f7171a66e8eba8a9e23cede718e97673"}
+  "lib/re2/c/re2_c.cma" {"F:04b04dca5f35f94df385c0925029eba1"}
+  "lib/re2/c/re2_c.cmi" {"F:d2a4bd8808b0273bb98ffbece878f6e1"}
+  "lib/re2/c/re2_c.cmt" {"F:ce8b727a5cfd9b1ca1bceee94cd2c40e"}
+  "lib/re2/c/re2_c.cmx" {"F:debd29ad495d19eba469aedc86073d25"}
+  "lib/re2/c/re2_c.cmxa" {"F:3928f945ef7a87c6ac9305d6cbd75ef1"}
+  "lib/re2/c/re2_c.cmxs" {"F:3642d91cfa5b63ea8ebca0523e25ff6b"}
+  "lib/re2/c/re2_c.ml" {"F:93fd6c71e5b0012319ab63274560024e"}
+  "lib/re2/dune-package" {"F:25ece2e16ee7fcb55a7837740c681c67"}
+  "lib/re2/explicit_dependencies_unignored.ml"
+    {"F:6c0b099b35fa6721bdd6800595fa7973"}
+  "lib/re2/explicit_dependencies_unignored.mli"
+    {"F:4584ccfeb9702897ea011b72a2066a2c"}
+  "lib/re2/libre2_stubs.a" {"F:670dc8da57d2147e96e2eea491b0940b"}
+  "lib/re2/opam" {"F:02b30c6143f10ab444e3318dd5d5462f"}
+  "lib/re2/options.ml" {"F:58fb949a2fe88a1eb8f9a5a9d4cacf67"}
+  "lib/re2/options.mli" {"F:902836a65c30f258864c0ceb984a7331"}
+  "lib/re2/parser.ml" {"F:8e1a24a6221530d48e0498fed4066711"}
+  "lib/re2/parser.mli" {"F:e5bab786faf166498729072f5a441228"}
+  "lib/re2/parser_intf.ml" {"F:f3cb55c3bbf76bd26f4def38001ff6a1"}
+  "lib/re2/re2.a" {"F:0547805c823deb1a613c5dc2e44285a0"}
+  "lib/re2/re2.cma" {"F:b801159b00a615c796b1794165fc8c52"}
+  "lib/re2/re2.cmi" {"F:0754ed439dcb25a37746d0865ffecf7b"}
+  "lib/re2/re2.cmt" {"F:5f371817e6aa97de854385abeffcde07"}
+  "lib/re2/re2.cmx" {"F:d9e26894bfd16ed58a25de9dcd497c75"}
+  "lib/re2/re2.cmxa" {"F:e7d9c19e4b6da942fab7b60f222116e5"}
+  "lib/re2/re2.cmxs" {"F:96e16105c47c36ab77881b43a59c6a08"}
+  "lib/re2/re2.ml" {"F:3ed18b4ab536cdc72644bfbb90583ea7"}
+  "lib/re2/re2__.cmi" {"F:02020c41fa2428e3fc8ba7e827af0d6b"}
+  "lib/re2/re2__.cmt" {"F:d0efdb5d88313914dc832683fe4d3fa3"}
+  "lib/re2/re2__.cmx" {"F:c65682fe0734f28d06d9d08e57e8382c"}
+  "lib/re2/re2__.ml" {"F:a05230b4ef7294ed90d2a80787b8a5d3"}
+  "lib/re2/re2__Explicit_dependencies_unignored.cmi"
+    {"F:23b094b942002185bb95b88d589ce19d"}
+  "lib/re2/re2__Explicit_dependencies_unignored.cmt"
+    {"F:fd042148e842680dec10c8b46a121514"}
+  "lib/re2/re2__Explicit_dependencies_unignored.cmti"
+    {"F:5185746f36e3ee1e78444c03214ba3bc"}
+  "lib/re2/re2__Explicit_dependencies_unignored.cmx"
+    {"F:9b87c749984647892c2978f77010cf5d"}
+  "lib/re2/re2__Options.cmi" {"F:baae1fd18e778af5ffd037eac78e68f7"}
+  "lib/re2/re2__Options.cmt" {"F:be42b8a8e7ca7853bd573f29e4112adf"}
+  "lib/re2/re2__Options.cmti" {"F:db7e8957d125e56366d4257d8f9ae321"}
+  "lib/re2/re2__Options.cmx" {"F:67731fab460e039f6896ccb9c34621e4"}
+  "lib/re2/re2__Parser.cmi" {"F:ca0dbf50c0213eece970ab9587baae66"}
+  "lib/re2/re2__Parser.cmt" {"F:aaabf9c7273c1a01c73d8bc38858500b"}
+  "lib/re2/re2__Parser.cmti" {"F:b898de61b79eecf9036b6d267460476c"}
+  "lib/re2/re2__Parser.cmx" {"F:803eb5b6ed22333e369a353252c0a6c2"}
+  "lib/re2/re2__Parser_intf.cmi" {"F:85e25b703633bfcce6053dc56dded8e4"}
+  "lib/re2/re2__Parser_intf.cmt" {"F:441613d9c2573ba61cbeae11ca1accd6"}
+  "lib/re2/re2__Parser_intf.cmx" {"F:45213c048807523a67dd121628f1f62d"}
+  "lib/re2/re2__Regex.cmi" {"F:d5bd02c13220efdc3d1c7ebdf6139a26"}
+  "lib/re2/re2__Regex.cmt" {"F:80e46438541a102329ad30e4d1d67b97"}
+  "lib/re2/re2__Regex.cmti" {"F:443abb348ea54054d1eae216edaa7c22"}
+  "lib/re2/re2__Regex.cmx" {"F:216778569cf5995033df156757889880"}
+  "lib/re2/re2__Regex_intf.cmi" {"F:133cb06433080baa0832cf43d498bfec"}
+  "lib/re2/re2__Regex_intf.cmt" {"F:3260ab99dd37aab54a987414e6c33c89"}
+  "lib/re2/re2__Regex_intf.cmx" {"F:2a897550e70f863eda14eb1716220c95"}
+  "lib/re2/regex.ml" {"F:ad01a0738f5ad5b9d7bac8479490a9bf"}
+  "lib/re2/regex.mli" {"F:06e12897999aea1b632f9bf66c9cce76"}
+  "lib/re2/regex_intf.ml" {"F:6622a8c2334519808236da01ee30dd1e"}
+  "lib/stublibs/dllre2_c_stubs.so" {"F:4fd475bcd6b14a67532da5230821a21c"}
+  "lib/stublibs/dllre2_stubs.so" {"F:3ca7ee789036860991a57f8830fdbfd7"}
+]

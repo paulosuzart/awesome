@@ -1,0 +1,425 @@
+.TH "Stdlib.Either" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Either \- no description
+.SH Module
+Module   Stdlib.Either
+.SH Documentation
+.sp
+Module
+.BI "Either"
+ : 
+.B (module Stdlib__Either)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B ('a, 'b)
+.I t 
+=
+ | Left
+.B of 
+.B 'a
+ | Right
+.B of 
+.B 'b
+ 
+.sp
+A value of 
+.ft B
+(\&'a, \&'b) Either\&.t
+.ft R
+contains
+either a value of 
+.ft B
+\&'a
+.ft R
+or a value of 
+.ft B
+\&'b
+.ft R
+
+
+.sp
+
+.I val left 
+: 
+.B 'a -> ('a, 'b) t
+.sp
+
+.ft B
+left v
+.ft R
+is 
+.ft B
+Left v
+.ft R
+\&.
+
+.sp
+
+.I val right 
+: 
+.B 'b -> ('a, 'b) t
+.sp
+
+.ft B
+right v
+.ft R
+is 
+.ft B
+Right v
+.ft R
+\&.
+
+.sp
+
+.I val is_left 
+: 
+.B ('a, 'b) t -> bool
+.sp
+
+.ft B
+is_left (Left v)
+.ft R
+is 
+.ft B
+true
+.ft R
+, 
+.ft B
+is_left (Right v)
+.ft R
+is 
+.ft B
+false
+.ft R
+\&.
+
+.sp
+
+.I val is_right 
+: 
+.B ('a, 'b) t -> bool
+.sp
+
+.ft B
+is_right (Left v)
+.ft R
+is 
+.ft B
+false
+.ft R
+, 
+.ft B
+is_right (Right v)
+.ft R
+is 
+.ft B
+true
+.ft R
+\&.
+
+.sp
+
+.I val find_left 
+: 
+.B ('a, 'b) t -> 'a option
+.sp
+
+.ft B
+find_left (Left v)
+.ft R
+is 
+.ft B
+Some v
+.ft R
+, 
+.ft B
+find_left (Right _)
+.ft R
+is 
+.ft B
+None
+.ft R
+
+
+.sp
+
+.I val find_right 
+: 
+.B ('a, 'b) t -> 'b option
+.sp
+
+.ft B
+find_right (Right v)
+.ft R
+is 
+.ft B
+Some v
+.ft R
+, 
+.ft B
+find_right (Left _)
+.ft R
+is 
+.ft B
+None
+.ft R
+
+
+.sp
+
+.I val map_left 
+: 
+.B ('a1 -> 'a2) -> ('a1, 'b) t -> ('a2, 'b) t
+.sp
+
+.ft B
+map_left f e
+.ft R
+is 
+.ft B
+Left (f v)
+.ft R
+if 
+.ft B
+e
+.ft R
+is 
+.ft B
+Left v
+.ft R
+and 
+.ft B
+e
+.ft R
+if 
+.ft B
+e
+.ft R
+is 
+.ft B
+Right _
+.ft R
+\&.
+
+.sp
+
+.I val map_right 
+: 
+.B ('b1 -> 'b2) -> ('a, 'b1) t -> ('a, 'b2) t
+.sp
+
+.ft B
+map_right f e
+.ft R
+is 
+.ft B
+Right (f v)
+.ft R
+if 
+.ft B
+e
+.ft R
+is 
+.ft B
+Right v
+.ft R
+and 
+.ft B
+e
+.ft R
+if 
+.ft B
+e
+.ft R
+is 
+.ft B
+Left _
+.ft R
+\&.
+
+.sp
+
+.I val map 
+: 
+.B left:('a1 -> 'a2) ->
+.B   right:('b1 -> 'b2) -> ('a1, 'b1) t -> ('a2, 'b2) t
+.sp
+
+.ft B
+map ~left ~right (Left v)
+.ft R
+is 
+.ft B
+Left (left v)
+.ft R
+,
+.ft B
+map ~left ~right (Right v)
+.ft R
+is 
+.ft B
+Right (right v)
+.ft R
+\&.
+
+.sp
+
+.I val fold 
+: 
+.B left:('a -> 'c) -> right:('b -> 'c) -> ('a, 'b) t -> 'c
+.sp
+
+.ft B
+fold ~left ~right (Left v)
+.ft R
+is 
+.ft B
+left v
+.ft R
+, and
+.ft B
+fold ~left ~right (Right v)
+.ft R
+is 
+.ft B
+right v
+.ft R
+\&.
+
+.sp
+
+.I val iter 
+: 
+.B left:('a -> unit) -> right:('b -> unit) -> ('a, 'b) t -> unit
+.sp
+
+.ft B
+iter ~left ~right (Left v)
+.ft R
+is 
+.ft B
+left v
+.ft R
+, and
+.ft B
+iter ~left ~right (Right v)
+.ft R
+is 
+.ft B
+right v
+.ft R
+\&.
+
+.sp
+
+.I val for_all 
+: 
+.B left:('a -> bool) -> right:('b -> bool) -> ('a, 'b) t -> bool
+.sp
+
+.ft B
+for_all ~left ~right (Left v)
+.ft R
+is 
+.ft B
+left v
+.ft R
+, and
+.ft B
+for_all ~left ~right (Right v)
+.ft R
+is 
+.ft B
+right v
+.ft R
+\&.
+
+.sp
+
+.I val equal 
+: 
+.B left:('a -> 'a -> bool) ->
+.B   right:('b -> 'b -> bool) -> ('a, 'b) t -> ('a, 'b) t -> bool
+.sp
+
+.ft B
+equal ~left ~right e0 e1
+.ft R
+tests equality of 
+.ft B
+e0
+.ft R
+and 
+.ft B
+e1
+.ft R
+using 
+.ft B
+left
+.ft R
+and 
+.ft B
+right
+.ft R
+to respectively compare values wrapped by 
+.ft B
+Left _
+.ft R
+and
+.ft B
+Right _
+.ft R
+\&.
+
+.sp
+
+.I val compare 
+: 
+.B left:('a -> 'a -> int) ->
+.B   right:('b -> 'b -> int) -> ('a, 'b) t -> ('a, 'b) t -> int
+.sp
+
+.ft B
+compare ~left ~right e0 e1
+.ft R
+totally orders 
+.ft B
+e0
+.ft R
+and 
+.ft B
+e1
+.ft R
+using 
+.ft B
+left
+.ft R
+and
+.ft B
+right
+.ft R
+to respectively compare values wrapped by 
+.ft B
+Left _ 
+.ft R
+and 
+.ft B
+Right _
+.ft R
+\&.
+.ft B
+Left _
+.ft R
+values are smaller than 
+.ft B
+Right _
+.ft R
+values\&.
+
+.sp

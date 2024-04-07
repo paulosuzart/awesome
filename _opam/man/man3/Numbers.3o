@@ -1,0 +1,53 @@
+.TH "Numbers" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Numbers \- Modules about numbers, some of which satisfy Identifiable.S.
+.SH Module
+Module   Numbers
+.SH Documentation
+.sp
+Module
+.BI "Numbers"
+ : 
+.B sig end
+
+.sp
+Modules about numbers, some of which satisfy 
+.ft B
+Identifiable\&.S
+.ft R
+\&.
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I module Int : 
+.B sig end
+
+.sp
+
+.sp
+.I module Int8 : 
+.B sig end
+
+.sp
+
+.sp
+.I module Int16 : 
+.B sig end
+
+.sp
+
+.sp
+.I module Float : 
+.B sig end
+
+.sp
+
+.sp

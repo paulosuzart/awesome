@@ -1,0 +1,81 @@
+version = "v0.16.1"
+description = ""
+requires(ppx_driver) = "base ppx_inline_test.libname ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_inline_test.cma"
+archive(ppx_driver,native) = "ppx_inline_test.cmxa"
+plugin(ppx_driver,byte) = "ppx_inline_test.cma"
+plugin(ppx_driver,native) = "ppx_inline_test.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "ppx_inline_test.config ppx_inline_test.runtime-lib"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_inline_test.config ppx_inline_test.runtime-lib"
+ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+library_kind = "ppx_rewriter"
+package "config" (
+  directory = "config"
+  version = "v0.16.1"
+  description = ""
+  requires = ""
+  archive(byte) = "inline_test_config.cma"
+  archive(native) = "inline_test_config.cmxa"
+  plugin(byte) = "inline_test_config.cma"
+  plugin(native) = "inline_test_config.cmxs"
+)
+package "drop" (
+  directory = "drop"
+  version = "v0.16.1"
+  description = ""
+  requires(ppx_driver) = "ppx_inline_test"
+  archive(ppx_driver,byte) = "ppx_inline_test_drop.cma"
+  archive(ppx_driver,native) = "ppx_inline_test_drop.cmxa"
+  plugin(ppx_driver,byte) = "ppx_inline_test_drop.cma"
+  plugin(ppx_driver,native) = "ppx_inline_test_drop.cmxs"
+  # This line makes things transparent for people mixing preprocessors
+  # and normal dependencies
+  requires(-ppx_driver) = "ppx_inline_test.config ppx_inline_test.runtime-lib"
+  ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+  library_kind = "ppx_rewriter"
+)
+package "libname" (
+  directory = "libname"
+  version = "v0.16.1"
+  description = ""
+  requires = "ppxlib ppxlib.ast"
+  archive(byte) = "ppx_inline_test_libname.cma"
+  archive(native) = "ppx_inline_test_libname.cmxa"
+  plugin(byte) = "ppx_inline_test_libname.cma"
+  plugin(native) = "ppx_inline_test_libname.cmxs"
+)
+package "runner" (
+  directory = "runner"
+  version = "v0.16.1"
+  description = ""
+  requires = "ppx_inline_test.runner.lib ppx_inline_test.runtime-lib"
+  archive(byte) = "ppx_inline_test_runner.cma"
+  archive(native) = "ppx_inline_test_runner.cmxa"
+  plugin(byte) = "ppx_inline_test_runner.cma"
+  plugin(native) = "ppx_inline_test_runner.cmxs"
+  package "lib" (
+    directory = "lib"
+    version = "v0.16.1"
+    description = ""
+    requires = "base"
+    archive(byte) = "ppx_inline_test_runner_lib.cma"
+    archive(native) = "ppx_inline_test_runner_lib.cmxa"
+    plugin(byte) = "ppx_inline_test_runner_lib.cma"
+    plugin(native) = "ppx_inline_test_runner_lib.cmxs"
+    jsoo_runtime = "runtime.js"
+  )
+)
+package "runtime-lib" (
+  directory = "runtime-lib"
+  version = "v0.16.1"
+  description = "Runtime library for ppx_inline_test"
+  requires = "base ppx_inline_test.config time_now"
+  archive(byte) = "ppx_inline_test_lib.cma"
+  archive(native) = "ppx_inline_test_lib.cmxa"
+  plugin(byte) = "ppx_inline_test_lib.cma"
+  plugin(native) = "ppx_inline_test_lib.cmxs"
+)

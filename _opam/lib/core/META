@@ -1,0 +1,236 @@
+version = "v0.16.2"
+description = ""
+requires =
+"base
+ base.md5
+ base_bigstring
+ base_quickcheck
+ base_quickcheck.ppx_quickcheck.runtime
+ bin_prot
+ core.base_for_tests
+ core.command
+ core.filename_base
+ core.heap_block
+ core.univ_map
+ core.validate
+ fieldslib
+ jane-street-headers
+ ppx_assert.runtime-lib
+ ppx_bench.runtime-lib
+ ppx_compare.runtime-lib
+ ppx_enumerate.runtime-lib
+ ppx_expect.collector
+ ppx_expect.config
+ ppx_hash.runtime-lib
+ ppx_here.runtime-lib
+ ppx_inline_test.config
+ ppx_inline_test.runtime-lib
+ ppx_log.types
+ ppx_module_timer.runtime
+ ppx_sexp_conv.runtime-lib
+ ppx_stable_witness.runtime
+ sexplib
+ sexplib0
+ splittable_random
+ stdio
+ time_now
+ typerep
+ variantslib"
+archive(byte) = "core.cma"
+archive(native) = "core.cmxa"
+plugin(byte) = "core.cma"
+plugin(native) = "core.cmxs"
+jsoo_runtime = "strftime.js runtime.js"
+package "base_for_tests" (
+  directory = "base_for_tests"
+  version = "v0.16.2"
+  description = ""
+  requires =
+  "base
+   ppx_compare.runtime-lib
+   ppx_enumerate.runtime-lib
+   ppx_hash.runtime-lib
+   ppx_here.runtime-lib
+   ppx_inline_test.config
+   ppx_inline_test.runtime-lib
+   ppx_sexp_conv.runtime-lib
+   sexplib0"
+  archive(byte) = "base_for_tests.cma"
+  archive(native) = "base_for_tests.cmxa"
+  plugin(byte) = "base_for_tests.cma"
+  plugin(native) = "base_for_tests.cmxs"
+)
+package "command" (
+  directory = "command"
+  version = "v0.16.2"
+  description = ""
+  requires =
+  "base
+   base_quickcheck
+   base_quickcheck.ppx_quickcheck.runtime
+   bin_prot
+   core.filename_base
+   core.univ_map
+   fieldslib
+   ppx_assert.runtime-lib
+   ppx_bench.runtime-lib
+   ppx_compare.runtime-lib
+   ppx_enumerate.runtime-lib
+   ppx_expect.collector
+   ppx_expect.config
+   ppx_hash.runtime-lib
+   ppx_here.runtime-lib
+   ppx_inline_test.config
+   ppx_inline_test.runtime-lib
+   ppx_log.types
+   ppx_module_timer.runtime
+   ppx_sexp_conv.runtime-lib
+   ppx_stable_witness.runtime
+   sexplib0
+   stdio
+   typerep
+   variantslib"
+  archive(byte) = "command.cma"
+  archive(native) = "command.cmxa"
+  plugin(byte) = "command.cma"
+  plugin(native) = "command.cmxs"
+)
+package "filename_base" (
+  directory = "filename_base"
+  version = "v0.16.2"
+  description = ""
+  requires =
+  "base
+   base_quickcheck
+   base_quickcheck.ppx_quickcheck.runtime
+   bin_prot
+   fieldslib
+   ppx_assert.runtime-lib
+   ppx_bench.runtime-lib
+   ppx_compare.runtime-lib
+   ppx_enumerate.runtime-lib
+   ppx_expect.collector
+   ppx_expect.config
+   ppx_hash.runtime-lib
+   ppx_here.runtime-lib
+   ppx_inline_test.config
+   ppx_inline_test.runtime-lib
+   ppx_log.types
+   ppx_module_timer.runtime
+   ppx_sexp_conv.runtime-lib
+   ppx_stable_witness.runtime
+   sexplib0
+   typerep
+   variantslib"
+  archive(byte) = "filename_base.cma"
+  archive(native) = "filename_base.cmxa"
+  plugin(byte) = "filename_base.cma"
+  plugin(native) = "filename_base.cmxs"
+)
+package "heap_block" (
+  directory = "heap_block"
+  version = "v0.16.2"
+  description = ""
+  requires =
+  "base
+   base_quickcheck
+   base_quickcheck.ppx_quickcheck.runtime
+   bin_prot
+   fieldslib
+   ppx_assert.runtime-lib
+   ppx_bench.runtime-lib
+   ppx_compare.runtime-lib
+   ppx_enumerate.runtime-lib
+   ppx_expect.collector
+   ppx_expect.config
+   ppx_hash.runtime-lib
+   ppx_here.runtime-lib
+   ppx_inline_test.config
+   ppx_inline_test.runtime-lib
+   ppx_log.types
+   ppx_module_timer.runtime
+   ppx_sexp_conv.runtime-lib
+   ppx_stable_witness.runtime
+   sexplib0
+   typerep
+   variantslib"
+  archive(byte) = "heap_block.cma"
+  archive(native) = "heap_block.cmxa"
+  plugin(byte) = "heap_block.cma"
+  plugin(native) = "heap_block.cmxs"
+  jsoo_runtime = "runtime.js"
+)
+package "top" (
+  directory = "top"
+  version = "v0.16.2"
+  description = ""
+  requires = "compiler-libs.toplevel core"
+  archive(byte) = "core_top.cma"
+  archive(native) = ""
+  plugin(byte) = "core_top.cma"
+  plugin(native) = ""
+)
+package "univ_map" (
+  directory = "univ_map"
+  version = "v0.16.2"
+  description = ""
+  requires =
+  "base
+   base_quickcheck
+   base_quickcheck.ppx_quickcheck.runtime
+   bin_prot
+   fieldslib
+   ppx_assert.runtime-lib
+   ppx_bench.runtime-lib
+   ppx_compare.runtime-lib
+   ppx_enumerate.runtime-lib
+   ppx_expect.collector
+   ppx_expect.config
+   ppx_hash.runtime-lib
+   ppx_here.runtime-lib
+   ppx_inline_test.config
+   ppx_inline_test.runtime-lib
+   ppx_log.types
+   ppx_module_timer.runtime
+   ppx_sexp_conv.runtime-lib
+   ppx_stable_witness.runtime
+   sexplib0
+   typerep
+   variantslib"
+  archive(byte) = "univ_map.cma"
+  archive(native) = "univ_map.cmxa"
+  plugin(byte) = "univ_map.cma"
+  plugin(native) = "univ_map.cmxs"
+)
+package "validate" (
+  directory = "validate"
+  version = "v0.16.2"
+  description = ""
+  requires =
+  "base
+   base_quickcheck
+   base_quickcheck.ppx_quickcheck.runtime
+   bin_prot
+   fieldslib
+   ppx_assert.runtime-lib
+   ppx_bench.runtime-lib
+   ppx_compare.runtime-lib
+   ppx_enumerate.runtime-lib
+   ppx_expect.collector
+   ppx_expect.config
+   ppx_hash.runtime-lib
+   ppx_here.runtime-lib
+   ppx_inline_test.config
+   ppx_inline_test.runtime-lib
+   ppx_log.types
+   ppx_module_timer.runtime
+   ppx_sexp_conv.runtime-lib
+   ppx_stable_witness.runtime
+   sexplib0
+   typerep
+   variantslib"
+  archive(byte) = "validate.cma"
+  archive(native) = "validate.cmxa"
+  plugin(byte) = "validate.cma"
+  plugin(native) = "validate.cmxs"
+)

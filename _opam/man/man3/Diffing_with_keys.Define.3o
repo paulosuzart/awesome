@@ -1,0 +1,85 @@
+.TH "Diffing_with_keys.Define" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing_with_keys.Define \- no description
+.SH Module
+Module   Diffing_with_keys.Define
+.SH Documentation
+.sp
+Module
+.BI "Define"
+ : 
+.B functor (D : sig end) -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"D"
+
+.B sig end
+
+
+
+
+
+.sp
+.sp
+.I type diff 
+= 
+.B (D.left, D.right, D.diff) Diffing_with_keys.mismatch
+
+.sp
+
+.sp
+.I type left 
+= 
+.B D.left Diffing_with_keys.with_pos
+
+.sp
+
+.sp
+.I type right 
+= 
+.B D.right Diffing_with_keys.with_pos
+
+.sp
+
+.sp
+.I type composite_change 
+= 
+.B (D.left, D.right, D.diff) Diffing_with_keys.change
+
+.sp
+Composite changes and patches
+
+.sp
+.I type patch 
+= 
+.B composite_change list
+
+.sp
+
+.sp
+.I type change 
+= 
+.B (left, right, unit,
+.B    diff)
+.B   Diffing.change
+
+.sp
+Atomic changes
+
+.sp
+.I module type Parameters = 
+.B sig end
+
+.sp
+
+.sp
+.I module Simple : 
+.B Parameters -> sig end
+
+.sp
+
+.sp

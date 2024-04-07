@@ -1,0 +1,25 @@
+(* -*- tuareg -*- *)
+
+let maybe_threads =
+  if Jbuild_plugin.V1.ocaml_version < "5" then "threads.posix" else ""
+
+let () =
+  Jbuild_plugin.V1.send
+  @@ {|
+
+(library
+ (name Domain_local_await)
+ (public_name domain-local-await)
+ (libraries thread-table |}
+  ^ maybe_threads
+  ^ {| ))
+
+(rule
+ (targets domain.ml)
+ (deps domain.ocaml4.ml)
+ (enabled_if (< %{ocaml_version} 5.0.0))
+ (action
+  (progn
+   (copy domain.ocaml4.ml domain.ml))))
+
+|}

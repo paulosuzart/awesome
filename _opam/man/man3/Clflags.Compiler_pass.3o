@@ -1,0 +1,85 @@
+.TH "Clflags.Compiler_pass" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Clflags.Compiler_pass \- no description
+.SH Module
+Module   Clflags.Compiler_pass
+.SH Documentation
+.sp
+Module
+.BI "Compiler_pass"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+=
+ | Parsing
+ | Typing
+ | Lambda
+ | Scheduling
+ | Emit
+ 
+.sp
+
+.sp
+
+.I val of_string 
+: 
+.B string -> t option
+.sp
+
+.sp
+
+.I val to_string 
+: 
+.B t -> string
+.sp
+
+.sp
+
+.I val is_compilation_pass 
+: 
+.B t -> bool
+.sp
+
+.sp
+
+.I val available_pass_names 
+: 
+.B filter:(t -> bool) -> native:bool -> string list
+.sp
+
+.sp
+
+.I val can_save_ir_after 
+: 
+.B t -> bool
+.sp
+
+.sp
+
+.I val compare 
+: 
+.B t -> t -> int
+.sp
+
+.sp
+
+.I val to_output_filename 
+: 
+.B t -> prefix:string -> string
+.sp
+
+.sp
+
+.I val of_input_filename 
+: 
+.B string -> t option
+.sp
+
+.sp

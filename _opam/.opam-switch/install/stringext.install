@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/stringext/META"
+  "_build/install/default/lib/stringext/dune-package"
+  "_build/install/default/lib/stringext/opam"
+  "_build/install/default/lib/stringext/stringext.a"
+  "_build/install/default/lib/stringext/stringext.cma"
+  "_build/install/default/lib/stringext/stringext.cmi"
+  "_build/install/default/lib/stringext/stringext.cmt"
+  "_build/install/default/lib/stringext/stringext.cmti"
+  "_build/install/default/lib/stringext/stringext.cmx"
+  "_build/install/default/lib/stringext/stringext.cmxa"
+  "_build/install/default/lib/stringext/stringext.ml"
+  "_build/install/default/lib/stringext/stringext.mli"
+]
+doc: [
+  "_build/install/default/doc/stringext/CHANGES.md"
+  "_build/install/default/doc/stringext/LICENSE.md"
+  "_build/install/default/doc/stringext/README.md"
+]
+libexec: "_build/install/default/lib/stringext/stringext.cmxs"

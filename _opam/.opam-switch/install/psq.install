@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/psq/META"
+  "_build/install/default/lib/psq/dune-package"
+  "_build/install/default/lib/psq/opam"
+  "_build/install/default/lib/psq/psq.a"
+  "_build/install/default/lib/psq/psq.cma"
+  "_build/install/default/lib/psq/psq.cmi"
+  "_build/install/default/lib/psq/psq.cmt"
+  "_build/install/default/lib/psq/psq.cmti"
+  "_build/install/default/lib/psq/psq.cmx"
+  "_build/install/default/lib/psq/psq.cmxa"
+  "_build/install/default/lib/psq/psq.ml"
+  "_build/install/default/lib/psq/psq.mli"
+]
+doc: [
+  "_build/install/default/doc/psq/CHANGES.md"
+  "_build/install/default/doc/psq/LICENSE.md"
+  "_build/install/default/doc/psq/README.md"
+]
+libexec: "_build/install/default/lib/psq/psq.cmxs"

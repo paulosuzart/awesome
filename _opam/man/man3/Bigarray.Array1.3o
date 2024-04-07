@@ -1,0 +1,457 @@
+.TH "Bigarray.Array1" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Bigarray.Array1 \- One-dimensional arrays.
+.SH Module
+Module   Bigarray.Array1
+.SH Documentation
+.sp
+Module
+.BI "Array1"
+ : 
+.B sig end
+
+.sp
+One\-dimensional arrays\&. The 
+.ft B
+Array1
+.ft R
+structure provides operations
+similar to those of
+.ft B
+Bigarray\&.Genarray
+.ft R
+, but specialized to the case of one\-dimensional arrays\&.
+(The 
+.ft B
+Bigarray\&.Array2
+.ft R
+and 
+.ft B
+Bigarray\&.Array3
+.ft R
+structures below provide operations
+specialized for two\- and three\-dimensional arrays\&.)
+Statically knowing the number of dimensions of the array allows
+faster operations, and more precise static type\-checking\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B (!'a, !'b, !'c)
+.I t 
+
+.sp
+The type of one\-dimensional Bigarrays whose elements have
+OCaml type 
+.ft B
+\&'a
+.ft R
+, representation kind 
+.ft B
+\&'b
+.ft R
+, and memory layout 
+.ft B
+\&'c
+.ft R
+\&.
+
+.sp
+
+.I val create 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> int -> ('a, 'b, 'c) t
+.sp
+
+.ft B
+Array1\&.create kind layout dim
+.ft R
+returns a new Bigarray of
+one dimension, whose size is 
+.ft B
+dim
+.ft R
+\&.  
+.ft B
+kind
+.ft R
+and 
+.ft B
+layout
+.ft R
+determine the array element kind and the array layout
+as described for 
+.ft B
+Bigarray\&.Genarray\&.create
+.ft R
+\&.
+
+.sp
+
+.I val init 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> int -> (int -> 'a) -> ('a, 'b, 'c) t
+.sp
+
+.ft B
+Array1\&.init kind layout dim f
+.ft R
+returns a new Bigarray 
+.ft B
+b
+.ft R
+of one dimension, whose size is 
+.ft B
+dim
+.ft R
+\&.  
+.ft B
+kind
+.ft R
+and 
+.ft B
+layout
+.ft R
+determine the array element kind and the array layout
+as described for 
+.ft B
+Bigarray\&.Genarray\&.create
+.ft R
+\&.
+.sp
+Each element 
+.ft B
+Array1\&.get b i
+.ft R
+of the array is initialized to the
+result of 
+.ft B
+f i
+.ft R
+\&.
+.sp
+In other words, 
+.ft B
+Array1\&.init kind layout dimensions f
+.ft R
+tabulates
+the results of 
+.ft B
+f
+.ft R
+applied to the indices of a new Bigarray whose
+layout is described by 
+.ft B
+kind
+.ft R
+, 
+.ft B
+layout
+.ft R
+and 
+.ft B
+dim
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val dim 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+Return the size (dimension) of the given one\-dimensional
+Bigarray\&.
+
+.sp
+
+.I val kind 
+: 
+.B ('a, 'b, 'c) t -> ('a, 'b) Bigarray.kind
+.sp
+Return the kind of the given Bigarray\&.
+
+.sp
+
+.I val layout 
+: 
+.B ('a, 'b, 'c) t -> 'c Bigarray.layout
+.sp
+Return the layout of the given Bigarray\&.
+
+.sp
+
+.I val change_layout 
+: 
+.B ('a, 'b, 'c) t ->
+.B   'd Bigarray.layout -> ('a, 'b, 'd) t
+.sp
+
+.ft B
+Array1\&.change_layout a layout
+.ft R
+returns a Bigarray with the
+specified 
+.ft B
+layout
+.ft R
+, sharing the data with 
+.ft B
+a
+.ft R
+(and hence having
+the same dimension as 
+.ft B
+a
+.ft R
+)\&. No copying of elements is involved: the
+new array and the original array share the same storage space\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val size_in_bytes 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+
+.ft B
+size_in_bytes a
+.ft R
+is the number of elements in 
+.ft B
+a
+.ft R
+multiplied by 
+.ft B
+a
+.ft R
+\&'s 
+.ft B
+Bigarray\&.kind_size_in_bytes
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val get 
+: 
+.B ('a, 'b, 'c) t -> int -> 'a
+.sp
+
+.ft B
+Array1\&.get a x
+.ft R
+, or alternatively 
+.ft B
+a\&.{x}
+.ft R
+,
+returns the element of 
+.ft B
+a
+.ft R
+at index 
+.ft B
+x
+.ft R
+\&.
+.ft B
+x
+.ft R
+must be greater or equal than 
+.ft B
+0
+.ft R
+and strictly less than
+.ft B
+Array1\&.dim a
+.ft R
+if 
+.ft B
+a
+.ft R
+has C layout\&.  If 
+.ft B
+a
+.ft R
+has Fortran layout,
+.ft B
+x
+.ft R
+must be greater or equal than 
+.ft B
+1
+.ft R
+and less or equal than
+.ft B
+Array1\&.dim a
+.ft R
+\&.  Otherwise, 
+.ft B
+Invalid_argument
+.ft R
+is raised\&.
+
+.sp
+
+.I val set 
+: 
+.B ('a, 'b, 'c) t -> int -> 'a -> unit
+.sp
+
+.ft B
+Array1\&.set a x v
+.ft R
+, also written 
+.ft B
+a\&.{x} <\- v
+.ft R
+,
+stores the value 
+.ft B
+v
+.ft R
+at index 
+.ft B
+x
+.ft R
+in 
+.ft B
+a
+.ft R
+\&.
+.ft B
+x
+.ft R
+must be inside the bounds of 
+.ft B
+a
+.ft R
+as described in
+.ft B
+Bigarray\&.Array1\&.get
+.ft R
+;
+otherwise, 
+.ft B
+Invalid_argument
+.ft R
+is raised\&.
+
+.sp
+
+.I val sub 
+: 
+.B ('a, 'b, 'c) t ->
+.B   int -> int -> ('a, 'b, 'c) t
+.sp
+Extract a sub\-array of the given one\-dimensional Bigarray\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.sub_left
+.ft R
+for more details\&.
+
+.sp
+
+.I val slice 
+: 
+.B ('a, 'b, 'c) t -> int -> ('a, 'b, 'c) Bigarray.Array0.t
+.sp
+Extract a scalar (zero\-dimensional slice) of the given one\-dimensional
+Bigarray\&.  The integer parameter is the index of the scalar to
+extract\&.  See 
+.ft B
+Bigarray\&.Genarray\&.slice_left
+.ft R
+and
+.ft B
+Bigarray\&.Genarray\&.slice_right
+.ft R
+for more details\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val blit 
+: 
+.B ('a, 'b, 'c) t -> ('a, 'b, 'c) t -> unit
+.sp
+Copy the first Bigarray to the second Bigarray\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.blit
+.ft R
+for more details\&.
+
+.sp
+
+.I val fill 
+: 
+.B ('a, 'b, 'c) t -> 'a -> unit
+.sp
+Fill the given Bigarray with the given value\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.fill
+.ft R
+for more details\&.
+
+.sp
+
+.I val of_array 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> 'a array -> ('a, 'b, 'c) t
+.sp
+Build a one\-dimensional Bigarray initialized from the
+given array\&.
+
+.sp
+
+.I val unsafe_get 
+: 
+.B ('a, 'b, 'c) t -> int -> 'a
+.sp
+Like 
+.ft B
+Bigarray\&.Array1\&.get
+.ft R
+, but bounds checking is not always performed\&.
+Use with caution and only when the program logic guarantees that
+the access is within bounds\&.
+
+.sp
+
+.I val unsafe_set 
+: 
+.B ('a, 'b, 'c) t -> int -> 'a -> unit
+.sp
+Like 
+.ft B
+Bigarray\&.Array1\&.set
+.ft R
+, but bounds checking is not always performed\&.
+Use with caution and only when the program logic guarantees that
+the access is within bounds\&.
+
+.sp

@@ -1,0 +1,7 @@
+version = "1.0.1"
+description = "Mutable doubly-linked list"
+requires = ""
+archive(byte) = "lwt_dllist.cma"
+archive(native) = "lwt_dllist.cmxa"
+plugin(byte) = "lwt_dllist.cma"
+plugin(native) = "lwt_dllist.cmxs"

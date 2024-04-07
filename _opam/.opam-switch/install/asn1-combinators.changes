@@ -1,0 +1,89 @@
+opam-version: "2.0"
+added: [
+  "doc/asn1-combinators" {"D"}
+  "doc/asn1-combinators/CHANGES.md" {"F:7d25fcfceb89c8a02a418ce52fc38b43"}
+  "doc/asn1-combinators/LICENSE.md" {"F:f594018dad54ebf2cf501cabad152b94"}
+  "doc/asn1-combinators/README.md" {"F:7e0caeaa442fce9bf818e811539a8cb5"}
+  "lib/asn1-combinators" {"D"}
+  "lib/asn1-combinators/.private/asn_ber_der.cmi"
+    {"F:b9a8ebae4c4f1d0736c209d6831e0e06"}
+  "lib/asn1-combinators/.private/asn_ber_der.cmt"
+    {"F:466ca2925332e114dff7e31c68e6720c"}
+  "lib/asn1-combinators/.private/asn_cache.cmi"
+    {"F:461081b41260875909d9a078848ad9d4"}
+  "lib/asn1-combinators/.private/asn_cache.cmt"
+    {"F:e2180469229e45d81c6d4776330e5b35"}
+  "lib/asn1-combinators/.private/asn_cache.cmti"
+    {"F:5ae90f32fc11a8f49918a730db47d50e"}
+  "lib/asn1-combinators/.private/asn_combinators.cmi"
+    {"F:73c99efb9d46146635bcb7d47ed69ce3"}
+  "lib/asn1-combinators/.private/asn_combinators.cmt"
+    {"F:25453f9f34044f128affd30918029ca4"}
+  "lib/asn1-combinators/.private/asn_core.cmi"
+    {"F:96d964df53fb080cc45cd6053aebd1a6"}
+  "lib/asn1-combinators/.private/asn_core.cmt"
+    {"F:c59ae431e30feeef6b4e29b263524947"}
+  "lib/asn1-combinators/.private/asn_oid.cmi"
+    {"F:712aab09faf8930c66cd8f338c9ef283"}
+  "lib/asn1-combinators/.private/asn_oid.cmt"
+    {"F:e271a17013d9ce2cc595f1d3fdad0402"}
+  "lib/asn1-combinators/.private/asn_oid.cmti"
+    {"F:1609beb8faa10ac8aee8ec846ef4b7e0"}
+  "lib/asn1-combinators/.private/asn_prim.cmi"
+    {"F:f1a9cef350c8de6f19ff44111ae384ed"}
+  "lib/asn1-combinators/.private/asn_prim.cmt"
+    {"F:b778f1c27918be172acc6e7dcbbd4bf7"}
+  "lib/asn1-combinators/.private/asn_random.cmi"
+    {"F:88183cc44ff1e4163e2b7be86970389f"}
+  "lib/asn1-combinators/.private/asn_random.cmt"
+    {"F:282517efd6f19d5600643e61bd4baa37"}
+  "lib/asn1-combinators/.private/asn_writer.cmi"
+    {"F:62e684d3f0231e3a0182066505f0a615"}
+  "lib/asn1-combinators/.private/asn_writer.cmt"
+    {"F:a2fbb7145fd6ffb5aa700145af5a2da2"}
+  "lib/asn1-combinators/.private/asn_writer.cmti"
+    {"F:f37164d1fffb6729c6b9eeb054f15076"}
+  "lib/asn1-combinators/META" {"F:3c46bc513d1227e033722c61a6338aa8"}
+  "lib/asn1-combinators/asn.cmi" {"F:918aad6cdba571825b7131257cce9518"}
+  "lib/asn1-combinators/asn.cmt" {"F:58133cb4b2da784026175252d35f07e6"}
+  "lib/asn1-combinators/asn.cmti" {"F:05040f80760084489693e179d2b304f8"}
+  "lib/asn1-combinators/asn.cmx" {"F:b763149caa07b52ed2b4a80a95d9ea86"}
+  "lib/asn1-combinators/asn.ml" {"F:09dec9a1dc13c5448704230b86e4a36c"}
+  "lib/asn1-combinators/asn.mli" {"F:cd2e97274b056718b0fa2da259c21b7f"}
+  "lib/asn1-combinators/asn1_combinators.a"
+    {"F:c48c720e3e1220a108589d1fda4d2e22"}
+  "lib/asn1-combinators/asn1_combinators.cma"
+    {"F:c49b0301f0c68b143651fa061ecd02f3"}
+  "lib/asn1-combinators/asn1_combinators.cmxa"
+    {"F:32fa46a9c603f2aae3623cc758c7be36"}
+  "lib/asn1-combinators/asn1_combinators.cmxs"
+    {"F:a79c14bc99007cd2c6ccf19aaf4e0173"}
+  "lib/asn1-combinators/asn_ber_der.cmx"
+    {"F:b285669cf15d43d0ff9923653b8ac235"}
+  "lib/asn1-combinators/asn_ber_der.ml"
+    {"F:a8805b1150b657765b567340d986fe42"}
+  "lib/asn1-combinators/asn_cache.cmx" {"F:d8e4a1019c508256d0035d6af92e67b8"}
+  "lib/asn1-combinators/asn_cache.ml" {"F:503cd4dc592a8b9f04ca068f0221147d"}
+  "lib/asn1-combinators/asn_cache.mli" {"F:c600b40bd509fca87fd08a80d02b8698"}
+  "lib/asn1-combinators/asn_combinators.cmx"
+    {"F:ae830303bd2f835c2d8b9df72d54ba51"}
+  "lib/asn1-combinators/asn_combinators.ml"
+    {"F:307d62a5db81f48e00874160b732b1cb"}
+  "lib/asn1-combinators/asn_core.cmx" {"F:1d237dab41e1f532dd6a29e36310da3a"}
+  "lib/asn1-combinators/asn_core.ml" {"F:d5f6327b2bdaa49243dc357a11148cad"}
+  "lib/asn1-combinators/asn_oid.cmx" {"F:f15f4cceabbf937bdeccb4bfc638a558"}
+  "lib/asn1-combinators/asn_oid.ml" {"F:7b3671579f6c3d2caa201d20ddb52971"}
+  "lib/asn1-combinators/asn_oid.mli" {"F:47045b49ee764331597a0f55b6e47f7a"}
+  "lib/asn1-combinators/asn_prim.cmx" {"F:280bf340acb9845af33c024f30a409bd"}
+  "lib/asn1-combinators/asn_prim.ml" {"F:ee9c734a1a427cc0a90d649f168ab368"}
+  "lib/asn1-combinators/asn_random.cmx"
+    {"F:a56fe8a11741e7a8d8336c5274fdf6a4"}
+  "lib/asn1-combinators/asn_random.ml" {"F:b8be62b82ad25a8af3800e9c7547b465"}
+  "lib/asn1-combinators/asn_writer.cmx"
+    {"F:04cad3b2cb39c611895885f4af5188ac"}
+  "lib/asn1-combinators/asn_writer.ml" {"F:7506508f133fffb5c68ff54d6d8599f5"}
+  "lib/asn1-combinators/asn_writer.mli"
+    {"F:71da1c6812837587ac350f950303b72c"}
+  "lib/asn1-combinators/dune-package" {"F:96c782a41b25277c9ccc1f5e15c774b5"}
+  "lib/asn1-combinators/opam" {"F:2333f4f17d7bce6ed606407a051a26c1"}
+]

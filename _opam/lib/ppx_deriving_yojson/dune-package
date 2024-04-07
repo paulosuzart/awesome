@@ -1,0 +1,65 @@
+(lang dune 3.15)
+(name ppx_deriving_yojson)
+(version 3.7.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_deriving_yojson))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_deriving_yojson.a
+   ppx_deriving_yojson.cma
+   ppx_deriving_yojson.cmi
+   ppx_deriving_yojson.cmt
+   ppx_deriving_yojson.cmx
+   ppx_deriving_yojson.cmxa
+   ppx_deriving_yojson.ml
+   runtime/ppx_deriving_yojson_runtime.a
+   runtime/ppx_deriving_yojson_runtime.cma
+   runtime/ppx_deriving_yojson_runtime.cmi
+   runtime/ppx_deriving_yojson_runtime.cmt
+   runtime/ppx_deriving_yojson_runtime.cmti
+   runtime/ppx_deriving_yojson_runtime.cmx
+   runtime/ppx_deriving_yojson_runtime.cmxa
+   runtime/ppx_deriving_yojson_runtime.ml
+   runtime/ppx_deriving_yojson_runtime.mli))
+ (libexec (ppx_deriving_yojson.cmxs runtime/ppx_deriving_yojson_runtime.cmxs))
+ (doc (CHANGELOG.md LICENSE.txt README.md)))
+(library
+ (name ppx_deriving_yojson)
+ (kind ppx_deriver)
+ (synopsis "[@@deriving yojson]")
+ (archives (byte ppx_deriving_yojson.cma) (native ppx_deriving_yojson.cmxa))
+ (plugins (byte ppx_deriving_yojson.cma) (native ppx_deriving_yojson.cmxs))
+ (native_archives ppx_deriving_yojson.a)
+ (requires ppxlib.ast ppxlib ppx_deriving.api)
+ (ppx_runtime_deps ppx_deriving_yojson.runtime yojson)
+ (main_module_name Ppx_deriving_yojson)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_deriving_yojson)
+   (visibility public)
+   (source (path Ppx_deriving_yojson) (impl (path ppx_deriving_yojson.ml))))))
+(library
+ (name ppx_deriving_yojson.runtime)
+ (kind normal)
+ (synopsis "Runtime components of [@@deriving yojson]")
+ (archives
+  (byte runtime/ppx_deriving_yojson_runtime.cma)
+  (native runtime/ppx_deriving_yojson_runtime.cmxa))
+ (plugins
+  (byte runtime/ppx_deriving_yojson_runtime.cma)
+  (native runtime/ppx_deriving_yojson_runtime.cmxs))
+ (native_archives runtime/ppx_deriving_yojson_runtime.a)
+ (requires ppx_deriving.runtime result)
+ (main_module_name Ppx_deriving_yojson_runtime)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_deriving_yojson_runtime)
+   (visibility public)
+   (source
+    (path Ppx_deriving_yojson_runtime)
+    (intf (path runtime/ppx_deriving_yojson_runtime.mli))
+    (impl (path runtime/ppx_deriving_yojson_runtime.ml))))))

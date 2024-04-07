@@ -1,0 +1,73 @@
+(lang dune 3.15)
+(name ppx_bin_prot)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_bin_prot))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_bin_prot.a
+   ppx_bin_prot.cma
+   ppx_bin_prot.cmi
+   ppx_bin_prot.cmt
+   ppx_bin_prot.cmti
+   ppx_bin_prot.cmx
+   ppx_bin_prot.cmxa
+   ppx_bin_prot.ml
+   ppx_bin_prot.mli
+   shape-expander/bin_shape_expand.a
+   shape-expander/bin_shape_expand.cma
+   shape-expander/bin_shape_expand.cmi
+   shape-expander/bin_shape_expand.cmt
+   shape-expander/bin_shape_expand.cmti
+   shape-expander/bin_shape_expand.cmx
+   shape-expander/bin_shape_expand.cmxa
+   shape-expander/bin_shape_expand.ml
+   shape-expander/bin_shape_expand.mli))
+ (libexec (ppx_bin_prot.cmxs shape-expander/bin_shape_expand.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_bin_prot)
+ (kind ppx_deriver)
+ (archives (byte ppx_bin_prot.cma) (native ppx_bin_prot.cmxa))
+ (plugins (byte ppx_bin_prot.cma) (native ppx_bin_prot.cmxs))
+ (native_archives ppx_bin_prot.a)
+ (requires
+  compiler-libs.common
+  base
+  ppxlib.ast
+  ppxlib
+  ppx_bin_prot.shape-expander)
+ (ppx_runtime_deps bin_prot)
+ (main_module_name Ppx_bin_prot)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_bin_prot)
+   (visibility public)
+   (source
+    (path Ppx_bin_prot)
+    (intf (path ppx_bin_prot.mli))
+    (impl (path ppx_bin_prot.ml))))))
+(library
+ (name ppx_bin_prot.shape-expander)
+ (kind normal)
+ (archives
+  (byte shape-expander/bin_shape_expand.cma)
+  (native shape-expander/bin_shape_expand.cmxa))
+ (plugins
+  (byte shape-expander/bin_shape_expand.cma)
+  (native shape-expander/bin_shape_expand.cmxs))
+ (native_archives shape-expander/bin_shape_expand.a)
+ (requires base ppxlib.ast ppxlib ppx_here.expander)
+ (main_module_name Bin_shape_expand)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name bin_shape_expand)
+   (visibility public)
+   (source
+    (path Bin_shape_expand)
+    (intf (path shape-expander/bin_shape_expand.mli))
+    (impl (path shape-expander/bin_shape_expand.ml))))))

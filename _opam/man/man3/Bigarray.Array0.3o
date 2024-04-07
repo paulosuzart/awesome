@@ -1,0 +1,243 @@
+.TH "Bigarray.Array0" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Bigarray.Array0 \- Zero-dimensional arrays.
+.SH Module
+Module   Bigarray.Array0
+.SH Documentation
+.sp
+Module
+.BI "Array0"
+ : 
+.B sig end
+
+.sp
+Zero\-dimensional arrays\&. The 
+.ft B
+Array0
+.ft R
+structure provides operations
+similar to those of 
+.ft B
+Bigarray\&.Genarray
+.ft R
+, but specialized to the case
+of zero\-dimensional arrays that only contain a single scalar value\&.
+Statically knowing the number of dimensions of the array allows
+faster operations, and more precise static type\-checking\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.sp
+.sp
+.I type 
+.B (!'a, !'b, !'c)
+.I t 
+
+.sp
+The type of zero\-dimensional Bigarrays whose elements have
+OCaml type 
+.ft B
+\&'a
+.ft R
+, representation kind 
+.ft B
+\&'b
+.ft R
+, and memory layout 
+.ft B
+\&'c
+.ft R
+\&.
+
+.sp
+
+.I val create 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> ('a, 'b, 'c) t
+.sp
+
+.ft B
+Array0\&.create kind layout
+.ft R
+returns a new Bigarray of zero dimension\&.
+.ft B
+kind
+.ft R
+and 
+.ft B
+layout
+.ft R
+determine the array element kind and the array
+layout as described for 
+.ft B
+Bigarray\&.Genarray\&.create
+.ft R
+\&.
+
+.sp
+
+.I val init 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> 'a -> ('a, 'b, 'c) t
+.sp
+
+.ft B
+Array0\&.init kind layout v
+.ft R
+behaves like 
+.ft B
+Array0\&.create kind layout
+.ft R
+except that the element is additionally initialized to the value 
+.ft B
+v
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val kind 
+: 
+.B ('a, 'b, 'c) t -> ('a, 'b) Bigarray.kind
+.sp
+Return the kind of the given Bigarray\&.
+
+.sp
+
+.I val layout 
+: 
+.B ('a, 'b, 'c) t -> 'c Bigarray.layout
+.sp
+Return the layout of the given Bigarray\&.
+
+.sp
+
+.I val change_layout 
+: 
+.B ('a, 'b, 'c) t ->
+.B   'd Bigarray.layout -> ('a, 'b, 'd) t
+.sp
+
+.ft B
+Array0\&.change_layout a layout
+.ft R
+returns a Bigarray with the
+specified 
+.ft B
+layout
+.ft R
+, sharing the data with 
+.ft B
+a
+.ft R
+\&. No copying of elements
+is involved: the new array and the original array share the same
+storage space\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val size_in_bytes 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+
+.ft B
+size_in_bytes a
+.ft R
+is 
+.ft B
+a
+.ft R
+\&'s 
+.ft B
+Bigarray\&.kind_size_in_bytes
+.ft R
+\&.
+
+.sp
+
+.I val get 
+: 
+.B ('a, 'b, 'c) t -> 'a
+.sp
+
+.ft B
+Array0\&.get a
+.ft R
+returns the only element in 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.I val set 
+: 
+.B ('a, 'b, 'c) t -> 'a -> unit
+.sp
+
+.ft B
+Array0\&.set a x v
+.ft R
+stores the value 
+.ft B
+v
+.ft R
+in 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.I val blit 
+: 
+.B ('a, 'b, 'c) t -> ('a, 'b, 'c) t -> unit
+.sp
+Copy the first Bigarray to the second Bigarray\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.blit
+.ft R
+for more details\&.
+
+.sp
+
+.I val fill 
+: 
+.B ('a, 'b, 'c) t -> 'a -> unit
+.sp
+Fill the given Bigarray with the given value\&.
+See 
+.ft B
+Bigarray\&.Genarray\&.fill
+.ft R
+for more details\&.
+
+.sp
+
+.I val of_value 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> 'a -> ('a, 'b, 'c) t
+.sp
+Build a zero\-dimensional Bigarray initialized from the
+given value\&.
+
+.sp

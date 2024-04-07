@@ -1,0 +1,44 @@
+.TH "Ast_helper.Rf" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_helper.Rf \- Row fields
+.SH Module
+Module   Ast_helper.Rf
+.SH Documentation
+.sp
+Module
+.BI "Rf"
+ : 
+.B sig end
+
+.sp
+Row fields
+
+.sp
+
+.sp
+.sp
+
+.I val mk 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs -> Parsetree.row_field_desc -> Parsetree.row_field
+.sp
+
+.sp
+
+.I val tag 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Asttypes.label Ast_helper.with_loc ->
+.B   bool -> Parsetree.core_type list -> Parsetree.row_field
+.sp
+
+.sp
+
+.I val inherit_ 
+: 
+.B ?loc:Ast_helper.loc -> Parsetree.core_type -> Parsetree.row_field
+.sp
+
+.sp

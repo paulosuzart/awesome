@@ -1,0 +1,8 @@
+(executable
+ (name main)
+ (libraries lwt lwt.unix lwt-dllist)
+ (flags (:standard -w +A-40-42)))
+
+(alias
+ (name runtest)
+ (action (run %{exe:main.exe})))

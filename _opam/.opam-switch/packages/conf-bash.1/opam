@@ -1,0 +1,14 @@
+opam-version: "2.0"
+synopsis: "Virtual package to install the Bash shell"
+description: "This package will install a system bash"
+maintainer: "code@bnwr.net"
+authors: "code@bnwr.net"
+license: "GPL-3.0-or-later"
+homepage: "https://www.gnu.org/software/bash/"
+bug-reports: "https://github.com/ocaml/opam-repository/issues"
+flags: conf
+build: ["bash" "--version"]
+depexts: [
+  ["bash"] {os-family = "bsd"}
+  ["bash"] {os-distribution = "alpine"}
+]

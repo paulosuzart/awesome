@@ -1,0 +1,132 @@
+(lang dune 3.15)
+(name ocaml-compiler-libs)
+(version v0.12.4)
+(sections (lib .) (libexec .) (doc ../../doc/ocaml-compiler-libs))
+(files
+ (lib
+  (META
+   bytecomp/ocaml_bytecomp.a
+   bytecomp/ocaml_bytecomp.cma
+   bytecomp/ocaml_bytecomp.cmi
+   bytecomp/ocaml_bytecomp.cmt
+   bytecomp/ocaml_bytecomp.cmx
+   bytecomp/ocaml_bytecomp.cmxa
+   bytecomp/ocaml_bytecomp.ml
+   common/ocaml_common.a
+   common/ocaml_common.cma
+   common/ocaml_common.cmi
+   common/ocaml_common.cmt
+   common/ocaml_common.cmx
+   common/ocaml_common.cmxa
+   common/ocaml_common.ml
+   dune-package
+   opam
+   optcomp/ocaml_optcomp.a
+   optcomp/ocaml_optcomp.cma
+   optcomp/ocaml_optcomp.cmi
+   optcomp/ocaml_optcomp.cmt
+   optcomp/ocaml_optcomp.cmx
+   optcomp/ocaml_optcomp.cmxa
+   optcomp/ocaml_optcomp.ml
+   shadow/ocaml_shadow.a
+   shadow/ocaml_shadow.cma
+   shadow/ocaml_shadow.cmi
+   shadow/ocaml_shadow.cmt
+   shadow/ocaml_shadow.cmx
+   shadow/ocaml_shadow.cmxa
+   shadow/ocaml_shadow.ml
+   toplevel/ocaml_toplevel.a
+   toplevel/ocaml_toplevel.cma
+   toplevel/ocaml_toplevel.cmi
+   toplevel/ocaml_toplevel.cmt
+   toplevel/ocaml_toplevel.cmx
+   toplevel/ocaml_toplevel.cmxa
+   toplevel/ocaml_toplevel.ml))
+ (libexec
+  (bytecomp/ocaml_bytecomp.cmxs
+   common/ocaml_common.cmxs
+   optcomp/ocaml_optcomp.cmxs
+   shadow/ocaml_shadow.cmxs
+   toplevel/ocaml_toplevel.cmxs))
+ (doc (CHANGES.md LICENSE.md README.org)))
+(library
+ (name ocaml-compiler-libs.bytecomp)
+ (kind normal)
+ (archives
+  (byte bytecomp/ocaml_bytecomp.cma)
+  (native bytecomp/ocaml_bytecomp.cmxa))
+ (plugins
+  (byte bytecomp/ocaml_bytecomp.cma)
+  (native bytecomp/ocaml_bytecomp.cmxs))
+ (native_archives bytecomp/ocaml_bytecomp.a)
+ (requires compiler-libs.bytecomp)
+ (main_module_name Ocaml_bytecomp)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ocaml_bytecomp)
+   (visibility public)
+   (source (path Ocaml_bytecomp) (impl (path bytecomp/ocaml_bytecomp.ml))))))
+(library
+ (name ocaml-compiler-libs.common)
+ (kind normal)
+ (archives (byte common/ocaml_common.cma) (native common/ocaml_common.cmxa))
+ (plugins (byte common/ocaml_common.cma) (native common/ocaml_common.cmxs))
+ (native_archives common/ocaml_common.a)
+ (requires compiler-libs.common)
+ (main_module_name Ocaml_common)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ocaml_common)
+   (visibility public)
+   (source (path Ocaml_common) (impl (path common/ocaml_common.ml))))))
+(library
+ (name ocaml-compiler-libs.optcomp)
+ (kind normal)
+ (archives
+  (byte optcomp/ocaml_optcomp.cma)
+  (native optcomp/ocaml_optcomp.cmxa))
+ (plugins
+  (byte optcomp/ocaml_optcomp.cma)
+  (native optcomp/ocaml_optcomp.cmxs))
+ (native_archives optcomp/ocaml_optcomp.a)
+ (requires compiler-libs.optcomp)
+ (main_module_name Ocaml_optcomp)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ocaml_optcomp)
+   (visibility public)
+   (source (path Ocaml_optcomp) (impl (path optcomp/ocaml_optcomp.ml))))))
+(library
+ (name ocaml-compiler-libs.shadow)
+ (kind normal)
+ (archives (byte shadow/ocaml_shadow.cma) (native shadow/ocaml_shadow.cmxa))
+ (plugins (byte shadow/ocaml_shadow.cma) (native shadow/ocaml_shadow.cmxs))
+ (native_archives shadow/ocaml_shadow.a)
+ (main_module_name Ocaml_shadow)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ocaml_shadow)
+   (visibility public)
+   (source (path Ocaml_shadow) (impl (path shadow/ocaml_shadow.ml))))))
+(library
+ (name ocaml-compiler-libs.toplevel)
+ (kind normal)
+ (archives
+  (byte toplevel/ocaml_toplevel.cma)
+  (native toplevel/ocaml_toplevel.cmxa))
+ (plugins
+  (byte toplevel/ocaml_toplevel.cma)
+  (native toplevel/ocaml_toplevel.cmxs))
+ (native_archives toplevel/ocaml_toplevel.a)
+ (requires compiler-libs.toplevel)
+ (main_module_name Ocaml_toplevel)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ocaml_toplevel)
+   (visibility public)
+   (source (path Ocaml_toplevel) (impl (path toplevel/ocaml_toplevel.ml))))))

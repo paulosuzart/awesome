@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/gmap/META"
+  "_build/install/default/lib/gmap/dune-package"
+  "_build/install/default/lib/gmap/gmap.a"
+  "_build/install/default/lib/gmap/gmap.cma"
+  "_build/install/default/lib/gmap/gmap.cmi"
+  "_build/install/default/lib/gmap/gmap.cmt"
+  "_build/install/default/lib/gmap/gmap.cmti"
+  "_build/install/default/lib/gmap/gmap.cmx"
+  "_build/install/default/lib/gmap/gmap.cmxa"
+  "_build/install/default/lib/gmap/gmap.ml"
+  "_build/install/default/lib/gmap/gmap.mli"
+  "_build/install/default/lib/gmap/opam"
+]
+doc: [
+  "_build/install/default/doc/gmap/CHANGES.md"
+  "_build/install/default/doc/gmap/LICENSE.md"
+  "_build/install/default/doc/gmap/README.md"
+]
+libexec: "_build/install/default/lib/gmap/gmap.cmxs"

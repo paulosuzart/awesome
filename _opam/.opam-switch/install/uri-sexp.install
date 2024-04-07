@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/uri-sexp/META"
+  "_build/install/default/lib/uri-sexp/dune-package"
+  "_build/install/default/lib/uri-sexp/opam"
+  "_build/install/default/lib/uri-sexp/uri_sexp.a"
+  "_build/install/default/lib/uri-sexp/uri_sexp.cma"
+  "_build/install/default/lib/uri-sexp/uri_sexp.cmi"
+  "_build/install/default/lib/uri-sexp/uri_sexp.cmt"
+  "_build/install/default/lib/uri-sexp/uri_sexp.cmti"
+  "_build/install/default/lib/uri-sexp/uri_sexp.cmx"
+  "_build/install/default/lib/uri-sexp/uri_sexp.cmxa"
+  "_build/install/default/lib/uri-sexp/uri_sexp.ml"
+  "_build/install/default/lib/uri-sexp/uri_sexp.mli"
+]
+doc: [
+  "_build/install/default/doc/uri-sexp/CHANGES.md"
+  "_build/install/default/doc/uri-sexp/LICENSE.md"
+  "_build/install/default/doc/uri-sexp/README.md"
+]
+libexec: "_build/install/default/lib/uri-sexp/uri_sexp.cmxs"

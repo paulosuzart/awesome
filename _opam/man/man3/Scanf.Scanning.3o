@@ -1,0 +1,362 @@
+.TH "Scanf.Scanning" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Scanf.Scanning \- no description
+.SH Module
+Module   Scanf.Scanning
+.SH Documentation
+.sp
+Module
+.BI "Scanning"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type in_channel 
+
+.sp
+The notion of input channel for the 
+.ft B
+Scanf
+.ft R
+module:
+those channels provide all the machinery necessary to read from any source
+of characters, including a 
+.ft B
+in_channel
+.ft R
+value\&.
+A Scanf\&.Scanning\&.in_channel value is also called a formatted input
+channel or equivalently a scanning buffer\&.
+The type 
+.ft B
+Scanf\&.Scanning\&.scanbuf
+.ft R
+below is an alias for 
+.ft B
+Scanning\&.in_channel
+.ft R
+\&.
+Note that a 
+.ft B
+Scanning\&.in_channel
+.ft R
+is not concurrency\-safe: concurrent use
+may produce arbitrary values or exceptions\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+.I type scanbuf 
+= 
+.B in_channel
+
+.sp
+The type of scanning buffers\&. A scanning buffer is the source from which a
+formatted input function gets characters\&. The scanning buffer holds the
+current state of the scan, plus a function to get the next char from the
+input, and a token buffer to store the string matched so far\&.
+.sp
+Note: a scanning action may often require to examine one character in
+advance; when this \&'lookahead\&' character does not belong to the token
+read, it is stored back in the scanning buffer and becomes the next
+character yet to be read\&.
+
+.sp
+
+.I val stdin 
+: 
+.B in_channel
+.sp
+The standard input notion for the 
+.ft B
+Scanf
+.ft R
+module\&.
+.ft B
+Scanning\&.stdin
+.ft R
+is the 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted input channel
+attached to 
+.ft B
+stdin
+.ft R
+\&.
+.sp
+Note: in the interactive system, when input is read from
+.ft B
+stdin
+.ft R
+, the newline character that triggers evaluation is
+part of the input; thus, the scanning specifications must properly skip
+this additional newline character (for instance, simply add a 
+.ft B
+\&'\(rsn\&'
+.ft R
+as
+the last character of the format string)\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+.I type file_name 
+= 
+.B string
+
+.sp
+A convenient alias to designate a file name\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val open_in 
+: 
+.B file_name -> in_channel
+.sp
+
+.ft B
+Scanning\&.open_in fname
+.ft R
+returns a 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted input
+channel for bufferized reading in text mode from file 
+.ft B
+fname
+.ft R
+\&.
+.sp
+Note:
+.ft B
+open_in
+.ft R
+returns a formatted input channel that efficiently reads
+characters in large chunks; in contrast, 
+.ft B
+from_channel
+.ft R
+below returns
+formatted input channels that must read one character at a time, leading
+to a much slower scanning rate\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val open_in_bin 
+: 
+.B file_name -> in_channel
+.sp
+
+.ft B
+Scanning\&.open_in_bin fname
+.ft R
+returns a 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted
+input channel for bufferized reading in binary mode from file 
+.ft B
+fname
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val close_in 
+: 
+.B in_channel -> unit
+.sp
+Closes the 
+.ft B
+in_channel
+.ft R
+associated with the given
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted input channel\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val from_file 
+: 
+.B file_name -> in_channel
+.sp
+An alias for 
+.ft B
+Scanf\&.Scanning\&.open_in
+.ft R
+above\&.
+
+.sp
+
+.I val from_file_bin 
+: 
+.B string -> in_channel
+.sp
+An alias for 
+.ft B
+Scanf\&.Scanning\&.open_in_bin
+.ft R
+above\&.
+
+.sp
+
+.I val from_string 
+: 
+.B string -> in_channel
+.sp
+
+.ft B
+Scanning\&.from_string s
+.ft R
+returns a 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted
+input channel which reads from the given string\&.
+Reading starts from the first character in the string\&.
+The end\-of\-input condition is set when the end of the string is reached\&.
+
+.sp
+
+.I val from_function 
+: 
+.B (unit -> char) -> in_channel
+.sp
+
+.ft B
+Scanning\&.from_function f
+.ft R
+returns a 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted
+input channel with the given function as its reading method\&.
+.sp
+When scanning needs one more character, the given function is called\&.
+.sp
+When the function has no more character to provide, it must signal an
+end\-of\-input condition by raising the exception 
+.ft B
+End_of_file
+.ft R
+\&.
+
+.sp
+
+.I val from_channel 
+: 
+.B in_channel -> in_channel
+.sp
+
+.ft B
+Scanning\&.from_channel ic
+.ft R
+returns a 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted
+input channel which reads from the regular 
+.ft B
+in_channel
+.ft R
+input
+channel 
+.ft B
+ic
+.ft R
+argument\&.
+Reading starts at current reading position of 
+.ft B
+ic
+.ft R
+\&.
+
+.sp
+
+.I val end_of_input 
+: 
+.B in_channel -> bool
+.sp
+
+.ft B
+Scanning\&.end_of_input ic
+.ft R
+tests the end\-of\-input condition of the given
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted input channel\&.
+
+.sp
+
+.I val beginning_of_input 
+: 
+.B in_channel -> bool
+.sp
+
+.ft B
+Scanning\&.beginning_of_input ic
+.ft R
+tests the beginning of input condition
+of the given 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted input channel\&.
+
+.sp
+
+.I val name_of_input 
+: 
+.B in_channel -> string
+.sp
+
+.ft B
+Scanning\&.name_of_input ic
+.ft R
+returns the name of the character source
+for the given 
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+formatted input channel\&.
+
+.sp
+.B "Since"
+3.09
+
+.sp

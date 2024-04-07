@@ -1,0 +1,20 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_globalize/META"
+  "_build/install/default/lib/ppx_globalize/dune-package"
+  "_build/install/default/lib/ppx_globalize/opam"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.a"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.cma"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.cmi"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.cmt"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.cmti"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.cmx"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.cmxa"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.ml"
+  "_build/install/default/lib/ppx_globalize/ppx_globalize.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_globalize/CHANGES.md"
+  "_build/install/default/doc/ppx_globalize/LICENSE.md"
+]
+libexec: "_build/install/default/lib/ppx_globalize/ppx_globalize.cmxs"

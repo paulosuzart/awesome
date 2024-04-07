@@ -1,0 +1,37 @@
+(lang dune 3.15)
+(name ppx_pipebang)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_pipebang))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_pipebang.a
+   ppx_pipebang.cma
+   ppx_pipebang.cmi
+   ppx_pipebang.cmt
+   ppx_pipebang.cmti
+   ppx_pipebang.cmx
+   ppx_pipebang.cmxa
+   ppx_pipebang.ml
+   ppx_pipebang.mli))
+ (libexec (ppx.exe ppx_pipebang.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_pipebang)
+ (kind ppx_rewriter)
+ (archives (byte ppx_pipebang.cma) (native ppx_pipebang.cmxa))
+ (plugins (byte ppx_pipebang.cma) (native ppx_pipebang.cmxs))
+ (native_archives ppx_pipebang.a)
+ (requires ppxlib.ast ppxlib)
+ (main_module_name Ppx_pipebang)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_pipebang)
+   (visibility public)
+   (source
+    (path Ppx_pipebang)
+    (intf (path ppx_pipebang.mli))
+    (impl (path ppx_pipebang.ml))))))

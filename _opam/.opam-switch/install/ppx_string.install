@@ -1,0 +1,23 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_string/META"
+  "_build/install/default/lib/ppx_string/dune-package"
+  "_build/install/default/lib/ppx_string/opam"
+  "_build/install/default/lib/ppx_string/ppx_string.a"
+  "_build/install/default/lib/ppx_string/ppx_string.cma"
+  "_build/install/default/lib/ppx_string/ppx_string.cmi"
+  "_build/install/default/lib/ppx_string/ppx_string.cmt"
+  "_build/install/default/lib/ppx_string/ppx_string.cmti"
+  "_build/install/default/lib/ppx_string/ppx_string.cmx"
+  "_build/install/default/lib/ppx_string/ppx_string.cmxa"
+  "_build/install/default/lib/ppx_string/ppx_string.ml"
+  "_build/install/default/lib/ppx_string/ppx_string.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_string/LICENSE.md"
+  "_build/install/default/doc/ppx_string/README.org"
+]
+libexec: [
+  "_build/install/default/lib/ppx_string/ppx.exe"
+  "_build/install/default/lib/ppx_string/ppx_string.cmxs"
+]

@@ -1,0 +1,60 @@
+(lang dune 3.15)
+(name mirage-crypto-ec)
+(version 0.11.3)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/mirage-crypto-ec)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   dune-package
+   libmirage_crypto_ec_stubs.a
+   mirage_crypto_ec.a
+   mirage_crypto_ec.cma
+   mirage_crypto_ec.cmi
+   mirage_crypto_ec.cmt
+   mirage_crypto_ec.cmti
+   mirage_crypto_ec.cmx
+   mirage_crypto_ec.cmxa
+   mirage_crypto_ec.ml
+   mirage_crypto_ec.mli
+   opam))
+ (libexec (mirage_crypto_ec.cmxs))
+ (doc
+  (CHANGES.md
+   LICENSE.md
+   LICENSE.md.mirage-crypto-ec
+   LICENSE.md.mirage-crypto-rng-mirage
+   README.md))
+ (stublibs (dllmirage_crypto_ec_stubs.so)))
+(library
+ (name mirage-crypto-ec)
+ (kind normal)
+ (archives (byte mirage_crypto_ec.cma) (native mirage_crypto_ec.cmxa))
+ (plugins (byte mirage_crypto_ec.cma) (native mirage_crypto_ec.cmxs))
+ (foreign_objects
+  curve25519_stubs.o
+  np224_stubs.o
+  np256_stubs.o
+  np384_stubs.o
+  np521_stubs.o
+  p224_stubs.o
+  p256_stubs.o
+  p384_stubs.o
+  p521_stubs.o)
+ (foreign_archives (archives (for all) (files libmirage_crypto_ec_stubs.a)))
+ (foreign_dll_files ../stublibs/dllmirage_crypto_ec_stubs.so)
+ (native_archives mirage_crypto_ec.a)
+ (requires cstruct eqaf mirage-crypto mirage-crypto-rng)
+ (main_module_name Mirage_crypto_ec)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name mirage_crypto_ec)
+   (visibility public)
+   (source
+    (path Mirage_crypto_ec)
+    (intf (path mirage_crypto_ec.mli))
+    (impl (path mirage_crypto_ec.ml))))))

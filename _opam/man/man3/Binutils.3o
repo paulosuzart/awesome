@@ -1,0 +1,67 @@
+.TH "Binutils" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Binutils \- no description
+.SH Module
+Module   Binutils
+.SH Documentation
+.sp
+Module
+.BI "Binutils"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type error 
+=
+ | Truncated_file
+ | Unrecognized
+.B of 
+.B string
+ | Unsupported
+.B of 
+.B string * int64
+ | Out_of_range
+.B of 
+.B string
+ 
+.sp
+
+.sp
+
+.I val error_to_string 
+: 
+.B error -> string
+.sp
+
+.sp
+.I type t 
+
+.sp
+
+.sp
+
+.I val read 
+: 
+.B string -> (t, error) Result.t
+.sp
+
+.sp
+
+.I val defines_symbol 
+: 
+.B t -> string -> bool
+.sp
+
+.sp
+
+.I val symbol_offset 
+: 
+.B t -> string -> int64 option
+.sp
+
+.sp

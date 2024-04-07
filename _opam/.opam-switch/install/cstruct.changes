@@ -1,0 +1,30 @@
+opam-version: "2.0"
+added: [
+  "doc/cstruct" {"D"}
+  "doc/cstruct/CHANGES.md" {"F:01986d97e3f6afd002845c39ede2fcda"}
+  "doc/cstruct/LICENSE.md" {"F:7b3edcc3be8441cbad17ea6a841cd1ec"}
+  "doc/cstruct/README.md" {"F:5a7d04109996c63d46f403434de1922b"}
+  "lib/cstruct" {"D"}
+  "lib/cstruct/META" {"F:a7b810e729a18b7659d017c958855fd2"}
+  "lib/cstruct/cstruct.a" {"F:8cd819a1a972e41b4a499f2c455a6f98"}
+  "lib/cstruct/cstruct.cma" {"F:2f1e5d633595c444aa15f8d90d04205f"}
+  "lib/cstruct/cstruct.cmi" {"F:b17515b23627d76459b2fea11d1adfff"}
+  "lib/cstruct/cstruct.cmt" {"F:61d0ef62e9cf566eea105664240814f8"}
+  "lib/cstruct/cstruct.cmti" {"F:1aba599c61078ffe4b53aaaf9c92a010"}
+  "lib/cstruct/cstruct.cmx" {"F:960996cafc4c6a2adb4a57d879afb4eb"}
+  "lib/cstruct/cstruct.cmxa" {"F:b793f903964dd3de75f5bcd272c3fe5d"}
+  "lib/cstruct/cstruct.cmxs" {"F:e8ad21655e64f79c3d43206f5c723ed5"}
+  "lib/cstruct/cstruct.js" {"F:90706687c7a13e64183ae21e73112e6e"}
+  "lib/cstruct/cstruct.ml" {"F:74e755e29b9f29cb14b6aac1752f7952"}
+  "lib/cstruct/cstruct.mli" {"F:55c427c396e9c785b8e1fd20b5b473cb"}
+  "lib/cstruct/cstruct_cap.cmi" {"F:dc79ebd658bb16c2cb348a1712725ea6"}
+  "lib/cstruct/cstruct_cap.cmt" {"F:f28fa0566adc7f042f08960e1cc24ebc"}
+  "lib/cstruct/cstruct_cap.cmti" {"F:4c9dc23257eeeda169c770f68d58f736"}
+  "lib/cstruct/cstruct_cap.cmx" {"F:2b8c1a316a20b871577be9d86367fdfd"}
+  "lib/cstruct/cstruct_cap.ml" {"F:20ffad39325c46e4449d77f8c920e73a"}
+  "lib/cstruct/cstruct_cap.mli" {"F:139abe8fdd7b83032a42fea18b999261"}
+  "lib/cstruct/dune-package" {"F:3aa640f24c7d09891291034a42f9734a"}
+  "lib/cstruct/libcstruct_stubs.a" {"F:5ba190fc87ebc02e666e77cc78c36619"}
+  "lib/cstruct/opam" {"F:7e6a2e1963d8fc05a08378a808793f1f"}
+  "lib/stublibs/dllcstruct_stubs.so" {"F:4459381fcd47798ada02fbd169124097"}
+]

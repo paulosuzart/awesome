@@ -1,0 +1,53 @@
+.TH "CamlinternalMenhirLib.PackedIntArray" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.PackedIntArray \- no description
+.SH Module
+Module   CamlinternalMenhirLib.PackedIntArray
+.SH Documentation
+.sp
+Module
+.BI "PackedIntArray"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+= 
+.B int * string
+
+.sp
+
+.sp
+
+.I val pack 
+: 
+.B int array -> t
+.sp
+
+.sp
+
+.I val get 
+: 
+.B t -> int -> int
+.sp
+
+.sp
+
+.I val get1 
+: 
+.B string -> int -> int
+.sp
+
+.sp
+
+.I val unflatten1 
+: 
+.B int * string -> int -> int -> int
+.sp
+
+.sp

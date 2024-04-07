@@ -1,0 +1,536 @@
+.TH "Uchar" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Uchar \- Unicode characters.
+.SH Module
+Module   Uchar
+.SH Documentation
+.sp
+Module
+.BI "Uchar"
+ : 
+.B sig end
+
+.sp
+Unicode characters\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type for Unicode characters\&.
+.sp
+A value of this type represents a Unicode
+scalar
+value which is an integer in the ranges 
+.ft B
+0x0000
+.ft R
+\&.\&.\&.
+.ft B
+0xD7FF
+.ft R
+or
+.ft B
+0xE000
+.ft R
+\&.\&.\&.
+.ft B
+0x10FFFF
+.ft R
+\&.
+
+.sp
+
+.I val min 
+: 
+.B t
+.sp
+
+.ft B
+min
+.ft R
+is U+0000\&.
+
+.sp
+
+.I val max 
+: 
+.B t
+.sp
+
+.ft B
+max
+.ft R
+is U+10FFFF\&.
+
+.sp
+
+.I val bom 
+: 
+.B t
+.sp
+
+.ft B
+bom
+.ft R
+is U+FEFF, the
+byte order mark (BOM)
+character\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val rep 
+: 
+.B t
+.sp
+
+.ft B
+rep
+.ft R
+is U+FFFD, the
+replacement
+character\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val succ 
+: 
+.B t -> t
+.sp
+
+.ft B
+succ u
+.ft R
+is the scalar value after 
+.ft B
+u
+.ft R
+in the set of Unicode scalar
+values\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+u
+.ft R
+is 
+.ft B
+Uchar\&.max
+.ft R
+\&.
+
+.sp
+
+.I val pred 
+: 
+.B t -> t
+.sp
+
+.ft B
+pred u
+.ft R
+is the scalar value before 
+.ft B
+u
+.ft R
+in the set of Unicode scalar
+values\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+u
+.ft R
+is 
+.ft B
+Uchar\&.min
+.ft R
+\&.
+
+.sp
+
+.I val is_valid 
+: 
+.B int -> bool
+.sp
+
+.ft B
+is_valid n
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+n
+.ft R
+is a Unicode scalar value
+(i\&.e\&. in the ranges 
+.ft B
+0x0000
+.ft R
+\&.\&.\&.
+.ft B
+0xD7FF
+.ft R
+or 
+.ft B
+0xE000
+.ft R
+\&.\&.\&.
+.ft B
+0x10FFFF
+.ft R
+)\&.
+
+.sp
+
+.I val of_int 
+: 
+.B int -> t
+.sp
+
+.ft B
+of_int i
+.ft R
+is 
+.ft B
+i
+.ft R
+as a Unicode character\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+i
+.ft R
+does not satisfy 
+.ft B
+Uchar\&.is_valid
+.ft R
+\&.
+
+.sp
+
+.I val to_int 
+: 
+.B t -> int
+.sp
+
+.ft B
+to_int u
+.ft R
+is 
+.ft B
+u
+.ft R
+as an integer\&.
+
+.sp
+
+.I val is_char 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_char u
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+u
+.ft R
+is a latin1 OCaml character\&.
+
+.sp
+
+.I val of_char 
+: 
+.B char -> t
+.sp
+
+.ft B
+of_char c
+.ft R
+is 
+.ft B
+c
+.ft R
+as a Unicode character\&.
+
+.sp
+
+.I val to_char 
+: 
+.B t -> char
+.sp
+
+.ft B
+to_char u
+.ft R
+is 
+.ft B
+u
+.ft R
+as an OCaml latin1 character\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+u
+.ft R
+does not satisfy 
+.ft B
+Uchar\&.is_char
+.ft R
+\&.
+
+.sp
+
+.I val equal 
+: 
+.B t -> t -> bool
+.sp
+
+.ft B
+equal u u\&'
+.ft R
+is 
+.ft B
+u = u\&'
+.ft R
+\&.
+
+.sp
+
+.I val compare 
+: 
+.B t -> t -> int
+.sp
+
+.ft B
+compare u u\&'
+.ft R
+is 
+.ft B
+Stdlib\&.compare u u\&'
+.ft R
+\&.
+
+.sp
+
+.I val hash 
+: 
+.B t -> int
+.sp
+
+.ft B
+hash u
+.ft R
+associates a non\-negative integer to 
+.ft B
+u
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS UTF codecs tools
+
+.PP
+.I type utf_decode 
+
+.sp
+The type for UTF decode results\&. Values of this type represent
+the result of a Unicode Transformation Format decoding attempt\&.
+
+.sp
+
+.I val utf_decode_is_valid 
+: 
+.B utf_decode -> bool
+.sp
+
+.ft B
+utf_decode_is_valid d
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+d
+.ft R
+holds a valid
+decode\&.
+
+.sp
+
+.I val utf_decode_uchar 
+: 
+.B utf_decode -> t
+.sp
+
+.ft B
+utf_decode_uchar d
+.ft R
+is the Unicode character decoded by 
+.ft B
+d
+.ft R
+if
+.ft B
+utf_decode_is_valid d
+.ft R
+is 
+.ft B
+true
+.ft R
+and 
+.ft B
+Uchar\&.rep
+.ft R
+otherwise\&.
+
+.sp
+
+.I val utf_decode_length 
+: 
+.B utf_decode -> int
+.sp
+
+.ft B
+utf_decode_length d
+.ft R
+is the number of elements from the source
+that were consumed by the decode 
+.ft B
+d
+.ft R
+\&. This is always strictly
+positive and smaller or equal to 
+.ft B
+4
+.ft R
+\&. The kind of source elements
+depends on the actual decoder; for the decoders of the standard
+library this function always returns a length in bytes\&.
+
+.sp
+
+.I val utf_decode 
+: 
+.B int -> t -> utf_decode
+.sp
+
+.ft B
+utf_decode n u
+.ft R
+is a valid UTF decode for 
+.ft B
+u
+.ft R
+that consumed 
+.ft B
+n
+.ft R
+elements from the source for decoding\&. 
+.ft B
+n
+.ft R
+must be positive and
+smaller or equal to 
+.ft B
+4
+.ft R
+(this is not checked by the module)\&.
+
+.sp
+
+.I val utf_decode_invalid 
+: 
+.B int -> utf_decode
+.sp
+
+.ft B
+utf_decode_invalid n
+.ft R
+is an invalid UTF decode that consumed 
+.ft B
+n
+.ft R
+elements from the source to error\&. 
+.ft B
+n
+.ft R
+must be positive and
+smaller or equal to 
+.ft B
+4
+.ft R
+(this is not checked by the module)\&. The
+resulting decode has 
+.ft B
+Uchar\&.rep
+.ft R
+as the decoded Unicode character\&.
+
+.sp
+
+.I val utf_8_byte_length 
+: 
+.B t -> int
+.sp
+
+.ft B
+utf_8_byte_length u
+.ft R
+is the number of bytes needed to encode
+.ft B
+u
+.ft R
+in UTF\-8\&.
+
+.sp
+
+.I val utf_16_byte_length 
+: 
+.B t -> int
+.sp
+
+.ft B
+utf_16_byte_length u
+.ft R
+is the number of bytes needed to encode
+.ft B
+u
+.ft R
+in UTF\-16\&.
+
+.sp

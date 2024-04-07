@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Subpackages</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Complex packages"
+HREF="c278.html"><LINK
+REL="PREVIOUS"
+TITLE="Appending to variables"
+HREF="x326.html"><LINK
+REL="NEXT"
+TITLE="Glue code"
+HREF="x345.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x326.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Complex packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x345.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN338"
+>Subpackages</A
+></H1
+><P
+>Sometimes a package consists of several archive files that are closely
+related. It is now possible to express dependencies between these
+archives by splitting the package into several parts called subpackages.
+For example, package p consists of a base archive p_base.cma, and two
+extensions p_ext1.cma and p_ext2.cma that both require the base archive
+but are independent of each other. This META file expresses this
+dependency directly:
+
+<PRE
+CLASS="PROGRAMLISTING"
+># META file of package p:
+requires = "p.base"
+
+package "base" (
+  archive(byte) = "p_base.cma"
+)
+
+package "ext1" (
+  requires = "p.base"
+  archive(byte) = "p_ext1.cma"
+)
+
+package "ext2" (
+  requires = "p.base"
+  archive(byte) = "p_ext2.cma"
+)</PRE
+>
+
+If installed as package "p", this definition actually defines four
+logical packages: "p" (the main package), "p.base", "p.ext1", and
+"p.ext2" (the subpackages). These four entities only share the META
+file in which they are declared, and the directory where the archive
+files are stored, but all other properties can be individually set
+for each package. This also means that all package dependencies
+must explicitly added by "requires" variables, as there are no
+implied dependencies. In this example, the main package and "p.ext1"
+and "p.ext2" are all dependent on "p.base".</P
+><P
+>The users of this installation can refer to all four packages. This
+means that
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -package p -linkpkg ...</PRE
+>
+
+links only p_base.cma into the final program, while
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -package p.ext1 -linkpkg ...</PRE
+>
+
+selects both p_base.cma and p_ext1.cma.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x326.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x345.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Appending to variables</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c278.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Glue code</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

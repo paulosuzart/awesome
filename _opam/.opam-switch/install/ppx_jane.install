@@ -1,0 +1,40 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_jane/META"
+  "_build/install/default/lib/ppx_jane/dune-package"
+  "_build/install/default/lib/ppx_jane/kernel/ppx_jane_kernel.a"
+    {"kernel/ppx_jane_kernel.a"}
+  "_build/install/default/lib/ppx_jane/kernel/ppx_jane_kernel.cma"
+    {"kernel/ppx_jane_kernel.cma"}
+  "_build/install/default/lib/ppx_jane/kernel/ppx_jane_kernel.cmi"
+    {"kernel/ppx_jane_kernel.cmi"}
+  "_build/install/default/lib/ppx_jane/kernel/ppx_jane_kernel.cmt"
+    {"kernel/ppx_jane_kernel.cmt"}
+  "_build/install/default/lib/ppx_jane/kernel/ppx_jane_kernel.cmx"
+    {"kernel/ppx_jane_kernel.cmx"}
+  "_build/install/default/lib/ppx_jane/kernel/ppx_jane_kernel.cmxa"
+    {"kernel/ppx_jane_kernel.cmxa"}
+  "_build/install/default/lib/ppx_jane/kernel/ppx_jane_kernel.ml"
+    {"kernel/ppx_jane_kernel.ml"}
+  "_build/install/default/lib/ppx_jane/opam"
+  "_build/install/default/lib/ppx_jane/ppx_jane.a"
+  "_build/install/default/lib/ppx_jane/ppx_jane.cma"
+  "_build/install/default/lib/ppx_jane/ppx_jane.cmi"
+  "_build/install/default/lib/ppx_jane/ppx_jane.cmt"
+  "_build/install/default/lib/ppx_jane/ppx_jane.cmx"
+  "_build/install/default/lib/ppx_jane/ppx_jane.cmxa"
+  "_build/install/default/lib/ppx_jane/ppx_jane.ml"
+]
+bin: "_build/install/default/bin/ppx-jane"
+doc: [
+  "_build/install/default/doc/ppx_jane/CHANGES.md"
+  "_build/install/default/doc/ppx_jane/LICENSE.md"
+  "_build/install/default/doc/ppx_jane/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_jane/kernel/ppx.exe" {"kernel/ppx.exe"}
+  "_build/install/default/lib/ppx_jane/kernel/ppx_jane_kernel.cmxs"
+    {"kernel/ppx_jane_kernel.cmxs"}
+  "_build/install/default/lib/ppx_jane/ppx.exe"
+  "_build/install/default/lib/ppx_jane/ppx_jane.cmxs"
+]

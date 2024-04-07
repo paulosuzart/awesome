@@ -1,0 +1,21 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/duration/META"
+  "_build/install/default/lib/duration/dune-package"
+  "_build/install/default/lib/duration/duration.a"
+  "_build/install/default/lib/duration/duration.cma"
+  "_build/install/default/lib/duration/duration.cmi"
+  "_build/install/default/lib/duration/duration.cmt"
+  "_build/install/default/lib/duration/duration.cmti"
+  "_build/install/default/lib/duration/duration.cmx"
+  "_build/install/default/lib/duration/duration.cmxa"
+  "_build/install/default/lib/duration/duration.ml"
+  "_build/install/default/lib/duration/duration.mli"
+  "_build/install/default/lib/duration/opam"
+]
+doc: [
+  "_build/install/default/doc/duration/CHANGES.md"
+  "_build/install/default/doc/duration/LICENSE.md"
+  "_build/install/default/doc/duration/README.md"
+]
+libexec: "_build/install/default/lib/duration/duration.cmxs"

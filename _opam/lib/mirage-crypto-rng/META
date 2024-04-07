@@ -1,0 +1,17 @@
+version = "0.11.3"
+description = ""
+requires = "cstruct mirage-crypto"
+archive(byte) = "mirage_crypto_rng.cma"
+archive(native) = "mirage_crypto_rng.cmxa"
+plugin(byte) = "mirage_crypto_rng.cma"
+plugin(native) = "mirage_crypto_rng.cmxs"
+package "unix" (
+  directory = "unix"
+  version = "0.11.3"
+  description = ""
+  requires = "logs mirage-crypto-rng unix"
+  archive(byte) = "mirage_crypto_rng_unix.cma"
+  archive(native) = "mirage_crypto_rng_unix.cmxa"
+  plugin(byte) = "mirage_crypto_rng_unix.cma"
+  plugin(native) = "mirage_crypto_rng_unix.cmxs"
+)

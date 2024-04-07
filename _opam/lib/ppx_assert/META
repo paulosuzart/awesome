@@ -1,0 +1,33 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "ppx_compare.expander
+                        ppx_here.expander
+                        ppx_sexp_conv.expander
+                        ppxlib
+                        ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_assert.cma"
+archive(ppx_driver,native) = "ppx_assert.cmxa"
+plugin(ppx_driver,byte) = "ppx_assert.cma"
+plugin(ppx_driver,native) = "ppx_assert.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "ppx_assert.runtime-lib"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_assert.runtime-lib
+                         ppx_compare.runtime-lib
+                         ppx_here.runtime-lib
+                         ppx_sexp_conv.runtime-lib
+                         sexplib0"
+ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+library_kind = "ppx_rewriter"
+package "runtime-lib" (
+  directory = "runtime-lib"
+  version = "v0.16.0"
+  description = "Runtime library for ppx_assert"
+  requires = "base ppx_sexp_conv.runtime-lib sexplib0"
+  archive(byte) = "ppx_assert_lib.cma"
+  archive(native) = "ppx_assert_lib.cmxa"
+  plugin(byte) = "ppx_assert_lib.cma"
+  plugin(native) = "ppx_assert_lib.cmxs"
+)

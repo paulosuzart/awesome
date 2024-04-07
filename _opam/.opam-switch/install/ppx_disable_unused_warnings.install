@@ -1,0 +1,23 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_disable_unused_warnings/META"
+  "_build/install/default/lib/ppx_disable_unused_warnings/dune-package"
+  "_build/install/default/lib/ppx_disable_unused_warnings/opam"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.a"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cma"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmi"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmt"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmti"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmx"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmxa"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.ml"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_disable_unused_warnings/LICENSE.md"
+  "_build/install/default/doc/ppx_disable_unused_warnings/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx.exe"
+  "_build/install/default/lib/ppx_disable_unused_warnings/ppx_disable_unused_warnings.cmxs"
+]

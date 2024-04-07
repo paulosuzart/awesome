@@ -1,0 +1,1161 @@
+.TH "Stdlib.Buffer" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Buffer \- no description
+.SH Module
+Module   Stdlib.Buffer
+.SH Documentation
+.sp
+Module
+.BI "Buffer"
+ : 
+.B (module Stdlib__Buffer)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+Unsynchronized accesses
+.PP
+
+.PP
+Unsynchronized accesses to a buffer may lead to an invalid buffer state\&.
+Thus, concurrent accesses to a buffer must be synchronized (for instance
+with a 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.PP
+.I type t 
+
+.sp
+The abstract type of buffers\&.
+
+.sp
+
+.I val create 
+: 
+.B int -> t
+.sp
+
+.ft B
+create n
+.ft R
+returns a fresh buffer, initially empty\&.
+The 
+.ft B
+n
+.ft R
+parameter is the initial size of the internal byte sequence
+that holds the buffer contents\&. That byte sequence is automatically
+reallocated when more than 
+.ft B
+n
+.ft R
+characters are stored in the buffer,
+but shrinks back to 
+.ft B
+n
+.ft R
+characters when 
+.ft B
+reset
+.ft R
+is called\&.
+For best performance, 
+.ft B
+n
+.ft R
+should be of the same order of magnitude
+as the number of characters that are expected to be stored in
+the buffer (for instance, 80 for a buffer that holds one output
+line)\&.  Nothing bad will happen if the buffer grows beyond that
+limit, however\&. In doubt, take 
+.ft B
+n = 16
+.ft R
+for instance\&.
+If 
+.ft B
+n
+.ft R
+is not between 1 and 
+.ft B
+Sys\&.max_string_length
+.ft R
+, it will
+be clipped to that interval\&.
+
+.sp
+
+.I val contents 
+: 
+.B t -> string
+.sp
+Return a copy of the current contents of the buffer\&.
+The buffer itself is unchanged\&.
+
+.sp
+
+.I val to_bytes 
+: 
+.B t -> bytes
+.sp
+Return a copy of the current contents of the buffer\&.
+The buffer itself is unchanged\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val sub 
+: 
+.B t -> int -> int -> string
+.sp
+
+.ft B
+Buffer\&.sub b off len
+.ft R
+returns a copy of 
+.ft B
+len
+.ft R
+bytes from the
+current contents of the buffer 
+.ft B
+b
+.ft R
+, starting at offset 
+.ft B
+off
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+off
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid
+range of 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val blit 
+: 
+.B t -> int -> bytes -> int -> int -> unit
+.sp
+
+.ft B
+Buffer\&.blit src srcoff dst dstoff len
+.ft R
+copies 
+.ft B
+len
+.ft R
+characters from
+the current contents of the buffer 
+.ft B
+src
+.ft R
+, starting at offset 
+.ft B
+srcoff
+.ft R
+to 
+.ft B
+dst
+.ft R
+, starting at character 
+.ft B
+dstoff
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.11.2
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+srcoff
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid
+range of 
+.ft B
+src
+.ft R
+, or if 
+.ft B
+dstoff
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid
+range of 
+.ft B
+dst
+.ft R
+\&.
+
+.sp
+
+.I val nth 
+: 
+.B t -> int -> char
+.sp
+Get the n\-th character of the buffer\&.
+
+.sp
+.B "Raises Invalid_argument"
+if
+index out of bounds
+
+.sp
+
+.I val length 
+: 
+.B t -> int
+.sp
+Return the number of characters currently contained in the buffer\&.
+
+.sp
+
+.I val clear 
+: 
+.B t -> unit
+.sp
+Empty the buffer\&.
+
+.sp
+
+.I val reset 
+: 
+.B t -> unit
+.sp
+Empty the buffer and deallocate the internal byte sequence holding the
+buffer contents, replacing it with the initial internal byte sequence
+of length 
+.ft B
+n
+.ft R
+that was allocated by 
+.ft B
+Buffer\&.create
+.ft R
+.ft B
+n
+.ft R
+\&.
+For long\-lived buffers that may have grown a lot, 
+.ft B
+reset
+.ft R
+allows
+faster reclamation of the space used by the buffer\&.
+
+.sp
+
+.I val output_buffer 
+: 
+.B out_channel -> t -> unit
+.sp
+
+.ft B
+output_buffer oc b
+.ft R
+writes the current contents of buffer 
+.ft B
+b
+.ft R
+on the output channel 
+.ft B
+oc
+.ft R
+\&.
+
+.sp
+
+.I val truncate 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+truncate b len
+.ft R
+truncates the length of 
+.ft B
+b
+.ft R
+to 
+.ft B
+len
+.ft R
+Note: the internal byte sequence is not shortened\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+len < 0
+.ft R
+or 
+.ft B
+len > length b
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Appending
+
+.PP
+
+.PP
+Note: all 
+.ft B
+add_*
+.ft R
+operations can raise 
+.ft B
+Failure
+.ft R
+if the internal byte
+sequence of the buffer would need to grow beyond 
+.ft B
+Sys\&.max_string_length
+.ft R
+\&.
+.PP
+
+.I val add_char 
+: 
+.B t -> char -> unit
+.sp
+
+.ft B
+add_char b c
+.ft R
+appends the character 
+.ft B
+c
+.ft R
+at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val add_utf_8_uchar 
+: 
+.B t -> Uchar.t -> unit
+.sp
+
+.ft B
+add_utf_8_uchar b u
+.ft R
+appends the 
+UTF\-8 encoding of 
+.ft B
+u
+.ft R
+at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val add_utf_16le_uchar 
+: 
+.B t -> Uchar.t -> unit
+.sp
+
+.ft B
+add_utf_16le_uchar b u
+.ft R
+appends the
+UTF\-16LE encoding of 
+.ft B
+u
+.ft R
+at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val add_utf_16be_uchar 
+: 
+.B t -> Uchar.t -> unit
+.sp
+
+.ft B
+add_utf_16be_uchar b u
+.ft R
+appends the
+UTF\-16BE encoding of 
+.ft B
+u
+.ft R
+at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val add_string 
+: 
+.B t -> string -> unit
+.sp
+
+.ft B
+add_string b s
+.ft R
+appends the string 
+.ft B
+s
+.ft R
+at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val add_bytes 
+: 
+.B t -> bytes -> unit
+.sp
+
+.ft B
+add_bytes b s
+.ft R
+appends the byte sequence 
+.ft B
+s
+.ft R
+at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val add_substring 
+: 
+.B t -> string -> int -> int -> unit
+.sp
+
+.ft B
+add_substring b s ofs len
+.ft R
+takes 
+.ft B
+len
+.ft R
+characters from offset
+.ft B
+ofs
+.ft R
+in string 
+.ft B
+s
+.ft R
+and appends them at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+ofs
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid
+range of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val add_subbytes 
+: 
+.B t -> bytes -> int -> int -> unit
+.sp
+
+.ft B
+add_subbytes b s ofs len
+.ft R
+takes 
+.ft B
+len
+.ft R
+characters from offset
+.ft B
+ofs
+.ft R
+in byte sequence 
+.ft B
+s
+.ft R
+and appends them at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+ofs
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid
+range of 
+.ft B
+s
+.ft R
+\&.
+
+.sp
+
+.I val add_substitute 
+: 
+.B t -> (string -> string) -> string -> unit
+.sp
+
+.ft B
+add_substitute b f s
+.ft R
+appends the string pattern 
+.ft B
+s
+.ft R
+at the end
+of buffer 
+.ft B
+b
+.ft R
+with substitution\&.
+The substitution process looks for variables into
+the pattern and substitutes each variable name by its value, as
+obtained by applying the mapping 
+.ft B
+f
+.ft R
+to the variable name\&. Inside the
+string pattern, a variable name immediately follows a non\-escaped
+.ft B
+$
+.ft R
+character and is one of the following:
+.sp
+\-a non empty sequence of alphanumeric or 
+.ft B
+_
+.ft R
+characters,
+.sp
+\-an arbitrary sequence of characters enclosed by a pair of
+matching parentheses or curly brackets\&.
+An escaped 
+.ft B
+$
+.ft R
+character is a 
+.ft B
+$
+.ft R
+that immediately follows a backslash
+character; it then stands for a plain 
+.ft B
+$
+.ft R
+\&.
+
+
+.sp
+.B "Raises Not_found"
+if the closing character of a parenthesized variable
+cannot be found\&.
+
+.sp
+
+.I val add_buffer 
+: 
+.B t -> t -> unit
+.sp
+
+.ft B
+add_buffer b1 b2
+.ft R
+appends the current contents of buffer 
+.ft B
+b2
+.ft R
+at the end of buffer 
+.ft B
+b1
+.ft R
+\&.  
+.ft B
+b2
+.ft R
+is not modified\&.
+
+.sp
+
+.I val add_channel 
+: 
+.B t -> in_channel -> int -> unit
+.sp
+
+.ft B
+add_channel b ic n
+.ft R
+reads at most 
+.ft B
+n
+.ft R
+characters from the
+input channel 
+.ft B
+ic
+.ft R
+and stores them at the end of buffer 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Raises End_of_file"
+if the channel contains fewer than 
+.ft B
+n
+.ft R
+characters\&. In this case, the characters are still added to
+the buffer, so as to avoid loss of data\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+len < 0
+.ft R
+or 
+.ft B
+len > Sys\&.max_string_length
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Buffers and Sequences
+
+.PP
+
+.I val to_seq 
+: 
+.B t -> char Seq.t
+.sp
+Iterate on the buffer, in increasing order\&.
+.sp
+The behavior is not specified if the buffer is modified during iteration\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seqi 
+: 
+.B t -> (int * char) Seq.t
+.sp
+Iterate on the buffer, in increasing order, yielding indices along chars\&.
+.sp
+The behavior is not specified if the buffer is modified during iteration\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val add_seq 
+: 
+.B t -> char Seq.t -> unit
+.sp
+Add chars to the buffer
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B char Seq.t -> t
+.sp
+Create a buffer from the generator
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.PP
+.SS Binary encoding of integers
+
+.PP
+
+.PP
+The functions in this section append binary encodings of integers
+to buffers\&.
+.sp
+Little\-endian (resp\&. big\-endian) encoding means that least
+(resp\&. most) significant bytes are stored first\&.  Big\-endian is
+also known as network byte order\&.  Native\-endian encoding is
+either little\-endian or big\-endian depending on 
+.ft B
+Sys\&.big_endian
+.ft R
+\&.
+.sp
+32\-bit and 64\-bit integers are represented by the 
+.ft B
+int32
+.ft R
+and
+.ft B
+int64
+.ft R
+types, which can be interpreted either as signed or
+unsigned numbers\&.
+.sp
+8\-bit and 16\-bit integers are represented by the 
+.ft B
+int
+.ft R
+type,
+which has more bits than the binary encoding\&.  Functions that
+encode these values truncate their inputs to their least
+significant bytes\&.
+.PP
+
+.I val add_uint8 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+add_uint8 b i
+.ft R
+appends a binary unsigned 8\-bit integer 
+.ft B
+i
+.ft R
+to
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int8 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+add_int8 b i
+.ft R
+appends a binary signed 8\-bit integer 
+.ft B
+i
+.ft R
+to
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_uint16_ne 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+add_uint16_ne b i
+.ft R
+appends a binary native\-endian unsigned 16\-bit
+integer 
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_uint16_be 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+add_uint16_be b i
+.ft R
+appends a binary big\-endian unsigned 16\-bit
+integer 
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_uint16_le 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+add_uint16_le b i
+.ft R
+appends a binary little\-endian unsigned 16\-bit
+integer 
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int16_ne 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+add_int16_ne b i
+.ft R
+appends a binary native\-endian signed 16\-bit
+integer 
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int16_be 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+add_int16_be b i
+.ft R
+appends a binary big\-endian signed 16\-bit
+integer 
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int16_le 
+: 
+.B t -> int -> unit
+.sp
+
+.ft B
+add_int16_le b i
+.ft R
+appends a binary little\-endian signed 16\-bit
+integer 
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int32_ne 
+: 
+.B t -> int32 -> unit
+.sp
+
+.ft B
+add_int32_ne b i
+.ft R
+appends a binary native\-endian 32\-bit integer
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int32_be 
+: 
+.B t -> int32 -> unit
+.sp
+
+.ft B
+add_int32_be b i
+.ft R
+appends a binary big\-endian 32\-bit integer
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int32_le 
+: 
+.B t -> int32 -> unit
+.sp
+
+.ft B
+add_int32_le b i
+.ft R
+appends a binary little\-endian 32\-bit integer
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int64_ne 
+: 
+.B t -> int64 -> unit
+.sp
+
+.ft B
+add_int64_ne b i
+.ft R
+appends a binary native\-endian 64\-bit integer
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int64_be 
+: 
+.B t -> int64 -> unit
+.sp
+
+.ft B
+add_int64_be b i
+.ft R
+appends a binary big\-endian 64\-bit integer
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val add_int64_le 
+: 
+.B t -> int64 -> unit
+.sp
+
+.ft B
+add_int64_ne b i
+.ft R
+appends a binary little\-endian 64\-bit integer
+.ft B
+i
+.ft R
+to 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp

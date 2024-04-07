@@ -1,0 +1,37 @@
+(lang dune 3.15)
+(name ppx_tydi)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_tydi))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_tydi.a
+   ppx_tydi.cma
+   ppx_tydi.cmi
+   ppx_tydi.cmt
+   ppx_tydi.cmti
+   ppx_tydi.cmx
+   ppx_tydi.cmxa
+   ppx_tydi.ml
+   ppx_tydi.mli))
+ (libexec (ppx.exe ppx_tydi.cmxs))
+ (doc (CHANGES.md LICENSE.md README.mdx)))
+(library
+ (name ppx_tydi)
+ (kind ppx_rewriter)
+ (archives (byte ppx_tydi.cma) (native ppx_tydi.cmxa))
+ (plugins (byte ppx_tydi.cma) (native ppx_tydi.cmxs))
+ (native_archives ppx_tydi.a)
+ (requires base ppxlib.ast ppxlib)
+ (main_module_name Ppx_tydi)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_tydi)
+   (visibility public)
+   (source
+    (path Ppx_tydi)
+    (intf (path ppx_tydi.mli))
+    (impl (path ppx_tydi.ml))))))

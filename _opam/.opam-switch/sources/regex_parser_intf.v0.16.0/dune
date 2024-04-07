@@ -1,0 +1,2 @@
+(library (name regex_parser_intf) (public_name regex_parser_intf)
+ (libraries base) (preprocess no_preprocessing))

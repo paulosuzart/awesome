@@ -1,0 +1,25 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/mirage-crypto-ec/META"
+  "_build/install/default/lib/mirage-crypto-ec/dune-package"
+  "_build/install/default/lib/mirage-crypto-ec/libmirage_crypto_ec_stubs.a"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.a"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.cma"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.cmi"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.cmt"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.cmti"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.cmx"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.cmxa"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.ml"
+  "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.mli"
+  "_build/install/default/lib/mirage-crypto-ec/opam"
+]
+stublibs: "_build/install/default/lib/stublibs/dllmirage_crypto_ec_stubs.so"
+doc: [
+  "_build/install/default/doc/mirage-crypto-ec/CHANGES.md"
+  "_build/install/default/doc/mirage-crypto-ec/LICENSE.md"
+  "_build/install/default/doc/mirage-crypto-ec/LICENSE.md.mirage-crypto-ec"
+  "_build/install/default/doc/mirage-crypto-ec/LICENSE.md.mirage-crypto-rng-mirage"
+  "_build/install/default/doc/mirage-crypto-ec/README.md"
+]
+libexec: "_build/install/default/lib/mirage-crypto-ec/mirage_crypto_ec.cmxs"

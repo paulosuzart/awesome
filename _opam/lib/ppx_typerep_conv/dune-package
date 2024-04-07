@@ -1,0 +1,38 @@
+(lang dune 3.15)
+(name ppx_typerep_conv)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_typerep_conv))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_typerep_conv.a
+   ppx_typerep_conv.cma
+   ppx_typerep_conv.cmi
+   ppx_typerep_conv.cmt
+   ppx_typerep_conv.cmti
+   ppx_typerep_conv.cmx
+   ppx_typerep_conv.cmxa
+   ppx_typerep_conv.ml
+   ppx_typerep_conv.mli))
+ (libexec (ppx_typerep_conv.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_typerep_conv)
+ (kind ppx_deriver)
+ (archives (byte ppx_typerep_conv.cma) (native ppx_typerep_conv.cmxa))
+ (plugins (byte ppx_typerep_conv.cma) (native ppx_typerep_conv.cmxs))
+ (native_archives ppx_typerep_conv.a)
+ (requires base ppxlib.ast ppxlib)
+ (ppx_runtime_deps typerep)
+ (main_module_name Ppx_typerep_conv)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_typerep_conv)
+   (visibility public)
+   (source
+    (path Ppx_typerep_conv)
+    (intf (path ppx_typerep_conv.mli))
+    (impl (path ppx_typerep_conv.ml))))))

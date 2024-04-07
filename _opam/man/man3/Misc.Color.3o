@@ -1,0 +1,132 @@
+.TH "Misc.Color" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.Color \- no description
+.SH Module
+Module   Misc.Color
+.SH Documentation
+.sp
+Module
+.BI "Color"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type color 
+=
+ | Black
+ | Red
+ | Green
+ | Yellow
+ | Blue
+ | Magenta
+ | Cyan
+ | White
+ 
+.sp
+
+.sp
+.I type style 
+=
+ | FG
+.B of 
+.B color
+ | BG
+.B of 
+.B color
+ | Bold
+ | Reset
+ 
+.sp
+
+.sp
+.I type Format.stag 
++=
+ | Style
+.B of 
+.B style list
+ 
+.sp
+
+.sp
+
+.I val ansi_of_style_l 
+: 
+.B style list -> string
+.sp
+
+.sp
+.I type styles 
+= {
+ error : 
+.B style list
+;
+ warning : 
+.B style list
+;
+ loc : 
+.B style list
+;
+ hint : 
+.B style list
+;
+ }
+
+.sp
+
+.sp
+
+.I val default_styles 
+: 
+.B styles
+.sp
+
+.sp
+
+.I val get_styles 
+: 
+.B unit -> styles
+.sp
+
+.sp
+
+.I val set_styles 
+: 
+.B styles -> unit
+.sp
+
+.sp
+.I type setting 
+=
+ | Auto
+ | Always
+ | Never
+ 
+.sp
+
+.sp
+
+.I val default_setting 
+: 
+.B setting
+.sp
+
+.sp
+
+.I val setup 
+: 
+.B setting option -> unit
+.sp
+
+.sp
+
+.I val set_color_tag_handling 
+: 
+.B Format.formatter -> unit
+.sp
+
+.sp

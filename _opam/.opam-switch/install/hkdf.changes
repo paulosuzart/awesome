@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/hkdf" {"D"}
+  "doc/hkdf/CHANGES.md" {"F:5604935d6af1c17f78a18f8199f43d57"}
+  "doc/hkdf/LICENSE.md" {"F:882491fdc7f8736a469060f946b3b1d4"}
+  "doc/hkdf/README.md" {"F:68b61f0c7a41e02be22abffdd4e23f41"}
+  "lib/hkdf" {"D"}
+  "lib/hkdf/META" {"F:6df39dbecc5a29a840c735d77b861734"}
+  "lib/hkdf/dune-package" {"F:718707c0fe61f6744d52aeaeb1b027ca"}
+  "lib/hkdf/hkdf.a" {"F:bfa6b520fba454300b54e2bf08e7fbcd"}
+  "lib/hkdf/hkdf.cma" {"F:1c6407bf97c55a26a75903e7a261530a"}
+  "lib/hkdf/hkdf.cmi" {"F:9a7322b99af9f64b315c1499c0bf414e"}
+  "lib/hkdf/hkdf.cmt" {"F:7733892aed21ddca310940e75d5b6786"}
+  "lib/hkdf/hkdf.cmti" {"F:a555acca8b802ac08644ca7cd5a4e232"}
+  "lib/hkdf/hkdf.cmx" {"F:185fcac00bdec0959d7a9b2f5dbb34a8"}
+  "lib/hkdf/hkdf.cmxa" {"F:265678862c169c71cf2276556329e538"}
+  "lib/hkdf/hkdf.cmxs" {"F:278432a75213476bdab2a4c97568addb"}
+  "lib/hkdf/hkdf.ml" {"F:fcab46b08bb37ea94643c89583af7f34"}
+  "lib/hkdf/hkdf.mli" {"F:415f36080d7a891eebb531eadf75141f"}
+  "lib/hkdf/opam" {"F:99c081c0b688f2cb8acf021ac906346d"}
+]

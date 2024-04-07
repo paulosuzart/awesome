@@ -1,0 +1,21 @@
+version = "0.16.5"
+description = ""
+requires =
+"asn1-combinators
+ base64
+ cstruct
+ domain-name
+ fmt
+ gmap
+ ipaddr
+ logs
+ mirage-crypto
+ mirage-crypto-ec
+ mirage-crypto-pk
+ mirage-crypto-rng
+ pbkdf
+ ptime"
+archive(byte) = "x509.cma"
+archive(native) = "x509.cmxa"
+plugin(byte) = "x509.cma"
+plugin(native) = "x509.cmxs"

@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Fl_package_base.html">
+<link rel="next" href="Fl_dynload.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Findlib" rel="Chapter" href="Findlib.html">
+<link title="Fl_package_base" rel="Chapter" href="Fl_package_base.html">
+<link title="Fl_metascanner" rel="Chapter" href="Fl_metascanner.html">
+<link title="Fl_dynload" rel="Chapter" href="Fl_dynload.html">
+<link title="Topfind" rel="Chapter" href="Topfind.html"><title>The Findlib Library : Fl_metascanner</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Fl_package_base.html" title="Fl_package_base">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Fl_dynload.html" title="Fl_dynload">Next</a>
+</div>
+<h1>Module <a href="type_Fl_metascanner.html">Fl_metascanner</a></h1>
+
+<pre><span id="MODULEFl_metascanner"><span class="keyword">module</span> Fl_metascanner</span>: <code class="code">sig</code> <a href="Fl_metascanner.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>Parses META files</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEformal_pred"><span class="keyword">type</span> <code class="type"></code>formal_pred</span> = <code class="type">[ `NegPred of string | `Pred of string ]</code> </pre>
+
+
+<pre><span id="TYPEflavour"><span class="keyword">type</span> <code class="type"></code>flavour</span> = <code class="type">[ `Appendix | `BaseDef ]</code> </pre>
+<div class="info ">
+<div class="info-desc">
+<p><code class="code">`BaseDef</code> refers to META definitions using the "=" operator,
+ and <code class="code">`Appendix</code> refers to definitions using the "+=" operator.</p>
+</div>
+</div>
+
+
+<pre><code><span id="TYPEpkg_definition"><span class="keyword">type</span> <code class="type"></code>pkg_definition</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpkg_definition.def_var">def_var</span>&nbsp;: <code class="type">string</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The name of the defined variable</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpkg_definition.def_flav">def_flav</span>&nbsp;: <code class="type"><a href="Fl_metascanner.html#TYPEflavour">flavour</a></code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The flavour of the definition</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpkg_definition.def_preds">def_preds</span>&nbsp;: <code class="type"><a href="Fl_metascanner.html#TYPEformal_pred">formal_pred</a> list</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The formal predicates of the def</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpkg_definition.def_value">def_value</span>&nbsp;: <code class="type">string</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The value assigned to the variable</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+<code>}</code>
+
+<div class="info ">
+<div class="info-desc">
+<p>A <code class="code">pkg_definition</code> is expressed by the syntax</p>
+<pre class="codepre"><code class="code"> var(p1,p2,...) = "value" </code></pre><p>(flavour `BaseDef), 
+  or the syntax</p>
+<pre class="codepre"><code class="code"> var(p1,p2,...) += "value" </code></pre><p>(flavour `Appendix)
+  in the META file. The list of predicates may be omitted. Predicates
+  may be negated by using "-", e.g. "-x".</p>
+</div>
+</div>
+
+
+<pre><code><span id="TYPEpkg_expr"><span class="keyword">type</span> <code class="type"></code>pkg_expr</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpkg_expr.pkg_defs">pkg_defs</span>&nbsp;: <code class="type"><a href="Fl_metascanner.html#TYPEpkg_definition">pkg_definition</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpkg_expr.pkg_children">pkg_children</span>&nbsp;: <code class="type">(string * <a href="Fl_metascanner.html#TYPEpkg_expr">pkg_expr</a>) list</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+<div class="info ">
+<div class="info-desc">
+<p>A value of type <code class="code">pkg_expr</code> denotes the contents of a META file.
+  The component <code class="code">pkg_defs</code> are the variable definitions.
+  The component <code class="code">pkg_children</code> contains
+  the definitions of the subpackages.</p>
+</div>
+</div>
+
+
+<pre><span id="EXCEPTIONError"><span class="keyword">exception</span> Error</span> <span class="keyword">of</span> <code class="type">string</code></pre>
+
+<pre><span id="VALparse"><span class="keyword">val</span> parse</span> : <code class="type">Stdlib.in_channel -> <a href="Fl_metascanner.html#TYPEpkg_expr">pkg_expr</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">parse ch:</code> 
+ scans and parses the file connected with channel <code class="code">ch</code>. The file must
+ have a syntax compatible with the META format. The return value
+ contains the found definitions for the package and all subpackages.</p>
+
+<p><code class="code">exception Error of string:</code> is
+ raised on syntax errors. The string explains the error.</p>
+</div>
+</div>
+
+<pre><span id="VALparse_lexing"><span class="keyword">val</span> parse_lexing</span> : <code class="type">Stdlib.Lexing.lexbuf -> <a href="Fl_metascanner.html#TYPEpkg_expr">pkg_expr</a></code></pre>
+<pre><span id="VALprint_def"><span class="keyword">val</span> print_def</span> : <code class="type">Stdlib.out_channel -> <a href="Fl_metascanner.html#TYPEpkg_definition">pkg_definition</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">print_def ch def</code>:
+ Outputs the definition to a channel.</p>
+</div>
+</div>
+
+<pre><span id="VALprint"><span class="keyword">val</span> print</span> : <code class="type">Stdlib.out_channel -> <a href="Fl_metascanner.html#TYPEpkg_expr">pkg_expr</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">print ch expr</code>:
+ Outputs the package expression to a channel.</p>
+</div>
+</div>
+
+<pre><span id="VALlookup"><span class="keyword">val</span> lookup</span> : <code class="type">string -> string list -> <a href="Fl_metascanner.html#TYPEpkg_definition">pkg_definition</a> list -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">lookup variable_name predicate_list def</code>:</p>
+
+<p>Returns the value of <code class="code">variable_name</code> in <code class="code">def</code> under the assumption
+ that the predicates in <code class="code">predicate_list</code> hold, but no other predicates.</p>
+
+<p>The rules are as follows: In the step (A), only the <code class="code">`BaseDef</code>
+ definitions are considered. The first base definition is determined where
+ all predicates are satisfied and that has the longest predicate list.
+ In the step (B) only the <code class="code">`Appendix</code> definitions are considered.
+ All definitions are determined where all predicates are satisfied.
+ The final result is the concatenation of the single result of (A)
+ and all results of (B) (in the order they are defined). A space
+ character is inserted between two concatenated strings.</p>
+
+<p>When step (A) does not find any matching definition, the exception
+ <code class="code">Not_found</code> is raised.</p>
+</div>
+</div>
+
+<pre><span id="VALlookup_2"><span class="keyword">val</span> lookup_2</span> : <code class="type">string -><br>       string list -><br>       <a href="Fl_metascanner.html#TYPEpkg_definition">pkg_definition</a> list -><br>       string * <a href="Fl_metascanner.html#TYPEformal_pred">formal_pred</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Like <code class="code">lookup</code>, but also returns the list of predicates that had to
+      be considered to select the particular variable definition.</p>
+</div>
+</div>
+
+<pre><span id="VALpredicate_exists"><span class="keyword">val</span> predicate_exists</span> : <code class="type">string -> <a href="Fl_metascanner.html#TYPEpkg_definition">pkg_definition</a> list -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">predicate_exists variable_name def</code>:</p>
+
+<p>Whether <code class="code">variable_name</code> is explicitly mentioned in <code class="code">def</code>.</p>
+</div>
+</div>
+</body></html>

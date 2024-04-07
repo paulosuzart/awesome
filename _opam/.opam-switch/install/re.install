@@ -1,0 +1,155 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/re/META"
+  "_build/install/default/lib/re/automata.ml"
+  "_build/install/default/lib/re/automata.mli"
+  "_build/install/default/lib/re/category.ml"
+  "_build/install/default/lib/re/category.mli"
+  "_build/install/default/lib/re/color_map.ml"
+  "_build/install/default/lib/re/color_map.mli"
+  "_build/install/default/lib/re/core.ml"
+  "_build/install/default/lib/re/core.mli"
+  "_build/install/default/lib/re/cset.ml"
+  "_build/install/default/lib/re/cset.mli"
+  "_build/install/default/lib/re/dune-package"
+  "_build/install/default/lib/re/emacs.ml"
+  "_build/install/default/lib/re/emacs.mli"
+  "_build/install/default/lib/re/emacs/re_emacs.a" {"emacs/re_emacs.a"}
+  "_build/install/default/lib/re/emacs/re_emacs.cma" {"emacs/re_emacs.cma"}
+  "_build/install/default/lib/re/emacs/re_emacs.cmi" {"emacs/re_emacs.cmi"}
+  "_build/install/default/lib/re/emacs/re_emacs.cmt" {"emacs/re_emacs.cmt"}
+  "_build/install/default/lib/re/emacs/re_emacs.cmx" {"emacs/re_emacs.cmx"}
+  "_build/install/default/lib/re/emacs/re_emacs.cmxa" {"emacs/re_emacs.cmxa"}
+  "_build/install/default/lib/re/emacs/re_emacs.ml" {"emacs/re_emacs.ml"}
+  "_build/install/default/lib/re/fmt.ml"
+  "_build/install/default/lib/re/glob.ml"
+  "_build/install/default/lib/re/glob.mli"
+  "_build/install/default/lib/re/glob/re_glob.a" {"glob/re_glob.a"}
+  "_build/install/default/lib/re/glob/re_glob.cma" {"glob/re_glob.cma"}
+  "_build/install/default/lib/re/glob/re_glob.cmi" {"glob/re_glob.cmi"}
+  "_build/install/default/lib/re/glob/re_glob.cmt" {"glob/re_glob.cmt"}
+  "_build/install/default/lib/re/glob/re_glob.cmx" {"glob/re_glob.cmx"}
+  "_build/install/default/lib/re/glob/re_glob.cmxa" {"glob/re_glob.cmxa"}
+  "_build/install/default/lib/re/glob/re_glob.ml" {"glob/re_glob.ml"}
+  "_build/install/default/lib/re/group.ml"
+  "_build/install/default/lib/re/group.mli"
+  "_build/install/default/lib/re/opam"
+  "_build/install/default/lib/re/pcre.ml"
+  "_build/install/default/lib/re/pcre.mli"
+  "_build/install/default/lib/re/pcre/re_pcre.a" {"pcre/re_pcre.a"}
+  "_build/install/default/lib/re/pcre/re_pcre.cma" {"pcre/re_pcre.cma"}
+  "_build/install/default/lib/re/pcre/re_pcre.cmi" {"pcre/re_pcre.cmi"}
+  "_build/install/default/lib/re/pcre/re_pcre.cmt" {"pcre/re_pcre.cmt"}
+  "_build/install/default/lib/re/pcre/re_pcre.cmx" {"pcre/re_pcre.cmx"}
+  "_build/install/default/lib/re/pcre/re_pcre.cmxa" {"pcre/re_pcre.cmxa"}
+  "_build/install/default/lib/re/pcre/re_pcre.ml" {"pcre/re_pcre.ml"}
+  "_build/install/default/lib/re/perl.ml"
+  "_build/install/default/lib/re/perl.mli"
+  "_build/install/default/lib/re/perl/re_perl.a" {"perl/re_perl.a"}
+  "_build/install/default/lib/re/perl/re_perl.cma" {"perl/re_perl.cma"}
+  "_build/install/default/lib/re/perl/re_perl.cmi" {"perl/re_perl.cmi"}
+  "_build/install/default/lib/re/perl/re_perl.cmt" {"perl/re_perl.cmt"}
+  "_build/install/default/lib/re/perl/re_perl.cmx" {"perl/re_perl.cmx"}
+  "_build/install/default/lib/re/perl/re_perl.cmxa" {"perl/re_perl.cmxa"}
+  "_build/install/default/lib/re/perl/re_perl.ml" {"perl/re_perl.ml"}
+  "_build/install/default/lib/re/pmark.ml"
+  "_build/install/default/lib/re/pmark.mli"
+  "_build/install/default/lib/re/posix.ml"
+  "_build/install/default/lib/re/posix.mli"
+  "_build/install/default/lib/re/posix/re_posix.a" {"posix/re_posix.a"}
+  "_build/install/default/lib/re/posix/re_posix.cma" {"posix/re_posix.cma"}
+  "_build/install/default/lib/re/posix/re_posix.cmi" {"posix/re_posix.cmi"}
+  "_build/install/default/lib/re/posix/re_posix.cmt" {"posix/re_posix.cmt"}
+  "_build/install/default/lib/re/posix/re_posix.cmx" {"posix/re_posix.cmx"}
+  "_build/install/default/lib/re/posix/re_posix.cmxa" {"posix/re_posix.cmxa"}
+  "_build/install/default/lib/re/posix/re_posix.ml" {"posix/re_posix.ml"}
+  "_build/install/default/lib/re/re.a"
+  "_build/install/default/lib/re/re.cma"
+  "_build/install/default/lib/re/re.cmi"
+  "_build/install/default/lib/re/re.cmt"
+  "_build/install/default/lib/re/re.cmx"
+  "_build/install/default/lib/re/re.cmxa"
+  "_build/install/default/lib/re/re.ml"
+  "_build/install/default/lib/re/re__.cmi"
+  "_build/install/default/lib/re/re__.cmt"
+  "_build/install/default/lib/re/re__.cmx"
+  "_build/install/default/lib/re/re__.ml"
+  "_build/install/default/lib/re/re__Automata.cmi"
+  "_build/install/default/lib/re/re__Automata.cmt"
+  "_build/install/default/lib/re/re__Automata.cmti"
+  "_build/install/default/lib/re/re__Automata.cmx"
+  "_build/install/default/lib/re/re__Category.cmi"
+  "_build/install/default/lib/re/re__Category.cmt"
+  "_build/install/default/lib/re/re__Category.cmti"
+  "_build/install/default/lib/re/re__Category.cmx"
+  "_build/install/default/lib/re/re__Color_map.cmi"
+  "_build/install/default/lib/re/re__Color_map.cmt"
+  "_build/install/default/lib/re/re__Color_map.cmti"
+  "_build/install/default/lib/re/re__Color_map.cmx"
+  "_build/install/default/lib/re/re__Core.cmi"
+  "_build/install/default/lib/re/re__Core.cmt"
+  "_build/install/default/lib/re/re__Core.cmti"
+  "_build/install/default/lib/re/re__Core.cmx"
+  "_build/install/default/lib/re/re__Cset.cmi"
+  "_build/install/default/lib/re/re__Cset.cmt"
+  "_build/install/default/lib/re/re__Cset.cmti"
+  "_build/install/default/lib/re/re__Cset.cmx"
+  "_build/install/default/lib/re/re__Emacs.cmi"
+  "_build/install/default/lib/re/re__Emacs.cmt"
+  "_build/install/default/lib/re/re__Emacs.cmti"
+  "_build/install/default/lib/re/re__Emacs.cmx"
+  "_build/install/default/lib/re/re__Fmt.cmi"
+  "_build/install/default/lib/re/re__Fmt.cmt"
+  "_build/install/default/lib/re/re__Fmt.cmx"
+  "_build/install/default/lib/re/re__Glob.cmi"
+  "_build/install/default/lib/re/re__Glob.cmt"
+  "_build/install/default/lib/re/re__Glob.cmti"
+  "_build/install/default/lib/re/re__Glob.cmx"
+  "_build/install/default/lib/re/re__Group.cmi"
+  "_build/install/default/lib/re/re__Group.cmt"
+  "_build/install/default/lib/re/re__Group.cmti"
+  "_build/install/default/lib/re/re__Group.cmx"
+  "_build/install/default/lib/re/re__Pcre.cmi"
+  "_build/install/default/lib/re/re__Pcre.cmt"
+  "_build/install/default/lib/re/re__Pcre.cmti"
+  "_build/install/default/lib/re/re__Pcre.cmx"
+  "_build/install/default/lib/re/re__Perl.cmi"
+  "_build/install/default/lib/re/re__Perl.cmt"
+  "_build/install/default/lib/re/re__Perl.cmti"
+  "_build/install/default/lib/re/re__Perl.cmx"
+  "_build/install/default/lib/re/re__Pmark.cmi"
+  "_build/install/default/lib/re/re__Pmark.cmt"
+  "_build/install/default/lib/re/re__Pmark.cmti"
+  "_build/install/default/lib/re/re__Pmark.cmx"
+  "_build/install/default/lib/re/re__Posix.cmi"
+  "_build/install/default/lib/re/re__Posix.cmt"
+  "_build/install/default/lib/re/re__Posix.cmti"
+  "_build/install/default/lib/re/re__Posix.cmx"
+  "_build/install/default/lib/re/re__Str.cmi"
+  "_build/install/default/lib/re/re__Str.cmt"
+  "_build/install/default/lib/re/re__Str.cmti"
+  "_build/install/default/lib/re/re__Str.cmx"
+  "_build/install/default/lib/re/str.ml"
+  "_build/install/default/lib/re/str.mli"
+  "_build/install/default/lib/re/str/re_str.a" {"str/re_str.a"}
+  "_build/install/default/lib/re/str/re_str.cma" {"str/re_str.cma"}
+  "_build/install/default/lib/re/str/re_str.cmi" {"str/re_str.cmi"}
+  "_build/install/default/lib/re/str/re_str.cmt" {"str/re_str.cmt"}
+  "_build/install/default/lib/re/str/re_str.cmx" {"str/re_str.cmx"}
+  "_build/install/default/lib/re/str/re_str.cmxa" {"str/re_str.cmxa"}
+  "_build/install/default/lib/re/str/re_str.ml" {"str/re_str.ml"}
+]
+doc: [
+  "_build/install/default/doc/re/CHANGES.md"
+  "_build/install/default/doc/re/LICENSE.md"
+  "_build/install/default/doc/re/README.md"
+]
+libexec: [
+  "_build/install/default/lib/re/emacs/re_emacs.cmxs" {"emacs/re_emacs.cmxs"}
+  "_build/install/default/lib/re/glob/re_glob.cmxs" {"glob/re_glob.cmxs"}
+  "_build/install/default/lib/re/pcre/re_pcre.cmxs" {"pcre/re_pcre.cmxs"}
+  "_build/install/default/lib/re/perl/re_perl.cmxs" {"perl/re_perl.cmxs"}
+  "_build/install/default/lib/re/posix/re_posix.cmxs" {"posix/re_posix.cmxs"}
+  "_build/install/default/lib/re/re.cmxs"
+  "_build/install/default/lib/re/str/re_str.cmxs" {"str/re_str.cmxs"}
+]

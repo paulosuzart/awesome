@@ -1,0 +1,18 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/fieldslib/META"
+  "_build/install/default/lib/fieldslib/dune-package"
+  "_build/install/default/lib/fieldslib/fieldslib.a"
+  "_build/install/default/lib/fieldslib/fieldslib.cma"
+  "_build/install/default/lib/fieldslib/fieldslib.cmi"
+  "_build/install/default/lib/fieldslib/fieldslib.cmt"
+  "_build/install/default/lib/fieldslib/fieldslib.cmx"
+  "_build/install/default/lib/fieldslib/fieldslib.cmxa"
+  "_build/install/default/lib/fieldslib/fieldslib.ml"
+  "_build/install/default/lib/fieldslib/opam"
+]
+doc: [
+  "_build/install/default/doc/fieldslib/CHANGES.md"
+  "_build/install/default/doc/fieldslib/LICENSE.md"
+]
+libexec: "_build/install/default/lib/fieldslib/fieldslib.cmxs"

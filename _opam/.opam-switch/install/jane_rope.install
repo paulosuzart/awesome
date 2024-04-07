@@ -1,0 +1,20 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/jane_rope/META"
+  "_build/install/default/lib/jane_rope/dune-package"
+  "_build/install/default/lib/jane_rope/opam"
+  "_build/install/default/lib/jane_rope/rope.a"
+  "_build/install/default/lib/jane_rope/rope.cma"
+  "_build/install/default/lib/jane_rope/rope.cmi"
+  "_build/install/default/lib/jane_rope/rope.cmt"
+  "_build/install/default/lib/jane_rope/rope.cmti"
+  "_build/install/default/lib/jane_rope/rope.cmx"
+  "_build/install/default/lib/jane_rope/rope.cmxa"
+  "_build/install/default/lib/jane_rope/rope.ml"
+  "_build/install/default/lib/jane_rope/rope.mli"
+]
+doc: [
+  "_build/install/default/doc/jane_rope/LICENSE.md"
+  "_build/install/default/doc/jane_rope/README.md"
+]
+libexec: "_build/install/default/lib/jane_rope/rope.cmxs"

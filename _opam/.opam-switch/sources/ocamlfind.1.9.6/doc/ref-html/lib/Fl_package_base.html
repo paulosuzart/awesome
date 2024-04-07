@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Findlib.html">
+<link rel="next" href="Fl_metascanner.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Findlib" rel="Chapter" href="Findlib.html">
+<link title="Fl_package_base" rel="Chapter" href="Fl_package_base.html">
+<link title="Fl_metascanner" rel="Chapter" href="Fl_metascanner.html">
+<link title="Fl_dynload" rel="Chapter" href="Fl_dynload.html">
+<link title="Topfind" rel="Chapter" href="Topfind.html"><link title="The package graph" rel="Section" href="#1_Thepackagegraph">
+<link title="Parsing META files" rel="Section" href="#1_ParsingMETAfiles">
+<title>The Findlib Library : Fl_package_base</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Findlib.html" title="Findlib">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Fl_metascanner.html" title="Fl_metascanner">Next</a>
+</div>
+<h1>Module <a href="type_Fl_package_base.html">Fl_package_base</a></h1>
+
+<pre><span id="MODULEFl_package_base"><span class="keyword">module</span> Fl_package_base</span>: <code class="code">sig</code> <a href="Fl_package_base.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>Direct access to the package graph and package files</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEpackage"><span class="keyword">type</span> <code class="type"></code>package</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpackage.package_name">package_name</span>&nbsp;: <code class="type">string</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The fully qualified package name, i.e. for subpackages the
+ names of the containing packages are prepended and the name
+ components are separated by '.'</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpackage.package_dir">package_dir</span>&nbsp;: <code class="type">string</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The directory where to lookup package files</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpackage.package_meta">package_meta</span>&nbsp;: <code class="type">string</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The path to the META file</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpackage.package_defs">package_defs</span>&nbsp;: <code class="type"><a href="Fl_metascanner.html#TYPEpkg_definition">Fl_metascanner.pkg_definition</a> list</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The definitions in the META file</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTpackage.package_priv">package_priv</span>&nbsp;: <code class="type"><a href="Fl_package_base.html#TYPEpackage_priv">package_priv</a></code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>Private part of the definition</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+<code>}</code>
+
+<div class="info ">
+<div class="info-desc">
+<p>The definition of a package</p>
+</div>
+</div>
+
+
+<pre><span id="TYPEpackage_priv"><span class="keyword">type</span> <code class="type"></code>package_priv</span> </pre>
+
+
+<pre><span id="VALinit"><span class="keyword">val</span> init</span> : <code class="type">string list -> string -> string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>This function must be called before <code class="code">Fl_package_base</code> can be used.
+ The first string corresponds to the <code class="code">OCAMLPATH</code> setting, the second
+ string is the location of the standard library. The second is the
+ list of directories with ignored duplicate cmi files.</p>
+
+<p>This function is called by <a href="Findlib.html#VALinit"><code class="code">Findlib.init</code></a> and <a href="Findlib.html#VALinit_manually"><code class="code">Findlib.init_manually</code></a>,
+ so it is already sufficient to initialize the <code class="code">Findlib</code> module.</p>
+</div>
+</div>
+<h2 id="1_Thepackagegraph">The package graph</h2><p>The functions in this section operate on a representation of the
+ package graph in memory. The graph is usually only partially available,
+ as only packages are loaded that are queried for.</p>
+
+<pre><span id="EXCEPTIONNo_such_package"><span class="keyword">exception</span> No_such_package</span> <span class="keyword">of</span> <code class="type">string * string</code></pre>
+<div class="info ">
+<div class="info-desc">
+<p>First arg is the package name not found, second arg contains additional
+ info for the user. - This is the same exception as in <code class="code">Findlib</code>.</p>
+</div>
+</div>
+
+<pre><span id="EXCEPTIONPackage_loop"><span class="keyword">exception</span> Package_loop</span> <span class="keyword">of</span> <code class="type">string</code></pre>
+<div class="info ">
+<div class="info-desc">
+<p>A package is required by itself. The arg is the name of the 
+ package. - This is the same exception as in <code class="code">Findlib</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALquery"><span class="keyword">val</span> query</span> : <code class="type">string -> <a href="Fl_package_base.html#TYPEpackage">package</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns the <code class="code">package</code> definition for the fully-qualified package name,
+ or raises <code class="code">No_such_package</code>. It is allowed to query for subpackages.</p>
+
+<p>This function loads package definitions into the graph kept in memory.</p>
+</div>
+</div>
+
+<pre><span id="VALrequires"><span class="keyword">val</span> requires</span> : <code class="type">preds:string list -> string -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Analyzes the direct requirements of the package whose name is passed as
+ second argument under the assumption that the predicates <code class="code">preds</code>
+ hold. The function returns the names of the required packages.
+ It is checked whether these packages exist.</p>
+
+<p>If there is the "mt" predicate, missing dependencies on "threads"
+ are silently added.</p>
+
+<p>The function may raise <code class="code">No_such_package</code> or <code class="code">Package_loop</code>.</p>
+
+<p>This function loads package definitions into the graph kept in memory.</p>
+</div>
+</div>
+
+<pre><span id="VALrequires_deeply"><span class="keyword">val</span> requires_deeply</span> : <code class="type">preds:string list -> string list -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Analyzes the direct or indirect requirements of the packages whose names
+ are passed as second argument under the assumption that the predicates
+ <code class="code">preds</code> hold. The function returns the names of the required packages.
+ It is checked whether these packages exist.</p>
+
+<p>If there is the "mt" predicate, missing dependencies on "threads"
+ are silently added.</p>
+
+<p>The function may raise <code class="code">No_such_package</code> or <code class="code">Package_loop</code>.</p>
+
+<p>This function loads package definitions into the graph kept in memory.</p>
+</div>
+</div>
+
+<pre><span id="VALpackage_conflict_report"><span class="keyword">val</span> package_conflict_report</span> : <code class="type">?identify_dir:(string -> 'a) -> unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Checks whether there are several META files for the same main
+ packages. Complaints are printed to stderr.</p>
+
+<p>Only packages in the loaded part of the package graph are checked (i.e.
+ packages for which there was a query).</p>
+
+<p>It is recommended to pass the ~identify_dir function whose task
+ it is to return a unique value for every existing directory.
+ For example,</p>
+<pre class="codepre"><code class="code"> fun d -&gt; 
+        let s = Unix.stat d in
+        (s.Unix.st_dev, s.Unix.st_ino)
+   </code></pre><p>could be an implementation for this function. The default is
+ the identity (and not this nice implementation to avoid dependencies
+ on the Unix module).</p>
+</div>
+</div>
+
+<pre><span id="VALmodule_conflict_report"><span class="keyword">val</span> module_conflict_report</span> : <code class="type">?identify_dir:(string -> 'a) -> string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Checks whether there are cmi files for the same modules. The
+ directories passed as first argument are checked. (Note:
+ Neither the '+' nor the '@' notation are recognized.)
+ Complaints about double cmi files are printed to stderr.</p>
+
+</div>
+</div>
+<div class="param_info"><code class="code">identify_dir</code> : See <code class="code">package_conflict_report</code>.</div>
+
+<pre><span id="VALload_base"><span class="keyword">val</span> load_base</span> : <code class="type">?prefix:string -> unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Ensures that the complete package graph is loaded into memory.
+ This is a time-consuming operation. Warnings may be printed to
+ stderr.</p>
+
+</div>
+</div>
+<div class="param_info"><code class="code">prefix</code> : Limit to the packages that starts with it. Default: unlimited</div>
+
+<pre><span id="VALlist_packages"><span class="keyword">val</span> list_packages</span> : <code class="type">?prefix:string -> unit -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Ensures that the complete package graph is loaded into memory
+ (like <code class="code">load_base</code>), and returns the (unsorted) list of all
+ packages.</p>
+
+</div>
+</div>
+<div class="param_info"><code class="code">prefix</code> : Limit to the packages that starts with it. Default: unlimited</div>
+
+<pre><span id="VALpackage_users"><span class="keyword">val</span> package_users</span> : <code class="type">preds:string list -> string list -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Ensures that the complete package graph is loaded into memory
+ (like <code class="code">load_base</code>), and determines the packages using one of
+ the packages passed as second argument. The <code class="code">preds</code> are assumed
+ for the evaluation of the <code class="code">requires</code> directives.
+ The returned list is sorted in ascending order.</p>
+
+<p>If there is the "mt" predicate, missing dependencies on "threads"
+ are silently added.</p>
+
+<p>Raises <code class="code">No_such_package</code> if one of the passed packages cannot
+ be found.</p>
+</div>
+</div>
+<h2 id="1_ParsingMETAfiles">Parsing META files</h2><p>The functions in this section access directly files and directories.
+ The package graph is unknown.</p>
+
+<pre><span id="VALpackages_in_meta_file"><span class="keyword">val</span> packages_in_meta_file</span> : <code class="type">?directory_required:bool -><br>       name:string -><br>       dir:string -> meta_file:string -> unit -> <a href="Fl_package_base.html#TYPEpackage">package</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Parses the META file whose name is <code class="code">meta_file</code>. In <code class="code">name</code>, the
+ name of the main package must be passed. <code class="code">dir</code> is the
+ directory associated with the package by default (i.e. before
+ it is overriden by the "directory" directive).</p>
+
+<p>Returns the package records found in this file. The "directory"
+ directive is already applied.</p>
+
+</div>
+</div>
+<div class="param_info"><code class="code">directory_required</code> : If true, it is checked whether there is a
+ "directory" directive in the main package. If this directive is missing,
+ the function will fail.</div>
+
+<pre><span id="VALpackage_definitions"><span class="keyword">val</span> package_definitions</span> : <code class="type">search_path:string list -> string -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Return all META files defining this package that occur in the 
+ directories mentioned in <code class="code">search_path</code>. The package name must be
+ fully-qualified. For simplicity, however, only the name of the main
+ package is taken into account (so it is a good idea to call this
+ function only for main packages).</p>
+</div>
+</div>
+</body></html>

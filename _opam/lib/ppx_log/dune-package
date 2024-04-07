@@ -1,0 +1,92 @@
+(lang dune 3.15)
+(name ppx_log)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_log))
+(files
+ (lib
+  (META
+   dune-package
+   kernel/ppx_log_kernel.a
+   kernel/ppx_log_kernel.cma
+   kernel/ppx_log_kernel.cmi
+   kernel/ppx_log_kernel.cmt
+   kernel/ppx_log_kernel.cmti
+   kernel/ppx_log_kernel.cmx
+   kernel/ppx_log_kernel.cmxa
+   kernel/ppx_log_kernel.ml
+   kernel/ppx_log_kernel.mli
+   opam
+   ppx_log.a
+   ppx_log.cma
+   ppx_log.cmi
+   ppx_log.cmt
+   ppx_log.cmti
+   ppx_log.cmx
+   ppx_log.cmxa
+   ppx_log.ml
+   ppx_log.mli
+   types/ppx_log_types.a
+   types/ppx_log_types.cma
+   types/ppx_log_types.cmi
+   types/ppx_log_types.cmt
+   types/ppx_log_types.cmx
+   types/ppx_log_types.cmxa
+   types/ppx_log_types.ml))
+ (libexec
+  (kernel/ppx.exe
+   kernel/ppx_log_kernel.cmxs
+   ppx.exe
+   ppx_log.cmxs
+   types/ppx_log_types.cmxs))
+ (doc (LICENSE.md README.md)))
+(library
+ (name ppx_log)
+ (kind ppx_rewriter)
+ (archives (byte ppx_log.cma) (native ppx_log.cmxa))
+ (plugins (byte ppx_log.cma) (native ppx_log.cmxs))
+ (native_archives ppx_log.a)
+ (requires ppx_log.kernel)
+ (ppx_runtime_deps ppx_sexp_conv.runtime-lib)
+ (main_module_name Ppx_log)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_log)
+   (visibility public)
+   (source (path Ppx_log) (intf (path ppx_log.mli)) (impl (path ppx_log.ml))))))
+(library
+ (name ppx_log.kernel)
+ (kind ppx_rewriter)
+ (archives
+  (byte kernel/ppx_log_kernel.cma)
+  (native kernel/ppx_log_kernel.cmxa))
+ (plugins
+  (byte kernel/ppx_log_kernel.cma)
+  (native kernel/ppx_log_kernel.cmxs))
+ (native_archives kernel/ppx_log_kernel.a)
+ (requires ppxlib.ast ppxlib ppx_here.expander ppx_sexp_message.expander)
+ (ppx_runtime_deps ppx_sexp_conv.runtime-lib ppx_log.types)
+ (main_module_name Ppx_log_kernel)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_log_kernel)
+   (visibility public)
+   (source
+    (path Ppx_log_kernel)
+    (intf (path kernel/ppx_log_kernel.mli))
+    (impl (path kernel/ppx_log_kernel.ml))))))
+(library
+ (name ppx_log.types)
+ (kind normal)
+ (archives (byte types/ppx_log_types.cma) (native types/ppx_log_types.cmxa))
+ (plugins (byte types/ppx_log_types.cma) (native types/ppx_log_types.cmxs))
+ (native_archives types/ppx_log_types.a)
+ (requires base sexplib)
+ (main_module_name Ppx_log_types)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_log_types)
+   (visibility public)
+   (source (path Ppx_log_types) (impl (path types/ppx_log_types.ml))))))

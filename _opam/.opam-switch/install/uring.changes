@@ -1,0 +1,45 @@
+opam-version: "2.0"
+added: [
+  "doc/uring" {"D"}
+  "doc/uring/CHANGES.md" {"F:3ec5a1c714aee584a92d65cacd7baf09"}
+  "doc/uring/LICENSE.md" {"F:1cc6e771421a4a065fd7e561ae9d4ce3"}
+  "doc/uring/README.md" {"F:bcd221d544e23b506c63b927da063442"}
+  "lib/stublibs/dlluring.so" {"F:649933996814056529e6d344acbe7e87"}
+  "lib/stublibs/dlluring_stubs.so" {"F:3014e5841adc2fb7b566a288ea785a26"}
+  "lib/uring" {"D"}
+  "lib/uring/META" {"F:022e33880586c6bf138d981dffbe4d99"}
+  "lib/uring/config.ml" {"F:5836587a37f920e16ea8820f8512e1c2"}
+  "lib/uring/dune-package" {"F:85d7599b8976edaf46583e32e4f52bd9"}
+  "lib/uring/heap.ml" {"F:6c91b7e3cb37e2e131752fe1b98ade2c"}
+  "lib/uring/heap.mli" {"F:b2aafaf423bf320cac00d88a554bbeaf"}
+  "lib/uring/liburing.a" {"F:d527dd23e0d518902f3beffc08438992"}
+  "lib/uring/liburing_stubs.a" {"F:8c11467010009a79bf6773f712df6d4a"}
+  "lib/uring/opam" {"F:9b3e0e87138bf161a6609fe4227857f4"}
+  "lib/uring/region.ml" {"F:109f7590ff816b17b2aa00220cd00135"}
+  "lib/uring/region.mli" {"F:b61ad9eeda34c1fee19bf77d29cd196a"}
+  "lib/uring/uring.a" {"F:5d7765f0ad0972acc2d65088e1b11b7e"}
+  "lib/uring/uring.cma" {"F:e8f65fad2a26f5734594c086c90fc967"}
+  "lib/uring/uring.cmi" {"F:4deab86fd5b20a3a17914a82c9488637"}
+  "lib/uring/uring.cmt" {"F:dd869bb306c963403e251f120b15faa0"}
+  "lib/uring/uring.cmti" {"F:cea19113fc822350d312ba62010d52a1"}
+  "lib/uring/uring.cmx" {"F:685e3bd981a93ecf9c37da6366d5c7cd"}
+  "lib/uring/uring.cmxa" {"F:8fdfcbdf6252772db3f55fc0245759b8"}
+  "lib/uring/uring.cmxs" {"F:c4c0f7bf9e05c321d74f9b544203db60"}
+  "lib/uring/uring.ml" {"F:4c59041eda945a39bf16345dbc063c10"}
+  "lib/uring/uring.mli" {"F:35b542e3cedeec7612632382332ed70b"}
+  "lib/uring/uring__.cmi" {"F:08ec273048e1b55268c4ab3a017291e7"}
+  "lib/uring/uring__.cmt" {"F:0ea325084261344b02a6625542f26a69"}
+  "lib/uring/uring__.cmx" {"F:1aecb34b5077e03f40fe397b71ab0d14"}
+  "lib/uring/uring__.ml" {"F:37426b2219c1c522588337d56c2cae07"}
+  "lib/uring/uring__Config.cmi" {"F:575251e8f4f4db89a4188387f4a43940"}
+  "lib/uring/uring__Config.cmt" {"F:9406919c93f63a991625854312e55190"}
+  "lib/uring/uring__Config.cmx" {"F:adf7c73dd9d2fa027d850e950c4f5269"}
+  "lib/uring/uring__Heap.cmi" {"F:e5fbfe46c33515455153b5609193dc02"}
+  "lib/uring/uring__Heap.cmt" {"F:c8fee0a964695b49e4ae62685f9500bb"}
+  "lib/uring/uring__Heap.cmti" {"F:1c8e41e1dda6ffa09f1f365aef117c1c"}
+  "lib/uring/uring__Heap.cmx" {"F:593dc24bb7e8be9ff8f73b0f2dee3441"}
+  "lib/uring/uring__Region.cmi" {"F:afdea6f3e7a45d59d342072618d223df"}
+  "lib/uring/uring__Region.cmt" {"F:3f6e72a5992979e93762c085574e4f15"}
+  "lib/uring/uring__Region.cmti" {"F:999acbc8e9df9c79e0c30749857a5a9f"}
+  "lib/uring/uring__Region.cmx" {"F:6161e011c0d02f29dc58d0f783aa0c8f"}
+]

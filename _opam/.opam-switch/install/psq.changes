@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/psq" {"D"}
+  "doc/psq/CHANGES.md" {"F:a68debddb17a075b9294c54eeee23707"}
+  "doc/psq/LICENSE.md" {"F:d53d9e0e45ba764cb9a02ad38e60ca7c"}
+  "doc/psq/README.md" {"F:00b9bf14032e04fa3d6b39a6d93b277c"}
+  "lib/psq" {"D"}
+  "lib/psq/META" {"F:6e3f168f72d22f548311394db08d597f"}
+  "lib/psq/dune-package" {"F:8d5bbfcec8bf0c86ffdd6faca3dfdea8"}
+  "lib/psq/opam" {"F:8f027392b2ca4bfd1311e1edd909638d"}
+  "lib/psq/psq.a" {"F:0a321a6e6a1b78b4aaaaffd1c943c53f"}
+  "lib/psq/psq.cma" {"F:97830f2c6033cf91a00a37f6e2b5db07"}
+  "lib/psq/psq.cmi" {"F:8933852427b3a7e90e323b83fc8ae658"}
+  "lib/psq/psq.cmt" {"F:93009ddfde8d2861dd9940a2e6481aaa"}
+  "lib/psq/psq.cmti" {"F:fd8d8324501c891d36b19c3beeea1d98"}
+  "lib/psq/psq.cmx" {"F:e7f25a51ff70f54724f75189cc086d7c"}
+  "lib/psq/psq.cmxa" {"F:3d0307b2307dfeef52c3b81f53f3524f"}
+  "lib/psq/psq.cmxs" {"F:e2d9141c25f69dcdd3a9186b7f7d6102"}
+  "lib/psq/psq.ml" {"F:e954405385d9041cd660f900df94609b"}
+  "lib/psq/psq.mli" {"F:23fb728f5e2e23baadbbb2791ffb1ba8"}
+]

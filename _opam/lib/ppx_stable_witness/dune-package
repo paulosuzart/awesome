@@ -1,0 +1,123 @@
+(lang dune 3.15)
+(name ppx_stable_witness)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_stable_witness))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_stable_witness.a
+   ppx_stable_witness.cma
+   ppx_stable_witness.cmi
+   ppx_stable_witness.cmt
+   ppx_stable_witness.cmti
+   ppx_stable_witness.cmx
+   ppx_stable_witness.cmxa
+   ppx_stable_witness.ml
+   ppx_stable_witness.mli
+   runtime/ppx_stable_witness_runtime.a
+   runtime/ppx_stable_witness_runtime.cma
+   runtime/ppx_stable_witness_runtime.cmi
+   runtime/ppx_stable_witness_runtime.cmt
+   runtime/ppx_stable_witness_runtime.cmx
+   runtime/ppx_stable_witness_runtime.cmxa
+   runtime/ppx_stable_witness_runtime.ml
+   stable_witness/stable_witness.a
+   stable_witness/stable_witness.cma
+   stable_witness/stable_witness.cmi
+   stable_witness/stable_witness.cmt
+   stable_witness/stable_witness.cmti
+   stable_witness/stable_witness.cmx
+   stable_witness/stable_witness.cmxa
+   stable_witness/stable_witness.ml
+   stable_witness/stable_witness.mli
+   stable_witness/stable_witness__.cmi
+   stable_witness/stable_witness__.cmt
+   stable_witness/stable_witness__.cmx
+   stable_witness/stable_witness__.ml
+   stable_witness/stable_witness__Stable_witness_intf.cmi
+   stable_witness/stable_witness__Stable_witness_intf.cmt
+   stable_witness/stable_witness__Stable_witness_intf.cmx
+   stable_witness/stable_witness_intf.ml))
+ (libexec
+  (ppx_stable_witness.cmxs
+   runtime/ppx_stable_witness_runtime.cmxs
+   stable_witness/stable_witness.cmxs))
+ (doc (LICENSE.md)))
+(library
+ (name ppx_stable_witness)
+ (kind ppx_deriver)
+ (archives (byte ppx_stable_witness.cma) (native ppx_stable_witness.cmxa))
+ (plugins (byte ppx_stable_witness.cma) (native ppx_stable_witness.cmxs))
+ (native_archives ppx_stable_witness.a)
+ (requires base ppxlib.ast ppxlib)
+ (ppx_runtime_deps ppx_stable_witness.runtime)
+ (main_module_name Ppx_stable_witness)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_stable_witness)
+   (visibility public)
+   (source
+    (path Ppx_stable_witness)
+    (intf (path ppx_stable_witness.mli))
+    (impl (path ppx_stable_witness.ml))))))
+(library
+ (name ppx_stable_witness.runtime)
+ (kind normal)
+ (archives
+  (byte runtime/ppx_stable_witness_runtime.cma)
+  (native runtime/ppx_stable_witness_runtime.cmxa))
+ (plugins
+  (byte runtime/ppx_stable_witness_runtime.cma)
+  (native runtime/ppx_stable_witness_runtime.cmxs))
+ (native_archives runtime/ppx_stable_witness_runtime.a)
+ (requires ppx_stable_witness.stable_witness)
+ (main_module_name Ppx_stable_witness_runtime)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_stable_witness_runtime)
+   (visibility public)
+   (source
+    (path Ppx_stable_witness_runtime)
+    (impl (path runtime/ppx_stable_witness_runtime.ml))))))
+(library
+ (name ppx_stable_witness.stable_witness)
+ (kind normal)
+ (archives
+  (byte stable_witness/stable_witness.cma)
+  (native stable_witness/stable_witness.cmxa))
+ (plugins
+  (byte stable_witness/stable_witness.cma)
+  (native stable_witness/stable_witness.cmxs))
+ (native_archives stable_witness/stable_witness.a)
+ (main_module_name Stable_witness)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name stable_witness__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Stable_witness__)
+      (impl (path stable_witness/stable_witness__.ml-gen))))
+    (name Stable_witness)
+    (modules
+     (module
+      (obj_name stable_witness)
+      (visibility public)
+      (source
+       (path Stable_witness)
+       (intf (path stable_witness/stable_witness.mli))
+       (impl (path stable_witness/stable_witness.ml))))
+     (module
+      (obj_name stable_witness__Stable_witness_intf)
+      (visibility public)
+      (source
+       (path Stable_witness_intf)
+       (impl (path stable_witness/stable_witness_intf.ml))))))
+   (wrapped true))))

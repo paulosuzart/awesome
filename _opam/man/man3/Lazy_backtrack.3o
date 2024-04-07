@@ -1,0 +1,95 @@
+.TH "Lazy_backtrack" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Lazy_backtrack \- no description
+.SH Module
+Module   Lazy_backtrack
+.SH Documentation
+.sp
+Module
+.BI "Lazy_backtrack"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B ('a, 'b)
+.I t 
+
+.sp
+
+.sp
+.I type log 
+
+.sp
+
+.sp
+
+.I val force 
+: 
+.B ('a -> 'b) -> ('a, 'b) t -> 'b
+.sp
+
+.sp
+
+.I val create 
+: 
+.B 'a -> ('a, 'b) t
+.sp
+
+.sp
+
+.I val get_arg 
+: 
+.B ('a, 'b) t -> 'a option
+.sp
+
+.sp
+
+.I val get_contents 
+: 
+.B ('a, 'b) t -> ('a, 'b) Either.t
+.sp
+
+.sp
+
+.I val create_forced 
+: 
+.B 'b -> ('a, 'b) t
+.sp
+
+.sp
+
+.I val create_failed 
+: 
+.B exn -> ('a, 'b) t
+.sp
+
+.sp
+
+.I val log 
+: 
+.B unit -> log
+.sp
+
+.sp
+
+.I val force_logged 
+: 
+.B log ->
+.B   ('a -> ('b, 'c) result) ->
+.B   ('a, ('b, 'c) result) t -> ('b, 'c) result
+.sp
+
+.sp
+
+.I val backtrack 
+: 
+.B log -> unit
+.sp
+
+.sp

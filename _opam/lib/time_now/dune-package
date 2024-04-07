@@ -1,0 +1,51 @@
+(lang dune 3.15)
+(name time_now)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/time_now) (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   dune-package
+   libtime_now_stubs.a
+   opam
+   runtime.js
+   time_now.a
+   time_now.cma
+   time_now.cmi
+   time_now.cmt
+   time_now.cmti
+   time_now.cmx
+   time_now.cmxa
+   time_now.ml
+   time_now.mli))
+ (libexec (time_now.cmxs))
+ (doc (LICENSE.md))
+ (stublibs (dlltime_now_stubs.so)))
+(library
+ (name time_now)
+ (kind normal)
+ (archives (byte time_now.cma) (native time_now.cmxa))
+ (plugins (byte time_now.cma) (native time_now.cmxs))
+ (foreign_objects time_now_stubs.o)
+ (foreign_archives (archives (for all) (files libtime_now_stubs.a)))
+ (foreign_dll_files ../stublibs/dlltime_now_stubs.so)
+ (native_archives time_now.a)
+ (jsoo_runtime runtime.js)
+ (requires
+  base
+  jane-street-headers
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib)
+ (main_module_name Time_now)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name time_now)
+   (visibility public)
+   (source
+    (path Time_now)
+    (intf (path time_now.mli))
+    (impl (path time_now.ml))))))

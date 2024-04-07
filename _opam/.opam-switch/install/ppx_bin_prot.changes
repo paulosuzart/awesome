@@ -1,0 +1,41 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_bin_prot" {"D"}
+  "doc/ppx_bin_prot/CHANGES.md" {"F:1ac67c121aa04e8e6555e7beabeb03e8"}
+  "doc/ppx_bin_prot/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_bin_prot/README.md" {"F:797e6f8133990c6e5d7e0b3bb658c286"}
+  "lib/ppx_bin_prot" {"D"}
+  "lib/ppx_bin_prot/META" {"F:9f6aec66ae38a90282ba0d77fe70c407"}
+  "lib/ppx_bin_prot/dune-package" {"F:ce14d969db9bc57870e993246f82d908"}
+  "lib/ppx_bin_prot/opam" {"F:b3122c4eea6cc1012524e04dc41e8c92"}
+  "lib/ppx_bin_prot/ppx_bin_prot.a" {"F:cec029ef0acaa800195bf82f47ff7a5c"}
+  "lib/ppx_bin_prot/ppx_bin_prot.cma" {"F:2d12db0d9a3b91053c38c7e46b910b73"}
+  "lib/ppx_bin_prot/ppx_bin_prot.cmi" {"F:0149e0487d9e483523bbce4343b1562d"}
+  "lib/ppx_bin_prot/ppx_bin_prot.cmt" {"F:cb5d67daa0a99e6b0772c821b5734614"}
+  "lib/ppx_bin_prot/ppx_bin_prot.cmti" {"F:667795f1fa7242b43d888ebaa8a6b18b"}
+  "lib/ppx_bin_prot/ppx_bin_prot.cmx" {"F:9eb4f95f009919b1e1f4c82f1e751eff"}
+  "lib/ppx_bin_prot/ppx_bin_prot.cmxa" {"F:98ea073161ce9e7d6b47d1b1c0c50990"}
+  "lib/ppx_bin_prot/ppx_bin_prot.cmxs" {"F:63c710746d974fced1d29a77830f1c91"}
+  "lib/ppx_bin_prot/ppx_bin_prot.ml" {"F:aecc05ac89d4b14972dea9b9b7adce72"}
+  "lib/ppx_bin_prot/ppx_bin_prot.mli" {"F:dbe900723450be797c8d5d45caf769ef"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.a"
+    {"F:60c69a0f3caa492fde0fe31377714a3b"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.cma"
+    {"F:8240e684a878ce5c9079a60ed1a73136"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmi"
+    {"F:0c3bb3811bb95c7d5d26f0e6c34e08c5"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmt"
+    {"F:e1abc6efc5ab3dac65efde34cd5876ba"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmti"
+    {"F:3e19f3df034cefb11800f61968c7291e"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmx"
+    {"F:f8b9e480110c69c4d8f067e1eb82fd18"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmxa"
+    {"F:f9e4e68d1d65734f16700cc288f97820"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.cmxs"
+    {"F:9e4a54b84247fc7411fc6170e9fca4f6"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.ml"
+    {"F:99fc2c61f876389b741f1def1d1fafea"}
+  "lib/ppx_bin_prot/shape-expander/bin_shape_expand.mli"
+    {"F:1d99fd18c1d6b4ad22707e407404a009"}
+]

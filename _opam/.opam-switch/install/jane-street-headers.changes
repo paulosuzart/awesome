@@ -1,0 +1,37 @@
+opam-version: "2.0"
+added: [
+  "doc/jane-street-headers" {"D"}
+  "doc/jane-street-headers/LICENSE.md" {"F:809d8824c11bf5dba3923a8a5635174b"}
+  "doc/jane-street-headers/README.org" {"F:f04662678cb64e59397d736b40e4c3b0"}
+  "lib/jane-street-headers" {"D"}
+  "lib/jane-street-headers/META" {"F:44e9fa4901d8352e9ee55d71ebdf4847"}
+  "lib/jane-street-headers/core_params.h"
+    {"F:c4085d5f234c6043b4821e488ef29fce"}
+  "lib/jane-street-headers/dune-package"
+    {"F:5d4afaeb22db2371f0a5a142b8079f8e"}
+  "lib/jane-street-headers/jane_common.h"
+    {"F:03a682677688e60d6e1b914f00b8080b"}
+  "lib/jane-street-headers/jane_street_headers.a"
+    {"F:60dbc39adb4318a1a548da8d3396d498"}
+  "lib/jane-street-headers/jane_street_headers.cma"
+    {"F:86a6efc241cf2d14e3e5a5cf76e3b340"}
+  "lib/jane-street-headers/jane_street_headers.cmi"
+    {"F:9f9c70229e233b4be47152ee89f80467"}
+  "lib/jane-street-headers/jane_street_headers.cmt"
+    {"F:b2cbf9549bd0281be27acf71527d2df9"}
+  "lib/jane-street-headers/jane_street_headers.cmx"
+    {"F:87834d0c0b4ef0c5ab395be6da253515"}
+  "lib/jane-street-headers/jane_street_headers.cmxa"
+    {"F:e006a91999a2788fc679c051d97f69b0"}
+  "lib/jane-street-headers/jane_street_headers.cmxs"
+    {"F:3f861a3ec23e563492c87d56e22b465e"}
+  "lib/jane-street-headers/jane_street_headers.ml"
+    {"F:93fd6c71e5b0012319ab63274560024e"}
+  "lib/jane-street-headers/ocaml_utils.h"
+    {"F:d4bb9923f89570b5d9b512e556971358"}
+  "lib/jane-street-headers/ocaml_utils_macros.h"
+    {"F:5108c487231e3b8f53adb4522dbb0758"}
+  "lib/jane-street-headers/opam" {"F:4fb5e497ef253508ae397f685936fd66"}
+  "lib/jane-street-headers/unix_utils.h"
+    {"F:7539c867dce1307c42f0c50fd1feee75"}
+]

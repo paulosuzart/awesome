@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Querying information stored in META files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using packages"
+HREF="c74.html"><LINK
+REL="PREVIOUS"
+TITLE="How a package directory looks like"
+HREF="x89.html"><LINK
+REL="NEXT"
+TITLE="How to compile and link a program that uses a package"
+HREF="x119.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x89.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x119.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN108"
+>Querying information stored in META files</A
+></H1
+><P
+>By setting some options of ocamlfind you can query the variables from
+the META files. For example, -long-format (or short -l) selects all
+interesting variables:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind query -long-format p</PRE
+><P
+>This would answer something like:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>package:     p
+description: Our super-duper package
+version:     1
+archive(s):
+linkopts:
+location:    /usr/local/lib/ocaml/site-lib/p</PRE
+><P
+>The values of the "archive" variable are missing because no predicate
+has been set, without further options "ocamlfind query" operates with
+an empty set of predicates. To get the bytecode archive, run:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind query -long-format -predicates byte p</PRE
+><P
+>You can set more than one predicate. It usually does not make sense, but
+you could for example select both bytecode and native archives by:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind query -long-format -predicates byte,native p</PRE
+><P
+>As both settings for "archive" are now equally like, the extraction
+mechnism chooses simply the first. The general rule is that the first
+most special value is selected.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x89.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x119.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>How a package directory looks like</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c74.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>How to compile and link a program that uses a package</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

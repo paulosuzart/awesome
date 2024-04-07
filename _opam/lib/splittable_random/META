@@ -1,0 +1,16 @@
+version = "v0.16.0"
+description = ""
+requires =
+"base
+ ppx_assert.runtime-lib
+ ppx_bench.runtime-lib
+ ppx_compare.runtime-lib
+ ppx_here.runtime-lib
+ ppx_inline_test.config
+ ppx_inline_test.runtime-lib
+ ppx_sexp_conv.runtime-lib
+ sexplib0"
+archive(byte) = "splittable_random.cma"
+archive(native) = "splittable_random.cmxa"
+plugin(byte) = "splittable_random.cma"
+plugin(native) = "splittable_random.cmxs"

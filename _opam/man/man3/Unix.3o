@@ -1,0 +1,5264 @@
+.TH "Unix" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Unix \- Interface to the Unix system.
+.SH Module
+Module   Unix
+.SH Documentation
+.sp
+Module
+.BI "Unix"
+ : 
+.B sig end
+
+.sp
+Interface to the Unix system\&.
+.sp
+To use the labeled version of this module, add 
+.ft B
+module Unix
+.ft R
+.ft B
+= 
+.ft R
+.ft B
+UnixLabels
+.ft R
+in your implementation\&.
+.sp
+Note: all the functions of this module (except 
+.ft B
+Unix\&.error_message
+.ft R
+and
+.ft B
+Unix\&.handle_unix_error
+.ft R
+) are liable to raise the 
+.ft B
+Unix\&.Unix_error
+.ft R
+exception whenever the underlying system call signals an error\&.
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Error report
+
+.PP
+.I type error 
+=
+ | E2BIG  (* Argument list too long
+ *)
+ | EACCES  (* Permission denied
+ *)
+ | EAGAIN  (* Resource temporarily unavailable; try again
+ *)
+ | EBADF  (* Bad file descriptor
+ *)
+ | EBUSY  (* Resource unavailable
+ *)
+ | ECHILD  (* No child process
+ *)
+ | EDEADLK  (* Resource deadlock would occur
+ *)
+ | EDOM  (* Domain error for math functions, etc\&.
+ *)
+ | EEXIST  (* File exists
+ *)
+ | EFAULT  (* Bad address
+ *)
+ | EFBIG  (* File too large
+ *)
+ | EINTR  (* Function interrupted by signal
+ *)
+ | EINVAL  (* Invalid argument
+ *)
+ | EIO  (* Hardware I/O error
+ *)
+ | EISDIR  (* Is a directory
+ *)
+ | EMFILE  (* Too many open files by the process
+ *)
+ | EMLINK  (* Too many links
+ *)
+ | ENAMETOOLONG  (* Filename too long
+ *)
+ | ENFILE  (* Too many open files in the system
+ *)
+ | ENODEV  (* No such device
+ *)
+ | ENOENT  (* No such file or directory
+ *)
+ | ENOEXEC  (* Not an executable file
+ *)
+ | ENOLCK  (* No locks available
+ *)
+ | ENOMEM  (* Not enough memory
+ *)
+ | ENOSPC  (* No space left on device
+ *)
+ | ENOSYS  (* Function not supported
+ *)
+ | ENOTDIR  (* Not a directory
+ *)
+ | ENOTEMPTY  (* Directory not empty
+ *)
+ | ENOTTY  (* Inappropriate I/O control operation
+ *)
+ | ENXIO  (* No such device or address
+ *)
+ | EPERM  (* Operation not permitted
+ *)
+ | EPIPE  (* Broken pipe
+ *)
+ | ERANGE  (* Result too large
+ *)
+ | EROFS  (* Read\-only file system
+ *)
+ | ESPIPE  (* Invalid seek e\&.g\&. on a pipe
+ *)
+ | ESRCH  (* No such process
+ *)
+ | EXDEV  (* Invalid link
+ *)
+ | EWOULDBLOCK  (* Operation would block
+ *)
+ | EINPROGRESS  (* Operation now in progress
+ *)
+ | EALREADY  (* Operation already in progress
+ *)
+ | ENOTSOCK  (* Socket operation on non\-socket
+ *)
+ | EDESTADDRREQ  (* Destination address required
+ *)
+ | EMSGSIZE  (* Message too long
+ *)
+ | EPROTOTYPE  (* Protocol wrong type for socket
+ *)
+ | ENOPROTOOPT  (* Protocol not available
+ *)
+ | EPROTONOSUPPORT  (* Protocol not supported
+ *)
+ | ESOCKTNOSUPPORT  (* Socket type not supported
+ *)
+ | EOPNOTSUPP  (* Operation not supported on socket
+ *)
+ | EPFNOSUPPORT  (* Protocol family not supported
+ *)
+ | EAFNOSUPPORT  (* Address family not supported by protocol family
+ *)
+ | EADDRINUSE  (* Address already in use
+ *)
+ | EADDRNOTAVAIL  (* Can\&'t assign requested address
+ *)
+ | ENETDOWN  (* Network is down
+ *)
+ | ENETUNREACH  (* Network is unreachable
+ *)
+ | ENETRESET  (* Network dropped connection on reset
+ *)
+ | ECONNABORTED  (* Software caused connection abort
+ *)
+ | ECONNRESET  (* Connection reset by peer
+ *)
+ | ENOBUFS  (* No buffer space available
+ *)
+ | EISCONN  (* Socket is already connected
+ *)
+ | ENOTCONN  (* Socket is not connected
+ *)
+ | ESHUTDOWN  (* Can\&'t send after socket shutdown
+ *)
+ | ETOOMANYREFS  (* Too many references: can\&'t splice
+ *)
+ | ETIMEDOUT  (* Connection timed out
+ *)
+ | ECONNREFUSED  (* Connection refused
+ *)
+ | EHOSTDOWN  (* Host is down
+ *)
+ | EHOSTUNREACH  (* No route to host
+ *)
+ | ELOOP  (* Too many levels of symbolic links
+ *)
+ | EOVERFLOW  (* File size or position not representable
+ *)
+ | EUNKNOWNERR
+.B of 
+.B int
+.I "  "
+  (* Unknown error
+ *)
+ 
+.sp
+The type of error codes\&.
+Errors defined in the POSIX standard
+and additional errors from UNIX98 and BSD\&.
+All other errors are mapped to EUNKNOWNERR\&.
+
+.sp
+
+.I exception Unix_error 
+.B of 
+.B error * string * string
+
+.sp
+Raised by the system calls below when an error is encountered\&.
+The first component is the error code; the second component
+is the function name; the third component is the string parameter
+to the function, if it has one, or the empty string otherwise\&.
+.sp
+
+.ft B
+UnixLabels\&.Unix_error
+.ft R
+and 
+.ft B
+Unix\&.Unix_error
+.ft R
+are the same, and
+catching one will catch the other\&.
+
+.sp
+
+.I val error_message 
+: 
+.B error -> string
+.sp
+Return a string describing the given error code\&.
+
+.sp
+
+.I val handle_unix_error 
+: 
+.B ('a -> 'b) -> 'a -> 'b
+.sp
+
+.ft B
+handle_unix_error f x
+.ft R
+applies 
+.ft B
+f
+.ft R
+to 
+.ft B
+x
+.ft R
+and returns the result\&.
+If the exception 
+.ft B
+Unix\&.Unix_error
+.ft R
+is raised, it prints a message
+describing the error and exits with code 2\&.
+
+.sp
+
+.PP
+.SS Access to the process environment
+
+.PP
+
+.I val environment 
+: 
+.B unit -> string array
+.sp
+Return the process environment, as an array of strings
+with the format ``variable=value\&'\&'\&.  The returned array
+is empty if the process has special privileges\&.
+
+.sp
+
+.I val unsafe_environment 
+: 
+.B unit -> string array
+.sp
+Return the process environment, as an array of strings with the
+format ``variable=value\&'\&'\&.  Unlike 
+.ft B
+Unix\&.environment
+.ft R
+, this function
+returns a populated array even if the process has special
+privileges\&.  See the documentation for 
+.ft B
+Unix\&.unsafe_getenv
+.ft R
+for more
+details\&.
+
+.sp
+.B "Since"
+4.06 (4.12 in UnixLabels)
+
+.sp
+
+.I val getenv 
+: 
+.B string -> string
+.sp
+Return the value associated to a variable in the process
+environment, unless the process has special privileges\&.
+
+.sp
+.B "Raises Not_found"
+if the variable is unbound or the process has
+special privileges\&.
+.sp
+This function is identical to 
+.ft B
+Sys\&.getenv
+.ft R
+\&.
+
+.sp
+
+.I val unsafe_getenv 
+: 
+.B string -> string
+.sp
+Return the value associated to a variable in the process
+environment\&.
+.sp
+Unlike 
+.ft B
+Unix\&.getenv
+.ft R
+, this function returns the value even if the
+process has special privileges\&. It is considered unsafe because the
+programmer of a setuid or setgid program must be careful to avoid
+using maliciously crafted environment variables in the search path
+for executables, the locations for temporary files or logs, and the
+like\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+.B "Raises Not_found"
+if the variable is unbound\&.
+
+.sp
+
+.I val putenv 
+: 
+.B string -> string -> unit
+.sp
+
+.ft B
+putenv name value
+.ft R
+sets the value associated to a
+variable in the process environment\&.
+.ft B
+name
+.ft R
+is the name of the environment variable,
+and 
+.ft B
+value
+.ft R
+its new associated value\&.
+
+.sp
+
+.PP
+.SS Process handling
+
+.PP
+.I type process_status 
+=
+ | WEXITED
+.B of 
+.B int
+.I "  "
+  (* The process terminated normally by 
+.ft B
+exit
+.ft R
+;
+the argument is the return code\&.
+ *)
+ | WSIGNALED
+.B of 
+.B int
+.I "  "
+  (* The process was killed by a signal;
+the argument is the signal number\&.
+ *)
+ | WSTOPPED
+.B of 
+.B int
+.I "  "
+  (* The process was stopped by a signal; the argument is the
+signal number\&.
+ *)
+ 
+.sp
+The termination status of a process\&.  See module 
+.ft B
+Sys
+.ft R
+for the
+definitions of the standard signal numbers\&.  Note that they are
+not the numbers used by the OS\&.
+.sp
+On Windows: only 
+.ft B
+WEXITED
+.ft R
+is used (as there are no inter\-process signals)
+but with specific return codes to indicate special termination causes\&.
+Look for 
+.ft B
+NTSTATUS
+.ft R
+values in the Windows documentation to decode such error
+return codes\&. In particular, 
+.ft B
+STATUS_ACCESS_VIOLATION
+.ft R
+error code
+is the 32\-bit 
+.ft B
+0xC0000005
+.ft R
+: as 
+.ft B
+Int32\&.of_int 0xC0000005
+.ft R
+is
+.ft B
+\-1073741819
+.ft R
+, 
+.ft B
+WEXITED \-1073741819
+.ft R
+is the Windows equivalent of
+.ft B
+WSIGNALED Sys\&.sigsegv
+.ft R
+\&.
+
+.sp
+.I type wait_flag 
+=
+ | WNOHANG  (* Do not block if no child has
+died yet, but immediately return with a pid equal to 0\&.
+ *)
+ | WUNTRACED  (* Report also the children that receive stop signals\&.
+ *)
+ 
+.sp
+Flags for 
+.ft B
+Unix\&.waitpid
+.ft R
+\&.
+
+.sp
+
+.I val execv 
+: 
+.B string -> string array -> 'a
+.sp
+
+.ft B
+execv prog args
+.ft R
+execute the program in file 
+.ft B
+prog
+.ft R
+, with
+the arguments 
+.ft B
+args
+.ft R
+, and the current process environment\&.
+These 
+.ft B
+execv*
+.ft R
+functions never return: on success, the current
+program is replaced by the new one\&.
+.sp
+On Windows: the CRT simply spawns a new process and exits the
+current one\&. This will have unwanted consequences if e\&.g\&.
+another process is waiting on the current one\&.
+Using 
+.ft B
+Unix\&.create_process
+.ft R
+or one of the 
+.ft B
+open_process_*
+.ft R
+functions
+instead is recommended\&.
+
+.sp
+.B "Raises Unix_error"
+on failure
+
+.sp
+
+.I val execve 
+: 
+.B string -> string array -> string array -> 'a
+.sp
+Same as 
+.ft B
+Unix\&.execv
+.ft R
+, except that the third argument provides the
+environment to the program executed\&.
+
+.sp
+
+.I val execvp 
+: 
+.B string -> string array -> 'a
+.sp
+Same as 
+.ft B
+Unix\&.execv
+.ft R
+, except that
+the program is searched in the path\&.
+
+.sp
+
+.I val execvpe 
+: 
+.B string -> string array -> string array -> 'a
+.sp
+Same as 
+.ft B
+Unix\&.execve
+.ft R
+, except that
+the program is searched in the path\&.
+
+.sp
+
+.I val fork 
+: 
+.B unit -> int
+.sp
+Fork a new process\&. The returned integer is 0 for the child
+process, the pid of the child process for the parent process\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows\&. Use 
+.ft B
+Unix\&.create_process
+.ft R
+or threads
+instead\&.
+
+.sp
+
+.I val wait 
+: 
+.B unit -> int * process_status
+.sp
+Wait until one of the children processes die, and return its pid
+and termination status\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows\&. Use 
+.ft B
+Unix\&.waitpid
+.ft R
+instead\&.
+
+.sp
+
+.I val waitpid 
+: 
+.B wait_flag list -> int -> int * process_status
+.sp
+Same as 
+.ft B
+Unix\&.wait
+.ft R
+, but waits for the child process whose pid is given\&.
+A pid of 
+.ft B
+\-1
+.ft R
+means wait for any child\&.
+A pid of 
+.ft B
+0
+.ft R
+means wait for any child in the same process group
+as the current process\&.
+Negative pid arguments represent process groups\&.
+The list of options indicates whether 
+.ft B
+waitpid
+.ft R
+should return
+immediately without waiting, and whether it should report stopped
+children\&.
+.sp
+On Windows: can only wait for a given PID, not any child process\&.
+
+.sp
+
+.I val system 
+: 
+.B string -> process_status
+.sp
+Execute the given command, wait until it terminates, and return
+its termination status\&. The string is interpreted by the shell
+.ft B
+/bin/sh
+.ft R
+(or the command interpreter 
+.ft B
+cmd\&.exe
+.ft R
+on Windows) and
+therefore can contain redirections, quotes, variables, etc\&.
+To properly quote whitespace and shell special characters occurring
+in file names or command arguments, the use of
+.ft B
+Filename\&.quote_command
+.ft R
+is recommended\&.
+The result 
+.ft B
+WEXITED 127
+.ft R
+indicates that the shell couldn\&'t be
+executed\&.
+
+.sp
+
+.I val _exit 
+: 
+.B int -> 'a
+.sp
+Terminate the calling process immediately, returning the given
+status code to the operating system: usually 0 to indicate no
+errors, and a small positive integer to indicate failure\&.
+Unlike 
+.ft B
+exit
+.ft R
+, 
+.ft B
+Unix\&._exit
+.ft R
+performs no finalization
+whatsoever: functions registered with 
+.ft B
+at_exit
+.ft R
+are not called,
+input/output channels are not flushed, and the C run\-time system
+is not finalized either\&.
+.sp
+The typical use of 
+.ft B
+Unix\&._exit
+.ft R
+is after a 
+.ft B
+Unix\&.fork
+.ft R
+operation,
+when the child process runs into a fatal error and must exit\&.  In
+this case, it is preferable to not perform any finalization action
+in the child process, as these actions could interfere with similar
+actions performed by the parent process\&.  For example, output
+channels should not be flushed by the child process, as the parent
+process may flush them again later, resulting in duplicate
+output\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val getpid 
+: 
+.B unit -> int
+.sp
+Return the pid of the process\&.
+
+.sp
+
+.I val getppid 
+: 
+.B unit -> int
+.sp
+Return the pid of the parent process\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows (because it is
+meaningless)
+
+.sp
+
+.I val nice 
+: 
+.B int -> int
+.sp
+Change the process priority\&. The integer argument is added to the
+``nice\&'\&' value\&. (Higher values of the ``nice\&'\&' value mean
+lower priorities\&.) Return the new nice value\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.PP
+.SS Basic file input/output
+
+.PP
+.I type file_descr 
+
+.sp
+The abstract type of file descriptors\&.
+
+.sp
+
+.I val stdin 
+: 
+.B file_descr
+.sp
+File descriptor for standard input\&.
+
+.sp
+
+.I val stdout 
+: 
+.B file_descr
+.sp
+File descriptor for standard output\&.
+
+.sp
+
+.I val stderr 
+: 
+.B file_descr
+.sp
+File descriptor for standard error\&.
+
+.sp
+.I type open_flag 
+=
+ | O_RDONLY  (* Open for reading
+ *)
+ | O_WRONLY  (* Open for writing
+ *)
+ | O_RDWR  (* Open for reading and writing
+ *)
+ | O_NONBLOCK  (* Open in non\-blocking mode
+ *)
+ | O_APPEND  (* Open for append
+ *)
+ | O_CREAT  (* Create if nonexistent
+ *)
+ | O_TRUNC  (* Truncate to 0 length if existing
+ *)
+ | O_EXCL  (* Fail if existing
+ *)
+ | O_NOCTTY  (* Don\&'t make this dev a controlling tty
+ *)
+ | O_DSYNC  (* Writes complete as `Synchronised I/O data
+integrity completion\&'
+ *)
+ | O_SYNC  (* Writes complete as `Synchronised I/O file
+integrity completion\&'
+ *)
+ | O_RSYNC  (* Reads complete as writes (depending
+on O_SYNC/O_DSYNC)
+ *)
+ | O_SHARE_DELETE  (* Windows only: allow the file to be deleted
+while still open
+ *)
+ | O_CLOEXEC  (* Set the close\-on\-exec flag on the
+descriptor returned by 
+.ft B
+Unix\&.openfile
+.ft R
+\&.
+See 
+.ft B
+Unix\&.set_close_on_exec
+.ft R
+for more
+information\&.
+ *)
+ | O_KEEPEXEC  (* Clear the close\-on\-exec flag\&.
+This is currently the default\&.
+ *)
+ 
+.sp
+The flags to 
+.ft B
+Unix\&.openfile
+.ft R
+\&.
+
+.sp
+.I type file_perm 
+= 
+.B int
+
+.sp
+The type of file access rights, e\&.g\&. 
+.ft B
+0o640
+.ft R
+is read and write for user,
+read for group, none for others
+
+.sp
+
+.I val openfile 
+: 
+.B string -> open_flag list -> file_perm -> file_descr
+.sp
+Open the named file with the given flags\&. Third argument is the
+permissions to give to the file if it is created (see
+.ft B
+Unix\&.umask
+.ft R
+)\&. Return a file descriptor on the named file\&.
+
+.sp
+
+.I val close 
+: 
+.B file_descr -> unit
+.sp
+Close a file descriptor\&.
+
+.sp
+
+.I val fsync 
+: 
+.B file_descr -> unit
+.sp
+Flush file buffers to disk\&.
+
+.sp
+.B "Since"
+4.08 (4.12 in UnixLabels)
+
+.sp
+
+.I val read 
+: 
+.B file_descr -> bytes -> int -> int -> int
+.sp
+
+.ft B
+read fd buf pos len
+.ft R
+reads 
+.ft B
+len
+.ft R
+bytes from descriptor 
+.ft B
+fd
+.ft R
+,
+storing them in byte sequence 
+.ft B
+buf
+.ft R
+, starting at position 
+.ft B
+pos
+.ft R
+in
+.ft B
+buf
+.ft R
+\&. Return the number of bytes actually read\&.
+
+.sp
+
+.I val write 
+: 
+.B file_descr -> bytes -> int -> int -> int
+.sp
+
+.ft B
+write fd buf pos len
+.ft R
+writes 
+.ft B
+len
+.ft R
+bytes to descriptor 
+.ft B
+fd
+.ft R
+,
+taking them from byte sequence 
+.ft B
+buf
+.ft R
+, starting at position 
+.ft B
+pos
+.ft R
+in 
+.ft B
+buff
+.ft R
+\&. Return the number of bytes actually written\&.  
+.ft B
+write
+.ft R
+repeats the writing operation until all bytes have been written or
+an error occurs\&.
+
+.sp
+
+.I val single_write 
+: 
+.B file_descr -> bytes -> int -> int -> int
+.sp
+Same as 
+.ft B
+Unix\&.write
+.ft R
+, but attempts to write only once\&.
+Thus, if an error occurs, 
+.ft B
+single_write
+.ft R
+guarantees that no data
+has been written\&.
+
+.sp
+
+.I val write_substring 
+: 
+.B file_descr -> string -> int -> int -> int
+.sp
+Same as 
+.ft B
+Unix\&.write
+.ft R
+, but take the data from a string instead of a byte
+sequence\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val single_write_substring 
+: 
+.B file_descr -> string -> int -> int -> int
+.sp
+Same as 
+.ft B
+Unix\&.single_write
+.ft R
+, but take the data from a string instead of
+a byte sequence\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.PP
+.SS Interfacing with the standard input/output library
+
+.PP
+
+.I val in_channel_of_descr 
+: 
+.B file_descr -> in_channel
+.sp
+Create an input channel reading from the given descriptor\&.
+The channel is initially in binary mode; use
+.ft B
+set_binary_mode_in ic false
+.ft R
+if text mode is desired\&.
+Text mode is supported only if the descriptor refers to a file
+or pipe, but is not supported if it refers to a socket\&.
+.sp
+On Windows: 
+.ft B
+set_binary_mode_in
+.ft R
+always fails on channels
+created with this function\&.
+.sp
+Beware that input channels are buffered, so more characters may
+have been read from the descriptor than those accessed using
+channel functions\&.  Channels also keep a copy of the current
+position in the file\&.
+.sp
+Closing the channel 
+.ft B
+ic
+.ft R
+returned by 
+.ft B
+in_channel_of_descr fd
+.ft R
+using 
+.ft B
+close_in ic
+.ft R
+also closes the underlying descriptor 
+.ft B
+fd
+.ft R
+\&.
+It is incorrect to close both the channel 
+.ft B
+ic
+.ft R
+and the descriptor 
+.ft B
+fd
+.ft R
+\&.
+.sp
+If several channels are created on the same descriptor, one of the
+channels must be closed, but not the others\&.
+Consider for example a descriptor 
+.ft B
+s
+.ft R
+connected to a socket and two
+channels 
+.ft B
+ic = in_channel_of_descr s
+.ft R
+and 
+.ft B
+oc = out_channel_of_descr s
+.ft R
+\&.
+The recommended closing protocol is to perform 
+.ft B
+close_out oc
+.ft R
+,
+which flushes buffered output to the socket then closes the socket\&.
+The 
+.ft B
+ic
+.ft R
+channel must not be closed and will be collected by the GC
+eventually\&.
+
+.sp
+
+.I val out_channel_of_descr 
+: 
+.B file_descr -> out_channel
+.sp
+Create an output channel writing on the given descriptor\&.
+The channel is initially in binary mode; use
+.ft B
+set_binary_mode_out oc false
+.ft R
+if text mode is desired\&.
+Text mode is supported only if the descriptor refers to a file
+or pipe, but is not supported if it refers to a socket\&.
+.sp
+On Windows: 
+.ft B
+set_binary_mode_out
+.ft R
+always fails on channels created
+with this function\&.
+.sp
+Beware that output channels are buffered, so you may have to call
+.ft B
+flush
+.ft R
+to ensure that all data has been sent to the
+descriptor\&.  Channels also keep a copy of the current position in
+the file\&.
+.sp
+Closing the channel 
+.ft B
+oc
+.ft R
+returned by 
+.ft B
+out_channel_of_descr fd
+.ft R
+using 
+.ft B
+close_out oc
+.ft R
+also closes the underlying descriptor 
+.ft B
+fd
+.ft R
+\&.
+It is incorrect to close both the channel 
+.ft B
+ic
+.ft R
+and the descriptor 
+.ft B
+fd
+.ft R
+\&.
+.sp
+See 
+.ft B
+Unix\&.in_channel_of_descr
+.ft R
+for a discussion of the closing
+protocol when several channels are created on the same descriptor\&.
+
+.sp
+
+.I val descr_of_in_channel 
+: 
+.B in_channel -> file_descr
+.sp
+Return the descriptor corresponding to an input channel\&.
+
+.sp
+
+.I val descr_of_out_channel 
+: 
+.B out_channel -> file_descr
+.sp
+Return the descriptor corresponding to an output channel\&.
+
+.sp
+
+.PP
+.SS Seeking and truncating
+
+.PP
+.I type seek_command 
+=
+ | SEEK_SET  (* indicates positions relative to the beginning of the file
+ *)
+ | SEEK_CUR  (* indicates positions relative to the current position
+ *)
+ | SEEK_END  (* indicates positions relative to the end of the file
+ *)
+ 
+.sp
+Positioning modes for 
+.ft B
+Unix\&.lseek
+.ft R
+\&.
+
+.sp
+
+.I val lseek 
+: 
+.B file_descr -> int -> seek_command -> int
+.sp
+Set the current position for a file descriptor, and return the resulting
+offset (from the beginning of the file)\&.
+
+.sp
+
+.I val truncate 
+: 
+.B string -> int -> unit
+.sp
+Truncates the named file to the given size\&.
+
+.sp
+
+.I val ftruncate 
+: 
+.B file_descr -> int -> unit
+.sp
+Truncates the file corresponding to the given descriptor
+to the given size\&.
+
+.sp
+
+.PP
+.SS File status
+
+.PP
+.I type file_kind 
+=
+ | S_REG  (* Regular file
+ *)
+ | S_DIR  (* Directory
+ *)
+ | S_CHR  (* Character device
+ *)
+ | S_BLK  (* Block device
+ *)
+ | S_LNK  (* Symbolic link
+ *)
+ | S_FIFO  (* Named pipe
+ *)
+ | S_SOCK  (* Socket
+ *)
+ 
+.sp
+
+.sp
+.I type stats 
+= {
+ st_dev : 
+.B int
+;  (* Device number
+ *) 
+ st_ino : 
+.B int
+;  (* Inode number
+ *) 
+ st_kind : 
+.B file_kind
+;  (* Kind of the file
+ *) 
+ st_perm : 
+.B file_perm
+;  (* Access rights
+ *) 
+ st_nlink : 
+.B int
+;  (* Number of links
+ *) 
+ st_uid : 
+.B int
+;  (* User id of the owner
+ *) 
+ st_gid : 
+.B int
+;  (* Group ID of the file\&'s group
+ *) 
+ st_rdev : 
+.B int
+;  (* Device ID (if special file)
+ *) 
+ st_size : 
+.B int
+;  (* Size in bytes
+ *) 
+ st_atime : 
+.B float
+;  (* Last access time
+ *) 
+ st_mtime : 
+.B float
+;  (* Last modification time
+ *) 
+ st_ctime : 
+.B float
+;  (* Last status change time
+ *) 
+ }
+
+.sp
+The information returned by the 
+.ft B
+Unix\&.stat
+.ft R
+calls\&.
+
+.sp
+
+.I val stat 
+: 
+.B string -> stats
+.sp
+Return the information for the named file\&.
+
+.sp
+
+.I val lstat 
+: 
+.B string -> stats
+.sp
+Same as 
+.ft B
+Unix\&.stat
+.ft R
+, but in case the file is a symbolic link,
+return the information for the link itself\&.
+
+.sp
+
+.I val fstat 
+: 
+.B file_descr -> stats
+.sp
+Return the information for the file associated with the given
+descriptor\&.
+
+.sp
+
+.I val isatty 
+: 
+.B file_descr -> bool
+.sp
+Return 
+.ft B
+true
+.ft R
+if the given file descriptor refers to a terminal or
+console window, 
+.ft B
+false
+.ft R
+otherwise\&.
+
+.sp
+
+.PP
+.SS File operations on large files
+
+.PP
+.I module LargeFile : 
+.B sig end
+
+.sp
+File operations on large files\&.
+This sub\-module provides 64\-bit variants of the functions
+.ft B
+Unix\&.LargeFile\&.lseek
+.ft R
+(for positioning a file descriptor),
+.ft B
+Unix\&.LargeFile\&.truncate
+.ft R
+and 
+.ft B
+Unix\&.LargeFile\&.ftruncate
+.ft R
+(for changing the size of a file),
+and 
+.ft B
+Unix\&.LargeFile\&.stat
+.ft R
+, 
+.ft B
+Unix\&.LargeFile\&.lstat
+.ft R
+and 
+.ft B
+Unix\&.LargeFile\&.fstat
+.ft R
+(for obtaining information on files)\&.  These alternate functions represent
+positions and sizes by 64\-bit integers (type 
+.ft B
+int64
+.ft R
+) instead of
+regular integers (type 
+.ft B
+int
+.ft R
+), thus allowing operating on files
+whose sizes are greater than 
+.ft B
+max_int
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Mapping files into memory
+
+.PP
+
+.I val map_file 
+: 
+.B file_descr ->
+.B   ?pos:int64 ->
+.B   ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout ->
+.B   bool -> int array -> ('a, 'b, 'c) Bigarray.Genarray.t
+.sp
+Memory mapping of a file as a Bigarray\&.
+.ft B
+map_file fd kind layout shared dims
+.ft R
+returns a Bigarray of kind 
+.ft B
+kind
+.ft R
+, layout 
+.ft B
+layout
+.ft R
+,
+and dimensions as specified in 
+.ft B
+dims
+.ft R
+\&.  The data contained in
+this Bigarray are the contents of the file referred to by
+the file descriptor 
+.ft B
+fd
+.ft R
+(as opened previously with
+.ft B
+Unix\&.openfile
+.ft R
+, for example)\&.  The optional 
+.ft B
+pos
+.ft R
+parameter
+is the byte offset in the file of the data being mapped;
+it defaults to 0 (map from the beginning of the file)\&.
+.sp
+If 
+.ft B
+shared
+.ft R
+is 
+.ft B
+true
+.ft R
+, all modifications performed on the array
+are reflected in the file\&.  This requires that 
+.ft B
+fd
+.ft R
+be opened
+with write permissions\&.  If 
+.ft B
+shared
+.ft R
+is 
+.ft B
+false
+.ft R
+, modifications
+performed on the array are done in memory only, using
+copy\-on\-write of the modified pages; the underlying file is not
+affected\&.
+.sp
+
+.ft B
+Unix\&.map_file
+.ft R
+is much more efficient than reading
+the whole file in a Bigarray, modifying that Bigarray,
+and writing it afterwards\&.
+.sp
+To adjust automatically the dimensions of the Bigarray to
+the actual size of the file, the major dimension (that is,
+the first dimension for an array with C layout, and the last
+dimension for an array with Fortran layout) can be given as
+.ft B
+\-1
+.ft R
+\&.  
+.ft B
+Unix\&.map_file
+.ft R
+then determines the major dimension
+from the size of the file\&.  The file must contain an integral
+number of sub\-arrays as determined by the non\-major dimensions,
+otherwise 
+.ft B
+Failure
+.ft R
+is raised\&.
+.sp
+If all dimensions of the Bigarray are given, the file size is
+matched against the size of the Bigarray\&.  If the file is larger
+than the Bigarray, only the initial portion of the file is
+mapped to the Bigarray\&.  If the file is smaller than the big
+array, the file is automatically grown to the size of the Bigarray\&.
+This requires write permissions on 
+.ft B
+fd
+.ft R
+\&.
+.sp
+Array accesses are bounds\-checked, but the bounds are determined by
+the initial call to 
+.ft B
+map_file
+.ft R
+\&. Therefore, you should make sure no
+other process modifies the mapped file while you\&'re accessing it,
+or a SIGBUS signal may be raised\&. This happens, for instance, if the
+file is shrunk\&.
+.sp
+
+.ft B
+Invalid_argument
+.ft R
+or 
+.ft B
+Failure
+.ft R
+may be raised in cases where argument
+validation fails\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.PP
+.SS Operations on file names
+
+.PP
+
+.I val unlink 
+: 
+.B string -> unit
+.sp
+Removes the named file\&.
+.sp
+If the named file is a directory, raises:
+.sp
+\-
+.ft B
+EPERM
+.ft R
+on POSIX compliant system
+.sp
+\-
+.ft B
+EISDIR
+.ft R
+on Linux >= 2\&.1\&.132
+.sp
+\-
+.ft B
+EACCESS
+.ft R
+on Windows
+
+
+.sp
+
+.I val rename 
+: 
+.B string -> string -> unit
+.sp
+
+.ft B
+rename src dst
+.ft R
+changes the name of a file from 
+.ft B
+src
+.ft R
+to 
+.ft B
+dst
+.ft R
+,
+moving it between directories if needed\&.  If 
+.ft B
+dst
+.ft R
+already
+exists, its contents will be replaced with those of 
+.ft B
+src
+.ft R
+\&.
+Depending on the operating system, the metadata (permissions,
+owner, etc) of 
+.ft B
+dst
+.ft R
+can either be preserved or be replaced by
+those of 
+.ft B
+src
+.ft R
+\&.
+
+.sp
+
+.I val link 
+: 
+.B ?follow:bool -> string -> string -> unit
+.sp
+
+.ft B
+link ?follow src dst
+.ft R
+creates a hard link named 
+.ft B
+dst
+.ft R
+to the file
+named 
+.ft B
+src
+.ft R
+\&.
+
+.sp
+.B "Raises ENOSYS"
+On Unix if 
+.ft B
+~follow:_
+.ft R
+is requested, but linkat is
+unavailable\&.
+
+.sp
+.B "Raises ENOSYS"
+On Windows if 
+.ft B
+~follow:false
+.ft R
+is requested\&.
+
+.sp
+
+.I val realpath 
+: 
+.B string -> string
+.sp
+
+.ft B
+realpath p
+.ft R
+is an absolute pathname for 
+.ft B
+p
+.ft R
+obtained by resolving
+all extra 
+.ft B
+/
+.ft R
+characters, relative path segments and symbolic links\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.PP
+.SS File permissions and ownership
+
+.PP
+.I type access_permission 
+=
+ | R_OK  (* Read permission
+ *)
+ | W_OK  (* Write permission
+ *)
+ | X_OK  (* Execution permission
+ *)
+ | F_OK  (* File exists
+ *)
+ 
+.sp
+Flags for the 
+.ft B
+Unix\&.access
+.ft R
+call\&.
+
+.sp
+
+.I val chmod 
+: 
+.B string -> file_perm -> unit
+.sp
+Change the permissions of the named file\&.
+
+.sp
+
+.I val fchmod 
+: 
+.B file_descr -> file_perm -> unit
+.sp
+Change the permissions of an opened file\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val chown 
+: 
+.B string -> int -> int -> unit
+.sp
+Change the owner uid and owner gid of the named file\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val fchown 
+: 
+.B file_descr -> int -> int -> unit
+.sp
+Change the owner uid and owner gid of an opened file\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val umask 
+: 
+.B file_perm -> file_perm
+.sp
+Set the process\&'s file mode creation mask, and return the previous
+mask\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val access 
+: 
+.B string -> access_permission list -> unit
+.sp
+Check that the process has the given permissions over the named file\&.
+.sp
+On Windows: execute permission 
+.ft B
+X_OK
+.ft R
+cannot be tested, just
+tests for read permission instead\&.
+
+.sp
+.B "Raises Unix_error"
+otherwise\&.
+
+.sp
+
+.PP
+.SS Operations on file descriptors
+
+.PP
+
+.I val dup 
+: 
+.B ?cloexec:bool -> file_descr -> file_descr
+.sp
+Return a new file descriptor referencing the same file as
+the given descriptor\&.
+See 
+.ft B
+Unix\&.set_close_on_exec
+.ft R
+for documentation on the 
+.ft B
+cloexec
+.ft R
+optional argument\&.
+
+.sp
+
+.I val dup2 
+: 
+.B ?cloexec:bool -> file_descr -> file_descr -> unit
+.sp
+
+.ft B
+dup2 src dst
+.ft R
+duplicates 
+.ft B
+src
+.ft R
+to 
+.ft B
+dst
+.ft R
+, closing 
+.ft B
+dst
+.ft R
+if already
+opened\&.
+See 
+.ft B
+Unix\&.set_close_on_exec
+.ft R
+for documentation on the 
+.ft B
+cloexec
+.ft R
+optional argument\&.
+
+.sp
+
+.I val set_nonblock 
+: 
+.B file_descr -> unit
+.sp
+Set the ``non\-blocking\&'\&' flag on the given descriptor\&.
+When the non\-blocking flag is set, reading on a descriptor
+on which there is temporarily no data available raises the
+.ft B
+EAGAIN
+.ft R
+or 
+.ft B
+EWOULDBLOCK
+.ft R
+error instead of blocking;
+writing on a descriptor on which there is temporarily no room
+for writing also raises 
+.ft B
+EAGAIN
+.ft R
+or 
+.ft B
+EWOULDBLOCK
+.ft R
+\&.
+
+.sp
+
+.I val clear_nonblock 
+: 
+.B file_descr -> unit
+.sp
+Clear the ``non\-blocking\&'\&' flag on the given descriptor\&.
+See 
+.ft B
+Unix\&.set_nonblock
+.ft R
+\&.
+
+.sp
+
+.I val set_close_on_exec 
+: 
+.B file_descr -> unit
+.sp
+Set the ``close\-on\-exec\&'\&' flag on the given descriptor\&.
+A descriptor with the close\-on\-exec flag is automatically
+closed when the current process starts another program with
+one of the 
+.ft B
+exec
+.ft R
+, 
+.ft B
+create_process
+.ft R
+and 
+.ft B
+open_process
+.ft R
+functions\&.
+.sp
+It is often a security hole to leak file descriptors opened on, say,
+a private file to an external program: the program, then, gets access
+to the private file and can do bad things with it\&.  Hence, it is
+highly recommended to set all file descriptors ``close\-on\-exec\&'\&',
+except in the very few cases where a file descriptor actually needs
+to be transmitted to another program\&.
+.sp
+The best way to set a file descriptor ``close\-on\-exec\&'\&' is to create
+it in this state\&.  To this end, the 
+.ft B
+openfile
+.ft R
+function has
+.ft B
+O_CLOEXEC
+.ft R
+and 
+.ft B
+O_KEEPEXEC
+.ft R
+flags to enforce ``close\-on\-exec\&'\&' mode
+or ``keep\-on\-exec\&'\&' mode, respectively\&.  All other operations in
+the Unix module that create file descriptors have an optional
+argument 
+.ft B
+?cloexec:bool
+.ft R
+to indicate whether the file descriptor
+should be created in ``close\-on\-exec\&'\&' mode (by writing
+.ft B
+~cloexec:true
+.ft R
+) or in ``keep\-on\-exec\&'\&' mode (by writing
+.ft B
+~cloexec:false
+.ft R
+)\&.  For historical reasons, the default file
+descriptor creation mode is ``keep\-on\-exec\&'\&', if no 
+.ft B
+cloexec
+.ft R
+optional
+argument is given\&.  This is not a safe default, hence it is highly
+recommended to pass explicit 
+.ft B
+cloexec
+.ft R
+arguments to operations that
+create file descriptors\&.
+.sp
+The 
+.ft B
+cloexec
+.ft R
+optional arguments and the 
+.ft B
+O_KEEPEXEC
+.ft R
+flag were introduced
+in OCaml 4\&.05\&.  Earlier, the common practice was to create file descriptors
+in the default, ``keep\-on\-exec\&'\&' mode, then call 
+.ft B
+set_close_on_exec
+.ft R
+on those freshly\-created file descriptors\&.  This is not as safe as
+creating the file descriptor in ``close\-on\-exec\&'\&' mode because, in
+multithreaded programs, a window of vulnerability exists between the time
+when the file descriptor is created and the time 
+.ft B
+set_close_on_exec
+.ft R
+completes\&.  If another thread spawns another program during this window,
+the descriptor will leak, as it is still in the ``keep\-on\-exec\&'\&' mode\&.
+.sp
+Regarding the atomicity guarantees given by 
+.ft B
+~cloexec:true
+.ft R
+or by
+the use of the 
+.ft B
+O_CLOEXEC
+.ft R
+flag: on all platforms it is guaranteed
+that a concurrently\-executing Caml thread cannot leak the descriptor
+by starting a new process\&.  On Linux, this guarantee extends to
+concurrently\-executing C threads\&.  As of Feb 2017, other operating
+systems lack the necessary system calls and still expose a window
+of vulnerability during which a C thread can see the newly\-created
+file descriptor in ``keep\-on\-exec\&'\&' mode\&.
+
+.sp
+
+.I val clear_close_on_exec 
+: 
+.B file_descr -> unit
+.sp
+Clear the ``close\-on\-exec\&'\&' flag on the given descriptor\&.
+See 
+.ft B
+Unix\&.set_close_on_exec
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Directories
+
+.PP
+
+.I val mkdir 
+: 
+.B string -> file_perm -> unit
+.sp
+Create a directory with the given permissions (see 
+.ft B
+Unix\&.umask
+.ft R
+)\&.
+
+.sp
+
+.I val rmdir 
+: 
+.B string -> unit
+.sp
+Remove an empty directory\&.
+
+.sp
+
+.I val chdir 
+: 
+.B string -> unit
+.sp
+Change the process working directory\&.
+
+.sp
+
+.I val getcwd 
+: 
+.B unit -> string
+.sp
+Return the name of the current working directory\&.
+
+.sp
+
+.I val chroot 
+: 
+.B string -> unit
+.sp
+Change the process root directory\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+.I type dir_handle 
+
+.sp
+The type of descriptors over opened directories\&.
+
+.sp
+
+.I val opendir 
+: 
+.B string -> dir_handle
+.sp
+Open a descriptor on a directory
+
+.sp
+
+.I val readdir 
+: 
+.B dir_handle -> string
+.sp
+Return the next entry in a directory\&.
+
+.sp
+.B "Raises End_of_file"
+when the end of the directory has been reached\&.
+
+.sp
+
+.I val rewinddir 
+: 
+.B dir_handle -> unit
+.sp
+Reposition the descriptor to the beginning of the directory
+
+.sp
+
+.I val closedir 
+: 
+.B dir_handle -> unit
+.sp
+Close a directory descriptor\&.
+
+.sp
+
+.PP
+.SS Pipes and redirections
+
+.PP
+
+.I val pipe 
+: 
+.B ?cloexec:bool -> unit -> file_descr * file_descr
+.sp
+Create a pipe\&. The first component of the result is opened
+for reading, that\&'s the exit to the pipe\&. The second component is
+opened for writing, that\&'s the entrance to the pipe\&.
+See 
+.ft B
+Unix\&.set_close_on_exec
+.ft R
+for documentation on the 
+.ft B
+cloexec
+.ft R
+optional argument\&.
+
+.sp
+
+.I val mkfifo 
+: 
+.B string -> file_perm -> unit
+.sp
+Create a named pipe with the given permissions (see 
+.ft B
+Unix\&.umask
+.ft R
+)\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.PP
+.SS High-level process and redirection management
+
+.PP
+
+.I val create_process 
+: 
+.B string ->
+.B   string array -> file_descr -> file_descr -> file_descr -> int
+.sp
+
+.ft B
+create_process prog args stdin stdout stderr
+.ft R
+creates a new process that executes the program
+in file 
+.ft B
+prog
+.ft R
+, with arguments 
+.ft B
+args
+.ft R
+\&. The pid of the new
+process is returned immediately; the new process executes
+concurrently with the current process\&.
+The standard input and outputs of the new process are connected
+to the descriptors 
+.ft B
+stdin
+.ft R
+, 
+.ft B
+stdout
+.ft R
+and 
+.ft B
+stderr
+.ft R
+\&.
+Passing e\&.g\&. 
+.ft B
+Unix\&.stdout
+.ft R
+for 
+.ft B
+stdout
+.ft R
+prevents the redirection
+and causes the new process to have the same standard output
+as the current process\&.
+The executable file 
+.ft B
+prog
+.ft R
+is searched in the path\&.
+The new process has the same environment as the current process\&.
+
+.sp
+
+.I val create_process_env 
+: 
+.B string ->
+.B   string array ->
+.B   string array -> file_descr -> file_descr -> file_descr -> int
+.sp
+
+.ft B
+create_process_env prog args env stdin stdout stderr
+.ft R
+works as 
+.ft B
+Unix\&.create_process
+.ft R
+, except that the extra argument
+.ft B
+env
+.ft R
+specifies the environment passed to the program\&.
+
+.sp
+
+.I val open_process_in 
+: 
+.B string -> in_channel
+.sp
+High\-level pipe and process management\&. This function
+runs the given command in parallel with the program\&.
+The standard output of the command is redirected to a pipe,
+which can be read via the returned input channel\&.
+The command is interpreted by the shell 
+.ft B
+/bin/sh
+.ft R
+(or 
+.ft B
+cmd\&.exe
+.ft R
+on Windows), cf\&. 
+.ft B
+Unix\&.system
+.ft R
+\&.
+The 
+.ft B
+Filename\&.quote_command
+.ft R
+function can be used to
+quote the command and its arguments as appropriate for the shell being
+used\&.  If the command does not need to be run through the shell,
+.ft B
+Unix\&.open_process_args_in
+.ft R
+can be used as a more robust and
+more efficient alternative to 
+.ft B
+Unix\&.open_process_in
+.ft R
+\&.
+
+.sp
+
+.I val open_process_out 
+: 
+.B string -> out_channel
+.sp
+Same as 
+.ft B
+Unix\&.open_process_in
+.ft R
+, but redirect the standard input of
+the command to a pipe\&.  Data written to the returned output channel
+is sent to the standard input of the command\&.
+Warning: writes on output channels are buffered, hence be careful
+to call 
+.ft B
+flush
+.ft R
+at the right times to ensure
+correct synchronization\&.
+If the command does not need to be run through the shell,
+.ft B
+Unix\&.open_process_args_out
+.ft R
+can be used instead of
+.ft B
+Unix\&.open_process_out
+.ft R
+\&.
+
+.sp
+
+.I val open_process 
+: 
+.B string -> in_channel * out_channel
+.sp
+Same as 
+.ft B
+Unix\&.open_process_out
+.ft R
+, but redirects both the standard input
+and standard output of the command to pipes connected to the two
+returned channels\&.  The input channel is connected to the output
+of the command, and the output channel to the input of the command\&.
+If the command does not need to be run through the shell,
+.ft B
+Unix\&.open_process_args
+.ft R
+can be used instead of
+.ft B
+Unix\&.open_process
+.ft R
+\&.
+
+.sp
+
+.I val open_process_full 
+: 
+.B string ->
+.B   string array -> in_channel * out_channel * in_channel
+.sp
+Similar to 
+.ft B
+Unix\&.open_process
+.ft R
+, but the second argument specifies
+the environment passed to the command\&.  The result is a triple
+of channels connected respectively to the standard output, standard input,
+and standard error of the command\&.
+If the command does not need to be run through the shell,
+.ft B
+Unix\&.open_process_args_full
+.ft R
+can be used instead of
+.ft B
+Unix\&.open_process_full
+.ft R
+\&.
+
+.sp
+
+.I val open_process_args 
+: 
+.B string -> string array -> in_channel * out_channel
+.sp
+
+.ft B
+open_process_args prog args
+.ft R
+runs the program 
+.ft B
+prog
+.ft R
+with arguments
+.ft B
+args
+.ft R
+\&.  Note that the first argument is by convention the filename of
+the program being executed, just like 
+.ft B
+Sys\&.argv\&.(0)
+.ft R
+\&.  The new process
+executes concurrently with the current process\&.  The standard input and
+output of the new process are redirected to pipes, which can be
+respectively read and written via the returned channels\&.  The input
+channel is connected to the output of the program, and the output
+channel to the input of the program\&.
+.sp
+Warning: writes on output channels are buffered, hence be careful to
+call 
+.ft B
+flush
+.ft R
+at the right times to ensure correct
+synchronization\&.
+.sp
+The executable file 
+.ft B
+prog
+.ft R
+is searched for in the path\&. This behaviour
+changed in 4\&.12; previously 
+.ft B
+prog
+.ft R
+was looked up only in the current
+directory\&.
+.sp
+The new process has the same environment as the current process\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val open_process_args_in 
+: 
+.B string -> string array -> in_channel
+.sp
+Same as 
+.ft B
+Unix\&.open_process_args
+.ft R
+, but redirects only the standard output of
+the new process\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val open_process_args_out 
+: 
+.B string -> string array -> out_channel
+.sp
+Same as 
+.ft B
+Unix\&.open_process_args
+.ft R
+, but redirects only the standard input of
+the new process\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val open_process_args_full 
+: 
+.B string ->
+.B   string array ->
+.B   string array -> in_channel * out_channel * in_channel
+.sp
+Similar to 
+.ft B
+Unix\&.open_process_args
+.ft R
+, but the third argument specifies the
+environment passed to the new process\&.  The result is a triple of channels
+connected respectively to the standard output, standard input, and standard
+error of the program\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val process_in_pid 
+: 
+.B in_channel -> int
+.sp
+Return the pid of a process opened via 
+.ft B
+Unix\&.open_process_in
+.ft R
+or
+.ft B
+Unix\&.open_process_args_in
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08 (4.12 in UnixLabels)
+
+.sp
+
+.I val process_out_pid 
+: 
+.B out_channel -> int
+.sp
+Return the pid of a process opened via 
+.ft B
+Unix\&.open_process_out
+.ft R
+or
+.ft B
+Unix\&.open_process_args_out
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08 (4.12 in UnixLabels)
+
+.sp
+
+.I val process_pid 
+: 
+.B in_channel * out_channel -> int
+.sp
+Return the pid of a process opened via 
+.ft B
+Unix\&.open_process
+.ft R
+or
+.ft B
+Unix\&.open_process_args
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08 (4.12 in UnixLabels)
+
+.sp
+
+.I val process_full_pid 
+: 
+.B in_channel * out_channel * in_channel -> int
+.sp
+Return the pid of a process opened via 
+.ft B
+Unix\&.open_process_full
+.ft R
+or
+.ft B
+Unix\&.open_process_args_full
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08 (4.12 in UnixLabels)
+
+.sp
+
+.I val close_process_in 
+: 
+.B in_channel -> process_status
+.sp
+Close channels opened by 
+.ft B
+Unix\&.open_process_in
+.ft R
+,
+wait for the associated command to terminate,
+and return its termination status\&.
+
+.sp
+
+.I val close_process_out 
+: 
+.B out_channel -> process_status
+.sp
+Close channels opened by 
+.ft B
+Unix\&.open_process_out
+.ft R
+,
+wait for the associated command to terminate,
+and return its termination status\&.
+
+.sp
+
+.I val close_process 
+: 
+.B in_channel * out_channel -> process_status
+.sp
+Close channels opened by 
+.ft B
+Unix\&.open_process
+.ft R
+,
+wait for the associated command to terminate,
+and return its termination status\&.
+
+.sp
+
+.I val close_process_full 
+: 
+.B in_channel * out_channel * in_channel ->
+.B   process_status
+.sp
+Close channels opened by 
+.ft B
+Unix\&.open_process_full
+.ft R
+,
+wait for the associated command to terminate,
+and return its termination status\&.
+
+.sp
+
+.PP
+.SS Symbolic links
+
+.PP
+
+.I val symlink 
+: 
+.B ?to_dir:bool -> string -> string -> unit
+.sp
+
+.ft B
+symlink ?to_dir src dst
+.ft R
+creates the file 
+.ft B
+dst
+.ft R
+as a symbolic link
+to the file 
+.ft B
+src
+.ft R
+\&. On Windows, 
+.ft B
+~to_dir
+.ft R
+indicates if the symbolic link
+points to a directory or a file; if omitted, 
+.ft B
+symlink
+.ft R
+examines 
+.ft B
+src
+.ft R
+using 
+.ft B
+stat
+.ft R
+and picks appropriately, if 
+.ft B
+src
+.ft R
+does not exist then 
+.ft B
+false
+.ft R
+is assumed (for this reason, it is recommended that the 
+.ft B
+~to_dir
+.ft R
+parameter
+be specified in new code)\&. On Unix, 
+.ft B
+~to_dir
+.ft R
+is ignored\&.
+.sp
+Windows symbolic links are available in Windows Vista onwards\&. There are some
+important differences between Windows symlinks and their POSIX counterparts\&.
+.sp
+Windows symbolic links come in two flavours: directory and regular, which
+designate whether the symbolic link points to a directory or a file\&. The type
+must be correct \- a directory symlink which actually points to a file cannot
+be selected with chdir and a file symlink which actually points to a
+directory cannot be read or written (note that Cygwin\&'s emulation layer
+ignores this distinction)\&.
+.sp
+When symbolic links are created to existing targets, this distinction doesn\&'t
+matter and 
+.ft B
+symlink
+.ft R
+will automatically create the correct kind of symbolic
+link\&. The distinction matters when a symbolic link is created to a
+non\-existent target\&.
+.sp
+The other caveat is that by default symbolic links are a privileged
+operation\&. Administrators will always need to be running elevated (or with
+UAC disabled) and by default normal user accounts need to be granted the
+SeCreateSymbolicLinkPrivilege via Local Security Policy (secpol\&.msc) or via
+Active Directory\&.
+.sp
+
+.ft B
+Unix\&.has_symlink
+.ft R
+can be used to check that a process is able to create
+symbolic links\&.
+
+.sp
+
+.I val has_symlink 
+: 
+.B unit -> bool
+.sp
+Returns 
+.ft B
+true
+.ft R
+if the user is able to create symbolic links\&. On Windows,
+this indicates that the user not only has the SeCreateSymbolicLinkPrivilege
+but is also running elevated, if necessary\&. On other platforms, this is
+simply indicates that the symlink system call is available\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val readlink 
+: 
+.B string -> string
+.sp
+Read the contents of a symbolic link\&.
+
+.sp
+
+.PP
+.SS Polling
+
+.PP
+
+.I val select 
+: 
+.B file_descr list ->
+.B   file_descr list ->
+.B   file_descr list ->
+.B   float -> file_descr list * file_descr list * file_descr list
+.sp
+Wait until some input/output operations become possible on
+some channels\&. The three list arguments are, respectively, a set
+of descriptors to check for reading (first argument), for writing
+(second argument), or for exceptional conditions (third argument)\&.
+The fourth argument is the maximal timeout, in seconds; a
+negative fourth argument means no timeout (unbounded wait)\&.
+The result is composed of three sets of descriptors: those ready
+for reading (first component), ready for writing (second component),
+and over which an exceptional condition is pending (third
+component)\&.
+
+.sp
+
+.PP
+.SS Locking
+
+.PP
+.I type lock_command 
+=
+ | F_ULOCK  (* Unlock a region
+ *)
+ | F_LOCK  (* Lock a region for writing, and block if already locked
+ *)
+ | F_TLOCK  (* Lock a region for writing, or fail if already locked
+ *)
+ | F_TEST  (* Test a region for other process locks
+ *)
+ | F_RLOCK  (* Lock a region for reading, and block if already locked
+ *)
+ | F_TRLOCK  (* Lock a region for reading, or fail if already locked
+ *)
+ 
+.sp
+Commands for 
+.ft B
+Unix\&.lockf
+.ft R
+\&.
+
+.sp
+
+.I val lockf 
+: 
+.B file_descr -> lock_command -> int -> unit
+.sp
+
+.ft B
+lockf fd mode len
+.ft R
+puts a lock on a region of the file opened
+as 
+.ft B
+fd
+.ft R
+\&. The region starts at the current read/write position for
+.ft B
+fd
+.ft R
+(as set by 
+.ft B
+Unix\&.lseek
+.ft R
+), and extends 
+.ft B
+len
+.ft R
+bytes forward if
+.ft B
+len
+.ft R
+is positive, 
+.ft B
+len
+.ft R
+bytes backwards if 
+.ft B
+len
+.ft R
+is negative,
+or to the end of the file if 
+.ft B
+len
+.ft R
+is zero\&.
+A write lock prevents any other
+process from acquiring a read or write lock on the region\&.
+A read lock prevents any other
+process from acquiring a write lock on the region, but lets
+other processes acquire read locks on it\&.
+.sp
+The 
+.ft B
+F_LOCK
+.ft R
+and 
+.ft B
+F_TLOCK
+.ft R
+commands attempts to put a write lock
+on the specified region\&.
+The 
+.ft B
+F_RLOCK
+.ft R
+and 
+.ft B
+F_TRLOCK
+.ft R
+commands attempts to put a read lock
+on the specified region\&.
+If one or several locks put by another process prevent the current process
+from acquiring the lock, 
+.ft B
+F_LOCK
+.ft R
+and 
+.ft B
+F_RLOCK
+.ft R
+block until these locks
+are removed, while 
+.ft B
+F_TLOCK
+.ft R
+and 
+.ft B
+F_TRLOCK
+.ft R
+fail immediately with an
+exception\&.
+The 
+.ft B
+F_ULOCK
+.ft R
+removes whatever locks the current process has on
+the specified region\&.
+Finally, the 
+.ft B
+F_TEST
+.ft R
+command tests whether a write lock can be
+acquired on the specified region, without actually putting a lock\&.
+It returns immediately if successful, or fails otherwise\&.
+.sp
+What happens when a process tries to lock a region of a file that is
+already locked by the same process depends on the OS\&.  On POSIX\-compliant
+systems, the second lock operation succeeds and may "promote" the older
+lock from read lock to write lock\&.  On Windows, the second lock
+operation will block or fail\&.
+
+.sp
+
+.PP
+.SS Signals
+Note: installation of signal handlers is performed via
+the functions 
+.ft B
+Sys\&.signal
+.ft R
+and 
+.ft B
+Sys\&.set_signal
+.ft R
+\&.
+.PP
+
+.I val kill 
+: 
+.B int -> int -> unit
+.sp
+
+.ft B
+kill pid signal
+.ft R
+sends signal number 
+.ft B
+signal
+.ft R
+to the process
+with id 
+.ft B
+pid
+.ft R
+\&.
+.sp
+On Windows: only the 
+.ft B
+Sys\&.sigkill
+.ft R
+signal is emulated\&.
+
+.sp
+.I type sigprocmask_command 
+=
+ | SIG_SETMASK
+ | SIG_BLOCK
+ | SIG_UNBLOCK
+ 
+.sp
+
+.sp
+
+.I val sigprocmask 
+: 
+.B sigprocmask_command -> int list -> int list
+.sp
+
+.ft B
+sigprocmask mode sigs
+.ft R
+changes the set of blocked signals\&.
+If 
+.ft B
+mode
+.ft R
+is 
+.ft B
+SIG_SETMASK
+.ft R
+, blocked signals are set to those in
+the list 
+.ft B
+sigs
+.ft R
+\&.
+If 
+.ft B
+mode
+.ft R
+is 
+.ft B
+SIG_BLOCK
+.ft R
+, the signals in 
+.ft B
+sigs
+.ft R
+are added to
+the set of blocked signals\&.
+If 
+.ft B
+mode
+.ft R
+is 
+.ft B
+SIG_UNBLOCK
+.ft R
+, the signals in 
+.ft B
+sigs
+.ft R
+are removed
+from the set of blocked signals\&.
+.ft B
+sigprocmask
+.ft R
+returns the set of previously blocked signals\&.
+.sp
+When the systhreads version of the 
+.ft B
+Thread
+.ft R
+module is loaded, this
+function redirects to 
+.ft B
+Thread\&.sigmask
+.ft R
+\&. I\&.e\&., 
+.ft B
+sigprocmask
+.ft R
+only
+changes the mask of the current thread\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows (no inter\-process signals on
+Windows)
+
+.sp
+
+.I val sigpending 
+: 
+.B unit -> int list
+.sp
+Return the set of blocked signals that are currently pending\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows (no inter\-process
+signals on Windows)
+
+.sp
+
+.I val sigsuspend 
+: 
+.B int list -> unit
+.sp
+
+.ft B
+sigsuspend sigs
+.ft R
+atomically sets the blocked signals to 
+.ft B
+sigs
+.ft R
+and waits for a non\-ignored, non\-blocked signal to be delivered\&.
+On return, the blocked signals are reset to their initial value\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows (no inter\-process signals on
+Windows)
+
+.sp
+
+.I val pause 
+: 
+.B unit -> unit
+.sp
+Wait until a non\-ignored, non\-blocked signal is delivered\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows (no inter\-process signals on
+Windows)
+
+.sp
+
+.PP
+.SS Time functions
+
+.PP
+.I type process_times 
+= {
+ tms_utime : 
+.B float
+;  (* User time for the process
+ *) 
+ tms_stime : 
+.B float
+;  (* System time for the process
+ *) 
+ tms_cutime : 
+.B float
+;  (* User time for the children processes
+ *) 
+ tms_cstime : 
+.B float
+;  (* System time for the children processes
+ *) 
+ }
+
+.sp
+The execution times (CPU times) of a process\&.
+
+.sp
+.I type tm 
+= {
+ tm_sec : 
+.B int
+;  (* Seconds 0\&.\&.60
+ *) 
+ tm_min : 
+.B int
+;  (* Minutes 0\&.\&.59
+ *) 
+ tm_hour : 
+.B int
+;  (* Hours 0\&.\&.23
+ *) 
+ tm_mday : 
+.B int
+;  (* Day of month 1\&.\&.31
+ *) 
+ tm_mon : 
+.B int
+;  (* Month of year 0\&.\&.11
+ *) 
+ tm_year : 
+.B int
+;  (* Year \- 1900
+ *) 
+ tm_wday : 
+.B int
+;  (* Day of week (Sunday is 0)
+ *) 
+ tm_yday : 
+.B int
+;  (* Day of year 0\&.\&.365
+ *) 
+ tm_isdst : 
+.B bool
+;  (* Daylight time savings in effect
+ *) 
+ }
+
+.sp
+The type representing wallclock time and calendar date\&.
+
+.sp
+
+.I val time 
+: 
+.B unit -> float
+.sp
+Return the current time since 00:00:00 GMT, Jan\&. 1, 1970,
+in seconds\&.
+
+.sp
+
+.I val gettimeofday 
+: 
+.B unit -> float
+.sp
+Same as 
+.ft B
+Unix\&.time
+.ft R
+, but with resolution better than 1 second\&.
+
+.sp
+
+.I val gmtime 
+: 
+.B float -> tm
+.sp
+Convert a time in seconds, as returned by 
+.ft B
+Unix\&.time
+.ft R
+, into a date and
+a time\&. Assumes UTC (Coordinated Universal Time), also known as GMT\&.
+To perform the inverse conversion, set the TZ environment variable
+to "UTC", use 
+.ft B
+Unix\&.mktime
+.ft R
+, and then restore the original value of TZ\&.
+
+.sp
+
+.I val localtime 
+: 
+.B float -> tm
+.sp
+Convert a time in seconds, as returned by 
+.ft B
+Unix\&.time
+.ft R
+, into a date and
+a time\&. Assumes the local time zone\&.
+The function performing the inverse conversion is 
+.ft B
+Unix\&.mktime
+.ft R
+\&.
+
+.sp
+
+.I val mktime 
+: 
+.B tm -> float * tm
+.sp
+Convert a date and time, specified by the 
+.ft B
+tm
+.ft R
+argument, into
+a time in seconds, as returned by 
+.ft B
+Unix\&.time
+.ft R
+\&.  The 
+.ft B
+tm_isdst
+.ft R
+,
+.ft B
+tm_wday
+.ft R
+and 
+.ft B
+tm_yday
+.ft R
+fields of 
+.ft B
+tm
+.ft R
+are ignored\&.  Also return a
+normalized copy of the given 
+.ft B
+tm
+.ft R
+record, with the 
+.ft B
+tm_wday
+.ft R
+,
+.ft B
+tm_yday
+.ft R
+, and 
+.ft B
+tm_isdst
+.ft R
+fields recomputed from the other fields,
+and the other fields normalized (so that, e\&.g\&., 40 October is
+changed into 9 November)\&.  The 
+.ft B
+tm
+.ft R
+argument is interpreted in the
+local time zone\&.
+
+.sp
+
+.I val alarm 
+: 
+.B int -> int
+.sp
+Schedule a 
+.ft B
+SIGALRM
+.ft R
+signal after the given number of seconds\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val sleep 
+: 
+.B int -> unit
+.sp
+Stop execution for the given number of seconds\&.
+
+.sp
+
+.I val sleepf 
+: 
+.B float -> unit
+.sp
+Stop execution for the given number of seconds\&.  Like 
+.ft B
+sleep
+.ft R
+,
+but fractions of seconds are supported\&.
+
+.sp
+.B "Since"
+4.03 (4.12 in UnixLabels)
+
+.sp
+
+.I val times 
+: 
+.B unit -> process_times
+.sp
+Return the execution times of the process\&.
+.sp
+On Windows: partially implemented, will not report timings
+for child processes\&.
+
+.sp
+
+.I val utimes 
+: 
+.B string -> float -> float -> unit
+.sp
+Set the last access time (second arg) and last modification time
+(third arg) for a file\&. Times are expressed in seconds from
+00:00:00 GMT, Jan\&. 1, 1970\&.  If both times are 
+.ft B
+0\&.0
+.ft R
+, the access
+and last modification times are both set to the current time\&.
+
+.sp
+.I type interval_timer 
+=
+ | ITIMER_REAL  (* decrements in real time, and sends the signal 
+.ft B
+SIGALRM
+.ft R
+when
+expired\&.
+ *)
+ | ITIMER_VIRTUAL  (* decrements in process virtual time, and sends 
+.ft B
+SIGVTALRM
+.ft R
+when
+expired\&.
+ *)
+ | ITIMER_PROF  (* (for profiling) decrements both when the process
+is running and when the system is running on behalf of the
+process; it sends 
+.ft B
+SIGPROF
+.ft R
+when expired\&.
+ *)
+ 
+.sp
+The three kinds of interval timers\&.
+
+.sp
+.I type interval_timer_status 
+= {
+ it_interval : 
+.B float
+;  (* Period
+ *) 
+ it_value : 
+.B float
+;  (* Current value of the timer
+ *) 
+ }
+
+.sp
+The type describing the status of an interval timer
+
+.sp
+
+.I val getitimer 
+: 
+.B interval_timer -> interval_timer_status
+.sp
+Return the current status of the given interval timer\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val setitimer 
+: 
+.B interval_timer ->
+.B   interval_timer_status -> interval_timer_status
+.sp
+
+.ft B
+setitimer t s
+.ft R
+sets the interval timer 
+.ft B
+t
+.ft R
+and returns
+its previous status\&. The 
+.ft B
+s
+.ft R
+argument is interpreted as follows:
+.ft B
+s\&.it_value
+.ft R
+, if nonzero, is the time to the next timer expiration;
+.ft B
+s\&.it_interval
+.ft R
+, if nonzero, specifies a value to
+be used in reloading 
+.ft B
+it_value
+.ft R
+when the timer expires\&.
+Setting 
+.ft B
+s\&.it_value
+.ft R
+to zero disables the timer\&.
+Setting 
+.ft B
+s\&.it_interval
+.ft R
+to zero causes the timer to be disabled
+after its next expiration\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.PP
+.SS User id, group id
+
+.PP
+
+.I val getuid 
+: 
+.B unit -> int
+.sp
+Return the user id of the user executing the process\&.
+.sp
+On Windows: always returns 
+.ft B
+1
+.ft R
+\&.
+
+.sp
+
+.I val geteuid 
+: 
+.B unit -> int
+.sp
+Return the effective user id under which the process runs\&.
+.sp
+On Windows: always returns 
+.ft B
+1
+.ft R
+\&.
+
+.sp
+
+.I val setuid 
+: 
+.B int -> unit
+.sp
+Set the real user id and effective user id for the process\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val getgid 
+: 
+.B unit -> int
+.sp
+Return the group id of the user executing the process\&.
+.sp
+On Windows: always returns 
+.ft B
+1
+.ft R
+\&.
+
+.sp
+
+.I val getegid 
+: 
+.B unit -> int
+.sp
+Return the effective group id under which the process runs\&.
+.sp
+On Windows: always returns 
+.ft B
+1
+.ft R
+\&.
+
+.sp
+
+.I val setgid 
+: 
+.B int -> unit
+.sp
+Set the real group id and effective group id for the process\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val getgroups 
+: 
+.B unit -> int array
+.sp
+Return the list of groups to which the user executing the process
+belongs\&.
+.sp
+On Windows: always returns 
+.ft B
+[|1|]
+.ft R
+\&.
+
+.sp
+
+.I val setgroups 
+: 
+.B int array -> unit
+.sp
+
+.ft B
+setgroups groups
+.ft R
+sets the supplementary group IDs for the
+calling process\&. Appropriate privileges are required\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val initgroups 
+: 
+.B string -> int -> unit
+.sp
+
+.ft B
+initgroups user group
+.ft R
+initializes the group access list by
+reading the group database /etc/group and using all groups of
+which 
+.ft B
+user
+.ft R
+is a member\&. The additional group 
+.ft B
+group
+.ft R
+is also
+added to the list\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+.I type passwd_entry 
+= {
+ pw_name : 
+.B string
+;
+ pw_passwd : 
+.B string
+;
+ pw_uid : 
+.B int
+;
+ pw_gid : 
+.B int
+;
+ pw_gecos : 
+.B string
+;
+ pw_dir : 
+.B string
+;
+ pw_shell : 
+.B string
+;
+ }
+
+.sp
+Structure of entries in the 
+.ft B
+passwd
+.ft R
+database\&.
+
+.sp
+.I type group_entry 
+= {
+ gr_name : 
+.B string
+;
+ gr_passwd : 
+.B string
+;
+ gr_gid : 
+.B int
+;
+ gr_mem : 
+.B string array
+;
+ }
+
+.sp
+Structure of entries in the 
+.ft B
+groups
+.ft R
+database\&.
+
+.sp
+
+.I val getlogin 
+: 
+.B unit -> string
+.sp
+Return the login name of the user executing the process\&.
+
+.sp
+
+.I val getpwnam 
+: 
+.B string -> passwd_entry
+.sp
+Find an entry in 
+.ft B
+passwd
+.ft R
+with the given name\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists, or always on Windows\&.
+
+.sp
+
+.I val getgrnam 
+: 
+.B string -> group_entry
+.sp
+Find an entry in 
+.ft B
+group
+.ft R
+with the given name\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists, or always on Windows\&.
+
+.sp
+
+.I val getpwuid 
+: 
+.B int -> passwd_entry
+.sp
+Find an entry in 
+.ft B
+passwd
+.ft R
+with the given user id\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists, or always on Windows\&.
+
+.sp
+
+.I val getgrgid 
+: 
+.B int -> group_entry
+.sp
+Find an entry in 
+.ft B
+group
+.ft R
+with the given group id\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists, or always on Windows\&.
+
+.sp
+
+.PP
+.SS Internet addresses
+
+.PP
+.I type inet_addr 
+
+.sp
+The abstract type of Internet addresses\&.
+
+.sp
+
+.I val inet_addr_of_string 
+: 
+.B string -> inet_addr
+.sp
+Conversion from the printable representation of an Internet
+address to its internal representation\&.  The argument string
+consists of 4 numbers separated by periods (
+.ft B
+XXX\&.YYY\&.ZZZ\&.TTT
+.ft R
+)
+for IPv4 addresses, and up to 8 numbers separated by colons
+for IPv6 addresses\&.
+
+.sp
+.B "Raises Failure"
+when given a string that does not match these formats\&.
+
+.sp
+
+.I val string_of_inet_addr 
+: 
+.B inet_addr -> string
+.sp
+Return the printable representation of the given Internet address\&.
+See 
+.ft B
+Unix\&.inet_addr_of_string
+.ft R
+for a description of the
+printable representation\&.
+
+.sp
+
+.I val inet_addr_any 
+: 
+.B inet_addr
+.sp
+A special IPv4 address, for use only with 
+.ft B
+bind
+.ft R
+, representing
+all the Internet addresses that the host machine possesses\&.
+
+.sp
+
+.I val inet_addr_loopback 
+: 
+.B inet_addr
+.sp
+A special IPv4 address representing the host machine (
+.ft B
+127\&.0\&.0\&.1
+.ft R
+)\&.
+
+.sp
+
+.I val inet6_addr_any 
+: 
+.B inet_addr
+.sp
+A special IPv6 address, for use only with 
+.ft B
+bind
+.ft R
+, representing
+all the Internet addresses that the host machine possesses\&.
+
+.sp
+
+.I val inet6_addr_loopback 
+: 
+.B inet_addr
+.sp
+A special IPv6 address representing the host machine (
+.ft B
+::1
+.ft R
+)\&.
+
+.sp
+
+.I val is_inet6_addr 
+: 
+.B inet_addr -> bool
+.sp
+Whether the given 
+.ft B
+inet_addr
+.ft R
+is an IPv6 address\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.PP
+.SS Sockets
+
+.PP
+.I type socket_domain 
+=
+ | PF_UNIX  (* Unix domain
+ *)
+ | PF_INET  (* Internet domain (IPv4)
+ *)
+ | PF_INET6  (* Internet domain (IPv6)
+ *)
+ 
+.sp
+The type of socket domains\&.  Not all platforms support
+IPv6 sockets (type 
+.ft B
+PF_INET6
+.ft R
+)\&.
+.sp
+On Windows: 
+.ft B
+PF_UNIX
+.ft R
+supported since 4\&.14\&.0 on Windows 10 1803
+and later\&.
+
+.sp
+.I type socket_type 
+=
+ | SOCK_STREAM  (* Stream socket
+ *)
+ | SOCK_DGRAM  (* Datagram socket
+ *)
+ | SOCK_RAW  (* Raw socket
+ *)
+ | SOCK_SEQPACKET  (* Sequenced packets socket
+ *)
+ 
+.sp
+The type of socket kinds, specifying the semantics of
+communications\&.  
+.ft B
+SOCK_SEQPACKET
+.ft R
+is included for completeness,
+but is rarely supported by the OS, and needs system calls that
+are not available in this library\&.
+
+.sp
+.I type sockaddr 
+=
+ | ADDR_UNIX
+.B of 
+.B string
+ | ADDR_INET
+.B of 
+.B inet_addr * int
+ 
+.sp
+The type of socket addresses\&. 
+.ft B
+ADDR_UNIX name
+.ft R
+is a socket
+address in the Unix domain; 
+.ft B
+name
+.ft R
+is a file name in the file
+system\&. 
+.ft B
+ADDR_INET(addr,port)
+.ft R
+is a socket address in the Internet
+domain; 
+.ft B
+addr
+.ft R
+is the Internet address of the machine, and
+.ft B
+port
+.ft R
+is the port number\&.
+
+.sp
+
+.I val socket 
+: 
+.B ?cloexec:bool ->
+.B   socket_domain -> socket_type -> int -> file_descr
+.sp
+Create a new socket in the given domain, and with the
+given kind\&. The third argument is the protocol type; 0 selects
+the default protocol for that kind of sockets\&.
+See 
+.ft B
+Unix\&.set_close_on_exec
+.ft R
+for documentation on the 
+.ft B
+cloexec
+.ft R
+optional argument\&.
+
+.sp
+
+.I val domain_of_sockaddr 
+: 
+.B sockaddr -> socket_domain
+.sp
+Return the socket domain adequate for the given socket address\&.
+
+.sp
+
+.I val socketpair 
+: 
+.B ?cloexec:bool ->
+.B   socket_domain ->
+.B   socket_type -> int -> file_descr * file_descr
+.sp
+Create a pair of unnamed sockets, connected together\&.
+See 
+.ft B
+Unix\&.set_close_on_exec
+.ft R
+for documentation on the 
+.ft B
+cloexec
+.ft R
+optional argument\&.
+
+.sp
+
+.I val accept 
+: 
+.B ?cloexec:bool -> file_descr -> file_descr * sockaddr
+.sp
+Accept connections on the given socket\&. The returned descriptor
+is a socket connected to the client; the returned address is
+the address of the connecting client\&.
+See 
+.ft B
+Unix\&.set_close_on_exec
+.ft R
+for documentation on the 
+.ft B
+cloexec
+.ft R
+optional argument\&.
+
+.sp
+
+.I val bind 
+: 
+.B file_descr -> sockaddr -> unit
+.sp
+Bind a socket to an address\&.
+
+.sp
+
+.I val connect 
+: 
+.B file_descr -> sockaddr -> unit
+.sp
+Connect a socket to an address\&.
+
+.sp
+
+.I val listen 
+: 
+.B file_descr -> int -> unit
+.sp
+Set up a socket for receiving connection requests\&. The integer
+argument is the maximal number of pending requests\&.
+
+.sp
+.I type shutdown_command 
+=
+ | SHUTDOWN_RECEIVE  (* Close for receiving
+ *)
+ | SHUTDOWN_SEND  (* Close for sending
+ *)
+ | SHUTDOWN_ALL  (* Close both
+ *)
+ 
+.sp
+The type of commands for 
+.ft B
+shutdown
+.ft R
+\&.
+
+.sp
+
+.I val shutdown 
+: 
+.B file_descr -> shutdown_command -> unit
+.sp
+Shutdown a socket connection\&. 
+.ft B
+SHUTDOWN_SEND
+.ft R
+as second argument
+causes reads on the other end of the connection to return
+an end\-of\-file condition\&.
+.ft B
+SHUTDOWN_RECEIVE
+.ft R
+causes writes on the other end of the connection
+to return a closed pipe condition (
+.ft B
+SIGPIPE
+.ft R
+signal)\&.
+
+.sp
+
+.I val getsockname 
+: 
+.B file_descr -> sockaddr
+.sp
+Return the address of the given socket\&.
+
+.sp
+
+.I val getpeername 
+: 
+.B file_descr -> sockaddr
+.sp
+Return the address of the host connected to the given socket\&.
+
+.sp
+.I type msg_flag 
+=
+ | MSG_OOB
+ | MSG_DONTROUTE
+ | MSG_PEEK
+ 
+.sp
+The flags for 
+.ft B
+Unix\&.recv
+.ft R
+, 
+.ft B
+Unix\&.recvfrom
+.ft R
+, 
+.ft B
+Unix\&.send
+.ft R
+and 
+.ft B
+Unix\&.sendto
+.ft R
+\&.
+
+.sp
+
+.I val recv 
+: 
+.B file_descr -> bytes -> int -> int -> msg_flag list -> int
+.sp
+Receive data from a connected socket\&.
+
+.sp
+
+.I val recvfrom 
+: 
+.B file_descr ->
+.B   bytes -> int -> int -> msg_flag list -> int * sockaddr
+.sp
+Receive data from an unconnected socket\&.
+
+.sp
+
+.I val send 
+: 
+.B file_descr -> bytes -> int -> int -> msg_flag list -> int
+.sp
+Send data over a connected socket\&.
+
+.sp
+
+.I val send_substring 
+: 
+.B file_descr -> string -> int -> int -> msg_flag list -> int
+.sp
+Same as 
+.ft B
+send
+.ft R
+, but take the data from a string instead of a byte
+sequence\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val sendto 
+: 
+.B file_descr ->
+.B   bytes -> int -> int -> msg_flag list -> sockaddr -> int
+.sp
+Send data over an unconnected socket\&.
+
+.sp
+
+.I val sendto_substring 
+: 
+.B file_descr ->
+.B   string -> int -> int -> msg_flag list -> sockaddr -> int
+.sp
+Same as 
+.ft B
+sendto
+.ft R
+, but take the data from a string instead of a
+byte sequence\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.PP
+.SS Socket options
+
+.PP
+.I type socket_bool_option 
+=
+ | SO_DEBUG  (* Record debugging information
+ *)
+ | SO_BROADCAST  (* Permit sending of broadcast messages
+ *)
+ | SO_REUSEADDR  (* Allow reuse of local addresses for bind
+ *)
+ | SO_KEEPALIVE  (* Keep connection active
+ *)
+ | SO_DONTROUTE  (* Bypass the standard routing algorithms
+ *)
+ | SO_OOBINLINE  (* Leave out\-of\-band data in line
+ *)
+ | SO_ACCEPTCONN  (* Report whether socket listening is enabled
+ *)
+ | TCP_NODELAY  (* Control the Nagle algorithm for TCP sockets
+ *)
+ | IPV6_ONLY  (* Forbid binding an IPv6 socket to an IPv4 address
+ *)
+ | SO_REUSEPORT  (* Allow reuse of address and port bindings
+ *)
+ 
+.sp
+The socket options that can be consulted with 
+.ft B
+Unix\&.getsockopt
+.ft R
+and modified with 
+.ft B
+Unix\&.setsockopt
+.ft R
+\&.  These options have a boolean
+(
+.ft B
+true
+.ft R
+/
+.ft B
+false
+.ft R
+) value\&.
+
+.sp
+.I type socket_int_option 
+=
+ | SO_SNDBUF  (* Size of send buffer
+ *)
+ | SO_RCVBUF  (* Size of received buffer
+ *)
+ | SO_ERROR  (* .B "Deprecated."
+Use Unix\&.getsockopt_error instead\&.
+
+.sp
+Deprecated\&.  Use 
+.ft B
+Unix\&.getsockopt_error
+.ft R
+instead\&.
+ *)
+ | SO_TYPE  (* Report the socket type
+ *)
+ | SO_RCVLOWAT  (* Minimum number of bytes to process for input operations
+ *)
+ | SO_SNDLOWAT  (* Minimum number of bytes to process for output operations
+ *)
+ 
+.sp
+The socket options that can be consulted with 
+.ft B
+Unix\&.getsockopt_int
+.ft R
+and modified with 
+.ft B
+Unix\&.setsockopt_int
+.ft R
+\&.  These options have an
+integer value\&.
+
+.sp
+.I type socket_optint_option 
+=
+ | SO_LINGER  (* Whether to linger on closed connections
+that have data present, and for how long
+(in seconds)
+ *)
+ 
+.sp
+The socket options that can be consulted with 
+.ft B
+Unix\&.getsockopt_optint
+.ft R
+and modified with 
+.ft B
+Unix\&.setsockopt_optint
+.ft R
+\&.  These options have a
+value of type 
+.ft B
+int option
+.ft R
+, with 
+.ft B
+None
+.ft R
+meaning ``disabled\&'\&'\&.
+
+.sp
+.I type socket_float_option 
+=
+ | SO_RCVTIMEO  (* Timeout for input operations
+ *)
+ | SO_SNDTIMEO  (* Timeout for output operations
+ *)
+ 
+.sp
+The socket options that can be consulted with 
+.ft B
+Unix\&.getsockopt_float
+.ft R
+and modified with 
+.ft B
+Unix\&.setsockopt_float
+.ft R
+\&.  These options have a
+floating\-point value representing a time in seconds\&.
+The value 0 means infinite timeout\&.
+
+.sp
+
+.I val getsockopt 
+: 
+.B file_descr -> socket_bool_option -> bool
+.sp
+Return the current status of a boolean\-valued option
+in the given socket\&.
+
+.sp
+
+.I val setsockopt 
+: 
+.B file_descr -> socket_bool_option -> bool -> unit
+.sp
+Set or clear a boolean\-valued option in the given socket\&.
+
+.sp
+
+.I val getsockopt_int 
+: 
+.B file_descr -> socket_int_option -> int
+.sp
+Same as 
+.ft B
+Unix\&.getsockopt
+.ft R
+for an integer\-valued socket option\&.
+
+.sp
+
+.I val setsockopt_int 
+: 
+.B file_descr -> socket_int_option -> int -> unit
+.sp
+Same as 
+.ft B
+Unix\&.setsockopt
+.ft R
+for an integer\-valued socket option\&.
+
+.sp
+
+.I val getsockopt_optint 
+: 
+.B file_descr -> socket_optint_option -> int option
+.sp
+Same as 
+.ft B
+Unix\&.getsockopt
+.ft R
+for a socket option whose value is
+an 
+.ft B
+int option
+.ft R
+\&.
+
+.sp
+
+.I val setsockopt_optint 
+: 
+.B file_descr -> socket_optint_option -> int option -> unit
+.sp
+Same as 
+.ft B
+Unix\&.setsockopt
+.ft R
+for a socket option whose value is
+an 
+.ft B
+int option
+.ft R
+\&.
+
+.sp
+
+.I val getsockopt_float 
+: 
+.B file_descr -> socket_float_option -> float
+.sp
+Same as 
+.ft B
+Unix\&.getsockopt
+.ft R
+for a socket option whose value is a
+floating\-point number\&.
+
+.sp
+
+.I val setsockopt_float 
+: 
+.B file_descr -> socket_float_option -> float -> unit
+.sp
+Same as 
+.ft B
+Unix\&.setsockopt
+.ft R
+for a socket option whose value is a
+floating\-point number\&.
+
+.sp
+
+.I val getsockopt_error 
+: 
+.B file_descr -> error option
+.sp
+Return the error condition associated with the given socket,
+and clear it\&.
+
+.sp
+
+.PP
+.SS High-level network connection functions
+
+.PP
+
+.I val open_connection 
+: 
+.B sockaddr -> in_channel * out_channel
+.sp
+Connect to a server at the given address\&.
+Return a pair of buffered channels connected to the server\&.
+Remember to call 
+.ft B
+flush
+.ft R
+on the output channel at the right
+times to ensure correct synchronization\&.
+.sp
+The two channels returned by 
+.ft B
+open_connection
+.ft R
+share a descriptor
+to a socket\&.  Therefore, when the connection is over, you should
+call 
+.ft B
+close_out
+.ft R
+on the output channel, which will also close
+the underlying socket\&.  Do not call 
+.ft B
+close_in
+.ft R
+on the input
+channel; it will be collected by the GC eventually\&.
+
+.sp
+
+.I val shutdown_connection 
+: 
+.B in_channel -> unit
+.sp
+``Shut down\&'\&' a connection established with 
+.ft B
+Unix\&.open_connection
+.ft R
+;
+that is, transmit an end\-of\-file condition to the server reading
+on the other side of the connection\&. This does not close the
+socket and the channels used by the connection\&.
+See 
+.ft B
+Unix\&.open_connection
+.ft R
+for how to close them once the
+connection is over\&.
+
+.sp
+
+.I val establish_server 
+: 
+.B (in_channel -> out_channel -> unit) -> sockaddr -> unit
+.sp
+Establish a server on the given address\&.
+The function given as first argument is called for each connection
+with two buffered channels connected to the client\&. A new process
+is created for each connection\&. The function 
+.ft B
+Unix\&.establish_server
+.ft R
+never returns normally\&.
+.sp
+The two channels given to the function share a descriptor to a
+socket\&.  The function does not need to close the channels, since this
+occurs automatically when the function returns\&.  If the function
+prefers explicit closing, it should close the output channel using
+.ft B
+close_out
+.ft R
+and leave the input channel unclosed,
+for reasons explained in 
+.ft B
+Unix\&.in_channel_of_descr
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows\&. Use threads instead\&.
+
+.sp
+
+.PP
+.SS Host and protocol databases
+
+.PP
+.I type host_entry 
+= {
+ h_name : 
+.B string
+;
+ h_aliases : 
+.B string array
+;
+ h_addrtype : 
+.B socket_domain
+;
+ h_addr_list : 
+.B inet_addr array
+;
+ }
+
+.sp
+Structure of entries in the 
+.ft B
+hosts
+.ft R
+database\&.
+
+.sp
+.I type protocol_entry 
+= {
+ p_name : 
+.B string
+;
+ p_aliases : 
+.B string array
+;
+ p_proto : 
+.B int
+;
+ }
+
+.sp
+Structure of entries in the 
+.ft B
+protocols
+.ft R
+database\&.
+
+.sp
+.I type service_entry 
+= {
+ s_name : 
+.B string
+;
+ s_aliases : 
+.B string array
+;
+ s_port : 
+.B int
+;
+ s_proto : 
+.B string
+;
+ }
+
+.sp
+Structure of entries in the 
+.ft B
+services
+.ft R
+database\&.
+
+.sp
+
+.I val gethostname 
+: 
+.B unit -> string
+.sp
+Return the name of the local host\&.
+
+.sp
+
+.I val gethostbyname 
+: 
+.B string -> host_entry
+.sp
+Find an entry in 
+.ft B
+hosts
+.ft R
+with the given name\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists\&.
+
+.sp
+
+.I val gethostbyaddr 
+: 
+.B inet_addr -> host_entry
+.sp
+Find an entry in 
+.ft B
+hosts
+.ft R
+with the given address\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists\&.
+
+.sp
+
+.I val getprotobyname 
+: 
+.B string -> protocol_entry
+.sp
+Find an entry in 
+.ft B
+protocols
+.ft R
+with the given name\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists\&.
+
+.sp
+
+.I val getprotobynumber 
+: 
+.B int -> protocol_entry
+.sp
+Find an entry in 
+.ft B
+protocols
+.ft R
+with the given protocol number\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists\&.
+
+.sp
+
+.I val getservbyname 
+: 
+.B string -> string -> service_entry
+.sp
+Find an entry in 
+.ft B
+services
+.ft R
+with the given name\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists\&.
+
+.sp
+
+.I val getservbyport 
+: 
+.B int -> string -> service_entry
+.sp
+Find an entry in 
+.ft B
+services
+.ft R
+with the given service number\&.
+
+.sp
+.B "Raises Not_found"
+if no such entry exists\&.
+
+.sp
+.I type addr_info 
+= {
+ ai_family : 
+.B socket_domain
+;  (* Socket domain
+ *) 
+ ai_socktype : 
+.B socket_type
+;  (* Socket type
+ *) 
+ ai_protocol : 
+.B int
+;  (* Socket protocol number
+ *) 
+ ai_addr : 
+.B sockaddr
+;  (* Address
+ *) 
+ ai_canonname : 
+.B string
+;  (* Canonical host name
+ *) 
+ }
+
+.sp
+Address information returned by 
+.ft B
+Unix\&.getaddrinfo
+.ft R
+\&.
+
+.sp
+.I type getaddrinfo_option 
+=
+ | AI_FAMILY
+.B of 
+.B socket_domain
+.I "  "
+  (* Impose the given socket domain
+ *)
+ | AI_SOCKTYPE
+.B of 
+.B socket_type
+.I "  "
+  (* Impose the given socket type
+ *)
+ | AI_PROTOCOL
+.B of 
+.B int
+.I "  "
+  (* Impose the given protocol
+ *)
+ | AI_NUMERICHOST  (* Do not call name resolver,
+expect numeric IP address
+ *)
+ | AI_CANONNAME  (* Fill the 
+.ft B
+ai_canonname
+.ft R
+field
+of the result
+ *)
+ | AI_PASSIVE  (* Set address to ``any\&'\&' address
+for use with 
+.ft B
+Unix\&.bind
+.ft R
+
+ *)
+ 
+.sp
+Options to 
+.ft B
+Unix\&.getaddrinfo
+.ft R
+\&.
+
+.sp
+
+.I val getaddrinfo 
+: 
+.B string -> string -> getaddrinfo_option list -> addr_info list
+.sp
+
+.ft B
+getaddrinfo host service opts
+.ft R
+returns a list of 
+.ft B
+Unix\&.addr_info
+.ft R
+records describing socket parameters and addresses suitable for
+communicating with the given host and service\&.  The empty list is
+returned if the host or service names are unknown, or the constraints
+expressed in 
+.ft B
+opts
+.ft R
+cannot be satisfied\&.
+.sp
+
+.ft B
+host
+.ft R
+is either a host name or the string representation of an IP
+address\&.  
+.ft B
+host
+.ft R
+can be given as the empty string; in this case,
+the ``any\&'\&' address or the ``loopback\&'\&' address are used,
+depending whether 
+.ft B
+opts
+.ft R
+contains 
+.ft B
+AI_PASSIVE
+.ft R
+\&.
+.ft B
+service
+.ft R
+is either a service name or the string representation of
+a port number\&.  
+.ft B
+service
+.ft R
+can be given as the empty string;
+in this case, the port field of the returned addresses is set to 0\&.
+.ft B
+opts
+.ft R
+is a possibly empty list of options that allows the caller
+to force a particular socket domain (e\&.g\&. IPv6 only or IPv4 only)
+or a particular socket type (e\&.g\&. TCP only or UDP only)\&.
+
+.sp
+.I type name_info 
+= {
+ ni_hostname : 
+.B string
+;  (* Name or IP address of host
+ *) 
+ ni_service : 
+.B string
+;  (* Name of service or port number
+ *) 
+ }
+
+.sp
+Host and service information returned by 
+.ft B
+Unix\&.getnameinfo
+.ft R
+\&.
+
+.sp
+.I type getnameinfo_option 
+=
+ | NI_NOFQDN  (* Do not qualify local host names
+ *)
+ | NI_NUMERICHOST  (* Always return host as IP address
+ *)
+ | NI_NAMEREQD  (* Fail if host name cannot be determined
+ *)
+ | NI_NUMERICSERV  (* Always return service as port number
+ *)
+ | NI_DGRAM  (* Consider the service as UDP\-based
+instead of the default TCP
+ *)
+ 
+.sp
+Options to 
+.ft B
+Unix\&.getnameinfo
+.ft R
+\&.
+
+.sp
+
+.I val getnameinfo 
+: 
+.B sockaddr -> getnameinfo_option list -> name_info
+.sp
+
+.ft B
+getnameinfo addr opts
+.ft R
+returns the host name and service name
+corresponding to the socket address 
+.ft B
+addr
+.ft R
+\&.  
+.ft B
+opts
+.ft R
+is a possibly
+empty list of options that governs how these names are obtained\&.
+
+.sp
+.B "Raises Not_found"
+if an error occurs\&.
+
+.sp
+
+.PP
+.SS Terminal interface
+
+.PP
+
+.PP
+The following functions implement the POSIX standard terminal
+interface\&. They provide control over asynchronous communication ports
+and pseudo\-terminals\&. Refer to the 
+.ft B
+termios
+.ft R
+man page for a
+complete description\&.
+.PP
+.I type terminal_io 
+= {
+
+.B mutable 
+c_ignbrk : 
+.B bool
+;  (* Ignore the break condition\&.
+ *) 
+
+.B mutable 
+c_brkint : 
+.B bool
+;  (* Signal interrupt on break condition\&.
+ *) 
+
+.B mutable 
+c_ignpar : 
+.B bool
+;  (* Ignore characters with parity errors\&.
+ *) 
+
+.B mutable 
+c_parmrk : 
+.B bool
+;  (* Mark parity errors\&.
+ *) 
+
+.B mutable 
+c_inpck : 
+.B bool
+;  (* Enable parity check on input\&.
+ *) 
+
+.B mutable 
+c_istrip : 
+.B bool
+;  (* Strip 8th bit on input characters\&.
+ *) 
+
+.B mutable 
+c_inlcr : 
+.B bool
+;  (* Map NL to CR on input\&.
+ *) 
+
+.B mutable 
+c_igncr : 
+.B bool
+;  (* Ignore CR on input\&.
+ *) 
+
+.B mutable 
+c_icrnl : 
+.B bool
+;  (* Map CR to NL on input\&.
+ *) 
+
+.B mutable 
+c_ixon : 
+.B bool
+;  (* Recognize XON/XOFF characters on input\&.
+ *) 
+
+.B mutable 
+c_ixoff : 
+.B bool
+;  (* Emit XON/XOFF chars to control input flow\&.
+ *) 
+
+.B mutable 
+c_opost : 
+.B bool
+;  (* Enable output processing\&.
+ *) 
+
+.B mutable 
+c_obaud : 
+.B int
+;  (* Output baud rate (0 means close connection)\&.
+ *) 
+
+.B mutable 
+c_ibaud : 
+.B int
+;  (* Input baud rate\&.
+ *) 
+
+.B mutable 
+c_csize : 
+.B int
+;  (* Number of bits per character (5\-8)\&.
+ *) 
+
+.B mutable 
+c_cstopb : 
+.B int
+;  (* Number of stop bits (1\-2)\&.
+ *) 
+
+.B mutable 
+c_cread : 
+.B bool
+;  (* Reception is enabled\&.
+ *) 
+
+.B mutable 
+c_parenb : 
+.B bool
+;  (* Enable parity generation and detection\&.
+ *) 
+
+.B mutable 
+c_parodd : 
+.B bool
+;  (* Specify odd parity instead of even\&.
+ *) 
+
+.B mutable 
+c_hupcl : 
+.B bool
+;  (* Hang up on last close\&.
+ *) 
+
+.B mutable 
+c_clocal : 
+.B bool
+;  (* Ignore modem status lines\&.
+ *) 
+
+.B mutable 
+c_isig : 
+.B bool
+;  (* Generate signal on INTR, QUIT, SUSP\&.
+ *) 
+
+.B mutable 
+c_icanon : 
+.B bool
+;  (* Enable canonical processing
+(line buffering and editing)
+ *) 
+
+.B mutable 
+c_noflsh : 
+.B bool
+;  (* Disable flush after INTR, QUIT, SUSP\&.
+ *) 
+
+.B mutable 
+c_echo : 
+.B bool
+;  (* Echo input characters\&.
+ *) 
+
+.B mutable 
+c_echoe : 
+.B bool
+;  (* Echo ERASE (to erase previous character)\&.
+ *) 
+
+.B mutable 
+c_echok : 
+.B bool
+;  (* Echo KILL (to erase the current line)\&.
+ *) 
+
+.B mutable 
+c_echonl : 
+.B bool
+;  (* Echo NL even if c_echo is not set\&.
+ *) 
+
+.B mutable 
+c_vintr : 
+.B char
+;  (* Interrupt character (usually ctrl\-C)\&.
+ *) 
+
+.B mutable 
+c_vquit : 
+.B char
+;  (* Quit character (usually ctrl\-\(rs)\&.
+ *) 
+
+.B mutable 
+c_verase : 
+.B char
+;  (* Erase character (usually DEL or ctrl\-H)\&.
+ *) 
+
+.B mutable 
+c_vkill : 
+.B char
+;  (* Kill line character (usually ctrl\-U)\&.
+ *) 
+
+.B mutable 
+c_veof : 
+.B char
+;  (* End\-of\-file character (usually ctrl\-D)\&.
+ *) 
+
+.B mutable 
+c_veol : 
+.B char
+;  (* Alternate end\-of\-line char\&. (usually none)\&.
+ *) 
+
+.B mutable 
+c_vmin : 
+.B int
+;  (* Minimum number of characters to read
+before the read request is satisfied\&.
+ *) 
+
+.B mutable 
+c_vtime : 
+.B int
+;  (* Maximum read wait (in 0\&.1s units)\&.
+ *) 
+
+.B mutable 
+c_vstart : 
+.B char
+;  (* Start character (usually ctrl\-Q)\&.
+ *) 
+
+.B mutable 
+c_vstop : 
+.B char
+;  (* Stop character (usually ctrl\-S)\&.
+ *) 
+ }
+
+.sp
+
+.sp
+
+.I val tcgetattr 
+: 
+.B file_descr -> terminal_io
+.sp
+Return the status of the terminal referred to by the given
+file descriptor\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+.I type setattr_when 
+=
+ | TCSANOW
+ | TCSADRAIN
+ | TCSAFLUSH
+ 
+.sp
+
+.sp
+
+.I val tcsetattr 
+: 
+.B file_descr -> setattr_when -> terminal_io -> unit
+.sp
+Set the status of the terminal referred to by the given
+file descriptor\&. The second argument indicates when the
+status change takes place: immediately (
+.ft B
+TCSANOW
+.ft R
+),
+when all pending output has been transmitted (
+.ft B
+TCSADRAIN
+.ft R
+),
+or after flushing all input that has been received but not
+read (
+.ft B
+TCSAFLUSH
+.ft R
+)\&. 
+.ft B
+TCSADRAIN
+.ft R
+is recommended when changing
+the output parameters; 
+.ft B
+TCSAFLUSH
+.ft R
+, when changing the input
+parameters\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val tcsendbreak 
+: 
+.B file_descr -> int -> unit
+.sp
+Send a break condition on the given file descriptor\&.
+The second argument is the duration of the break, in 0\&.1s units;
+0 means standard duration (0\&.25s)\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val tcdrain 
+: 
+.B file_descr -> unit
+.sp
+Waits until all output written on the given file descriptor
+has been transmitted\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+.I type flush_queue 
+=
+ | TCIFLUSH
+ | TCOFLUSH
+ | TCIOFLUSH
+ 
+.sp
+
+.sp
+
+.I val tcflush 
+: 
+.B file_descr -> flush_queue -> unit
+.sp
+Discard data written on the given file descriptor but not yet
+transmitted, or data received but not yet read, depending on the
+second argument: 
+.ft B
+TCIFLUSH
+.ft R
+flushes data received but not read,
+.ft B
+TCOFLUSH
+.ft R
+flushes data written but not transmitted, and
+.ft B
+TCIOFLUSH
+.ft R
+flushes both\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+.I type flow_action 
+=
+ | TCOOFF
+ | TCOON
+ | TCIOFF
+ | TCION
+ 
+.sp
+
+.sp
+
+.I val tcflow 
+: 
+.B file_descr -> flow_action -> unit
+.sp
+Suspend or restart reception or transmission of data on
+the given file descriptor, depending on the second argument:
+.ft B
+TCOOFF
+.ft R
+suspends output, 
+.ft B
+TCOON
+.ft R
+restarts output,
+.ft B
+TCIOFF
+.ft R
+transmits a STOP character to suspend input,
+and 
+.ft B
+TCION
+.ft R
+transmits a START character to restart input\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp
+
+.I val setsid 
+: 
+.B unit -> int
+.sp
+Put the calling process in a new session and detach it from
+its controlling terminal\&.
+
+.sp
+.B "Raises Invalid_argument"
+on Windows
+
+.sp

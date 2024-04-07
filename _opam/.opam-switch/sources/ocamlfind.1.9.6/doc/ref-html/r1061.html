@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>site-lib</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib Reference Manual"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Files"
+HREF="p757.html"><LINK
+REL="PREVIOUS"
+TITLE="findlib.conf"
+HREF="r865.html"><LINK
+REL="NEXT"
+TITLE="Library"
+HREF="p1119.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib Reference Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="r865.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="p1119.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="AEN1061"
+></A
+>site-lib</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="SITE-LIB"
+></A
+><H2
+>Name</H2
+>site-lib&nbsp;--&nbsp;[Location of package directories]</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN1069"
+></A
+><H2
+>STANDARD LAYOUT</H2
+><PRE
+CLASS="SYNOPSIS"
+>...somewhere in the filesystem hierarchy...
+   |
+   \ 
+     site-lib
+     |
+     +- (optional) stublibs
+     +- (optional) postinstall
+     +- (optional) postremove
+     |
+     +- <TT
+CLASS="REPLACEABLE"
+><I
+>package1</I
+></TT
+>
+     |  |
+     |  +- META
+     |  +- <TT
+CLASS="REPLACEABLE"
+><I
+>archive files</I
+></TT
+>
+     |  +- <TT
+CLASS="REPLACEABLE"
+><I
+>interface definitions</I
+></TT
+>
+     |
+     +- <TT
+CLASS="REPLACEABLE"
+><I
+>package2</I
+></TT
+>
+     +
+     :
+     :
+     \
+        <TT
+CLASS="REPLACEABLE"
+><I
+>packageN</I
+></TT
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN1077"
+></A
+><H2
+>DESCRIPTION</H2
+><P
+>Every installation of "findlib" has a default location for package
+directories, which is normally a directory called "site-lib". The
+location can be set by the configuration variables
+<TT
+CLASS="LITERAL"
+>path</TT
+> (used to look up packages), and
+<TT
+CLASS="LITERAL"
+>destdir</TT
+> (used to install new packages);
+see <A
+HREF="r865.html#FINDLIB.CONF"
+>findlib.conf</A
+>.</P
+><P
+>The name of a package is the name of the package directory. For
+example, if <TT
+CLASS="LITERAL"
+>destdir=/usr/local/lib/ocaml/site-lib</TT
+>, the
+package p will be installed in the subdirectory
+<TT
+CLASS="LITERAL"
+>/usr/local/lib/ocaml/site-lib/p</TT
+>. This subdirectory
+must contain the META file and all other files belonging to the package.
+Package names must not contain the '.' character.</P
+><P
+>The variable <TT
+CLASS="LITERAL"
+>destdir</TT
+> specifies the directory for
+new packages. You can only have one such directory at a time; but of
+course you can change this directory in findlib.conf. The command
+<TT
+CLASS="LITERAL"
+>ocamlfind install</TT
+> puts new packages into this
+directory; it is recommended to use this command for installation
+because it ensures that the directory layout is right.</P
+><P
+>For searching packages, findlib uses (only) the variable
+<TT
+CLASS="LITERAL"
+>path</TT
+> which may name several locations to look at.</P
+><P
+>For systems with DLL support another directory may exist: stublibs. 
+If present, findlib will install DLLs into this directory that is
+shared by all packages at the same site-lib location. Findlib remembers
+which DLL belongs to which package by special files with the suffix
+".owner"; e.g. for the DLL "dllpcre.so" there is another file
+"dllpcre.so.owner" containing the string "pcre", so findlib knows
+that the package "pcre" owns this DLL. It is not possible that a DLL
+is owned by several packages.</P
+><P
+>If the stublibs directory does not exist, DLLs are installed regularly
+in the package directories like any other file.</P
+><P
+>For special needs, a postinstall and/or a postremove script may be
+installed in the site-lib directory. These scripts are invoked after
+installation or removal of a package, respectively.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN1094"
+></A
+><H2
+>ALTERNATE LAYOUT</H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>...somewhere in the filesystem hierarchy...
+   |
+   \ 
+     site-lib
+     |
+     +- (optional) stublibs
+     +- (optional) postinstall
+     +- (optional) postremove
+     |
+     +- <TT
+CLASS="REPLACEABLE"
+><I
+>package1</I
+></TT
+>
+     |  |
+     |  +- <TT
+CLASS="REPLACEABLE"
+><I
+>archive files</I
+></TT
+>
+     |  +- <TT
+CLASS="REPLACEABLE"
+><I
+>interface definitions</I
+></TT
+>
+     |
+     +- <TT
+CLASS="REPLACEABLE"
+><I
+>package2</I
+></TT
+>
+     +
+     :
+     :
+     \
+  :     <TT
+CLASS="REPLACEABLE"
+><I
+>packageN</I
+></TT
+>
+  |
+  \
+    metaregistry
+    |
+    +- META.package1
+    +- META.package2
+    +
+    :
+    \
+       META.packageN</PRE
+></P
+><P
+>This is an alternate directory layout collecting all META files in one
+directory. You can configure this layout by setting
+<TT
+CLASS="LITERAL"
+>path</TT
+> to the absolute location of
+<TT
+CLASS="LITERAL"
+>metaregistry</TT
+>. Findlib recognizes that there are
+META files in this directory and uses them; it is not necessary to
+include <TT
+CLASS="LITERAL"
+>site-lib</TT
+> into the <TT
+CLASS="LITERAL"
+>path</TT
+>.</P
+><P
+>In order to work, the META files must contain a
+<TT
+CLASS="LITERAL"
+>directory</TT
+> directive pointing to the corresponding
+package directory that resides below <TT
+CLASS="LITERAL"
+>site-lib</TT
+>.</P
+><P
+>The command <TT
+CLASS="LITERAL"
+>ocamlfind install</TT
+> copes with this
+layout, too. The variable <TT
+CLASS="LITERAL"
+>destdir</TT
+> must contain the
+absolute location of <TT
+CLASS="LITERAL"
+>site-lib</TT
+>, and the variable
+<TT
+CLASS="LITERAL"
+>metadir</TT
+> must contain the absolute location of
+<TT
+CLASS="LITERAL"
+>metaregistry</TT
+>. Note that <TT
+CLASS="LITERAL"
+>ocamlfind
+install</TT
+> automatically adds a <TT
+CLASS="LITERAL"
+>directory</TT
+>
+directive to the META file, so you need not do it manually.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="r865.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="p1119.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>findlib.conf</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p757.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Library</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

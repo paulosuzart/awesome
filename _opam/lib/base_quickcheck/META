@@ -1,0 +1,59 @@
+version = "v0.16.0"
+description = ""
+requires =
+"base
+ fieldslib
+ ppx_compare.runtime-lib
+ ppx_enumerate.runtime-lib
+ ppx_hash.runtime-lib
+ ppx_here.runtime-lib
+ ppx_sexp_conv.runtime-lib
+ sexplib0
+ splittable_random"
+archive(byte) = "base_quickcheck.cma"
+archive(native) = "base_quickcheck.cmxa"
+plugin(byte) = "base_quickcheck.cma"
+plugin(native) = "base_quickcheck.cmxs"
+package "ppx_quickcheck" (
+  directory = "ppx_quickcheck"
+  version = "v0.16.0"
+  description = ""
+  requires(ppx_driver) = "base_quickcheck.ppx_quickcheck.expander
+                          ppxlib
+                          ppxlib.ast"
+  archive(ppx_driver,byte) = "ppx_quickcheck.cma"
+  archive(ppx_driver,native) = "ppx_quickcheck.cmxa"
+  plugin(ppx_driver,byte) = "ppx_quickcheck.cma"
+  plugin(ppx_driver,native) = "ppx_quickcheck.cmxs"
+  # This line makes things transparent for people mixing preprocessors
+  # and normal dependencies
+  requires(-ppx_driver) = "base_quickcheck
+                           base_quickcheck.ppx_quickcheck.runtime"
+  requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+  ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:base_quickcheck.ppx_quickcheck"
+  library_kind = "ppx_deriver"
+  package "expander" (
+    directory = "expander"
+    version = "v0.16.0"
+    description = "Expander for base_quickcheck.ppx_quickcheck"
+    requires = "base compiler-libs.common ppxlib ppxlib.ast"
+    archive(byte) = "ppx_quickcheck_expander.cma"
+    archive(native) = "ppx_quickcheck_expander.cmxa"
+    plugin(byte) = "ppx_quickcheck_expander.cma"
+    plugin(native) = "ppx_quickcheck_expander.cmxs"
+    # This is what dune uses to find out the runtime dependencies of
+    # a preprocessor
+    ppx_runtime_deps =
+    "base_quickcheck base_quickcheck.ppx_quickcheck.runtime"
+  )
+  package "runtime" (
+    directory = "runtime"
+    version = "v0.16.0"
+    description = ""
+    requires = "base base_quickcheck"
+    archive(byte) = "ppx_quickcheck_runtime.cma"
+    archive(native) = "ppx_quickcheck_runtime.cmxa"
+    plugin(byte) = "ppx_quickcheck_runtime.cma"
+    plugin(native) = "ppx_quickcheck_runtime.cmxs"
+  )
+)

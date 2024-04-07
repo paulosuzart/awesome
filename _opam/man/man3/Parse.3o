@@ -1,0 +1,359 @@
+.TH "Parse" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Parse \- Entry points in the parser
+.SH Module
+Module   Parse
+.SH Documentation
+.sp
+Module
+.BI "Parse"
+ : 
+.B sig end
+
+.sp
+Entry points in the parser
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.I val implementation 
+: 
+.B Lexing.lexbuf -> Parsetree.structure
+.sp
+
+.sp
+
+.I val interface 
+: 
+.B Lexing.lexbuf -> Parsetree.signature
+.sp
+
+.sp
+
+.I val toplevel_phrase 
+: 
+.B Lexing.lexbuf -> Parsetree.toplevel_phrase
+.sp
+
+.sp
+
+.I val use_file 
+: 
+.B Lexing.lexbuf -> Parsetree.toplevel_phrase list
+.sp
+
+.sp
+
+.I val core_type 
+: 
+.B Lexing.lexbuf -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val expression 
+: 
+.B Lexing.lexbuf -> Parsetree.expression
+.sp
+
+.sp
+
+.I val pattern 
+: 
+.B Lexing.lexbuf -> Parsetree.pattern
+.sp
+
+.sp
+
+.I val module_type 
+: 
+.B Lexing.lexbuf -> Parsetree.module_type
+.sp
+
+.sp
+
+.I val module_expr 
+: 
+.B Lexing.lexbuf -> Parsetree.module_expr
+.sp
+
+.sp
+
+.PP
+The functions below can be used to parse Longident safely\&.
+.PP
+
+.I val longident 
+: 
+.B Lexing.lexbuf -> Longident.t
+.sp
+The function 
+.ft B
+longident
+.ft R
+is guaranteed to parse all subclasses
+of 
+.ft B
+Longident\&.t
+.ft R
+used in OCaml: values, constructors, simple or extended
+module paths, and types or module types\&.
+.sp
+However, this function accepts inputs which are not accepted by the
+compiler, because they combine functor applications and infix operators\&.
+In valid OCaml syntax, only value\-level identifiers may end with infix
+operators 
+.ft B
+Foo\&.( + )
+.ft R
+\&.
+Moreover, in value\-level identifiers the module path 
+.ft B
+Foo
+.ft R
+must be simple
+(
+.ft B
+M\&.N
+.ft R
+rather than 
+.ft B
+F(X)
+.ft R
+): functor applications may only appear in
+type\-level identifiers\&.
+As a consequence, a path such as 
+.ft B
+F(X)\&.( + )
+.ft R
+is not a valid OCaml
+identifier; but it is accepted by this function\&.
+
+.sp
+
+.PP
+The next functions are specialized to a subclass of 
+.ft B
+Longident\&.t
+.ft R
+
+.PP
+
+.I val val_ident 
+: 
+.B Lexing.lexbuf -> Longident.t
+.sp
+This function parses a syntactically valid path for a value\&. For instance,
+.ft B
+x
+.ft R
+, 
+.ft B
+M\&.x
+.ft R
+, and 
+.ft B
+(+\&.)
+.ft R
+are valid\&. Contrarily, 
+.ft B
+M\&.A
+.ft R
+, 
+.ft B
+F(X)\&.x
+.ft R
+, and 
+.ft B
+true
+.ft R
+are rejected\&.
+.sp
+Longident for OCaml\&'s value cannot contain functor application\&.
+The last component of the 
+.ft B
+Longident\&.t
+.ft R
+is not capitalized,
+but can be an operator 
+.ft B
+A\&.Path\&.To\&.(\&.%\&.%\&.(;\&.\&.)<\-)
+.ft R
+
+
+.sp
+
+.I val constr_ident 
+: 
+.B Lexing.lexbuf -> Longident.t
+.sp
+This function parses a syntactically valid path for a variant constructor\&.
+For instance, 
+.ft B
+A
+.ft R
+, 
+.ft B
+M\&.A
+.ft R
+and 
+.ft B
+M\&.(::)
+.ft R
+are valid, but both 
+.ft B
+M\&.a
+.ft R
+and 
+.ft B
+F(X)\&.A
+.ft R
+are rejected\&.
+.sp
+Longident for OCaml\&'s variant constructors cannot contain functor
+application\&.
+The last component of the 
+.ft B
+Longident\&.t
+.ft R
+is capitalized,
+or it may be one the special constructors: 
+.ft B
+true
+.ft R
+,
+.ft B
+false
+.ft R
+,
+.ft B
+()
+.ft R
+,
+.ft B
+[]
+.ft R
+,
+.ft B
+(::)
+.ft R
+\&.
+Among those special constructors, only 
+.ft B
+(::)
+.ft R
+can be prefixed by a module
+path (
+.ft B
+A\&.B\&.C\&.(::)
+.ft R
+)\&.
+
+.sp
+
+.I val simple_module_path 
+: 
+.B Lexing.lexbuf -> Longident.t
+.sp
+This function parses a syntactically valid path for a module\&.
+For instance, 
+.ft B
+A
+.ft R
+, and 
+.ft B
+M\&.A
+.ft R
+are valid, but both 
+.ft B
+M\&.a
+.ft R
+and 
+.ft B
+F(X)\&.A
+.ft R
+are rejected\&.
+.sp
+Longident for OCaml\&'s module cannot contain functor application\&.
+The last component of the 
+.ft B
+Longident\&.t
+.ft R
+is capitalized\&.
+
+.sp
+
+.I val extended_module_path 
+: 
+.B Lexing.lexbuf -> Longident.t
+.sp
+This function parse syntactically valid path for an extended module\&.
+For instance, 
+.ft B
+A\&.B
+.ft R
+and 
+.ft B
+F(A)\&.B
+.ft R
+are valid\&. Contrarily,
+.ft B
+(\&.%())
+.ft R
+or 
+.ft B
+[]
+.ft R
+are both rejected\&.
+.sp
+The last component of the 
+.ft B
+Longident\&.t
+.ft R
+is capitalized\&.
+
+.sp
+
+.I val type_ident 
+: 
+.B Lexing.lexbuf -> Longident.t
+.sp
+This function parse syntactically valid path for a type or a module type\&.
+For instance, 
+.ft B
+A
+.ft R
+, 
+.ft B
+t
+.ft R
+, 
+.ft B
+M\&.t
+.ft R
+and 
+.ft B
+F(X)\&.t
+.ft R
+are valid\&. Contrarily,
+.ft B
+(\&.%())
+.ft R
+or 
+.ft B
+[]
+.ft R
+are both rejected\&.
+.sp
+In path for type and module types, only operators and special constructors
+are rejected\&.
+
+.sp

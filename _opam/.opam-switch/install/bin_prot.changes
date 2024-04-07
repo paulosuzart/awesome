@@ -1,0 +1,125 @@
+opam-version: "2.0"
+added: [
+  "doc/bin_prot" {"D"}
+  "doc/bin_prot/CHANGES.md" {"F:d58ba8c93abba6fe3a7ecdae6cc0f86f"}
+  "doc/bin_prot/CHANGES.txt" {"F:6a2d9472a0a6291322ec9e112583284d"}
+  "doc/bin_prot/LICENSE-Tywith.txt" {"F:887260de42ec7a3ff2e4f0c8c93d46c2"}
+  "doc/bin_prot/LICENSE.md" {"F:9f0a6aff4a00c72e8f449e9b100d2b5d"}
+  "doc/bin_prot/README.md" {"F:e2c3ec7e40133a67c093f640c09ae6ea"}
+  "lib/bin_prot" {"D"}
+  "lib/bin_prot/META" {"F:2ef481fda69fa66f6187fe919bdfdc06"}
+  "lib/bin_prot/bin_prot.a" {"F:30672421eb2bb90b514da4bda2eaff49"}
+  "lib/bin_prot/bin_prot.cma" {"F:e1ffdb3a1b52ff3f984940ffb9744d45"}
+  "lib/bin_prot/bin_prot.cmi" {"F:24b46ad4f5500c918f048774975890bb"}
+  "lib/bin_prot/bin_prot.cmt" {"F:ef6211aa10e7fde38f4c6ecbef8197c3"}
+  "lib/bin_prot/bin_prot.cmx" {"F:0790a41a233945b567374320e8248fb8"}
+  "lib/bin_prot/bin_prot.cmxa" {"F:c0eafdd7f158429f61f74f72d512ee78"}
+  "lib/bin_prot/bin_prot.cmxs" {"F:cdc3c8247c8ab5d1092e0d4ead3b1fff"}
+  "lib/bin_prot/bin_prot.ml" {"F:9c3bfb90b9eb910a9745da1d70d9e33c"}
+  "lib/bin_prot/bin_prot__.cmi" {"F:35be4823a7170c60d50b12e9a4b70ac0"}
+  "lib/bin_prot/bin_prot__.cmt" {"F:e5ec097d0adc80f42a4e38a9c14e8d45"}
+  "lib/bin_prot/bin_prot__.cmx" {"F:14a8725cde01e2d9355d6b25648d953d"}
+  "lib/bin_prot/bin_prot__.ml" {"F:ba404dacfbf4b1b4efa9daf3193b4e41"}
+  "lib/bin_prot/bin_prot__Binable.cmi" {"F:e54c6fea8ca4b193fa911081c0f7eefa"}
+  "lib/bin_prot/bin_prot__Binable.cmt" {"F:4c6caf552248911cc043f5cb6f21df7a"}
+  "lib/bin_prot/bin_prot__Binable.cmx" {"F:300f0a9db3e70b6a89f845a7225c7145"}
+  "lib/bin_prot/bin_prot__Blob.cmi" {"F:24216f7c9161d9d7d46478bb6d38b915"}
+  "lib/bin_prot/bin_prot__Blob.cmt" {"F:57f75545d83ac86cd6f74cfd1afae569"}
+  "lib/bin_prot/bin_prot__Blob.cmti" {"F:9d0f5c77d9b7594f69435300c0daec11"}
+  "lib/bin_prot/bin_prot__Blob.cmx" {"F:1a56ef46be75e445db5dbefbed13ddc0"}
+  "lib/bin_prot/bin_prot__Common.cmi" {"F:a0953b9dd4d6fd8d93d728a1fbb76860"}
+  "lib/bin_prot/bin_prot__Common.cmt" {"F:a302610222803b01d9c74cf839cba87c"}
+  "lib/bin_prot/bin_prot__Common.cmti" {"F:ccb2d6da43e10dc7d45d58a96c50d85c"}
+  "lib/bin_prot/bin_prot__Common.cmx" {"F:dc2489f382729ed654b728ffe6bef1cc"}
+  "lib/bin_prot/bin_prot__Md5.cmi" {"F:3282c46f79b962c05aca9ee2e56824c2"}
+  "lib/bin_prot/bin_prot__Md5.cmt" {"F:5eccddc88404920e2fd1ecfdbcb3227e"}
+  "lib/bin_prot/bin_prot__Md5.cmti" {"F:d778416e399002e0e0f4adbbda72f510"}
+  "lib/bin_prot/bin_prot__Md5.cmx" {"F:71bc379d941c8846678daf35a606b077"}
+  "lib/bin_prot/bin_prot__Nat0.cmi" {"F:ed978051e312c5d31875c819f90c6670"}
+  "lib/bin_prot/bin_prot__Nat0.cmt" {"F:a1c7108071bfdd028939646b58ae760a"}
+  "lib/bin_prot/bin_prot__Nat0.cmti" {"F:32119a761e274df80ba6180368354710"}
+  "lib/bin_prot/bin_prot__Nat0.cmx" {"F:a76fad6e4191cada67a3280c39c19677"}
+  "lib/bin_prot/bin_prot__Read.cmi" {"F:b36540d7a768f2fabb540eed715b966d"}
+  "lib/bin_prot/bin_prot__Read.cmt" {"F:874652c10a3de7fa7769b777d6bbfd29"}
+  "lib/bin_prot/bin_prot__Read.cmti" {"F:91e361f8e955629cc68381536e0d118e"}
+  "lib/bin_prot/bin_prot__Read.cmx" {"F:b77f14d893bd1b89e493eae37ae6edcc"}
+  "lib/bin_prot/bin_prot__Shape.cmi" {"F:f04973fc544d545b601d9740f021d982"}
+  "lib/bin_prot/bin_prot__Shape.cmt" {"F:22ce73c007f8ab8315a9730d14ec7d92"}
+  "lib/bin_prot/bin_prot__Shape.cmti" {"F:aca8e75ec8fee30cbe771248d1c94d98"}
+  "lib/bin_prot/bin_prot__Shape.cmx" {"F:1be69dd3aa674bced8b979845809447c"}
+  "lib/bin_prot/bin_prot__Size.cmi" {"F:2d164f7f4125fb86af8702288660a5ff"}
+  "lib/bin_prot/bin_prot__Size.cmt" {"F:5462012e5983124cdd13b38ba1eb1227"}
+  "lib/bin_prot/bin_prot__Size.cmti" {"F:7ea3f94904b2e82d5817ea4aeaca1bc8"}
+  "lib/bin_prot/bin_prot__Size.cmx" {"F:6dd9fbe6f00a5c28607adacc128afe70"}
+  "lib/bin_prot/bin_prot__Std.cmi" {"F:eb4c9e9cf0a6303b6a357870a3d1be0f"}
+  "lib/bin_prot/bin_prot__Std.cmt" {"F:9d466b4da3aea167b47442d4beb48bf8"}
+  "lib/bin_prot/bin_prot__Std.cmx" {"F:010238b624de0e228086bc2e7a15b45e"}
+  "lib/bin_prot/bin_prot__Type_class.cmi"
+    {"F:ddb7ec14eaa1b3dd279d054cf67e0d0e"}
+  "lib/bin_prot/bin_prot__Type_class.cmt"
+    {"F:eb70eeffc1bdb7376ac49c48d88d47bb"}
+  "lib/bin_prot/bin_prot__Type_class.cmti"
+    {"F:2ffc17dc16499cf3f87e32a73b5d3b60"}
+  "lib/bin_prot/bin_prot__Type_class.cmx"
+    {"F:4c444353e90a0c775fc74bb113bc2af4"}
+  "lib/bin_prot/bin_prot__Utils.cmi" {"F:f5b0efa52b86cfb314b6b8ceff314ba6"}
+  "lib/bin_prot/bin_prot__Utils.cmt" {"F:0328d2c0ea69e50c5e442696933738e1"}
+  "lib/bin_prot/bin_prot__Utils.cmti" {"F:16fdbbe42ea081284f215aed8883f980"}
+  "lib/bin_prot/bin_prot__Utils.cmx" {"F:36cb9ad6e6440cbd0de0a2622f027be9"}
+  "lib/bin_prot/bin_prot__Utils_intf.cmi"
+    {"F:76ea45f0a7a3ca92263614b57f43c924"}
+  "lib/bin_prot/bin_prot__Utils_intf.cmt"
+    {"F:eb7f0d89b3c4a31f3bb2054ec048f269"}
+  "lib/bin_prot/bin_prot__Utils_intf.cmx"
+    {"F:551a4892851c4eabaa1a1b56e79125e4"}
+  "lib/bin_prot/bin_prot__Write.cmi" {"F:90e69a678a8f53bde04ba1d16f903cf9"}
+  "lib/bin_prot/bin_prot__Write.cmt" {"F:d836d3661656cd21a7f1a5cd3d8e8ad7"}
+  "lib/bin_prot/bin_prot__Write.cmti" {"F:6e34af50bfe53c00c7b05bafe2a56b26"}
+  "lib/bin_prot/bin_prot__Write.cmx" {"F:e0153f599a865465bea2b259859d30a1"}
+  "lib/bin_prot/binable.ml" {"F:24b091986036bf1a47c5ed527acc0c55"}
+  "lib/bin_prot/blob.ml" {"F:3b0ecd79c385a1de56f3d28613a658fd"}
+  "lib/bin_prot/blob.mli" {"F:27a9928688f67655a52b70981fb0acfd"}
+  "lib/bin_prot/common.ml" {"F:9d748e1a35e69ca3797d05fb927e28d8"}
+  "lib/bin_prot/common.mli" {"F:e0ee6c4366b4168907bc846c31a9c658"}
+  "lib/bin_prot/dune-package" {"F:14944202f920e30f2524a523dc3546ff"}
+  "lib/bin_prot/libbin_prot_stubs.a" {"F:20a2b717c6f9df5794776158753b51bd"}
+  "lib/bin_prot/md5.ml" {"F:83bb88d9053d76a01ca15ae73e8588c6"}
+  "lib/bin_prot/md5.mli" {"F:4073e45e18be5ef6d3f65954a6d8a912"}
+  "lib/bin_prot/nat0.ml" {"F:c2e24d05661d557f13fb25bf4cd66320"}
+  "lib/bin_prot/nat0.mli" {"F:dc5b301061f188b6c2f53654f984973e"}
+  "lib/bin_prot/opam" {"F:94cb94074e1d7359b7bf8bf984b0c80f"}
+  "lib/bin_prot/read.ml" {"F:69f873bfea10ce3127916523eeb22a31"}
+  "lib/bin_prot/read.mli" {"F:59c25bf1d8a83b13e70158af16a446c0"}
+  "lib/bin_prot/runtime.js" {"F:85e9a2f19217ba37c76e1543b6d80245"}
+  "lib/bin_prot/shape.ml" {"F:be03e884175d057f5f92604b2de7b459"}
+  "lib/bin_prot/shape.mli" {"F:29e3d9c18271e1e58201ed2a2d6772e6"}
+  "lib/bin_prot/shape/bin_shape.a" {"F:6f962e1e250343ce41a9f8459c0ce6d0"}
+  "lib/bin_prot/shape/bin_shape.cma" {"F:55c8b49249524c2d3fcfc9ebf822bf5c"}
+  "lib/bin_prot/shape/bin_shape.cmi" {"F:bda41f5dd750841db5fbe0672596f907"}
+  "lib/bin_prot/shape/bin_shape.cmt" {"F:f8a599a20b6af3fcd68af05f1ffc641b"}
+  "lib/bin_prot/shape/bin_shape.cmti" {"F:2e0376f37ddd5b94238a72447fa2f817"}
+  "lib/bin_prot/shape/bin_shape.cmx" {"F:2d549b6755ae71a5eb4d4457683fcd77"}
+  "lib/bin_prot/shape/bin_shape.cmxa" {"F:f85ae63df32db8af0b8974fe59b641b3"}
+  "lib/bin_prot/shape/bin_shape.cmxs" {"F:ba9e72a95348182c7d0375a96b9ab9f1"}
+  "lib/bin_prot/shape/bin_shape.ml" {"F:749226f9d421334378b0801b523a7e4e"}
+  "lib/bin_prot/shape/bin_shape.mli" {"F:69a4d7d9c64930eb2c2bfadbf0586984"}
+  "lib/bin_prot/size.ml" {"F:56ac580f2cb6013744d26b7eaf2a38a5"}
+  "lib/bin_prot/size.mli" {"F:7a469f664a7326186015c0f4eea46d3b"}
+  "lib/bin_prot/std.ml" {"F:7a24349e3425648ebe19d7f931c4fc2e"}
+  "lib/bin_prot/type_class.ml" {"F:2c103b5371d4a82834860ec5cfaf967c"}
+  "lib/bin_prot/type_class.mli" {"F:bb903e0ec492462316d2730e711da999"}
+  "lib/bin_prot/utils.ml" {"F:cba852437645103ca3cd6778e9c540ab"}
+  "lib/bin_prot/utils.mli" {"F:49d8eef456501d6d4e2191233ecf608a"}
+  "lib/bin_prot/utils_intf.ml" {"F:a9507bfff7f87cc0ec2ac9dd1c1ca231"}
+  "lib/bin_prot/write.ml" {"F:a802e294986170f2134108dd59975423"}
+  "lib/bin_prot/write.mli" {"F:91f557d97f87c1d2b18a57ee964864e0"}
+  "lib/bin_prot/xen/bin_prot_xen.a" {"F:ca2f4db0622f79fbfff891de72ba3cf0"}
+  "lib/bin_prot/xen/bin_prot_xen.cma" {"F:3a4b5db05d0fccf8fa2b4b8bb703a9ae"}
+  "lib/bin_prot/xen/bin_prot_xen.cmi" {"F:dd192a0756f43ce7fcac206615de6504"}
+  "lib/bin_prot/xen/bin_prot_xen.cmt" {"F:3f1fe5f4c3d9bcebfd563441c4e8ffa1"}
+  "lib/bin_prot/xen/bin_prot_xen.cmx" {"F:e424924beb7cb958671958fcef4329ca"}
+  "lib/bin_prot/xen/bin_prot_xen.cmxa" {"F:f4e71237eaad7442d381a19ee8471214"}
+  "lib/bin_prot/xen/bin_prot_xen.cmxs" {"F:a63449df175914842d72603b24e3a538"}
+  "lib/bin_prot/xen/bin_prot_xen.ml" {"F:93fd6c71e5b0012319ab63274560024e"}
+  "lib/stublibs/dllbin_prot_stubs.so" {"F:7940a3a39c602f59aa8bf792435dc214"}
+]

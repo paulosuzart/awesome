@@ -1,0 +1,36 @@
+.TH "CamlinternalMenhirLib.Convert.Simplified" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.Convert.Simplified \- no description
+.SH Module
+Module   CamlinternalMenhirLib.Convert.Simplified
+.SH Documentation
+.sp
+Module
+.BI "Simplified"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val traditional2revised 
+: 
+.B ('token, 'semantic_value) CamlinternalMenhirLib.Convert.traditional ->
+.B   ('token * Lexing.position * Lexing.position, 'semantic_value)
+.B   CamlinternalMenhirLib.Convert.revised
+.sp
+
+.sp
+
+.I val revised2traditional 
+: 
+.B ('token * Lexing.position * Lexing.position, 'semantic_value)
+.B   CamlinternalMenhirLib.Convert.revised ->
+.B   ('token, 'semantic_value) CamlinternalMenhirLib.Convert.traditional
+.sp
+
+.sp

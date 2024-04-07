@@ -1,0 +1,18 @@
+version = "0.17.4"
+description = ""
+requires =
+"cstruct
+ domain-name
+ fmt
+ hkdf
+ ipaddr
+ logs
+ mirage-crypto
+ mirage-crypto-ec
+ mirage-crypto-pk
+ mirage-crypto-rng
+ x509"
+archive(byte) = "tls.cma"
+archive(native) = "tls.cmxa"
+plugin(byte) = "tls.cma"
+plugin(native) = "tls.cmxs"

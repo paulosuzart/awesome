@@ -1,0 +1,117 @@
+.TH "Ephemeron.K1" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ephemeron.K1 \- Ephemerons with one key.
+.SH Module
+Module   Ephemeron.K1
+.SH Documentation
+.sp
+Module
+.BI "K1"
+ : 
+.B sig end
+
+.sp
+Ephemerons with one key\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B ('k, 'd)
+.I t 
+
+.sp
+an ephemeron with one key
+
+.sp
+
+.I val make 
+: 
+.B 'k -> 'd -> ('k, 'd) t
+.sp
+
+.ft B
+Ephemeron\&.K1\&.make k d
+.ft R
+creates an ephemeron with key 
+.ft B
+k
+.ft R
+and data 
+.ft B
+d
+.ft R
+\&.
+
+.sp
+
+.I val query 
+: 
+.B ('k, 'd) t -> 'k -> 'd option
+.sp
+
+.ft B
+Ephemeron\&.K1\&.query eph key
+.ft R
+returns 
+.ft B
+Some x
+.ft R
+(where 
+.ft B
+x
+.ft R
+is the
+ephemeron\&'s data) if 
+.ft B
+key
+.ft R
+is physically equal to 
+.ft B
+eph
+.ft R
+\&'s key, and
+.ft B
+None
+.ft R
+if 
+.ft B
+eph
+.ft R
+is empty or 
+.ft B
+key
+.ft R
+is not equal to 
+.ft B
+eph
+.ft R
+\&'s key\&.
+
+.sp
+.I module Make : 
+.B functor (H : Hashtbl.HashedType) -> sig end
+
+.sp
+Functor building an implementation of a weak hash table
+
+.sp
+.I module MakeSeeded : 
+.B functor (H : Hashtbl.SeededHashedType) -> sig end
+
+.sp
+Functor building an implementation of a weak hash table\&.
+The seed is similar to the one of 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.I module Bucket : 
+.B sig end
+
+.sp
+
+.sp

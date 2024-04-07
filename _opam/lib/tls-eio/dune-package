@@ -1,0 +1,47 @@
+(lang dune 3.15)
+(name tls-eio)
+(version 0.17.4)
+(sections (lib .) (libexec .) (doc ../../doc/tls-eio))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   tls_eio.a
+   tls_eio.cma
+   tls_eio.cmi
+   tls_eio.cmt
+   tls_eio.cmti
+   tls_eio.cmx
+   tls_eio.cmxa
+   tls_eio.ml
+   tls_eio.mli
+   x509_eio.cmi
+   x509_eio.cmt
+   x509_eio.cmti
+   x509_eio.cmx
+   x509_eio.ml
+   x509_eio.mli))
+ (libexec (tls_eio.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name tls-eio)
+ (kind normal)
+ (archives (byte tls_eio.cma) (native tls_eio.cmxa))
+ (plugins (byte tls_eio.cma) (native tls_eio.cmxs))
+ (native_archives tls_eio.a)
+ (requires tls eio ptime.clock.os)
+ (modes byte native)
+ (modules
+  (unwrapped
+   (module
+    (obj_name tls_eio)
+    (visibility public)
+    (source (path Tls_eio) (intf (path tls_eio.mli)) (impl (path tls_eio.ml))))
+   (module
+    (obj_name x509_eio)
+    (visibility public)
+    (source
+     (path X509_eio)
+     (intf (path x509_eio.mli))
+     (impl (path x509_eio.ml)))))))

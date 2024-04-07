@@ -1,0 +1,63 @@
+.\" Pipe this output to groff -m man -K utf8 -T utf8 | less -R
+.\"
+.mso an.tmac
+.TH "DUNE-HELP" 1 "" "Dune 3.15.0" "Dune Manual"
+.\" Disable hyphenation and ragged-right
+.nh
+.ad l
+.SH NAME
+.P
+dune\N'45'help \N'45' Additional Dune help\N'46'
+.SH SYNOPSIS
+.P
+\fBdune help\fR [\fB\N'45'\N'45'build\N'45'info\fR] [\fB\N'45'\N'45'man\N'45'format\fR=\fIFMT\fR] [\fIOPTION\fR]… [\fITOPIC\fR]
+.SH DESCRIPTION
+.P
+\fBdune help TOPIC\fR provides additional help on the given topic\N'46' The following topics are available:
+.TP 4
+\fBconfig\fR
+dune\N'45'config
+.SH OPTIONS
+.TP 4
+\fB\N'45'\N'45'build\N'45'info\fR
+Show build information\N'46'
+.TP 4
+\fB\N'45'\N'45'man\N'45'format\fR=\fIFMT\fR (absent=\fBpager\fR)
+Show output in format \fIFMT\fR\N'46' The value \fIFMT\fR must be one of \fBauto\fR, \fBpager\fR, \fBgroff\fR or \fBplain\fR\N'46' With \fBauto\fR, the format is \fBpager\fR or \fBplain\fR whenever the \fBTERM\fR env var is \fBdumb\fR or undefined\N'46'
+.SH COMMON OPTIONS
+.TP 4
+\fB\N'45'\N'45'help\fR[=\fIFMT\fR] (default=\fBauto\fR)
+Show this help in format \fIFMT\fR\N'46' The value \fIFMT\fR must be one of \fBauto\fR, \fBpager\fR, \fBgroff\fR or \fBplain\fR\N'46' With \fBauto\fR, the format is \fBpager\fR or \fBplain\fR whenever the \fBTERM\fR env var is \fBdumb\fR or undefined\N'46'
+.TP 4
+\fB\N'45'\N'45'version\fR
+Show version information\N'46'
+.SH EXIT STATUS
+.P
+\fBdune help\fR exits with:
+.TP 4
+0
+on success\N'46'
+.TP 4
+1
+if an error happened\N'46'
+.TP 4
+130
+if it was interrupted by a signal\N'46'
+.SH ENVIRONMENT
+.P
+These environment variables affect the execution of \fBhelp\fR:
+.TP 4
+\fBCLICOLOR\fR
+If different than \fB0\fR, ANSI colors are supported and should be used when the program isn\N'39't piped\N'46' If equal to \fB0\fR, don\N'39't output ANSI color escape codes
+.TP 4
+\fBCLICOLOR_FORCE\fR
+If different than \fB0\fR, ANSI colors should be enabled no matter what\N'46'
+.TP 4
+\fBDUNE_CACHE_ROOT\fR
+If set, determines the location of the machine\N'45'global shared cache\N'46'
+.SH BUGS
+.P
+Check bug reports at https://github\N'46'com/ocaml/dune/issues
+.SH SEE ALSO
+.P
+dune(1)

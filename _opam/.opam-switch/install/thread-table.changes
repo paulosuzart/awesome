@@ -1,0 +1,35 @@
+opam-version: "2.0"
+added: [
+  "doc/thread-table" {"D"}
+  "doc/thread-table/CHANGES.md" {"F:66521a99cd261e8a001c7ed4eb89f28b"}
+  "doc/thread-table/LICENSE.md" {"F:79f426369d94a092b6683bc796bcad93"}
+  "doc/thread-table/README.md" {"F:1c593bdc98eee91fa6d082cfa05898c1"}
+  "lib/thread-table" {"D"}
+  "lib/thread-table/META" {"F:5677a9c4af80e89b748188400c28694f"}
+  "lib/thread-table/Thread_table.a" {"F:9b10a706a28228b56ad20d6b03466313"}
+  "lib/thread-table/Thread_table.cma" {"F:c1bfcf9dd793b9591f00e9639c9de01b"}
+  "lib/thread-table/Thread_table.cmxa" {"F:5fbe1ee95ba5fee69fa3f7fb318245e8"}
+  "lib/thread-table/Thread_table.cmxs" {"F:e843c1740d0484e3011bc73d2e51e364"}
+  "lib/thread-table/dune-package" {"F:8ad5c3c194d54c564c255aa1f91881b1"}
+  "lib/thread-table/mix.ml" {"F:88a3dbcef6439a814e080245fbd85b88"}
+  "lib/thread-table/opam" {"F:5e821adfee81ca2a3f737c0c5fd0a877"}
+  "lib/thread-table/thread_table.cmi" {"F:e85c6f5808e904efabd36a6dd6a91e81"}
+  "lib/thread-table/thread_table.cmt" {"F:834664588282ae367d5a5d06706508ec"}
+  "lib/thread-table/thread_table.cmti" {"F:d262bfdbc9c259ecae1f0e2bbe6fac78"}
+  "lib/thread-table/thread_table.cmx" {"F:cad30edb40fd117291e3d1a4bd2bccfe"}
+  "lib/thread-table/thread_table.ml" {"F:06cc057c132e92a61b956352807ad339"}
+  "lib/thread-table/thread_table.mli" {"F:c86065ea3cf3a322124475bc665072ba"}
+  "lib/thread-table/thread_table__.cmi"
+    {"F:8e8c2a3034a2e8b771123d0479037cef"}
+  "lib/thread-table/thread_table__.cmt"
+    {"F:794929b5b5886dcc673d064c79da1a56"}
+  "lib/thread-table/thread_table__.cmx"
+    {"F:09e85a13e8f791494d3405dcd628f6e4"}
+  "lib/thread-table/thread_table__.ml" {"F:72e88ca35d2fd81e5ca192adfdbae650"}
+  "lib/thread-table/thread_table__Mix.cmi"
+    {"F:04a66b271331f18eb0d43f0f850b5344"}
+  "lib/thread-table/thread_table__Mix.cmt"
+    {"F:3541daa0304d95bfce9dfd94e4f0b90b"}
+  "lib/thread-table/thread_table__Mix.cmx"
+    {"F:846f41628ed965bddd5a53efe29e3d13"}
+]

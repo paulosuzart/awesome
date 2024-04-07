@@ -1,0 +1,215 @@
+.TH "Gc.Memprof" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Gc.Memprof \- Memprof is a sampling engine for allocated memory words.
+.SH Module
+Module   Gc.Memprof
+.SH Documentation
+.sp
+Module
+.BI "Memprof"
+ : 
+.B sig end
+
+.sp
+
+.ft B
+Memprof
+.ft R
+is a sampling engine for allocated memory words\&. Every
+allocated word has a probability of being sampled equal to a
+configurable sampling rate\&. Once a block is sampled, it becomes
+tracked\&. A tracked block triggers a user\-defined callback as soon
+as it is allocated, promoted or deallocated\&.
+.sp
+Since blocks are composed of several words, a block can potentially
+be sampled several times\&. If a block is sampled several times, then
+each of the callback is called once for each event of this block:
+the multiplicity is given in the 
+.ft B
+n_samples
+.ft R
+field of the
+.ft B
+allocation
+.ft R
+structure\&.
+.sp
+This engine makes it possible to implement a low\-overhead memory
+profiler as an OCaml library\&.
+.sp
+Note: this API is EXPERIMENTAL\&. It may change without prior
+notice\&.
+
+.sp
+
+.sp
+.sp
+.I type allocation_source 
+=
+ | Normal
+ | Marshal
+ | Custom
+ 
+.sp
+
+.sp
+.I type allocation 
+= private {
+ n_samples : 
+.B int
+;  (* The number of samples in this block (>= 1)\&.
+ *) 
+ size : 
+.B int
+;  (* The size of the block, in words, excluding the header\&.
+ *) 
+ source : 
+.B allocation_source
+;  (* The type of the allocation\&.
+ *) 
+ callstack : 
+.B Printexc.raw_backtrace
+;  (* The callstack for the allocation\&.
+ *) 
+ }
+
+.sp
+The type of metadata associated with allocations\&. This is the
+type of records passed to the callback triggered by the
+sampling of an allocation\&.
+
+.sp
+.I type 
+.B ('minor, 'major)
+.I tracker 
+= {
+ alloc_minor : 
+.B allocation -> 'minor option
+;
+ alloc_major : 
+.B allocation -> 'major option
+;
+ promote : 
+.B 'minor -> 'major option
+;
+ dealloc_minor : 
+.B 'minor -> unit
+;
+ dealloc_major : 
+.B 'major -> unit
+;
+ }
+
+.sp
+A 
+.ft B
+(\&'minor, \&'major) tracker
+.ft R
+describes how memprof should track
+sampled blocks over their lifetime, keeping a user\-defined piece
+of metadata for each of them: 
+.ft B
+\&'minor
+.ft R
+is the type of metadata
+to keep for minor blocks, and 
+.ft B
+\&'major
+.ft R
+the type of metadata
+for major blocks\&.
+.sp
+When using threads, it is guaranteed that allocation callbacks are
+always run in the thread where the allocation takes place\&.
+.sp
+If an allocation\-tracking or promotion\-tracking function returns 
+.ft B
+None
+.ft R
+,
+memprof stops tracking the corresponding value\&.
+
+.sp
+
+.I val null_tracker 
+: 
+.B ('minor, 'major) tracker
+.sp
+Default callbacks simply return 
+.ft B
+None
+.ft R
+or 
+.ft B
+()
+.ft R
+
+
+.sp
+
+.I val start 
+: 
+.B sampling_rate:float ->
+.B   ?callstack_size:int -> ('minor, 'major) tracker -> unit
+.sp
+Start the sampling with the given parameters\&. Fails if
+sampling is already active\&.
+.sp
+The parameter 
+.ft B
+sampling_rate
+.ft R
+is the sampling rate in samples
+per word (including headers)\&. Usually, with cheap callbacks, a
+rate of 1e\-4 has no visible effect on performance, and 1e\-3
+causes the program to run a few percent slower
+.sp
+The parameter 
+.ft B
+callstack_size
+.ft R
+is the length of the callstack
+recorded at every sample\&. Its default is 
+.ft B
+max_int
+.ft R
+\&.
+.sp
+The parameter 
+.ft B
+tracker
+.ft R
+determines how to track sampled blocks
+over their lifetime in the minor and major heap\&.
+.sp
+Sampling is temporarily disabled when calling a callback
+for the current thread\&. So they do not need to be re\-entrant if
+the program is single\-threaded\&. However, if threads are used,
+it is possible that a context switch occurs during a callback,
+in this case the callback functions must be re\-entrant\&.
+.sp
+Note that the callback can be postponed slightly after the
+actual event\&. The callstack passed to the callback is always
+accurate, but the program state may have evolved\&.
+
+.sp
+
+.I val stop 
+: 
+.B unit -> unit
+.sp
+Stop the sampling\&. Fails if sampling is not active\&.
+.sp
+This function does not allocate memory\&.
+.sp
+All the already tracked blocks are discarded\&. If there are
+pending postponed callbacks, they may be discarded\&.
+.sp
+Calling 
+.ft B
+stop
+.ft R
+when a callback is running can lead to
+callbacks not being called even though some events happened\&.
+
+.sp

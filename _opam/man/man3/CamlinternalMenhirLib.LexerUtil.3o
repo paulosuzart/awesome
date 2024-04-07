@@ -1,0 +1,46 @@
+.TH "CamlinternalMenhirLib.LexerUtil" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.LexerUtil \- no description
+.SH Module
+Module   CamlinternalMenhirLib.LexerUtil
+.SH Documentation
+.sp
+Module
+.BI "LexerUtil"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val init 
+: 
+.B string -> Lexing.lexbuf -> Lexing.lexbuf
+.sp
+
+.sp
+
+.I val read 
+: 
+.B string -> string * Lexing.lexbuf
+.sp
+
+.sp
+
+.I val newline 
+: 
+.B Lexing.lexbuf -> unit
+.sp
+
+.sp
+
+.I val range 
+: 
+.B Lexing.position * Lexing.position -> string
+.sp
+
+.sp

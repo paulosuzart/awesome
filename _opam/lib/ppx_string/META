@@ -1,0 +1,20 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base
+                        compiler-libs.common
+                        ppx_compare.runtime-lib
+                        ppx_enumerate.runtime-lib
+                        ppx_hash.runtime-lib
+                        ppx_sexp_conv.runtime-lib
+                        ppxlib
+                        ppxlib.ast
+                        sexplib0"
+archive(ppx_driver,byte) = "ppx_string.cma"
+archive(ppx_driver,native) = "ppx_string.cmxa"
+plugin(ppx_driver,byte) = "ppx_string.cma"
+plugin(ppx_driver,native) = "ppx_string.cmxs"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = ""
+ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+library_kind = "ppx_rewriter"

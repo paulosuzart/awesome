@@ -1,0 +1,77 @@
+(lang dune 3.9)
+(name eio)
+(version v1.0)
+(formatting disabled)
+(generate_opam_files true)
+(source (github ocaml-multicore/eio))
+(license ISC)
+(authors "Anil Madhavapeddy" "Thomas Leonard")
+(maintainers "anil@recoil.org")
+(documentation "https://ocaml-multicore.github.io/eio/")
+(package
+ (name eio)
+ (synopsis "Effect-based direct-style IO API for OCaml")
+ (description "An effect-based IO API for multicore OCaml with fibers.")
+ (conflicts (seq (< 0.3)))
+ (depends
+  (ocaml (>= 5.1.0))
+  (bigstringaf (>= 0.9.0))
+  (cstruct (>= 6.0.1))
+  lwt-dllist
+  (optint (>= 0.1.0))
+  (psq (>= 0.2.0))
+  (fmt (>= 0.8.9))
+  (hmap (>= 0.8.1))
+  (domain-local-await (>= 0.1.0))
+  (crowbar (and (>= 0.2) :with-test))
+  (mtime (>= 2.0.0))
+  (mdx (and (>= 2.2.0) (< 2.4.0) :with-test))
+  (dscheck (and (>= 0.1.0) :with-test))))
+(package
+ (name eio_linux)
+ (synopsis "Eio implementation for Linux using io-uring")
+ (description "An Eio implementation for Linux using io-uring.")
+ (allow_empty)  ; Work-around for dune bug #6938
+ (depends
+  (alcotest (and (>= 1.7.0) :with-test))
+  (eio (= :version))
+  (mdx (and (>= 2.2.0) :with-test))
+  (logs (and (>= 0.7.0) :with-test))
+  (fmt (>= 0.8.9))
+  (cmdliner (and (>= 1.1.0) :with-test))
+  (uring (>= 0.7))))
+(package
+ (name eio_posix)
+ (allow_empty)  ; Work-around for dune bug #6938
+ (synopsis "Eio implementation for POSIX systems")
+ (description "An Eio implementation for most Unix-like platforms")
+ (depends
+  (eio (= :version))
+  (iomux (>= 0.2))
+  (mdx (and (>= 2.2.0) :with-test))
+  (fmt (>= 0.8.9))))
+(package
+ (name eio_windows)
+ (synopsis "Eio implementation for Windows")
+ (description "An Eio implementation using OCaml's Unix.select")
+ (allow_empty)  ; Work-around for dune bug #6938
+ (depends
+  (eio (= :version))
+  (fmt (>= 0.8.9))
+  (kcas (and (>= 0.3.0) :with-test))
+  (alcotest (and (>= 1.7.0) :with-test))))
+(package
+ (name eio_main)
+ (synopsis "Effect-based direct-style IO mainloop for OCaml")
+ (description "Selects an appropriate Eio backend for the current platform.")
+ (depends
+  (mdx (and (>= 2.2.0) :with-test))
+  (kcas (and (>= 0.3.0) :with-test))
+  (yojson (and (>= 2.0.2) :with-test))
+  (eio_linux (and
+               (= :version)
+               (= :os "linux")
+               (or (<> :os-distribution "centos") (> :os-version 7))))
+  (eio_posix (and (= :version) (<> :os "win32")))
+  (eio_windows (and (= :version) (= :os "win32")))))
+(using mdx 0.2)

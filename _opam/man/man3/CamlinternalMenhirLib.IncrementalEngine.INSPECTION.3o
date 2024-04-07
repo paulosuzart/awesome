@@ -1,0 +1,161 @@
+.TH "CamlinternalMenhirLib.IncrementalEngine.INSPECTION" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.IncrementalEngine.INSPECTION \- no description
+.SH Module type
+Module type   CamlinternalMenhirLib.IncrementalEngine.INSPECTION
+.SH Documentation
+.sp
+Module type
+.BI "INSPECTION"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I include CamlinternalMenhirLib.IncrementalEngine.SYMBOLS
+.sp
+
+.sp
+.I type 
+.B 'a
+.I lr1state 
+
+.sp
+
+.sp
+.I type production 
+
+.sp
+
+.sp
+.I type item 
+= 
+.B production * int
+
+.sp
+
+.sp
+
+.I val compare_terminals 
+: 
+.B 'a terminal -> 'b terminal -> int
+.sp
+
+.sp
+
+.I val compare_nonterminals 
+: 
+.B 'a nonterminal -> 'b nonterminal -> int
+.sp
+
+.sp
+
+.I val compare_symbols 
+: 
+.B xsymbol -> xsymbol -> int
+.sp
+
+.sp
+
+.I val compare_productions 
+: 
+.B production ->
+.B   production -> int
+.sp
+
+.sp
+
+.I val compare_items 
+: 
+.B item ->
+.B   item -> int
+.sp
+
+.sp
+
+.I val incoming_symbol 
+: 
+.B 'a lr1state -> 'a symbol
+.sp
+
+.sp
+
+.I val items 
+: 
+.B 'a lr1state ->
+.B   item list
+.sp
+
+.sp
+
+.I val lhs 
+: 
+.B production -> xsymbol
+.sp
+
+.sp
+
+.I val rhs 
+: 
+.B production -> xsymbol list
+.sp
+
+.sp
+
+.I val nullable 
+: 
+.B 'a nonterminal -> bool
+.sp
+
+.sp
+
+.I val first 
+: 
+.B 'a nonterminal -> 'b terminal -> bool
+.sp
+
+.sp
+
+.I val xfirst 
+: 
+.B xsymbol -> 'a terminal -> bool
+.sp
+
+.sp
+
+.I val foreach_terminal 
+: 
+.B (xsymbol -> 'a -> 'a) -> 'a -> 'a
+.sp
+
+.sp
+
+.I val foreach_terminal_but_error 
+: 
+.B (xsymbol -> 'a -> 'a) -> 'a -> 'a
+.sp
+
+.sp
+.I type 
+.B 'a
+.I env 
+
+.sp
+
+.sp
+
+.I val feed 
+: 
+.B 'a symbol ->
+.B   CamlinternalMenhirLib.IncrementalEngine.position ->
+.B   'a ->
+.B   CamlinternalMenhirLib.IncrementalEngine.position ->
+.B   'b env ->
+.B   'b env
+.sp
+
+.sp

@@ -1,0 +1,527 @@
+.TH "Stdlib.Weak" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Weak \- no description
+.SH Module
+Module   Stdlib.Weak
+.SH Documentation
+.sp
+Module
+.BI "Weak"
+ : 
+.B (module Stdlib__Weak)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Low-level functions
+
+.PP
+.I type 
+.B !'a
+.I t 
+
+.sp
+The type of arrays of weak pointers (weak arrays)\&.  A weak
+pointer is a value that the garbage collector may erase whenever
+the value is not used any more (through normal pointers) by the
+program\&.  Note that finalisation functions are run before the
+weak pointers are erased, because the finalisation functions
+can make values alive again (before 4\&.03 the finalisation
+functions were run after)\&.
+.sp
+A weak pointer is said to be full if it points to a value,
+empty if the value was erased by the GC\&.
+.sp
+Notes:
+.sp
+\-Integers are not allocated and cannot be stored in weak arrays\&.
+.sp
+\-Weak arrays cannot be marshaled using 
+.ft B
+output_value
+.ft R
+nor the functions of the 
+.ft B
+Marshal
+.ft R
+module\&.
+
+
+.sp
+
+.I val create 
+: 
+.B int -> 'a t
+.sp
+
+.ft B
+Weak\&.create n
+.ft R
+returns a new weak array of length 
+.ft B
+n
+.ft R
+\&.
+All the pointers are initially empty\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is not comprised between zero and
+.ft B
+Obj\&.Ephemeron\&.max_ephe_length
+.ft R
+(limits included)\&.
+
+.sp
+
+.I val length 
+: 
+.B 'a t -> int
+.sp
+
+.ft B
+Weak\&.length ar
+.ft R
+returns the length (number of elements) of
+.ft B
+ar
+.ft R
+\&.
+
+.sp
+
+.I val set 
+: 
+.B 'a t -> int -> 'a option -> unit
+.sp
+
+.ft B
+Weak\&.set ar n (Some el)
+.ft R
+sets the 
+.ft B
+n
+.ft R
+th cell of 
+.ft B
+ar
+.ft R
+to be a
+(full) pointer to 
+.ft B
+el
+.ft R
+; 
+.ft B
+Weak\&.set ar n None
+.ft R
+sets the 
+.ft B
+n
+.ft R
+th
+cell of 
+.ft B
+ar
+.ft R
+to empty\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is not in the range
+0 to 
+.ft B
+Weak\&.length
+.ft R
+.ft B
+ar \- 1
+.ft R
+\&.
+
+.sp
+
+.I val get 
+: 
+.B 'a t -> int -> 'a option
+.sp
+
+.ft B
+Weak\&.get ar n
+.ft R
+returns None if the 
+.ft B
+n
+.ft R
+th cell of 
+.ft B
+ar
+.ft R
+is
+empty, 
+.ft B
+Some x
+.ft R
+(where 
+.ft B
+x
+.ft R
+is the value) if it is full\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is not in the range
+0 to 
+.ft B
+Weak\&.length
+.ft R
+.ft B
+ar \- 1
+.ft R
+\&.
+
+.sp
+
+.I val get_copy 
+: 
+.B 'a t -> int -> 'a option
+.sp
+
+.ft B
+Weak\&.get_copy ar n
+.ft R
+returns None if the 
+.ft B
+n
+.ft R
+th cell of 
+.ft B
+ar
+.ft R
+is
+empty, 
+.ft B
+Some x
+.ft R
+(where 
+.ft B
+x
+.ft R
+is a (shallow) copy of the value) if
+it is full\&.
+In addition to pitfalls with mutable values, the interesting
+difference with 
+.ft B
+get
+.ft R
+is that 
+.ft B
+get_copy
+.ft R
+does not prevent
+the incremental GC from erasing the value in its current cycle
+(
+.ft B
+get
+.ft R
+may delay the erasure to the next GC cycle)\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is not in the range
+0 to 
+.ft B
+Weak\&.length
+.ft R
+.ft B
+ar \- 1
+.ft R
+\&.
+.sp
+If the element is a custom block it is not copied\&.
+
+.sp
+
+.I val check 
+: 
+.B 'a t -> int -> bool
+.sp
+
+.ft B
+Weak\&.check ar n
+.ft R
+returns 
+.ft B
+true
+.ft R
+if the 
+.ft B
+n
+.ft R
+th cell of 
+.ft B
+ar
+.ft R
+is
+full, 
+.ft B
+false
+.ft R
+if it is empty\&.  Note that even if 
+.ft B
+Weak\&.check ar n
+.ft R
+returns 
+.ft B
+true
+.ft R
+, a subsequent 
+.ft B
+Weak\&.get
+.ft R
+.ft B
+ar n
+.ft R
+can return 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is not in the range
+0 to 
+.ft B
+Weak\&.length
+.ft R
+.ft B
+ar \- 1
+.ft R
+\&.
+
+.sp
+
+.I val fill 
+: 
+.B 'a t -> int -> int -> 'a option -> unit
+.sp
+
+.ft B
+Weak\&.fill ar ofs len el
+.ft R
+sets to 
+.ft B
+el
+.ft R
+all pointers of 
+.ft B
+ar
+.ft R
+from
+.ft B
+ofs
+.ft R
+to 
+.ft B
+ofs + len \- 1
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+ofs
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid subarray of 
+.ft B
+ar
+.ft R
+\&.
+
+.sp
+
+.I val blit 
+: 
+.B 'a t -> int -> 'a t -> int -> int -> unit
+.sp
+
+.ft B
+Weak\&.blit ar1 off1 ar2 off2 len
+.ft R
+copies 
+.ft B
+len
+.ft R
+weak pointers
+from 
+.ft B
+ar1
+.ft R
+(starting at 
+.ft B
+off1
+.ft R
+) to 
+.ft B
+ar2
+.ft R
+(starting at 
+.ft B
+off2
+.ft R
+)\&.
+It works correctly even if 
+.ft B
+ar1
+.ft R
+and 
+.ft B
+ar2
+.ft R
+are the same\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+off1
+.ft R
+and 
+.ft B
+len
+.ft R
+do
+not designate a valid subarray of 
+.ft B
+ar1
+.ft R
+, or if 
+.ft B
+off2
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid subarray of 
+.ft B
+ar2
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Weak hash sets
+
+.PP
+
+.PP
+A weak hash set is a hashed set of values\&.  Each value may
+magically disappear from the set when it is not used by the
+rest of the program any more\&.  This is normally used to share
+data structures without inducing memory leaks\&.
+Weak hash sets are defined on values from a 
+.ft B
+Hashtbl\&.HashedType
+.ft R
+module; the 
+.ft B
+equal
+.ft R
+relation and 
+.ft B
+hash
+.ft R
+function are taken from that
+module\&.  We will say that 
+.ft B
+v
+.ft R
+is an instance of 
+.ft B
+x
+.ft R
+if 
+.ft B
+equal x v
+.ft R
+is 
+.ft B
+true
+.ft R
+\&.
+.sp
+The 
+.ft B
+equal
+.ft R
+relation must be able to work on a shallow copy of
+the values and give the same result as with the values themselves\&.
+.PP
+
+.PP
+Unsynchronized accesses
+.sp
+Unsynchronized accesses to weak hash sets are a programming error\&.
+Unsynchronized accesses to a weak hash set may lead to an invalid weak hash
+set state\&. Thus, concurrent accesses to weak hash sets must be synchronized
+(for instance with a 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.PP
+.I module type S = 
+.B sig end
+
+.sp
+The output signature of the functor 
+.ft B
+Weak\&.Make
+.ft R
+\&.
+
+.sp
+.I module Make : 
+.B functor (H : Hashtbl.HashedType) -> sig end
+
+.sp
+Functor building an implementation of the weak hash set structure\&.
+.ft B
+H\&.equal
+.ft R
+can\&'t be the physical equality, since only shallow
+copies of the elements in the set are given to it\&.
+
+.sp

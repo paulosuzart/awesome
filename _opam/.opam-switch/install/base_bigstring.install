@@ -1,0 +1,23 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/base_bigstring/META"
+  "_build/install/default/lib/base_bigstring/base_bigstring.a"
+  "_build/install/default/lib/base_bigstring/base_bigstring.cma"
+  "_build/install/default/lib/base_bigstring/base_bigstring.cmi"
+  "_build/install/default/lib/base_bigstring/base_bigstring.cmt"
+  "_build/install/default/lib/base_bigstring/base_bigstring.cmti"
+  "_build/install/default/lib/base_bigstring/base_bigstring.cmx"
+  "_build/install/default/lib/base_bigstring/base_bigstring.cmxa"
+  "_build/install/default/lib/base_bigstring/base_bigstring.ml"
+  "_build/install/default/lib/base_bigstring/base_bigstring.mli"
+  "_build/install/default/lib/base_bigstring/dune-package"
+  "_build/install/default/lib/base_bigstring/libbase_bigstring_stubs.a"
+  "_build/install/default/lib/base_bigstring/opam"
+  "_build/install/default/lib/base_bigstring/runtime.js"
+]
+stublibs: "_build/install/default/lib/stublibs/dllbase_bigstring_stubs.so"
+doc: [
+  "_build/install/default/doc/base_bigstring/CHANGES.md"
+  "_build/install/default/doc/base_bigstring/LICENSE.md"
+]
+libexec: "_build/install/default/lib/base_bigstring/base_bigstring.cmxs"

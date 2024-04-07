@@ -1,0 +1,7 @@
+version = "v0.16.0"
+description = ""
+requires = ""
+archive(byte) = "config_h.cma"
+archive(native) = "config_h.cmxa"
+plugin(byte) = "config_h.cma"
+plugin(native) = "config_h.cmxs"

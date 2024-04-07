@@ -1,0 +1,7 @@
+version = "v0.3"
+description = ""
+requires = "unix"
+archive(byte) = "iomux.cma"
+archive(native) = "iomux.cmxa"
+plugin(byte) = "iomux.cma"
+plugin(native) = "iomux.cmxs"

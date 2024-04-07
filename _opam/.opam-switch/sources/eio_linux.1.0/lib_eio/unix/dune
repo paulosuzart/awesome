@@ -1,0 +1,25 @@
+(library
+ (name eio_unix)
+ (public_name eio.unix)
+ (foreign_stubs
+  (language c)
+  (include_dirs include)
+  (names fork_action stubs cap))
+ (libraries eio eio.utils unix threads mtime.clock.os))
+
+(rule
+ (enabled_if %{bin-available:lintcstubs_arity_cmt})
+ (action
+  (with-stdout-to
+   primitives.h.new
+   (run %{bin:lintcstubs_arity_cmt}
+        %{dep:.eio_unix.objs/byte/eio_unix__Fd.cmt}
+        %{dep:.eio_unix.objs/byte/eio_unix__Private.cmt}
+        %{dep:.eio_unix.objs/byte/eio_unix__Cap.cmt}
+        %{dep:.eio_unix.objs/byte/eio_unix__Fork_action.cmt}))))
+
+(rule
+ (enabled_if %{bin-available:lintcstubs_arity_cmt})
+ (alias runtest)
+ (action
+  (diff primitives.h primitives.h.new)))

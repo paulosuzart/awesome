@@ -1,0 +1,118 @@
+(lang dune 3.15)
+(name yojson)
+(version 2.1.2)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/yojson))
+(files
+ (lib
+  (META
+   basic.ml
+   basic.mli
+   codec.ml
+   codec.mli
+   common.ml
+   common.mli
+   dune-package
+   lexer_utils.ml
+   opam
+   raw.ml
+   raw.mli
+   safe.ml
+   safe.mli
+   t.ml
+   t.mli
+   yojson.a
+   yojson.cma
+   yojson.cmi
+   yojson.cmt
+   yojson.cmti
+   yojson.cmx
+   yojson.cmxa
+   yojson.ml
+   yojson.mli
+   yojson__.cmi
+   yojson__.cmt
+   yojson__.cmx
+   yojson__.ml
+   yojson__Basic.cmi
+   yojson__Basic.cmt
+   yojson__Basic.cmti
+   yojson__Basic.cmx
+   yojson__Codec.cmi
+   yojson__Codec.cmt
+   yojson__Codec.cmti
+   yojson__Codec.cmx
+   yojson__Common.cmi
+   yojson__Common.cmt
+   yojson__Common.cmti
+   yojson__Common.cmx
+   yojson__Lexer_utils.cmi
+   yojson__Lexer_utils.cmt
+   yojson__Lexer_utils.cmx
+   yojson__Raw.cmi
+   yojson__Raw.cmt
+   yojson__Raw.cmti
+   yojson__Raw.cmx
+   yojson__Safe.cmi
+   yojson__Safe.cmt
+   yojson__Safe.cmti
+   yojson__Safe.cmx
+   yojson__T.cmi
+   yojson__T.cmt
+   yojson__T.cmti
+   yojson__T.cmx))
+ (libexec (yojson.cmxs))
+ (bin (ydump))
+ (doc (CHANGES.md LICENSE.md README.md odoc-pages/index.mld)))
+(library
+ (name yojson)
+ (kind normal)
+ (synopsis "JSON parsing and printing")
+ (archives (byte yojson.cma) (native yojson.cmxa))
+ (plugins (byte yojson.cma) (native yojson.cmxs))
+ (native_archives yojson.a)
+ (requires seq)
+ (main_module_name Yojson)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name yojson__)
+     (visibility public)
+     (kind alias)
+     (source (path Yojson__) (impl (path yojson__.ml-gen))))
+    (name Yojson)
+    (modules
+     (module
+      (obj_name yojson__Basic)
+      (visibility public)
+      (source (path Basic) (intf (path basic.mli)) (impl (path basic.ml))))
+     (module
+      (obj_name yojson__Codec)
+      (visibility public)
+      (source (path Codec) (intf (path codec.mli)) (impl (path codec.ml))))
+     (module
+      (obj_name yojson__Common)
+      (visibility public)
+      (source (path Common) (intf (path common.mli)) (impl (path common.ml))))
+     (module
+      (obj_name yojson__Lexer_utils)
+      (visibility public)
+      (source (path Lexer_utils) (impl (path lexer_utils.ml))))
+     (module
+      (obj_name yojson__Raw)
+      (visibility public)
+      (source (path Raw) (intf (path raw.mli)) (impl (path raw.ml))))
+     (module
+      (obj_name yojson__Safe)
+      (visibility public)
+      (source (path Safe) (intf (path safe.mli)) (impl (path safe.ml))))
+     (module
+      (obj_name yojson__T)
+      (visibility public)
+      (source (path T) (intf (path t.mli)) (impl (path t.ml))))
+     (module
+      (obj_name yojson)
+      (visibility public)
+      (source (path Yojson) (intf (path yojson.mli)) (impl (path yojson.ml))))))
+   (wrapped true))))

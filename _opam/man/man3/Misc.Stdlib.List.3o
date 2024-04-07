@@ -1,0 +1,196 @@
+.TH "Misc.Stdlib.List" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.Stdlib.List \-  Extensions to the List module 
+.SH Module
+Module   Misc.Stdlib.List
+.SH Documentation
+.sp
+Module
+.BI "List"
+ : 
+.B sig end
+
+.sp
+.SS Extensions to the List module
+
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+= 
+.B 'a list
+
+.sp
+
+.sp
+
+.I val compare 
+: 
+.B ('a -> 'a -> int) -> 'a t -> 'a t -> int
+.sp
+The lexicographic order supported by the provided order\&.
+There is no constraint on the relative lengths of the lists\&.
+
+.sp
+
+.I val equal 
+: 
+.B ('a -> 'a -> bool) -> 'a t -> 'a t -> bool
+.sp
+Returns 
+.ft B
+true
+.ft R
+if and only if the given lists have the same length and
+content with respect to the given equality function\&.
+
+.sp
+
+.I val some_if_all_elements_are_some 
+: 
+.B 'a option t -> 'a t option
+.sp
+If all elements of the given list are 
+.ft B
+Some _
+.ft R
+then 
+.ft B
+Some xs
+.ft R
+is returned with the 
+.ft B
+xs
+.ft R
+being the contents of those 
+.ft B
+Some
+.ft R
+s, with
+order preserved\&.  Otherwise return 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val map2_prefix 
+: 
+.B ('a -> 'b -> 'c) ->
+.B   'a t ->
+.B   'b t -> 'c t * 'b t
+.sp
+
+.ft B
+let r1, r2 = map2_prefix f l1 l2
+.ft R
+If 
+.ft B
+l1
+.ft R
+is of length n and 
+.ft B
+l2 = h2 @ t2
+.ft R
+with h2 of length n,
+r1 is 
+.ft B
+List\&.map2 f l1 h1
+.ft R
+and r2 is t2\&.
+
+.sp
+
+.I val split_at 
+: 
+.B int -> 'a t -> 'a t * 'a t
+.sp
+
+.ft B
+split_at n l
+.ft R
+returns the pair 
+.ft B
+before, after
+.ft R
+where 
+.ft B
+before
+.ft R
+is
+the 
+.ft B
+n
+.ft R
+first elements of 
+.ft B
+l
+.ft R
+and 
+.ft B
+after
+.ft R
+the remaining ones\&.
+If 
+.ft B
+l
+.ft R
+has less than 
+.ft B
+n
+.ft R
+elements, raises Invalid_argument\&.
+
+.sp
+
+.I val is_prefix 
+: 
+.B equal:('a -> 'a -> bool) -> 'a list -> of_:'a list -> bool
+.sp
+Returns 
+.ft B
+true
+.ft R
+if and only if the given list, with respect to the given
+equality function on list members, is a prefix of the list 
+.ft B
+of_
+.ft R
+\&.
+
+.sp
+.I type 
+.B 'a
+.I longest_common_prefix_result 
+= private {
+ longest_common_prefix : 
+.B 'a list
+;
+ first_without_longest_common_prefix : 
+.B 'a list
+;
+ second_without_longest_common_prefix : 
+.B 'a list
+;
+ }
+
+.sp
+
+.sp
+
+.I val find_and_chop_longest_common_prefix 
+: 
+.B equal:('a -> 'a -> bool) ->
+.B   first:'a list ->
+.B   second:'a list -> 'a longest_common_prefix_result
+.sp
+Returns the longest list that, with respect to the provided equality
+function, is a prefix of both of the given lists\&.  The input lists,
+each with such longest common prefix removed, are also returned\&.
+
+.sp

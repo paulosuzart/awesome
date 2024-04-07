@@ -1,0 +1,63 @@
+.TH "Identifiable.S.Set" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Identifiable.S.Set \- no description
+.SH Module
+Module   Identifiable.S.Set
+.SH Documentation
+.sp
+Module
+.BI "Set"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module T : 
+.B Set.OrderedType
+
+.sp
+
+.sp
+.I include Set.S
+.sp
+
+.sp
+
+.I val output 
+: 
+.B out_channel -> t -> unit
+.sp
+
+.sp
+
+.I val print 
+: 
+.B Format.formatter -> t -> unit
+.sp
+
+.sp
+
+.I val to_string 
+: 
+.B t -> string
+.sp
+
+.sp
+
+.I val of_list 
+: 
+.B elt list -> t
+.sp
+
+.sp
+
+.I val map 
+: 
+.B (elt -> elt) -> t -> t
+.sp
+
+.sp

@@ -1,0 +1,38 @@
+(lang dune 3.15)
+(name jst-config)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/jst-config))
+(files
+ (lib
+  (META
+   config.h
+   config_h.a
+   config_h.cma
+   config_h.cmi
+   config_h.cmt
+   config_h.cmx
+   config_h.cmxa
+   config_h.ml
+   dune-package
+   opam
+   thread_id.h))
+ (libexec (config_h.cmxs))
+ (doc (LICENSE.md)))
+(library
+ (name jst-config)
+ (kind normal)
+ (archives (byte config_h.cma) (native config_h.cmxa))
+ (plugins (byte config_h.cma) (native config_h.cmxs))
+ (native_archives config_h.a)
+ (main_module_name Config_h)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name config_h)
+     (visibility public)
+     (kind alias)
+     (source (path Config_h) (impl (path config_h.ml-gen))))
+    (name Config_h))
+   (wrapped true))))

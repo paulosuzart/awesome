@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/pbkdf" {"D"}
+  "doc/pbkdf/CHANGES.md" {"F:d63ddc744d3c4a0064649924d3e0a75d"}
+  "doc/pbkdf/LICENSE.md" {"F:f41fde306ccbaffe8884eb94bb4d7aa4"}
+  "doc/pbkdf/README.md" {"F:360c6fea7107fe56c5c16586c371689f"}
+  "lib/pbkdf" {"D"}
+  "lib/pbkdf/META" {"F:c42c02e53ec0e5d2fe88c312cb3b4fe8"}
+  "lib/pbkdf/dune-package" {"F:87ab7ffc3056d1722406a020600c4e28"}
+  "lib/pbkdf/opam" {"F:74beb85435f984887645f89a7003181d"}
+  "lib/pbkdf/pbkdf.a" {"F:963d16af23927368164609c869c1da6a"}
+  "lib/pbkdf/pbkdf.cma" {"F:809c5a33351d2a42c1f238608f103927"}
+  "lib/pbkdf/pbkdf.cmi" {"F:38d0656c57ddc098b43b3e19c4bacd8e"}
+  "lib/pbkdf/pbkdf.cmt" {"F:b4065b06c9b91aca9abae4ca8b01a1ea"}
+  "lib/pbkdf/pbkdf.cmti" {"F:1d5f721b4a6dec95aa9467e228a130a4"}
+  "lib/pbkdf/pbkdf.cmx" {"F:f9b5aa00fdf5ea2d1b50788e3c1f5177"}
+  "lib/pbkdf/pbkdf.cmxa" {"F:b1c6dd23444e557dcf051e9f5b154525"}
+  "lib/pbkdf/pbkdf.cmxs" {"F:bf63d0bc3a64aabfd9af11abe27371b8"}
+  "lib/pbkdf/pbkdf.ml" {"F:d0417eb1bf39d77081c2fb76d473c925"}
+  "lib/pbkdf/pbkdf.mli" {"F:6deffeab3abc8c9781106f4c7f181d7c"}
+]

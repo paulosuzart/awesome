@@ -1,0 +1,342 @@
+.TH "Stdlib.Bool" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Bool \- no description
+.SH Module
+Module   Stdlib.Bool
+.SH Documentation
+.sp
+Module
+.BI "Bool"
+ : 
+.B (module Stdlib__Bool)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Booleans
+
+.PP
+.I type t 
+= 
+.B bool
+=
+ | false
+ | true
+ 
+.sp
+The type of booleans (truth values)\&.
+.sp
+The constructors 
+.ft B
+false
+.ft R
+and 
+.ft B
+true
+.ft R
+are included here so that they have
+paths, but they are not intended to be used in user\-defined data types\&.
+
+.sp
+
+.I val not 
+: 
+.B bool -> bool
+.sp
+
+.ft B
+not b
+.ft R
+is the boolean negation of 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+
+.I val (&&) 
+: 
+.B bool -> bool -> bool
+.sp
+
+.ft B
+e0 && e1
+.ft R
+is the lazy boolean conjunction of expressions 
+.ft B
+e0
+.ft R
+and 
+.ft B
+e1
+.ft R
+\&.
+If 
+.ft B
+e0
+.ft R
+evaluates to 
+.ft B
+false
+.ft R
+, 
+.ft B
+e1
+.ft R
+is not evaluated\&. Right\-associative
+operator at precedence level 3/11\&.
+
+.sp
+
+.I val (||) 
+: 
+.B bool -> bool -> bool
+.sp
+
+.ft B
+e0 || e1
+.ft R
+is the lazy boolean disjunction of expressions 
+.ft B
+e0
+.ft R
+and 
+.ft B
+e1
+.ft R
+\&.
+If 
+.ft B
+e0
+.ft R
+evaluates to 
+.ft B
+true
+.ft R
+, 
+.ft B
+e1
+.ft R
+is not evaluated\&. Right\-associative
+operator at precedence level 2/11\&.
+
+.sp
+
+.PP
+.SS Predicates and comparisons
+
+.PP
+
+.I val equal 
+: 
+.B bool -> bool -> bool
+.sp
+
+.ft B
+equal b0 b1
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+b0
+.ft R
+and 
+.ft B
+b1
+.ft R
+are both 
+.ft B
+true
+.ft R
+or both 
+.ft B
+false
+.ft R
+\&.
+
+.sp
+
+.I val compare 
+: 
+.B bool -> bool -> int
+.sp
+
+.ft B
+compare b0 b1
+.ft R
+is a total order on boolean values\&. 
+.ft B
+false
+.ft R
+is smaller
+than 
+.ft B
+true
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Converting
+
+.PP
+
+.I val to_int 
+: 
+.B bool -> int
+.sp
+
+.ft B
+to_int b
+.ft R
+is 
+.ft B
+0
+.ft R
+if 
+.ft B
+b
+.ft R
+is 
+.ft B
+false
+.ft R
+and 
+.ft B
+1
+.ft R
+if 
+.ft B
+b
+.ft R
+is 
+.ft B
+true
+.ft R
+\&.
+
+.sp
+
+.I val to_float 
+: 
+.B bool -> float
+.sp
+
+.ft B
+to_float b
+.ft R
+is 
+.ft B
+0\&.
+.ft R
+if 
+.ft B
+b
+.ft R
+is 
+.ft B
+false
+.ft R
+and 
+.ft B
+1\&.
+.ft R
+if 
+.ft B
+b
+.ft R
+is 
+.ft B
+true
+.ft R
+\&.
+
+.sp
+
+.I val to_string 
+: 
+.B bool -> string
+.sp
+
+.ft B
+to_string b
+.ft R
+is 
+.ft B
+"true"
+.ft R
+if 
+.ft B
+b
+.ft R
+is 
+.ft B
+true
+.ft R
+and 
+.ft B
+"false"
+.ft R
+if 
+.ft B
+b
+.ft R
+is
+.ft B
+false
+.ft R
+\&.
+
+.sp
+
+.I val seeded_hash 
+: 
+.B int -> bool -> int
+.sp
+A seeded hash function for booleans, with the same output value as
+.ft B
+Hashtbl\&.seeded_hash
+.ft R
+\&. This function allows this module to be passed as
+argument to the functor 
+.ft B
+Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val hash 
+: 
+.B bool -> int
+.sp
+An unseeded hash function for booleans, with the same output value as
+.ft B
+Hashtbl\&.hash
+.ft R
+\&. This function allows this module to be passed as argument
+to the functor 
+.ft B
+Hashtbl\&.Make
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp

@@ -1,0 +1,20 @@
+(library
+ (name Thread_table)
+ (public_name thread-table))
+
+(rule
+ (targets mix.ml)
+ (deps mix.64.ml)
+ (enabled_if %{arch_sixtyfour})
+ (action
+  (progn
+   (copy mix.64.ml mix.ml))))
+
+(rule
+ (targets mix.ml)
+ (deps mix.32.ml)
+ (enabled_if
+  (not %{arch_sixtyfour}))
+ (action
+  (progn
+   (copy mix.32.ml mix.ml))))

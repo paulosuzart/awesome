@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Looking up package directories</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using packages"
+HREF="c74.html"><LINK
+REL="PREVIOUS"
+TITLE="Using packages"
+HREF="c74.html"><LINK
+REL="NEXT"
+TITLE="How a package directory looks like"
+HREF="x89.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c74.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x89.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN81"
+>Looking up package directories</A
+></H1
+><P
+>The package manager knows the preferred location for packages (this
+location is compiled in), which is usually
+/usr/local/lib/ocaml/site-lib. You can ask the package manager where
+package p is stored by simply typing</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind query p</PRE
+><P
+>and it will answer something like</P
+><PRE
+CLASS="PROGRAMLISTING"
+>/usr/local/lib/ocaml/site-lib/p</PRE
+><P
+>There is an environment variable OCAMLPATH which can specify further
+directories where packages are stored. (The search order is: first
+the directories in OCAMLPATH in turn, then the default path
+set in ocamlfind.conf)</P
+><P
+>Historically, this kind of query was the first and only way of using
+ocamlfind, and because of the similiarity to the Unix find command it
+got its name. Finding out package locations is a basic but
+nethertheless important feature because it hides the details of the
+filesystem hierarchy. It is sufficient only to know the name of the
+package, and if needed, you can use the lookup mechanism implemented
+in ocamlfind to get the concrete directory.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c74.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x89.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using packages</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c74.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>How a package directory looks like</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

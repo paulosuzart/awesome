@@ -1,0 +1,57 @@
+opam-version: "2.0"
+added: [
+  "doc/menhirSdk" {"D"}
+  "doc/menhirSdk/LICENSE" {"F:7c409efab485d007e8c2d442b51a252f"}
+  "lib/menhirSdk" {"D"}
+  "lib/menhirSdk/META" {"F:0db17005c3a22646e1a135bb8c61195f"}
+  "lib/menhirSdk/cmly_api.ml" {"F:48be7bac4976b7badcf19dcff3a800f0"}
+  "lib/menhirSdk/cmly_format.ml" {"F:5eedd93a1152c5dba4716ed3775660ce"}
+  "lib/menhirSdk/cmly_read.ml" {"F:f3aad728d27c5162693733a9e80f54c1"}
+  "lib/menhirSdk/cmly_read.mli" {"F:c8ba0616b7a97398d7329364d5a04e16"}
+  "lib/menhirSdk/dune-package" {"F:4beb6b152ff9e0fa062ae6f974777b7b"}
+  "lib/menhirSdk/keyword.ml" {"F:a814d286de94b7c89ab5df901ce89032"}
+  "lib/menhirSdk/keyword.mli" {"F:94d84fa36d3b20bd49ba588595e19503"}
+  "lib/menhirSdk/menhirSdk.a" {"F:818a107893a6a96aeab08f87cae51663"}
+  "lib/menhirSdk/menhirSdk.cma" {"F:ee961ef4b562bd767a11530d3a2efdf4"}
+  "lib/menhirSdk/menhirSdk.cmi" {"F:f433276ad28236a5dc42f212f1b20aa0"}
+  "lib/menhirSdk/menhirSdk.cmt" {"F:34d17439213738cbb160134091a1a6ab"}
+  "lib/menhirSdk/menhirSdk.cmx" {"F:95292bb6466761d5007da43e02295868"}
+  "lib/menhirSdk/menhirSdk.cmxa" {"F:32666551b6047f54e3ff644b85ea225e"}
+  "lib/menhirSdk/menhirSdk.cmxs" {"F:72a65f8049ed97bcf17eed60ebeb7db8"}
+  "lib/menhirSdk/menhirSdk.ml" {"F:b2d25c0daac599a8e1361d696f8fca0f"}
+  "lib/menhirSdk/menhirSdk__Cmly_api.cmi"
+    {"F:ae1918afee89536b2a18cbc4bb9a1c43"}
+  "lib/menhirSdk/menhirSdk__Cmly_api.cmt"
+    {"F:b1a702a394052ce9b36cb1b045ce274c"}
+  "lib/menhirSdk/menhirSdk__Cmly_api.cmx"
+    {"F:b738e9566495c087897d0a056ad86109"}
+  "lib/menhirSdk/menhirSdk__Cmly_format.cmi"
+    {"F:af9d49a46a877f4bb2487325e27ed606"}
+  "lib/menhirSdk/menhirSdk__Cmly_format.cmt"
+    {"F:758e55f0e0b72114b3bfdf4dbbacda9a"}
+  "lib/menhirSdk/menhirSdk__Cmly_format.cmx"
+    {"F:a614c83288221fa3c7a76e70643a3fd3"}
+  "lib/menhirSdk/menhirSdk__Cmly_read.cmi"
+    {"F:cce9a2e8dfab421cb02f319838e0f989"}
+  "lib/menhirSdk/menhirSdk__Cmly_read.cmt"
+    {"F:3ed93b3950d7ae7e1acdf8bd7c0fc507"}
+  "lib/menhirSdk/menhirSdk__Cmly_read.cmti"
+    {"F:6f9a2a74b4a1ee61292fb6383cd06048"}
+  "lib/menhirSdk/menhirSdk__Cmly_read.cmx"
+    {"F:bddacd12df6b5c469b793587869e5802"}
+  "lib/menhirSdk/menhirSdk__Keyword.cmi"
+    {"F:55690b0b5e6dc040c8989fda13f9fa6f"}
+  "lib/menhirSdk/menhirSdk__Keyword.cmt"
+    {"F:8fc54505356cbbe638273aa3f370c119"}
+  "lib/menhirSdk/menhirSdk__Keyword.cmti"
+    {"F:6af57ab097fd7deb63829109287e7ff5"}
+  "lib/menhirSdk/menhirSdk__Keyword.cmx"
+    {"F:149fc32af307a49383adc4e618299c54"}
+  "lib/menhirSdk/menhirSdk__Version.cmi"
+    {"F:345875fabd09d09912c8ad6168fd3ddc"}
+  "lib/menhirSdk/menhirSdk__Version.cmt"
+    {"F:b8a31ca9930bf9851eefd0bc3fac707f"}
+  "lib/menhirSdk/menhirSdk__Version.cmx"
+    {"F:9fb271e4a03ee5c1bd6427b90b0e838b"}
+  "lib/menhirSdk/version.ml" {"F:3781d502b541c50fa61cc2f09683746b"}
+]

@@ -1,0 +1,220 @@
+.TH "MoreLabels.Hashtbl.SeededS" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+MoreLabels.Hashtbl.SeededS \- The output signature of the functor MoreLabels.Hashtbl.MakeSeeded.
+.SH Module type
+Module type   MoreLabels.Hashtbl.SeededS
+.SH Documentation
+.sp
+Module type
+.BI "SeededS"
+ = 
+.B sig end
+
+.sp
+The output signature of the functor 
+.ft B
+MoreLabels\&.Hashtbl\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.sp
+.sp
+.I type key 
+
+.sp
+
+.sp
+.I type 
+.B !'a
+.I t 
+
+.sp
+
+.sp
+
+.I val create 
+: 
+.B ?random:bool -> int -> 'a t
+.sp
+
+.sp
+
+.I val clear 
+: 
+.B 'a t -> unit
+.sp
+
+.sp
+
+.I val reset 
+: 
+.B 'a t -> unit
+.sp
+
+.sp
+
+.I val copy 
+: 
+.B 'a t -> 'a t
+.sp
+
+.sp
+
+.I val add 
+: 
+.B 'a t ->
+.B   key:key -> data:'a -> unit
+.sp
+
+.sp
+
+.I val remove 
+: 
+.B 'a t -> key -> unit
+.sp
+
+.sp
+
+.I val find 
+: 
+.B 'a t -> key -> 'a
+.sp
+
+.sp
+
+.I val find_opt 
+: 
+.B 'a t ->
+.B   key -> 'a option
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val find_all 
+: 
+.B 'a t -> key -> 'a list
+.sp
+
+.sp
+
+.I val replace 
+: 
+.B 'a t ->
+.B   key:key -> data:'a -> unit
+.sp
+
+.sp
+
+.I val mem 
+: 
+.B 'a t -> key -> bool
+.sp
+
+.sp
+
+.I val iter 
+: 
+.B f:(key:key -> data:'a -> unit) ->
+.B   'a t -> unit
+.sp
+
+.sp
+
+.I val filter_map_inplace 
+: 
+.B f:(key:key -> data:'a -> 'a option) ->
+.B   'a t -> unit
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val fold 
+: 
+.B f:(key:key -> data:'a -> 'acc -> 'acc) ->
+.B   'a t -> init:'acc -> 'acc
+.sp
+
+.sp
+
+.I val length 
+: 
+.B 'a t -> int
+.sp
+
+.sp
+
+.I val stats 
+: 
+.B 'a t -> MoreLabels.Hashtbl.statistics
+.sp
+
+.sp
+
+.I val to_seq 
+: 
+.B 'a t ->
+.B   (key * 'a) Seq.t
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seq_keys 
+: 
+.B 'a t ->
+.B   key Seq.t
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seq_values 
+: 
+.B 'a t -> 'a Seq.t
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val add_seq 
+: 
+.B 'a t ->
+.B   (key * 'a) Seq.t -> unit
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val replace_seq 
+: 
+.B 'a t ->
+.B   (key * 'a) Seq.t -> unit
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B (key * 'a) Seq.t ->
+.B   'a t
+.sp
+.B "Since"
+4.07
+
+.sp

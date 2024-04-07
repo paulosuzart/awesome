@@ -1,0 +1,7 @@
+(mdx
+  (package eio)
+  (enabled_if (<> %{os_type} "Win32"))
+  (deps
+    (package eio)
+    (file ./dscheck/fake_sched.ml)
+    (file ./dscheck/fake_sched.mli)))

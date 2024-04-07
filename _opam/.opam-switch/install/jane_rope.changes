@@ -1,0 +1,20 @@
+opam-version: "2.0"
+added: [
+  "doc/jane_rope" {"D"}
+  "doc/jane_rope/LICENSE.md" {"F:08f0f31a9247d0a5b4c63c2346ecf8dd"}
+  "doc/jane_rope/README.md" {"F:88340263e19379294f046f8cf541332d"}
+  "lib/jane_rope" {"D"}
+  "lib/jane_rope/META" {"F:057e797502f8ad1b6c7e8c88c3a9a370"}
+  "lib/jane_rope/dune-package" {"F:80601cebf63fac40fa4926e69451e05b"}
+  "lib/jane_rope/opam" {"F:4b9259076000d8035109920239a3fe09"}
+  "lib/jane_rope/rope.a" {"F:937dabde9683f524e25754a74b8abf4b"}
+  "lib/jane_rope/rope.cma" {"F:0791c8304c0c490557cf6be410a3cf65"}
+  "lib/jane_rope/rope.cmi" {"F:3b94c35dcfbe669f82df60d68d5a4772"}
+  "lib/jane_rope/rope.cmt" {"F:9eaf46932e59c1ade5b4145df10c7bd5"}
+  "lib/jane_rope/rope.cmti" {"F:de22fd172d8b4d3c623743976be88c6a"}
+  "lib/jane_rope/rope.cmx" {"F:3d03ebccf278f8773d8077129f16b28b"}
+  "lib/jane_rope/rope.cmxa" {"F:a7d83c33a8517faa146c7e7c3d3ca9a9"}
+  "lib/jane_rope/rope.cmxs" {"F:b367dd6f7a48e5ee2e489aa2ca9f4bf4"}
+  "lib/jane_rope/rope.ml" {"F:33cc035759319e5ae42b2ade76be9cff"}
+  "lib/jane_rope/rope.mli" {"F:8b98d1ee02190fa0ef548b960069dd45"}
+]

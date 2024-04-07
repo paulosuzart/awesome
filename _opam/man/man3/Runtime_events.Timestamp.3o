@@ -1,0 +1,31 @@
+.TH "Runtime_events.Timestamp" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Runtime_events.Timestamp \- no description
+.SH Module
+Module   Runtime_events.Timestamp
+.SH Documentation
+.sp
+Module
+.BI "Timestamp"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+Type for the int64 timestamp to allow for future changes
+
+.sp
+
+.I val to_int64 
+: 
+.B t -> int64
+.sp
+
+.sp

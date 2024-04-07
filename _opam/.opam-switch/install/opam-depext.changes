@@ -1,0 +1,2 @@
+opam-version: "2.0"
+added: "bin/opam-depext" {"F:e2e9d41f8e32400b7738ca98c1f9ac51"}

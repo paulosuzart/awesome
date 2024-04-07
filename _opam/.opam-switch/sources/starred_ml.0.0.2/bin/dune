@@ -1,0 +1,20 @@
+(executable
+ (public_name starred_ml)
+ (preprocess
+  (pps ppx_deriving.show ppx_deriving.ord))
+ (name main)
+ (libraries
+  starred_ml
+  ppx_deriving
+  eio.unix
+  eio_main
+  cohttp-eio
+  tls-eio
+  fmt
+  mirage-crypto-rng-eio
+  yojson
+  logs
+  jingoo
+  re2
+  logs.fmt
+  logs.threaded))

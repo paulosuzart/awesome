@@ -1,0 +1,1259 @@
+.TH "Bigarray" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Bigarray \- Large, multi-dimensional, numerical arrays.
+.SH Module
+Module   Bigarray
+.SH Documentation
+.sp
+Module
+.BI "Bigarray"
+ : 
+.B sig end
+
+.sp
+Large, multi\-dimensional, numerical arrays\&.
+.sp
+This module implements multi\-dimensional arrays of integers and
+floating\-point numbers, thereafter referred to as \&'Bigarrays\&',
+to distinguish them from the standard OCaml arrays described in
+.ft B
+Array
+.ft R
+\&.
+.sp
+The implementation allows efficient sharing of large numerical
+arrays between OCaml code and C or Fortran numerical libraries\&.
+.sp
+The main differences between \&'Bigarrays\&' and standard OCaml
+arrays are as follows:
+.sp
+\-Bigarrays are not limited in size, unlike OCaml arrays\&.
+(Normal float arrays are limited to 2,097,151 elements on a 32\-bit
+platform, and normal arrays of other types to 4,194,303 elements\&.)
+.sp
+\-Bigarrays are multi\-dimensional\&.  Any number of dimensions
+between 0 and 16 is supported\&.  In contrast, OCaml arrays
+are mono\-dimensional and require encoding multi\-dimensional
+arrays as arrays of arrays\&.
+.sp
+\-Bigarrays can only contain integers and floating\-point numbers,
+while OCaml arrays can contain arbitrary OCaml data types\&.
+.sp
+\-Bigarrays provide more space\-efficient storage of
+integer and floating\-point elements than normal OCaml arrays, in
+particular because they support \&'small\&' types such as
+single\-precision floats and 8 and 16\-bit integers, in addition to
+the standard OCaml types of double\-precision floats and 32 and
+64\-bit integers\&.
+.sp
+\-The memory layout of Bigarrays is entirely compatible with that
+of arrays in C and Fortran, allowing large arrays to be passed
+back and forth between OCaml code and C / Fortran code with no
+data copying at all\&.
+.sp
+\-Bigarrays support interesting high\-level operations that normal
+arrays do not provide efficiently, such as extracting sub\-arrays
+and \&'slicing\&' a multi\-dimensional array along certain dimensions,
+all without any copying\&.
+
+Users of this module are encouraged to do 
+.ft B
+open Bigarray
+.ft R
+in their
+source, then refer to array types and operations via short dot
+notation, e\&.g\&. 
+.ft B
+Array1\&.t
+.ft R
+or 
+.ft B
+Array2\&.sub
+.ft R
+\&.
+.sp
+Bigarrays support all the OCaml ad\-hoc polymorphic operations:
+.sp
+\-comparisons (
+.ft B
+=
+.ft R
+, 
+.ft B
+<>
+.ft R
+, 
+.ft B
+<=
+.ft R
+, etc, as well as 
+.ft B
+compare
+.ft R
+);
+.sp
+\-hashing (module 
+.ft B
+Hash
+.ft R
+);
+.sp
+\-and structured input\-output (the functions from the
+.ft B
+Marshal
+.ft R
+module, as well as 
+.ft B
+output_value
+.ft R
+and 
+.ft B
+input_value
+.ft R
+)\&.
+
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Element kinds
+
+.PP
+
+.PP
+Bigarrays can contain elements of the following kinds:
+.sp
+\-IEEE single precision (32 bits) floating\-point numbers
+(
+.ft B
+Bigarray\&.float32_elt
+.ft R
+),
+.sp
+\-IEEE double precision (64 bits) floating\-point numbers
+(
+.ft B
+Bigarray\&.float64_elt
+.ft R
+),
+.sp
+\-IEEE single precision (2 * 32 bits) floating\-point complex numbers
+(
+.ft B
+Bigarray\&.complex32_elt
+.ft R
+),
+.sp
+\-IEEE double precision (2 * 64 bits) floating\-point complex numbers
+(
+.ft B
+Bigarray\&.complex64_elt
+.ft R
+),
+.sp
+\-8\-bit integers (signed or unsigned)
+(
+.ft B
+Bigarray\&.int8_signed_elt
+.ft R
+or 
+.ft B
+Bigarray\&.int8_unsigned_elt
+.ft R
+),
+.sp
+\-16\-bit integers (signed or unsigned)
+(
+.ft B
+Bigarray\&.int16_signed_elt
+.ft R
+or 
+.ft B
+Bigarray\&.int16_unsigned_elt
+.ft R
+),
+.sp
+\-OCaml integers (signed, 31 bits on 32\-bit architectures,
+63 bits on 64\-bit architectures) (
+.ft B
+Bigarray\&.int_elt
+.ft R
+),
+.sp
+\-32\-bit signed integers (
+.ft B
+Bigarray\&.int32_elt
+.ft R
+),
+.sp
+\-64\-bit signed integers (
+.ft B
+Bigarray\&.int64_elt
+.ft R
+),
+.sp
+\-platform\-native signed integers (32 bits on 32\-bit architectures,
+64 bits on 64\-bit architectures) (
+.ft B
+Bigarray\&.nativeint_elt
+.ft R
+)\&.
+
+Each element kind is represented at the type level by one of the
+.ft B
+*_elt
+.ft R
+types defined below (defined with a single constructor instead
+of abstract types for technical injectivity reasons)\&.
+.PP
+.I type float32_elt 
+=
+ | Float32_elt
+ 
+.sp
+
+.sp
+.I type float64_elt 
+=
+ | Float64_elt
+ 
+.sp
+
+.sp
+.I type int8_signed_elt 
+=
+ | Int8_signed_elt
+ 
+.sp
+
+.sp
+.I type int8_unsigned_elt 
+=
+ | Int8_unsigned_elt
+ 
+.sp
+
+.sp
+.I type int16_signed_elt 
+=
+ | Int16_signed_elt
+ 
+.sp
+
+.sp
+.I type int16_unsigned_elt 
+=
+ | Int16_unsigned_elt
+ 
+.sp
+
+.sp
+.I type int32_elt 
+=
+ | Int32_elt
+ 
+.sp
+
+.sp
+.I type int64_elt 
+=
+ | Int64_elt
+ 
+.sp
+
+.sp
+.I type int_elt 
+=
+ | Int_elt
+ 
+.sp
+
+.sp
+.I type nativeint_elt 
+=
+ | Nativeint_elt
+ 
+.sp
+
+.sp
+.I type complex32_elt 
+=
+ | Complex32_elt
+ 
+.sp
+
+.sp
+.I type complex64_elt 
+=
+ | Complex64_elt
+ 
+.sp
+
+.sp
+.I type 
+.B ('a, 'b)
+.I kind 
+=
+ | Float32
+.B : 
+.B (float, float32_elt) kind
+ | Float64
+.B : 
+.B (float, float64_elt) kind
+ | Int8_signed
+.B : 
+.B (int, int8_signed_elt) kind
+ | Int8_unsigned
+.B : 
+.B (int, int8_unsigned_elt) kind
+ | Int16_signed
+.B : 
+.B (int, int16_signed_elt) kind
+ | Int16_unsigned
+.B : 
+.B (int, int16_unsigned_elt) kind
+ | Int32
+.B : 
+.B (int32, int32_elt) kind
+ | Int64
+.B : 
+.B (int64, int64_elt) kind
+ | Int
+.B : 
+.B (int, int_elt) kind
+ | Nativeint
+.B : 
+.B (nativeint, nativeint_elt) kind
+ | Complex32
+.B : 
+.B (Complex.t, complex32_elt) kind
+ | Complex64
+.B : 
+.B (Complex.t, complex64_elt) kind
+ | Char
+.B : 
+.B (char, int8_unsigned_elt) kind
+ 
+.sp
+To each element kind is associated an OCaml type, which is
+the type of OCaml values that can be stored in the Bigarray
+or read back from it\&.  This type is not necessarily the same
+as the type of the array elements proper: for instance,
+a Bigarray whose elements are of kind 
+.ft B
+float32_elt
+.ft R
+contains
+32\-bit single precision floats, but reading or writing one of
+its elements from OCaml uses the OCaml type 
+.ft B
+float
+.ft R
+, which is
+64\-bit double precision floats\&.
+.sp
+The GADT type 
+.ft B
+(\&'a, \&'b) kind
+.ft R
+captures this association
+of an OCaml type 
+.ft B
+\&'a
+.ft R
+for values read or written in the Bigarray,
+and of an element kind 
+.ft B
+\&'b
+.ft R
+which represents the actual contents
+of the Bigarray\&. Its constructors list all possible associations
+of OCaml types with element kinds, and are re\-exported below for
+backward\-compatibility reasons\&.
+.sp
+Using a generalized algebraic datatype (GADT) here allows writing
+well\-typed polymorphic functions whose return type depend on the
+argument type, such as:
+.sp
+
+.EX
+.ft B
+.br
+\&  let zero : type a b\&. (a, b) kind \-> a = function
+.br
+\&    | Float32 \-> 0\&.0 | Complex32 \-> Complex\&.zero
+.br
+\&    | Float64 \-> 0\&.0 | Complex64 \-> Complex\&.zero
+.br
+\&    | Int8_signed \-> 0 | Int8_unsigned \-> 0
+.br
+\&    | Int16_signed \-> 0 | Int16_unsigned \-> 0
+.br
+\&    | Int32 \-> 0l | Int64 \-> 0L
+.br
+\&    | Int \-> 0 | Nativeint \-> 0n
+.br
+\&    | Char \-> \&'\(rs000\&'
+.br
+\&
+.ft R
+.EE
+
+.sp
+
+.I val float32 
+: 
+.B (float, float32_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val float64 
+: 
+.B (float, float64_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val complex32 
+: 
+.B (Complex.t, complex32_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val complex64 
+: 
+.B (Complex.t, complex64_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val int8_signed 
+: 
+.B (int, int8_signed_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val int8_unsigned 
+: 
+.B (int, int8_unsigned_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val int16_signed 
+: 
+.B (int, int16_signed_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val int16_unsigned 
+: 
+.B (int, int16_unsigned_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val int 
+: 
+.B (int, int_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val int32 
+: 
+.B (int32, int32_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val int64 
+: 
+.B (int64, int64_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val nativeint 
+: 
+.B (nativeint, nativeint_elt) kind
+.sp
+See 
+.ft B
+Bigarray\&.char
+.ft R
+\&.
+
+.sp
+
+.I val char 
+: 
+.B (char, int8_unsigned_elt) kind
+.sp
+As shown by the types of the values above,
+Bigarrays of kind 
+.ft B
+float32_elt
+.ft R
+and 
+.ft B
+float64_elt
+.ft R
+are
+accessed using the OCaml type 
+.ft B
+float
+.ft R
+\&.  Bigarrays of complex kinds
+.ft B
+complex32_elt
+.ft R
+, 
+.ft B
+complex64_elt
+.ft R
+are accessed with the OCaml type
+.ft B
+Complex\&.t
+.ft R
+\&. Bigarrays of
+integer kinds are accessed using the smallest OCaml integer
+type large enough to represent the array elements:
+.ft B
+int
+.ft R
+for 8\- and 16\-bit integer Bigarrays, as well as OCaml\-integer
+Bigarrays; 
+.ft B
+int32
+.ft R
+for 32\-bit integer Bigarrays; 
+.ft B
+int64
+.ft R
+for 64\-bit integer Bigarrays; and 
+.ft B
+nativeint
+.ft R
+for
+platform\-native integer Bigarrays\&.  Finally, Bigarrays of
+kind 
+.ft B
+int8_unsigned_elt
+.ft R
+can also be accessed as arrays of
+characters instead of arrays of small integers, by using
+the kind value 
+.ft B
+char
+.ft R
+instead of 
+.ft B
+int8_unsigned
+.ft R
+\&.
+
+.sp
+
+.I val kind_size_in_bytes 
+: 
+.B ('a, 'b) kind -> int
+.sp
+
+.ft B
+kind_size_in_bytes k
+.ft R
+is the number of bytes used to store
+an element of type 
+.ft B
+k
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.PP
+.SS Array layouts
+
+.PP
+.I type c_layout 
+=
+ | C_layout_typ
+ 
+.sp
+See 
+.ft B
+Bigarray\&.fortran_layout
+.ft R
+\&.
+
+.sp
+.I type fortran_layout 
+=
+ | Fortran_layout_typ
+ 
+.sp
+To facilitate interoperability with existing C and Fortran code,
+this library supports two different memory layouts for Bigarrays,
+one compatible with the C conventions,
+the other compatible with the Fortran conventions\&.
+.sp
+In the C\-style layout, array indices start at 0, and
+multi\-dimensional arrays are laid out in row\-major format\&.
+That is, for a two\-dimensional array, all elements of
+row 0 are contiguous in memory, followed by all elements of
+row 1, etc\&.  In other terms, the array elements at 
+.ft B
+(x,y)
+.ft R
+and 
+.ft B
+(x, y+1)
+.ft R
+are adjacent in memory\&.
+.sp
+In the Fortran\-style layout, array indices start at 1, and
+multi\-dimensional arrays are laid out in column\-major format\&.
+That is, for a two\-dimensional array, all elements of
+column 0 are contiguous in memory, followed by all elements of
+column 1, etc\&.  In other terms, the array elements at 
+.ft B
+(x,y)
+.ft R
+and 
+.ft B
+(x+1, y)
+.ft R
+are adjacent in memory\&.
+.sp
+Each layout style is identified at the type level by the
+phantom types 
+.ft B
+Bigarray\&.c_layout
+.ft R
+and 
+.ft B
+Bigarray\&.fortran_layout
+.ft R
+respectively\&.
+
+.sp
+
+.PP
+.SS Supported layouts
+.sp
+The GADT type 
+.ft B
+\&'a layout
+.ft R
+represents one of the two supported
+memory layouts: C\-style or Fortran\-style\&. Its constructors are
+re\-exported as values below for backward\-compatibility reasons\&.
+.PP
+.I type 
+.B 'a
+.I layout 
+=
+ | C_layout
+.B : 
+.B c_layout layout
+ | Fortran_layout
+.B : 
+.B fortran_layout layout
+ 
+.sp
+
+.sp
+
+.I val c_layout 
+: 
+.B c_layout layout
+.sp
+
+.sp
+
+.I val fortran_layout 
+: 
+.B fortran_layout layout
+.sp
+
+.sp
+
+.PP
+.SS Generic arrays (of arbitrarily many dimensions)
+
+.PP
+.I module Genarray : 
+.B sig end
+
+.sp
+
+.sp
+
+.PP
+.SS Zero-dimensional arrays
+
+.PP
+.I module Array0 : 
+.B sig end
+
+.sp
+Zero\-dimensional arrays\&. The 
+.ft B
+Array0
+.ft R
+structure provides operations
+similar to those of 
+.ft B
+Bigarray\&.Genarray
+.ft R
+, but specialized to the case
+of zero\-dimensional arrays that only contain a single scalar value\&.
+Statically knowing the number of dimensions of the array allows
+faster operations, and more precise static type\-checking\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.PP
+.SS One-dimensional arrays
+
+.PP
+.I module Array1 : 
+.B sig end
+
+.sp
+One\-dimensional arrays\&. The 
+.ft B
+Array1
+.ft R
+structure provides operations
+similar to those of
+.ft B
+Bigarray\&.Genarray
+.ft R
+, but specialized to the case of one\-dimensional arrays\&.
+(The 
+.ft B
+Bigarray\&.Array2
+.ft R
+and 
+.ft B
+Bigarray\&.Array3
+.ft R
+structures below provide operations
+specialized for two\- and three\-dimensional arrays\&.)
+Statically knowing the number of dimensions of the array allows
+faster operations, and more precise static type\-checking\&.
+
+.sp
+
+.PP
+.SS Two-dimensional arrays
+
+.PP
+.I module Array2 : 
+.B sig end
+
+.sp
+Two\-dimensional arrays\&. The 
+.ft B
+Array2
+.ft R
+structure provides operations
+similar to those of 
+.ft B
+Bigarray\&.Genarray
+.ft R
+, but specialized to the
+case of two\-dimensional arrays\&.
+
+.sp
+
+.PP
+.SS Three-dimensional arrays
+
+.PP
+.I module Array3 : 
+.B sig end
+
+.sp
+Three\-dimensional arrays\&. The 
+.ft B
+Array3
+.ft R
+structure provides operations
+similar to those of 
+.ft B
+Bigarray\&.Genarray
+.ft R
+, but specialized to the case
+of three\-dimensional arrays\&.
+
+.sp
+
+.PP
+.SS Coercions between generic Bigarrays and fixed-dimension Bigarrays
+
+.PP
+
+.I val genarray_of_array0 
+: 
+.B ('a, 'b, 'c) Array0.t -> ('a, 'b, 'c) Genarray.t
+.sp
+Return the generic Bigarray corresponding to the given zero\-dimensional
+Bigarray\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val genarray_of_array1 
+: 
+.B ('a, 'b, 'c) Array1.t -> ('a, 'b, 'c) Genarray.t
+.sp
+Return the generic Bigarray corresponding to the given one\-dimensional
+Bigarray\&.
+
+.sp
+
+.I val genarray_of_array2 
+: 
+.B ('a, 'b, 'c) Array2.t -> ('a, 'b, 'c) Genarray.t
+.sp
+Return the generic Bigarray corresponding to the given two\-dimensional
+Bigarray\&.
+
+.sp
+
+.I val genarray_of_array3 
+: 
+.B ('a, 'b, 'c) Array3.t -> ('a, 'b, 'c) Genarray.t
+.sp
+Return the generic Bigarray corresponding to the given three\-dimensional
+Bigarray\&.
+
+.sp
+
+.I val array0_of_genarray 
+: 
+.B ('a, 'b, 'c) Genarray.t -> ('a, 'b, 'c) Array0.t
+.sp
+Return the zero\-dimensional Bigarray corresponding to the given
+generic Bigarray\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if the generic Bigarray
+does not have exactly zero dimension\&.
+
+.sp
+
+.I val array1_of_genarray 
+: 
+.B ('a, 'b, 'c) Genarray.t -> ('a, 'b, 'c) Array1.t
+.sp
+Return the one\-dimensional Bigarray corresponding to the given
+generic Bigarray\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the generic Bigarray
+does not have exactly one dimension\&.
+
+.sp
+
+.I val array2_of_genarray 
+: 
+.B ('a, 'b, 'c) Genarray.t -> ('a, 'b, 'c) Array2.t
+.sp
+Return the two\-dimensional Bigarray corresponding to the given
+generic Bigarray\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the generic Bigarray
+does not have exactly two dimensions\&.
+
+.sp
+
+.I val array3_of_genarray 
+: 
+.B ('a, 'b, 'c) Genarray.t -> ('a, 'b, 'c) Array3.t
+.sp
+Return the three\-dimensional Bigarray corresponding to the given
+generic Bigarray\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the generic Bigarray
+does not have exactly three dimensions\&.
+
+.sp
+
+.PP
+.SS Re-shaping Bigarrays
+
+.PP
+
+.I val reshape 
+: 
+.B ('a, 'b, 'c) Genarray.t ->
+.B   int array -> ('a, 'b, 'c) Genarray.t
+.sp
+
+.ft B
+reshape b [|d1;\&.\&.\&.;dN|]
+.ft R
+converts the Bigarray 
+.ft B
+b
+.ft R
+to a
+.ft B
+N
+.ft R
+\-dimensional array of dimensions 
+.ft B
+d1
+.ft R
+\&.\&.\&.
+.ft B
+dN
+.ft R
+\&.  The returned
+array and the original array 
+.ft B
+b
+.ft R
+share their data
+and have the same layout\&.  For instance, assuming that 
+.ft B
+b
+.ft R
+is a one\-dimensional array of dimension 12, 
+.ft B
+reshape b [|3;4|]
+.ft R
+returns a two\-dimensional array 
+.ft B
+b\&'
+.ft R
+of dimensions 3 and 4\&.
+If 
+.ft B
+b
+.ft R
+has C layout, the element 
+.ft B
+(x,y)
+.ft R
+of 
+.ft B
+b\&'
+.ft R
+corresponds
+to the element 
+.ft B
+x * 3 + y
+.ft R
+of 
+.ft B
+b
+.ft R
+\&.  If 
+.ft B
+b
+.ft R
+has Fortran layout,
+the element 
+.ft B
+(x,y)
+.ft R
+of 
+.ft B
+b\&'
+.ft R
+corresponds to the element
+.ft B
+x + (y \- 1) * 4
+.ft R
+of 
+.ft B
+b
+.ft R
+\&.
+The returned Bigarray must have exactly the same number of
+elements as the original Bigarray 
+.ft B
+b
+.ft R
+\&.  That is, the product
+of the dimensions of 
+.ft B
+b
+.ft R
+must be equal to 
+.ft B
+i1 * \&.\&.\&. * iN
+.ft R
+\&.
+Otherwise, 
+.ft B
+Invalid_argument
+.ft R
+is raised\&.
+
+.sp
+
+.I val reshape_0 
+: 
+.B ('a, 'b, 'c) Genarray.t -> ('a, 'b, 'c) Array0.t
+.sp
+Specialized version of 
+.ft B
+Bigarray\&.reshape
+.ft R
+for reshaping to
+zero\-dimensional arrays\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val reshape_1 
+: 
+.B ('a, 'b, 'c) Genarray.t -> int -> ('a, 'b, 'c) Array1.t
+.sp
+Specialized version of 
+.ft B
+Bigarray\&.reshape
+.ft R
+for reshaping to
+one\-dimensional arrays\&.
+
+.sp
+
+.I val reshape_2 
+: 
+.B ('a, 'b, 'c) Genarray.t ->
+.B   int -> int -> ('a, 'b, 'c) Array2.t
+.sp
+Specialized version of 
+.ft B
+Bigarray\&.reshape
+.ft R
+for reshaping to
+two\-dimensional arrays\&.
+
+.sp
+
+.I val reshape_3 
+: 
+.B ('a, 'b, 'c) Genarray.t ->
+.B   int -> int -> int -> ('a, 'b, 'c) Array3.t
+.sp
+Specialized version of 
+.ft B
+Bigarray\&.reshape
+.ft R
+for reshaping to
+three\-dimensional arrays\&.
+
+.sp
+
+.PP
+.SS Bigarrays and concurrency safety
+.sp
+Care must be taken when concurrently accessing bigarrays from multiple
+domains: accessing a bigarray will never crash a program, but unsynchronized
+accesses might yield surprising (non\-sequentially\-consistent) results\&.
+.sp
+.SS Atomicity
+.sp
+Every bigarray operation that accesses more than one array element is not
+atomic\&. This includes slicing, bliting, and filling bigarrays\&.
+.sp
+For example, consider the following program:
+.EX
+.ft B
+open Bigarray
+.br
+\&let size = 100_000_000
+.br
+\&let a = Array1\&.init Int C_layout size (fun _ \-> 1)
+.br
+\&let update f a () =
+.br
+\&  for i = 0 to size \- 1 do a\&.{i} <\- f a\&.{i} done
+.br
+\&let d1 = Domain\&.spawn (update (fun x \-> x + 1) a)
+.br
+\&let d2 = Domain\&.spawn (update (fun x \-> 2 * x + 1) a)
+.br
+\&let () = Domain\&.join d1; Domain\&.join d2
+.br
+\&
+.ft R
+.EE
+.sp
+After executing this code, each field of the bigarray 
+.ft B
+a
+.ft R
+is either 
+.ft B
+2
+.ft R
+,
+.ft B
+3
+.ft R
+, 
+.ft B
+4
+.ft R
+or 
+.ft B
+5
+.ft R
+\&. If atomicity is required, then the user must implement
+their own synchronization (for example, using 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.sp
+.SS Data races
+.sp
+If two domains only access disjoint parts of the bigarray, then the
+observed behaviour is the equivalent to some sequential interleaving of the
+operations from the two domains\&.
+.sp
+A data race is said to occur when two domains access the same bigarray
+element without synchronization and at least one of the accesses is a
+write\&. In the absence of data races, the observed behaviour is equivalent
+to some sequential interleaving of the operations from different domains\&.
+.sp
+Whenever possible, data races should be avoided by using synchronization to
+mediate the accesses to the bigarray elements\&.
+.sp
+Indeed, in the presence of data races, programs will not crash but the
+observed behaviour may not be equivalent to any sequential interleaving of
+operations from different domains\&.
+.sp
+.SS Tearing
+.sp
+Bigarrays have a distinct caveat in the presence of data races:
+concurrent bigarray operations might produce surprising values due to
+tearing\&. More precisely, the interleaving of partial writes and reads might
+create values that would not exist with a sequential execution\&.
+For instance, at the end of
+.EX
+.ft B
+let res = Array1\&.init Complex64 c_layout size (fun _ \-> Complex\&.zero)
+.br
+\&let d1 = Domain\&.spawn (fun () \-> Array1\&.fill res Complex\&.one)
+.br
+\&let d2 = Domain\&.spawn (fun () \-> Array1\&.fill res Complex\&.i)
+.br
+\&let () = Domain\&.join d1; Domain\&.join d2
+.br
+\&
+.ft R
+.EE
+the 
+.ft B
+res
+.ft R
+bigarray might contain values that are neither 
+.ft B
+Complex\&.i
+.ft R
+nor 
+.ft B
+Complex\&.one
+.ft R
+(for instance 
+.ft B
+1 + i
+.ft R
+)\&.
+.PP

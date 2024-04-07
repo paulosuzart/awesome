@@ -1,0 +1,4913 @@
+.TH "Stdlib" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib \- The OCaml Standard library.
+.SH Module
+Module   Stdlib
+.SH Documentation
+.sp
+Module
+.BI "Stdlib"
+ : 
+.B sig end
+
+.sp
+The OCaml Standard library\&.
+.sp
+This module is automatically opened at the beginning of each
+compilation\&. All components of this module can therefore be
+referred by their short name, without prefixing them by 
+.ft B
+Stdlib
+.ft R
+\&.
+.sp
+In particular, it provides the basic operations over the built\-in
+types (numbers, booleans, byte sequences, strings, exceptions,
+references, lists, arrays, input\-output channels, \&.\&.\&.) and the
+.ft B
+modules
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Exceptions
+
+.PP
+
+.I val raise 
+: 
+.B exn -> 'a
+.sp
+Raise the given exception value
+
+.sp
+
+.I val raise_notrace 
+: 
+.B exn -> 'a
+.sp
+A faster version 
+.ft B
+raise
+.ft R
+which does not record the backtrace\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val invalid_arg 
+: 
+.B string -> 'a
+.sp
+Raise exception 
+.ft B
+Invalid_argument
+.ft R
+with the given string\&.
+
+.sp
+
+.I val failwith 
+: 
+.B string -> 'a
+.sp
+Raise exception 
+.ft B
+Failure
+.ft R
+with the given string\&.
+
+.sp
+
+.I exception Exit 
+
+.sp
+The 
+.ft B
+Exit
+.ft R
+exception is not raised by any library function\&.  It is
+provided for use in your programs\&.
+
+.sp
+
+.I exception Match_failure 
+.B of 
+.B (string * int * int)
+
+.sp
+Exception raised when none of the cases of a pattern\-matching
+apply\&. The arguments are the location of the match keyword in the
+source code (file name, line number, column number)\&.
+
+.sp
+
+.I exception Assert_failure 
+.B of 
+.B (string * int * int)
+
+.sp
+Exception raised when an assertion fails\&. The arguments are the
+location of the assert keyword in the source code (file name, line
+number, column number)\&.
+
+.sp
+
+.I exception Invalid_argument 
+.B of 
+.B string
+
+.sp
+Exception raised by library functions to signal that the given
+arguments do not make sense\&. The string gives some information to
+the programmer\&. As a general rule, this exception should not be
+caught, it denotes a programming error and the code should be
+modified not to trigger it\&.
+
+.sp
+
+.I exception Failure 
+.B of 
+.B string
+
+.sp
+Exception raised by library functions to signal that they are
+undefined on the given arguments\&. The string is meant to give some
+information to the programmer; you must not pattern match on the
+string literal because it may change in future versions (use
+Failure _ instead)\&.
+
+.sp
+
+.I exception Not_found 
+
+.sp
+Exception raised by search functions when the desired object could
+not be found\&.
+
+.sp
+
+.I exception Out_of_memory 
+
+.sp
+Exception raised by the garbage collector when there is
+insufficient memory to complete the computation\&. (Not reliable for
+allocations on the minor heap\&.)
+
+.sp
+
+.I exception Stack_overflow 
+
+.sp
+Exception raised by the bytecode interpreter when the evaluation
+stack reaches its maximal size\&. This often indicates infinite or
+excessively deep recursion in the user\&'s program\&.
+.sp
+Before 4\&.10, it was not fully implemented by the native\-code
+compiler\&.
+
+.sp
+
+.I exception Sys_error 
+.B of 
+.B string
+
+.sp
+Exception raised by the input/output functions to report an
+operating system error\&. The string is meant to give some
+information to the programmer; you must not pattern match on the
+string literal because it may change in future versions (use
+Sys_error _ instead)\&.
+
+.sp
+
+.I exception End_of_file 
+
+.sp
+Exception raised by input functions to signal that the end of file
+has been reached\&.
+
+.sp
+
+.I exception Division_by_zero 
+
+.sp
+Exception raised by integer division and remainder operations when
+their second argument is zero\&.
+
+.sp
+
+.I exception Sys_blocked_io 
+
+.sp
+A special case of Sys_error raised when no I/O is possible on a
+non\-blocking I/O channel\&.
+
+.sp
+
+.I exception Undefined_recursive_module 
+.B of 
+.B (string * int * int)
+
+.sp
+Exception raised when an ill\-founded recursive module definition
+is evaluated\&. The arguments are the location of the definition in
+the source code (file name, line number, column number)\&.
+
+.sp
+
+.PP
+.SS Comparisons
+
+.PP
+
+.I val (=) 
+: 
+.B 'a -> 'a -> bool
+.sp
+
+.ft B
+e1 = e2
+.ft R
+tests for structural equality of 
+.ft B
+e1
+.ft R
+and 
+.ft B
+e2
+.ft R
+\&.
+Mutable structures (e\&.g\&. references and arrays) are equal
+if and only if their current contents are structurally equal,
+even if the two mutable objects are not the same physical object\&.
+Equality between functional values raises 
+.ft B
+Invalid_argument
+.ft R
+\&.
+Equality between cyclic data structures may not terminate\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (<>) 
+: 
+.B 'a -> 'a -> bool
+.sp
+Negation of 
+.ft B
+(=)
+.ft R
+\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (<) 
+: 
+.B 'a -> 'a -> bool
+.sp
+See 
+.ft B
+(>=)
+.ft R
+\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (>) 
+: 
+.B 'a -> 'a -> bool
+.sp
+See 
+.ft B
+(>=)
+.ft R
+\&.
+Left\-associative operator,  see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (<=) 
+: 
+.B 'a -> 'a -> bool
+.sp
+See 
+.ft B
+(>=)
+.ft R
+\&.
+Left\-associative operator,  see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (>=) 
+: 
+.B 'a -> 'a -> bool
+.sp
+Structural ordering functions\&. These functions coincide with
+the usual orderings over integers, characters, strings, byte sequences
+and floating\-point numbers, and extend them to a
+total ordering over all types\&.
+The ordering is compatible with 
+.ft B
+( = )
+.ft R
+\&. As in the case
+of 
+.ft B
+( = )
+.ft R
+, mutable structures are compared by contents\&.
+Comparison between functional values raises 
+.ft B
+Invalid_argument
+.ft R
+\&.
+Comparison between cyclic structures may not terminate\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val compare 
+: 
+.B 'a -> 'a -> int
+.sp
+
+.ft B
+compare x y
+.ft R
+returns 
+.ft B
+0
+.ft R
+if 
+.ft B
+x
+.ft R
+is equal to 
+.ft B
+y
+.ft R
+,
+a negative integer if 
+.ft B
+x
+.ft R
+is less than 
+.ft B
+y
+.ft R
+, and a positive integer
+if 
+.ft B
+x
+.ft R
+is greater than 
+.ft B
+y
+.ft R
+\&.  The ordering implemented by 
+.ft B
+compare
+.ft R
+is compatible with the comparison predicates 
+.ft B
+=
+.ft R
+, 
+.ft B
+<
+.ft R
+and 
+.ft B
+>
+.ft R
+defined above,  with one difference on the treatment of the float value
+.ft B
+nan
+.ft R
+\&.  Namely, the comparison predicates treat 
+.ft B
+nan
+.ft R
+as different from any other float value, including itself;
+while 
+.ft B
+compare
+.ft R
+treats 
+.ft B
+nan
+.ft R
+as equal to itself and less than any
+other float value\&.  This treatment of 
+.ft B
+nan
+.ft R
+ensures that 
+.ft B
+compare
+.ft R
+defines a total ordering relation\&.
+.sp
+
+.ft B
+compare
+.ft R
+applied to functional values may raise 
+.ft B
+Invalid_argument
+.ft R
+\&.
+.ft B
+compare
+.ft R
+applied to cyclic structures may not terminate\&.
+.sp
+The 
+.ft B
+compare
+.ft R
+function can be used as the comparison function
+required by the 
+.ft B
+Set\&.Make
+.ft R
+and 
+.ft B
+Map\&.Make
+.ft R
+functors, as well as
+the 
+.ft B
+List\&.sort
+.ft R
+and 
+.ft B
+Array\&.sort
+.ft R
+functions\&.
+
+.sp
+
+.I val min 
+: 
+.B 'a -> 'a -> 'a
+.sp
+Return the smaller of the two arguments\&.
+The result is unspecified if one of the arguments contains
+the float value 
+.ft B
+nan
+.ft R
+\&.
+
+.sp
+
+.I val max 
+: 
+.B 'a -> 'a -> 'a
+.sp
+Return the greater of the two arguments\&.
+The result is unspecified if one of the arguments contains
+the float value 
+.ft B
+nan
+.ft R
+\&.
+
+.sp
+
+.I val (==) 
+: 
+.B 'a -> 'a -> bool
+.sp
+
+.ft B
+e1 == e2
+.ft R
+tests for physical equality of 
+.ft B
+e1
+.ft R
+and 
+.ft B
+e2
+.ft R
+\&.
+On mutable types such as references, arrays, byte sequences, records with
+mutable fields and objects with mutable instance variables,
+.ft B
+e1 == e2
+.ft R
+is true if and only if physical modification of 
+.ft B
+e1
+.ft R
+also affects 
+.ft B
+e2
+.ft R
+\&.
+On non\-mutable types, the behavior of 
+.ft B
+( == )
+.ft R
+is
+implementation\-dependent; however, it is guaranteed that
+.ft B
+e1 == e2
+.ft R
+implies 
+.ft B
+compare e1 e2 = 0
+.ft R
+\&.
+Left\-associative operator,  see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (!=) 
+: 
+.B 'a -> 'a -> bool
+.sp
+Negation of 
+.ft B
+(==)
+.ft R
+\&.
+Left\-associative operator,  see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.PP
+.SS Boolean operations
+
+.PP
+
+.I val not 
+: 
+.B bool -> bool
+.sp
+The boolean negation\&.
+
+.sp
+
+.I val (&&) 
+: 
+.B bool -> bool -> bool
+.sp
+The boolean \&'and\&'\&. Evaluation is sequential, left\-to\-right:
+in 
+.ft B
+e1 && e2
+.ft R
+, 
+.ft B
+e1
+.ft R
+is evaluated first, and if it returns 
+.ft B
+false
+.ft R
+,
+.ft B
+e2
+.ft R
+is not evaluated at all\&.
+Right\-associative operator,  see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (||) 
+: 
+.B bool -> bool -> bool
+.sp
+The boolean \&'or\&'\&. Evaluation is sequential, left\-to\-right:
+in 
+.ft B
+e1 || e2
+.ft R
+, 
+.ft B
+e1
+.ft R
+is evaluated first, and if it returns 
+.ft B
+true
+.ft R
+,
+.ft B
+e2
+.ft R
+is not evaluated at all\&.
+Right\-associative operator,  see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.PP
+.SS Debugging
+
+.PP
+
+.I val __LOC__ 
+: 
+.B string
+.sp
+
+.ft B
+__LOC__
+.ft R
+returns the location at which this expression appears in
+the file currently being parsed by the compiler, with the standard
+error format of OCaml: "File %S, line %d, characters %d\-%d"\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val __FILE__ 
+: 
+.B string
+.sp
+
+.ft B
+__FILE__
+.ft R
+returns the name of the file currently being
+parsed by the compiler\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val __LINE__ 
+: 
+.B int
+.sp
+
+.ft B
+__LINE__
+.ft R
+returns the line number at which this expression
+appears in the file currently being parsed by the compiler\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val __MODULE__ 
+: 
+.B string
+.sp
+
+.ft B
+__MODULE__
+.ft R
+returns the module name of the file being
+parsed by the compiler\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val __POS__ 
+: 
+.B string * int * int * int
+.sp
+
+.ft B
+__POS__
+.ft R
+returns a tuple 
+.ft B
+(file,lnum,cnum,enum)
+.ft R
+, corresponding
+to the location at which this expression appears in the file
+currently being parsed by the compiler\&. 
+.ft B
+file
+.ft R
+is the current
+filename, 
+.ft B
+lnum
+.ft R
+the line number, 
+.ft B
+cnum
+.ft R
+the character position in
+the line and 
+.ft B
+enum
+.ft R
+the last character position in the line\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val __FUNCTION__ 
+: 
+.B string
+.sp
+
+.ft B
+__FUNCTION__
+.ft R
+returns the name of the current function or method, including
+any enclosing modules or classes\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val __LOC_OF__ 
+: 
+.B 'a -> string * 'a
+.sp
+
+.ft B
+__LOC_OF__ expr
+.ft R
+returns a pair 
+.ft B
+(loc, expr)
+.ft R
+where 
+.ft B
+loc
+.ft R
+is the
+location of 
+.ft B
+expr
+.ft R
+in the file currently being parsed by the
+compiler, with the standard error format of OCaml: "File %S, line
+%d, characters %d\-%d"\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val __LINE_OF__ 
+: 
+.B 'a -> int * 'a
+.sp
+
+.ft B
+__LINE_OF__ expr
+.ft R
+returns a pair 
+.ft B
+(line, expr)
+.ft R
+, where 
+.ft B
+line
+.ft R
+is the
+line number at which the expression 
+.ft B
+expr
+.ft R
+appears in the file
+currently being parsed by the compiler\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val __POS_OF__ 
+: 
+.B 'a -> (string * int * int * int) * 'a
+.sp
+
+.ft B
+__POS_OF__ expr
+.ft R
+returns a pair 
+.ft B
+(loc,expr)
+.ft R
+, where 
+.ft B
+loc
+.ft R
+is a
+tuple 
+.ft B
+(file,lnum,cnum,enum)
+.ft R
+corresponding to the location at
+which the expression 
+.ft B
+expr
+.ft R
+appears in the file currently being
+parsed by the compiler\&. 
+.ft B
+file
+.ft R
+is the current filename, 
+.ft B
+lnum
+.ft R
+the
+line number, 
+.ft B
+cnum
+.ft R
+the character position in the line and 
+.ft B
+enum
+.ft R
+the last character position in the line\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.PP
+.SS Composition operators
+
+.PP
+
+.I val (|>) 
+: 
+.B 'a -> ('a -> 'b) -> 'b
+.sp
+Reverse\-application operator: 
+.ft B
+x |> f |> g
+.ft R
+is exactly equivalent
+to 
+.ft B
+g (f (x))
+.ft R
+\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val (@@) 
+: 
+.B ('a -> 'b) -> 'a -> 'b
+.sp
+Application operator: 
+.ft B
+g @@ f @@ x
+.ft R
+is exactly equivalent to
+.ft B
+g (f (x))
+.ft R
+\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.PP
+.SS Integer arithmetic
+
+.PP
+
+.PP
+Integers are 
+.ft B
+Sys\&.int_size
+.ft R
+bits wide\&.
+All operations are taken modulo 2^
+.ft B
+Sys\&.int_size
+.ft R
+\&.
+They do not fail on overflow\&.
+.PP
+
+.I val (~-) 
+: 
+.B int -> int
+.sp
+Unary negation\&. You can also write 
+.ft B
+\- e
+.ft R
+instead of 
+.ft B
+~\- e
+.ft R
+\&.
+Unary operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (~+) 
+: 
+.B int -> int
+.sp
+Unary addition\&. You can also write 
+.ft B
++ e
+.ft R
+instead of 
+.ft B
+~+ e
+.ft R
+\&.
+Unary operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val succ 
+: 
+.B int -> int
+.sp
+
+.ft B
+succ x
+.ft R
+is 
+.ft B
+x + 1
+.ft R
+\&.
+
+.sp
+
+.I val pred 
+: 
+.B int -> int
+.sp
+
+.ft B
+pred x
+.ft R
+is 
+.ft B
+x \- 1
+.ft R
+\&.
+
+.sp
+
+.I val (+) 
+: 
+.B int -> int -> int
+.sp
+Integer addition\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (-) 
+: 
+.B int -> int -> int
+.sp
+Integer subtraction\&.
+Left\-associative operator, , see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val ( * ) 
+: 
+.B int -> int -> int
+.sp
+Integer multiplication\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (/) 
+: 
+.B int -> int -> int
+.sp
+Integer division\&.
+Integer division rounds the real quotient of its arguments towards zero\&.
+More precisely, if 
+.ft B
+x >= 0
+.ft R
+and 
+.ft B
+y > 0
+.ft R
+, 
+.ft B
+x / y
+.ft R
+is the greatest integer
+less than or equal to the real quotient of 
+.ft B
+x
+.ft R
+by 
+.ft B
+y
+.ft R
+\&.  Moreover,
+.ft B
+(\- x) / y = x / (\- y) = \- (x / y)
+.ft R
+\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+.B "Raises Division_by_zero"
+if the second argument is 0\&.
+
+.sp
+
+.I val (mod) 
+: 
+.B int -> int -> int
+.sp
+Integer remainder\&.  If 
+.ft B
+y
+.ft R
+is not zero, the result
+of 
+.ft B
+x mod y
+.ft R
+satisfies the following properties:
+.ft B
+x = (x / y) * y + x mod y
+.ft R
+and
+.ft B
+abs(x mod y) <= abs(y) \- 1
+.ft R
+\&.
+If 
+.ft B
+y = 0
+.ft R
+, 
+.ft B
+x mod y
+.ft R
+raises 
+.ft B
+Division_by_zero
+.ft R
+\&.
+Note that 
+.ft B
+x mod y
+.ft R
+is negative only if 
+.ft B
+x < 0
+.ft R
+\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+.B "Raises Division_by_zero"
+if 
+.ft B
+y
+.ft R
+is zero\&.
+
+.sp
+
+.I val abs 
+: 
+.B int -> int
+.sp
+
+.ft B
+abs x
+.ft R
+is the absolute value of 
+.ft B
+x
+.ft R
+\&. On 
+.ft B
+min_int
+.ft R
+this
+is 
+.ft B
+min_int
+.ft R
+itself and thus remains negative\&.
+
+.sp
+
+.I val max_int 
+: 
+.B int
+.sp
+The greatest representable integer\&.
+
+.sp
+
+.I val min_int 
+: 
+.B int
+.sp
+The smallest representable integer\&.
+
+.sp
+
+.PP
+.SS Bitwise operations
+
+.PP
+
+.I val (land) 
+: 
+.B int -> int -> int
+.sp
+Bitwise logical and\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (lor) 
+: 
+.B int -> int -> int
+.sp
+Bitwise logical or\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (lxor) 
+: 
+.B int -> int -> int
+.sp
+Bitwise logical exclusive or\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val lnot 
+: 
+.B int -> int
+.sp
+Bitwise logical negation\&.
+
+.sp
+
+.I val (lsl) 
+: 
+.B int -> int -> int
+.sp
+
+.ft B
+n lsl m
+.ft R
+shifts 
+.ft B
+n
+.ft R
+to the left by 
+.ft B
+m
+.ft R
+bits\&.
+The result is unspecified if 
+.ft B
+m < 0
+.ft R
+or 
+.ft B
+m > Sys\&.int_size
+.ft R
+\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (lsr) 
+: 
+.B int -> int -> int
+.sp
+
+.ft B
+n lsr m
+.ft R
+shifts 
+.ft B
+n
+.ft R
+to the right by 
+.ft B
+m
+.ft R
+bits\&.
+This is a logical shift: zeroes are inserted regardless of
+the sign of 
+.ft B
+n
+.ft R
+\&.
+The result is unspecified if 
+.ft B
+m < 0
+.ft R
+or 
+.ft B
+m > Sys\&.int_size
+.ft R
+\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (asr) 
+: 
+.B int -> int -> int
+.sp
+
+.ft B
+n asr m
+.ft R
+shifts 
+.ft B
+n
+.ft R
+to the right by 
+.ft B
+m
+.ft R
+bits\&.
+This is an arithmetic shift: the sign bit of 
+.ft B
+n
+.ft R
+is replicated\&.
+The result is unspecified if 
+.ft B
+m < 0
+.ft R
+or 
+.ft B
+m > Sys\&.int_size
+.ft R
+\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.PP
+.SS Floating-point arithmetic
+.sp
+OCaml\&'s floating\-point numbers follow the
+IEEE 754 standard, using double precision (64 bits) numbers\&.
+Floating\-point operations never raise an exception on overflow,
+underflow, division by zero, etc\&.  Instead, special IEEE numbers
+are returned as appropriate, such as 
+.ft B
+infinity
+.ft R
+for 
+.ft B
+1\&.0 /\&. 0\&.0
+.ft R
+,
+.ft B
+neg_infinity
+.ft R
+for 
+.ft B
+\-1\&.0 /\&. 0\&.0
+.ft R
+, and 
+.ft B
+nan
+.ft R
+(\&'not a number\&')
+for 
+.ft B
+0\&.0 /\&. 0\&.0
+.ft R
+\&.  These special numbers then propagate through
+floating\-point computations as expected: for instance,
+.ft B
+1\&.0 /\&. infinity
+.ft R
+is 
+.ft B
+0\&.0
+.ft R
+, basic arithmetic operations
+(
+.ft B
++\&.
+.ft R
+, 
+.ft B
+\-\&.
+.ft R
+, 
+.ft B
+*\&.
+.ft R
+, 
+.ft B
+/\&.
+.ft R
+) with 
+.ft B
+nan
+.ft R
+as an argument return 
+.ft B
+nan
+.ft R
+, \&.\&.\&.
+.PP
+
+.I val (~-.) 
+: 
+.B float -> float
+.sp
+Unary negation\&. You can also write 
+.ft B
+\-\&. e
+.ft R
+instead of 
+.ft B
+~\-\&. e
+.ft R
+\&.
+Unary operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (~+.) 
+: 
+.B float -> float
+.sp
+Unary addition\&. You can also write 
+.ft B
++\&. e
+.ft R
+instead of 
+.ft B
+~+\&. e
+.ft R
+\&.
+Unary operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val (+.) 
+: 
+.B float -> float -> float
+.sp
+Floating\-point addition\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (-.) 
+: 
+.B float -> float -> float
+.sp
+Floating\-point subtraction\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val ( *. ) 
+: 
+.B float -> float -> float
+.sp
+Floating\-point multiplication\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (/.) 
+: 
+.B float -> float -> float
+.sp
+Floating\-point division\&.
+Left\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val ( ** ) 
+: 
+.B float -> float -> float
+.sp
+Exponentiation\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val sqrt 
+: 
+.B float -> float
+.sp
+Square root\&.
+
+.sp
+
+.I val exp 
+: 
+.B float -> float
+.sp
+Exponential\&.
+
+.sp
+
+.I val log 
+: 
+.B float -> float
+.sp
+Natural logarithm\&.
+
+.sp
+
+.I val log10 
+: 
+.B float -> float
+.sp
+Base 10 logarithm\&.
+
+.sp
+
+.I val expm1 
+: 
+.B float -> float
+.sp
+
+.ft B
+expm1 x
+.ft R
+computes 
+.ft B
+exp x \-\&. 1\&.0
+.ft R
+, giving numerically\-accurate results
+even if 
+.ft B
+x
+.ft R
+is close to 
+.ft B
+0\&.0
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val log1p 
+: 
+.B float -> float
+.sp
+
+.ft B
+log1p x
+.ft R
+computes 
+.ft B
+log(1\&.0 +\&. x)
+.ft R
+(natural logarithm),
+giving numerically\-accurate results even if 
+.ft B
+x
+.ft R
+is close to 
+.ft B
+0\&.0
+.ft R
+\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val cos 
+: 
+.B float -> float
+.sp
+Cosine\&.  Argument is in radians\&.
+
+.sp
+
+.I val sin 
+: 
+.B float -> float
+.sp
+Sine\&.  Argument is in radians\&.
+
+.sp
+
+.I val tan 
+: 
+.B float -> float
+.sp
+Tangent\&.  Argument is in radians\&.
+
+.sp
+
+.I val acos 
+: 
+.B float -> float
+.sp
+Arc cosine\&.  The argument must fall within the range 
+.ft B
+[\-1\&.0, 1\&.0]
+.ft R
+\&.
+Result is in radians and is between 
+.ft B
+0\&.0
+.ft R
+and 
+.ft B
+pi
+.ft R
+\&.
+
+.sp
+
+.I val asin 
+: 
+.B float -> float
+.sp
+Arc sine\&.  The argument must fall within the range 
+.ft B
+[\-1\&.0, 1\&.0]
+.ft R
+\&.
+Result is in radians and is between 
+.ft B
+\-pi/2
+.ft R
+and 
+.ft B
+pi/2
+.ft R
+\&.
+
+.sp
+
+.I val atan 
+: 
+.B float -> float
+.sp
+Arc tangent\&.
+Result is in radians and is between 
+.ft B
+\-pi/2
+.ft R
+and 
+.ft B
+pi/2
+.ft R
+\&.
+
+.sp
+
+.I val atan2 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+atan2 y x
+.ft R
+returns the arc tangent of 
+.ft B
+y /\&. x
+.ft R
+\&.  The signs of 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+are used to determine the quadrant of the result\&.
+Result is in radians and is between 
+.ft B
+\-pi
+.ft R
+and 
+.ft B
+pi
+.ft R
+\&.
+
+.sp
+
+.I val hypot 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+hypot x y
+.ft R
+returns 
+.ft B
+sqrt(x *\&. x + y *\&. y)
+.ft R
+, that is, the length
+of the hypotenuse of a right\-angled triangle with sides of length
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+, or, equivalently, the distance of the point 
+.ft B
+(x,y)
+.ft R
+to origin\&.  If one of 
+.ft B
+x
+.ft R
+or 
+.ft B
+y
+.ft R
+is infinite, returns 
+.ft B
+infinity
+.ft R
+even if the other is 
+.ft B
+nan
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val cosh 
+: 
+.B float -> float
+.sp
+Hyperbolic cosine\&.  Argument is in radians\&.
+
+.sp
+
+.I val sinh 
+: 
+.B float -> float
+.sp
+Hyperbolic sine\&.  Argument is in radians\&.
+
+.sp
+
+.I val tanh 
+: 
+.B float -> float
+.sp
+Hyperbolic tangent\&.  Argument is in radians\&.
+
+.sp
+
+.I val acosh 
+: 
+.B float -> float
+.sp
+Hyperbolic arc cosine\&.  The argument must fall within the range
+.ft B
+[1\&.0, inf]
+.ft R
+\&.
+Result is in radians and is between 
+.ft B
+0\&.0
+.ft R
+and 
+.ft B
+inf
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val asinh 
+: 
+.B float -> float
+.sp
+Hyperbolic arc sine\&.  The argument and result range over the entire
+real line\&.
+Result is in radians\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val atanh 
+: 
+.B float -> float
+.sp
+Hyperbolic arc tangent\&.  The argument must fall within the range
+.ft B
+[\-1\&.0, 1\&.0]
+.ft R
+\&.
+Result is in radians and ranges over the entire real line\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val ceil 
+: 
+.B float -> float
+.sp
+Round above to an integer value\&.
+.ft B
+ceil f
+.ft R
+returns the least integer value greater than or equal to 
+.ft B
+f
+.ft R
+\&.
+The result is returned as a float\&.
+
+.sp
+
+.I val floor 
+: 
+.B float -> float
+.sp
+Round below to an integer value\&.
+.ft B
+floor f
+.ft R
+returns the greatest integer value less than or
+equal to 
+.ft B
+f
+.ft R
+\&.
+The result is returned as a float\&.
+
+.sp
+
+.I val abs_float 
+: 
+.B float -> float
+.sp
+
+.ft B
+abs_float f
+.ft R
+returns the absolute value of 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+
+.I val copysign 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+copysign x y
+.ft R
+returns a float whose absolute value is that of 
+.ft B
+x
+.ft R
+and whose sign is that of 
+.ft B
+y
+.ft R
+\&.  If 
+.ft B
+x
+.ft R
+is 
+.ft B
+nan
+.ft R
+, returns 
+.ft B
+nan
+.ft R
+\&.
+If 
+.ft B
+y
+.ft R
+is 
+.ft B
+nan
+.ft R
+, returns either 
+.ft B
+x
+.ft R
+or 
+.ft B
+\-\&. x
+.ft R
+, but it is not
+specified which\&.
+
+.sp
+.B "Since"
+4.00
+
+.sp
+
+.I val mod_float 
+: 
+.B float -> float -> float
+.sp
+
+.ft B
+mod_float a b
+.ft R
+returns the remainder of 
+.ft B
+a
+.ft R
+with respect to
+.ft B
+b
+.ft R
+\&.  The returned value is 
+.ft B
+a \-\&. n *\&. b
+.ft R
+, where 
+.ft B
+n
+.ft R
+is the quotient 
+.ft B
+a /\&. b
+.ft R
+rounded towards zero to an integer\&.
+
+.sp
+
+.I val frexp 
+: 
+.B float -> float * int
+.sp
+
+.ft B
+frexp f
+.ft R
+returns the pair of the significant
+and the exponent of 
+.ft B
+f
+.ft R
+\&.  When 
+.ft B
+f
+.ft R
+is zero, the
+significant 
+.ft B
+x
+.ft R
+and the exponent 
+.ft B
+n
+.ft R
+of 
+.ft B
+f
+.ft R
+are equal to
+zero\&.  When 
+.ft B
+f
+.ft R
+is non\-zero, they are defined by
+.ft B
+f = x *\&. 2 ** n
+.ft R
+and 
+.ft B
+0\&.5 <= x < 1\&.0
+.ft R
+\&.
+
+.sp
+
+.I val ldexp 
+: 
+.B float -> int -> float
+.sp
+
+.ft B
+ldexp x n
+.ft R
+returns 
+.ft B
+x *\&. 2 ** n
+.ft R
+\&.
+
+.sp
+
+.I val modf 
+: 
+.B float -> float * float
+.sp
+
+.ft B
+modf f
+.ft R
+returns the pair of the fractional and integral
+part of 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+
+.I val float 
+: 
+.B int -> float
+.sp
+Same as 
+.ft B
+float_of_int
+.ft R
+\&.
+
+.sp
+
+.I val float_of_int 
+: 
+.B int -> float
+.sp
+Convert an integer to floating\-point\&.
+
+.sp
+
+.I val truncate 
+: 
+.B float -> int
+.sp
+Same as 
+.ft B
+int_of_float
+.ft R
+\&.
+
+.sp
+
+.I val int_of_float 
+: 
+.B float -> int
+.sp
+Truncate the given floating\-point number to an integer\&.
+The result is unspecified if the argument is 
+.ft B
+nan
+.ft R
+or falls outside the
+range of representable integers\&.
+
+.sp
+
+.I val infinity 
+: 
+.B float
+.sp
+Positive infinity\&.
+
+.sp
+
+.I val neg_infinity 
+: 
+.B float
+.sp
+Negative infinity\&.
+
+.sp
+
+.I val nan 
+: 
+.B float
+.sp
+A special floating\-point value denoting the result of an
+undefined operation such as 
+.ft B
+0\&.0 /\&. 0\&.0
+.ft R
+\&.  Stands for
+\&'not a number\&'\&.  Any floating\-point operation with 
+.ft B
+nan
+.ft R
+as
+argument returns 
+.ft B
+nan
+.ft R
+as result, unless otherwise specified in
+IEEE 754 standard\&.  As for floating\-point comparisons,
+.ft B
+=
+.ft R
+, 
+.ft B
+<
+.ft R
+, 
+.ft B
+<=
+.ft R
+, 
+.ft B
+>
+.ft R
+and 
+.ft B
+>=
+.ft R
+return 
+.ft B
+false
+.ft R
+and 
+.ft B
+<>
+.ft R
+returns 
+.ft B
+true
+.ft R
+if one or both of their arguments is 
+.ft B
+nan
+.ft R
+\&.
+.sp
+
+.ft B
+nan
+.ft R
+is a quiet NaN since 5\&.1;  it was a signaling NaN before\&.
+
+.sp
+
+.I val max_float 
+: 
+.B float
+.sp
+The largest positive finite value of type 
+.ft B
+float
+.ft R
+\&.
+
+.sp
+
+.I val min_float 
+: 
+.B float
+.sp
+The smallest positive, non\-zero, non\-denormalized value of type 
+.ft B
+float
+.ft R
+\&.
+
+.sp
+
+.I val epsilon_float 
+: 
+.B float
+.sp
+The difference between 
+.ft B
+1\&.0
+.ft R
+and the smallest exactly representable
+floating\-point number greater than 
+.ft B
+1\&.0
+.ft R
+\&.
+
+.sp
+.I type fpclass 
+=
+ | FP_normal  (* Normal number, none of the below
+ *)
+ | FP_subnormal  (* Number very close to 0\&.0, has reduced precision
+ *)
+ | FP_zero  (* Number is 0\&.0 or \-0\&.0
+ *)
+ | FP_infinite  (* Number is positive or negative infinity
+ *)
+ | FP_nan  (* Not a number: result of an undefined operation
+ *)
+ 
+.sp
+The five classes of floating\-point numbers, as determined by
+the 
+.ft B
+classify_float
+.ft R
+function\&.
+
+.sp
+
+.I val classify_float 
+: 
+.B float -> fpclass
+.sp
+Return the class of the given floating\-point number:
+normal, subnormal, zero, infinite, or not a number\&.
+
+.sp
+
+.PP
+.SS String operations
+.sp
+More string operations are provided in module 
+.ft B
+String
+.ft R
+\&.
+.PP
+
+.I val (^) 
+: 
+.B string -> string -> string
+.sp
+String concatenation\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the result is longer then
+than 
+.ft B
+Sys\&.max_string_length
+.ft R
+bytes\&.
+
+.sp
+
+.PP
+.SS Character operations
+.sp
+More character operations are provided in module 
+.ft B
+Char
+.ft R
+\&.
+.PP
+
+.I val int_of_char 
+: 
+.B char -> int
+.sp
+Return the ASCII code of the argument\&.
+
+.sp
+
+.I val char_of_int 
+: 
+.B int -> char
+.sp
+Return the character with the given ASCII code\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the argument is
+outside the range 0\-\-255\&.
+
+.sp
+
+.PP
+.SS Unit operations
+
+.PP
+
+.I val ignore 
+: 
+.B 'a -> unit
+.sp
+Discard the value of its argument and return 
+.ft B
+()
+.ft R
+\&.
+For instance, 
+.ft B
+ignore(f x)
+.ft R
+discards the result of
+the side\-effecting function 
+.ft B
+f
+.ft R
+\&.  It is equivalent to
+.ft B
+f x; ()
+.ft R
+, except that the latter may generate a
+compiler warning; writing 
+.ft B
+ignore(f x)
+.ft R
+instead
+avoids the warning\&.
+
+.sp
+
+.PP
+.SS String conversion functions
+
+.PP
+
+.I val string_of_bool 
+: 
+.B bool -> string
+.sp
+Return the string representation of a boolean\&. As the returned values
+may be shared, the user should not modify them directly\&.
+
+.sp
+
+.I val bool_of_string_opt 
+: 
+.B string -> bool option
+.sp
+Convert the given string to a boolean\&.
+.sp
+Return 
+.ft B
+None
+.ft R
+if the string is not 
+.ft B
+"true"
+.ft R
+or 
+.ft B
+"false"
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val bool_of_string 
+: 
+.B string -> bool
+.sp
+Same as 
+.ft B
+bool_of_string_opt
+.ft R
+, but raise
+.ft B
+Invalid_argument "bool_of_string"
+.ft R
+instead of returning 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val string_of_int 
+: 
+.B int -> string
+.sp
+Return the string representation of an integer, in decimal\&.
+
+.sp
+
+.I val int_of_string_opt 
+: 
+.B string -> int option
+.sp
+Convert the given string to an integer\&.
+The string is read in decimal (by default, or if the string
+begins with 
+.ft B
+0u
+.ft R
+), in hexadecimal (if it begins with 
+.ft B
+0x
+.ft R
+or
+.ft B
+0X
+.ft R
+), in octal (if it begins with 
+.ft B
+0o
+.ft R
+or 
+.ft B
+0O
+.ft R
+), or in binary
+(if it begins with 
+.ft B
+0b
+.ft R
+or 
+.ft B
+0B
+.ft R
+)\&.
+.sp
+The 
+.ft B
+0u
+.ft R
+prefix reads the input as an unsigned integer in the range
+.ft B
+[0, 2*max_int+1]
+.ft R
+\&.  If the input exceeds 
+.ft B
+max_int
+.ft R
+it is converted to the signed integer
+.ft B
+min_int + input \- max_int \- 1
+.ft R
+\&.
+.sp
+The 
+.ft B
+_
+.ft R
+(underscore) character can appear anywhere in the string
+and is ignored\&.
+.sp
+Return 
+.ft B
+None
+.ft R
+if the given string is not a valid representation of an
+integer, or if the integer represented exceeds the range of integers
+representable in type 
+.ft B
+int
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val int_of_string 
+: 
+.B string -> int
+.sp
+Same as 
+.ft B
+int_of_string_opt
+.ft R
+, but raise
+.ft B
+Failure "int_of_string"
+.ft R
+instead of returning 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val string_of_float 
+: 
+.B float -> string
+.sp
+Return a string representation of a floating\-point number\&.
+.sp
+This conversion can involve a loss of precision\&. For greater control over
+the manner in which the number is printed, see 
+.ft B
+Printf
+.ft R
+\&.
+
+.sp
+
+.I val float_of_string_opt 
+: 
+.B string -> float option
+.sp
+Convert the given string to a float\&.  The string is read in decimal
+(by default) or in hexadecimal (marked by 
+.ft B
+0x
+.ft R
+or 
+.ft B
+0X
+.ft R
+)\&.
+.sp
+The format of decimal floating\-point numbers is
+.ft B
+[\-] dd\&.ddd (e|E) [+|\-] dd 
+.ft R
+, where 
+.ft B
+d
+.ft R
+stands for a decimal digit\&.
+.sp
+The format of hexadecimal floating\-point numbers is
+.ft B
+[\-] 0(x|X) hh\&.hhh (p|P) [+|\-] dd 
+.ft R
+, where 
+.ft B
+h
+.ft R
+stands for an
+hexadecimal digit and 
+.ft B
+d
+.ft R
+for a decimal digit\&.
+.sp
+In both cases, at least one of the integer and fractional parts must be
+given; the exponent part is optional\&.
+.sp
+The 
+.ft B
+_
+.ft R
+(underscore) character can appear anywhere in the string
+and is ignored\&.
+.sp
+Depending on the execution platforms, other representations of
+floating\-point numbers can be accepted, but should not be relied upon\&.
+.sp
+Return 
+.ft B
+None
+.ft R
+if the given string is not a valid representation of a float\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val float_of_string 
+: 
+.B string -> float
+.sp
+Same as 
+.ft B
+float_of_string_opt
+.ft R
+, but raise
+.ft B
+Failure "float_of_string"
+.ft R
+instead of returning 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Pair operations
+
+.PP
+
+.I val fst 
+: 
+.B 'a * 'b -> 'a
+.sp
+Return the first component of a pair\&.
+
+.sp
+
+.I val snd 
+: 
+.B 'a * 'b -> 'b
+.sp
+Return the second component of a pair\&.
+
+.sp
+
+.PP
+.SS List operations
+.sp
+More list operations are provided in module 
+.ft B
+List
+.ft R
+\&.
+.PP
+
+.I val (@) 
+: 
+.B 'a list -> 'a list -> 'a list
+.sp
+
+.ft B
+l0 @ l1
+.ft R
+appends 
+.ft B
+l1
+.ft R
+to 
+.ft B
+l0
+.ft R
+\&. Same function as 
+.ft B
+List\&.append
+.ft R
+\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+.B "Since"
+5.1 this function is tail-recursive.
+
+.sp
+
+.PP
+.SS Input/output
+Note: all input/output functions can raise 
+.ft B
+Sys_error
+.ft R
+when the system
+calls they invoke fail\&.
+.PP
+.I type in_channel 
+
+.sp
+The type of input channel\&.
+
+.sp
+.I type out_channel 
+
+.sp
+The type of output channel\&.
+
+.sp
+
+.I val stdin 
+: 
+.B in_channel
+.sp
+The standard input for the process\&.
+
+.sp
+
+.I val stdout 
+: 
+.B out_channel
+.sp
+The standard output for the process\&.
+
+.sp
+
+.I val stderr 
+: 
+.B out_channel
+.sp
+The standard error output for the process\&.
+
+.sp
+
+.PP
+.SS Output functions on standard output
+
+.PP
+
+.I val print_char 
+: 
+.B char -> unit
+.sp
+Print a character on standard output\&.
+
+.sp
+
+.I val print_string 
+: 
+.B string -> unit
+.sp
+Print a string on standard output\&.
+
+.sp
+
+.I val print_bytes 
+: 
+.B bytes -> unit
+.sp
+Print a byte sequence on standard output\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val print_int 
+: 
+.B int -> unit
+.sp
+Print an integer, in decimal, on standard output\&.
+
+.sp
+
+.I val print_float 
+: 
+.B float -> unit
+.sp
+Print a floating\-point number, in decimal, on standard output\&.
+.sp
+The conversion of the number to a string uses 
+.ft B
+string_of_float
+.ft R
+and
+can involve a loss of precision\&.
+
+.sp
+
+.I val print_endline 
+: 
+.B string -> unit
+.sp
+Print a string, followed by a newline character, on
+standard output and flush standard output\&.
+
+.sp
+
+.I val print_newline 
+: 
+.B unit -> unit
+.sp
+Print a newline character on standard output, and flush
+standard output\&. This can be used to simulate line
+buffering of standard output\&.
+
+.sp
+
+.PP
+.SS Output functions on standard error
+
+.PP
+
+.I val prerr_char 
+: 
+.B char -> unit
+.sp
+Print a character on standard error\&.
+
+.sp
+
+.I val prerr_string 
+: 
+.B string -> unit
+.sp
+Print a string on standard error\&.
+
+.sp
+
+.I val prerr_bytes 
+: 
+.B bytes -> unit
+.sp
+Print a byte sequence on standard error\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val prerr_int 
+: 
+.B int -> unit
+.sp
+Print an integer, in decimal, on standard error\&.
+
+.sp
+
+.I val prerr_float 
+: 
+.B float -> unit
+.sp
+Print a floating\-point number, in decimal, on standard error\&.
+.sp
+The conversion of the number to a string uses 
+.ft B
+string_of_float
+.ft R
+and
+can involve a loss of precision\&.
+
+.sp
+
+.I val prerr_endline 
+: 
+.B string -> unit
+.sp
+Print a string, followed by a newline character on standard
+error and flush standard error\&.
+
+.sp
+
+.I val prerr_newline 
+: 
+.B unit -> unit
+.sp
+Print a newline character on standard error, and flush
+standard error\&.
+
+.sp
+
+.PP
+.SS Input functions on standard input
+
+.PP
+
+.I val read_line 
+: 
+.B unit -> string
+.sp
+Flush standard output, then read characters from standard input
+until a newline character is encountered\&.
+.sp
+Return the string of all characters read, without the newline character
+at the end\&.
+
+.sp
+.B "Raises End_of_file"
+if the end of the file is reached at the beginning of
+line\&.
+
+.sp
+
+.I val read_int_opt 
+: 
+.B unit -> int option
+.sp
+Flush standard output, then read one line from standard input
+and convert it to an integer\&.
+.sp
+Return 
+.ft B
+None
+.ft R
+if the line read is not a valid representation of an integer\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val read_int 
+: 
+.B unit -> int
+.sp
+Same as 
+.ft B
+read_int_opt
+.ft R
+, but raise 
+.ft B
+Failure "int_of_string"
+.ft R
+instead of returning 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val read_float_opt 
+: 
+.B unit -> float option
+.sp
+Flush standard output, then read one line from standard input
+and convert it to a floating\-point number\&.
+.sp
+Return 
+.ft B
+None
+.ft R
+if the line read is not a valid representation of a
+floating\-point number\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+
+.I val read_float 
+: 
+.B unit -> float
+.sp
+Same as 
+.ft B
+read_float_opt
+.ft R
+, but raise 
+.ft B
+Failure "float_of_string"
+.ft R
+instead of returning 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS General output functions
+
+.PP
+.I type open_flag 
+=
+ | Open_rdonly  (* open for reading\&.
+ *)
+ | Open_wronly  (* open for writing\&.
+ *)
+ | Open_append  (* open for appending: always write at end of file\&.
+ *)
+ | Open_creat  (* create the file if it does not exist\&.
+ *)
+ | Open_trunc  (* empty the file if it already exists\&.
+ *)
+ | Open_excl  (* fail if Open_creat and the file already exists\&.
+ *)
+ | Open_binary  (* open in binary mode (no conversion)\&.
+ *)
+ | Open_text  (* open in text mode (may perform conversions)\&.
+ *)
+ | Open_nonblock  (* open in non\-blocking mode\&.
+ *)
+ 
+.sp
+Opening modes for 
+.ft B
+open_out_gen
+.ft R
+and
+.ft B
+open_in_gen
+.ft R
+\&.
+
+.sp
+
+.I val open_out 
+: 
+.B string -> out_channel
+.sp
+Open the named file for writing, and return a new output channel
+on that file, positioned at the beginning of the file\&. The
+file is truncated to zero length if it already exists\&. It
+is created if it does not already exists\&.
+
+.sp
+
+.I val open_out_bin 
+: 
+.B string -> out_channel
+.sp
+Same as 
+.ft B
+open_out
+.ft R
+, but the file is opened in binary mode,
+so that no translation takes place during writes\&. On operating
+systems that do not distinguish between text mode and binary
+mode, this function behaves like 
+.ft B
+open_out
+.ft R
+\&.
+
+.sp
+
+.I val open_out_gen 
+: 
+.B open_flag list -> int -> string -> out_channel
+.sp
+
+.ft B
+open_out_gen mode perm filename
+.ft R
+opens the named file for writing,
+as described above\&. The extra argument 
+.ft B
+mode
+.ft R
+specifies the opening mode\&. The extra argument 
+.ft B
+perm
+.ft R
+specifies
+the file permissions, in case the file must be created\&.
+.ft B
+open_out
+.ft R
+and 
+.ft B
+open_out_bin
+.ft R
+are special
+cases of this function\&.
+
+.sp
+
+.I val flush 
+: 
+.B out_channel -> unit
+.sp
+Flush the buffer associated with the given output channel,
+performing all pending writes on that channel\&.
+Interactive programs must be careful about flushing standard
+output and standard error at the right time\&.
+
+.sp
+
+.I val flush_all 
+: 
+.B unit -> unit
+.sp
+Flush all open output channels; ignore errors\&.
+
+.sp
+
+.I val output_char 
+: 
+.B out_channel -> char -> unit
+.sp
+Write the character on the given output channel\&.
+
+.sp
+
+.I val output_string 
+: 
+.B out_channel -> string -> unit
+.sp
+Write the string on the given output channel\&.
+
+.sp
+
+.I val output_bytes 
+: 
+.B out_channel -> bytes -> unit
+.sp
+Write the byte sequence on the given output channel\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val output 
+: 
+.B out_channel -> bytes -> int -> int -> unit
+.sp
+
+.ft B
+output oc buf pos len
+.ft R
+writes 
+.ft B
+len
+.ft R
+characters from byte sequence 
+.ft B
+buf
+.ft R
+,
+starting at offset 
+.ft B
+pos
+.ft R
+, to the given output channel 
+.ft B
+oc
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not
+designate a valid range of 
+.ft B
+buf
+.ft R
+\&.
+
+.sp
+
+.I val output_substring 
+: 
+.B out_channel -> string -> int -> int -> unit
+.sp
+Same as 
+.ft B
+output
+.ft R
+but take a string as argument instead of
+a byte sequence\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val output_byte 
+: 
+.B out_channel -> int -> unit
+.sp
+Write one 8\-bit integer (as the single character with that code)
+on the given output channel\&. The given integer is taken modulo
+256\&.
+
+.sp
+
+.I val output_binary_int 
+: 
+.B out_channel -> int -> unit
+.sp
+Write one integer in binary format (4 bytes, big\-endian)
+on the given output channel\&.
+The given integer is taken modulo 2^32\&.
+The only reliable way to read it back is through the
+.ft B
+input_binary_int
+.ft R
+function\&. The format is compatible across
+all machines for a given version of OCaml\&.
+
+.sp
+
+.I val output_value 
+: 
+.B out_channel -> 'a -> unit
+.sp
+Write the representation of a structured value of any type
+to a channel\&. Circularities and sharing inside the value
+are detected and preserved\&. The object can be read back,
+by the function 
+.ft B
+input_value
+.ft R
+\&. See the description of module
+.ft B
+Marshal
+.ft R
+for more information\&. 
+.ft B
+output_value
+.ft R
+is equivalent
+to 
+.ft B
+Marshal\&.to_channel
+.ft R
+with an empty list of flags\&.
+
+.sp
+
+.I val seek_out 
+: 
+.B out_channel -> int -> unit
+.sp
+
+.ft B
+seek_out chan pos
+.ft R
+sets the current writing position to 
+.ft B
+pos
+.ft R
+for channel 
+.ft B
+chan
+.ft R
+\&. This works only for regular files\&. On
+files of other kinds (such as terminals, pipes and sockets),
+the behavior is unspecified\&.
+
+.sp
+
+.I val pos_out 
+: 
+.B out_channel -> int
+.sp
+Return the current writing position for the given channel\&.  Does
+not work on channels opened with the 
+.ft B
+Open_append
+.ft R
+flag (returns
+unspecified results)\&.
+For files opened in text mode under Windows, the returned position
+is approximate (owing to end\-of\-line conversion); in particular,
+saving the current position with 
+.ft B
+pos_out
+.ft R
+, then going back to
+this position using 
+.ft B
+seek_out
+.ft R
+will not work\&.  For this
+programming idiom to work reliably and portably, the file must be
+opened in binary mode\&.
+
+.sp
+
+.I val out_channel_length 
+: 
+.B out_channel -> int
+.sp
+Return the size (number of characters) of the regular file
+on which the given channel is opened\&.  If the channel is opened
+on a file that is not a regular file, the result is meaningless\&.
+
+.sp
+
+.I val close_out 
+: 
+.B out_channel -> unit
+.sp
+Close the given channel, flushing all buffered write operations\&.
+Output functions raise a 
+.ft B
+Sys_error
+.ft R
+exception when they are
+applied to a closed output channel, except 
+.ft B
+close_out
+.ft R
+and 
+.ft B
+flush
+.ft R
+,
+which do nothing when applied to an already closed channel\&.
+Note that 
+.ft B
+close_out
+.ft R
+may raise 
+.ft B
+Sys_error
+.ft R
+if the operating
+system signals an error when flushing or closing\&.
+
+.sp
+
+.I val close_out_noerr 
+: 
+.B out_channel -> unit
+.sp
+Same as 
+.ft B
+close_out
+.ft R
+, but ignore all errors\&.
+
+.sp
+
+.I val set_binary_mode_out 
+: 
+.B out_channel -> bool -> unit
+.sp
+
+.ft B
+set_binary_mode_out oc true
+.ft R
+sets the channel 
+.ft B
+oc
+.ft R
+to binary
+mode: no translations take place during output\&.
+.ft B
+set_binary_mode_out oc false
+.ft R
+sets the channel 
+.ft B
+oc
+.ft R
+to text
+mode: depending on the operating system, some translations
+may take place during output\&.  For instance, under Windows,
+end\-of\-lines will be translated from 
+.ft B
+\(rsn
+.ft R
+to 
+.ft B
+\(rsr\(rsn
+.ft R
+\&.
+This function has no effect under operating systems that
+do not distinguish between text mode and binary mode\&.
+
+.sp
+
+.PP
+.SS General input functions
+
+.PP
+
+.I val open_in 
+: 
+.B string -> in_channel
+.sp
+Open the named file for reading, and return a new input channel
+on that file, positioned at the beginning of the file\&.
+
+.sp
+
+.I val open_in_bin 
+: 
+.B string -> in_channel
+.sp
+Same as 
+.ft B
+open_in
+.ft R
+, but the file is opened in binary mode,
+so that no translation takes place during reads\&. On operating
+systems that do not distinguish between text mode and binary
+mode, this function behaves like 
+.ft B
+open_in
+.ft R
+\&.
+
+.sp
+
+.I val open_in_gen 
+: 
+.B open_flag list -> int -> string -> in_channel
+.sp
+
+.ft B
+open_in_gen mode perm filename
+.ft R
+opens the named file for reading,
+as described above\&. The extra arguments
+.ft B
+mode
+.ft R
+and 
+.ft B
+perm
+.ft R
+specify the opening mode and file permissions\&.
+.ft B
+open_in
+.ft R
+and 
+.ft B
+open_in_bin
+.ft R
+are special
+cases of this function\&.
+
+.sp
+
+.I val input_char 
+: 
+.B in_channel -> char
+.sp
+Read one character from the given input channel\&.
+
+.sp
+.B "Raises End_of_file"
+if there are no more characters to read\&.
+
+.sp
+
+.I val input_line 
+: 
+.B in_channel -> string
+.sp
+Read characters from the given input channel, until a
+newline character is encountered\&. Return the string of
+all characters read, without the newline character at the end\&.
+
+.sp
+.B "Raises End_of_file"
+if the end of the file is reached
+at the beginning of line\&.
+
+.sp
+
+.I val input 
+: 
+.B in_channel -> bytes -> int -> int -> int
+.sp
+
+.ft B
+input ic buf pos len
+.ft R
+reads up to 
+.ft B
+len
+.ft R
+characters from
+the given channel 
+.ft B
+ic
+.ft R
+, storing them in byte sequence 
+.ft B
+buf
+.ft R
+, starting at
+character number 
+.ft B
+pos
+.ft R
+\&.
+It returns the actual number of characters read, between 0 and
+.ft B
+len
+.ft R
+(inclusive)\&.
+A return value of 0 means that the end of file was reached\&.
+A return value between 0 and 
+.ft B
+len
+.ft R
+exclusive means that
+not all requested 
+.ft B
+len
+.ft R
+characters were read, either because
+no more characters were available at that time, or because
+the implementation found it convenient to do a partial read;
+.ft B
+input
+.ft R
+must be called again to read the remaining characters,
+if desired\&.  (See also 
+.ft B
+really_input
+.ft R
+for reading
+exactly 
+.ft B
+len
+.ft R
+characters\&.)
+Exception 
+.ft B
+Invalid_argument "input"
+.ft R
+is raised if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid range of 
+.ft B
+buf
+.ft R
+\&.
+
+.sp
+
+.I val really_input 
+: 
+.B in_channel -> bytes -> int -> int -> unit
+.sp
+
+.ft B
+really_input ic buf pos len
+.ft R
+reads 
+.ft B
+len
+.ft R
+characters from channel 
+.ft B
+ic
+.ft R
+,
+storing them in byte sequence 
+.ft B
+buf
+.ft R
+, starting at character number 
+.ft B
+pos
+.ft R
+\&.
+
+.sp
+.B "Raises End_of_file"
+if the end of file is reached before 
+.ft B
+len
+.ft R
+characters have been read\&.
+
+.sp
+.B "Raises Invalid_argument"
+if
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid range of 
+.ft B
+buf
+.ft R
+\&.
+
+.sp
+
+.I val really_input_string 
+: 
+.B in_channel -> int -> string
+.sp
+
+.ft B
+really_input_string ic len
+.ft R
+reads 
+.ft B
+len
+.ft R
+characters from channel 
+.ft B
+ic
+.ft R
+and returns them in a new string\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+.B "Raises End_of_file"
+if the end of file is reached before 
+.ft B
+len
+.ft R
+characters have been read\&.
+
+.sp
+
+.I val input_byte 
+: 
+.B in_channel -> int
+.sp
+Same as 
+.ft B
+input_char
+.ft R
+, but return the 8\-bit integer representing
+the character\&.
+
+.sp
+.B "Raises End_of_file"
+if the end of file was reached\&.
+
+.sp
+
+.I val input_binary_int 
+: 
+.B in_channel -> int
+.sp
+Read an integer encoded in binary format (4 bytes, big\-endian)
+from the given input channel\&. See 
+.ft B
+output_binary_int
+.ft R
+\&.
+
+.sp
+.B "Raises End_of_file"
+if the end of file was reached while reading the
+integer\&.
+
+.sp
+
+.I val input_value 
+: 
+.B in_channel -> 'a
+.sp
+Read the representation of a structured value, as produced
+by 
+.ft B
+output_value
+.ft R
+, and return the corresponding value\&.
+This function is identical to 
+.ft B
+Marshal\&.from_channel
+.ft R
+;
+see the description of module 
+.ft B
+Marshal
+.ft R
+for more information,
+in particular concerning the lack of type safety\&.
+
+.sp
+
+.I val seek_in 
+: 
+.B in_channel -> int -> unit
+.sp
+
+.ft B
+seek_in chan pos
+.ft R
+sets the current reading position to 
+.ft B
+pos
+.ft R
+for channel 
+.ft B
+chan
+.ft R
+\&. This works only for regular files\&. On
+files of other kinds, the behavior is unspecified\&.
+
+.sp
+
+.I val pos_in 
+: 
+.B in_channel -> int
+.sp
+Return the current reading position for the given channel\&.  For
+files opened in text mode under Windows, the returned position is
+approximate (owing to end\-of\-line conversion); in particular,
+saving the current position with 
+.ft B
+pos_in
+.ft R
+, then going back to this
+position using 
+.ft B
+seek_in
+.ft R
+will not work\&.  For this programming
+idiom to work reliably and portably, the file must be opened in
+binary mode\&.
+
+.sp
+
+.I val in_channel_length 
+: 
+.B in_channel -> int
+.sp
+Return the size (number of characters) of the regular file
+on which the given channel is opened\&.  If the channel is opened
+on a file that is not a regular file, the result is meaningless\&.
+The returned size does not take into account the end\-of\-line
+translations that can be performed when reading from a channel
+opened in text mode\&.
+
+.sp
+
+.I val close_in 
+: 
+.B in_channel -> unit
+.sp
+Close the given channel\&.  Input functions raise a 
+.ft B
+Sys_error
+.ft R
+exception when they are applied to a closed input channel,
+except 
+.ft B
+close_in
+.ft R
+, which does nothing when applied to an already
+closed channel\&.
+
+.sp
+
+.I val close_in_noerr 
+: 
+.B in_channel -> unit
+.sp
+Same as 
+.ft B
+close_in
+.ft R
+, but ignore all errors\&.
+
+.sp
+
+.I val set_binary_mode_in 
+: 
+.B in_channel -> bool -> unit
+.sp
+
+.ft B
+set_binary_mode_in ic true
+.ft R
+sets the channel 
+.ft B
+ic
+.ft R
+to binary
+mode: no translations take place during input\&.
+.ft B
+set_binary_mode_out ic false
+.ft R
+sets the channel 
+.ft B
+ic
+.ft R
+to text
+mode: depending on the operating system, some translations
+may take place during input\&.  For instance, under Windows,
+end\-of\-lines will be translated from 
+.ft B
+\(rsr\(rsn
+.ft R
+to 
+.ft B
+\(rsn
+.ft R
+\&.
+This function has no effect under operating systems that
+do not distinguish between text mode and binary mode\&.
+
+.sp
+
+.PP
+.SS Operations on large files
+
+.PP
+.I module LargeFile : 
+.B sig end
+
+.sp
+Operations on large files\&.
+This sub\-module provides 64\-bit variants of the channel functions
+that manipulate file positions and file sizes\&.  By representing
+positions and sizes by 64\-bit integers (type 
+.ft B
+int64
+.ft R
+) instead of
+regular integers (type 
+.ft B
+int
+.ft R
+), these alternate functions allow
+operating on files whose sizes are greater than 
+.ft B
+max_int
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS References
+
+.PP
+.I type 
+.B 'a
+.I ref 
+= {
+
+.B mutable 
+contents : 
+.B 'a
+;
+ }
+
+.sp
+The type of references (mutable indirection cells) containing
+a value of type 
+.ft B
+\&'a
+.ft R
+\&.
+
+.sp
+
+.I val ref 
+: 
+.B 'a -> 'a ref
+.sp
+Return a fresh reference containing the given value\&.
+
+.sp
+
+.I val (!) 
+: 
+.B 'a ref -> 'a
+.sp
+
+.ft B
+!r
+.ft R
+returns the current contents of reference 
+.ft B
+r
+.ft R
+\&.
+Equivalent to 
+.ft B
+fun r \-> r\&.contents
+.ft R
+\&.
+Unary operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val (:=) 
+: 
+.B 'a ref -> 'a -> unit
+.sp
+
+.ft B
+r := a
+.ft R
+stores the value of 
+.ft B
+a
+.ft R
+in reference 
+.ft B
+r
+.ft R
+\&.
+Equivalent to 
+.ft B
+fun r v \-> r\&.contents <\- v
+.ft R
+\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.I val incr 
+: 
+.B int ref -> unit
+.sp
+Increment the integer contained in the given reference\&.
+Equivalent to 
+.ft B
+fun r \-> r := succ !r
+.ft R
+\&.
+
+.sp
+
+.I val decr 
+: 
+.B int ref -> unit
+.sp
+Decrement the integer contained in the given reference\&.
+Equivalent to 
+.ft B
+fun r \-> r := pred !r
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Result type
+
+.PP
+.I type 
+.B ('a, 'b)
+.I result 
+=
+ | Ok
+.B of 
+.B 'a
+ | Error
+.B of 
+.B 'b
+ 
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.PP
+.SS Operations on format strings
+
+.PP
+
+.PP
+Format strings are character strings with special lexical conventions
+that defines the functionality of formatted input/output functions\&. Format
+strings are used to read data with formatted input functions from module
+.ft B
+Scanf
+.ft R
+and to print data with formatted output functions from modules
+.ft B
+Printf
+.ft R
+and 
+.ft B
+Format
+.ft R
+\&.
+.sp
+Format strings are made of three kinds of entities:
+.sp
+\-conversions specifications, introduced by the special character 
+.ft B
+\&'%\&'
+.ft R
+followed by one or more characters specifying what kind of argument to
+read or print,
+.sp
+\-formatting indications, introduced by the special character 
+.ft B
+\&'@\&'
+.ft R
+followed by one or more characters specifying how to read or print the
+argument,
+.sp
+\-plain characters that are regular characters with usual lexical
+conventions\&. Plain characters specify string literals to be read in the
+input or printed in the output\&.
+
+There is an additional lexical rule to escape the special characters 
+.ft B
+\&'%\&'
+.ft R
+and 
+.ft B
+\&'@\&'
+.ft R
+in format strings: if a special character follows a 
+.ft B
+\&'%\&'
+.ft R
+character, it is treated as a plain character\&. In other words, 
+.ft B
+"%%"
+.ft R
+is
+considered as a plain 
+.ft B
+\&'%\&'
+.ft R
+and 
+.ft B
+"%@"
+.ft R
+as a plain 
+.ft B
+\&'@\&'
+.ft R
+\&.
+.sp
+For more information about conversion specifications and formatting
+indications available, read the documentation of modules 
+.ft B
+Scanf
+.ft R
+,
+.ft B
+Printf
+.ft R
+and 
+.ft B
+Format
+.ft R
+\&.
+.PP
+
+.PP
+Format strings have a general and highly polymorphic type
+.ft B
+(\&'a, \&'b, \&'c, \&'d, \&'e, \&'f) format6
+.ft R
+\&.
+The two simplified types, 
+.ft B
+format
+.ft R
+and 
+.ft B
+format4
+.ft R
+below are
+included for backward compatibility with earlier releases of
+OCaml\&.
+.sp
+The meaning of format string type parameters is as follows:
+.sp
+.sp
+\-
+.ft B
+\&'a
+.ft R
+is the type of the parameters of the format for formatted output
+functions (
+.ft B
+printf
+.ft R
+\-style functions);
+.ft B
+\&'a
+.ft R
+is the type of the values read by the format for formatted input
+functions (
+.ft B
+scanf
+.ft R
+\-style functions)\&.
+
+.sp
+\-
+.ft B
+\&'b
+.ft R
+is the type of input source for formatted input functions and the
+type of output target for formatted output functions\&.
+For 
+.ft B
+printf
+.ft R
+\-style functions from module 
+.ft B
+Printf
+.ft R
+, 
+.ft B
+\&'b
+.ft R
+is typically
+.ft B
+out_channel
+.ft R
+;
+for 
+.ft B
+printf
+.ft R
+\-style functions from module 
+.ft B
+Format
+.ft R
+, 
+.ft B
+\&'b
+.ft R
+is typically
+.ft B
+Format\&.formatter
+.ft R
+;
+for 
+.ft B
+scanf
+.ft R
+\-style functions from module 
+.ft B
+Scanf
+.ft R
+, 
+.ft B
+\&'b
+.ft R
+is typically
+.ft B
+Scanf\&.Scanning\&.in_channel
+.ft R
+\&.
+
+Type argument 
+.ft B
+\&'b
+.ft R
+is also the type of the first argument given to
+user\&'s defined printing functions for 
+.ft B
+%a
+.ft R
+and 
+.ft B
+%t
+.ft R
+conversions,
+and user\&'s defined reading functions for 
+.ft B
+%r
+.ft R
+conversion\&.
+.sp
+.sp
+\-
+.ft B
+\&'c
+.ft R
+is the type of the result of the 
+.ft B
+%a
+.ft R
+and 
+.ft B
+%t
+.ft R
+printing
+functions, and also the type of the argument transmitted to the
+first argument of 
+.ft B
+kprintf
+.ft R
+\-style functions or to the
+.ft B
+kscanf
+.ft R
+\-style functions\&.
+
+.sp
+\-
+.ft B
+\&'d
+.ft R
+is the type of parameters for the 
+.ft B
+scanf
+.ft R
+\-style functions\&.
+
+.sp
+\-
+.ft B
+\&'e
+.ft R
+is the type of the receiver function for the 
+.ft B
+scanf
+.ft R
+\-style functions\&.
+
+.sp
+\-
+.ft B
+\&'f
+.ft R
+is the final result type of a formatted input/output function
+invocation: for the 
+.ft B
+printf
+.ft R
+\-style functions, it is typically 
+.ft B
+unit
+.ft R
+;
+for the 
+.ft B
+scanf
+.ft R
+\-style functions, it is typically the result type of the
+receiver function\&.
+
+.PP
+.I type 
+.B ('a, 'b, 'c, 'd, 'e, 'f)
+.I format6 
+= 
+.B ('a, 'b, 'c, 'd, 'e, 'f) CamlinternalFormatBasics.format6
+
+.sp
+
+.sp
+.I type 
+.B ('a, 'b, 'c, 'd)
+.I format4 
+= 
+.B ('a, 'b, 'c, 'c, 'c, 'd) format6
+
+.sp
+
+.sp
+.I type 
+.B ('a, 'b, 'c)
+.I format 
+= 
+.B ('a, 'b, 'c, 'c) format4
+
+.sp
+
+.sp
+
+.I val string_of_format 
+: 
+.B ('a, 'b, 'c, 'd, 'e, 'f) format6 -> string
+.sp
+Converts a format string into a string\&.
+
+.sp
+
+.I val format_of_string 
+: 
+.B ('a, 'b, 'c, 'd, 'e, 'f) format6 ->
+.B   ('a, 'b, 'c, 'd, 'e, 'f) format6
+.sp
+
+.ft B
+format_of_string s
+.ft R
+returns a format string read from the string
+literal 
+.ft B
+s
+.ft R
+\&.
+Note: 
+.ft B
+format_of_string
+.ft R
+can not convert a string argument that is not a
+literal\&. If you need this functionality, use the more general
+.ft B
+Scanf\&.format_from_string
+.ft R
+function\&.
+
+.sp
+
+.I val (^^) 
+: 
+.B ('a, 'b, 'c, 'd, 'e, 'f) format6 ->
+.B   ('f, 'b, 'c, 'e, 'g, 'h) format6 ->
+.B   ('a, 'b, 'c, 'd, 'g, 'h) format6
+.sp
+
+.ft B
+f1 ^^ f2
+.ft R
+catenates format strings 
+.ft B
+f1
+.ft R
+and 
+.ft B
+f2
+.ft R
+\&. The result is a
+format string that behaves as the concatenation of format strings 
+.ft B
+f1
+.ft R
+and
+.ft B
+f2
+.ft R
+: in case of formatted output, it accepts arguments from 
+.ft B
+f1
+.ft R
+, then
+arguments from 
+.ft B
+f2
+.ft R
+; in case of formatted input, it returns results from
+.ft B
+f1
+.ft R
+, then results from 
+.ft B
+f2
+.ft R
+\&.
+Right\-associative operator, see 
+.ft B
+Ocaml_operators
+.ft R
+for more information\&.
+
+.sp
+
+.PP
+.SS Program termination
+
+.PP
+
+.I val exit 
+: 
+.B int -> 'a
+.sp
+Terminate the process, returning the given status code to the operating
+system: usually 0 to indicate no errors, and a small positive integer to
+indicate failure\&. All open output channels are flushed with 
+.ft B
+flush_all
+.ft R
+\&.
+The callbacks registered with 
+.ft B
+Domain\&.at_exit
+.ft R
+are called followed by
+those registered with 
+.ft B
+at_exit
+.ft R
+\&.
+.sp
+An implicit 
+.ft B
+exit 0
+.ft R
+is performed each time a program terminates normally\&.
+An implicit 
+.ft B
+exit 2
+.ft R
+is performed if the program terminates early because
+of an uncaught exception\&.
+
+.sp
+
+.I val at_exit 
+: 
+.B (unit -> unit) -> unit
+.sp
+Register the given function to be called at program termination
+time\&. The functions registered with 
+.ft B
+at_exit
+.ft R
+will be called when
+the program does any of the following:
+.sp
+\-executes 
+.ft B
+exit
+.ft R
+
+.sp
+\-terminates, either normally or because of an uncaught
+exception
+.sp
+\-executes the C function 
+.ft B
+caml_shutdown
+.ft R
+\&.
+The functions are called in \&'last in, first out\&' order: the
+function most recently added with 
+.ft B
+at_exit
+.ft R
+is called first\&.
+
+
+.sp
+
+.PP
+.SS Standard library modules 
+
+.PP
+.I module Arg : 
+.B (module Stdlib__Arg)
+
+.sp
+
+.sp
+.I module Array : 
+.B (module Stdlib__Array)
+
+.sp
+
+.sp
+.I module ArrayLabels : 
+.B (module Stdlib__ArrayLabels)
+
+.sp
+
+.sp
+.I module Atomic : 
+.B (module Stdlib__Atomic)
+
+.sp
+
+.sp
+.I module Bigarray : 
+.B (module Stdlib__Bigarray)
+
+.sp
+
+.sp
+.I module Bool : 
+.B (module Stdlib__Bool)
+
+.sp
+
+.sp
+.I module Buffer : 
+.B (module Stdlib__Buffer)
+
+.sp
+
+.sp
+.I module Bytes : 
+.B (module Stdlib__Bytes)
+
+.sp
+
+.sp
+.I module BytesLabels : 
+.B (module Stdlib__BytesLabels)
+
+.sp
+
+.sp
+.I module Callback : 
+.B (module Stdlib__Callback)
+
+.sp
+
+.sp
+.I module Char : 
+.B (module Stdlib__Char)
+
+.sp
+
+.sp
+.I module Complex : 
+.B (module Stdlib__Complex)
+
+.sp
+
+.sp
+.I module Condition : 
+.B (module Stdlib__Condition)
+
+.sp
+
+.sp
+.I module Digest : 
+.B (module Stdlib__Digest)
+
+.sp
+
+.sp
+.I module Domain : 
+.B (module Stdlib__Domain)
+
+.sp
+.B Alert unstable.
+The Domain interface may change in incompatible ways in the future.
+
+.sp
+.I module Effect : 
+.B (module Stdlib__Effect)
+
+.sp
+.B Alert unstable.
+The Effect interface may change in incompatible ways in the future.
+
+.sp
+.I module Either : 
+.B (module Stdlib__Either)
+
+.sp
+
+.sp
+.I module Ephemeron : 
+.B (module Stdlib__Ephemeron)
+
+.sp
+
+.sp
+.I module Filename : 
+.B (module Stdlib__Filename)
+
+.sp
+
+.sp
+.I module Float : 
+.B (module Stdlib__Float)
+
+.sp
+
+.sp
+.I module Format : 
+.B (module Stdlib__Format)
+
+.sp
+
+.sp
+.I module Fun : 
+.B (module Stdlib__Fun)
+
+.sp
+
+.sp
+.I module Gc : 
+.B (module Stdlib__Gc)
+
+.sp
+
+.sp
+.I module Hashtbl : 
+.B (module Stdlib__Hashtbl)
+
+.sp
+
+.sp
+.I module In_channel : 
+.B (module Stdlib__In_channel)
+
+.sp
+
+.sp
+.I module Int : 
+.B (module Stdlib__Int)
+
+.sp
+
+.sp
+.I module Int32 : 
+.B (module Stdlib__Int32)
+
+.sp
+
+.sp
+.I module Int64 : 
+.B (module Stdlib__Int64)
+
+.sp
+
+.sp
+.I module Lazy : 
+.B (module Stdlib__Lazy)
+
+.sp
+
+.sp
+.I module Lexing : 
+.B (module Stdlib__Lexing)
+
+.sp
+
+.sp
+.I module List : 
+.B (module Stdlib__List)
+
+.sp
+
+.sp
+.I module ListLabels : 
+.B (module Stdlib__ListLabels)
+
+.sp
+
+.sp
+.I module Map : 
+.B (module Stdlib__Map)
+
+.sp
+
+.sp
+.I module Marshal : 
+.B (module Stdlib__Marshal)
+
+.sp
+
+.sp
+.I module MoreLabels : 
+.B (module Stdlib__MoreLabels)
+
+.sp
+
+.sp
+.I module Mutex : 
+.B (module Stdlib__Mutex)
+
+.sp
+
+.sp
+.I module Nativeint : 
+.B (module Stdlib__Nativeint)
+
+.sp
+
+.sp
+.I module Obj : 
+.B (module Stdlib__Obj)
+
+.sp
+
+.sp
+.I module Oo : 
+.B (module Stdlib__Oo)
+
+.sp
+
+.sp
+.I module Option : 
+.B (module Stdlib__Option)
+
+.sp
+
+.sp
+.I module Out_channel : 
+.B (module Stdlib__Out_channel)
+
+.sp
+
+.sp
+.I module Parsing : 
+.B (module Stdlib__Parsing)
+
+.sp
+
+.sp
+.I module Printexc : 
+.B (module Stdlib__Printexc)
+
+.sp
+
+.sp
+.I module Printf : 
+.B (module Stdlib__Printf)
+
+.sp
+
+.sp
+.I module Queue : 
+.B (module Stdlib__Queue)
+
+.sp
+
+.sp
+.I module Random : 
+.B (module Stdlib__Random)
+
+.sp
+
+.sp
+.I module Result : 
+.B (module Stdlib__Result)
+
+.sp
+
+.sp
+.I module Scanf : 
+.B (module Stdlib__Scanf)
+
+.sp
+
+.sp
+.I module Semaphore : 
+.B (module Stdlib__Semaphore)
+
+.sp
+
+.sp
+.I module Seq : 
+.B (module Stdlib__Seq)
+
+.sp
+
+.sp
+.I module Set : 
+.B (module Stdlib__Set)
+
+.sp
+
+.sp
+.I module Stack : 
+.B (module Stdlib__Stack)
+
+.sp
+
+.sp
+.I module StdLabels : 
+.B (module Stdlib__StdLabels)
+
+.sp
+
+.sp
+.I module String : 
+.B (module Stdlib__String)
+
+.sp
+
+.sp
+.I module StringLabels : 
+.B (module Stdlib__StringLabels)
+
+.sp
+
+.sp
+.I module Sys : 
+.B (module Stdlib__Sys)
+
+.sp
+
+.sp
+.I module Type : 
+.B (module Stdlib__Type)
+
+.sp
+
+.sp
+.I module Uchar : 
+.B (module Stdlib__Uchar)
+
+.sp
+
+.sp
+.I module Unit : 
+.B (module Stdlib__Unit)
+
+.sp
+
+.sp
+.I module Weak : 
+.B (module Stdlib__Weak)
+
+.sp
+
+.sp

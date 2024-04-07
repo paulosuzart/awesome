@@ -1,0 +1,27 @@
+version = "v0.16.0"
+description = ""
+requires = "parsexp sexplib0"
+archive(byte) = "sexplib.cma"
+archive(native) = "sexplib.cmxa"
+plugin(byte) = "sexplib.cma"
+plugin(native) = "sexplib.cmxs"
+package "num" (
+  directory = "num"
+  version = "v0.16.0"
+  description = ""
+  requires = "num sexplib"
+  archive(byte) = "sexplib_num.cma"
+  archive(native) = "sexplib_num.cmxa"
+  plugin(byte) = "sexplib_num.cma"
+  plugin(native) = "sexplib_num.cmxs"
+)
+package "unix" (
+  directory = "unix"
+  version = "v0.16.0"
+  description = ""
+  requires = "sexplib unix"
+  archive(byte) = "sexplib_unix.cma"
+  archive(native) = "sexplib_unix.cmxa"
+  plugin(byte) = "sexplib_unix.cma"
+  plugin(native) = "sexplib_unix.cmxs"
+)

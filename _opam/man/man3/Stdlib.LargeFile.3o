@@ -1,0 +1,78 @@
+.TH "Stdlib.LargeFile" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.LargeFile \- Operations on large files.
+.SH Module
+Module   Stdlib.LargeFile
+.SH Documentation
+.sp
+Module
+.BI "LargeFile"
+ : 
+.B sig end
+
+.sp
+Operations on large files\&.
+This sub\-module provides 64\-bit variants of the channel functions
+that manipulate file positions and file sizes\&.  By representing
+positions and sizes by 64\-bit integers (type 
+.ft B
+int64
+.ft R
+) instead of
+regular integers (type 
+.ft B
+int
+.ft R
+), these alternate functions allow
+operating on files whose sizes are greater than 
+.ft B
+max_int
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.I val seek_out 
+: 
+.B out_channel -> int64 -> unit
+.sp
+
+.sp
+
+.I val pos_out 
+: 
+.B out_channel -> int64
+.sp
+
+.sp
+
+.I val out_channel_length 
+: 
+.B out_channel -> int64
+.sp
+
+.sp
+
+.I val seek_in 
+: 
+.B in_channel -> int64 -> unit
+.sp
+
+.sp
+
+.I val pos_in 
+: 
+.B in_channel -> int64
+.sp
+
+.sp
+
+.I val in_channel_length 
+: 
+.B in_channel -> int64
+.sp
+
+.sp

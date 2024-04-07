@@ -1,0 +1,67 @@
+version = "1.11.0"
+description = "Pure OCaml regular expression library"
+requires = "seq"
+archive(byte) = "re.cma"
+archive(native) = "re.cmxa"
+plugin(byte) = "re.cma"
+plugin(native) = "re.cmxs"
+package "emacs" (
+  directory = "emacs"
+  version = "1.11.0"
+  description = "Deprecated. Use Re.Emacs"
+  requires = "re"
+  archive(byte) = "re_emacs.cma"
+  archive(native) = "re_emacs.cmxa"
+  plugin(byte) = "re_emacs.cma"
+  plugin(native) = "re_emacs.cmxs"
+)
+package "glob" (
+  directory = "glob"
+  version = "1.11.0"
+  description = "Deprecated. Use Re.Glob"
+  requires = "re"
+  archive(byte) = "re_glob.cma"
+  archive(native) = "re_glob.cmxa"
+  plugin(byte) = "re_glob.cma"
+  plugin(native) = "re_glob.cmxs"
+)
+package "pcre" (
+  directory = "pcre"
+  version = "1.11.0"
+  description = "Deprecated. Use Re.Pcre"
+  requires = "re"
+  archive(byte) = "re_pcre.cma"
+  archive(native) = "re_pcre.cmxa"
+  plugin(byte) = "re_pcre.cma"
+  plugin(native) = "re_pcre.cmxs"
+)
+package "perl" (
+  directory = "perl"
+  version = "1.11.0"
+  description = "Deprecated. Use Re.Perl"
+  requires = "re"
+  archive(byte) = "re_perl.cma"
+  archive(native) = "re_perl.cmxa"
+  plugin(byte) = "re_perl.cma"
+  plugin(native) = "re_perl.cmxs"
+)
+package "posix" (
+  directory = "posix"
+  version = "1.11.0"
+  description = "Deprecated. Use Re.Posix"
+  requires = "re"
+  archive(byte) = "re_posix.cma"
+  archive(native) = "re_posix.cmxa"
+  plugin(byte) = "re_posix.cma"
+  plugin(native) = "re_posix.cmxs"
+)
+package "str" (
+  directory = "str"
+  version = "1.11.0"
+  description = "Deprecated. Use Re.Str"
+  requires = "re"
+  archive(byte) = "re_str.cma"
+  archive(native) = "re_str.cmxa"
+  plugin(byte) = "re_str.cma"
+  plugin(native) = "re_str.cmxs"
+)

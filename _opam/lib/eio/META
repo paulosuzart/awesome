@@ -1,0 +1,58 @@
+version = "v1.0"
+description = ""
+requires = "bigstringaf cstruct eio.core fmt lwt-dllist mtime optint"
+archive(byte) = "eio.cma"
+archive(native) = "eio.cmxa"
+plugin(byte) = "eio.cma"
+plugin(native) = "eio.cmxs"
+package "core" (
+  directory = "core"
+  version = "v1.0"
+  description = ""
+  requires =
+  "cstruct domain-local-await eio.runtime_events fmt hmap lwt-dllist optint"
+  archive(byte) = "eio__core.cma"
+  archive(native) = "eio__core.cmxa"
+  plugin(byte) = "eio__core.cma"
+  plugin(native) = "eio__core.cmxs"
+)
+package "mock" (
+  directory = "mock"
+  version = "v1.0"
+  description = ""
+  requires = "eio eio.utils"
+  archive(byte) = "eio_mock.cma"
+  archive(native) = "eio_mock.cmxa"
+  plugin(byte) = "eio_mock.cma"
+  plugin(native) = "eio_mock.cmxs"
+)
+package "runtime_events" (
+  directory = "runtime_events"
+  version = "v1.0"
+  description = ""
+  requires = "runtime_events"
+  archive(byte) = "eio_runtime_events.cma"
+  archive(native) = "eio_runtime_events.cmxa"
+  plugin(byte) = "eio_runtime_events.cma"
+  plugin(native) = "eio_runtime_events.cmxs"
+)
+package "unix" (
+  directory = "unix"
+  version = "v1.0"
+  description = ""
+  requires = "eio eio.utils mtime.clock.os threads unix"
+  archive(byte) = "eio_unix.cma"
+  archive(native) = "eio_unix.cmxa"
+  plugin(byte) = "eio_unix.cma"
+  plugin(native) = "eio_unix.cmxs"
+)
+package "utils" (
+  directory = "utils"
+  version = "v1.0"
+  description = ""
+  requires = "eio fmt optint psq"
+  archive(byte) = "eio_utils.cma"
+  archive(native) = "eio_utils.cmxa"
+  plugin(byte) = "eio_utils.cma"
+  plugin(native) = "eio_utils.cmxs"
+)

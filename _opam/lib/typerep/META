@@ -1,0 +1,7 @@
+version = "v0.16.0"
+description = ""
+requires = "base"
+archive(byte) = "typerep_lib.cma"
+archive(native) = "typerep_lib.cmxa"
+plugin(byte) = "typerep_lib.cma"
+plugin(native) = "typerep_lib.cmxs"

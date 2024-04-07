@@ -1,0 +1,23 @@
+.TH "Sys.Immediate64.Immediate" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Sys.Immediate64.Immediate \- no description
+.SH Module type
+Module type   Sys.Immediate64.Immediate
+.SH Documentation
+.sp
+Module type
+.BI "Immediate"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp

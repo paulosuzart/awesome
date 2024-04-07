@@ -1,0 +1,536 @@
+.TH "Option" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Option \- Option values.
+.SH Module
+Module   Option
+.SH Documentation
+.sp
+Module
+.BI "Option"
+ : 
+.B sig end
+
+.sp
+Option values\&.
+.sp
+Option values explicitly indicate the presence or absence of a value\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Options
+
+.PP
+.I type 
+.B 'a
+.I t 
+= 
+.B 'a option
+=
+ | None
+ | Some
+.B of 
+.B 'a
+ 
+.sp
+The type for option values\&. Either 
+.ft B
+None
+.ft R
+or a value 
+.ft B
+Some v
+.ft R
+\&.
+
+.sp
+
+.I val none 
+: 
+.B 'a option
+.sp
+
+.ft B
+none
+.ft R
+is 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val some 
+: 
+.B 'a -> 'a option
+.sp
+
+.ft B
+some v
+.ft R
+is 
+.ft B
+Some v
+.ft R
+\&.
+
+.sp
+
+.I val value 
+: 
+.B 'a option -> default:'a -> 'a
+.sp
+
+.ft B
+value o ~default
+.ft R
+is 
+.ft B
+v
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some v
+.ft R
+and 
+.ft B
+default
+.ft R
+otherwise\&.
+
+.sp
+
+.I val get 
+: 
+.B 'a option -> 'a
+.sp
+
+.ft B
+get o
+.ft R
+is 
+.ft B
+v
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some v
+.ft R
+and raise otherwise\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val bind 
+: 
+.B 'a option -> ('a -> 'b option) -> 'b option
+.sp
+
+.ft B
+bind o f
+.ft R
+is 
+.ft B
+f v
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some v
+.ft R
+and 
+.ft B
+None
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val join 
+: 
+.B 'a option option -> 'a option
+.sp
+
+.ft B
+join oo
+.ft R
+is 
+.ft B
+Some v
+.ft R
+if 
+.ft B
+oo
+.ft R
+is 
+.ft B
+Some (Some v)
+.ft R
+and 
+.ft B
+None
+.ft R
+otherwise\&.
+
+.sp
+
+.I val map 
+: 
+.B ('a -> 'b) -> 'a option -> 'b option
+.sp
+
+.ft B
+map f o
+.ft R
+is 
+.ft B
+None
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+None
+.ft R
+and 
+.ft B
+Some (f v)
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some v
+.ft R
+\&.
+
+.sp
+
+.I val fold 
+: 
+.B none:'a -> some:('b -> 'a) -> 'b option -> 'a
+.sp
+
+.ft B
+fold ~none ~some o
+.ft R
+is 
+.ft B
+none
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+None
+.ft R
+and 
+.ft B
+some v
+.ft R
+if 
+.ft B
+o
+.ft R
+is
+.ft B
+Some v
+.ft R
+\&.
+
+.sp
+
+.I val iter 
+: 
+.B ('a -> unit) -> 'a option -> unit
+.sp
+
+.ft B
+iter f o
+.ft R
+is 
+.ft B
+f v
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some v
+.ft R
+and 
+.ft B
+()
+.ft R
+otherwise\&.
+
+.sp
+
+.PP
+.SS Predicates and comparisons
+
+.PP
+
+.I val is_none 
+: 
+.B 'a option -> bool
+.sp
+
+.ft B
+is_none o
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+o
+.ft R
+is 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val is_some 
+: 
+.B 'a option -> bool
+.sp
+
+.ft B
+is_some o
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some o
+.ft R
+\&.
+
+.sp
+
+.I val equal 
+: 
+.B ('a -> 'a -> bool) -> 'a option -> 'a option -> bool
+.sp
+
+.ft B
+equal eq o0 o1
+.ft R
+is 
+.ft B
+true
+.ft R
+if and only if 
+.ft B
+o0
+.ft R
+and 
+.ft B
+o1
+.ft R
+are both 
+.ft B
+None
+.ft R
+or if they are 
+.ft B
+Some v0
+.ft R
+and 
+.ft B
+Some v1
+.ft R
+and 
+.ft B
+eq v0 v1
+.ft R
+is 
+.ft B
+true
+.ft R
+\&.
+
+.sp
+
+.I val compare 
+: 
+.B ('a -> 'a -> int) -> 'a option -> 'a option -> int
+.sp
+
+.ft B
+compare cmp o0 o1
+.ft R
+is a total order on options using 
+.ft B
+cmp
+.ft R
+to compare
+values wrapped by 
+.ft B
+Some _
+.ft R
+\&. 
+.ft B
+None
+.ft R
+is smaller than 
+.ft B
+Some _
+.ft R
+values\&.
+
+.sp
+
+.PP
+.SS Converting
+
+.PP
+
+.I val to_result 
+: 
+.B none:'e -> 'a option -> ('a, 'e) result
+.sp
+
+.ft B
+to_result ~none o
+.ft R
+is 
+.ft B
+Ok v
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some v
+.ft R
+and 
+.ft B
+Error none
+.ft R
+otherwise\&.
+
+.sp
+
+.I val to_list 
+: 
+.B 'a option -> 'a list
+.sp
+
+.ft B
+to_list o
+.ft R
+is 
+.ft B
+[]
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+None
+.ft R
+and 
+.ft B
+[v]
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some v
+.ft R
+\&.
+
+.sp
+
+.I val to_seq 
+: 
+.B 'a option -> 'a Seq.t
+.sp
+
+.ft B
+to_seq o
+.ft R
+is 
+.ft B
+o
+.ft R
+as a sequence\&. 
+.ft B
+None
+.ft R
+is the empty sequence and
+.ft B
+Some v
+.ft R
+is the singleton sequence containing 
+.ft B
+v
+.ft R
+\&.
+
+.sp

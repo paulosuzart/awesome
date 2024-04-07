@@ -1,0 +1,101 @@
+(lang dune 3.15)
+(name ppx_here)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_here))
+(files
+ (lib
+  (META
+   dune-package
+   expander/ppx_here_expander.a
+   expander/ppx_here_expander.cma
+   expander/ppx_here_expander.cmi
+   expander/ppx_here_expander.cmt
+   expander/ppx_here_expander.cmti
+   expander/ppx_here_expander.cmx
+   expander/ppx_here_expander.cmxa
+   expander/ppx_here_expander.ml
+   expander/ppx_here_expander.mli
+   opam
+   ppx_here.a
+   ppx_here.cma
+   ppx_here.cmi
+   ppx_here.cmt
+   ppx_here.cmti
+   ppx_here.cmx
+   ppx_here.cmxa
+   ppx_here.ml
+   ppx_here.mli
+   runtime-lib/ppx_here_lib.a
+   runtime-lib/ppx_here_lib.cma
+   runtime-lib/ppx_here_lib.cmi
+   runtime-lib/ppx_here_lib.cmt
+   runtime-lib/ppx_here_lib.cmti
+   runtime-lib/ppx_here_lib.cmx
+   runtime-lib/ppx_here_lib.cmxa
+   runtime-lib/ppx_here_lib.ml
+   runtime-lib/ppx_here_lib.mli))
+ (libexec
+  (expander/ppx_here_expander.cmxs
+   ppx.exe
+   ppx_here.cmxs
+   runtime-lib/ppx_here_lib.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_here)
+ (kind ppx_rewriter)
+ (archives (byte ppx_here.cma) (native ppx_here.cmxa))
+ (plugins (byte ppx_here.cma) (native ppx_here.cmxs))
+ (native_archives ppx_here.a)
+ (requires ppxlib.ast ppxlib ppx_here.expander)
+ (main_module_name Ppx_here)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_here)
+   (visibility public)
+   (source
+    (path Ppx_here)
+    (intf (path ppx_here.mli))
+    (impl (path ppx_here.ml))))))
+(library
+ (name ppx_here.expander)
+ (kind normal)
+ (archives
+  (byte expander/ppx_here_expander.cma)
+  (native expander/ppx_here_expander.cmxa))
+ (plugins
+  (byte expander/ppx_here_expander.cma)
+  (native expander/ppx_here_expander.cmxs))
+ (native_archives expander/ppx_here_expander.a)
+ (requires base ppxlib.ast ppxlib)
+ (ppx_runtime_deps ppx_here.runtime-lib)
+ (main_module_name Ppx_here_expander)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_here_expander)
+   (visibility public)
+   (source
+    (path Ppx_here_expander)
+    (intf (path expander/ppx_here_expander.mli))
+    (impl (path expander/ppx_here_expander.ml))))))
+(library
+ (name ppx_here.runtime-lib)
+ (kind normal)
+ (archives
+  (byte runtime-lib/ppx_here_lib.cma)
+  (native runtime-lib/ppx_here_lib.cmxa))
+ (plugins
+  (byte runtime-lib/ppx_here_lib.cma)
+  (native runtime-lib/ppx_here_lib.cmxs))
+ (native_archives runtime-lib/ppx_here_lib.a)
+ (main_module_name Ppx_here_lib)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_here_lib)
+   (visibility public)
+   (source
+    (path Ppx_here_lib)
+    (intf (path runtime-lib/ppx_here_lib.mli))
+    (impl (path runtime-lib/ppx_here_lib.ml))))))

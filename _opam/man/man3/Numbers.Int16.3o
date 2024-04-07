@@ -1,0 +1,44 @@
+.TH "Numbers.Int16" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Numbers.Int16 \- no description
+.SH Module
+Module   Numbers.Int16
+.SH Documentation
+.sp
+Module
+.BI "Int16"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+
+.I val of_int_exn 
+: 
+.B int -> t
+.sp
+
+.sp
+
+.I val of_int64_exn 
+: 
+.B Int64.t -> t
+.sp
+
+.sp
+
+.I val to_int 
+: 
+.B t -> int
+.sp
+
+.sp

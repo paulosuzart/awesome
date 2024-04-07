@@ -1,0 +1,7 @@
+version = "v6.0.0_beta2"
+description = ""
+requires = "cohttp eio fmt http logs ptime uri uri.services"
+archive(byte) = "cohttp_eio.cma"
+archive(native) = "cohttp_eio.cmxa"
+plugin(byte) = "cohttp_eio.cma"
+plugin(native) = "cohttp_eio.cmxs"

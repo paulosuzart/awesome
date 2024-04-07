@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Using the Makefile wizard</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="How to create your own packages"
+HREF="c395.html"><LINK
+REL="PREVIOUS"
+TITLE="Change your Makefile"
+HREF="x403.html"><LINK
+REL="NEXT"
+TITLE="FAQs"
+HREF="c429.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x403.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 6. How to create your own packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c429.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN421"
+>Using the Makefile wizard</A
+></H1
+><P
+>Especially for beginners, the findlib distribution includes a GUI to
+create Makefiles.  As this is an optional feature, it must have been
+selected when findlib was built (option -with-toolbox). To invoke the
+GUI, run the command
+
+<PRE
+CLASS="PROGRAMLISTING"
+>$ ocamlfind findlib/make_wizard</PRE
+>
+
+(Btw, this is the general syntax to run executables installed in
+package directories.) The wizard starts, and allows you to describe
+your project. When you save the result, not only a "Makefile" is
+created, but also the file ".make-wizard" containing the state.
+If you later start the wizard again, this file will be automatically
+loaded, and you can modify your definition.</P
+><P
+>The wizard consists of seven (hopefully self-explanatory) pages
+you can fill out. The basic idea is that the .ml, .mli, .mly, and .mll
+files in the current directory are compiled to a .cma or .cmxa
+archive, and that optionally executables are created from this archive
+and from additional modules (main programs). This scheme can be both
+used for libraries and application programs.</P
+><P
+>You can choose packages you want to use in your library or
+program by clicking at them in a selection box.  The camlp4 syntax
+parsers can be optionally enabled. The modules to be compiled can 
+be picked from the current directory, they must be selected in the
+right order, however.</P
+><P
+>The generated "Makefile" defines a number of logical targets
+(like "all", "opt", etc) that are explained at the beginning of the
+file. The file is fully commented, and not very difficult to understand.
+Only traditional Makefile syntax is used, so it is expected that it
+works for every version of the "make" utility.</P
+><P
+>When you build the project, the META file is created
+dynamically.  If you do not like this, set the variable MAKE_META to
+the empty string.  (It is a good idea to put such setting into a
+second file, and enter the name of this file into the box "Local
+extensions in" of the wizard, so you can generate the "Makefile" again
+without overwriting your own modifications.  This second file can
+override the setting in the generated "Makefile".)</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x403.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c429.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Change your Makefile</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c395.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FAQs</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

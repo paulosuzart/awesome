@@ -1,0 +1,86 @@
+(lang dune 3.15)
+(name ipaddr)
+(version 5.5.0)
+(sections (lib .) (libexec .) (doc ../../doc/ipaddr))
+(files
+ (lib
+  (META
+   dune-package
+   ipaddr.a
+   ipaddr.cma
+   ipaddr.cmi
+   ipaddr.cmt
+   ipaddr.cmti
+   ipaddr.cmx
+   ipaddr.cmxa
+   ipaddr.ml
+   ipaddr.mli
+   opam
+   top/ipaddr_top.a
+   top/ipaddr_top.cma
+   top/ipaddr_top.cmi
+   top/ipaddr_top.cmt
+   top/ipaddr_top.cmti
+   top/ipaddr_top.cmx
+   top/ipaddr_top.cmxa
+   top/ipaddr_top.ml
+   top/ipaddr_top.mli
+   unix/ipaddr_unix.a
+   unix/ipaddr_unix.cma
+   unix/ipaddr_unix.cmi
+   unix/ipaddr_unix.cmt
+   unix/ipaddr_unix.cmti
+   unix/ipaddr_unix.cmx
+   unix/ipaddr_unix.cmxa
+   unix/ipaddr_unix.ml
+   unix/ipaddr_unix.mli))
+ (libexec (ipaddr.cmxs top/ipaddr_top.cmxs unix/ipaddr_unix.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ipaddr)
+ (kind normal)
+ (archives (byte ipaddr.cma) (native ipaddr.cmxa))
+ (plugins (byte ipaddr.cma) (native ipaddr.cmxs))
+ (native_archives ipaddr.a)
+ (requires macaddr domain-name)
+ (main_module_name Ipaddr)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ipaddr)
+   (visibility public)
+   (source (path Ipaddr) (intf (path ipaddr.mli)) (impl (path ipaddr.ml))))))
+(library
+ (name ipaddr.top)
+ (kind normal)
+ (archives (byte top/ipaddr_top.cma) (native top/ipaddr_top.cmxa))
+ (plugins (byte top/ipaddr_top.cma) (native top/ipaddr_top.cmxs))
+ (native_archives top/ipaddr_top.a)
+ (requires macaddr.top ipaddr compiler-libs)
+ (main_module_name Ipaddr_top)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ipaddr_top)
+   (visibility public)
+   (source
+    (path Ipaddr_top)
+    (intf (path top/ipaddr_top.mli))
+    (impl (path top/ipaddr_top.ml))))))
+(library
+ (name ipaddr.unix)
+ (kind normal)
+ (archives (byte unix/ipaddr_unix.cma) (native unix/ipaddr_unix.cmxa))
+ (plugins (byte unix/ipaddr_unix.cma) (native unix/ipaddr_unix.cmxs))
+ (native_archives unix/ipaddr_unix.a)
+ (requires unix ipaddr)
+ (main_module_name Ipaddr_unix)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ipaddr_unix)
+   (visibility public)
+   (source
+    (path Ipaddr_unix)
+    (intf (path unix/ipaddr_unix.mli))
+    (impl (path unix/ipaddr_unix.ml))))))

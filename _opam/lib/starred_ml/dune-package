@@ -1,0 +1,8 @@
+(lang dune 3.15)
+(name starred_ml)
+(version 0.0.2)
+(sections (lib .) (bin ../../bin) (doc ../../doc/starred_ml))
+(files
+ (lib (META dune-package opam))
+ (bin (starred_ml))
+ (doc (CHANGES.md LICENSE README.md)))

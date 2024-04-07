@@ -1,0 +1,51 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_module_timer" {"D"}
+  "doc/ppx_module_timer/LICENSE.md" {"F:93afbebc0e066419e584932bf74cc496"}
+  "doc/ppx_module_timer/README.md" {"F:558cacb119d237249bc40b55bf66817c"}
+  "lib/ppx_module_timer" {"D"}
+  "lib/ppx_module_timer/META" {"F:6aaa552cf097810a3cdf01c1ced4b171"}
+  "lib/ppx_module_timer/dune-package" {"F:efa4ebe3a24470e7314ca77ef394ca7d"}
+  "lib/ppx_module_timer/opam" {"F:f65b1a7cad9b06d5a787cd39d096a951"}
+  "lib/ppx_module_timer/ppx.exe" {"F:7ce248a655a5ab8d9c29ffa34a145971"}
+  "lib/ppx_module_timer/ppx_module_timer.a"
+    {"F:27d92588971d8ff6891a584fa955895d"}
+  "lib/ppx_module_timer/ppx_module_timer.cma"
+    {"F:99c8caa85363df8232da41b58dc66ded"}
+  "lib/ppx_module_timer/ppx_module_timer.cmi"
+    {"F:1c1a751e7cb8614f15e289b3837fa686"}
+  "lib/ppx_module_timer/ppx_module_timer.cmt"
+    {"F:688a464cf68f45cb42708b6d609d9b5a"}
+  "lib/ppx_module_timer/ppx_module_timer.cmti"
+    {"F:a14e15fb5e664e5d4c5eaaa6b3c44983"}
+  "lib/ppx_module_timer/ppx_module_timer.cmx"
+    {"F:8938e7332c7ffd671412f4f575149874"}
+  "lib/ppx_module_timer/ppx_module_timer.cmxa"
+    {"F:f7b81cef0c5129aee7796ae443c5d59e"}
+  "lib/ppx_module_timer/ppx_module_timer.cmxs"
+    {"F:c8ca98b4b7440ea8ddeab036151a8f78"}
+  "lib/ppx_module_timer/ppx_module_timer.ml"
+    {"F:892a40e7b410bf8e38851d49205ef2af"}
+  "lib/ppx_module_timer/ppx_module_timer.mli"
+    {"F:cd98a87cc3b1f43039d7b13907f25570"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.a"
+    {"F:5708faef34886d3055f87b871e63a114"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cma"
+    {"F:4333d236f7205484e4d6d74c5dfdd626"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmi"
+    {"F:051fdf988ccd33e873350d1704efb7eb"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmt"
+    {"F:8b06dd7378da34fc281490093c3c5e7e"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmti"
+    {"F:142ff626ff36a95a8f0592aeeae714f0"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmx"
+    {"F:bbc1d388442fcd470ad8ca4baddd933a"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmxa"
+    {"F:dbc978cfd861551b10bf9b7e4bc8a1ac"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cmxs"
+    {"F:af9a1083c52e83a293606fbf4db9b55f"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.ml"
+    {"F:486a38074dc8a73e1e621911d1b54bdf"}
+  "lib/ppx_module_timer/runtime/ppx_module_timer_runtime.mli"
+    {"F:73aaea6b2ad647ab090f057fbba2979d"}
+]

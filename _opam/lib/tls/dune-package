@@ -1,0 +1,216 @@
+(lang dune 3.15)
+(name tls)
+(version 0.17.4)
+(sections (lib .) (libexec .) (doc ../../doc/tls))
+(files
+ (lib
+  (META
+   ciphersuite.ml
+   config.ml
+   config.mli
+   core.ml
+   crypto.ml
+   dune-package
+   engine.ml
+   engine.mli
+   explorator.ml
+   handshake_client.ml
+   handshake_client.mli
+   handshake_client13.ml
+   handshake_common.ml
+   handshake_crypto.ml
+   handshake_crypto.mli
+   handshake_crypto13.ml
+   handshake_server.ml
+   handshake_server.mli
+   handshake_server13.ml
+   opam
+   packet.ml
+   reader.ml
+   reader.mli
+   state.ml
+   tls.a
+   tls.cma
+   tls.cmi
+   tls.cmt
+   tls.cmx
+   tls.cmxa
+   tls.ml
+   tls__Ciphersuite.cmi
+   tls__Ciphersuite.cmt
+   tls__Ciphersuite.cmx
+   tls__Config.cmi
+   tls__Config.cmt
+   tls__Config.cmti
+   tls__Config.cmx
+   tls__Core.cmi
+   tls__Core.cmt
+   tls__Core.cmx
+   tls__Crypto.cmi
+   tls__Crypto.cmt
+   tls__Crypto.cmx
+   tls__Engine.cmi
+   tls__Engine.cmt
+   tls__Engine.cmti
+   tls__Engine.cmx
+   tls__Explorator.cmi
+   tls__Explorator.cmt
+   tls__Explorator.cmx
+   tls__Handshake_client.cmi
+   tls__Handshake_client.cmt
+   tls__Handshake_client.cmti
+   tls__Handshake_client.cmx
+   tls__Handshake_client13.cmi
+   tls__Handshake_client13.cmt
+   tls__Handshake_client13.cmx
+   tls__Handshake_common.cmi
+   tls__Handshake_common.cmt
+   tls__Handshake_common.cmx
+   tls__Handshake_crypto.cmi
+   tls__Handshake_crypto.cmt
+   tls__Handshake_crypto.cmti
+   tls__Handshake_crypto.cmx
+   tls__Handshake_crypto13.cmi
+   tls__Handshake_crypto13.cmt
+   tls__Handshake_crypto13.cmx
+   tls__Handshake_server.cmi
+   tls__Handshake_server.cmt
+   tls__Handshake_server.cmti
+   tls__Handshake_server.cmx
+   tls__Handshake_server13.cmi
+   tls__Handshake_server13.cmt
+   tls__Handshake_server13.cmx
+   tls__Packet.cmi
+   tls__Packet.cmt
+   tls__Packet.cmx
+   tls__Reader.cmi
+   tls__Reader.cmt
+   tls__Reader.cmti
+   tls__Reader.cmx
+   tls__State.cmi
+   tls__State.cmt
+   tls__State.cmx
+   tls__Utils.cmi
+   tls__Utils.cmt
+   tls__Utils.cmx
+   tls__Writer.cmi
+   tls__Writer.cmt
+   tls__Writer.cmti
+   tls__Writer.cmx
+   utils.ml
+   writer.ml
+   writer.mli))
+ (libexec (tls.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name tls)
+ (kind normal)
+ (archives (byte tls.cma) (native tls.cmxa))
+ (plugins (byte tls.cma) (native tls.cmxs))
+ (native_archives tls.a)
+ (requires
+  cstruct
+  logs
+  hkdf
+  mirage-crypto
+  mirage-crypto-rng
+  mirage-crypto-pk
+  x509
+  domain-name
+  fmt
+  mirage-crypto-ec
+  ipaddr)
+ (main_module_name Tls)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name tls)
+     (visibility public)
+     (kind alias)
+     (source (path Tls) (impl (path tls.ml-gen))))
+    (name Tls)
+    (modules
+     (module
+      (obj_name tls__Ciphersuite)
+      (visibility public)
+      (source (path Ciphersuite) (impl (path ciphersuite.ml))))
+     (module
+      (obj_name tls__Config)
+      (visibility public)
+      (source (path Config) (intf (path config.mli)) (impl (path config.ml))))
+     (module
+      (obj_name tls__Core)
+      (visibility public)
+      (source (path Core) (impl (path core.ml))))
+     (module
+      (obj_name tls__Crypto)
+      (visibility public)
+      (source (path Crypto) (impl (path crypto.ml))))
+     (module
+      (obj_name tls__Engine)
+      (visibility public)
+      (source (path Engine) (intf (path engine.mli)) (impl (path engine.ml))))
+     (module
+      (obj_name tls__Explorator)
+      (visibility public)
+      (source (path Explorator) (impl (path explorator.ml))))
+     (module
+      (obj_name tls__Handshake_client)
+      (visibility public)
+      (source
+       (path Handshake_client)
+       (intf (path handshake_client.mli))
+       (impl (path handshake_client.ml))))
+     (module
+      (obj_name tls__Handshake_client13)
+      (visibility public)
+      (source (path Handshake_client13) (impl (path handshake_client13.ml))))
+     (module
+      (obj_name tls__Handshake_common)
+      (visibility public)
+      (source (path Handshake_common) (impl (path handshake_common.ml))))
+     (module
+      (obj_name tls__Handshake_crypto)
+      (visibility public)
+      (source
+       (path Handshake_crypto)
+       (intf (path handshake_crypto.mli))
+       (impl (path handshake_crypto.ml))))
+     (module
+      (obj_name tls__Handshake_crypto13)
+      (visibility public)
+      (source (path Handshake_crypto13) (impl (path handshake_crypto13.ml))))
+     (module
+      (obj_name tls__Handshake_server)
+      (visibility public)
+      (source
+       (path Handshake_server)
+       (intf (path handshake_server.mli))
+       (impl (path handshake_server.ml))))
+     (module
+      (obj_name tls__Handshake_server13)
+      (visibility public)
+      (source (path Handshake_server13) (impl (path handshake_server13.ml))))
+     (module
+      (obj_name tls__Packet)
+      (visibility public)
+      (source (path Packet) (impl (path packet.ml))))
+     (module
+      (obj_name tls__Reader)
+      (visibility public)
+      (source (path Reader) (intf (path reader.mli)) (impl (path reader.ml))))
+     (module
+      (obj_name tls__State)
+      (visibility public)
+      (source (path State) (impl (path state.ml))))
+     (module
+      (obj_name tls__Utils)
+      (visibility public)
+      (source (path Utils) (impl (path utils.ml))))
+     (module
+      (obj_name tls__Writer)
+      (visibility public)
+      (source (path Writer) (intf (path writer.mli)) (impl (path writer.ml))))))
+   (wrapped true))))

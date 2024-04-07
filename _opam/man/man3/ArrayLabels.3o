@@ -1,0 +1,1585 @@
+.TH "ArrayLabels" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+ArrayLabels \- Array operations.
+.SH Module
+Module   ArrayLabels
+.SH Documentation
+.sp
+Module
+.BI "ArrayLabels"
+ : 
+.B sig end
+
+.sp
+Array operations\&.
+.sp
+The labeled version of this module can be used as described in the
+.ft B
+StdLabels
+.ft R
+module\&.
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+= 
+.B 'a array
+
+.sp
+An alias for the type of arrays\&.
+
+.sp
+
+.I val length 
+: 
+.B 'a array -> int
+.sp
+Return the length (number of elements) of the given array\&.
+
+.sp
+
+.I val get 
+: 
+.B 'a array -> int -> 'a
+.sp
+
+.ft B
+get a n
+.ft R
+returns the element number 
+.ft B
+n
+.ft R
+of array 
+.ft B
+a
+.ft R
+\&.
+The first element has number 0\&.
+The last element has number 
+.ft B
+length a \- 1
+.ft R
+\&.
+You can also write 
+.ft B
+a\&.(n)
+.ft R
+instead of 
+.ft B
+get a n
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is outside the range 0 to 
+.ft B
+(length a \- 1)
+.ft R
+\&.
+
+.sp
+
+.I val set 
+: 
+.B 'a array -> int -> 'a -> unit
+.sp
+
+.ft B
+set a n x
+.ft R
+modifies array 
+.ft B
+a
+.ft R
+in place, replacing
+element number 
+.ft B
+n
+.ft R
+with 
+.ft B
+x
+.ft R
+\&.
+You can also write 
+.ft B
+a\&.(n) <\- x
+.ft R
+instead of 
+.ft B
+set a n x
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is outside the range 0 to 
+.ft B
+length a \- 1
+.ft R
+\&.
+
+.sp
+
+.I val make 
+: 
+.B int -> 'a -> 'a array
+.sp
+
+.ft B
+make n x
+.ft R
+returns a fresh array of length 
+.ft B
+n
+.ft R
+,
+initialized with 
+.ft B
+x
+.ft R
+\&.
+All the elements of this new array are initially
+physically equal to 
+.ft B
+x
+.ft R
+(in the sense of the 
+.ft B
+==
+.ft R
+predicate)\&.
+Consequently, if 
+.ft B
+x
+.ft R
+is mutable, it is shared among all elements
+of the array, and modifying 
+.ft B
+x
+.ft R
+through one of the array entries
+will modify all other entries at the same time\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n < 0
+.ft R
+or 
+.ft B
+n > Sys\&.max_array_length
+.ft R
+\&.
+If the value of 
+.ft B
+x
+.ft R
+is a floating\-point number, then the maximum
+size is only 
+.ft B
+Sys\&.max_array_length / 2
+.ft R
+\&.
+
+.sp
+
+.I val create_float 
+: 
+.B int -> float array
+.sp
+
+.ft B
+create_float n
+.ft R
+returns a fresh float array of length 
+.ft B
+n
+.ft R
+,
+with uninitialized data\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val init 
+: 
+.B int -> f:(int -> 'a) -> 'a array
+.sp
+
+.ft B
+init n ~f
+.ft R
+returns a fresh array of length 
+.ft B
+n
+.ft R
+,
+with element number 
+.ft B
+i
+.ft R
+initialized to the result of 
+.ft B
+f i
+.ft R
+\&.
+In other terms, 
+.ft B
+init n ~f
+.ft R
+tabulates the results of 
+.ft B
+f
+.ft R
+applied in order to the integers 
+.ft B
+0
+.ft R
+to 
+.ft B
+n\-1
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n < 0
+.ft R
+or 
+.ft B
+n > Sys\&.max_array_length
+.ft R
+\&.
+If the return type of 
+.ft B
+f
+.ft R
+is 
+.ft B
+float
+.ft R
+, then the maximum
+size is only 
+.ft B
+Sys\&.max_array_length / 2
+.ft R
+\&.
+
+.sp
+
+.I val make_matrix 
+: 
+.B dimx:int -> dimy:int -> 'a -> 'a array array
+.sp
+
+.ft B
+make_matrix ~dimx ~dimy e
+.ft R
+returns a two\-dimensional array
+(an array of arrays) with first dimension 
+.ft B
+dimx
+.ft R
+and
+second dimension 
+.ft B
+dimy
+.ft R
+\&. All the elements of this new matrix
+are initially physically equal to 
+.ft B
+e
+.ft R
+\&.
+The element (
+.ft B
+x,y
+.ft R
+) of a matrix 
+.ft B
+m
+.ft R
+is accessed
+with the notation 
+.ft B
+m\&.(x)\&.(y)
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+dimx
+.ft R
+or 
+.ft B
+dimy
+.ft R
+is negative or
+greater than 
+.ft B
+Sys\&.max_array_length
+.ft R
+\&.
+If the value of 
+.ft B
+e
+.ft R
+is a floating\-point number, then the maximum
+size is only 
+.ft B
+Sys\&.max_array_length / 2
+.ft R
+\&.
+
+.sp
+
+.I val append 
+: 
+.B 'a array -> 'a array -> 'a array
+.sp
+
+.ft B
+append v1 v2
+.ft R
+returns a fresh array containing the
+concatenation of the arrays 
+.ft B
+v1
+.ft R
+and 
+.ft B
+v2
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if
+.ft B
+length v1 + length v2 > Sys\&.max_array_length
+.ft R
+\&.
+
+.sp
+
+.I val concat 
+: 
+.B 'a array list -> 'a array
+.sp
+Same as 
+.ft B
+ArrayLabels\&.append
+.ft R
+, but concatenates a list of arrays\&.
+
+.sp
+
+.I val sub 
+: 
+.B 'a array -> pos:int -> len:int -> 'a array
+.sp
+
+.ft B
+sub a ~pos ~len
+.ft R
+returns a fresh array of length 
+.ft B
+len
+.ft R
+,
+containing the elements number 
+.ft B
+pos
+.ft R
+to 
+.ft B
+pos + len \- 1
+.ft R
+of array 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not
+designate a valid subarray of 
+.ft B
+a
+.ft R
+; that is, if
+.ft B
+pos < 0
+.ft R
+, or 
+.ft B
+len < 0
+.ft R
+, or 
+.ft B
+pos + len > length a
+.ft R
+\&.
+
+.sp
+
+.I val copy 
+: 
+.B 'a array -> 'a array
+.sp
+
+.ft B
+copy a
+.ft R
+returns a copy of 
+.ft B
+a
+.ft R
+, that is, a fresh array
+containing the same elements as 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.I val fill 
+: 
+.B 'a array -> pos:int -> len:int -> 'a -> unit
+.sp
+
+.ft B
+fill a ~pos ~len x
+.ft R
+modifies the array 
+.ft B
+a
+.ft R
+in place,
+storing 
+.ft B
+x
+.ft R
+in elements number 
+.ft B
+pos
+.ft R
+to 
+.ft B
+pos + len \- 1
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not
+designate a valid subarray of 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.I val blit 
+: 
+.B src:'a array -> src_pos:int -> dst:'a array -> dst_pos:int -> len:int -> unit
+.sp
+
+.ft B
+blit ~src ~src_pos ~dst ~dst_pos ~len
+.ft R
+copies 
+.ft B
+len
+.ft R
+elements
+from array 
+.ft B
+src
+.ft R
+, starting at element number 
+.ft B
+src_pos
+.ft R
+, to array 
+.ft B
+dst
+.ft R
+,
+starting at element number 
+.ft B
+dst_pos
+.ft R
+\&. It works correctly even if
+.ft B
+src
+.ft R
+and 
+.ft B
+dst
+.ft R
+are the same array, and the source and
+destination chunks overlap\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+src_pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not
+designate a valid subarray of 
+.ft B
+src
+.ft R
+, or if 
+.ft B
+dst_pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not
+designate a valid subarray of 
+.ft B
+dst
+.ft R
+\&.
+
+.sp
+
+.I val to_list 
+: 
+.B 'a array -> 'a list
+.sp
+
+.ft B
+to_list a
+.ft R
+returns the list of all the elements of 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.I val of_list 
+: 
+.B 'a list -> 'a array
+.sp
+
+.ft B
+of_list l
+.ft R
+returns a fresh array containing the elements
+of 
+.ft B
+l
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if the length of 
+.ft B
+l
+.ft R
+is greater than
+.ft B
+Sys\&.max_array_length
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Iterators
+
+.PP
+
+.I val iter 
+: 
+.B f:('a -> unit) -> 'a array -> unit
+.sp
+
+.ft B
+iter ~f a
+.ft R
+applies function 
+.ft B
+f
+.ft R
+in turn to all
+the elements of 
+.ft B
+a
+.ft R
+\&.  It is equivalent to
+.ft B
+f a\&.(0); f a\&.(1); \&.\&.\&.; f a\&.(length a \- 1); ()
+.ft R
+\&.
+
+.sp
+
+.I val iteri 
+: 
+.B f:(int -> 'a -> unit) -> 'a array -> unit
+.sp
+Same as 
+.ft B
+ArrayLabels\&.iter
+.ft R
+, but the
+function is applied to the index of the element as first argument,
+and the element itself as second argument\&.
+
+.sp
+
+.I val map 
+: 
+.B f:('a -> 'b) -> 'a array -> 'b array
+.sp
+
+.ft B
+map ~f a
+.ft R
+applies function 
+.ft B
+f
+.ft R
+to all the elements of 
+.ft B
+a
+.ft R
+,
+and builds an array with the results returned by 
+.ft B
+f
+.ft R
+:
+.ft B
+[| f a\&.(0); f a\&.(1); \&.\&.\&.; f a\&.(length a \- 1) |]
+.ft R
+\&.
+
+.sp
+
+.I val map_inplace 
+: 
+.B f:('a -> 'a) -> 'a array -> unit
+.sp
+
+.ft B
+map_inplace ~f a
+.ft R
+applies function 
+.ft B
+f
+.ft R
+to all elements of 
+.ft B
+a
+.ft R
+,
+and updates their values in place\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val mapi 
+: 
+.B f:(int -> 'a -> 'b) -> 'a array -> 'b array
+.sp
+Same as 
+.ft B
+ArrayLabels\&.map
+.ft R
+, but the
+function is applied to the index of the element as first argument,
+and the element itself as second argument\&.
+
+.sp
+
+.I val mapi_inplace 
+: 
+.B f:(int -> 'a -> 'a) -> 'a array -> unit
+.sp
+Same as 
+.ft B
+ArrayLabels\&.map_inplace
+.ft R
+, but the function is applied to the index of the
+element as first argument, and the element itself as second argument\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val fold_left 
+: 
+.B f:('acc -> 'a -> 'acc) -> init:'acc -> 'a array -> 'acc
+.sp
+
+.ft B
+fold_left ~f ~init a
+.ft R
+computes
+.ft B
+f (\&.\&.\&. (f (f init a\&.(0)) a\&.(1)) \&.\&.\&.) a\&.(n\-1)
+.ft R
+,
+where 
+.ft B
+n
+.ft R
+is the length of the array 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.I val fold_left_map 
+: 
+.B f:('acc -> 'a -> 'acc * 'b) -> init:'acc -> 'a array -> 'acc * 'b array
+.sp
+
+.ft B
+fold_left_map
+.ft R
+is a combination of 
+.ft B
+ArrayLabels\&.fold_left
+.ft R
+and 
+.ft B
+ArrayLabels\&.map
+.ft R
+that threads an
+accumulator through calls to 
+.ft B
+f
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val fold_right 
+: 
+.B f:('a -> 'acc -> 'acc) -> 'a array -> init:'acc -> 'acc
+.sp
+
+.ft B
+fold_right ~f a ~init
+.ft R
+computes
+.ft B
+f a\&.(0) (f a\&.(1) ( \&.\&.\&. (f a\&.(n\-1) init) \&.\&.\&.))
+.ft R
+,
+where 
+.ft B
+n
+.ft R
+is the length of the array 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Iterators on two arrays
+
+.PP
+
+.I val iter2 
+: 
+.B f:('a -> 'b -> unit) -> 'a array -> 'b array -> unit
+.sp
+
+.ft B
+iter2 ~f a b
+.ft R
+applies function 
+.ft B
+f
+.ft R
+to all the elements of 
+.ft B
+a
+.ft R
+and 
+.ft B
+b
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if the arrays are not the same size\&.
+
+.sp
+
+.I val map2 
+: 
+.B f:('a -> 'b -> 'c) -> 'a array -> 'b array -> 'c array
+.sp
+
+.ft B
+map2 ~f a b
+.ft R
+applies function 
+.ft B
+f
+.ft R
+to all the elements of 
+.ft B
+a
+.ft R
+and 
+.ft B
+b
+.ft R
+, and builds an array with the results returned by 
+.ft B
+f
+.ft R
+:
+.ft B
+[| f a\&.(0) b\&.(0); \&.\&.\&.; f a\&.(length a \- 1) b\&.(length b \- 1)|]
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp
+.B "Raises Invalid_argument"
+if the arrays are not the same size\&.
+
+.sp
+
+.PP
+.SS Array scanning
+
+.PP
+
+.I val for_all 
+: 
+.B f:('a -> bool) -> 'a array -> bool
+.sp
+
+.ft B
+for_all ~f [|a1; \&.\&.\&.; an|]
+.ft R
+checks if all elements
+of the array satisfy the predicate 
+.ft B
+f
+.ft R
+\&. That is, it returns
+.ft B
+(f a1) && (f a2) && \&.\&.\&. && (f an)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val exists 
+: 
+.B f:('a -> bool) -> 'a array -> bool
+.sp
+
+.ft B
+exists ~f [|a1; \&.\&.\&.; an|]
+.ft R
+checks if at least one element of
+the array satisfies the predicate 
+.ft B
+f
+.ft R
+\&. That is, it returns
+.ft B
+(f a1) || (f a2) || \&.\&.\&. || (f an)
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val for_all2 
+: 
+.B f:('a -> 'b -> bool) -> 'a array -> 'b array -> bool
+.sp
+Same as 
+.ft B
+ArrayLabels\&.for_all
+.ft R
+, but for a two\-argument predicate\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+.B "Raises Invalid_argument"
+if the two arrays have different lengths\&.
+
+.sp
+
+.I val exists2 
+: 
+.B f:('a -> 'b -> bool) -> 'a array -> 'b array -> bool
+.sp
+Same as 
+.ft B
+ArrayLabels\&.exists
+.ft R
+, but for a two\-argument predicate\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+.B "Raises Invalid_argument"
+if the two arrays have different lengths\&.
+
+.sp
+
+.I val mem 
+: 
+.B 'a -> set:'a array -> bool
+.sp
+
+.ft B
+mem a ~set
+.ft R
+is true if and only if 
+.ft B
+a
+.ft R
+is structurally equal
+to an element of 
+.ft B
+l
+.ft R
+(i\&.e\&. there is an 
+.ft B
+x
+.ft R
+in 
+.ft B
+l
+.ft R
+such that
+.ft B
+compare a x = 0
+.ft R
+)\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val memq 
+: 
+.B 'a -> set:'a array -> bool
+.sp
+Same as 
+.ft B
+ArrayLabels\&.mem
+.ft R
+, but uses physical equality
+instead of structural equality to compare list elements\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val find_opt 
+: 
+.B f:('a -> bool) -> 'a array -> 'a option
+.sp
+
+.ft B
+find_opt ~f a
+.ft R
+returns the first element of the array 
+.ft B
+a
+.ft R
+that satisfies
+the predicate 
+.ft B
+f
+.ft R
+, or 
+.ft B
+None
+.ft R
+if there is no value that satisfies 
+.ft B
+f
+.ft R
+in the
+array 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val find_index 
+: 
+.B f:('a -> bool) -> 'a array -> int option
+.sp
+
+.ft B
+find_index ~f a
+.ft R
+returns 
+.ft B
+Some i
+.ft R
+, where 
+.ft B
+i
+.ft R
+is the index of the first
+element of the array 
+.ft B
+a
+.ft R
+that satisfies 
+.ft B
+f x
+.ft R
+, if there is such an
+element\&.
+.sp
+It returns 
+.ft B
+None
+.ft R
+if there is no such element\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val find_map 
+: 
+.B f:('a -> 'b option) -> 'a array -> 'b option
+.sp
+
+.ft B
+find_map ~f a
+.ft R
+applies 
+.ft B
+f
+.ft R
+to the elements of 
+.ft B
+a
+.ft R
+in order, and returns the
+first result of the form 
+.ft B
+Some v
+.ft R
+, or 
+.ft B
+None
+.ft R
+if none exist\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val find_mapi 
+: 
+.B f:(int -> 'a -> 'b option) -> 'a array -> 'b option
+.sp
+Same as 
+.ft B
+find_map
+.ft R
+, but the predicate is applied to the index of
+the element as first argument (counting from 0), and the element
+itself as second argument\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.PP
+.SS Arrays of pairs
+
+.PP
+
+.I val split 
+: 
+.B ('a * 'b) array -> 'a array * 'b array
+.sp
+
+.ft B
+split [|(a1,b1); \&.\&.\&.; (an,bn)|]
+.ft R
+is 
+.ft B
+([|a1; \&.\&.\&.; an|], [|b1; \&.\&.\&.; bn|])
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val combine 
+: 
+.B 'a array -> 'b array -> ('a * 'b) array
+.sp
+
+.ft B
+combine [|a1; \&.\&.\&.; an|] [|b1; \&.\&.\&.; bn|]
+.ft R
+is 
+.ft B
+[|(a1,b1); \&.\&.\&.; (an,bn)|]
+.ft R
+\&.
+Raise 
+.ft B
+Invalid_argument
+.ft R
+if the two arrays have different lengths\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.PP
+.SS Sorting
+
+.PP
+
+.I val sort 
+: 
+.B cmp:('a -> 'a -> int) -> 'a array -> unit
+.sp
+Sort an array in increasing order according to a comparison
+function\&.  The comparison function must return 0 if its arguments
+compare as equal, a positive integer if the first is greater,
+and a negative integer if the first is smaller (see below for a
+complete specification)\&.  For example, 
+.ft B
+compare
+.ft R
+is
+a suitable comparison function\&. After calling 
+.ft B
+sort
+.ft R
+, the
+array is sorted in place in increasing order\&.
+.ft B
+sort
+.ft R
+is guaranteed to run in constant heap space
+and (at most) logarithmic stack space\&.
+.sp
+The current implementation uses Heap Sort\&.  It runs in constant
+stack space\&.
+.sp
+Specification of the comparison function:
+Let 
+.ft B
+a
+.ft R
+be the array and 
+.ft B
+cmp
+.ft R
+the comparison function\&.  The following
+must be true for all 
+.ft B
+x
+.ft R
+, 
+.ft B
+y
+.ft R
+, 
+.ft B
+z
+.ft R
+in 
+.ft B
+a
+.ft R
+:
+.sp
+\-  
+.ft B
+cmp x y
+.ft R
+> 0 if and only if 
+.ft B
+cmp y x
+.ft R
+< 0
+.sp
+\-  if 
+.ft B
+cmp x y
+.ft R
+>= 0 and 
+.ft B
+cmp y z
+.ft R
+>= 0 then 
+.ft B
+cmp x z
+.ft R
+>= 0
+
+When 
+.ft B
+sort
+.ft R
+returns, 
+.ft B
+a
+.ft R
+contains the same elements as before,
+reordered in such a way that for all i and j valid indices of 
+.ft B
+a
+.ft R
+:
+.sp
+\-  
+.ft B
+cmp a\&.(i) a\&.(j)
+.ft R
+>= 0 if and only if i >= j
+
+
+.sp
+
+.I val stable_sort 
+: 
+.B cmp:('a -> 'a -> int) -> 'a array -> unit
+.sp
+Same as 
+.ft B
+ArrayLabels\&.sort
+.ft R
+, but the sorting algorithm is stable (i\&.e\&.
+elements that compare equal are kept in their original order) and
+not guaranteed to run in constant heap space\&.
+.sp
+The current implementation uses Merge Sort\&. It uses a temporary array of
+length 
+.ft B
+n/2
+.ft R
+, where 
+.ft B
+n
+.ft R
+is the length of the array\&.  It is usually faster
+than the current implementation of 
+.ft B
+ArrayLabels\&.sort
+.ft R
+\&.
+
+.sp
+
+.I val fast_sort 
+: 
+.B cmp:('a -> 'a -> int) -> 'a array -> unit
+.sp
+Same as 
+.ft B
+ArrayLabels\&.sort
+.ft R
+or 
+.ft B
+ArrayLabels\&.stable_sort
+.ft R
+, whichever is
+faster on typical input\&.
+
+.sp
+
+.PP
+.SS Arrays and Sequences
+
+.PP
+
+.I val to_seq 
+: 
+.B 'a array -> 'a Seq.t
+.sp
+Iterate on the array, in increasing order\&. Modifications of the
+array during iteration will be reflected in the sequence\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val to_seqi 
+: 
+.B 'a array -> (int * 'a) Seq.t
+.sp
+Iterate on the array, in increasing order, yielding indices along elements\&.
+Modifications of the array during iteration will be reflected in the
+sequence\&.
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.I val of_seq 
+: 
+.B 'a Seq.t -> 'a array
+.sp
+Create an array from the generator
+
+.sp
+.B "Since"
+4.07
+
+.sp
+
+.PP
+.SS Arrays and concurrency safety
+.sp
+Care must be taken when concurrently accessing arrays from multiple
+domains: accessing an array will never crash a program, but unsynchronized
+accesses might yield surprising (non\-sequentially\-consistent) results\&.
+.sp
+.SS Atomicity
+.sp
+Every array operation that accesses more than one array element is not
+atomic\&. This includes iteration, scanning, sorting, splitting and
+combining arrays\&.
+.sp
+For example, consider the following program:
+.EX
+.ft B
+let size = 100_000_000
+.br
+\&let a = ArrayLabels\&.make size 1
+.br
+\&let d1 = Domain\&.spawn (fun () \->
+.br
+\&   ArrayLabels\&.iteri ~f:(fun i x \-> a\&.(i) <\- x + 1) a
+.br
+\&)
+.br
+\&let d2 = Domain\&.spawn (fun () \->
+.br
+\&  ArrayLabels\&.iteri ~f:(fun i x \-> a\&.(i) <\- 2 * x + 1) a
+.br
+\&)
+.br
+\&let () = Domain\&.join d1; Domain\&.join d2
+.br
+\&
+.ft R
+.EE
+.sp
+After executing this code, each field of the array 
+.ft B
+a
+.ft R
+is either 
+.ft B
+2
+.ft R
+, 
+.ft B
+3
+.ft R
+,
+.ft B
+4
+.ft R
+or 
+.ft B
+5
+.ft R
+\&. If atomicity is required, then the user must implement their own
+synchronization (for example, using 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.sp
+.SS Data races
+.sp
+If two domains only access disjoint parts of the array, then the
+observed behaviour is the equivalent to some sequential interleaving of the
+operations from the two domains\&.
+.sp
+A data race is said to occur when two domains access the same array element
+without synchronization and at least one of the accesses is a write\&.
+In the absence of data races, the observed behaviour is equivalent to some
+sequential interleaving of the operations from different domains\&.
+.sp
+Whenever possible, data races should be avoided by using synchronization to
+mediate the accesses to the array elements\&.
+.sp
+Indeed, in the presence of data races, programs will not crash but the
+observed behaviour may not be equivalent to any sequential interleaving of
+operations from different domains\&. Nevertheless, even in the presence of
+data races, a read operation will return the value of some prior write to
+that location (with a few exceptions for float arrays)\&.
+.sp
+.SS Float arrays
+.sp
+Float arrays have two supplementary caveats in the presence of data races\&.
+.sp
+First, the blit operation might copy an array byte\-by\-byte\&. Data races
+between such a blit operation and another operation might produce surprising
+values due to tearing: partial writes interleaved with other operations can
+create float values that would not exist with a sequential execution\&.
+.sp
+For instance, at the end of
+.EX
+.ft B
+let zeros = Array\&.make size 0\&.
+.br
+\&let max_floats = Array\&.make size Float\&.max_float
+.br
+\&let res = Array\&.copy zeros
+.br
+\&let d1 = Domain\&.spawn (fun () \-> Array\&.blit zeros 0 res 0 size)
+.br
+\&let d2 = Domain\&.spawn (fun () \-> Array\&.blit max_floats 0 res 0 size)
+.br
+\&let () = Domain\&.join d1; Domain\&.join d2
+.br
+\&
+.ft R
+.EE
+the 
+.ft B
+res
+.ft R
+array might contain values that are neither 
+.ft B
+0\&.
+.ft R
+nor 
+.ft B
+max_float
+.ft R
+\&.
+.sp
+Second, on 32\-bit architectures, getting or setting a field involves two
+separate memory accesses\&. In the presence of data races, the user may
+observe tearing on any operation\&.
+.PP

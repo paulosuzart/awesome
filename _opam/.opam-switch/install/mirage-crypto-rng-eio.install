@@ -1,0 +1,24 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/mirage-crypto-rng-eio/META"
+  "_build/install/default/lib/mirage-crypto-rng-eio/dune-package"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.a"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.cma"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.cmi"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.cmt"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.cmti"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.cmx"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.cmxa"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.ml"
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.mli"
+  "_build/install/default/lib/mirage-crypto-rng-eio/opam"
+]
+doc: [
+  "_build/install/default/doc/mirage-crypto-rng-eio/CHANGES.md"
+  "_build/install/default/doc/mirage-crypto-rng-eio/LICENSE.md"
+  "_build/install/default/doc/mirage-crypto-rng-eio/LICENSE.md.mirage-crypto-ec"
+  "_build/install/default/doc/mirage-crypto-rng-eio/LICENSE.md.mirage-crypto-rng-mirage"
+  "_build/install/default/doc/mirage-crypto-rng-eio/README.md"
+]
+libexec:
+  "_build/install/default/lib/mirage-crypto-rng-eio/mirage_crypto_rng_eio.cmxs"

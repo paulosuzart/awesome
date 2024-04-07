@@ -1,0 +1,22 @@
+version = "0.16.0"
+description = ""
+requires = "bigstringaf"
+archive(byte) = "angstrom.cma"
+archive(native) = "angstrom.cmxa"
+plugin(byte) = "angstrom.cma"
+plugin(native) = "angstrom.cmxs"
+
+package "unix" (
+  description = "Deprecated. Use angstrom-unix directly"
+  requires = "angstrom-unix"
+)
+
+package "lwt-unix" (
+  description = "Deprecated. Use angstrom-lwt-unix directly"
+  requires = "angstrom-lwt-unix"
+)
+
+package "async" (
+  description = "Deprecated. Use angstrom-async directly"
+  requires = "angstrom-async"
+)

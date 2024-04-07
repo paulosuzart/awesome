@@ -1,0 +1,18 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/variantslib/META"
+  "_build/install/default/lib/variantslib/dune-package"
+  "_build/install/default/lib/variantslib/opam"
+  "_build/install/default/lib/variantslib/variantslib.a"
+  "_build/install/default/lib/variantslib/variantslib.cma"
+  "_build/install/default/lib/variantslib/variantslib.cmi"
+  "_build/install/default/lib/variantslib/variantslib.cmt"
+  "_build/install/default/lib/variantslib/variantslib.cmx"
+  "_build/install/default/lib/variantslib/variantslib.cmxa"
+  "_build/install/default/lib/variantslib/variantslib.ml"
+]
+doc: [
+  "_build/install/default/doc/variantslib/CHANGES.md"
+  "_build/install/default/doc/variantslib/LICENSE.md"
+]
+libexec: "_build/install/default/lib/variantslib/variantslib.cmxs"

@@ -1,0 +1,64 @@
+(lang dune 3.15)
+(name ppx_enumerate)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_enumerate))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_enumerate.a
+   ppx_enumerate.cma
+   ppx_enumerate.cmi
+   ppx_enumerate.cmt
+   ppx_enumerate.cmti
+   ppx_enumerate.cmx
+   ppx_enumerate.cmxa
+   ppx_enumerate.ml
+   ppx_enumerate.mli
+   runtime-lib/ppx_enumerate_lib.a
+   runtime-lib/ppx_enumerate_lib.cma
+   runtime-lib/ppx_enumerate_lib.cmi
+   runtime-lib/ppx_enumerate_lib.cmt
+   runtime-lib/ppx_enumerate_lib.cmx
+   runtime-lib/ppx_enumerate_lib.cmxa
+   runtime-lib/ppx_enumerate_lib.ml))
+ (libexec (ppx_enumerate.cmxs runtime-lib/ppx_enumerate_lib.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_enumerate)
+ (kind ppx_deriver)
+ (archives (byte ppx_enumerate.cma) (native ppx_enumerate.cmxa))
+ (plugins (byte ppx_enumerate.cma) (native ppx_enumerate.cmxs))
+ (native_archives ppx_enumerate.a)
+ (requires base ppxlib.ast ppxlib)
+ (ppx_runtime_deps ppx_enumerate.runtime-lib)
+ (main_module_name Ppx_enumerate)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_enumerate)
+   (visibility public)
+   (source
+    (path Ppx_enumerate)
+    (intf (path ppx_enumerate.mli))
+    (impl (path ppx_enumerate.ml))))))
+(library
+ (name ppx_enumerate.runtime-lib)
+ (kind normal)
+ (archives
+  (byte runtime-lib/ppx_enumerate_lib.cma)
+  (native runtime-lib/ppx_enumerate_lib.cmxa))
+ (plugins
+  (byte runtime-lib/ppx_enumerate_lib.cma)
+  (native runtime-lib/ppx_enumerate_lib.cmxs))
+ (native_archives runtime-lib/ppx_enumerate_lib.a)
+ (main_module_name Ppx_enumerate_lib)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_enumerate_lib)
+   (visibility public)
+   (source
+    (path Ppx_enumerate_lib)
+    (impl (path runtime-lib/ppx_enumerate_lib.ml))))))

@@ -1,0 +1,45 @@
+.TH "Ast_helper.Of" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_helper.Of \- Object fields
+.SH Module
+Module   Ast_helper.Of
+.SH Documentation
+.sp
+Module
+.BI "Of"
+ : 
+.B sig end
+
+.sp
+Object fields
+
+.sp
+
+.sp
+.sp
+
+.I val mk 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Parsetree.object_field_desc -> Parsetree.object_field
+.sp
+
+.sp
+
+.I val tag 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Asttypes.label Ast_helper.with_loc ->
+.B   Parsetree.core_type -> Parsetree.object_field
+.sp
+
+.sp
+
+.I val inherit_ 
+: 
+.B ?loc:Ast_helper.loc -> Parsetree.core_type -> Parsetree.object_field
+.sp
+
+.sp

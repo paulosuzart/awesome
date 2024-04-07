@@ -1,0 +1,32 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_sexp_value" {"D"}
+  "doc/ppx_sexp_value/CHANGES.md" {"F:68ac6be6d9bf5a23a74bf427f8df7fbf"}
+  "doc/ppx_sexp_value/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_sexp_value/README.md" {"F:10e9360e439f6cb9594987f87f2781b0"}
+  "lib/ppx_sexp_value" {"D"}
+  "lib/ppx_sexp_value/META" {"F:297381b83d71514402a11f72b0895dea"}
+  "lib/ppx_sexp_value/dune-package" {"F:38ecc7e1072bb08276ff185a411d6278"}
+  "lib/ppx_sexp_value/opam" {"F:97b531f0abe89e555ad799e2e8c91206"}
+  "lib/ppx_sexp_value/ppx.exe" {"F:db547bce36671bb047d183559335672d"}
+  "lib/ppx_sexp_value/ppx_sexp_value.a"
+    {"F:0055f6fe6606966ac794667194cc0a18"}
+  "lib/ppx_sexp_value/ppx_sexp_value.cma"
+    {"F:bafde4c41c3d82483a14d526947cf0e3"}
+  "lib/ppx_sexp_value/ppx_sexp_value.cmi"
+    {"F:333ae170cb81c53675defb88bdf962cd"}
+  "lib/ppx_sexp_value/ppx_sexp_value.cmt"
+    {"F:99375e6709ca20a13d67e89ec3cd0eb6"}
+  "lib/ppx_sexp_value/ppx_sexp_value.cmti"
+    {"F:728bdad67af526281e3f6c6963fc6a14"}
+  "lib/ppx_sexp_value/ppx_sexp_value.cmx"
+    {"F:463ec608fc10a7f85b6383eb83b07096"}
+  "lib/ppx_sexp_value/ppx_sexp_value.cmxa"
+    {"F:7c642a0dc6c1df67f19c78084a21f776"}
+  "lib/ppx_sexp_value/ppx_sexp_value.cmxs"
+    {"F:879a7621517c196b43296f4eddcdc05f"}
+  "lib/ppx_sexp_value/ppx_sexp_value.ml"
+    {"F:08e91ff506b1dbc36d252da2935c1827"}
+  "lib/ppx_sexp_value/ppx_sexp_value.mli"
+    {"F:d41d8cd98f00b204e9800998ecf8427e"}
+]

@@ -1,0 +1,57 @@
+opam-version: "2.0"
+added: [
+  "doc/angstrom" {"D"}
+  "doc/angstrom/LICENSE" {"F:ab3a6e192290749f6cc99ef0f6371587"}
+  "doc/angstrom/README.md" {"F:ae673a5a0358b9f6b8bd2262d5f593e4"}
+  "lib/angstrom" {"D"}
+  "lib/angstrom/META" {"F:e4391eab6809d20ee2ad0dbd3d6aefd8"}
+  "lib/angstrom/angstrom.a" {"F:bc301796f04e75d1fef0a7ab851d70d6"}
+  "lib/angstrom/angstrom.cma" {"F:3ec770118b827ad26a492d5a6ba3293a"}
+  "lib/angstrom/angstrom.cmi" {"F:c505f75f87e60555b051538d14f35593"}
+  "lib/angstrom/angstrom.cmt" {"F:2285bae54edc5e22d022e14450ae6198"}
+  "lib/angstrom/angstrom.cmti" {"F:d88bd0f19ce9a36ef5ed55235edcd285"}
+  "lib/angstrom/angstrom.cmx" {"F:17a3a9690c17970a753784a42c6f06e8"}
+  "lib/angstrom/angstrom.cmxa" {"F:b2e3edb26d55104cbce8be1225fab2f3"}
+  "lib/angstrom/angstrom.cmxs" {"F:f6e208f60238a767cee464a9d85eaf5c"}
+  "lib/angstrom/angstrom.ml" {"F:a98b7518b8620955429c37f5c6a0ed91"}
+  "lib/angstrom/angstrom.mli" {"F:45d773dd8daaeb4b3c190ecdc45615c2"}
+  "lib/angstrom/angstrom__.cmi" {"F:260454e736ff3d305214ab6c5f47715b"}
+  "lib/angstrom/angstrom__.cmt" {"F:de1bf2bac18515dc705ffd3be489b14a"}
+  "lib/angstrom/angstrom__.cmx" {"F:46d402ee2753cd8cd4f1acd3e59dd11a"}
+  "lib/angstrom/angstrom__.ml" {"F:01c3b21e34b045747a2ababfcf45e0d1"}
+  "lib/angstrom/angstrom__Buffering.cmi"
+    {"F:7976128676d4ecf75e6a9de3e73d347e"}
+  "lib/angstrom/angstrom__Buffering.cmt"
+    {"F:b0c7b427fc0d8acdf3346c0a699f8350"}
+  "lib/angstrom/angstrom__Buffering.cmti"
+    {"F:c342448a42b886c9ce336d661c74af84"}
+  "lib/angstrom/angstrom__Buffering.cmx"
+    {"F:6a2a2e8b0e12443d3b6a971d137e1b7a"}
+  "lib/angstrom/angstrom__Exported_state.cmi"
+    {"F:f8ede23becfba086cfad619d87436221"}
+  "lib/angstrom/angstrom__Exported_state.cmt"
+    {"F:e5015361d810d225374c2eefd54128d4"}
+  "lib/angstrom/angstrom__Exported_state.cmx"
+    {"F:1b65aabede3d185c97746d0e9a41ea1a"}
+  "lib/angstrom/angstrom__Input.cmi" {"F:acb1dd4cf92fc8f1cb9c6bf5f0104ec0"}
+  "lib/angstrom/angstrom__Input.cmt" {"F:5489a463a7bef7e614db9bd688a918b7"}
+  "lib/angstrom/angstrom__Input.cmti" {"F:f3abea9b04abde8e170cb4c14412e075"}
+  "lib/angstrom/angstrom__Input.cmx" {"F:6af1e82bfc03b71ba272c01a5b73fa81"}
+  "lib/angstrom/angstrom__More.cmi" {"F:25a3eca61b8aac2eeee3d5912105a58e"}
+  "lib/angstrom/angstrom__More.cmt" {"F:cbe0810f81c690439e94e00f3091c5cf"}
+  "lib/angstrom/angstrom__More.cmti" {"F:41286ce83c810598d3799c026f955dc6"}
+  "lib/angstrom/angstrom__More.cmx" {"F:66cb7218fe4739557f075be928fc3e13"}
+  "lib/angstrom/angstrom__Parser.cmi" {"F:2eabf35bcab20db3ba7bb6479493b258"}
+  "lib/angstrom/angstrom__Parser.cmt" {"F:a1a5ac2c36b8f92b374c5092cdd46823"}
+  "lib/angstrom/angstrom__Parser.cmx" {"F:bbe46c6dca18535dd094d9ce6d6573e0"}
+  "lib/angstrom/buffering.ml" {"F:860e4bc71a2a9f8342361839d1ef5848"}
+  "lib/angstrom/buffering.mli" {"F:587dcee5453d19ae2494b2fecbd068ab"}
+  "lib/angstrom/dune-package" {"F:14944202f920e30f2524a523dc3546ff"}
+  "lib/angstrom/exported_state.ml" {"F:7049f651b15d61db50028d87e66db830"}
+  "lib/angstrom/input.ml" {"F:33a82b372c92075bc404fc1f15d0553f"}
+  "lib/angstrom/input.mli" {"F:19a634740ae0c75aa512738b5249114c"}
+  "lib/angstrom/more.ml" {"F:b37d3082f45cd1d9a3718c9e5f7b5026"}
+  "lib/angstrom/more.mli" {"F:2454d6baf4971b611328b80ed97d5a4b"}
+  "lib/angstrom/opam" {"F:c82b8f287e81a6f13b8aedeacca6f991"}
+  "lib/angstrom/parser.ml" {"F:cc1e8c71830a2b5ddf4d42e28bbc5ed8"}
+]

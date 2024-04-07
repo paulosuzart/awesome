@@ -1,0 +1,16 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/regex_parser_intf/META"
+  "_build/install/default/lib/regex_parser_intf/dune-package"
+  "_build/install/default/lib/regex_parser_intf/opam"
+  "_build/install/default/lib/regex_parser_intf/regex_parser_intf.a"
+  "_build/install/default/lib/regex_parser_intf/regex_parser_intf.cma"
+  "_build/install/default/lib/regex_parser_intf/regex_parser_intf.cmi"
+  "_build/install/default/lib/regex_parser_intf/regex_parser_intf.cmt"
+  "_build/install/default/lib/regex_parser_intf/regex_parser_intf.cmx"
+  "_build/install/default/lib/regex_parser_intf/regex_parser_intf.cmxa"
+  "_build/install/default/lib/regex_parser_intf/regex_parser_intf.ml"
+]
+doc: "_build/install/default/doc/regex_parser_intf/LICENSE.md"
+libexec:
+  "_build/install/default/lib/regex_parser_intf/regex_parser_intf.cmxs"

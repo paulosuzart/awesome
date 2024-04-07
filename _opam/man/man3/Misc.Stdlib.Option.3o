@@ -1,0 +1,37 @@
+.TH "Misc.Stdlib.Option" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.Stdlib.Option \-  Extensions to the Option module 
+.SH Module
+Module   Misc.Stdlib.Option
+.SH Documentation
+.sp
+Module
+.BI "Option"
+ : 
+.B sig end
+
+.sp
+.SS Extensions to the Option module
+
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I t 
+= 
+.B 'a option
+
+.sp
+
+.sp
+
+.I val print 
+: 
+.B (Format.formatter -> 'a -> unit) ->
+.B   Format.formatter -> 'a t -> unit
+.sp
+
+.sp

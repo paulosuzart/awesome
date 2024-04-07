@@ -1,0 +1,75 @@
+.TH "Misc.Int_literal_converter" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.Int_literal_converter \- no description
+.SH Module
+Module   Misc.Int_literal_converter
+.SH Documentation
+.sp
+Module
+.BI "Int_literal_converter"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val int 
+: 
+.B string -> int
+.sp
+Convert a string to an integer\&.  Unlike 
+.ft B
+int_of_string
+.ft R
+,
+this function accepts the string representation of 
+.ft B
+max_int + 1
+.ft R
+and returns 
+.ft B
+min_int
+.ft R
+in this case\&.
+
+.sp
+
+.I val int32 
+: 
+.B string -> int32
+.sp
+Likewise, at type 
+.ft B
+int32
+.ft R
+
+
+.sp
+
+.I val int64 
+: 
+.B string -> int64
+.sp
+Likewise, at type 
+.ft B
+int64
+.ft R
+
+
+.sp
+
+.I val nativeint 
+: 
+.B string -> nativeint
+.sp
+Likewise, at type 
+.ft B
+nativeint
+.ft R
+
+
+.sp

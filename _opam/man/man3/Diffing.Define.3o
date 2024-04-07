@@ -1,0 +1,88 @@
+.TH "Diffing.Define" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing.Define \- Define(Defs) creates the diffing types from the types defined in Defs and the functors that need to be instantatied with the diffing algorithm parameters
+.SH Module
+Module   Diffing.Define
+.SH Documentation
+.sp
+Module
+.BI "Define"
+ : 
+.B functor (D : Defs) -> sig end
+
+.sp
+
+.ft B
+Define(Defs)
+.ft R
+creates the diffing types from the types
+defined in 
+.ft B
+Defs
+.ft R
+and the functors that need to be instantatied
+with the diffing algorithm parameters
+
+.sp
+.B "Parameters:"
+.sp
+"D"
+
+.B Diffing.Defs
+
+
+
+
+
+.sp
+.sp
+.I type change 
+= 
+.B (D.left, D.right, D.eq, D.diff) Diffing.change
+
+.sp
+The type of potential changes on a list\&.
+
+.sp
+.I type patch 
+= 
+.B change list
+
+.sp
+A patch is an ordered list of changes\&.
+
+.sp
+.I module type Parameters = 
+.B sig end
+
+.sp
+
+.sp
+.I module type S = 
+.B sig end
+
+.sp
+
+.sp
+.I module Simple : 
+.B sig end -> S
+
+.sp
+
+.sp
+.I module Left_variadic : 
+.B sig end -> S
+
+.sp
+.SS Variadic diffing
+.sp
+Variadic diffing allows to expand the lists being diffed during diffing\&.
+in one specific direction\&.
+
+.sp
+.I module Right_variadic : 
+.B sig end -> S
+
+.sp
+
+.sp

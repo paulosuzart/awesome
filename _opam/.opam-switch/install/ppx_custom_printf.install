@@ -1,0 +1,32 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_custom_printf/META"
+  "_build/install/default/lib/ppx_custom_printf/dune-package"
+  "_build/install/default/lib/ppx_custom_printf/format_lifter.ml"
+  "_build/install/default/lib/ppx_custom_printf/opam"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.a"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.cma"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.cmi"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.cmt"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.cmti"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.cmx"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.cmxa"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.ml"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.mli"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf__.cmi"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf__.cmt"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf__.cmx"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf__.ml"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf__Format_lifter.cmi"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf__Format_lifter.cmt"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf__Format_lifter.cmx"
+]
+doc: [
+  "_build/install/default/doc/ppx_custom_printf/CHANGES.md"
+  "_build/install/default/doc/ppx_custom_printf/LICENSE.md"
+  "_build/install/default/doc/ppx_custom_printf/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_custom_printf/ppx.exe"
+  "_build/install/default/lib/ppx_custom_printf/ppx_custom_printf.cmxs"
+]

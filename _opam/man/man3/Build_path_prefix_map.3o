@@ -1,0 +1,196 @@
+.TH "Build_path_prefix_map" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Build_path_prefix_map \- Rewrite paths for reproducible builds
+.SH Module
+Module   Build_path_prefix_map
+.SH Documentation
+.sp
+Module
+.BI "Build_path_prefix_map"
+ : 
+.B sig end
+
+.sp
+Rewrite paths for reproducible builds
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+.sp
+See
+the BUILD_PATH_PREFIX_MAP spec
+
+.sp
+
+.sp
+.sp
+.I type path 
+= 
+.B string
+
+.sp
+
+.sp
+.I type path_prefix 
+= 
+.B string
+
+.sp
+
+.sp
+.I type error_message 
+= 
+.B string
+
+.sp
+
+.sp
+
+.I val encode_prefix 
+: 
+.B path_prefix -> string
+.sp
+
+.sp
+
+.I val decode_prefix 
+: 
+.B string ->
+.B   (path_prefix, error_message)
+.B   result
+.sp
+
+.sp
+.I type pair 
+= {
+ target : 
+.B path_prefix
+;
+ source : 
+.B path_prefix
+;
+ }
+
+.sp
+
+.sp
+
+.I val encode_pair 
+: 
+.B pair -> string
+.sp
+
+.sp
+
+.I val decode_pair 
+: 
+.B string ->
+.B   (pair, error_message)
+.B   result
+.sp
+
+.sp
+.I type map 
+= 
+.B pair option list
+
+.sp
+
+.sp
+
+.I val encode_map 
+: 
+.B map -> string
+.sp
+
+.sp
+
+.I val decode_map 
+: 
+.B string ->
+.B   (map, error_message)
+.B   result
+.sp
+
+.sp
+
+.I val rewrite_first 
+: 
+.B map ->
+.B   path -> path option
+.sp
+
+.ft B
+rewrite_first map path
+.ft R
+tries to find a source in 
+.ft B
+map
+.ft R
+that is a prefix of the input 
+.ft B
+path
+.ft R
+\&. If it succeeds,
+it replaces this prefix with the corresponding target\&.
+If it fails, it just returns 
+.ft B
+None
+.ft R
+\&.
+
+.sp
+
+.I val rewrite_all 
+: 
+.B map ->
+.B   path -> path list
+.sp
+
+.ft B
+rewrite_all map path
+.ft R
+finds all sources in 
+.ft B
+map
+.ft R
+that are a prefix of the input 
+.ft B
+path
+.ft R
+\&. For each matching
+source, in priority order, it replaces this prefix with
+the corresponding target and adds the result to
+the returned list\&.
+If there are no matches, it just returns 
+.ft B
+[]
+.ft R
+\&.
+
+.sp
+
+.I val rewrite 
+: 
+.B map ->
+.B   path -> path
+.sp
+
+.ft B
+rewrite path
+.ft R
+uses 
+.ft B
+rewrite_first
+.ft R
+to try to find a
+mapping for path\&. If found, it returns that, otherwise
+it just returns 
+.ft B
+path
+.ft R
+\&.
+
+.sp

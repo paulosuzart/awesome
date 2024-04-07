@@ -1,0 +1,18 @@
+opam-version: "2.0"
+lib: [
+  "_build/opam" {"opam"}
+  "_build/pkg/META" {"META"}
+  "_build/src/uutf.a" {"uutf.a"}
+  "_build/src/uutf.cma" {"uutf.cma"}
+  "_build/src/uutf.cmi" {"uutf.cmi"}
+  "?_build/src/uutf.cmti" {"uutf.cmti"}
+  "_build/src/uutf.cmx" {"uutf.cmx"}
+  "_build/src/uutf.cmxa" {"uutf.cmxa"}
+  "_build/src/uutf.cmxs" {"uutf.cmxs"}
+  "_build/src/uutf.mli" {"uutf.mli"}
+]
+doc: [
+  "_build/CHANGES.md" {"CHANGES.md"}
+  "_build/LICENSE.md" {"LICENSE.md"}
+  "_build/README.md" {"README.md"}
+]

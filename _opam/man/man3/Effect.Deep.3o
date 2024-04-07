@@ -1,0 +1,259 @@
+.TH "Effect.Deep" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Effect.Deep \- no description
+.SH Module
+Module   Effect.Deep
+.SH Documentation
+.sp
+Module
+.BI "Deep"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+Deep handlers
+.PP
+.I type 
+.B ('a, 'b)
+.I continuation 
+
+.sp
+
+.ft B
+(\&'a,\&'b) continuation
+.ft R
+is a delimited continuation that expects a 
+.ft B
+\&'a
+.ft R
+value and returns a 
+.ft B
+\&'b
+.ft R
+value\&.
+
+.sp
+
+.I val continue 
+: 
+.B ('a, 'b) continuation -> 'a -> 'b
+.sp
+
+.ft B
+continue k x
+.ft R
+resumes the continuation 
+.ft B
+k
+.ft R
+by passing 
+.ft B
+x
+.ft R
+to 
+.ft B
+k
+.ft R
+\&.
+
+.sp
+.B "Raises Continuation_already_resumed"
+if the continuation has already been
+resumed\&.
+
+.sp
+
+.I val discontinue 
+: 
+.B ('a, 'b) continuation -> exn -> 'b
+.sp
+
+.ft B
+discontinue k e
+.ft R
+resumes the continuation 
+.ft B
+k
+.ft R
+by raising the
+exception 
+.ft B
+e
+.ft R
+in 
+.ft B
+k
+.ft R
+\&.
+
+.sp
+.B "Raises Continuation_already_resumed"
+if the continuation has already been
+resumed\&.
+
+.sp
+
+.I val discontinue_with_backtrace 
+: 
+.B ('a, 'b) continuation ->
+.B   exn -> Printexc.raw_backtrace -> 'b
+.sp
+
+.ft B
+discontinue_with_backtrace k e bt
+.ft R
+resumes the continuation 
+.ft B
+k
+.ft R
+by
+raising the exception 
+.ft B
+e
+.ft R
+in 
+.ft B
+k
+.ft R
+using 
+.ft B
+bt
+.ft R
+as the origin for the
+exception\&.
+
+.sp
+.B "Raises Continuation_already_resumed"
+if the continuation has already been
+resumed\&.
+
+.sp
+.I type 
+.B ('a, 'b)
+.I handler 
+= {
+ retc : 
+.B 'a -> 'b
+;
+ exnc : 
+.B exn -> 'b
+;
+ effc : 
+.B 'c. 'c Effect.t -> (('c, 'b) continuation -> 'b) option
+;
+ }
+
+.sp
+
+.ft B
+(\&'a,\&'b) handler
+.ft R
+is a handler record with three fields \-\- 
+.ft B
+retc
+.ft R
+is the value handler, 
+.ft B
+exnc
+.ft R
+handles exceptions, and 
+.ft B
+effc
+.ft R
+handles the
+effects performed by the computation enclosed by the handler\&.
+
+.sp
+
+.I val match_with 
+: 
+.B ('c -> 'a) -> 'c -> ('a, 'b) handler -> 'b
+.sp
+
+.ft B
+match_with f v h
+.ft R
+runs the computation 
+.ft B
+f v
+.ft R
+in the handler 
+.ft B
+h
+.ft R
+\&.
+
+.sp
+.I type 
+.B 'a
+.I effect_handler 
+= {
+ effc : 
+.B 'b. 'b Effect.t -> (('b, 'a) continuation -> 'a) option
+;
+ }
+
+.sp
+
+.ft B
+\&'a effect_handler
+.ft R
+is a deep handler with an identity value handler
+.ft B
+fun x \-> x
+.ft R
+and an exception handler that raises any exception
+.ft B
+fun e \-> raise e
+.ft R
+\&.
+
+.sp
+
+.I val try_with 
+: 
+.B ('b -> 'a) -> 'b -> 'a effect_handler -> 'a
+.sp
+
+.ft B
+try_with f v h
+.ft R
+runs the computation 
+.ft B
+f v
+.ft R
+under the handler 
+.ft B
+h
+.ft R
+\&.
+
+.sp
+
+.I val get_callstack 
+: 
+.B ('a, 'b) continuation -> int -> Printexc.raw_backtrace
+.sp
+
+.ft B
+get_callstack c n
+.ft R
+returns a description of the top of the call stack on
+the continuation 
+.ft B
+c
+.ft R
+, with at most 
+.ft B
+n
+.ft R
+entries\&.
+
+.sp

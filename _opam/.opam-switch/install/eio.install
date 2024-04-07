@@ -1,0 +1,557 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/eio/META"
+  "_build/install/default/lib/eio/buf_read.ml"
+  "_build/install/default/lib/eio/buf_read.mli"
+  "_build/install/default/lib/eio/buf_write.ml"
+  "_build/install/default/lib/eio/buf_write.mli"
+  "_build/install/default/lib/eio/condition.ml"
+  "_build/install/default/lib/eio/condition.mli"
+  "_build/install/default/lib/eio/core/broadcast.ml" {"core/broadcast.ml"}
+  "_build/install/default/lib/eio/core/broadcast.mli" {"core/broadcast.mli"}
+  "_build/install/default/lib/eio/core/cancel.ml" {"core/cancel.ml"}
+  "_build/install/default/lib/eio/core/cells.ml" {"core/cells.ml"}
+  "_build/install/default/lib/eio/core/cells.mli" {"core/cells.mli"}
+  "_build/install/default/lib/eio/core/debug.ml" {"core/debug.ml"}
+  "_build/install/default/lib/eio/core/dla.ml" {"core/dla.ml"}
+  "_build/install/default/lib/eio/core/eio__core.a" {"core/eio__core.a"}
+  "_build/install/default/lib/eio/core/eio__core.cma" {"core/eio__core.cma"}
+  "_build/install/default/lib/eio/core/eio__core.cmi" {"core/eio__core.cmi"}
+  "_build/install/default/lib/eio/core/eio__core.cmt" {"core/eio__core.cmt"}
+  "_build/install/default/lib/eio/core/eio__core.cmti"
+    {"core/eio__core.cmti"}
+  "_build/install/default/lib/eio/core/eio__core.cmx" {"core/eio__core.cmx"}
+  "_build/install/default/lib/eio/core/eio__core.cmxa"
+    {"core/eio__core.cmxa"}
+  "_build/install/default/lib/eio/core/eio__core.ml" {"core/eio__core.ml"}
+  "_build/install/default/lib/eio/core/eio__core.mli" {"core/eio__core.mli"}
+  "_build/install/default/lib/eio/core/eio__core__.cmi"
+    {"core/eio__core__.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__.cmt"
+    {"core/eio__core__.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__.cmx"
+    {"core/eio__core__.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__.ml"
+    {"core/eio__core__.ml"}
+  "_build/install/default/lib/eio/core/eio__core__Broadcast.cmi"
+    {"core/eio__core__Broadcast.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Broadcast.cmt"
+    {"core/eio__core__Broadcast.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Broadcast.cmti"
+    {"core/eio__core__Broadcast.cmti"}
+  "_build/install/default/lib/eio/core/eio__core__Broadcast.cmx"
+    {"core/eio__core__Broadcast.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Cancel.cmi"
+    {"core/eio__core__Cancel.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Cancel.cmt"
+    {"core/eio__core__Cancel.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Cancel.cmx"
+    {"core/eio__core__Cancel.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Cells.cmi"
+    {"core/eio__core__Cells.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Cells.cmt"
+    {"core/eio__core__Cells.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Cells.cmti"
+    {"core/eio__core__Cells.cmti"}
+  "_build/install/default/lib/eio/core/eio__core__Cells.cmx"
+    {"core/eio__core__Cells.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Debug.cmi"
+    {"core/eio__core__Debug.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Debug.cmt"
+    {"core/eio__core__Debug.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Debug.cmx"
+    {"core/eio__core__Debug.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Dla.cmi"
+    {"core/eio__core__Dla.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Dla.cmt"
+    {"core/eio__core__Dla.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Dla.cmx"
+    {"core/eio__core__Dla.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Exn.cmi"
+    {"core/eio__core__Exn.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Exn.cmt"
+    {"core/eio__core__Exn.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Exn.cmx"
+    {"core/eio__core__Exn.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Fiber.cmi"
+    {"core/eio__core__Fiber.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Fiber.cmt"
+    {"core/eio__core__Fiber.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Fiber.cmx"
+    {"core/eio__core__Fiber.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Promise.cmi"
+    {"core/eio__core__Promise.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Promise.cmt"
+    {"core/eio__core__Promise.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Promise.cmx"
+    {"core/eio__core__Promise.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Single_waiter.cmi"
+    {"core/eio__core__Single_waiter.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Single_waiter.cmt"
+    {"core/eio__core__Single_waiter.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Single_waiter.cmx"
+    {"core/eio__core__Single_waiter.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Suspend.cmi"
+    {"core/eio__core__Suspend.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Suspend.cmt"
+    {"core/eio__core__Suspend.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Suspend.cmx"
+    {"core/eio__core__Suspend.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Switch.cmi"
+    {"core/eio__core__Switch.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Switch.cmt"
+    {"core/eio__core__Switch.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Switch.cmx"
+    {"core/eio__core__Switch.cmx"}
+  "_build/install/default/lib/eio/core/eio__core__Trace.cmi"
+    {"core/eio__core__Trace.cmi"}
+  "_build/install/default/lib/eio/core/eio__core__Trace.cmt"
+    {"core/eio__core__Trace.cmt"}
+  "_build/install/default/lib/eio/core/eio__core__Trace.cmti"
+    {"core/eio__core__Trace.cmti"}
+  "_build/install/default/lib/eio/core/eio__core__Trace.cmx"
+    {"core/eio__core__Trace.cmx"}
+  "_build/install/default/lib/eio/core/exn.ml" {"core/exn.ml"}
+  "_build/install/default/lib/eio/core/fiber.ml" {"core/fiber.ml"}
+  "_build/install/default/lib/eio/core/promise.ml" {"core/promise.ml"}
+  "_build/install/default/lib/eio/core/single_waiter.ml"
+    {"core/single_waiter.ml"}
+  "_build/install/default/lib/eio/core/suspend.ml" {"core/suspend.ml"}
+  "_build/install/default/lib/eio/core/switch.ml" {"core/switch.ml"}
+  "_build/install/default/lib/eio/core/trace.ml" {"core/trace.ml"}
+  "_build/install/default/lib/eio/core/trace.mli" {"core/trace.mli"}
+  "_build/install/default/lib/eio/domain_manager.ml"
+  "_build/install/default/lib/eio/domain_manager.mli"
+  "_build/install/default/lib/eio/dune-package"
+  "_build/install/default/lib/eio/eio.a"
+  "_build/install/default/lib/eio/eio.cma"
+  "_build/install/default/lib/eio/eio.cmi"
+  "_build/install/default/lib/eio/eio.cmt"
+  "_build/install/default/lib/eio/eio.cmti"
+  "_build/install/default/lib/eio/eio.cmx"
+  "_build/install/default/lib/eio/eio.cmxa"
+  "_build/install/default/lib/eio/eio.ml"
+  "_build/install/default/lib/eio/eio.mli"
+  "_build/install/default/lib/eio/eio__.cmi"
+  "_build/install/default/lib/eio/eio__.cmt"
+  "_build/install/default/lib/eio/eio__.cmx"
+  "_build/install/default/lib/eio/eio__.ml"
+  "_build/install/default/lib/eio/eio__Buf_read.cmi"
+  "_build/install/default/lib/eio/eio__Buf_read.cmt"
+  "_build/install/default/lib/eio/eio__Buf_read.cmti"
+  "_build/install/default/lib/eio/eio__Buf_read.cmx"
+  "_build/install/default/lib/eio/eio__Buf_write.cmi"
+  "_build/install/default/lib/eio/eio__Buf_write.cmt"
+  "_build/install/default/lib/eio/eio__Buf_write.cmti"
+  "_build/install/default/lib/eio/eio__Buf_write.cmx"
+  "_build/install/default/lib/eio/eio__Condition.cmi"
+  "_build/install/default/lib/eio/eio__Condition.cmt"
+  "_build/install/default/lib/eio/eio__Condition.cmti"
+  "_build/install/default/lib/eio/eio__Condition.cmx"
+  "_build/install/default/lib/eio/eio__Domain_manager.cmi"
+  "_build/install/default/lib/eio/eio__Domain_manager.cmt"
+  "_build/install/default/lib/eio/eio__Domain_manager.cmti"
+  "_build/install/default/lib/eio/eio__Domain_manager.cmx"
+  "_build/install/default/lib/eio/eio__Eio_mutex.cmi"
+  "_build/install/default/lib/eio/eio__Eio_mutex.cmt"
+  "_build/install/default/lib/eio/eio__Eio_mutex.cmti"
+  "_build/install/default/lib/eio/eio__Eio_mutex.cmx"
+  "_build/install/default/lib/eio/eio__Executor_pool.cmi"
+  "_build/install/default/lib/eio/eio__Executor_pool.cmt"
+  "_build/install/default/lib/eio/eio__Executor_pool.cmti"
+  "_build/install/default/lib/eio/eio__Executor_pool.cmx"
+  "_build/install/default/lib/eio/eio__File.cmi"
+  "_build/install/default/lib/eio/eio__File.cmt"
+  "_build/install/default/lib/eio/eio__File.cmti"
+  "_build/install/default/lib/eio/eio__File.cmx"
+  "_build/install/default/lib/eio/eio__Flow.cmi"
+  "_build/install/default/lib/eio/eio__Flow.cmt"
+  "_build/install/default/lib/eio/eio__Flow.cmti"
+  "_build/install/default/lib/eio/eio__Flow.cmx"
+  "_build/install/default/lib/eio/eio__Fs.cmi"
+  "_build/install/default/lib/eio/eio__Fs.cmt"
+  "_build/install/default/lib/eio/eio__Fs.cmx"
+  "_build/install/default/lib/eio/eio__Hook.cmi"
+  "_build/install/default/lib/eio/eio__Hook.cmt"
+  "_build/install/default/lib/eio/eio__Hook.cmx"
+  "_build/install/default/lib/eio/eio__Lazy.cmi"
+  "_build/install/default/lib/eio/eio__Lazy.cmt"
+  "_build/install/default/lib/eio/eio__Lazy.cmti"
+  "_build/install/default/lib/eio/eio__Lazy.cmx"
+  "_build/install/default/lib/eio/eio__Net.cmi"
+  "_build/install/default/lib/eio/eio__Net.cmt"
+  "_build/install/default/lib/eio/eio__Net.cmti"
+  "_build/install/default/lib/eio/eio__Net.cmx"
+  "_build/install/default/lib/eio/eio__Path.cmi"
+  "_build/install/default/lib/eio/eio__Path.cmt"
+  "_build/install/default/lib/eio/eio__Path.cmti"
+  "_build/install/default/lib/eio/eio__Path.cmx"
+  "_build/install/default/lib/eio/eio__Pool.cmi"
+  "_build/install/default/lib/eio/eio__Pool.cmt"
+  "_build/install/default/lib/eio/eio__Pool.cmti"
+  "_build/install/default/lib/eio/eio__Pool.cmx"
+  "_build/install/default/lib/eio/eio__Process.cmi"
+  "_build/install/default/lib/eio/eio__Process.cmt"
+  "_build/install/default/lib/eio/eio__Process.cmti"
+  "_build/install/default/lib/eio/eio__Process.cmx"
+  "_build/install/default/lib/eio/eio__Resource.cmi"
+  "_build/install/default/lib/eio/eio__Resource.cmt"
+  "_build/install/default/lib/eio/eio__Resource.cmti"
+  "_build/install/default/lib/eio/eio__Resource.cmx"
+  "_build/install/default/lib/eio/eio__Sem_state.cmi"
+  "_build/install/default/lib/eio/eio__Sem_state.cmt"
+  "_build/install/default/lib/eio/eio__Sem_state.cmx"
+  "_build/install/default/lib/eio/eio__Semaphore.cmi"
+  "_build/install/default/lib/eio/eio__Semaphore.cmt"
+  "_build/install/default/lib/eio/eio__Semaphore.cmti"
+  "_build/install/default/lib/eio/eio__Semaphore.cmx"
+  "_build/install/default/lib/eio/eio__Std.cmi"
+  "_build/install/default/lib/eio/eio__Std.cmt"
+  "_build/install/default/lib/eio/eio__Std.cmti"
+  "_build/install/default/lib/eio/eio__Std.cmx"
+  "_build/install/default/lib/eio/eio__Stream.cmi"
+  "_build/install/default/lib/eio/eio__Stream.cmt"
+  "_build/install/default/lib/eio/eio__Stream.cmti"
+  "_build/install/default/lib/eio/eio__Stream.cmx"
+  "_build/install/default/lib/eio/eio__Sync.cmi"
+  "_build/install/default/lib/eio/eio__Sync.cmt"
+  "_build/install/default/lib/eio/eio__Sync.cmti"
+  "_build/install/default/lib/eio/eio__Sync.cmx"
+  "_build/install/default/lib/eio/eio__Time.cmi"
+  "_build/install/default/lib/eio/eio__Time.cmt"
+  "_build/install/default/lib/eio/eio__Time.cmti"
+  "_build/install/default/lib/eio/eio__Time.cmx"
+  "_build/install/default/lib/eio/eio__Waiters.cmi"
+  "_build/install/default/lib/eio/eio__Waiters.cmt"
+  "_build/install/default/lib/eio/eio__Waiters.cmti"
+  "_build/install/default/lib/eio/eio__Waiters.cmx"
+  "_build/install/default/lib/eio/eio_mutex.ml"
+  "_build/install/default/lib/eio/eio_mutex.mli"
+  "_build/install/default/lib/eio/executor_pool.ml"
+  "_build/install/default/lib/eio/executor_pool.mli"
+  "_build/install/default/lib/eio/file.ml"
+  "_build/install/default/lib/eio/file.mli"
+  "_build/install/default/lib/eio/flow.ml"
+  "_build/install/default/lib/eio/flow.mli"
+  "_build/install/default/lib/eio/fs.ml"
+  "_build/install/default/lib/eio/hook.ml"
+  "_build/install/default/lib/eio/lazy.ml"
+  "_build/install/default/lib/eio/lazy.mli"
+  "_build/install/default/lib/eio/mock/action.ml" {"mock/action.ml"}
+  "_build/install/default/lib/eio/mock/backend.ml" {"mock/backend.ml"}
+  "_build/install/default/lib/eio/mock/backend.mli" {"mock/backend.mli"}
+  "_build/install/default/lib/eio/mock/clock.ml" {"mock/clock.ml"}
+  "_build/install/default/lib/eio/mock/clock.mli" {"mock/clock.mli"}
+  "_build/install/default/lib/eio/mock/domain_manager.ml"
+    {"mock/domain_manager.ml"}
+  "_build/install/default/lib/eio/mock/domain_manager.mli"
+    {"mock/domain_manager.mli"}
+  "_build/install/default/lib/eio/mock/eio_mock.a" {"mock/eio_mock.a"}
+  "_build/install/default/lib/eio/mock/eio_mock.cma" {"mock/eio_mock.cma"}
+  "_build/install/default/lib/eio/mock/eio_mock.cmi" {"mock/eio_mock.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock.cmt" {"mock/eio_mock.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock.cmti" {"mock/eio_mock.cmti"}
+  "_build/install/default/lib/eio/mock/eio_mock.cmx" {"mock/eio_mock.cmx"}
+  "_build/install/default/lib/eio/mock/eio_mock.cmxa" {"mock/eio_mock.cmxa"}
+  "_build/install/default/lib/eio/mock/eio_mock.ml" {"mock/eio_mock.ml"}
+  "_build/install/default/lib/eio/mock/eio_mock.mli" {"mock/eio_mock.mli"}
+  "_build/install/default/lib/eio/mock/eio_mock__.cmi"
+    {"mock/eio_mock__.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock__.cmt"
+    {"mock/eio_mock__.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock__.cmx"
+    {"mock/eio_mock__.cmx"}
+  "_build/install/default/lib/eio/mock/eio_mock__.ml" {"mock/eio_mock__.ml"}
+  "_build/install/default/lib/eio/mock/eio_mock__Action.cmi"
+    {"mock/eio_mock__Action.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock__Action.cmt"
+    {"mock/eio_mock__Action.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock__Action.cmx"
+    {"mock/eio_mock__Action.cmx"}
+  "_build/install/default/lib/eio/mock/eio_mock__Backend.cmi"
+    {"mock/eio_mock__Backend.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock__Backend.cmt"
+    {"mock/eio_mock__Backend.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock__Backend.cmti"
+    {"mock/eio_mock__Backend.cmti"}
+  "_build/install/default/lib/eio/mock/eio_mock__Backend.cmx"
+    {"mock/eio_mock__Backend.cmx"}
+  "_build/install/default/lib/eio/mock/eio_mock__Clock.cmi"
+    {"mock/eio_mock__Clock.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock__Clock.cmt"
+    {"mock/eio_mock__Clock.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock__Clock.cmti"
+    {"mock/eio_mock__Clock.cmti"}
+  "_build/install/default/lib/eio/mock/eio_mock__Clock.cmx"
+    {"mock/eio_mock__Clock.cmx"}
+  "_build/install/default/lib/eio/mock/eio_mock__Domain_manager.cmi"
+    {"mock/eio_mock__Domain_manager.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock__Domain_manager.cmt"
+    {"mock/eio_mock__Domain_manager.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock__Domain_manager.cmti"
+    {"mock/eio_mock__Domain_manager.cmti"}
+  "_build/install/default/lib/eio/mock/eio_mock__Domain_manager.cmx"
+    {"mock/eio_mock__Domain_manager.cmx"}
+  "_build/install/default/lib/eio/mock/eio_mock__Flow.cmi"
+    {"mock/eio_mock__Flow.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock__Flow.cmt"
+    {"mock/eio_mock__Flow.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock__Flow.cmx"
+    {"mock/eio_mock__Flow.cmx"}
+  "_build/install/default/lib/eio/mock/eio_mock__Handler.cmi"
+    {"mock/eio_mock__Handler.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock__Handler.cmt"
+    {"mock/eio_mock__Handler.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock__Handler.cmx"
+    {"mock/eio_mock__Handler.cmx"}
+  "_build/install/default/lib/eio/mock/eio_mock__Net.cmi"
+    {"mock/eio_mock__Net.cmi"}
+  "_build/install/default/lib/eio/mock/eio_mock__Net.cmt"
+    {"mock/eio_mock__Net.cmt"}
+  "_build/install/default/lib/eio/mock/eio_mock__Net.cmx"
+    {"mock/eio_mock__Net.cmx"}
+  "_build/install/default/lib/eio/mock/flow.ml" {"mock/flow.ml"}
+  "_build/install/default/lib/eio/mock/handler.ml" {"mock/handler.ml"}
+  "_build/install/default/lib/eio/mock/net.ml" {"mock/net.ml"}
+  "_build/install/default/lib/eio/net.ml"
+  "_build/install/default/lib/eio/net.mli"
+  "_build/install/default/lib/eio/opam"
+  "_build/install/default/lib/eio/path.ml"
+  "_build/install/default/lib/eio/path.mli"
+  "_build/install/default/lib/eio/pool.ml"
+  "_build/install/default/lib/eio/pool.mli"
+  "_build/install/default/lib/eio/process.ml"
+  "_build/install/default/lib/eio/process.mli"
+  "_build/install/default/lib/eio/resource.ml"
+  "_build/install/default/lib/eio/resource.mli"
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.a"
+    {"runtime_events/eio_runtime_events.a"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.cma"
+    {"runtime_events/eio_runtime_events.cma"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.cmi"
+    {"runtime_events/eio_runtime_events.cmi"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.cmt"
+    {"runtime_events/eio_runtime_events.cmt"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.cmti"
+    {"runtime_events/eio_runtime_events.cmti"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.cmx"
+    {"runtime_events/eio_runtime_events.cmx"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.cmxa"
+    {"runtime_events/eio_runtime_events.cmxa"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.ml"
+    {"runtime_events/eio_runtime_events.ml"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.mli"
+    {"runtime_events/eio_runtime_events.mli"}
+  "_build/install/default/lib/eio/sem_state.ml"
+  "_build/install/default/lib/eio/semaphore.ml"
+  "_build/install/default/lib/eio/semaphore.mli"
+  "_build/install/default/lib/eio/std.ml"
+  "_build/install/default/lib/eio/std.mli"
+  "_build/install/default/lib/eio/stream.ml"
+  "_build/install/default/lib/eio/stream.mli"
+  "_build/install/default/lib/eio/sync.ml"
+  "_build/install/default/lib/eio/sync.mli"
+  "_build/install/default/lib/eio/time.ml"
+  "_build/install/default/lib/eio/time.mli"
+  "_build/install/default/lib/eio/unix/cap.ml" {"unix/cap.ml"}
+  "_build/install/default/lib/eio/unix/cap.mli" {"unix/cap.mli"}
+  "_build/install/default/lib/eio/unix/eio_unix.a" {"unix/eio_unix.a"}
+  "_build/install/default/lib/eio/unix/eio_unix.cma" {"unix/eio_unix.cma"}
+  "_build/install/default/lib/eio/unix/eio_unix.cmi" {"unix/eio_unix.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix.cmt" {"unix/eio_unix.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix.cmti" {"unix/eio_unix.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix.cmx" {"unix/eio_unix.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix.cmxa" {"unix/eio_unix.cmxa"}
+  "_build/install/default/lib/eio/unix/eio_unix.ml" {"unix/eio_unix.ml"}
+  "_build/install/default/lib/eio/unix/eio_unix.mli" {"unix/eio_unix.mli"}
+  "_build/install/default/lib/eio/unix/eio_unix__.cmi"
+    {"unix/eio_unix__.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__.cmt"
+    {"unix/eio_unix__.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__.cmx"
+    {"unix/eio_unix__.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__.ml" {"unix/eio_unix__.ml"}
+  "_build/install/default/lib/eio/unix/eio_unix__Cap.cmi"
+    {"unix/eio_unix__Cap.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Cap.cmt"
+    {"unix/eio_unix__Cap.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Cap.cmti"
+    {"unix/eio_unix__Cap.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Cap.cmx"
+    {"unix/eio_unix__Cap.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Fd.cmi"
+    {"unix/eio_unix__Fd.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Fd.cmt"
+    {"unix/eio_unix__Fd.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Fd.cmti"
+    {"unix/eio_unix__Fd.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Fd.cmx"
+    {"unix/eio_unix__Fd.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Fork_action.cmi"
+    {"unix/eio_unix__Fork_action.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Fork_action.cmt"
+    {"unix/eio_unix__Fork_action.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Fork_action.cmti"
+    {"unix/eio_unix__Fork_action.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Fork_action.cmx"
+    {"unix/eio_unix__Fork_action.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Inherit_fds.cmi"
+    {"unix/eio_unix__Inherit_fds.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Inherit_fds.cmt"
+    {"unix/eio_unix__Inherit_fds.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Inherit_fds.cmti"
+    {"unix/eio_unix__Inherit_fds.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Inherit_fds.cmx"
+    {"unix/eio_unix__Inherit_fds.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Net.cmi"
+    {"unix/eio_unix__Net.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Net.cmt"
+    {"unix/eio_unix__Net.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Net.cmti"
+    {"unix/eio_unix__Net.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Net.cmx"
+    {"unix/eio_unix__Net.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Pi.cmi"
+    {"unix/eio_unix__Pi.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Pi.cmt"
+    {"unix/eio_unix__Pi.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Pi.cmti"
+    {"unix/eio_unix__Pi.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Pi.cmx"
+    {"unix/eio_unix__Pi.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Private.cmi"
+    {"unix/eio_unix__Private.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Private.cmt"
+    {"unix/eio_unix__Private.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Private.cmx"
+    {"unix/eio_unix__Private.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Process.cmi"
+    {"unix/eio_unix__Process.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Process.cmt"
+    {"unix/eio_unix__Process.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Process.cmti"
+    {"unix/eio_unix__Process.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Process.cmx"
+    {"unix/eio_unix__Process.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Rcfd.cmi"
+    {"unix/eio_unix__Rcfd.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Rcfd.cmt"
+    {"unix/eio_unix__Rcfd.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Rcfd.cmti"
+    {"unix/eio_unix__Rcfd.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Rcfd.cmx"
+    {"unix/eio_unix__Rcfd.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Resource.cmi"
+    {"unix/eio_unix__Resource.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Resource.cmt"
+    {"unix/eio_unix__Resource.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Resource.cmx"
+    {"unix/eio_unix__Resource.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Thread_pool.cmi"
+    {"unix/eio_unix__Thread_pool.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Thread_pool.cmt"
+    {"unix/eio_unix__Thread_pool.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Thread_pool.cmti"
+    {"unix/eio_unix__Thread_pool.cmti"}
+  "_build/install/default/lib/eio/unix/eio_unix__Thread_pool.cmx"
+    {"unix/eio_unix__Thread_pool.cmx"}
+  "_build/install/default/lib/eio/unix/eio_unix__Types.cmi"
+    {"unix/eio_unix__Types.cmi"}
+  "_build/install/default/lib/eio/unix/eio_unix__Types.cmt"
+    {"unix/eio_unix__Types.cmt"}
+  "_build/install/default/lib/eio/unix/eio_unix__Types.cmx"
+    {"unix/eio_unix__Types.cmx"}
+  "_build/install/default/lib/eio/unix/fd.ml" {"unix/fd.ml"}
+  "_build/install/default/lib/eio/unix/fd.mli" {"unix/fd.mli"}
+  "_build/install/default/lib/eio/unix/fork_action.ml"
+    {"unix/fork_action.ml"}
+  "_build/install/default/lib/eio/unix/fork_action.mli"
+    {"unix/fork_action.mli"}
+  "_build/install/default/lib/eio/unix/inherit_fds.ml"
+    {"unix/inherit_fds.ml"}
+  "_build/install/default/lib/eio/unix/inherit_fds.mli"
+    {"unix/inherit_fds.mli"}
+  "_build/install/default/lib/eio/unix/libeio_unix_stubs.a"
+    {"unix/libeio_unix_stubs.a"}
+  "_build/install/default/lib/eio/unix/net.ml" {"unix/net.ml"}
+  "_build/install/default/lib/eio/unix/net.mli" {"unix/net.mli"}
+  "_build/install/default/lib/eio/unix/pi.ml" {"unix/pi.ml"}
+  "_build/install/default/lib/eio/unix/pi.mli" {"unix/pi.mli"}
+  "_build/install/default/lib/eio/unix/private.ml" {"unix/private.ml"}
+  "_build/install/default/lib/eio/unix/process.ml" {"unix/process.ml"}
+  "_build/install/default/lib/eio/unix/process.mli" {"unix/process.mli"}
+  "_build/install/default/lib/eio/unix/rcfd.ml" {"unix/rcfd.ml"}
+  "_build/install/default/lib/eio/unix/rcfd.mli" {"unix/rcfd.mli"}
+  "_build/install/default/lib/eio/unix/resource.ml" {"unix/resource.ml"}
+  "_build/install/default/lib/eio/unix/thread_pool.ml"
+    {"unix/thread_pool.ml"}
+  "_build/install/default/lib/eio/unix/thread_pool.mli"
+    {"unix/thread_pool.mli"}
+  "_build/install/default/lib/eio/unix/types.ml" {"unix/types.ml"}
+  "_build/install/default/lib/eio/utils/eio_utils.a" {"utils/eio_utils.a"}
+  "_build/install/default/lib/eio/utils/eio_utils.cma"
+    {"utils/eio_utils.cma"}
+  "_build/install/default/lib/eio/utils/eio_utils.cmi"
+    {"utils/eio_utils.cmi"}
+  "_build/install/default/lib/eio/utils/eio_utils.cmt"
+    {"utils/eio_utils.cmt"}
+  "_build/install/default/lib/eio/utils/eio_utils.cmx"
+    {"utils/eio_utils.cmx"}
+  "_build/install/default/lib/eio/utils/eio_utils.cmxa"
+    {"utils/eio_utils.cmxa"}
+  "_build/install/default/lib/eio/utils/eio_utils.ml" {"utils/eio_utils.ml"}
+  "_build/install/default/lib/eio/utils/eio_utils__.cmi"
+    {"utils/eio_utils__.cmi"}
+  "_build/install/default/lib/eio/utils/eio_utils__.cmt"
+    {"utils/eio_utils__.cmt"}
+  "_build/install/default/lib/eio/utils/eio_utils__.cmx"
+    {"utils/eio_utils__.cmx"}
+  "_build/install/default/lib/eio/utils/eio_utils__.ml"
+    {"utils/eio_utils__.ml"}
+  "_build/install/default/lib/eio/utils/eio_utils__Lf_queue.cmi"
+    {"utils/eio_utils__Lf_queue.cmi"}
+  "_build/install/default/lib/eio/utils/eio_utils__Lf_queue.cmt"
+    {"utils/eio_utils__Lf_queue.cmt"}
+  "_build/install/default/lib/eio/utils/eio_utils__Lf_queue.cmti"
+    {"utils/eio_utils__Lf_queue.cmti"}
+  "_build/install/default/lib/eio/utils/eio_utils__Lf_queue.cmx"
+    {"utils/eio_utils__Lf_queue.cmx"}
+  "_build/install/default/lib/eio/utils/eio_utils__Suspended.cmi"
+    {"utils/eio_utils__Suspended.cmi"}
+  "_build/install/default/lib/eio/utils/eio_utils__Suspended.cmt"
+    {"utils/eio_utils__Suspended.cmt"}
+  "_build/install/default/lib/eio/utils/eio_utils__Suspended.cmx"
+    {"utils/eio_utils__Suspended.cmx"}
+  "_build/install/default/lib/eio/utils/eio_utils__Zzz.cmi"
+    {"utils/eio_utils__Zzz.cmi"}
+  "_build/install/default/lib/eio/utils/eio_utils__Zzz.cmt"
+    {"utils/eio_utils__Zzz.cmt"}
+  "_build/install/default/lib/eio/utils/eio_utils__Zzz.cmti"
+    {"utils/eio_utils__Zzz.cmti"}
+  "_build/install/default/lib/eio/utils/eio_utils__Zzz.cmx"
+    {"utils/eio_utils__Zzz.cmx"}
+  "_build/install/default/lib/eio/utils/lf_queue.ml" {"utils/lf_queue.ml"}
+  "_build/install/default/lib/eio/utils/lf_queue.mli" {"utils/lf_queue.mli"}
+  "_build/install/default/lib/eio/utils/suspended.ml" {"utils/suspended.ml"}
+  "_build/install/default/lib/eio/utils/zzz.ml" {"utils/zzz.ml"}
+  "_build/install/default/lib/eio/utils/zzz.mli" {"utils/zzz.mli"}
+  "_build/install/default/lib/eio/waiters.ml"
+  "_build/install/default/lib/eio/waiters.mli"
+]
+stublibs: "_build/install/default/lib/stublibs/dlleio_unix_stubs.so"
+doc: [
+  "_build/install/default/doc/eio/CHANGES.md"
+  "_build/install/default/doc/eio/LICENSE.md"
+  "_build/install/default/doc/eio/README.md"
+]
+libexec: [
+  "_build/install/default/lib/eio/core/eio__core.cmxs"
+    {"core/eio__core.cmxs"}
+  "_build/install/default/lib/eio/eio.cmxs"
+  "_build/install/default/lib/eio/mock/eio_mock.cmxs" {"mock/eio_mock.cmxs"}
+  "_build/install/default/lib/eio/runtime_events/eio_runtime_events.cmxs"
+    {"runtime_events/eio_runtime_events.cmxs"}
+  "_build/install/default/lib/eio/unix/eio_unix.cmxs" {"unix/eio_unix.cmxs"}
+  "_build/install/default/lib/eio/utils/eio_utils.cmxs"
+    {"utils/eio_utils.cmxs"}
+]

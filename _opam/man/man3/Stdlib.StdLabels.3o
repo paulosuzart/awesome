@@ -1,0 +1,42 @@
+.TH "Stdlib.StdLabels" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.StdLabels \- no description
+.SH Module
+Module   Stdlib.StdLabels
+.SH Documentation
+.sp
+Module
+.BI "StdLabels"
+ : 
+.B (module Stdlib__StdLabels)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module Array : 
+.B (module ArrayLabels)
+
+.sp
+
+.sp
+.I module Bytes : 
+.B (module BytesLabels)
+
+.sp
+
+.sp
+.I module List : 
+.B (module ListLabels)
+
+.sp
+
+.sp
+.I module String : 
+.B (module StringLabels)
+
+.sp
+
+.sp

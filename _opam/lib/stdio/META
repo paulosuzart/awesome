@@ -1,0 +1,7 @@
+version = "v0.16.0"
+description = ""
+requires = "base"
+archive(byte) = "stdio.cma"
+archive(native) = "stdio.cmxa"
+plugin(byte) = "stdio.cma"
+plugin(native) = "stdio.cmxs"

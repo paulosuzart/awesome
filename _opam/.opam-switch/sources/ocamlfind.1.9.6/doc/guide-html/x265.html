@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Multi-threaded applications</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="A new frontend for ocamlc"
+HREF="c192.html"><LINK
+REL="PREVIOUS"
+TITLE="Toploops and runtime systems"
+HREF="x231.html"><LINK
+REL="NEXT"
+TITLE="Support for gprof-enabled modules"
+HREF="x274.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x231.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. A new frontend for ocamlc</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x274.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN265"
+>Multi-threaded applications</A
+></H1
+><P
+>If an already existing package is planned to be used in a
+multi-threaded environment, some language constructs must be replaced
+by different ones. For example, global variables must be protected by
+locks (mutexes). Because of
+this it is common practice to provide two versions of such packages,
+one for single-, one for multi-threaded applications (or, another
+technique, there is a special add-on module that initializes a 
+library for multi-threaded usage).</P
+><P
+>The predicate "mt" should be used to recognize multi-threaded
+applications. For example, a package could consist of two archives,
+p.cma, and p_mt.cma, where the latter archive is designed for
+multi-threaded execution. The META file would contain the following
+lines causing that always the appropriate archive is linked:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>archive(byte) = "p.cma"
+archive(byte,mt) = "p_mt.cma"</PRE
+><P
+>When querying the package database the option "-predicates mt" must be
+included in the commands in order to select the appropriate entries.</P
+><P
+>When compiling or linking it is necessary to specify either the
+"-thread" or the "-vmthread" option anyway. The compiler frontends
+detects these options, and automatically set the "mt"
+predicate. The following command is an example for this; note that the
+"threads" package means the standard library of Ocaml providing thread
+support:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -thread -package threads,p,q -c x.ml</PRE
+><P
+>For some operating systems, Ocaml supports the native multithreading
+libraries conforming to the POSIX interface. As the linker options are
+generally different, another predicate must be set to get these
+libraries linked in. The predicate "mt_posix" indicates POSIX
+threads while "mt_vm" indicates bytecode (virtual machine) threads.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x231.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x274.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Toploops and runtime systems</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c192.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Support for gprof-enabled modules</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

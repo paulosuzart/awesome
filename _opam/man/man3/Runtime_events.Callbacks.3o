@@ -1,0 +1,113 @@
+.TH "Runtime_events.Callbacks" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Runtime_events.Callbacks \- no description
+.SH Module
+Module   Runtime_events.Callbacks
+.SH Documentation
+.sp
+Module
+.BI "Callbacks"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+Type of callbacks
+
+.sp
+
+.I val create 
+: 
+.B ?runtime_begin:(int ->
+.B                   Runtime_events.Timestamp.t ->
+.B                   Runtime_events.runtime_phase -> unit) ->
+.B   ?runtime_end:(int ->
+.B                 Runtime_events.Timestamp.t ->
+.B                 Runtime_events.runtime_phase -> unit) ->
+.B   ?runtime_counter:(int ->
+.B                     Runtime_events.Timestamp.t ->
+.B                     Runtime_events.runtime_counter -> int -> unit) ->
+.B   ?alloc:(int -> Runtime_events.Timestamp.t -> int array -> unit) ->
+.B   ?lifecycle:(int ->
+.B               Runtime_events.Timestamp.t ->
+.B               Runtime_events.lifecycle -> int option -> unit) ->
+.B   ?lost_events:(int -> int -> unit) -> unit -> t
+.sp
+Create a 
+.ft B
+Callback
+.ft R
+that optionally subscribes to one or more runtime
+events\&. The first int supplied to callbacks is the ring buffer index\&.
+Each domain owns a single ring buffer for the duration of the domain\&'s
+existence\&. After a domain terminates, a newly spawned domain may take
+ownership of the ring buffer\&. A 
+.ft B
+runtime_begin
+.ft R
+callback is called when
+the runtime enters a new phase (e\&.g a runtime_begin with EV_MINOR is
+called at the start of a minor GC)\&. A 
+.ft B
+runtime_end
+.ft R
+callback is called
+when the runtime leaves a certain phase\&. The 
+.ft B
+runtime_counter
+.ft R
+callback
+is called when a counter is emitted by the runtime\&. 
+.ft B
+lifecycle
+.ft R
+callbacks
+are called when the ring undergoes a change in lifecycle and a consumer
+may need to respond\&. 
+.ft B
+alloc
+.ft R
+callbacks are currently only called on the
+instrumented runtime\&. 
+.ft B
+lost_events
+.ft R
+callbacks are called if the consumer
+code detects some unconsumed events have been overwritten\&.
+
+.sp
+
+.I val add_user_event 
+: 
+.B 'a Runtime_events.Type.t ->
+.B   (int -> Runtime_events.Timestamp.t -> 'a Runtime_events.User.t -> 'a -> unit) ->
+.B   t -> t
+.sp
+
+.ft B
+add_user_event ty callback t
+.ft R
+extends 
+.ft B
+t
+.ft R
+to additionally subscribe to
+user events of type 
+.ft B
+ty
+.ft R
+\&. When such an event happens, 
+.ft B
+callback
+.ft R
+is called
+with the corresponding event and payload\&.
+
+.sp

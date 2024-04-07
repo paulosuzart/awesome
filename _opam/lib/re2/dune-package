@@ -1,0 +1,166 @@
+(lang dune 3.15)
+(name re2)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/re2) (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   c/libre2_c_stubs.a
+   c/re2_c.a
+   c/re2_c.cma
+   c/re2_c.cmi
+   c/re2_c.cmt
+   c/re2_c.cmx
+   c/re2_c.cmxa
+   c/re2_c.ml
+   dune-package
+   explicit_dependencies_unignored.ml
+   explicit_dependencies_unignored.mli
+   libre2_stubs.a
+   opam
+   options.ml
+   options.mli
+   parser.ml
+   parser.mli
+   parser_intf.ml
+   re2.a
+   re2.cma
+   re2.cmi
+   re2.cmt
+   re2.cmx
+   re2.cmxa
+   re2.ml
+   re2__.cmi
+   re2__.cmt
+   re2__.cmx
+   re2__.ml
+   re2__Explicit_dependencies_unignored.cmi
+   re2__Explicit_dependencies_unignored.cmt
+   re2__Explicit_dependencies_unignored.cmti
+   re2__Explicit_dependencies_unignored.cmx
+   re2__Options.cmi
+   re2__Options.cmt
+   re2__Options.cmti
+   re2__Options.cmx
+   re2__Parser.cmi
+   re2__Parser.cmt
+   re2__Parser.cmti
+   re2__Parser.cmx
+   re2__Parser_intf.cmi
+   re2__Parser_intf.cmt
+   re2__Parser_intf.cmx
+   re2__Regex.cmi
+   re2__Regex.cmt
+   re2__Regex.cmti
+   re2__Regex.cmx
+   re2__Regex_intf.cmi
+   re2__Regex_intf.cmt
+   re2__Regex_intf.cmx
+   regex.ml
+   regex.mli
+   regex_intf.ml))
+ (libexec (c/re2_c.cmxs re2.cmxs))
+ (doc (CHANGES.md LICENSE.md README.txt))
+ (stublibs (dllre2_c_stubs.so dllre2_stubs.so)))
+(library
+ (name re2)
+ (kind normal)
+ (archives (byte re2.cma) (native re2.cmxa))
+ (plugins (byte re2.cma) (native re2.cmxs))
+ (foreign_objects stubs.o)
+ (foreign_archives (archives (for all) (files libre2_stubs.a)))
+ (foreign_dll_files ../stublibs/dllre2_stubs.so)
+ (native_archives re2.a)
+ (requires
+  core
+  re2.c
+  regex_parser_intf
+  jane_rope
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib
+  ppx_here.runtime-lib
+  ppx_assert.runtime-lib
+  ppx_bench.runtime-lib
+  bin_prot
+  fieldslib
+  ppx_inline_test.config
+  ppx_inline_test.runtime-lib
+  ppx_module_timer.runtime
+  ppx_stable_witness.runtime
+  typerep
+  variantslib
+  ppx_expect.collector
+  ppx_expect.config
+  ppx_log.types
+  base_quickcheck.ppx_quickcheck.runtime
+  base_quickcheck)
+ (main_module_name Re2)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name re2__)
+     (visibility public)
+     (kind alias)
+     (source (path Re2__) (impl (path re2__.ml-gen))))
+    (name Re2)
+    (modules
+     (module
+      (obj_name re2__Explicit_dependencies_unignored)
+      (visibility public)
+      (source
+       (path Explicit_dependencies_unignored)
+       (intf (path explicit_dependencies_unignored.mli))
+       (impl (path explicit_dependencies_unignored.ml))))
+     (module
+      (obj_name re2__Options)
+      (visibility public)
+      (source
+       (path Options)
+       (intf (path options.mli))
+       (impl (path options.ml))))
+     (module
+      (obj_name re2__Parser)
+      (visibility public)
+      (source (path Parser) (intf (path parser.mli)) (impl (path parser.ml))))
+     (module
+      (obj_name re2__Parser_intf)
+      (visibility public)
+      (source (path Parser_intf) (impl (path parser_intf.ml))))
+     (module
+      (obj_name re2)
+      (visibility public)
+      (source (path Re2) (impl (path re2.ml))))
+     (module
+      (obj_name re2__Regex)
+      (visibility public)
+      (source (path Regex) (intf (path regex.mli)) (impl (path regex.ml))))
+     (module
+      (obj_name re2__Regex_intf)
+      (visibility public)
+      (source (path Regex_intf) (impl (path regex_intf.ml))))))
+   (wrapped true))))
+(library
+ (name re2.c)
+ (kind normal)
+ (archives (byte c/re2_c.cma) (native c/re2_c.cmxa))
+ (plugins (byte c/re2_c.cma) (native c/re2_c.cmxs))
+ (foreign_archives (archives (for all) (files c/libre2_c_stubs.a)))
+ (foreign_dll_files ../stublibs/dllre2_c_stubs.so)
+ (native_archives c/re2_c.a)
+ (main_module_name Re2_c)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name re2_c)
+     (visibility public)
+     (kind alias)
+     (source (path Re2_c) (impl (path c/re2_c.ml-gen))))
+    (name Re2_c))
+   (wrapped true))))

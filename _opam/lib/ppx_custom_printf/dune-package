@@ -1,0 +1,67 @@
+(lang dune 3.15)
+(name ppx_custom_printf)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_custom_printf))
+(files
+ (lib
+  (META
+   dune-package
+   format_lifter.ml
+   opam
+   ppx_custom_printf.a
+   ppx_custom_printf.cma
+   ppx_custom_printf.cmi
+   ppx_custom_printf.cmt
+   ppx_custom_printf.cmti
+   ppx_custom_printf.cmx
+   ppx_custom_printf.cmxa
+   ppx_custom_printf.ml
+   ppx_custom_printf.mli
+   ppx_custom_printf__.cmi
+   ppx_custom_printf__.cmt
+   ppx_custom_printf__.cmx
+   ppx_custom_printf__.ml
+   ppx_custom_printf__Format_lifter.cmi
+   ppx_custom_printf__Format_lifter.cmt
+   ppx_custom_printf__Format_lifter.cmx))
+ (libexec (ppx.exe ppx_custom_printf.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_custom_printf)
+ (kind ppx_rewriter)
+ (archives (byte ppx_custom_printf.cma) (native ppx_custom_printf.cmxa))
+ (plugins (byte ppx_custom_printf.cma) (native ppx_custom_printf.cmxs))
+ (native_archives ppx_custom_printf.a)
+ (requires
+  compiler-libs.common
+  base
+  ppxlib.ast
+  ppxlib
+  ppx_sexp_conv.expander
+  ppxlib.metaquot_lifters)
+ (main_module_name Ppx_custom_printf)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_custom_printf__)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppx_custom_printf__)
+      (impl (path ppx_custom_printf__.ml-gen))))
+    (name Ppx_custom_printf)
+    (modules
+     (module
+      (obj_name ppx_custom_printf__Format_lifter)
+      (visibility public)
+      (source (path Format_lifter) (impl (path format_lifter.ml))))
+     (module
+      (obj_name ppx_custom_printf)
+      (visibility public)
+      (source
+       (path Ppx_custom_printf)
+       (intf (path ppx_custom_printf.mli))
+       (impl (path ppx_custom_printf.ml))))))
+   (wrapped true))))

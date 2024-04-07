@@ -1,0 +1,57 @@
+.TH "Stdlib.Oo" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Oo \- no description
+.SH Module
+Module   Stdlib.Oo
+.SH Documentation
+.sp
+Module
+.BI "Oo"
+ : 
+.B (module Stdlib__Oo)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val copy 
+: 
+.B (< .. > as 'a) -> 'a
+.sp
+
+.ft B
+Oo\&.copy o
+.ft R
+returns a copy of object 
+.ft B
+o
+.ft R
+, that is a fresh
+object with the same methods and instance variables as 
+.ft B
+o
+.ft R
+\&.
+
+.sp
+.B Alert unsynchronized_access.
+Unsynchronized accesses to mutable objects are a programming error.
+
+.sp
+
+.I val id 
+: 
+.B < .. > -> int
+.sp
+Return an integer identifying this object, unique for
+the current execution of the program\&. The generic comparison
+and hashing functions are based on this integer\&. When an object
+is obtained by unmarshaling, the id is refreshed, and thus
+different from the original object\&. As a consequence, the internal
+invariants of data structures such as hash table or sets containing
+objects are broken after unmarshaling the data structures\&.
+
+.sp

@@ -1,0 +1,52 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_sexp_message" {"D"}
+  "doc/ppx_sexp_message/CHANGES.md" {"F:bde4480c9d9cacd628f780447f9fd008"}
+  "doc/ppx_sexp_message/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_sexp_message/README.md" {"F:27fea91f8b2a8de4353da6eebc01c9e7"}
+  "lib/ppx_sexp_message" {"D"}
+  "lib/ppx_sexp_message/META" {"F:52828d98dc7625dfda99c00f89e6b66a"}
+  "lib/ppx_sexp_message/dune-package" {"F:f7a4a51d765e50a99893245e0e3b2f74"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.a"
+    {"F:a0c77afd69afcbfd68cd3b01ae70395e"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cma"
+    {"F:cecf2e9d9ebba01899290ca885a3f1a6"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmi"
+    {"F:85dfce2e8f8e979b5705dd3c3595ea3d"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmt"
+    {"F:9883182e6de74024278dd46960bdb5c6"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmti"
+    {"F:fc306a3650c4f9f53013406f8b1b4052"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmx"
+    {"F:a74626c9417a4589583e20e7b6cec9fa"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmxa"
+    {"F:5b7a9384c8ff4962183e3f7e61bc0213"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.cmxs"
+    {"F:f4b994e2c7014f3068f838b89187119e"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.ml"
+    {"F:b1227ffb9963bbd36f56c5c5e5581294"}
+  "lib/ppx_sexp_message/expander/ppx_sexp_message_expander.mli"
+    {"F:c273b6140a812812cdb4f6c3e15575a8"}
+  "lib/ppx_sexp_message/opam" {"F:803b298662183e0c43df93b0732e97cd"}
+  "lib/ppx_sexp_message/ppx.exe" {"F:0232d596e72f42910c372f8b48483bca"}
+  "lib/ppx_sexp_message/ppx_sexp_message.a"
+    {"F:f8face777f0a3e68ea1b448323b7724b"}
+  "lib/ppx_sexp_message/ppx_sexp_message.cma"
+    {"F:8f7a1e766598db642d0929fc4b4e270c"}
+  "lib/ppx_sexp_message/ppx_sexp_message.cmi"
+    {"F:82fa85678876f41f99b19c489ca1662f"}
+  "lib/ppx_sexp_message/ppx_sexp_message.cmt"
+    {"F:fad94732e150e03f5ae0f99f15861cba"}
+  "lib/ppx_sexp_message/ppx_sexp_message.cmti"
+    {"F:0d5a55748646028577c4cbb8c61d1a68"}
+  "lib/ppx_sexp_message/ppx_sexp_message.cmx"
+    {"F:24bf9fb473506aedf6ec010d2a2d07ce"}
+  "lib/ppx_sexp_message/ppx_sexp_message.cmxa"
+    {"F:4311a5ed9f8159d49fcab7bcead78705"}
+  "lib/ppx_sexp_message/ppx_sexp_message.cmxs"
+    {"F:86a34fca2307c80f068cd013fc520034"}
+  "lib/ppx_sexp_message/ppx_sexp_message.ml"
+    {"F:bc2aa5f723f9f7570284b08b27ccb2f3"}
+  "lib/ppx_sexp_message/ppx_sexp_message.mli"
+    {"F:d41d8cd98f00b204e9800998ecf8427e"}
+]

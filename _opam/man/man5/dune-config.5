@@ -1,0 +1,63 @@
+.\" Pipe this output to groff -m man -K utf8 -T utf8 | less -R
+.\"
+.mso an.tmac
+.TH "dune-config" 5 "" "Dune" "Dune manual"
+.\" Disable hyphenation and ragged-right
+.nh
+.ad l
+.SH NAME
+.P
+dune\N'45'config \N'45' configuring the dune build system
+.SH SYNOPSIS
+.P
+.nf
+~/\N'46'config/dune/config
+.fi
+.SH DESCRIPTION
+.P
+Unless \fB\N'45'\N'45'no\N'45'config\fR or \fB\N'45'p\fR is passed, Dune will read a configuration file from the user home directory\N'46' This file is used to control various aspects of the behavior of Dune\N'46'
+.P
+The configuration file is normally \fB~/\N'46'config/dune/config\fR on Unix systems and \fBLocal Settings/dune/config\fR in the User home directory on Windows\N'46' However, it is possible to specify an alternative configuration file with the \fB\N'45'\N'45'config\N'45'file\fR option\N'46'
+.P
+The first line of the file must be of the form (lang dune X\N'46'Y) where X\N'46'Y is the version of the dune language used in the file\N'46'
+.P
+The rest of the file must be written in S\N'45'expression syntax and be composed of a list of stanzas\N'46' The following sections describe the stanzas available\N'46'
+.SH CACHING
+.P
+Syntax: \fB(cache ENABLED)\fR
+.P
+ This stanza determines whether dune\N'39's build caching is enabled\N'46' See https://dune\N'46'readthedocs\N'46'io/en/stable/caching\N'46'html for details\N'46' Valid values for \fB ENABLED\fR are \fB enabled\fR or \fB disabled\fR\N'46'
+.SH DISPLAY MODES
+.P
+Syntax: \fB(display MODE)\fR
+.P
+This stanza controls how Dune reports what it is doing to the user\N'46' This parameter can also be set from the command line via \fB\N'45'\N'45'display MODE\fR\N'46' The following display modes are available:
+.TP 4
+\fBprogress\fR
+This is the default, Dune shows and update a status line as build goals are being completed\N'46'
+.TP 4
+\fBquiet\fR
+Only display errors\N'46'
+.TP 4
+\fBshort\fR
+Print one line per command being executed, with the binary name on the left and the reason it is being executed for on the right\N'46'
+.TP 4
+\fBverbose\fR
+Print the full command lines of programs being executed by Dune, with some colors to help differentiate programs\N'46'
+.P
+Note that when the selected display mode is \fBprogress\fR and the output is not a terminal then the \fBquiet\fR mode is selected instead\N'46' This rule doesn\N'39't apply when running Dune inside Emacs\N'46' Dune detects whether it is executed from inside Emacs or not by looking at the environment variable \fBINSIDE_EMACS\fR that is set by Emacs\N'46' If you want the same behavior with another editor, you can set this variable\N'46' If your editor already sets another variable, please open a ticket on the ocaml/dune GitHub project so that we can add support for it\N'46'
+.SH JOBS
+.P
+Syntax: \fB(jobs NUMBER)\fR
+.P
+Set the maximum number of jobs Dune might run in parallel\N'46' This can also be set from the command line via \fB\N'45'j NUMBER\fR\N'46'
+.P
+The default for this value is the number of processors\N'46'
+.SH SANDBOXING
+.P
+Syntax: \fB(sandboxing_preference MODE \N'46'\N'46'\N'46')\fR
+.P
+Controls the sandboxing mode preference order used by dune\N'46' Dune will use the earliest item from this list that\N'39's allowed by the action dependency specification, or fall back on the hard\N'45'coded default\N'46' See \fBman dune\N'45'build\fR for the description of individual modes\N'46'
+.SH BUGS
+.P
+Check bug reports at https://github\N'46'com/ocaml/dune/issues

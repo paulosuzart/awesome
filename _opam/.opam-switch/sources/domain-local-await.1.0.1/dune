@@ -1,0 +1,5 @@
+(mdx
+ (package domain-local-await)
+ (deps
+  (package domain-local-await))
+ (files README.md))

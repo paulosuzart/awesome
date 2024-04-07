@@ -1,0 +1,96 @@
+(lang dune 3.15)
+(name ppx_bench)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_bench))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_bench.a
+   ppx_bench.cma
+   ppx_bench.cmi
+   ppx_bench.cmt
+   ppx_bench.cmti
+   ppx_bench.cmx
+   ppx_bench.cmxa
+   ppx_bench.ml
+   ppx_bench.mli
+   runtime-lib/benchmark_accumulator.ml
+   runtime-lib/benchmark_accumulator.mli
+   runtime-lib/export.ml
+   runtime-lib/export.mli
+   runtime-lib/ppx_bench_lib.a
+   runtime-lib/ppx_bench_lib.cma
+   runtime-lib/ppx_bench_lib.cmi
+   runtime-lib/ppx_bench_lib.cmt
+   runtime-lib/ppx_bench_lib.cmx
+   runtime-lib/ppx_bench_lib.cmxa
+   runtime-lib/ppx_bench_lib.ml
+   runtime-lib/ppx_bench_lib__Benchmark_accumulator.cmi
+   runtime-lib/ppx_bench_lib__Benchmark_accumulator.cmt
+   runtime-lib/ppx_bench_lib__Benchmark_accumulator.cmti
+   runtime-lib/ppx_bench_lib__Benchmark_accumulator.cmx
+   runtime-lib/ppx_bench_lib__Export.cmi
+   runtime-lib/ppx_bench_lib__Export.cmt
+   runtime-lib/ppx_bench_lib__Export.cmti
+   runtime-lib/ppx_bench_lib__Export.cmx))
+ (libexec (ppx.exe ppx_bench.cmxs runtime-lib/ppx_bench_lib.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_bench)
+ (kind ppx_rewriter)
+ (archives (byte ppx_bench.cma) (native ppx_bench.cmxa))
+ (plugins (byte ppx_bench.cma) (native ppx_bench.cmxs))
+ (native_archives ppx_bench.a)
+ (requires ppxlib.ast ppxlib ppx_inline_test.libname)
+ (ppx_runtime_deps ppx_bench.runtime-lib)
+ (main_module_name Ppx_bench)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_bench)
+   (visibility public)
+   (source
+    (path Ppx_bench)
+    (intf (path ppx_bench.mli))
+    (impl (path ppx_bench.ml))))))
+(library
+ (name ppx_bench.runtime-lib)
+ (kind normal)
+ (archives
+  (byte runtime-lib/ppx_bench_lib.cma)
+  (native runtime-lib/ppx_bench_lib.cmxa))
+ (plugins
+  (byte runtime-lib/ppx_bench_lib.cma)
+  (native runtime-lib/ppx_bench_lib.cmxs))
+ (native_archives runtime-lib/ppx_bench_lib.a)
+ (main_module_name Ppx_bench_lib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_bench_lib)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppx_bench_lib)
+      (impl (path runtime-lib/ppx_bench_lib.ml-gen))))
+    (name Ppx_bench_lib)
+    (modules
+     (module
+      (obj_name ppx_bench_lib__Benchmark_accumulator)
+      (visibility public)
+      (source
+       (path Benchmark_accumulator)
+       (intf (path runtime-lib/benchmark_accumulator.mli))
+       (impl (path runtime-lib/benchmark_accumulator.ml))))
+     (module
+      (obj_name ppx_bench_lib__Export)
+      (visibility public)
+      (source
+       (path Export)
+       (intf (path runtime-lib/export.mli))
+       (impl (path runtime-lib/export.ml))))))
+   (wrapped true))))

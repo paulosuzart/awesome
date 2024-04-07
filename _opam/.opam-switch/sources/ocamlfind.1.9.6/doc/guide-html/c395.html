@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>How to create your own packages</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="User's Guide"
+HREF="p35.html"><LINK
+REL="PREVIOUS"
+TITLE="Lint"
+HREF="x388.html"><LINK
+REL="NEXT"
+TITLE="Change your Makefile"
+HREF="x403.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x388.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x403.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN395"
+></A
+>Chapter 6. How to create your own packages</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="c395.html#AEN397"
+>Installing and removing packages</A
+></DT
+><DT
+><A
+HREF="x403.html"
+>Change your Makefile</A
+></DT
+><DT
+><A
+HREF="x421.html"
+>Using the Makefile wizard</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN397"
+>Installing and removing packages</A
+></H1
+><P
+>The ocamlfind command can install and remove packages. For example,
+to install a package p containing the files META, m1.cmi, m2.cmi, p.cma,
+run
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind install p META m1.cmi m2.cmi p.cma</PRE
+>
+
+This installs the files into the default location for new packages
+(set in ocamlfind.conf). If you have files that are not always built,
+add these after the -optional switch:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind install p META m1.cmi m2.cmi p.cma -optional p.cmxa p.cmxs</PRE
+>
+
+To remove the package, run
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind remove p</PRE
+>
+
+Note that every package must have a META file, it is not possible to
+omit it.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x388.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x403.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Lint</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p35.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Change your Makefile</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

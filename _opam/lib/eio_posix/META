@@ -1,0 +1,7 @@
+version = "v1.0"
+description = ""
+requires = "eio eio.unix eio.utils fmt iomux"
+archive(byte) = "eio_posix.cma"
+archive(native) = "eio_posix.cmxa"
+plugin(byte) = "eio_posix.cma"
+plugin(native) = "eio_posix.cmxs"

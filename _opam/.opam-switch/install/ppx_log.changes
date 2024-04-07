@@ -1,0 +1,56 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_log" {"D"}
+  "doc/ppx_log/LICENSE.md" {"F:96403f2890fe417564002c251138fbe8"}
+  "doc/ppx_log/README.md" {"F:c63286203b87ace4739c01615d75c03a"}
+  "lib/ppx_log" {"D"}
+  "lib/ppx_log/META" {"F:dc4d2579659c00e52682a0fdd4d93f96"}
+  "lib/ppx_log/dune-package" {"F:781acfc4126cd1173105d4b8edd1522f"}
+  "lib/ppx_log/kernel/ppx.exe" {"F:bfefb4e596d3af0b10eca8fca4df6c2e"}
+  "lib/ppx_log/kernel/ppx_log_kernel.a"
+    {"F:4278746917910792f00bf080f4929338"}
+  "lib/ppx_log/kernel/ppx_log_kernel.cma"
+    {"F:df8dc043b133e283ae0da609862353fc"}
+  "lib/ppx_log/kernel/ppx_log_kernel.cmi"
+    {"F:682dab44d2e5a72fd6b12d0d3e2a9f25"}
+  "lib/ppx_log/kernel/ppx_log_kernel.cmt"
+    {"F:0887441081eef8959ea5d4d10956901b"}
+  "lib/ppx_log/kernel/ppx_log_kernel.cmti"
+    {"F:17b539d23989114cc58a98db9b6a35f5"}
+  "lib/ppx_log/kernel/ppx_log_kernel.cmx"
+    {"F:d73168ec869f837c62cc03a66933ea61"}
+  "lib/ppx_log/kernel/ppx_log_kernel.cmxa"
+    {"F:5f55a8bb514a7064fed90562d372d2a0"}
+  "lib/ppx_log/kernel/ppx_log_kernel.cmxs"
+    {"F:dd591be28088988823e5a56bad0a3baa"}
+  "lib/ppx_log/kernel/ppx_log_kernel.ml"
+    {"F:046fc3fa98c09d5276e9413a6535057a"}
+  "lib/ppx_log/kernel/ppx_log_kernel.mli"
+    {"F:067b8b030beecc60423f7a7ab38606a3"}
+  "lib/ppx_log/opam" {"F:e905a208434f6b2fd6bbf2f4f5c80187"}
+  "lib/ppx_log/ppx.exe" {"F:289e45b351543fc76be317ef3d0f0d22"}
+  "lib/ppx_log/ppx_log.a" {"F:208f1920b4687455032b53cea0ad7153"}
+  "lib/ppx_log/ppx_log.cma" {"F:7364b8585c084c866652dc2b1b37c9bc"}
+  "lib/ppx_log/ppx_log.cmi" {"F:41c68e601fd336a7f0e8202ab38061f6"}
+  "lib/ppx_log/ppx_log.cmt" {"F:4bd0a157cbc06fc1c19006806afd9e74"}
+  "lib/ppx_log/ppx_log.cmti" {"F:dbb3ab94a5f0af3bab7abe56da9bf3b6"}
+  "lib/ppx_log/ppx_log.cmx" {"F:3a2f478686b27ed3b74e5057dfbc0f47"}
+  "lib/ppx_log/ppx_log.cmxa" {"F:4d3989cdccde10beda37daef8e37c905"}
+  "lib/ppx_log/ppx_log.cmxs" {"F:6e9ce2aa2201a6e1015ba6fa6e7bc28d"}
+  "lib/ppx_log/ppx_log.ml" {"F:e1ea58ad1d0bb1d7facc69762efb2de3"}
+  "lib/ppx_log/ppx_log.mli" {"F:067b8b030beecc60423f7a7ab38606a3"}
+  "lib/ppx_log/types/ppx_log_types.a" {"F:d77cd38d4194469c0eee6638c08d6150"}
+  "lib/ppx_log/types/ppx_log_types.cma"
+    {"F:a1a227f3232fdb573af0eb2455974b9e"}
+  "lib/ppx_log/types/ppx_log_types.cmi"
+    {"F:4d5279a265654389b0dbda5f7cb02510"}
+  "lib/ppx_log/types/ppx_log_types.cmt"
+    {"F:cfc1bccfbb88b8fce224b94bc45b5a3d"}
+  "lib/ppx_log/types/ppx_log_types.cmx"
+    {"F:d8e83ebe63a3dcc90890696159b1fa6f"}
+  "lib/ppx_log/types/ppx_log_types.cmxa"
+    {"F:0f0ae1319a9f1a39bf822f35271a7f99"}
+  "lib/ppx_log/types/ppx_log_types.cmxs"
+    {"F:9465751b2df180263bf1e236274b7b02"}
+  "lib/ppx_log/types/ppx_log_types.ml" {"F:ca644e71d5d7b65e9f172842c276ab57"}
+]

@@ -1,0 +1,2 @@
+(library (name ppx_let_test) (libraries core ppx_let_expander)
+ (preprocess (pps ppx_jane ppxlib.metaquot)))

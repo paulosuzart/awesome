@@ -1,0 +1,33 @@
+(lang dune 3.15)
+(name csexp)
+(version 1.5.2)
+(sections (lib .) (libexec .) (doc ../../doc/csexp))
+(files
+ (lib
+  (META
+   csexp.a
+   csexp.cma
+   csexp.cmi
+   csexp.cmt
+   csexp.cmti
+   csexp.cmx
+   csexp.cmxa
+   csexp.ml
+   csexp.mli
+   dune-package
+   opam))
+ (libexec (csexp.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name csexp)
+ (kind normal)
+ (archives (byte csexp.cma) (native csexp.cmxa))
+ (plugins (byte csexp.cma) (native csexp.cmxs))
+ (native_archives csexp.a)
+ (main_module_name Csexp)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name csexp)
+   (visibility public)
+   (source (path Csexp) (intf (path csexp.mli)) (impl (path csexp.ml))))))

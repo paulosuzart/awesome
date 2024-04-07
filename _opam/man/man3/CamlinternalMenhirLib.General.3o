@@ -1,0 +1,81 @@
+.TH "CamlinternalMenhirLib.General" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.General \- no description
+.SH Module
+Module   CamlinternalMenhirLib.General
+.SH Documentation
+.sp
+Module
+.BI "General"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.I val take 
+: 
+.B int -> 'a list -> 'a list
+.sp
+
+.sp
+
+.I val drop 
+: 
+.B int -> 'a list -> 'a list
+.sp
+
+.sp
+
+.I val uniq 
+: 
+.B ('a -> 'a -> int) -> 'a list -> 'a list
+.sp
+
+.sp
+
+.I val weed 
+: 
+.B ('a -> 'a -> int) -> 'a list -> 'a list
+.sp
+
+.sp
+.I type 
+.B 'a
+.I stream 
+= 
+.B 'a head Lazy.t
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I head 
+=
+ | Nil
+ | Cons
+.B of 
+.B 'a * 'a stream
+ 
+.sp
+
+.sp
+
+.I val length 
+: 
+.B 'a stream -> int
+.sp
+
+.sp
+
+.I val foldr 
+: 
+.B ('a -> 'b -> 'b) -> 'a stream -> 'b -> 'b
+.sp
+
+.sp

@@ -1,0 +1,7 @@
+version = "v0.16.0"
+description = ""
+requires = ""
+archive(byte) = "jane_street_headers.cma"
+archive(native) = "jane_street_headers.cmxa"
+plugin(byte) = "jane_street_headers.cma"
+plugin(native) = "jane_street_headers.cmxs"

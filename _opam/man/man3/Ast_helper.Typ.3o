@@ -1,0 +1,194 @@
+.TH "Ast_helper.Typ" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_helper.Typ \- Type expressions
+.SH Module
+Module   Ast_helper.Typ
+.SH Documentation
+.sp
+Module
+.BI "Typ"
+ : 
+.B sig end
+
+.sp
+Type expressions
+
+.sp
+
+.sp
+.sp
+
+.I val mk 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs -> Parsetree.core_type_desc -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val attr 
+: 
+.B Parsetree.core_type -> Parsetree.attribute -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val any 
+: 
+.B ?loc:Ast_helper.loc -> ?attrs:Ast_helper.attrs -> unit -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val var 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs -> string -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val arrow 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Asttypes.arg_label ->
+.B   Parsetree.core_type -> Parsetree.core_type -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val tuple 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs -> Parsetree.core_type list -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val constr 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Ast_helper.lid -> Parsetree.core_type list -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val object_ 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Parsetree.object_field list -> Asttypes.closed_flag -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val class_ 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Ast_helper.lid -> Parsetree.core_type list -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val alias 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Parsetree.core_type -> string -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val variant 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Parsetree.row_field list ->
+.B   Asttypes.closed_flag -> Asttypes.label list option -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val poly 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Ast_helper.str list -> Parsetree.core_type -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val package 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs ->
+.B   Ast_helper.lid ->
+.B   (Ast_helper.lid * Parsetree.core_type) list -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val extension 
+: 
+.B ?loc:Ast_helper.loc ->
+.B   ?attrs:Ast_helper.attrs -> Parsetree.extension -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val force_poly 
+: 
+.B Parsetree.core_type -> Parsetree.core_type
+.sp
+
+.sp
+
+.I val varify_constructors 
+: 
+.B Ast_helper.str list -> Parsetree.core_type -> Parsetree.core_type
+.sp
+
+.ft B
+varify_constructors newtypes te
+.ft R
+is type expression 
+.ft B
+te
+.ft R
+, of which
+any of nullary type constructor 
+.ft B
+tc
+.ft R
+is replaced by type variable of
+the same name, if 
+.ft B
+tc
+.ft R
+\&'s name appears in 
+.ft B
+newtypes
+.ft R
+\&.
+Raise 
+.ft B
+Syntaxerr\&.Variable_in_scope
+.ft R
+if any type variable inside 
+.ft B
+te
+.ft R
+appears in 
+.ft B
+newtypes
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.05
+
+.sp

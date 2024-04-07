@@ -1,0 +1,20 @@
+version = "v6.0.0_beta2"
+description = "HTTP types designed for interoperability"
+requires = ""
+archive(byte) = "http.cma"
+archive(native) = "http.cmxa"
+plugin(byte) = "http.cma"
+plugin(native) = "http.cmxs"
+package "__private__" (
+  directory = "__private__"
+  package "http_bytebuffer" (
+    directory = "http_bytebuffer"
+    version = "v6.0.0_beta2"
+    description = ""
+    requires = ""
+    archive(byte) = "http_bytebuffer.cma"
+    archive(native) = "http_bytebuffer.cmxa"
+    plugin(byte) = "http_bytebuffer.cma"
+    plugin(native) = "http_bytebuffer.cmxs"
+  )
+)

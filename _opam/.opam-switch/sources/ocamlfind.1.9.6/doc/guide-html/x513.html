@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>	  Does Findlib support ppx-style preprocessors?
+        </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQs"
+HREF="c429.html"><LINK
+REL="PREVIOUS"
+TITLE="	  Does Findlib support camlp4?
+        "
+HREF="x461.html"><LINK
+REL="NEXT"
+TITLE="Why do some people install the .cmx files?"
+HREF="x524.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x461.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. FAQs</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x524.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN513"
+>Does Findlib support ppx-style preprocessors?</A
+></H1
+><P
+>	<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Short answer:</I
+></SPAN
+> Yes, but there is only little
+	documentation.</P
+><P
+>Since findlib-1.5, ppx-style preprocessors are supported
+to some extent. A package can now define a "ppx" property which is simply
+a command to run as preprocessor (the command gets the marshalled AST
+as input, and must generate the transformed AST in its output; see the
+-ppx option of ocamlc/ocamlopt). A META file can simply look like:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ppx = "./command"</PRE
+>
+
+when "command" is installed in the package directory (but you can also
+omit "./" to search it, and you can prefix it with "@name/" if the command
+is taken from another package "name").</P
+><P
+>For more complex scenarios, additional options or
+arguments for the ppx preprocessor can be specified in descendant
+packages with the "ppxopt" property. Package "A" might provide a
+generic ppx preprocessor with a META file containing
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ppx = "./generic_ppx"</PRE
+>
+
+Package B might instantiate that preprocessor with
+
+<PRE
+CLASS="PROGRAMLISTING"
+>requires = "A"
+ppxopt = "A,ppx_b.cmo"</PRE
+>
+
+In this case "ocamlfind ocamlc -package B" would
+add <TT
+CLASS="LITERAL"
+>-ppx "path_to_A/genric_ppx ppx_b.cmo"</TT
+> to
+the ocamlc invocation. The format of the "ppxopt" property is
+specified in the findlib reference manual.</P
+><P
+>This feature is still a bit experimental.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x461.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x524.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Does Findlib support camlp4?</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c429.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Why do some people install the .cmx files?</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

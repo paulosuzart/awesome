@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Dependency analysis of packages</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="User's Guide"
+HREF="p35.html"><LINK
+REL="PREVIOUS"
+TITLE="Linker options"
+HREF="x149.html"><LINK
+REL="NEXT"
+TITLE="Querying descendants"
+HREF="x180.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x149.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x180.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN161"
+></A
+>Chapter 3. Dependency analysis of packages</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="c161.html#AEN163"
+>Querying ancestors</A
+></DT
+><DT
+><A
+HREF="x180.html"
+>Querying descendants</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN163"
+>Querying ancestors</A
+></H1
+><P
+>Every package denotes in its META file only the list of direct
+ancestors. The theoretical model of the dependency relation is a
+directed acyclic graph (DAG), with the packages as vertices and edges
+from packages to their direct ancestors. The graph must be acyclic
+because OCaml does not allow cyclic dependencies between modules.</P
+><P
+>What happens if you query something like</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind query -recursive p1 p2 ... pN</PRE
+><P
+>is that the named packages p1 to pN are marked in the graph, and that
+repeatedly all direct ancestors of marked packages are marked, too,
+until there is not any marked package remaining with an unmarked
+ancestor. All marked packages are then printed in topological
+order. This simply means that for the printed packages p1 to pM holds
+that if pI is printed before pJ then pI is a (possibly indirect)
+ancestor of pJ.</P
+><P
+>The topological order plays a role when the link command is
+constructed by "ocamlfind ocamlc", as Ocaml requires that archives
+must be linked in topological order. For example, the link statement</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o another -package q -linkpkg another.ml</PRE
+><P
+>must be turned into the effective command</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlc -o another [...more options...] p.cma q.cma another.ml</PRE
+><P
+>and <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlc -o another [...more options...] q.cma p.cma another.ml</PRE
+><P
+>because there are references from q.cma to p.cma.</P
+><P
+>In C, there is a similar requirement when linking static archives. The
+linker backend ld wants the archives in <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>reversed</I
+></SPAN
+>
+topological order, i.e. the deepest ancestor must come last in the
+list of linked archives. Because of this, the additional linker
+options specified in the "linkopts" variable are passed in reversed
+order to the underlying linker. This means that you can refer to C
+libraries of ancestor packages of p in C libraries provided in p.</P
+><P
+>Note that most operating systems do not require any specific order for
+dynamically linked C libraries (the exception is, surprise!, AIX).</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x149.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x180.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Linker options</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p35.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Querying descendants</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,7 @@
+description = "Heterogeneous value maps for OCaml"
+version = "0.8.1"
+requires = ""
+archive(byte) = "hmap.cma"
+archive(native) = "hmap.cmxa"
+plugin(byte) = "hmap.cma"
+plugin(native) = "hmap.cmxs"

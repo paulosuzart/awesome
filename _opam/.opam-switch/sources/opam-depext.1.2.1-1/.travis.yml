@@ -1,0 +1,22 @@
+language: c
+sudo: false
+services:
+  - docker
+install: wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-docker.sh
+script: bash ./.travis-docker.sh
+env:
+ global:
+   - PACKAGE="depext"
+   - PRE_INSTALL_HOOK
+   - POST_INSTALL_HOOK="opam depext --version && opam depext -ui ssl && opam depext -ui -j 2 -y -v pcre"
+ matrix:
+   - DISTRO=debian-stable OCAML_VERSION=4.00.1
+   - DISTRO=debian-testing OCAML_VERSION=4.01.0
+   - DISTRO=debian-unstable OCAML_VERSION=4.02.3
+   - DISTRO=ubuntu-12.04 OCAML_VERSION=4.02.3
+   - DISTRO=ubuntu-16.04 OCAML_VERSION=4.03.0
+   - DISTRO=ubuntu-18.04 OCAML_VERSION=4.03.0
+   - DISTRO=centos OCAML_VERSION=4.04.2
+   - DISTRO=opensuse OCAML_VERSION=4.05
+   - DISTRO=fedora OCAML_VERSION=4.06
+   - DISTRO=alpine OCAML_VERSION=4.07

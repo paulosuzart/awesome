@@ -1,0 +1,7 @@
+version = "v0.8"
+description = ""
+requires = "cstruct fmt optint unix"
+archive(byte) = "uring.cma"
+archive(native) = "uring.cmxa"
+plugin(byte) = "uring.cma"
+plugin(native) = "uring.cmxs"

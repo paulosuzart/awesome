@@ -1,0 +1,48 @@
+opam-version: "2.0"
+added: [
+  "doc/domain-local-await" {"D"}
+  "doc/domain-local-await/CHANGES.md" {"F:59a64b82ff82a7c91149686593e00b6a"}
+  "doc/domain-local-await/LICENSE.md" {"F:79f426369d94a092b6683bc796bcad93"}
+  "doc/domain-local-await/README.md" {"F:f773a250b581cd113b704b8ab19b1267"}
+  "lib/domain-local-await" {"D"}
+  "lib/domain-local-await/Domain_local_await.a"
+    {"F:42d9dbbd798315483be79a22f9da5174"}
+  "lib/domain-local-await/Domain_local_await.cma"
+    {"F:693fb5f40ef98fe5e6768b7e67bb93c1"}
+  "lib/domain-local-await/Domain_local_await.cmxa"
+    {"F:fd79d0d99cd7d03c9a9bc963cc4fe478"}
+  "lib/domain-local-await/Domain_local_await.cmxs"
+    {"F:2d2ecfc89405c95583177d9861f035bb"}
+  "lib/domain-local-await/Domain_local_await.ml"
+    {"F:747aed2fe52ad8f3f69164ccbbe85109"}
+  "lib/domain-local-await/Domain_local_await.mli"
+    {"F:0f15148647923060ae6155210d5c8558"}
+  "lib/domain-local-await/META" {"F:0295cf1d2b3608b38d20acfe9df1c323"}
+  "lib/domain-local-await/Thread_intf.ml"
+    {"F:4e2da0b8114b84ebbbcbcc2a52df4df2"}
+  "lib/domain-local-await/domain_local_await.cmi"
+    {"F:a887ba71b933670eaa9d1dae3d80f71a"}
+  "lib/domain-local-await/domain_local_await.cmt"
+    {"F:415d9b4947a4c39e7dba6ea06660d735"}
+  "lib/domain-local-await/domain_local_await.cmti"
+    {"F:2793b957f84ee3b8b34d2be9b2e9c36e"}
+  "lib/domain-local-await/domain_local_await.cmx"
+    {"F:a74a6f71d8d56818a6df6b4482889615"}
+  "lib/domain-local-await/domain_local_await__.cmi"
+    {"F:856c8e62350f3ee7f6dbae11fdba0e63"}
+  "lib/domain-local-await/domain_local_await__.cmt"
+    {"F:c82c285e5618e5607fdf10aa4dfb4c29"}
+  "lib/domain-local-await/domain_local_await__.cmx"
+    {"F:ccbdab14e2405db6aae527069b7d665b"}
+  "lib/domain-local-await/domain_local_await__.ml"
+    {"F:769829627c0add74d590054c8af89fa6"}
+  "lib/domain-local-await/domain_local_await__Thread_intf.cmi"
+    {"F:7c4e3b0356580bf6f367a82a3b3a5904"}
+  "lib/domain-local-await/domain_local_await__Thread_intf.cmt"
+    {"F:ccc49f84de90dbe2ed40fdae8f3b4667"}
+  "lib/domain-local-await/domain_local_await__Thread_intf.cmx"
+    {"F:9317f4a1e6d404e7b7b135b570c50374"}
+  "lib/domain-local-await/dune-package"
+    {"F:1c0bf29f5734910bfab021de33605f07"}
+  "lib/domain-local-await/opam" {"F:26b28fa9b045d1e3acb6504cb490539d"}
+]

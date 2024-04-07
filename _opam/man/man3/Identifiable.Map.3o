@@ -1,0 +1,158 @@
+.TH "Identifiable.Map" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Identifiable.Map \- no description
+.SH Module type
+Module type   Identifiable.Map
+.SH Documentation
+.sp
+Module type
+.BI "Map"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I module T : 
+.B Map.OrderedType
+
+.sp
+
+.sp
+.I include Map.S
+.sp
+
+.sp
+
+.I val of_list 
+: 
+.B (key * 'a) list -> 'a t
+.sp
+
+.sp
+
+.I val disjoint_union 
+: 
+.B ?eq:('a -> 'a -> bool) ->
+.B   ?print:(Format.formatter -> 'a -> unit) -> 'a t -> 'a t -> 'a t
+.sp
+
+.ft B
+disjoint_union m1 m2
+.ft R
+contains all bindings from 
+.ft B
+m1
+.ft R
+and
+.ft B
+m2
+.ft R
+\&. If some binding is present in both and the associated
+value is not equal, a Fatal_error is raised
+
+.sp
+
+.I val union_right 
+: 
+.B 'a t -> 'a t -> 'a t
+.sp
+
+.ft B
+union_right m1 m2
+.ft R
+contains all bindings from 
+.ft B
+m1
+.ft R
+and 
+.ft B
+m2
+.ft R
+\&. If
+some binding is present in both, the one from 
+.ft B
+m2
+.ft R
+is taken
+
+.sp
+
+.I val union_left 
+: 
+.B 'a t -> 'a t -> 'a t
+.sp
+
+.ft B
+union_left m1 m2 = union_right m2 m1
+.ft R
+
+
+.sp
+
+.I val union_merge 
+: 
+.B ('a -> 'a -> 'a) -> 'a t -> 'a t -> 'a t
+.sp
+
+.sp
+
+.I val rename 
+: 
+.B key t -> key -> key
+.sp
+
+.sp
+
+.I val map_keys 
+: 
+.B (key -> key) -> 'a t -> 'a t
+.sp
+
+.sp
+
+.I val keys 
+: 
+.B 'a t -> Stdlib.Set.Make(T).t
+.sp
+
+.sp
+
+.I val data 
+: 
+.B 'a t -> 'a list
+.sp
+
+.sp
+
+.I val of_set 
+: 
+.B (key -> 'a) -> Stdlib.Set.Make(T).t -> 'a t
+.sp
+
+.sp
+
+.I val transpose_keys_and_data 
+: 
+.B key t -> key t
+.sp
+
+.sp
+
+.I val transpose_keys_and_data_set 
+: 
+.B key t -> Stdlib.Set.Make(T).t t
+.sp
+
+.sp
+
+.I val print 
+: 
+.B (Format.formatter -> 'a -> unit) ->
+.B   Format.formatter -> 'a t -> unit
+.sp
+
+.sp

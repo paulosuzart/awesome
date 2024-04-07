@@ -1,0 +1,45 @@
+.TH "CamlinternalMenhirLib.EngineTypes.INCREMENTAL_ENGINE_START" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.EngineTypes.INCREMENTAL_ENGINE_START \- no description
+.SH Module type
+Module type   CamlinternalMenhirLib.EngineTypes.INCREMENTAL_ENGINE_START
+.SH Documentation
+.sp
+Module type
+.BI "INCREMENTAL_ENGINE_START"
+ = 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type state 
+
+.sp
+
+.sp
+.I type semantic_value 
+
+.sp
+
+.sp
+.I type 
+.B 'a
+.I checkpoint 
+
+.sp
+
+.sp
+
+.I val start 
+: 
+.B state ->
+.B   Lexing.position ->
+.B   semantic_value
+.B   checkpoint
+.sp
+
+.sp

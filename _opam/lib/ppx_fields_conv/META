@@ -1,0 +1,16 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "base ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_fields_conv.cma"
+archive(ppx_driver,native) = "ppx_fields_conv.cmxa"
+plugin(ppx_driver,byte) = "ppx_fields_conv.cma"
+plugin(ppx_driver,native) = "ppx_fields_conv.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "fieldslib"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "fieldslib"
+requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppx_fields_conv"
+library_kind = "ppx_deriver"

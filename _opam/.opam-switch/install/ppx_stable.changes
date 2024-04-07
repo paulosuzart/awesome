@@ -1,0 +1,34 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_stable" {"D"}
+  "doc/ppx_stable/LICENSE.md" {"F:93afbebc0e066419e584932bf74cc496"}
+  "doc/ppx_stable/README.md" {"F:cacadd24cd75089e8d82c5463cd8d03c"}
+  "lib/ppx_stable" {"D"}
+  "lib/ppx_stable/META" {"F:cd670e50a6d5182bfdc78c510b387aca"}
+  "lib/ppx_stable/dune-package" {"F:90ea8912cd942df44fe780f48d86b8e2"}
+  "lib/ppx_stable/generic_map.ml" {"F:8ee8d6948efd41fc32a8bfc597c8664d"}
+  "lib/ppx_stable/generic_map.mli" {"F:d1420d94c465faf155a7b941b7568cf4"}
+  "lib/ppx_stable/opam" {"F:101b6a1402926268b7775a9c4757af48"}
+  "lib/ppx_stable/ppx_stable.a" {"F:85cd51a3102489aefb03c4aa09bd598a"}
+  "lib/ppx_stable/ppx_stable.cma" {"F:c24ee98ff2eacb91596dc3c43f98e61e"}
+  "lib/ppx_stable/ppx_stable.cmi" {"F:11df65d9151c03e12fcd54195463146d"}
+  "lib/ppx_stable/ppx_stable.cmt" {"F:3d5dfafecdb04a61d7bcbfe885a138ab"}
+  "lib/ppx_stable/ppx_stable.cmti" {"F:d0ca3353dd99bdee11e7e3c7cfd3e5a4"}
+  "lib/ppx_stable/ppx_stable.cmx" {"F:9ed04661dd8ff362bd8ac0e07b7f927c"}
+  "lib/ppx_stable/ppx_stable.cmxa" {"F:4b7c934be57593626650d0b7e85b31de"}
+  "lib/ppx_stable/ppx_stable.cmxs" {"F:a50fdbc78259e23013c66da0d51e9add"}
+  "lib/ppx_stable/ppx_stable.ml" {"F:c8118c70af58a77ef00ed761fcc599f8"}
+  "lib/ppx_stable/ppx_stable.mli" {"F:ab078f79fd24ed2d9607d80676faa41c"}
+  "lib/ppx_stable/ppx_stable__.cmi" {"F:882f64b5c0e2d9fad11b6edfaee74862"}
+  "lib/ppx_stable/ppx_stable__.cmt" {"F:a2b59e4d99b1db94ad4f4d0f68cae495"}
+  "lib/ppx_stable/ppx_stable__.cmx" {"F:e8fc93486c2b1129ff4a508757911d7a"}
+  "lib/ppx_stable/ppx_stable__.ml" {"F:a4e77a11dd32848106aadfa179cf1a58"}
+  "lib/ppx_stable/ppx_stable__Generic_map.cmi"
+    {"F:6db5c730e35c3324b2a739256768bbcf"}
+  "lib/ppx_stable/ppx_stable__Generic_map.cmt"
+    {"F:a422fbb0d421a2e52f31c527401cc260"}
+  "lib/ppx_stable/ppx_stable__Generic_map.cmti"
+    {"F:b3586d62330fe89e4fa2f63688e1f24a"}
+  "lib/ppx_stable/ppx_stable__Generic_map.cmx"
+    {"F:bf5c6ef20db8bafe56935a109c0cfe5e"}
+]

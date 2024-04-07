@@ -1,0 +1,118 @@
+.TH "Map" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Map \- Association tables over ordered types.
+.SH Module
+Module   Map
+.SH Documentation
+.sp
+Module
+.BI "Map"
+ : 
+.B sig end
+
+.sp
+Association tables over ordered types\&.
+.sp
+This module implements applicative association tables, also known as
+finite maps or dictionaries, given a total ordering function
+over the keys\&.
+All operations over maps are purely applicative (no side\-effects)\&.
+The implementation uses balanced binary trees, and therefore searching
+and insertion take time logarithmic in the size of the map\&.
+.sp
+For instance:
+.EX
+.ft B
+.br
+\&     module IntPairs =
+.br
+\&       struct
+.br
+\&         type t = int * int
+.br
+\&         let compare (x0,y0) (x1,y1) =
+.br
+\&           match Stdlib\&.compare x0 x1 with
+.br
+\&               0 \-> Stdlib\&.compare y0 y1
+.br
+\&             | c \-> c
+.br
+\&       end
+.br
+\&
+.br
+\&     module PairsMap = Map\&.Make(IntPairs)
+.br
+\&
+.br
+\&     let m = PairsMap\&.(empty |> add (0,1) "hello" |> add (1,0) "world")
+.br
+\&   
+.ft R
+.EE
+.sp
+This creates a new module 
+.ft B
+PairsMap
+.ft R
+, with a new type 
+.ft B
+\&'a PairsMap\&.t
+.ft R
+of maps from 
+.ft B
+int * int
+.ft R
+to 
+.ft B
+\&'a
+.ft R
+\&. In this example, 
+.ft B
+m
+.ft R
+contains 
+.ft B
+string
+.ft R
+values so its type is 
+.ft B
+string PairsMap\&.t
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I module type OrderedType = 
+.B sig end
+
+.sp
+Input signature of the functor 
+.ft B
+Map\&.Make
+.ft R
+\&.
+
+.sp
+.I module type S = 
+.B sig end
+
+.sp
+Output signature of the functor 
+.ft B
+Map\&.Make
+.ft R
+\&.
+
+.sp
+.I module Make : 
+.B functor (Ord : OrderedType) -> sig end
+
+.sp
+Functor building an implementation of the map structure
+given a totally ordered type\&.
+
+.sp

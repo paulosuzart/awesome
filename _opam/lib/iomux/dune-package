@@ -1,0 +1,77 @@
+(lang dune 3.15)
+(name iomux)
+(version v0.3)
+(sections (lib .) (libexec .) (doc ../../doc/iomux) (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   config.ml
+   dune-package
+   iomux.a
+   iomux.cma
+   iomux.cmi
+   iomux.cmt
+   iomux.cmx
+   iomux.cmxa
+   iomux.ml
+   iomux__.cmi
+   iomux__.cmt
+   iomux__.cmx
+   iomux__.ml
+   iomux__Config.cmi
+   iomux__Config.cmt
+   iomux__Config.cmx
+   iomux__Poll.cmi
+   iomux__Poll.cmt
+   iomux__Poll.cmti
+   iomux__Poll.cmx
+   iomux__Util.cmi
+   iomux__Util.cmt
+   iomux__Util.cmx
+   libiomux_stubs.a
+   opam
+   poll.ml
+   poll.mli
+   util.ml))
+ (libexec (iomux.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md))
+ (stublibs (dlliomux_stubs.so)))
+(library
+ (name iomux)
+ (kind normal)
+ (archives (byte iomux.cma) (native iomux.cmxa))
+ (plugins (byte iomux.cma) (native iomux.cmxs))
+ (foreign_objects iomux_stubs.o)
+ (foreign_archives (archives (for all) (files libiomux_stubs.a)))
+ (foreign_dll_files ../stublibs/dlliomux_stubs.so)
+ (native_archives iomux.a)
+ (requires unix)
+ (main_module_name Iomux)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name iomux__)
+     (visibility public)
+     (kind alias)
+     (source (path Iomux__) (impl (path iomux__.ml-gen))))
+    (name Iomux)
+    (modules
+     (module
+      (obj_name iomux__Config)
+      (visibility public)
+      (source (path Config) (impl (path config.ml))))
+     (module
+      (obj_name iomux)
+      (visibility public)
+      (source (path Iomux) (impl (path iomux.ml))))
+     (module
+      (obj_name iomux__Poll)
+      (visibility public)
+      (source (path Poll) (intf (path poll.mli)) (impl (path poll.ml))))
+     (module
+      (obj_name iomux__Util)
+      (visibility public)
+      (source (path Util) (impl (path util.ml))))))
+   (wrapped true))))

@@ -1,0 +1,22 @@
+.TH "Parser.MenhirInterpreter" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Parser.MenhirInterpreter \- no description
+.SH Module
+Module   Parser.MenhirInterpreter
+.SH Documentation
+.sp
+Module
+.BI "MenhirInterpreter"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I include CamlinternalMenhirLib.IncrementalEngine.INCREMENTAL_ENGINE
+.sp
+
+.sp

@@ -1,0 +1,4 @@
+(test
+ (name test_starred_ml)
+ (modules test_starred_ml)
+ (libraries alcotest starred_ml))

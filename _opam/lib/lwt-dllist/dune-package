@@ -1,0 +1,37 @@
+(lang dune 3.15)
+(name lwt-dllist)
+(version 1.0.1)
+(sections (lib .) (libexec .) (doc ../../doc/lwt-dllist))
+(files
+ (lib
+  (META
+   dune-package
+   lwt_dllist.a
+   lwt_dllist.cma
+   lwt_dllist.cmi
+   lwt_dllist.cmt
+   lwt_dllist.cmti
+   lwt_dllist.cmx
+   lwt_dllist.cmxa
+   lwt_dllist.ml
+   lwt_dllist.mli
+   opam))
+ (libexec (lwt_dllist.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name lwt-dllist)
+ (kind normal)
+ (synopsis "Mutable doubly-linked list")
+ (archives (byte lwt_dllist.cma) (native lwt_dllist.cmxa))
+ (plugins (byte lwt_dllist.cma) (native lwt_dllist.cmxs))
+ (native_archives lwt_dllist.a)
+ (main_module_name Lwt_dllist)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name lwt_dllist)
+   (visibility public)
+   (source
+    (path Lwt_dllist)
+    (intf (path lwt_dllist.mli))
+    (impl (path lwt_dllist.ml))))))

@@ -1,0 +1,85 @@
+opam-version: "2.0"
+added: [
+  "bin/jingoo" {"F:03b26052f793359ad67e78b9a16f4645"}
+  "doc/jingoo" {"D"}
+  "doc/jingoo/CHANGES" {"F:f6c20b9a6591d76abc59e3c63429e48b"}
+  "doc/jingoo/LICENSE" {"F:4070ff5b3805d572bde9830adac09e2c"}
+  "doc/jingoo/README.md" {"F:521693e81ce039667383350fc78e5b36"}
+  "lib/jingoo" {"D"}
+  "lib/jingoo/META" {"F:ee7e607d3225f5d21939bfef53562ea3"}
+  "lib/jingoo/dune-package" {"F:04fb3101d9aaba048b2ecea167b8f911"}
+  "lib/jingoo/jg_ast_mapper.ml" {"F:56aedd3c0a2a6db5f67539845d7828fb"}
+  "lib/jingoo/jg_ast_optimize.ml" {"F:88b11a3285acda9248c5dcda3905f0ff"}
+  "lib/jingoo/jg_interp.ml" {"F:d900be03e9a2f60efa8fca757cae2996"}
+  "lib/jingoo/jg_lexer.ml" {"F:1391518b6b61c3ad03cadb1ffd277f65"}
+  "lib/jingoo/jg_parser.ml" {"F:baf79930be63beadc7a1750edb96b035"}
+  "lib/jingoo/jg_parser.mli" {"F:6075da26eab8bcd78f17baf7ab8b3e39"}
+  "lib/jingoo/jg_runtime.ml" {"F:b492270e84b9ef4a0c20c24ed1516a2b"}
+  "lib/jingoo/jg_stub.ml" {"F:731b602eb3bd5d167b9ace2dee443797"}
+  "lib/jingoo/jg_stub.mli" {"F:43a28595452de89426c76484c74303f3"}
+  "lib/jingoo/jg_template.ml" {"F:8331cdd74ef4b3aee8dd46053dce0e83"}
+  "lib/jingoo/jg_template.mli" {"F:c7db4d44e3c89a1d602f997d95fe5cff"}
+  "lib/jingoo/jg_template2.ml" {"F:8fde0f7335abc9f226e40a8c89e4e8f7"}
+  "lib/jingoo/jg_template2.mli" {"F:878f8422a6e8e4e19aa984fab98c0846"}
+  "lib/jingoo/jg_types.ml" {"F:70cfff6e2a30612c2e3bb2573d41f1ee"}
+  "lib/jingoo/jg_types.mli" {"F:231b273d8bfc16ae082e5354770c5c4c"}
+  "lib/jingoo/jg_utils.ml" {"F:0d09b62a9404f11c7b3dd0c906bff7de"}
+  "lib/jingoo/jingoo.a" {"F:a73332cd0fb292bd5215d5562313e3c4"}
+  "lib/jingoo/jingoo.cma" {"F:b0afc1ba66994e4bf9ef07bd99deb9ad"}
+  "lib/jingoo/jingoo.cmi" {"F:730c0aba397457df85947c0a9f5f8bbe"}
+  "lib/jingoo/jingoo.cmt" {"F:b797de69452faf1c07f609dfc67f84f7"}
+  "lib/jingoo/jingoo.cmx" {"F:78eb0b3d8b784897fb00170e47692ddb"}
+  "lib/jingoo/jingoo.cmxa" {"F:457c109ddc2c544410a71d757082c232"}
+  "lib/jingoo/jingoo.cmxs" {"F:8856fdb491b1d0a5f9f0b8bc3b693673"}
+  "lib/jingoo/jingoo.ml" {"F:941aacc81ab914df0800b015aa5199ab"}
+  "lib/jingoo/jingoo__Jg_ast_mapper.cmi"
+    {"F:fc9dec11406b45b9078d72d82e0b5a55"}
+  "lib/jingoo/jingoo__Jg_ast_mapper.cmt"
+    {"F:f0f24f788e256cf5a93c53cfac5a0e34"}
+  "lib/jingoo/jingoo__Jg_ast_mapper.cmx"
+    {"F:bc6f1150e4f4c5b96822c4353e22bf77"}
+  "lib/jingoo/jingoo__Jg_ast_optimize.cmi"
+    {"F:5f7320fee26e7362bf5274ecd748b538"}
+  "lib/jingoo/jingoo__Jg_ast_optimize.cmt"
+    {"F:9fae097b50b7f1284e6c98b951bc7f2b"}
+  "lib/jingoo/jingoo__Jg_ast_optimize.cmx"
+    {"F:b1412267a611afec3ae04af493055247"}
+  "lib/jingoo/jingoo__Jg_interp.cmi" {"F:99b6122f2cc2401fd9913bfb2de10852"}
+  "lib/jingoo/jingoo__Jg_interp.cmt" {"F:72e900dc3918b1491cafd6bf3236197e"}
+  "lib/jingoo/jingoo__Jg_interp.cmx" {"F:e057a14fdcbebbbe3de22d330a57813e"}
+  "lib/jingoo/jingoo__Jg_lexer.cmi" {"F:d351afefffc61de2a150e9c26a7c8e1f"}
+  "lib/jingoo/jingoo__Jg_lexer.cmt" {"F:fd2111a3f4e4c0601d303830f46bf354"}
+  "lib/jingoo/jingoo__Jg_lexer.cmx" {"F:09089ad6b7ae207fefbb42417dfd48ec"}
+  "lib/jingoo/jingoo__Jg_parser.cmi" {"F:4de83b06750b3b67ccaa4d3410aa2134"}
+  "lib/jingoo/jingoo__Jg_parser.cmt" {"F:dbf3048253aaf157951fd537cccbf6a4"}
+  "lib/jingoo/jingoo__Jg_parser.cmti" {"F:f06812a93cac3a5459ec80400a6c92f9"}
+  "lib/jingoo/jingoo__Jg_parser.cmx" {"F:f9c3498495ac28d25d2d96c2226eb674"}
+  "lib/jingoo/jingoo__Jg_runtime.cmi" {"F:4dcb0398f63e1386c9fe86ba28c6af05"}
+  "lib/jingoo/jingoo__Jg_runtime.cmt" {"F:f973f8f9203b40bbede940659a27d119"}
+  "lib/jingoo/jingoo__Jg_runtime.cmx" {"F:1768091a6d78d6f3955a78fd8f1374e0"}
+  "lib/jingoo/jingoo__Jg_stub.cmi" {"F:cb6e4f2cedba95192c4fca9129a973e1"}
+  "lib/jingoo/jingoo__Jg_stub.cmt" {"F:bdce0e2f12269fcd22c8b036779cabab"}
+  "lib/jingoo/jingoo__Jg_stub.cmti" {"F:c665f0c8d43c29d92271627252b94a5c"}
+  "lib/jingoo/jingoo__Jg_stub.cmx" {"F:7ece33c1f4d33e3d48babd247d3f828d"}
+  "lib/jingoo/jingoo__Jg_template.cmi" {"F:999748109cb163d656f471ac7d0112d5"}
+  "lib/jingoo/jingoo__Jg_template.cmt" {"F:765ac36f71c0743dcffba7503dbb2c57"}
+  "lib/jingoo/jingoo__Jg_template.cmti"
+    {"F:9f67648114cca19e3242180d3a4c791e"}
+  "lib/jingoo/jingoo__Jg_template.cmx" {"F:0fad20edceaf5753a1ad948f6c71859e"}
+  "lib/jingoo/jingoo__Jg_template2.cmi"
+    {"F:86ed041d79c0e1bc193138aac621511f"}
+  "lib/jingoo/jingoo__Jg_template2.cmt"
+    {"F:ec97ec9b773171697b7bfef225a0ddc7"}
+  "lib/jingoo/jingoo__Jg_template2.cmti"
+    {"F:3cc8634a935595fd48ccf29d35c94fb3"}
+  "lib/jingoo/jingoo__Jg_template2.cmx"
+    {"F:a2a25d296ee975bcedbbaa82e5d885c3"}
+  "lib/jingoo/jingoo__Jg_types.cmi" {"F:4b6fffedd59c17310ea00ab09f221dca"}
+  "lib/jingoo/jingoo__Jg_types.cmt" {"F:7a41d1601f7743d45e41ddd5e157d576"}
+  "lib/jingoo/jingoo__Jg_types.cmti" {"F:95090ed7fc7eab3ef9ee4f83d83f856d"}
+  "lib/jingoo/jingoo__Jg_types.cmx" {"F:c0838483b6e0bf9d46e30348bf732167"}
+  "lib/jingoo/jingoo__Jg_utils.cmi" {"F:68f3dbc7488f2f9420d4d6ef08f900ff"}
+  "lib/jingoo/jingoo__Jg_utils.cmt" {"F:695fe4779a71a4d45013eefa0169aa56"}
+  "lib/jingoo/jingoo__Jg_utils.cmx" {"F:b05fcedcf1c7ca85398cd95fbda4727c"}
+  "lib/jingoo/opam" {"F:9ef8a1369eeb78cd6f016c3cfde64dae"}
+]

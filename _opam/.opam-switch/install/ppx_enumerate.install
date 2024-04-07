@@ -1,0 +1,39 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_enumerate/META"
+  "_build/install/default/lib/ppx_enumerate/dune-package"
+  "_build/install/default/lib/ppx_enumerate/opam"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.a"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.cma"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.cmi"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.cmt"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.cmti"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.cmx"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.cmxa"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.ml"
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.mli"
+  "_build/install/default/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.a"
+    {"runtime-lib/ppx_enumerate_lib.a"}
+  "_build/install/default/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cma"
+    {"runtime-lib/ppx_enumerate_lib.cma"}
+  "_build/install/default/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmi"
+    {"runtime-lib/ppx_enumerate_lib.cmi"}
+  "_build/install/default/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmt"
+    {"runtime-lib/ppx_enumerate_lib.cmt"}
+  "_build/install/default/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmx"
+    {"runtime-lib/ppx_enumerate_lib.cmx"}
+  "_build/install/default/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmxa"
+    {"runtime-lib/ppx_enumerate_lib.cmxa"}
+  "_build/install/default/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.ml"
+    {"runtime-lib/ppx_enumerate_lib.ml"}
+]
+doc: [
+  "_build/install/default/doc/ppx_enumerate/CHANGES.md"
+  "_build/install/default/doc/ppx_enumerate/LICENSE.md"
+  "_build/install/default/doc/ppx_enumerate/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_enumerate/ppx_enumerate.cmxs"
+  "_build/install/default/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmxs"
+    {"runtime-lib/ppx_enumerate_lib.cmxs"}
+]

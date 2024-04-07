@@ -1,0 +1,195 @@
+.TH "Builtin_attributes" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Builtin_attributes \- Support for some of the builtin attributes
+.SH Module
+Module   Builtin_attributes
+.SH Documentation
+.sp
+Module
+.BI "Builtin_attributes"
+ : 
+.B sig end
+
+.sp
+Support for some of the builtin attributes
+.sp
+.sp
+\-ocaml\&.deprecated
+.sp
+\-ocaml\&.alert
+.sp
+\-ocaml\&.error
+.sp
+\-ocaml\&.ppwarning
+.sp
+\-ocaml\&.warning
+.sp
+\-ocaml\&.warnerror
+.sp
+\-ocaml\&.explicit_arity (for camlp4/camlp5)
+.sp
+\-ocaml\&.warn_on_literal_pattern
+.sp
+\-ocaml\&.deprecated_mutable
+.sp
+\-ocaml\&.immediate
+.sp
+\-ocaml\&.immediate64
+.sp
+\-ocaml\&.boxed / ocaml\&.unboxed
+
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.I val check_alerts 
+: 
+.B Location.t -> Parsetree.attributes -> string -> unit
+.sp
+
+.sp
+
+.I val check_alerts_inclusion 
+: 
+.B def:Location.t ->
+.B   use:Location.t ->
+.B   Location.t -> Parsetree.attributes -> Parsetree.attributes -> string -> unit
+.sp
+
+.sp
+
+.I val alerts_of_attrs 
+: 
+.B Parsetree.attributes -> Misc.alerts
+.sp
+
+.sp
+
+.I val alerts_of_sig 
+: 
+.B Parsetree.signature -> Misc.alerts
+.sp
+
+.sp
+
+.I val alerts_of_str 
+: 
+.B Parsetree.structure -> Misc.alerts
+.sp
+
+.sp
+
+.I val check_deprecated_mutable 
+: 
+.B Location.t -> Parsetree.attributes -> string -> unit
+.sp
+
+.sp
+
+.I val check_deprecated_mutable_inclusion 
+: 
+.B def:Location.t ->
+.B   use:Location.t ->
+.B   Location.t -> Parsetree.attributes -> Parsetree.attributes -> string -> unit
+.sp
+
+.sp
+
+.I val check_no_alert 
+: 
+.B Parsetree.attributes -> unit
+.sp
+
+.sp
+
+.I val error_of_extension 
+: 
+.B Parsetree.extension -> Location.error
+.sp
+
+.sp
+
+.I val warning_attribute 
+: 
+.B ?ppwarning:bool -> Parsetree.attribute -> unit
+.sp
+Apply warning settings from the specified attribute\&.
+"ocaml\&.warning"/"ocaml\&.warnerror" (and variants without the prefix)
+are processed and other attributes are ignored\&.
+.sp
+Also implement ocaml\&.ppwarning (unless ~ppwarning:false is
+passed)\&.
+
+.sp
+
+.I val warning_scope 
+: 
+.B ?ppwarning:bool -> Parsetree.attributes -> (unit -> 'a) -> 'a
+.sp
+Execute a function in a new scope for warning settings\&.  This
+means that the effect of any call to 
+.ft B
+warning_attribute
+.ft R
+during
+the execution of this function will be discarded after
+execution\&.
+.sp
+The function also takes a list of attributes which are processed
+with 
+.ft B
+warning_attribute
+.ft R
+in the fresh scope before the function
+is executed\&.
+
+.sp
+
+.I val warn_on_literal_pattern 
+: 
+.B Parsetree.attributes -> bool
+.sp
+
+.sp
+
+.I val explicit_arity 
+: 
+.B Parsetree.attributes -> bool
+.sp
+
+.sp
+
+.I val immediate 
+: 
+.B Parsetree.attributes -> bool
+.sp
+
+.sp
+
+.I val immediate64 
+: 
+.B Parsetree.attributes -> bool
+.sp
+
+.sp
+
+.I val has_unboxed 
+: 
+.B Parsetree.attributes -> bool
+.sp
+
+.sp
+
+.I val has_boxed 
+: 
+.B Parsetree.attributes -> bool
+.sp
+
+.sp

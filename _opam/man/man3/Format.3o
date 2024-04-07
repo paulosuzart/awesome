@@ -1,0 +1,4676 @@
+.TH "Format" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Format \- Pretty-printing.
+.SH Module
+Module   Format
+.SH Documentation
+.sp
+Module
+.BI "Format"
+ : 
+.B sig end
+
+.sp
+Pretty\-printing\&.
+.sp
+If you are new to this module, see the 
+.ft B
+Format\&.examples
+.ft R
+below\&.
+.sp
+This module implements a pretty\-printing facility to format values
+within 
+.ft B
+Format\&.boxes
+.ft R
+and 
+.ft B
+Format\&.tags
+.ft R
+combined with a set of 
+.ft B
+Format\&.fpp
+.ft R
+\&.
+The pretty\-printer splits lines at specified 
+.ft B
+Format\&.breaks
+.ft R
+,
+and indents lines according to the box structure\&.
+Similarly, 
+.ft B
+Format\&.tags
+.ft R
+can be used to decouple text
+presentation from its contents\&.
+.sp
+This pretty\-printing facility is implemented as an overlay on top of
+abstract 
+.ft B
+Format\&.formatter
+.ft R
+which provide basic output
+functions\&.
+Some formatters are predefined, notably:
+.sp
+\-
+.ft B
+Format\&.std_formatter
+.ft R
+outputs to 
+.ft B
+stdout
+.ft R
+
+.sp
+\-
+.ft B
+Format\&.err_formatter
+.ft R
+outputs to 
+.ft B
+stderr
+.ft R
+
+Most functions in the 
+.ft B
+Format
+.ft R
+module come in two variants: a short version
+that operates on the current domain\&'s standard formatter as obtained using
+.ft B
+Format\&.get_std_formatter
+.ft R
+and the generic version prefixed by 
+.ft B
+pp_
+.ft R
+that takes a
+formatter as its first argument\&. For the version that operates on the
+current domain\&'s standard formatter, the call to 
+.ft B
+Format\&.get_std_formatter
+.ft R
+is
+delayed until the last argument is received\&.
+.sp
+More formatters can be created with 
+.ft B
+Format\&.formatter_of_out_channel
+.ft R
+,
+.ft B
+Format\&.formatter_of_buffer
+.ft R
+, 
+.ft B
+Format\&.formatter_of_symbolic_output_buffer
+.ft R
+or using
+.ft B
+Format\&.formatter
+.ft R
+\&.
+.sp
+Warning: Since 
+.ft B
+Format\&.formatter
+.ft R
+contain
+mutable state, it is not thread\-safe to use the same formatter on multiple
+domains in parallel without synchronization\&.
+.sp
+If multiple domains write to the same output channel using the
+predefined formatters (as obtained by 
+.ft B
+Format\&.get_std_formatter
+.ft R
+or
+.ft B
+Format\&.get_err_formatter
+.ft R
+), the output from the domains will be interleaved with
+each other at points where the formatters are flushed, such as with
+.ft B
+Format\&.print_flush
+.ft R
+\&. This synchronization is not performed by formatters obtained
+from 
+.ft B
+Format\&.formatter_of_out_channel
+.ft R
+(on the standard out channels or others)\&.
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Introduction
+.sp
+You may consider this module as providing an extension to the
+.ft B
+printf
+.ft R
+facility to provide automatic line splitting\&. The addition of
+pretty\-printing annotations to your regular 
+.ft B
+printf
+.ft R
+format strings gives
+you fancy indentation and line breaks\&.
+Pretty\-printing annotations are described below in the documentation of
+the function 
+.ft B
+Format\&.fprintf
+.ft R
+\&.
+.sp
+You may also use the explicit pretty\-printing box management and printing
+functions provided by this module\&. This style is more basic but more
+verbose than the concise 
+.ft B
+fprintf
+.ft R
+format strings\&.
+.sp
+For instance, the sequence
+.ft B
+open_box 0; print_string "x ="; print_space ();
+.br
+\&    print_int 1; close_box (); print_newline ()
+.ft R
+that prints 
+.ft B
+x = 1
+.ft R
+within a pretty\-printing box, can be
+abbreviated as 
+.ft B
+printf "@[%s@ %i@]@\&." "x =" 1
+.ft R
+, or even shorter
+.ft B
+printf "@[x =@ %i@]@\&." 1
+.ft R
+\&.
+.sp
+Rule of thumb for casual users of this library:
+.sp
+\-use simple pretty\-printing boxes (as obtained by 
+.ft B
+open_box 0
+.ft R
+);
+.sp
+\-use simple break hints as obtained by 
+.ft B
+print_cut ()
+.ft R
+that outputs a
+simple break hint, or by 
+.ft B
+print_space ()
+.ft R
+that outputs a space
+indicating a break hint;
+.sp
+\-once a pretty\-printing box is open, display its material with basic
+printing functions (e\&. g\&. 
+.ft B
+print_int
+.ft R
+and 
+.ft B
+print_string
+.ft R
+);
+.sp
+\-when the material for a pretty\-printing box has been printed, call
+.ft B
+close_box ()
+.ft R
+to close the box;
+.sp
+\-at the end of pretty\-printing, flush the pretty\-printer to display all
+the remaining material, e\&.g\&. evaluate 
+.ft B
+print_newline ()
+.ft R
+\&.
+
+The behavior of pretty\-printing commands is unspecified
+if there is no open pretty\-printing box\&. Each box opened by
+one of the 
+.ft B
+open_
+.ft R
+functions below must be closed using 
+.ft B
+close_box
+.ft R
+for proper formatting\&. Otherwise, some of the material printed in the
+boxes may not be output, or may be formatted incorrectly\&.
+.sp
+In case of interactive use, each phrase is executed in the initial state
+of the standard pretty\-printer: after each phrase execution, the
+interactive system closes all open pretty\-printing boxes, flushes all
+pending text, and resets the standard pretty\-printer\&.
+.sp
+Warning: mixing calls to pretty\-printing functions of this module with
+calls to 
+.ft B
+Stdlib
+.ft R
+low level output functions is error prone\&.
+.sp
+The pretty\-printing functions output material that is delayed in the
+pretty\-printer queue and stacks in order to compute proper line
+splitting\&. In contrast, basic I/O output functions write directly in
+their output device\&. As a consequence, the output of a basic I/O function
+may appear before the output of a pretty\-printing function that has been
+called before\&. For instance,
+.ft B
+.br
+\&    Stdlib\&.print_string "<";
+.br
+\&    Format\&.print_string "PRETTY";
+.br
+\&    Stdlib\&.print_string ">";
+.br
+\&    Format\&.print_string "TEXT";
+.br
+\&   
+.ft R
+leads to output 
+.ft B
+<>PRETTYTEXT
+.ft R
+\&.
+.PP
+
+.PP
+.SS Formatters
+
+.PP
+.I type formatter 
+
+.sp
+Abstract data corresponding to a pretty\-printer (also called a
+formatter) and all its machinery\&. See also 
+.ft B
+Format\&.formatter
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Pretty-printing boxes
+
+.PP
+
+.PP
+The pretty\-printing engine uses the concepts of pretty\-printing box and
+break hint to drive indentation and line splitting behavior of the
+pretty\-printer\&.
+.sp
+Each different pretty\-printing box kind introduces a specific line splitting
+policy:
+.sp
+.sp
+\-within an horizontal box, break hints never split the line (but the
+line may be split in a box nested deeper),
+.sp
+\-within a vertical box, break hints always split the line,
+.sp
+\-within an horizontal/vertical box, if the box fits on the current line
+then break hints never split the line, otherwise break hint always split
+the line,
+.sp
+\-within a compacting box, a break hint never splits the line,
+unless there is no more room on the current line\&.
+
+Note that line splitting policy is box specific: the policy of a box does
+not rule the policy of inner boxes\&. For instance, if a vertical box is
+nested in an horizontal box, all break hints within the vertical box will
+split the line\&.
+.sp
+Moreover, opening a box after the 
+.ft B
+Format\&.maxindent
+.ft R
+splits the line whether or not the box would end up fitting on the line\&.
+.PP
+
+.I val pp_open_box 
+: 
+.B formatter -> int -> unit
+.sp
+
+.sp
+
+.I val open_box 
+: 
+.B int -> unit
+.sp
+
+.ft B
+pp_open_box ppf d
+.ft R
+opens a new compacting pretty\-printing box with
+offset 
+.ft B
+d
+.ft R
+in the formatter 
+.ft B
+ppf
+.ft R
+\&.
+.sp
+Within this box, the pretty\-printer prints as much as possible material on
+every line\&.
+.sp
+A break hint splits the line if there is no more room on the line to
+print the remainder of the box\&.
+.sp
+Within this box, the pretty\-printer emphasizes the box structure:
+if a structural box does not fit fully on a simple line, a break
+hint also splits the line if the splitting ``moves to the left\&'\&'
+(i\&.e\&. the new line gets an indentation smaller than the one of the current
+line)\&.
+.sp
+This box is the general purpose pretty\-printing box\&.
+.sp
+If the pretty\-printer splits the line in the box, offset 
+.ft B
+d
+.ft R
+is added to
+the current indentation\&.
+
+.sp
+
+.I val pp_close_box 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val close_box 
+: 
+.B unit -> unit
+.sp
+Closes the most recently open pretty\-printing box\&.
+
+.sp
+
+.I val pp_open_hbox 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val open_hbox 
+: 
+.B unit -> unit
+.sp
+
+.ft B
+pp_open_hbox ppf ()
+.ft R
+opens a new \&'horizontal\&' pretty\-printing box\&.
+.sp
+This box prints material on a single line\&.
+.sp
+Break hints in a horizontal box never split the line\&.
+(Line splitting may still occur inside boxes nested deeper)\&.
+
+.sp
+
+.I val pp_open_vbox 
+: 
+.B formatter -> int -> unit
+.sp
+
+.sp
+
+.I val open_vbox 
+: 
+.B int -> unit
+.sp
+
+.ft B
+pp_open_vbox ppf d
+.ft R
+opens a new \&'vertical\&' pretty\-printing box
+with offset 
+.ft B
+d
+.ft R
+\&.
+.sp
+This box prints material on as many lines as break hints in the box\&.
+.sp
+Every break hint in a vertical box splits the line\&.
+.sp
+If the pretty\-printer splits the line in the box, 
+.ft B
+d
+.ft R
+is added to the
+current indentation\&.
+
+.sp
+
+.I val pp_open_hvbox 
+: 
+.B formatter -> int -> unit
+.sp
+
+.sp
+
+.I val open_hvbox 
+: 
+.B int -> unit
+.sp
+
+.ft B
+pp_open_hvbox ppf d
+.ft R
+opens a new \&'horizontal/vertical\&' pretty\-printing box
+with offset 
+.ft B
+d
+.ft R
+\&.
+.sp
+This box behaves as an horizontal box if it fits on a single line,
+otherwise it behaves as a vertical box\&.
+.sp
+If the pretty\-printer splits the line in the box, 
+.ft B
+d
+.ft R
+is added to the
+current indentation\&.
+
+.sp
+
+.I val pp_open_hovbox 
+: 
+.B formatter -> int -> unit
+.sp
+
+.sp
+
+.I val open_hovbox 
+: 
+.B int -> unit
+.sp
+
+.ft B
+pp_open_hovbox ppf d
+.ft R
+opens a new \&'horizontal\-or\-vertical\&'
+pretty\-printing box with offset 
+.ft B
+d
+.ft R
+\&.
+.sp
+This box prints material as much as possible on every line\&.
+.sp
+A break hint splits the line if there is no more room on the line to
+print the remainder of the box\&.
+.sp
+If the pretty\-printer splits the line in the box, 
+.ft B
+d
+.ft R
+is added to the
+current indentation\&.
+
+.sp
+
+.PP
+.SS Formatting functions
+
+.PP
+
+.I val pp_print_string 
+: 
+.B formatter -> string -> unit
+.sp
+
+.sp
+
+.I val print_string 
+: 
+.B string -> unit
+.sp
+
+.ft B
+pp_print_string ppf s
+.ft R
+prints 
+.ft B
+s
+.ft R
+in the current pretty\-printing box\&.
+
+.sp
+
+.I val pp_print_bytes 
+: 
+.B formatter -> bytes -> unit
+.sp
+
+.sp
+
+.I val print_bytes 
+: 
+.B bytes -> unit
+.sp
+
+.ft B
+pp_print_bytes ppf b
+.ft R
+prints 
+.ft B
+b
+.ft R
+in the current pretty\-printing box\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.I val pp_print_as 
+: 
+.B formatter -> int -> string -> unit
+.sp
+
+.sp
+
+.I val print_as 
+: 
+.B int -> string -> unit
+.sp
+
+.ft B
+pp_print_as ppf len s
+.ft R
+prints 
+.ft B
+s
+.ft R
+in the current pretty\-printing box\&.
+The pretty\-printer formats 
+.ft B
+s
+.ft R
+as if it were of length 
+.ft B
+len
+.ft R
+\&.
+
+.sp
+
+.I val pp_print_int 
+: 
+.B formatter -> int -> unit
+.sp
+
+.sp
+
+.I val print_int 
+: 
+.B int -> unit
+.sp
+Print an integer in the current pretty\-printing box\&.
+
+.sp
+
+.I val pp_print_float 
+: 
+.B formatter -> float -> unit
+.sp
+
+.sp
+
+.I val print_float 
+: 
+.B float -> unit
+.sp
+Print a floating point number in the current pretty\-printing box\&.
+
+.sp
+
+.I val pp_print_char 
+: 
+.B formatter -> char -> unit
+.sp
+
+.sp
+
+.I val print_char 
+: 
+.B char -> unit
+.sp
+Print a character in the current pretty\-printing box\&.
+
+.sp
+
+.I val pp_print_bool 
+: 
+.B formatter -> bool -> unit
+.sp
+
+.sp
+
+.I val print_bool 
+: 
+.B bool -> unit
+.sp
+Print a boolean in the current pretty\-printing box\&.
+
+.sp
+
+.PP
+.SS Break hints
+
+.PP
+
+.PP
+A \&'break hint\&' tells the pretty\-printer to output some space or split the
+line whichever way is more appropriate to the current pretty\-printing box
+splitting rules\&.
+.sp
+Break hints are used to separate printing items and are mandatory to let
+the pretty\-printer correctly split lines and indent items\&.
+.sp
+Simple break hints are:
+.sp
+\-the \&'space\&': output a space or split the line if appropriate,
+.sp
+\-the \&'cut\&': split the line if appropriate\&.
+
+Note: the notions of space and line splitting are abstract for the
+pretty\-printing engine, since those notions can be completely redefined
+by the programmer\&.
+However, in the pretty\-printer default setting, ``output a space\&'\&' simply
+means printing a space character (ASCII code 32) and ``split the line\&'\&'
+means printing a newline character (ASCII code 10)\&.
+.PP
+
+.I val pp_print_space 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val print_space 
+: 
+.B unit -> unit
+.sp
+
+.ft B
+pp_print_space ppf ()
+.ft R
+emits a \&'space\&' break hint:
+the pretty\-printer may split the line at this point,
+otherwise it prints one space\&.
+.sp
+
+.ft B
+pp_print_space ppf ()
+.ft R
+is equivalent to 
+.ft B
+pp_print_break ppf 1 0
+.ft R
+\&.
+
+.sp
+
+.I val pp_print_cut 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val print_cut 
+: 
+.B unit -> unit
+.sp
+
+.ft B
+pp_print_cut ppf ()
+.ft R
+emits a \&'cut\&' break hint:
+the pretty\-printer may split the line at this point,
+otherwise it prints nothing\&.
+.sp
+
+.ft B
+pp_print_cut ppf ()
+.ft R
+is equivalent to 
+.ft B
+pp_print_break ppf 0 0
+.ft R
+\&.
+
+.sp
+
+.I val pp_print_break 
+: 
+.B formatter -> int -> int -> unit
+.sp
+
+.sp
+
+.I val print_break 
+: 
+.B int -> int -> unit
+.sp
+
+.ft B
+pp_print_break ppf nspaces offset
+.ft R
+emits a \&'full\&' break hint:
+the pretty\-printer may split the line at this point,
+otherwise it prints 
+.ft B
+nspaces
+.ft R
+spaces\&.
+.sp
+If the pretty\-printer splits the line, 
+.ft B
+offset
+.ft R
+is added to
+the current indentation\&.
+
+.sp
+
+.I val pp_print_custom_break 
+: 
+.B formatter ->
+.B   fits:string * int * string -> breaks:string * int * string -> unit
+.sp
+
+.ft B
+pp_print_custom_break ppf ~fits:(s1, n, s2) ~breaks:(s3, m, s4)
+.ft R
+emits a
+custom break hint: the pretty\-printer may split the line at this point\&.
+.sp
+If it does not split the line, then the 
+.ft B
+s1
+.ft R
+is emitted, then 
+.ft B
+n
+.ft R
+spaces,
+then 
+.ft B
+s2
+.ft R
+\&.
+.sp
+If it splits the line, then it emits the 
+.ft B
+s3
+.ft R
+string, then an indent
+(according to the box rules), then an offset of 
+.ft B
+m
+.ft R
+spaces, then the 
+.ft B
+s4
+.ft R
+string\&.
+.sp
+While 
+.ft B
+n
+.ft R
+and 
+.ft B
+m
+.ft R
+are handled by 
+.ft B
+formatter_out_functions\&.out_indent
+.ft R
+, the
+strings will be handled by 
+.ft B
+formatter_out_functions\&.out_string
+.ft R
+\&. This allows
+for a custom formatter that handles indentation distinctly, for example,
+outputs 
+.ft B
+<br/>
+.ft R
+tags or 
+.ft B
+&nbsp;
+.ft R
+entities\&.
+.sp
+The custom break is useful if you want to change which visible
+(non\-whitespace) characters are printed in case of break or no break\&. For
+example, when printing a list 
+.ft B
+[a; b; c] 
+.ft R
+, you might want to add a
+trailing semicolon when it is printed vertically:
+.sp
+
+.EX
+.ft B
+.br
+\&[
+.br
+\&  a;
+.br
+\&  b;
+.br
+\&  c;
+.br
+\&]
+.br
+\&   
+.ft R
+.EE
+.sp
+You can do this as follows:
+.EX
+.ft B
+.br
+\&printf "@[<v 0>[@;<0 2>@[<v 0>a;@,b;@,c@]%t]@]@\(rsn"
+.br
+\&  (pp_print_custom_break ~fits:("", 0, "") ~breaks:(";", 0, ""))
+.br
+\&   
+.ft R
+.EE
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_force_newline 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val force_newline 
+: 
+.B unit -> unit
+.sp
+Force a new line in the current pretty\-printing box\&.
+.sp
+The pretty\-printer must split the line at this point,
+.sp
+Not the normal way of pretty\-printing, since imperative line splitting may
+interfere with current line counters and box size calculation\&.
+Using break hints within an enclosing vertical box is a better
+alternative\&.
+
+.sp
+
+.I val pp_print_if_newline 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val print_if_newline 
+: 
+.B unit -> unit
+.sp
+Execute the next formatting command if the preceding line
+has just been split\&. Otherwise, ignore the next formatting
+command\&.
+
+.sp
+
+.PP
+.SS Pretty-printing termination
+
+.PP
+
+.I val pp_print_flush 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val print_flush 
+: 
+.B unit -> unit
+.sp
+End of pretty\-printing: resets the pretty\-printer to initial state\&.
+.sp
+All open pretty\-printing boxes are closed, all pending text is printed\&.
+In addition, the pretty\-printer low level output device is flushed to
+ensure that all pending text is really displayed\&.
+.sp
+Note: never use 
+.ft B
+print_flush
+.ft R
+in the normal course of a pretty\-printing
+routine, since the pretty\-printer uses a complex buffering machinery to
+properly indent the output; manually flushing those buffers at random
+would conflict with the pretty\-printer strategy and result to poor
+rendering\&.
+.sp
+Only consider using 
+.ft B
+print_flush
+.ft R
+when displaying all pending material is
+mandatory (for instance in case of interactive use when you want the user
+to read some text) and when resetting the pretty\-printer state will not
+disturb further pretty\-printing\&.
+.sp
+Warning: If the output device of the pretty\-printer is an output channel,
+repeated calls to 
+.ft B
+print_flush
+.ft R
+means repeated calls to 
+.ft B
+flush
+.ft R
+to flush the out channel; these explicit flush calls could foil the
+buffering strategy of output channels and could dramatically impact
+efficiency\&.
+
+.sp
+
+.I val pp_print_newline 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val print_newline 
+: 
+.B unit -> unit
+.sp
+End of pretty\-printing: resets the pretty\-printer to initial state\&.
+.sp
+All open pretty\-printing boxes are closed, all pending text is printed\&.
+.sp
+Equivalent to 
+.ft B
+Format\&.print_flush
+.ft R
+with a new line emitted on the pretty\-printer
+low\-level output device immediately before the device is flushed\&.
+See corresponding words of caution for 
+.ft B
+Format\&.print_flush
+.ft R
+\&.
+.sp
+Note: this is not the normal way to output a new line;
+the preferred method is using break hints within a vertical pretty\-printing
+box\&.
+
+.sp
+
+.PP
+.SS Margin
+
+.PP
+
+.I val pp_set_margin 
+: 
+.B formatter -> int -> unit
+.sp
+
+.sp
+
+.I val set_margin 
+: 
+.B int -> unit
+.sp
+
+.ft B
+pp_set_margin ppf d
+.ft R
+sets the right margin to 
+.ft B
+d
+.ft R
+(in characters):
+the pretty\-printer splits lines that overflow the right margin according to
+the break hints given\&.
+Setting the margin to 
+.ft B
+d
+.ft R
+means that the formatting engine aims at
+printing at most 
+.ft B
+d\-1
+.ft R
+characters per line\&.
+Nothing happens if 
+.ft B
+d
+.ft R
+is smaller than 2\&.
+If 
+.ft B
+d
+.ft R
+is too large, the right margin is set to the maximum
+admissible value (which is greater than 
+.ft B
+10 ^ 9
+.ft R
+)\&.
+If 
+.ft B
+d
+.ft R
+is less than the current maximum indentation limit, the
+maximum indentation limit is decreased while trying to preserve
+a minimal ratio 
+.ft B
+max_indent/margin>=50%
+.ft R
+and if possible
+the current difference 
+.ft B
+margin \- max_indent
+.ft R
+\&.
+.sp
+See also 
+.ft B
+Format\&.pp_set_geometry
+.ft R
+\&.
+
+.sp
+
+.I val pp_get_margin 
+: 
+.B formatter -> unit -> int
+.sp
+
+.sp
+
+.I val get_margin 
+: 
+.B unit -> int
+.sp
+Returns the position of the right margin\&.
+
+.sp
+
+.PP
+.SS Maximum indentation limit
+
+.PP
+
+.I val pp_set_max_indent 
+: 
+.B formatter -> int -> unit
+.sp
+
+.sp
+
+.I val set_max_indent 
+: 
+.B int -> unit
+.sp
+
+.ft B
+pp_set_max_indent ppf d
+.ft R
+sets the maximum indentation limit of lines
+to 
+.ft B
+d
+.ft R
+(in characters):
+once this limit is reached, new pretty\-printing boxes are rejected to the
+left, unless the enclosing box fully fits on the current line\&.
+As an illustration,
+.EX
+.ft B
+set_margin 10; set_max_indent 5; printf "@[123456@[7@]89A@]@\&." 
+.ft R
+.EE
+yields
+.EX
+.ft B
+.br
+\&    123456
+.br
+\&    789A
+.br
+\&  
+.ft R
+.EE
+because the nested box 
+.ft B
+"@[7@]"
+.ft R
+is opened after the maximum indentation
+limit (
+.ft B
+7>5
+.ft R
+) and its parent box does not fit on the current line\&.
+Either decreasing the length of the parent box to make it fit on a line:
+.EX
+.ft B
+printf "@[123456@[7@]89@]@\&." 
+.ft R
+.EE
+or opening an intermediary box before the maximum indentation limit which
+fits on the current line
+.EX
+.ft B
+printf "@[123@[456@[7@]89@]A@]@\&." 
+.ft R
+.EE
+avoids the rejection to the left of the inner boxes and print respectively
+.ft B
+"123456789"
+.ft R
+and 
+.ft B
+"123456789A"
+.ft R
+\&.
+Note also that vertical boxes never fit on a line whereas horizontal boxes
+always fully fit on the current line\&.
+Opening a box may split a line whereas the contents may have fit\&.
+If this behavior is problematic, it can be curtailed by setting the maximum
+indentation limit to 
+.ft B
+margin \- 1
+.ft R
+\&. Note that setting the maximum indentation
+limit to 
+.ft B
+margin
+.ft R
+is invalid\&.
+.sp
+Nothing happens if 
+.ft B
+d
+.ft R
+is smaller than 2\&.
+.sp
+If 
+.ft B
+d
+.ft R
+is too large, the limit is set to the maximum
+admissible value (which is greater than 
+.ft B
+10 ^ 9
+.ft R
+)\&.
+.sp
+If 
+.ft B
+d
+.ft R
+is greater or equal than the current margin, it is ignored,
+and the current maximum indentation limit is kept\&.
+.sp
+See also 
+.ft B
+Format\&.pp_set_geometry
+.ft R
+\&.
+
+.sp
+
+.I val pp_get_max_indent 
+: 
+.B formatter -> unit -> int
+.sp
+
+.sp
+
+.I val get_max_indent 
+: 
+.B unit -> int
+.sp
+Return the maximum indentation limit (in characters)\&.
+
+.sp
+
+.PP
+.SS Geometry 
+.sp
+Geometric functions can be used to manipulate simultaneously the
+coupled variables, margin and maximum indentation limit\&.
+.PP
+.I type geometry 
+= {
+ max_indent : 
+.B int
+;
+ margin : 
+.B int
+;
+ }
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val check_geometry 
+: 
+.B geometry -> bool
+.sp
+Check if the formatter geometry is valid: 
+.ft B
+1 < max_indent < margin
+.ft R
+
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_set_geometry 
+: 
+.B formatter -> max_indent:int -> margin:int -> unit
+.sp
+
+.sp
+
+.I val set_geometry 
+: 
+.B max_indent:int -> margin:int -> unit
+.sp
+
+.sp
+
+.I val pp_safe_set_geometry 
+: 
+.B formatter -> max_indent:int -> margin:int -> unit
+.sp
+
+.sp
+
+.I val safe_set_geometry 
+: 
+.B max_indent:int -> margin:int -> unit
+.sp
+
+.ft B
+pp_set_geometry ppf ~max_indent ~margin
+.ft R
+sets both the margin
+and maximum indentation limit for 
+.ft B
+ppf
+.ft R
+\&.
+.sp
+When 
+.ft B
+1 < max_indent < margin
+.ft R
+,
+.ft B
+pp_set_geometry ppf ~max_indent ~margin
+.ft R
+is equivalent to
+.ft B
+pp_set_margin ppf margin; pp_set_max_indent ppf max_indent
+.ft R
+;
+and avoids the subtly incorrect
+.ft B
+pp_set_max_indent ppf max_indent; pp_set_margin ppf margin
+.ft R
+;
+.sp
+Outside of this domain, 
+.ft B
+pp_set_geometry
+.ft R
+raises an invalid argument
+exception whereas 
+.ft B
+pp_safe_set_geometry
+.ft R
+does nothing\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_update_geometry 
+: 
+.B formatter -> (geometry -> geometry) -> unit
+.sp
+
+.ft B
+pp_update_geometry ppf (fun geo \-> { geo with \&.\&.\&. })
+.ft R
+lets you
+update a formatter\&'s geometry in a way that is robust to extension
+of the 
+.ft B
+geometry
+.ft R
+record with new fields\&.
+.sp
+Raises an invalid argument exception if the returned geometry
+does not satisfy 
+.ft B
+Format\&.check_geometry
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.11
+
+.sp
+
+.I val update_geometry 
+: 
+.B (geometry -> geometry) -> unit
+.sp
+
+.sp
+
+.I val pp_get_geometry 
+: 
+.B formatter -> unit -> geometry
+.sp
+
+.sp
+
+.I val get_geometry 
+: 
+.B unit -> geometry
+.sp
+Return the current geometry of the formatter
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.PP
+.SS Maximum formatting depth
+
+.PP
+
+.PP
+The maximum formatting depth is the maximum number of pretty\-printing
+boxes simultaneously open\&.
+.sp
+Material inside boxes nested deeper is printed as an ellipsis (more
+precisely as the text returned by 
+.ft B
+Format\&.get_ellipsis_text
+.ft R
+.ft B
+()
+.ft R
+)\&.
+.PP
+
+.I val pp_set_max_boxes 
+: 
+.B formatter -> int -> unit
+.sp
+
+.sp
+
+.I val set_max_boxes 
+: 
+.B int -> unit
+.sp
+
+.ft B
+pp_set_max_boxes ppf max
+.ft R
+sets the maximum number of pretty\-printing
+boxes simultaneously open\&.
+.sp
+Material inside boxes nested deeper is printed as an ellipsis (more
+precisely as the text returned by 
+.ft B
+Format\&.get_ellipsis_text
+.ft R
+.ft B
+()
+.ft R
+)\&.
+.sp
+Nothing happens if 
+.ft B
+max
+.ft R
+is smaller than 2\&.
+
+.sp
+
+.I val pp_get_max_boxes 
+: 
+.B formatter -> unit -> int
+.sp
+
+.sp
+
+.I val get_max_boxes 
+: 
+.B unit -> int
+.sp
+Returns the maximum number of pretty\-printing boxes allowed before
+ellipsis\&.
+
+.sp
+
+.I val pp_over_max_boxes 
+: 
+.B formatter -> unit -> bool
+.sp
+
+.sp
+
+.I val over_max_boxes 
+: 
+.B unit -> bool
+.sp
+Tests if the maximum number of pretty\-printing boxes allowed have already
+been opened\&.
+
+.sp
+
+.PP
+.SS Tabulation boxes
+
+.PP
+
+.PP
+A tabulation box prints material on lines divided into cells of fixed
+length\&. A tabulation box provides a simple way to display vertical columns
+of left adjusted text\&.
+.sp
+This box features command 
+.ft B
+set_tab
+.ft R
+to define cell boundaries, and command
+.ft B
+print_tab
+.ft R
+to move from cell to cell and split the line when there is no
+more cells to print on the line\&.
+.sp
+Note: printing within tabulation box is line directed, so arbitrary line
+splitting inside a tabulation box leads to poor rendering\&. Yet, controlled
+use of tabulation boxes allows simple printing of columns within
+module 
+.ft B
+Format
+.ft R
+\&.
+.PP
+
+.I val pp_open_tbox 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val open_tbox 
+: 
+.B unit -> unit
+.sp
+
+.ft B
+open_tbox ()
+.ft R
+opens a new tabulation box\&.
+.sp
+This box prints lines separated into cells of fixed width\&.
+.sp
+Inside a tabulation box, special tabulation markers defines points of
+interest on the line (for instance to delimit cell boundaries)\&.
+Function 
+.ft B
+Format\&.set_tab
+.ft R
+sets a tabulation marker at insertion point\&.
+.sp
+A tabulation box features specific tabulation breaks to move to next
+tabulation marker or split the line\&. Function 
+.ft B
+Format\&.print_tbreak
+.ft R
+prints
+a tabulation break\&.
+
+.sp
+
+.I val pp_close_tbox 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val close_tbox 
+: 
+.B unit -> unit
+.sp
+Closes the most recently opened tabulation box\&.
+
+.sp
+
+.I val pp_set_tab 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val set_tab 
+: 
+.B unit -> unit
+.sp
+Sets a tabulation marker at current insertion point\&.
+
+.sp
+
+.I val pp_print_tab 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val print_tab 
+: 
+.B unit -> unit
+.sp
+
+.ft B
+print_tab ()
+.ft R
+emits a \&'next\&' tabulation break hint: if not already set on
+a tabulation marker, the insertion point moves to the first tabulation
+marker on the right, or the pretty\-printer splits the line and insertion
+point moves to the leftmost tabulation marker\&.
+.sp
+It is equivalent to 
+.ft B
+print_tbreak 0 0
+.ft R
+\&.
+
+.sp
+
+.I val pp_print_tbreak 
+: 
+.B formatter -> int -> int -> unit
+.sp
+
+.sp
+
+.I val print_tbreak 
+: 
+.B int -> int -> unit
+.sp
+
+.ft B
+print_tbreak nspaces offset
+.ft R
+emits a \&'full\&' tabulation break hint\&.
+.sp
+If not already set on a tabulation marker, the insertion point moves to the
+first tabulation marker on the right and the pretty\-printer prints
+.ft B
+nspaces
+.ft R
+spaces\&.
+.sp
+If there is no next tabulation marker on the right, the pretty\-printer
+splits the line at this point, then insertion point moves to the leftmost
+tabulation marker of the box\&.
+.sp
+If the pretty\-printer splits the line, 
+.ft B
+offset
+.ft R
+is added to
+the current indentation\&.
+
+.sp
+
+.PP
+.SS Ellipsis
+
+.PP
+
+.I val pp_set_ellipsis_text 
+: 
+.B formatter -> string -> unit
+.sp
+
+.sp
+
+.I val set_ellipsis_text 
+: 
+.B string -> unit
+.sp
+Set the text of the ellipsis printed when too many pretty\-printing boxes
+are open (a single dot, 
+.ft B
+\&.
+.ft R
+, by default)\&.
+
+.sp
+
+.I val pp_get_ellipsis_text 
+: 
+.B formatter -> unit -> string
+.sp
+
+.sp
+
+.I val get_ellipsis_text 
+: 
+.B unit -> string
+.sp
+Return the text of the ellipsis\&.
+
+.sp
+
+.PP
+.SS Semantic tags
+
+.PP
+.I type stag 
+= ..
+
+.sp
+Semantic tags (or simply tags) are user\&'s defined annotations
+to associate user\&'s specific operations to printed entities\&.
+.sp
+Common usage of semantic tags is text decoration to get specific font or
+text size rendering for a display device, or marking delimitation of
+entities (e\&.g\&. HTML or TeX elements or terminal escape sequences)\&.
+More sophisticated usage of semantic tags could handle dynamic
+modification of the pretty\-printer behavior to properly print the material
+within some specific tags\&.
+For instance, we can define an RGB tag like so:
+.EX
+.ft B
+.br
+\&type stag += RGB of {r:int;g:int;b:int}
+.br
+\&
+.ft R
+.EE
+.sp
+In order to properly delimit printed entities, a semantic tag must be
+opened before and closed after the entity\&. Semantic tags must be properly
+nested like parentheses using 
+.ft B
+Format\&.pp_open_stag
+.ft R
+and 
+.ft B
+Format\&.pp_close_stag
+.ft R
+\&.
+.sp
+Tag specific operations occur any time a tag is opened or closed, At each
+occurrence, two kinds of operations are performed tag\-marking and
+tag\-printing:
+.sp
+\-The tag\-marking operation is the simpler tag specific operation: it simply
+writes a tag specific string into the output device of the
+formatter\&. Tag\-marking does not interfere with line\-splitting computation\&.
+.sp
+\-The tag\-printing operation is the more involved tag specific operation: it
+can print arbitrary material to the formatter\&. Tag\-printing is tightly
+linked to the current pretty\-printer operations\&.
+
+Roughly speaking, tag\-marking is commonly used to get a better rendering of
+texts in the rendering device, while tag\-printing allows fine tuning of
+printing routines to print the same entity differently according to the
+semantic tags (i\&.e\&. print additional material or even omit parts of the
+output)\&.
+.sp
+More precisely: when a semantic tag is opened or closed then both and
+successive \&'tag\-printing\&' and \&'tag\-marking\&' operations occur:
+.sp
+\-Tag\-printing a semantic tag means calling the formatter specific function
+.ft B
+print_open_stag
+.ft R
+(resp\&. 
+.ft B
+print_close_stag
+.ft R
+) with the name of the tag as
+argument: that tag\-printing function can then print any regular material
+to the formatter (so that this material is enqueued as usual in the
+formatter queue for further line splitting computation)\&.
+.sp
+\-Tag\-marking a semantic tag means calling the formatter specific function
+.ft B
+mark_open_stag
+.ft R
+(resp\&. 
+.ft B
+mark_close_stag
+.ft R
+) with the name of the tag as
+argument: that tag\-marking function can then return the \&'tag\-opening
+marker\&' (resp\&. `tag\-closing marker\&') for direct output into the output
+device of the formatter\&.
+
+Being written directly into the output device of the formatter, semantic
+tag marker strings are not considered as part of the printing material that
+drives line splitting (in other words, the length of the strings
+corresponding to tag markers is considered as zero for line splitting)\&.
+.sp
+Thus, semantic tag handling is in some sense transparent to pretty\-printing
+and does not interfere with usual indentation\&. Hence, a single
+pretty\-printing routine can output both simple \&'verbatim\&' material or
+richer decorated output depending on the treatment of tags\&. By default,
+tags are not active, hence the output is not decorated with tag
+information\&. Once 
+.ft B
+set_tags
+.ft R
+is set to 
+.ft B
+true
+.ft R
+, the pretty\-printer engine
+honors tags and decorates the output accordingly\&.
+.sp
+Default tag\-marking functions behave the HTML way: 
+.ft B
+Format\&.tag
+.ft R
+are
+enclosed in "<" and ">" while other tags are ignored;
+hence, opening marker for tag string 
+.ft B
+"t"
+.ft R
+is 
+.ft B
+"<t>"
+.ft R
+and closing marker
+is 
+.ft B
+"</t>"
+.ft R
+\&.
+.sp
+Default tag\-printing functions just do nothing\&.
+.sp
+Tag\-marking and tag\-printing functions are user definable and can
+be set by calling 
+.ft B
+Format\&.set_formatter_stag_functions
+.ft R
+\&.
+.sp
+Semantic tag operations may be set on or off with 
+.ft B
+Format\&.set_tags
+.ft R
+\&.
+Tag\-marking operations may be set on or off with 
+.ft B
+Format\&.set_mark_tags
+.ft R
+\&.
+Tag\-printing operations may be set on or off with 
+.ft B
+Format\&.set_print_tags
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+.I type tag 
+= 
+.B string
+
+.sp
+
+.sp
+.I type stag 
++=
+ | String_tag
+.B of 
+.B tag
+.I "  "
+(* 
+.ft B
+String_tag s
+.ft R
+is a string tag 
+.ft B
+s
+.ft R
+\&. String tags can be inserted either
+by explicitly using the constructor 
+.ft B
+String_tag
+.ft R
+or by using the dedicated
+format syntax 
+.ft B
+"@{<s> \&.\&.\&. @}"
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+ *)
+ 
+.sp
+
+.sp
+
+.I val pp_open_stag 
+: 
+.B formatter -> stag -> unit
+.sp
+
+.sp
+
+.I val open_stag 
+: 
+.B stag -> unit
+.sp
+
+.ft B
+pp_open_stag ppf t
+.ft R
+opens the semantic tag named 
+.ft B
+t
+.ft R
+\&.
+.sp
+The 
+.ft B
+print_open_stag
+.ft R
+tag\-printing function of the formatter is called with
+.ft B
+t
+.ft R
+as argument; then the opening tag marker for 
+.ft B
+t
+.ft R
+, as given by
+.ft B
+mark_open_stag t
+.ft R
+, is written into the output device of the formatter\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_close_stag 
+: 
+.B formatter -> unit -> unit
+.sp
+
+.sp
+
+.I val close_stag 
+: 
+.B unit -> unit
+.sp
+
+.ft B
+pp_close_stag ppf ()
+.ft R
+closes the most recently opened semantic tag 
+.ft B
+t
+.ft R
+\&.
+.sp
+The closing tag marker, as given by 
+.ft B
+mark_close_stag t
+.ft R
+, is written into the
+output device of the formatter; then the 
+.ft B
+print_close_stag
+.ft R
+tag\-printing
+function of the formatter is called with 
+.ft B
+t
+.ft R
+as argument\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_set_tags 
+: 
+.B formatter -> bool -> unit
+.sp
+
+.sp
+
+.I val set_tags 
+: 
+.B bool -> unit
+.sp
+
+.ft B
+pp_set_tags ppf b
+.ft R
+turns on or off the treatment of semantic tags
+(default is off)\&.
+
+.sp
+
+.I val pp_set_print_tags 
+: 
+.B formatter -> bool -> unit
+.sp
+
+.sp
+
+.I val set_print_tags 
+: 
+.B bool -> unit
+.sp
+
+.ft B
+pp_set_print_tags ppf b
+.ft R
+turns on or off the tag\-printing operations\&.
+
+.sp
+
+.I val pp_set_mark_tags 
+: 
+.B formatter -> bool -> unit
+.sp
+
+.sp
+
+.I val set_mark_tags 
+: 
+.B bool -> unit
+.sp
+
+.ft B
+pp_set_mark_tags ppf b
+.ft R
+turns on or off the tag\-marking operations\&.
+
+.sp
+
+.I val pp_get_print_tags 
+: 
+.B formatter -> unit -> bool
+.sp
+
+.sp
+
+.I val get_print_tags 
+: 
+.B unit -> bool
+.sp
+Return the current status of tag\-printing operations\&.
+
+.sp
+
+.I val pp_get_mark_tags 
+: 
+.B formatter -> unit -> bool
+.sp
+
+.sp
+
+.I val get_mark_tags 
+: 
+.B unit -> bool
+.sp
+Return the current status of tag\-marking operations\&.
+
+.sp
+
+.I val pp_set_formatter_out_channel 
+: 
+.B formatter -> out_channel -> unit
+.sp
+.SS Redirecting the standard formatter output
+
+
+.sp
+
+.I val set_formatter_out_channel 
+: 
+.B out_channel -> unit
+.sp
+Redirect the standard pretty\-printer output to the given channel\&.
+(All the output functions of the standard formatter are set to the
+default output functions printing to the given channel\&.)
+.sp
+
+.ft B
+set_formatter_out_channel
+.ft R
+is equivalent to
+.ft B
+Format\&.pp_set_formatter_out_channel
+.ft R
+.ft B
+std_formatter
+.ft R
+\&.
+
+.sp
+
+.I val pp_set_formatter_output_functions 
+: 
+.B formatter -> (string -> int -> int -> unit) -> (unit -> unit) -> unit
+.sp
+
+.sp
+
+.I val set_formatter_output_functions 
+: 
+.B (string -> int -> int -> unit) -> (unit -> unit) -> unit
+.sp
+
+.ft B
+pp_set_formatter_output_functions ppf out flush
+.ft R
+redirects the
+standard pretty\-printer output functions to the functions 
+.ft B
+out
+.ft R
+and
+.ft B
+flush
+.ft R
+\&.
+.sp
+The 
+.ft B
+out
+.ft R
+function performs all the pretty\-printer string output\&.
+It is called with a string 
+.ft B
+s
+.ft R
+, a start position 
+.ft B
+p
+.ft R
+, and a number of
+characters 
+.ft B
+n
+.ft R
+; it is supposed to output characters 
+.ft B
+p
+.ft R
+to 
+.ft B
+p + n \- 1
+.ft R
+of
+.ft B
+s
+.ft R
+\&.
+.sp
+The 
+.ft B
+flush
+.ft R
+function is called whenever the pretty\-printer is flushed
+(via conversion 
+.ft B
+%!
+.ft R
+, or pretty\-printing indications 
+.ft B
+@?
+.ft R
+or 
+.ft B
+@\&.
+.ft R
+, or
+using low level functions 
+.ft B
+print_flush
+.ft R
+or 
+.ft B
+print_newline
+.ft R
+)\&.
+
+.sp
+
+.I val pp_get_formatter_output_functions 
+: 
+.B formatter -> unit -> (string -> int -> int -> unit) * (unit -> unit)
+.sp
+
+.sp
+
+.I val get_formatter_output_functions 
+: 
+.B unit -> (string -> int -> int -> unit) * (unit -> unit)
+.sp
+Return the current output functions of the standard pretty\-printer\&.
+
+.sp
+
+.PP
+.SS Redefining formatter output
+
+.PP
+
+.PP
+The 
+.ft B
+Format
+.ft R
+module is versatile enough to let you completely redefine
+the meaning of pretty\-printing output: you may provide your own functions
+to define how to handle indentation, line splitting, and even printing of
+all the characters that have to be printed!
+.PP
+
+.PP
+.SS Redefining output functions
+
+.PP
+.I type formatter_out_functions 
+= {
+ out_string : 
+.B string -> int -> int -> unit
+;
+ out_flush : 
+.B unit -> unit
+;
+ out_newline : 
+.B unit -> unit
+;
+ out_spaces : 
+.B int -> unit
+;
+ out_indent : 
+.B int -> unit
+;  (* .B "Since"
+4.06
+ *) 
+ }
+
+.sp
+The set of output functions specific to a formatter:
+.sp
+\-the 
+.ft B
+out_string
+.ft R
+function performs all the pretty\-printer string output\&.
+It is called with a string 
+.ft B
+s
+.ft R
+, a start position 
+.ft B
+p
+.ft R
+, and a number of
+characters 
+.ft B
+n
+.ft R
+; it is supposed to output characters 
+.ft B
+p
+.ft R
+to 
+.ft B
+p + n \- 1
+.ft R
+of
+.ft B
+s
+.ft R
+\&.
+.sp
+\-the 
+.ft B
+out_flush
+.ft R
+function flushes the pretty\-printer output device\&.
+.sp
+\-
+.ft B
+out_newline
+.ft R
+is called to open a new line when the pretty\-printer splits
+the line\&.
+.sp
+\-the 
+.ft B
+out_spaces
+.ft R
+function outputs spaces when a break hint leads to spaces
+instead of a line split\&. It is called with the number of spaces to output\&.
+.sp
+\-the 
+.ft B
+out_indent
+.ft R
+function performs new line indentation when the
+pretty\-printer splits the line\&. It is called with the indentation value of
+the new line\&.
+
+By default:
+.sp
+\-fields 
+.ft B
+out_string
+.ft R
+and 
+.ft B
+out_flush
+.ft R
+are output device specific;
+(e\&.g\&. 
+.ft B
+output_string
+.ft R
+and 
+.ft B
+flush
+.ft R
+for a
+.ft B
+out_channel
+.ft R
+device, or 
+.ft B
+Buffer\&.add_substring
+.ft R
+and
+.ft B
+ignore
+.ft R
+for a 
+.ft B
+Buffer\&.t
+.ft R
+output device),
+.sp
+\-field 
+.ft B
+out_newline
+.ft R
+is equivalent to 
+.ft B
+out_string "\(rsn" 0 1
+.ft R
+;
+.sp
+\-fields 
+.ft B
+out_spaces
+.ft R
+and 
+.ft B
+out_indent
+.ft R
+are equivalent to
+.ft B
+out_string (String\&.make n \&' \&') 0 n
+.ft R
+\&.
+
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val pp_set_formatter_out_functions 
+: 
+.B formatter -> formatter_out_functions -> unit
+.sp
+
+.sp
+
+.I val set_formatter_out_functions 
+: 
+.B formatter_out_functions -> unit
+.sp
+
+.ft B
+pp_set_formatter_out_functions ppf out_funs
+.ft R
+Set all the pretty\-printer output functions of 
+.ft B
+ppf
+.ft R
+to those of
+argument 
+.ft B
+out_funs
+.ft R
+,
+.sp
+This way, you can change the meaning of indentation (which can be
+something else than just printing space characters) and the meaning of new
+lines opening (which can be connected to any other action needed by the
+application at hand)\&.
+.sp
+Reasonable defaults for functions 
+.ft B
+out_spaces
+.ft R
+and 
+.ft B
+out_newline
+.ft R
+are
+respectively 
+.ft B
+out_funs\&.out_string (String\&.make n \&' \&') 0 n
+.ft R
+and
+.ft B
+out_funs\&.out_string "\(rsn" 0 1
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val pp_get_formatter_out_functions 
+: 
+.B formatter -> unit -> formatter_out_functions
+.sp
+
+.sp
+
+.I val get_formatter_out_functions 
+: 
+.B unit -> formatter_out_functions
+.sp
+Return the current output functions of the pretty\-printer,
+including line splitting and indentation functions\&. Useful to record the
+current setting and restore it afterwards\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.PP
+.SS Redefining semantic tag operations
+
+.PP
+.I type formatter_stag_functions 
+= {
+ mark_open_stag : 
+.B stag -> string
+;
+ mark_close_stag : 
+.B stag -> string
+;
+ print_open_stag : 
+.B stag -> unit
+;
+ print_close_stag : 
+.B stag -> unit
+;
+ }
+
+.sp
+The semantic tag handling functions specific to a formatter:
+.ft B
+mark
+.ft R
+versions are the \&'tag\-marking\&' functions that associate a string
+marker to a tag in order for the pretty\-printing engine to write
+those markers as 0 length tokens in the output device of the formatter\&.
+.ft B
+print
+.ft R
+versions are the \&'tag\-printing\&' functions that can perform
+regular printing when a tag is closed or opened\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_set_formatter_stag_functions 
+: 
+.B formatter -> formatter_stag_functions -> unit
+.sp
+
+.sp
+
+.I val set_formatter_stag_functions 
+: 
+.B formatter_stag_functions -> unit
+.sp
+
+.ft B
+pp_set_formatter_stag_functions ppf tag_funs
+.ft R
+changes the meaning of
+opening and closing semantic tag operations to use the functions in
+.ft B
+tag_funs
+.ft R
+when printing on 
+.ft B
+ppf
+.ft R
+\&.
+.sp
+When opening a semantic tag with name 
+.ft B
+t
+.ft R
+, the string 
+.ft B
+t
+.ft R
+is passed to the
+opening tag\-marking function (the 
+.ft B
+mark_open_stag
+.ft R
+field of the
+record 
+.ft B
+tag_funs
+.ft R
+), that must return the opening tag marker for
+that name\&. When the next call to 
+.ft B
+close_stag ()
+.ft R
+happens, the semantic tag
+name 
+.ft B
+t
+.ft R
+is sent back to the closing tag\-marking function (the
+.ft B
+mark_close_stag
+.ft R
+field of record 
+.ft B
+tag_funs
+.ft R
+), that must return a
+closing tag marker for that name\&.
+.sp
+The 
+.ft B
+print_
+.ft R
+field of the record contains the tag\-printing functions that
+are called at tag opening and tag closing time, to output regular material
+in the pretty\-printer queue\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_get_formatter_stag_functions 
+: 
+.B formatter -> unit -> formatter_stag_functions
+.sp
+
+.sp
+
+.I val get_formatter_stag_functions 
+: 
+.B unit -> formatter_stag_functions
+.sp
+Return the current semantic tag operation functions of the standard
+pretty\-printer\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.PP
+.SS Defining formatters
+.sp
+Defining new formatters permits unrelated output of material in
+parallel on several output devices\&.
+All the parameters of a formatter are local to the formatter:
+right margin, maximum indentation limit, maximum number of pretty\-printing
+boxes simultaneously open, ellipsis, and so on, are specific to
+each formatter and may be fixed independently\&.
+.sp
+For instance, given a 
+.ft B
+Buffer\&.t
+.ft R
+buffer 
+.ft B
+b
+.ft R
+, 
+.ft B
+Format\&.formatter_of_buffer
+.ft R
+.ft B
+b
+.ft R
+returns a new formatter using buffer 
+.ft B
+b
+.ft R
+as its output device\&.
+Similarly, given a 
+.ft B
+out_channel
+.ft R
+output channel 
+.ft B
+oc
+.ft R
+,
+.ft B
+Format\&.formatter_of_out_channel
+.ft R
+.ft B
+oc
+.ft R
+returns a new formatter using
+channel 
+.ft B
+oc
+.ft R
+as its output device\&.
+.sp
+Alternatively, given 
+.ft B
+out_funs
+.ft R
+, a complete set of output functions for a
+formatter, then 
+.ft B
+Format\&.formatter_of_out_functions
+.ft R
+.ft B
+out_funs
+.ft R
+computes a new
+formatter using those functions for output\&.
+.PP
+
+.I val formatter_of_out_channel 
+: 
+.B out_channel -> formatter
+.sp
+
+.ft B
+formatter_of_out_channel oc
+.ft R
+returns a new formatter writing
+to the corresponding output channel 
+.ft B
+oc
+.ft R
+\&.
+
+.sp
+
+.I val synchronized_formatter_of_out_channel 
+: 
+.B out_channel -> formatter Domain.DLS.key
+.sp
+
+.ft B
+synchronized_formatter_of_out_channel oc
+.ft R
+returns the key to the
+domain\-local state that holds the domain\-local formatter for writing to the
+corresponding output channel 
+.ft B
+oc
+.ft R
+\&.
+.sp
+When the formatter is used with multiple domains, the output from the
+domains will be interleaved with each other at points where the formatter
+is flushed, such as with 
+.ft B
+Format\&.print_flush
+.ft R
+\&.
+
+.sp
+.B Alert unstable.
+
+.sp
+
+.I val std_formatter 
+: 
+.B formatter
+.sp
+The initial domain\&'s standard formatter to write to standard output\&.
+.sp
+It is defined as 
+.ft B
+Format\&.formatter_of_out_channel
+.ft R
+.ft B
+stdout
+.ft R
+\&.
+
+.sp
+
+.I val get_std_formatter 
+: 
+.B unit -> formatter
+.sp
+
+.ft B
+get_std_formatter ()
+.ft R
+returns the current domain\&'s standard formatter used
+to write to standard output\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val err_formatter 
+: 
+.B formatter
+.sp
+The initial domain\&'s formatter to write to standard error\&.
+.sp
+It is defined as 
+.ft B
+Format\&.formatter_of_out_channel
+.ft R
+.ft B
+stderr
+.ft R
+\&.
+
+.sp
+
+.I val get_err_formatter 
+: 
+.B unit -> formatter
+.sp
+
+.ft B
+get_err_formatter ()
+.ft R
+returns the current domain\&'s formatter used to write
+to standard error\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val formatter_of_buffer 
+: 
+.B Buffer.t -> formatter
+.sp
+
+.ft B
+formatter_of_buffer b
+.ft R
+returns a new formatter writing to
+buffer 
+.ft B
+b
+.ft R
+\&. At the end of pretty\-printing, the formatter must be flushed
+using 
+.ft B
+Format\&.pp_print_flush
+.ft R
+or 
+.ft B
+Format\&.pp_print_newline
+.ft R
+, to print all the
+pending material into the buffer\&.
+
+.sp
+
+.I val stdbuf 
+: 
+.B Buffer.t
+.sp
+The initial domain\&'s string buffer in which 
+.ft B
+str_formatter
+.ft R
+writes\&.
+
+.sp
+
+.I val get_stdbuf 
+: 
+.B unit -> Buffer.t
+.sp
+
+.ft B
+get_stdbuf ()
+.ft R
+returns the current domain\&'s string buffer in which the
+current domain\&'s string formatter writes\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val str_formatter 
+: 
+.B formatter
+.sp
+The initial domain\&'s formatter to output to the 
+.ft B
+Format\&.stdbuf
+.ft R
+string buffer\&.
+.sp
+
+.ft B
+str_formatter
+.ft R
+is defined as 
+.ft B
+Format\&.formatter_of_buffer
+.ft R
+.ft B
+Format\&.stdbuf
+.ft R
+\&.
+
+.sp
+
+.I val get_str_formatter 
+: 
+.B unit -> formatter
+.sp
+The current domain\&'s formatter to output to the current domains string
+buffer\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+
+.I val flush_str_formatter 
+: 
+.B unit -> string
+.sp
+Returns the material printed with 
+.ft B
+str_formatter
+.ft R
+of the current domain,
+flushes the formatter and resets the corresponding buffer\&.
+
+.sp
+
+.I val make_formatter 
+: 
+.B (string -> int -> int -> unit) -> (unit -> unit) -> formatter
+.sp
+
+.ft B
+make_formatter out flush
+.ft R
+returns a new formatter that outputs with
+function 
+.ft B
+out
+.ft R
+, and flushes with function 
+.ft B
+flush
+.ft R
+\&.
+.sp
+For instance,
+.EX
+.ft B
+.br
+\&    make_formatter
+.br
+\&      (Stdlib\&.output oc)
+.br
+\&      (fun () \-> Stdlib\&.flush oc)
+.br
+\&  
+.ft R
+.EE
+returns a formatter to the 
+.ft B
+out_channel
+.ft R
+.ft B
+oc
+.ft R
+\&.
+
+.sp
+
+.I val make_synchronized_formatter 
+: 
+.B (string -> int -> int -> unit) ->
+.B   (unit -> unit) -> formatter Domain.DLS.key
+.sp
+
+.ft B
+make_synchronized_formatter out flush
+.ft R
+returns the key to the domain\-local
+state that holds the domain\-local formatter that outputs with function
+.ft B
+out
+.ft R
+, and flushes with function 
+.ft B
+flush
+.ft R
+\&.
+.sp
+When the formatter is used with multiple domains, the output from the
+domains will be interleaved with each other at points where the formatter
+is flushed, such as with 
+.ft B
+Format\&.print_flush
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.0
+
+.sp
+.B Alert unstable.
+
+.sp
+
+.I val formatter_of_out_functions 
+: 
+.B formatter_out_functions -> formatter
+.sp
+
+.ft B
+formatter_of_out_functions out_funs
+.ft R
+returns a new formatter that writes
+with the set of output functions 
+.ft B
+out_funs
+.ft R
+\&.
+.sp
+See definition of type 
+.ft B
+Format\&.formatter_out_functions
+.ft R
+for the meaning of argument
+.ft B
+out_funs
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.PP
+.SS Symbolic pretty-printing
+
+.PP
+
+.PP
+Symbolic pretty\-printing is pretty\-printing using a symbolic formatter,
+i\&.e\&. a formatter that outputs symbolic pretty\-printing items\&.
+.sp
+When using a symbolic formatter, all regular pretty\-printing activities
+occur but output material is symbolic and stored in a buffer of output items\&.
+At the end of pretty\-printing, flushing the output buffer allows
+post\-processing of symbolic output before performing low level output
+operations\&.
+.sp
+In practice, first define a symbolic output buffer 
+.ft B
+b
+.ft R
+using:
+.sp
+\-
+.ft B
+let sob = make_symbolic_output_buffer ()
+.ft R
+\&.
+Then define a symbolic formatter with:
+.sp
+\-
+.ft B
+let ppf = formatter_of_symbolic_output_buffer sob
+.ft R
+
+Use symbolic formatter 
+.ft B
+ppf
+.ft R
+as usual, and retrieve symbolic items at end
+of pretty\-printing by flushing symbolic output buffer 
+.ft B
+sob
+.ft R
+with:
+.sp
+\-
+.ft B
+flush_symbolic_output_buffer sob
+.ft R
+\&.
+
+.PP
+.I type symbolic_output_item 
+=
+ | Output_flush  (* symbolic flush command
+ *)
+ | Output_newline  (* symbolic newline command
+ *)
+ | Output_string
+.B of 
+.B string
+.I "  "
+  (* 
+.ft B
+Output_string s
+.ft R
+: symbolic output for string 
+.ft B
+s
+.ft R
+
+ *)
+ | Output_spaces
+.B of 
+.B int
+.I "  "
+  (* 
+.ft B
+Output_spaces n
+.ft R
+: symbolic command to output 
+.ft B
+n
+.ft R
+spaces
+ *)
+ | Output_indent
+.B of 
+.B int
+.I "  "
+  (* 
+.ft B
+Output_indent i
+.ft R
+: symbolic indentation of size 
+.ft B
+i
+.ft R
+
+ *)
+ 
+.sp
+Items produced by symbolic pretty\-printers
+
+.sp
+.B "Since"
+4.06
+
+.sp
+.I type symbolic_output_buffer 
+
+.sp
+The output buffer of a symbolic pretty\-printer\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val make_symbolic_output_buffer 
+: 
+.B unit -> symbolic_output_buffer
+.sp
+
+.ft B
+make_symbolic_output_buffer ()
+.ft R
+returns a fresh buffer for
+symbolic output\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val clear_symbolic_output_buffer 
+: 
+.B symbolic_output_buffer -> unit
+.sp
+
+.ft B
+clear_symbolic_output_buffer sob
+.ft R
+resets buffer 
+.ft B
+sob
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val get_symbolic_output_buffer 
+: 
+.B symbolic_output_buffer -> symbolic_output_item list
+.sp
+
+.ft B
+get_symbolic_output_buffer sob
+.ft R
+returns the contents of buffer 
+.ft B
+sob
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val flush_symbolic_output_buffer 
+: 
+.B symbolic_output_buffer -> symbolic_output_item list
+.sp
+
+.ft B
+flush_symbolic_output_buffer sob
+.ft R
+returns the contents of buffer
+.ft B
+sob
+.ft R
+and resets buffer 
+.ft B
+sob
+.ft R
+\&.
+.ft B
+flush_symbolic_output_buffer sob
+.ft R
+is equivalent to
+.ft B
+let items = get_symbolic_output_buffer sob in
+.br
+\&   clear_symbolic_output_buffer sob; items
+.ft R
+
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val add_symbolic_output_item 
+: 
+.B symbolic_output_buffer -> symbolic_output_item -> unit
+.sp
+
+.ft B
+add_symbolic_output_item sob itm
+.ft R
+adds item 
+.ft B
+itm
+.ft R
+to buffer 
+.ft B
+sob
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.I val formatter_of_symbolic_output_buffer 
+: 
+.B symbolic_output_buffer -> formatter
+.sp
+
+.ft B
+formatter_of_symbolic_output_buffer sob
+.ft R
+returns a symbolic formatter
+that outputs to 
+.ft B
+symbolic_output_buffer
+.ft R
+.ft B
+sob
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.06
+
+.sp
+
+.PP
+.SS Convenience formatting functions.
+
+.PP
+
+.I val pp_print_iter 
+: 
+.B ?pp_sep:(formatter -> unit -> unit) ->
+.B   (('a -> unit) -> 'b -> unit) ->
+.B   (formatter -> 'a -> unit) -> formatter -> 'b -> unit
+.sp
+
+.ft B
+pp_print_iter ~pp_sep iter pp_v ppf v
+.ft R
+formats on 
+.ft B
+ppf
+.ft R
+the iterations of
+.ft B
+iter
+.ft R
+over a collection 
+.ft B
+v
+.ft R
+of values using 
+.ft B
+pp_v
+.ft R
+\&. Iterations are
+separated by 
+.ft B
+pp_sep
+.ft R
+(defaults to 
+.ft B
+Format\&.pp_print_cut
+.ft R
+)\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val pp_print_list 
+: 
+.B ?pp_sep:(formatter -> unit -> unit) ->
+.B   (formatter -> 'a -> unit) -> formatter -> 'a list -> unit
+.sp
+
+.ft B
+pp_print_list ?pp_sep pp_v ppf l
+.ft R
+prints items of list 
+.ft B
+l
+.ft R
+,
+using 
+.ft B
+pp_v
+.ft R
+to print each item, and calling 
+.ft B
+pp_sep
+.ft R
+between items (
+.ft B
+pp_sep
+.ft R
+defaults to 
+.ft B
+Format\&.pp_print_cut
+.ft R
+)\&.
+Does nothing on empty lists\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val pp_print_array 
+: 
+.B ?pp_sep:(formatter -> unit -> unit) ->
+.B   (formatter -> 'a -> unit) -> formatter -> 'a array -> unit
+.sp
+
+.ft B
+pp_print_array ?pp_sep pp_v ppf a
+.ft R
+prints items of array 
+.ft B
+a
+.ft R
+,
+using 
+.ft B
+pp_v
+.ft R
+to print each item, and calling 
+.ft B
+pp_sep
+.ft R
+between items (
+.ft B
+pp_sep
+.ft R
+defaults to 
+.ft B
+Format\&.pp_print_cut
+.ft R
+)\&.
+Does nothing on empty arrays\&.
+.sp
+If 
+.ft B
+a
+.ft R
+is mutated after 
+.ft B
+pp_print_array
+.ft R
+is called, the printed values
+may not be what is expected because 
+.ft B
+Format
+.ft R
+can delay the printing\&.
+This can be avoided by flushing 
+.ft B
+ppf
+.ft R
+\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.I val pp_print_seq 
+: 
+.B ?pp_sep:(formatter -> unit -> unit) ->
+.B   (formatter -> 'a -> unit) ->
+.B   formatter -> 'a Seq.t -> unit
+.sp
+
+.ft B
+pp_print_seq ?pp_sep pp_v ppf s
+.ft R
+prints items of sequence 
+.ft B
+s
+.ft R
+,
+using 
+.ft B
+pp_v
+.ft R
+to print each item, and calling 
+.ft B
+pp_sep
+.ft R
+between items (
+.ft B
+pp_sep
+.ft R
+defaults to 
+.ft B
+Format\&.pp_print_cut
+.ft R
+\&.
+Does nothing on empty sequences\&.
+.sp
+This function does not terminate on infinite sequences\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val pp_print_text 
+: 
+.B formatter -> string -> unit
+.sp
+
+.ft B
+pp_print_text ppf s
+.ft R
+prints 
+.ft B
+s
+.ft R
+with spaces and newlines respectively
+printed using 
+.ft B
+Format\&.pp_print_space
+.ft R
+and 
+.ft B
+Format\&.pp_force_newline
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.02
+
+.sp
+
+.I val pp_print_option 
+: 
+.B ?none:(formatter -> unit -> unit) ->
+.B   (formatter -> 'a -> unit) -> formatter -> 'a option -> unit
+.sp
+
+.ft B
+pp_print_option ?none pp_v ppf o
+.ft R
+prints 
+.ft B
+o
+.ft R
+on 
+.ft B
+ppf
+.ft R
+using 
+.ft B
+pp_v
+.ft R
+if 
+.ft B
+o
+.ft R
+is 
+.ft B
+Some v
+.ft R
+and 
+.ft B
+none
+.ft R
+if it is 
+.ft B
+None
+.ft R
+\&. 
+.ft B
+none
+.ft R
+prints nothing by default\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_print_result 
+: 
+.B ok:(formatter -> 'a -> unit) ->
+.B   error:(formatter -> 'e -> unit) ->
+.B   formatter -> ('a, 'e) result -> unit
+.sp
+
+.ft B
+pp_print_result ~ok ~error ppf r
+.ft R
+prints 
+.ft B
+r
+.ft R
+on 
+.ft B
+ppf
+.ft R
+using
+.ft B
+ok
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Ok _
+.ft R
+and 
+.ft B
+error
+.ft R
+if 
+.ft B
+r
+.ft R
+is 
+.ft B
+Error _
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val pp_print_either 
+: 
+.B left:(formatter -> 'a -> unit) ->
+.B   right:(formatter -> 'b -> unit) ->
+.B   formatter -> ('a, 'b) Either.t -> unit
+.sp
+
+.ft B
+pp_print_either ~left ~right ppf e
+.ft R
+prints 
+.ft B
+e
+.ft R
+on 
+.ft B
+ppf
+.ft R
+using
+.ft B
+left
+.ft R
+if 
+.ft B
+e
+.ft R
+is 
+.ft B
+Either\&.Left _
+.ft R
+and 
+.ft B
+right
+.ft R
+if 
+.ft B
+e
+.ft R
+is 
+.ft B
+Either\&.Right _
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.13
+
+.sp
+
+.PP
+.SS Formatted pretty-printing
+
+.PP
+
+.PP
+Module 
+.ft B
+Format
+.ft R
+provides a complete set of 
+.ft B
+printf
+.ft R
+like functions for
+pretty\-printing using format string specifications\&.
+.sp
+Specific annotations may be added in the format strings to give
+pretty\-printing commands to the pretty\-printing engine\&.
+.sp
+Those annotations are introduced in the format strings using the 
+.ft B
+@
+.ft R
+character\&. For instance, 
+.ft B
+@ 
+.ft R
+means a space break, 
+.ft B
+@,
+.ft R
+means a cut,
+.ft B
+@[
+.ft R
+opens a new box, and 
+.ft B
+@]
+.ft R
+closes the last open box\&.
+.PP
+
+.I val fprintf 
+: 
+.B formatter -> ('a, formatter, unit) format -> 'a
+.sp
+
+.sp
+
+.PP
+
+.ft B
+fprintf ff fmt arg1 \&.\&.\&. argN
+.ft R
+formats the arguments 
+.ft B
+arg1
+.ft R
+to 
+.ft B
+argN
+.ft R
+according to the format string 
+.ft B
+fmt
+.ft R
+, and outputs the resulting string on
+the formatter 
+.ft B
+ff
+.ft R
+\&.
+.sp
+The format string 
+.ft B
+fmt
+.ft R
+is a character string which contains three types of
+objects: plain characters and conversion specifications as specified in
+the 
+.ft B
+Printf
+.ft R
+module, and pretty\-printing indications specific to the
+.ft B
+Format
+.ft R
+module\&.
+.sp
+The pretty\-printing indication characters are introduced by
+a 
+.ft B
+@
+.ft R
+character, and their meanings are:
+.sp
+\-
+.ft B
+@[
+.ft R
+: open a pretty\-printing box\&. The type and offset of the
+box may be optionally specified with the following syntax:
+the 
+.ft B
+<
+.ft R
+character, followed by an optional box type indication,
+then an optional integer offset, and the closing 
+.ft B
+>
+.ft R
+character\&.
+Pretty\-printing box type is one of 
+.ft B
+h
+.ft R
+, 
+.ft B
+v
+.ft R
+, 
+.ft B
+hv
+.ft R
+, 
+.ft B
+b
+.ft R
+, or 
+.ft B
+hov
+.ft R
+\&.
+\&'
+.ft B
+h
+.ft R
+\&' stands for an \&'horizontal\&' pretty\-printing box,
+\&'
+.ft B
+v
+.ft R
+\&' stands for a \&'vertical\&' pretty\-printing box,
+\&'
+.ft B
+hv
+.ft R
+\&' stands for an \&'horizontal/vertical\&' pretty\-printing box,
+\&'
+.ft B
+b
+.ft R
+\&' stands for an \&'horizontal\-or\-vertical\&' pretty\-printing box
+demonstrating indentation,
+\&'
+.ft B
+hov
+.ft R
+\&' stands a simple \&'horizontal\-or\-vertical\&' pretty\-printing box\&.
+For instance, 
+.ft B
+@[<hov 2>
+.ft R
+opens an \&'horizontal\-or\-vertical\&'
+pretty\-printing box with indentation 2 as obtained with 
+.ft B
+open_hovbox 2
+.ft R
+\&.
+For more details about pretty\-printing boxes, see the various box opening
+functions 
+.ft B
+open_*box
+.ft R
+\&.
+.sp
+\-
+.ft B
+@]
+.ft R
+: close the most recently opened pretty\-printing box\&.
+.sp
+\-
+.ft B
+@,
+.ft R
+: output a \&'cut\&' break hint, as with 
+.ft B
+print_cut ()
+.ft R
+\&.
+.sp
+\-
+.ft B
+@ 
+.ft R
+: output a \&'space\&' break hint, as with 
+.ft B
+print_space ()
+.ft R
+\&.
+.sp
+\-
+.ft B
+@;
+.ft R
+: output a \&'full\&' break hint as with 
+.ft B
+print_break
+.ft R
+\&. The
+.ft B
+nspaces
+.ft R
+and 
+.ft B
+offset
+.ft R
+parameters of the break hint may be
+optionally specified with the following syntax:
+the 
+.ft B
+<
+.ft R
+character, followed by an integer 
+.ft B
+nspaces
+.ft R
+value,
+then an integer 
+.ft B
+offset
+.ft R
+, and a closing 
+.ft B
+>
+.ft R
+character\&.
+If no parameters are provided, the full break defaults to a
+\&'space\&' break hint\&.
+.sp
+\-
+.ft B
+@\&.
+.ft R
+: flush the pretty\-printer and split the line, as with
+.ft B
+print_newline ()
+.ft R
+\&.
+.sp
+\-
+.ft B
+@<n>
+.ft R
+: print the following item as if it were of length 
+.ft B
+n
+.ft R
+\&.
+Hence, 
+.ft B
+printf "@<0>%s" arg
+.ft R
+prints 
+.ft B
+arg
+.ft R
+as a zero length string\&.
+If 
+.ft B
+@<n>
+.ft R
+is not followed by a conversion specification,
+then the following character of the format is printed as if
+it were of length 
+.ft B
+n
+.ft R
+\&.
+.sp
+\-
+.ft B
+@{
+.ft R
+: open a semantic tag\&. The name of the tag may be optionally
+specified with the following syntax:
+the 
+.ft B
+<
+.ft R
+character, followed by an optional string
+specification, and the closing 
+.ft B
+>
+.ft R
+character\&. The string
+specification is any character string that does not contain the
+closing character 
+.ft B
+\&'>\&'
+.ft R
+\&. If omitted, the tag name defaults to the
+empty string\&.
+For more details about semantic tags, see the functions 
+.ft B
+Format\&.open_stag
+.ft R
+and
+.ft B
+Format\&.close_stag
+.ft R
+\&.
+.sp
+\-
+.ft B
+@}
+.ft R
+: close the most recently opened semantic tag\&.
+.sp
+\-
+.ft B
+@?
+.ft R
+: flush the pretty\-printer as with 
+.ft B
+print_flush ()
+.ft R
+\&.
+This is equivalent to the conversion 
+.ft B
+%!
+.ft R
+\&.
+.sp
+\-
+.ft B
+@\(rsn
+.ft R
+: force a newline, as with 
+.ft B
+force_newline ()
+.ft R
+, not the normal way
+of pretty\-printing, you should prefer using break hints inside a vertical
+pretty\-printing box\&.
+
+Note: To prevent the interpretation of a 
+.ft B
+@
+.ft R
+character as a
+pretty\-printing indication, escape it with a 
+.ft B
+%
+.ft R
+character\&.
+Old quotation mode 
+.ft B
+@@
+.ft R
+is deprecated since it is not compatible with
+formatted input interpretation of character 
+.ft B
+\&'@\&'
+.ft R
+\&.
+.sp
+Example: 
+.ft B
+printf "@[%s@ %d@]@\&." "x =" 1
+.ft R
+is equivalent to
+.ft B
+open_box (); print_string "x ="; print_space ();
+.br
+\&   print_int 1; close_box (); print_newline ()
+.ft R
+\&.
+It prints 
+.ft B
+x = 1
+.ft R
+within a pretty\-printing \&'horizontal\-or\-vertical\&' box\&.
+.PP
+
+.I val printf 
+: 
+.B ('a, formatter, unit) format -> 'a
+.sp
+Same as 
+.ft B
+fprintf
+.ft R
+above, but output on 
+.ft B
+get_std_formatter ()
+.ft R
+\&.
+.sp
+It is defined similarly to 
+.ft B
+fun fmt \-> fprintf (get_std_formatter ()) fmt
+.ft R
+but delays calling 
+.ft B
+get_std_formatter
+.ft R
+until after the final argument
+required by the 
+.ft B
+format
+.ft R
+is received\&. When used with multiple domains, the
+output from the domains will be interleaved with each other at points where
+the formatter is flushed, such as with 
+.ft B
+Format\&.print_flush
+.ft R
+\&.
+
+.sp
+
+.I val eprintf 
+: 
+.B ('a, formatter, unit) format -> 'a
+.sp
+Same as 
+.ft B
+fprintf
+.ft R
+above, but output on 
+.ft B
+get_err_formatter ()
+.ft R
+\&.
+.sp
+It is defined similarly to 
+.ft B
+fun fmt \-> fprintf (get_err_formatter ()) fmt
+.ft R
+but delays calling 
+.ft B
+get_err_formatter
+.ft R
+until after the final argument
+required by the 
+.ft B
+format
+.ft R
+is received\&. When used with multiple domains, the
+output from the domains will be interleaved with each other at points where
+the formatter is flushed, such as with 
+.ft B
+Format\&.print_flush
+.ft R
+\&.
+
+.sp
+
+.I val sprintf 
+: 
+.B ('a, unit, string) format -> 'a
+.sp
+Same as 
+.ft B
+printf
+.ft R
+above, but instead of printing on a formatter,
+returns a string containing the result of formatting the arguments\&.
+Note that the pretty\-printer queue is flushed at the end of each
+call to 
+.ft B
+sprintf
+.ft R
+\&. Note that if your format string contains a 
+.ft B
+%a
+.ft R
+,
+you should use 
+.ft B
+asprintf
+.ft R
+\&.
+.sp
+In case of multiple and related calls to 
+.ft B
+sprintf
+.ft R
+to output
+material on a single string, you should consider using 
+.ft B
+fprintf
+.ft R
+with the predefined formatter 
+.ft B
+str_formatter
+.ft R
+and call
+.ft B
+flush_str_formatter ()
+.ft R
+to get the final result\&.
+.sp
+Alternatively, you can use 
+.ft B
+Format\&.fprintf
+.ft R
+with a formatter writing to a
+buffer of your own: flushing the formatter and the buffer at the end of
+pretty\-printing returns the desired string\&.
+
+.sp
+
+.I val asprintf 
+: 
+.B ('a, formatter, unit, string) format4 -> 'a
+.sp
+Same as 
+.ft B
+printf
+.ft R
+above, but instead of printing on a formatter,
+returns a string containing the result of formatting the arguments\&.
+The type of 
+.ft B
+asprintf
+.ft R
+is general enough to interact nicely with 
+.ft B
+%a
+.ft R
+conversions\&.
+
+.sp
+.B "Since"
+4.01
+
+.sp
+
+.I val dprintf 
+: 
+.B ('a, formatter, unit, formatter -> unit) format4 -> 'a
+.sp
+Same as 
+.ft B
+Format\&.fprintf
+.ft R
+, except the formatter is the last argument\&.
+.ft B
+dprintf "\&.\&.\&." a b c
+.ft R
+is a function of type
+.ft B
+formatter \-> unit
+.ft R
+which can be given to a format specifier 
+.ft B
+%t
+.ft R
+\&.
+.sp
+This can be used as a replacement for 
+.ft B
+Format\&.asprintf
+.ft R
+to delay
+formatting decisions\&. Using the string returned by 
+.ft B
+Format\&.asprintf
+.ft R
+in a
+formatting context forces formatting decisions to be taken in
+isolation, and the final string may be created
+prematurely\&. 
+.ft B
+Format\&.dprintf
+.ft R
+allows delay of formatting decisions until
+the final formatting context is known\&.
+For example:
+.EX
+.ft B
+.br
+\&  let t = Format\&.dprintf "%i@ %i@ %i" 1 2 3 in
+.br
+\&  \&.\&.\&.
+.br
+\&  Format\&.printf "@[<v>%t@]" t
+.br
+\&
+.ft R
+.EE
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val ifprintf 
+: 
+.B formatter -> ('a, formatter, unit) format -> 'a
+.sp
+Same as 
+.ft B
+fprintf
+.ft R
+above, but does not print anything\&.
+Useful to ignore some material when conditionally printing\&.
+
+.sp
+.B "Since"
+3.10
+
+.sp
+
+.PP
+Formatted Pretty\-Printing with continuations\&.
+.PP
+
+.I val kfprintf 
+: 
+.B (formatter -> 'a) ->
+.B   formatter -> ('b, formatter, unit, 'a) format4 -> 'b
+.sp
+Same as 
+.ft B
+fprintf
+.ft R
+above, but instead of returning immediately,
+passes the formatter to its first argument at the end of printing\&.
+
+.sp
+
+.I val kdprintf 
+: 
+.B ((formatter -> unit) -> 'a) ->
+.B   ('b, formatter, unit, 'a) format4 -> 'b
+.sp
+Same as 
+.ft B
+Format\&.dprintf
+.ft R
+above, but instead of returning immediately,
+passes the suspended printer to its first argument at the end of printing\&.
+
+.sp
+.B "Since"
+4.08
+
+.sp
+
+.I val ikfprintf 
+: 
+.B (formatter -> 'a) ->
+.B   formatter -> ('b, formatter, unit, 'a) format4 -> 'b
+.sp
+Same as 
+.ft B
+kfprintf
+.ft R
+above, but does not print anything\&.
+Useful to ignore some material when conditionally printing\&.
+
+.sp
+.B "Since"
+3.12
+
+.sp
+
+.I val ksprintf 
+: 
+.B (string -> 'a) -> ('b, unit, string, 'a) format4 -> 'b
+.sp
+Same as 
+.ft B
+sprintf
+.ft R
+above, but instead of returning the string,
+passes it to the first argument\&.
+
+.sp
+
+.I val kasprintf 
+: 
+.B (string -> 'a) -> ('b, formatter, unit, 'a) format4 -> 'b
+.sp
+Same as 
+.ft B
+asprintf
+.ft R
+above, but instead of returning the string,
+passes it to the first argument\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.PP
+.SS Examples
+.sp
+A few warmup examples to get an idea of how Format is used\&.
+.sp
+We have a list 
+.ft B
+l
+.ft R
+of pairs 
+.ft B
+(int * bool)
+.ft R
+, which the toplevel prints for us:
+.sp
+
+.EX
+.ft B
+# let l = List\&.init 20 (fun n \-> n, n mod 2 = 0)
+.br
+\&  val l : (int * bool) list =
+.br
+\&  [(0, true); (1, false); (2, true); (3, false); (4, true); (5, false);
+.br
+\&   (6, true); (7, false); (8, true); (9, false); (10, true); (11, false);
+.br
+\&   (12, true); (13, false); (14, true); (15, false); (16, true); (17, false);
+.br
+\&   (18, true); (19, false)]
+.br
+\& 
+.ft R
+.EE
+.sp
+If we want to print it ourself without the toplevel magic, we can try this:
+.sp
+
+.EX
+.ft B
+.br
+\&  # let pp_pair out (x,y) = Format\&.fprintf out "(%d, %b)" x y
+.br
+\&  val pp_pair : Format\&.formatter \-> int * bool \-> unit = <fun>
+.br
+\&  # Format\&.printf "l: [@[<hov>%a@]]@\&."
+.br
+\&    Format\&.(pp_print_list ~pp_sep:(fun out () \-> fprintf out ";@ ") pp_pair) l
+.br
+\&    l: [(0, true); (1, false); (2, true); (3, false); (4, true); (5, false);
+.br
+\&        (6, true); (7, false); (8, true); (9, false); (10, true); (11, false);
+.br
+\&        (12, true); (13, false); (14, true); (15, false); (16, true);
+.br
+\&        (17, false); (18, true); (19, false)]
+.br
+\&
+.br
+\&  
+.ft R
+.EE
+.sp
+What this does, briefly, is:
+.sp
+.sp
+\-
+.ft B
+pp_pair
+.ft R
+prints a pair 
+.ft B
+bool*int
+.ft R
+surrounded in "(" ")"\&. It takes
+a formatter (into which formatting happens), and the pair itself\&.
+When printing is done it returns 
+.ft B
+()
+.ft R
+\&.
+
+.sp
+\-
+.ft B
+Format\&.printf "l = [@[<hov>%a@]]@\&." \&.\&.\&. l
+.ft R
+is like 
+.ft B
+printf
+.ft R
+, but
+with additional formatting instructions (denoted with "@")\&. The pair
+"@
+.ft B
+<hov>" and "@
+.ft R
+" is a "horizontal\-or\-vertical box"\&.
+
+.sp
+\-"@\&." ends formatting with a newline\&. It is similar to "\(rsn" but is also
+aware of the 
+.ft B
+Format\&.formatter
+.ft R
+\&'s state\&. Do not use "\(rsn" with 
+.ft B
+Format
+.ft R
+\&.
+
+.sp
+\-"%a" is a formatting instruction, like "%d" or "%s" for 
+.ft B
+printf
+.ft R
+\&.
+However, where "%d" prints an integer and "%s" prints a string,
+"%a" takes a printer (of type 
+.ft B
+Format\&.formatter \-> \&'a \-> unit
+.ft R
+)
+and a value (of type 
+.ft B
+\&'a
+.ft R
+) and applies the printer to the value\&.
+This is key to compositionality of printers\&.
+
+.sp
+\-We build a list printer using
+.ft B
+Format\&.pp_print_list ~pp_sep:(\&.\&.\&.) pp_pair
+.ft R
+\&.
+.ft B
+pp_print_list
+.ft R
+takes an element printer and returns a list printer\&.
+The 
+.ft B
+?pp_sep
+.ft R
+optional argument, if provided, is called in between
+each element to print a separator\&.
+
+.sp
+\-Here, for a separator, we use 
+.ft B
+(fun out () \-> Format\&.fprintf out ";@ ")
+.ft R
+\&.
+It prints ";", and then "@ " which is a breaking space
+(either it prints " ", or it prints a newline if the box is about to
+overflow)\&.
+This "@ " is responsible for the list printing splitting into several
+lines\&.
+
+If we omit "@ ", we get an ugly single\-line print:
+.sp
+
+.EX
+.ft B
+# Format\&.printf "l: [@[<hov>%a@]]@\&."
+.br
+\&      Format\&.(pp_print_list ~pp_sep:(fun out () \-> fprintf out "; ") pp_pair) l
+.br
+\&  l: [(0, true); (1, false); (2, true); (* \&.\&.\&. *); (18, true); (19, false)]
+.br
+\&\- : unit = ()
+.br
+\&    
+.ft R
+.EE
+.sp
+Generally, it is good practice to define custom printers for important types
+in your program\&. If, for example, you were to define basic geometry
+types like so:
+.sp
+
+.EX
+.ft B
+.br
+\&  type point = {
+.br
+\&    x: float;
+.br
+\&    y: float;
+.br
+\&  }
+.br
+\&
+.br
+\&  type rectangle = {
+.br
+\&    ll: point; (* lower left *)
+.br
+\&    ur: point; (* upper right *)
+.br
+\&  }
+.br
+\&  
+.ft R
+.EE
+.sp
+For debugging purpose, or to display information in logs, or on the console,
+it would be convenient to define printers for these types\&.
+Here is an example of to do it\&.
+Note that "%\&.3f" is a 
+.ft B
+float
+.ft R
+printer up to 3 digits of precision
+after the dot; "%f" would print as many digits as required, which is
+somewhat verbose; "%h" is an hexadecimal float printer\&.
+.sp
+
+.EX
+.ft B
+.br
+\&  let pp_point out (p:point) =
+.br
+\&    Format\&.fprintf out "{ @[x=%\&.3f;@ y=%\&.3f@] }" p\&.x p\&.y
+.br
+\&
+.br
+\&  let pp_rectangle out (r:rectangle) =
+.br
+\&    Format\&.fprintf out "{ @[ll=%a;@ ur=%a@] }"
+.br
+\&      pp_point r\&.ll pp_point r\&.ur
+.br
+\&  
+.ft R
+.EE
+.sp
+In the 
+.ft B
+\&.mli
+.ft R
+file, we could have:
+.sp
+
+.EX
+.ft B
+.br
+\&    val pp_point : Format\&.formatter \-> point \-> unit
+.br
+\&
+.br
+\&    val pp_rectangle : Format\&.formatter \-> rectangle \-> unit
+.br
+\&  
+.ft R
+.EE
+.sp
+These printers can now be used with "%a" inside other printers\&.
+.sp
+
+.EX
+.ft B
+# Format\&.printf "some rectangle: %a@\&."
+.br
+\&        (Format\&.pp_print_option pp_rectangle)
+.br
+\&        (Some {ll={x=1\&.; y=2\&.}; ur={x=42\&.; y=500\&.12345}})
+.br
+\&  some rectangle: { l={ x=1\&.000; y=2\&.000 }; ur={ x=42\&.000; y=500\&.123 } }
+.br
+\&
+.br
+\&  # Format\&.printf "no rectangle: %a@\&."
+.br
+\&        (Format\&.pp_option pp_rectangle)
+.br
+\&        None
+.br
+\&  no rectangle:
+.br
+\&  
+.ft R
+.EE
+.sp
+See how we combine 
+.ft B
+pp_print_option
+.ft R
+(option printer) and our newly defined
+rectangle printer, like we did with 
+.ft B
+pp_print_list
+.ft R
+earlier\&.
+.sp
+For a more extensive tutorial, see
+"Using the Format module"\&.
+.sp
+A final note: the 
+.ft B
+Format
+.ft R
+module is a starting point\&.
+The OCaml ecosystem has libraries that makes formatting easier
+and more expressive, with more combinators, more concise names, etc\&.
+An example of such a library is  Fmt\&.
+.sp
+Automatic deriving of pretty\-printers from type definitions is also possible,
+using  https://github\&.com/ocaml\-ppx/ppx_deriving
+or similar ppx derivers\&.
+.PP

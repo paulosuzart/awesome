@@ -1,0 +1,49 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_fields_conv" {"D"}
+  "doc/ppx_fields_conv/CHANGES.md" {"F:c6bac15621d9a06c8bc6215dee3744cb"}
+  "doc/ppx_fields_conv/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_fields_conv/README.md" {"F:8ae34b6581ab03e21e0012bd1f5cc377"}
+  "lib/ppx_fields_conv" {"D"}
+  "lib/ppx_fields_conv/META" {"F:7ee5e8b0a5711555e5f04e250b7c9f1f"}
+  "lib/ppx_fields_conv/dune-package" {"F:532aa923ede1d1a38decb5b15d956424"}
+  "lib/ppx_fields_conv/opam" {"F:2ef709c6b9a549876914fdf54097c1f8"}
+  "lib/ppx_fields_conv/ppx_fields_conv.a"
+    {"F:c8750641968283995cabe261d8feed3a"}
+  "lib/ppx_fields_conv/ppx_fields_conv.cma"
+    {"F:14b7f0d57d408c09a8034b7a36868eb5"}
+  "lib/ppx_fields_conv/ppx_fields_conv.cmi"
+    {"F:9030db0ff5faa1db7998c98caa0c08c3"}
+  "lib/ppx_fields_conv/ppx_fields_conv.cmt"
+    {"F:86062e05e06484389c912ace88a0e093"}
+  "lib/ppx_fields_conv/ppx_fields_conv.cmti"
+    {"F:f8bc642c675e724c809e74d289c5603f"}
+  "lib/ppx_fields_conv/ppx_fields_conv.cmx"
+    {"F:c185d7e6c849caf019b7857087cb3b2e"}
+  "lib/ppx_fields_conv/ppx_fields_conv.cmxa"
+    {"F:7de010ae5ca2b79228f908d8b4e2bb36"}
+  "lib/ppx_fields_conv/ppx_fields_conv.cmxs"
+    {"F:807eaf674500f79436a1fa3292892d6b"}
+  "lib/ppx_fields_conv/ppx_fields_conv.ml"
+    {"F:421a8baf35540d19ba07b1db1a218ec7"}
+  "lib/ppx_fields_conv/ppx_fields_conv.mli"
+    {"F:447743cf38d51ed12c0fa89de760243b"}
+  "lib/ppx_fields_conv/ppx_fields_conv__.cmi"
+    {"F:ef5c2e84b55c404f12b1cb6559e55926"}
+  "lib/ppx_fields_conv/ppx_fields_conv__.cmt"
+    {"F:4675bf26a82ac0c63452257a105efb77"}
+  "lib/ppx_fields_conv/ppx_fields_conv__.cmx"
+    {"F:5df297d77503b8e1b6b9033ba3171d4c"}
+  "lib/ppx_fields_conv/ppx_fields_conv__.ml"
+    {"F:ce587913948a51a36517972ea2284d91"}
+  "lib/ppx_fields_conv/ppx_fields_conv__Selector.cmi"
+    {"F:799ec0c91e80ae4b61217c88e0c0b090"}
+  "lib/ppx_fields_conv/ppx_fields_conv__Selector.cmt"
+    {"F:430962ba53a70d3b1c887d91ac0985d9"}
+  "lib/ppx_fields_conv/ppx_fields_conv__Selector.cmti"
+    {"F:7abfb00d4b0050701ba2a4f1f02fd9a3"}
+  "lib/ppx_fields_conv/ppx_fields_conv__Selector.cmx"
+    {"F:130bc552b4af4ed238caec17b76ba0fc"}
+  "lib/ppx_fields_conv/selector.ml" {"F:b98115ad413f87f6955bbc1d3ee513fb"}
+  "lib/ppx_fields_conv/selector.mli" {"F:2d1eae138b3a42150ccb7705e45cbc76"}
+]

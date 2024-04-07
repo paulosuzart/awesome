@@ -1,0 +1,27 @@
+version = "4.4.0"
+description = ""
+requires = "angstrom stringext"
+archive(byte) = "uri.cma"
+archive(native) = "uri.cmxa"
+plugin(byte) = "uri.cma"
+plugin(native) = "uri.cmxs"
+package "services" (
+  directory = "services"
+  version = "4.4.0"
+  description = ""
+  requires = "uri"
+  archive(byte) = "uri_services.cma"
+  archive(native) = "uri_services.cmxa"
+  plugin(byte) = "uri_services.cma"
+  plugin(native) = "uri_services.cmxs"
+)
+package "services_full" (
+  directory = "services_full"
+  version = "4.4.0"
+  description = ""
+  requires = "uri"
+  archive(byte) = "uri_services_full.cma"
+  archive(native) = "uri_services_full.cmxa"
+  plugin(byte) = "uri_services_full.cma"
+  plugin(native) = "uri_services_full.cmxs"
+)

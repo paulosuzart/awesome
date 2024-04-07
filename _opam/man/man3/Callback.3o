@@ -1,0 +1,88 @@
+.TH "Callback" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Callback \- Registering OCaml values with the C runtime.
+.SH Module
+Module   Callback
+.SH Documentation
+.sp
+Module
+.BI "Callback"
+ : 
+.B sig end
+
+.sp
+Registering OCaml values with the C runtime\&.
+.sp
+This module allows OCaml values to be registered with the C runtime
+under a symbolic name, so that C code can later call back registered
+OCaml functions, or raise registered OCaml exceptions\&.
+
+.sp
+
+.sp
+.sp
+
+.I val register 
+: 
+.B string -> 'a -> unit
+.sp
+
+.ft B
+Callback\&.register n v
+.ft R
+registers the value 
+.ft B
+v
+.ft R
+under
+the name 
+.ft B
+n
+.ft R
+\&. C code can later retrieve a handle to 
+.ft B
+v
+.ft R
+by calling 
+.ft B
+caml_named_value(n)
+.ft R
+\&.
+
+.sp
+
+.I val register_exception 
+: 
+.B string -> exn -> unit
+.sp
+
+.ft B
+Callback\&.register_exception n exn
+.ft R
+registers the
+exception contained in the exception value 
+.ft B
+exn
+.ft R
+under the name 
+.ft B
+n
+.ft R
+\&. C code can later retrieve a handle to
+the exception by calling 
+.ft B
+caml_named_value(n)
+.ft R
+\&. The exception
+value thus obtained is suitable for passing as first argument
+to 
+.ft B
+raise_constant
+.ft R
+or 
+.ft B
+raise_with_arg
+.ft R
+\&.
+
+.sp

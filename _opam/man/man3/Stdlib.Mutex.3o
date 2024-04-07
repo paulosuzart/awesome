@@ -1,0 +1,157 @@
+.TH "Stdlib.Mutex" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Mutex \- no description
+.SH Module
+Module   Stdlib.Mutex
+.SH Documentation
+.sp
+Module
+.BI "Mutex"
+ : 
+.B (module Stdlib__Mutex)
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type of mutexes\&.
+
+.sp
+
+.I val create 
+: 
+.B unit -> t
+.sp
+Return a new mutex\&.
+
+.sp
+
+.I val lock 
+: 
+.B t -> unit
+.sp
+Lock the given mutex\&. Only one thread can have the mutex locked
+at any time\&. A thread that attempts to lock a mutex already locked
+by another thread will suspend until the other thread unlocks
+the mutex\&.
+
+.sp
+.B "Before4.12"
+
+.ft B
+Sys_error
+.ft R
+was not raised for recursive locking
+(platform\-dependent behaviour)
+
+
+.sp
+.B "Raises Sys_error"
+if the mutex is already locked by the thread calling
+.ft B
+Mutex\&.lock
+.ft R
+\&.
+
+.sp
+
+.I val try_lock 
+: 
+.B t -> bool
+.sp
+Same as 
+.ft B
+Mutex\&.lock
+.ft R
+, but does not suspend the calling thread if
+the mutex is already locked: just return 
+.ft B
+false
+.ft R
+immediately
+in that case\&. If the mutex is unlocked, lock it and
+return 
+.ft B
+true
+.ft R
+\&.
+
+.sp
+
+.I val unlock 
+: 
+.B t -> unit
+.sp
+Unlock the given mutex\&. Other threads suspended trying to lock
+the mutex will restart\&.  The mutex must have been previously locked
+by the thread that calls 
+.ft B
+Mutex\&.unlock
+.ft R
+\&.
+
+.sp
+.B "Before4.12"
+
+.ft B
+Sys_error
+.ft R
+was not raised when unlocking an unlocked mutex
+or when unlocking a mutex from a different thread\&.
+
+
+.sp
+.B "Raises Sys_error"
+if the mutex is unlocked or was locked by another thread\&.
+
+.sp
+
+.I val protect 
+: 
+.B t -> (unit -> 'a) -> 'a
+.sp
+
+.ft B
+protect mutex f
+.ft R
+runs 
+.ft B
+f()
+.ft R
+in a critical section where 
+.ft B
+mutex
+.ft R
+is locked (using 
+.ft B
+Mutex\&.lock
+.ft R
+); it then takes care of releasing 
+.ft B
+mutex
+.ft R
+,
+whether 
+.ft B
+f()
+.ft R
+returned a value or raised an exception\&.
+.sp
+The unlocking operation is guaranteed to always takes place,
+even in the event an asynchronous exception (e\&.g\&. 
+.ft B
+Sys\&.Break
+.ft R
+) is raised
+in some signal handler\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp

@@ -1,0 +1,31 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_typerep_conv" {"D"}
+  "doc/ppx_typerep_conv/CHANGES.md" {"F:05992d98bafc4322c56b3762cbf1aebe"}
+  "doc/ppx_typerep_conv/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_typerep_conv/README.md" {"F:d6a0472531d18609006d13fb38acd37a"}
+  "lib/ppx_typerep_conv" {"D"}
+  "lib/ppx_typerep_conv/META" {"F:7f91ad3fc9dcd525a0866a3a36165464"}
+  "lib/ppx_typerep_conv/dune-package" {"F:c82ca8ab0683554541f7538081b5126b"}
+  "lib/ppx_typerep_conv/opam" {"F:bd144157dbb6f6b01c4441c415280015"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.a"
+    {"F:326acdfb16f89ae6ea8802796e92661d"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.cma"
+    {"F:fc8163993b818aad716ac63719d87bd8"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.cmi"
+    {"F:6d18e04cfc018921db6a01960e9f372f"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.cmt"
+    {"F:401d3b93e877cbdb089302c6f5b1088f"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.cmti"
+    {"F:6bdc63fc3505864dbef3c955666181a1"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.cmx"
+    {"F:4693bc16ea2b151aa5e03415a5e19606"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.cmxa"
+    {"F:ce9c3b212badb9314176ab2ad9e6f967"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.cmxs"
+    {"F:91f6fe33f1a2dfc4366157830613f9ef"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.ml"
+    {"F:c952dd700dbe3a5bd51c3194561e0f16"}
+  "lib/ppx_typerep_conv/ppx_typerep_conv.mli"
+    {"F:b1791ff7b8f4d3534b319fced6305f61"}
+]

@@ -1,0 +1,127 @@
+.TH "Semaphore.Binary" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Semaphore.Binary \- no description
+.SH Module
+Module   Semaphore.Binary
+.SH Documentation
+.sp
+Module
+.BI "Binary"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+The type of binary semaphores\&.
+
+.sp
+
+.I val make 
+: 
+.B bool -> t
+.sp
+
+.ft B
+make b
+.ft R
+returns a new binary semaphore\&.
+If 
+.ft B
+b
+.ft R
+is 
+.ft B
+true
+.ft R
+, the initial value of the semaphore is 1, meaning
+"available"\&.  If 
+.ft B
+b
+.ft R
+is 
+.ft B
+false
+.ft R
+, the initial value of the
+semaphore is 0, meaning "unavailable"\&.
+
+.sp
+
+.I val release 
+: 
+.B t -> unit
+.sp
+
+.ft B
+release s
+.ft R
+sets the value of semaphore 
+.ft B
+s
+.ft R
+to 1, putting it in the
+"available" state\&.  If other threads are waiting on 
+.ft B
+s
+.ft R
+, one of them is
+restarted\&.
+
+.sp
+
+.I val acquire 
+: 
+.B t -> unit
+.sp
+
+.ft B
+acquire s
+.ft R
+blocks the calling thread until the semaphore 
+.ft B
+s
+.ft R
+has value 1 (is available), then atomically sets it to 0
+and returns\&.
+
+.sp
+
+.I val try_acquire 
+: 
+.B t -> bool
+.sp
+
+.ft B
+try_acquire s
+.ft R
+immediately returns 
+.ft B
+false
+.ft R
+if the semaphore 
+.ft B
+s
+.ft R
+has value 0\&.  If 
+.ft B
+s
+.ft R
+has value 1, its value is atomically set to 0
+and 
+.ft B
+try_acquire s
+.ft R
+returns 
+.ft B
+true
+.ft R
+\&.
+
+.sp

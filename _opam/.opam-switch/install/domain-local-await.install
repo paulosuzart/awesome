@@ -1,0 +1,30 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/domain-local-await/Domain_local_await.a"
+  "_build/install/default/lib/domain-local-await/Domain_local_await.cma"
+  "_build/install/default/lib/domain-local-await/Domain_local_await.cmxa"
+  "_build/install/default/lib/domain-local-await/Domain_local_await.ml"
+  "_build/install/default/lib/domain-local-await/Domain_local_await.mli"
+  "_build/install/default/lib/domain-local-await/META"
+  "_build/install/default/lib/domain-local-await/Thread_intf.ml"
+  "_build/install/default/lib/domain-local-await/domain_local_await.cmi"
+  "_build/install/default/lib/domain-local-await/domain_local_await.cmt"
+  "_build/install/default/lib/domain-local-await/domain_local_await.cmti"
+  "_build/install/default/lib/domain-local-await/domain_local_await.cmx"
+  "_build/install/default/lib/domain-local-await/domain_local_await__.cmi"
+  "_build/install/default/lib/domain-local-await/domain_local_await__.cmt"
+  "_build/install/default/lib/domain-local-await/domain_local_await__.cmx"
+  "_build/install/default/lib/domain-local-await/domain_local_await__.ml"
+  "_build/install/default/lib/domain-local-await/domain_local_await__Thread_intf.cmi"
+  "_build/install/default/lib/domain-local-await/domain_local_await__Thread_intf.cmt"
+  "_build/install/default/lib/domain-local-await/domain_local_await__Thread_intf.cmx"
+  "_build/install/default/lib/domain-local-await/dune-package"
+  "_build/install/default/lib/domain-local-await/opam"
+]
+doc: [
+  "_build/install/default/doc/domain-local-await/CHANGES.md"
+  "_build/install/default/doc/domain-local-await/LICENSE.md"
+  "_build/install/default/doc/domain-local-await/README.md"
+]
+libexec:
+  "_build/install/default/lib/domain-local-await/Domain_local_await.cmxs"

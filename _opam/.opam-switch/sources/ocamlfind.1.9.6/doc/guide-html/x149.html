@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Linker options</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using packages"
+HREF="c74.html"><LINK
+REL="PREVIOUS"
+TITLE="Dependencies"
+HREF="x135.html"><LINK
+REL="NEXT"
+TITLE="Dependency analysis of packages"
+HREF="c161.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x135.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c161.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN149"
+>Linker options</A
+></H1
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Beginning with OCaml 3.00, the compiler itself has an interesting feature
+called "automatic linking" that makes the following mechanism superflous in
+most cases. Automatic linking means that it is possible to store the linker
+options into the cma or cmxa file such that the compiler itself knows which
+options are necessary. Of course, the following mechanism still works, and it
+is still helpful when conditional linking is required.</I
+></SPAN
+></P
+><P
+>OCaml has a C interface which means that C libraries can be linked in
+and C functions can be declared as new language primitives. Using such
+libraries requires special linker options. Some of the core libraries
+distributed with OCaml are partly implemented in C and thus additional
+libraries must be specified in the linking phase of the program.</P
+><P
+>For example, the "str" library providing regular expressions requires
+to be linked as follows:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlc -o prog str.cma my_file1.cmo my_file2.cmo -cclib -lstr</PRE
+><P
+>The -cclib option passes the following argument directly to the
+underlying C linker which has the effect that libstr.a is linked in,
+too. The "-cclib -lstr" is directly associated with str.cma as the
+latter simply cannot be used without the former. Assume you would
+write a META file describing str. That "str.cma" should be linked in
+as archive is clear; the "-cclib -lstr" can be specified in another
+variable called "linkopts". The META file would look like:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>requires = ""
+version = "str from ocaml 2.02"
+archive(byte) = "str.cma"
+archive(native) = "str.cmxa"
+linkopts = "-cclib -lstr"</PRE
+><P
+>This has the effect that specifying -linkpkg in one of the compiler
+frontends not only chooses one of the archive files, but also extracts
+the necessary linker options from the META file. The above example can
+also be compiled with:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -o prog -package str -linkpkg my_file1.cmo my_file2.cmo</PRE
+><P
+>Most people will never write META files with "linkopts" settings. But
+this feature is very useful at least for the core libraries such as
+str. Because of this, the "findlib" distribution comes with META files
+for the core libraries in order to hide the linker options. This
+means that you can already use the packages "str", "dbm", "dynlink",
+"graphics", "num", "threads", "unix", and "camltk", and that the
+appropriate archives and linker options are automatically extracted.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x135.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c161.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Dependencies</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c74.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Dependency analysis of packages</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

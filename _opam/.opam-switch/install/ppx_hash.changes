@@ -1,0 +1,57 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_hash" {"D"}
+  "doc/ppx_hash/CHANGES.md" {"F:968c19207645185a730f464c0f1b684a"}
+  "doc/ppx_hash/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_hash/README.md" {"F:aaacf14b61cf94a0ea4d027342ef8d8e"}
+  "lib/ppx_hash" {"D"}
+  "lib/ppx_hash/META" {"F:fef95af4cd357c6a0eeab3e4422349d6"}
+  "lib/ppx_hash/dune-package" {"F:01f5c422ca7e79f74ab145692064975e"}
+  "lib/ppx_hash/expander/ppx_hash_expander.a"
+    {"F:d50b29450b29401e4b290252442aec64"}
+  "lib/ppx_hash/expander/ppx_hash_expander.cma"
+    {"F:bb01644b03c3e301e953fb60deaf886b"}
+  "lib/ppx_hash/expander/ppx_hash_expander.cmi"
+    {"F:dc41af89f62875f8c208820598c69b41"}
+  "lib/ppx_hash/expander/ppx_hash_expander.cmt"
+    {"F:c940447f79af7b748cc1d01a7cd7b2da"}
+  "lib/ppx_hash/expander/ppx_hash_expander.cmti"
+    {"F:4cb587bbaaf7ca7eff4a01dc6adfe749"}
+  "lib/ppx_hash/expander/ppx_hash_expander.cmx"
+    {"F:333f96ac5c33fbadac486ac004eef3b7"}
+  "lib/ppx_hash/expander/ppx_hash_expander.cmxa"
+    {"F:87a4103c5e338db2161ce8e60ed4100e"}
+  "lib/ppx_hash/expander/ppx_hash_expander.cmxs"
+    {"F:249aaed2be2d65ebca2c161410fdbfbf"}
+  "lib/ppx_hash/expander/ppx_hash_expander.ml"
+    {"F:2233d13a6f4dcb149fbc39d7e333eb5b"}
+  "lib/ppx_hash/expander/ppx_hash_expander.mli"
+    {"F:2b9570e5dee8a19ee96f0f92c1905dd8"}
+  "lib/ppx_hash/opam" {"F:069918c633316084b65aaf0746f17dc9"}
+  "lib/ppx_hash/ppx_hash.a" {"F:d104affefc04a861bf25398510bc3783"}
+  "lib/ppx_hash/ppx_hash.cma" {"F:b6cfa261fe673e5d2473b5addb089f34"}
+  "lib/ppx_hash/ppx_hash.cmi" {"F:bbc2666a86197a8c573bb82f87cabc0d"}
+  "lib/ppx_hash/ppx_hash.cmt" {"F:dedaa95cd507341f2bb70cf2378a644d"}
+  "lib/ppx_hash/ppx_hash.cmti" {"F:40b899be46c139f6dbbe2d09f2de1921"}
+  "lib/ppx_hash/ppx_hash.cmx" {"F:f4c9497bc2b2ebc32af8bf923dea9ede"}
+  "lib/ppx_hash/ppx_hash.cmxa" {"F:f5c1ecaa6ec81df94c9dd3fb6dfbc093"}
+  "lib/ppx_hash/ppx_hash.cmxs" {"F:3d6a7555b17af59b301bdaa868b9bc27"}
+  "lib/ppx_hash/ppx_hash.ml" {"F:5e828dbf22f9bbc526863cc6e4c59378"}
+  "lib/ppx_hash/ppx_hash.mli" {"F:cd98a87cc3b1f43039d7b13907f25570"}
+  "lib/ppx_hash/runtime-lib/ppx_hash_lib.a"
+    {"F:42af5c950cc57bcd3cb4ff04dc3b389e"}
+  "lib/ppx_hash/runtime-lib/ppx_hash_lib.cma"
+    {"F:e437d672cd314e5bf60cafe08132d6f2"}
+  "lib/ppx_hash/runtime-lib/ppx_hash_lib.cmi"
+    {"F:43c6f17561121590a5cdf9d06cf39431"}
+  "lib/ppx_hash/runtime-lib/ppx_hash_lib.cmt"
+    {"F:9c411cad316efc3db0a0cd670f09914c"}
+  "lib/ppx_hash/runtime-lib/ppx_hash_lib.cmx"
+    {"F:bf70d7b1502bbaf1e92455262de56abc"}
+  "lib/ppx_hash/runtime-lib/ppx_hash_lib.cmxa"
+    {"F:625818512f772609734f2e92ae1eb0f8"}
+  "lib/ppx_hash/runtime-lib/ppx_hash_lib.cmxs"
+    {"F:72ec5548d7504ec775218145f2dc2ad5"}
+  "lib/ppx_hash/runtime-lib/ppx_hash_lib.ml"
+    {"F:f975e24d24e26ebdf442139e582e4dda"}
+]

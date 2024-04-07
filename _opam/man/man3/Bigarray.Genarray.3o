@@ -1,0 +1,1065 @@
+.TH "Bigarray.Genarray" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Bigarray.Genarray \- no description
+.SH Module
+Module   Bigarray.Genarray
+.SH Documentation
+.sp
+Module
+.BI "Genarray"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B (!'a, !'b, !'c)
+.I t 
+
+.sp
+The type 
+.ft B
+Genarray\&.t
+.ft R
+is the type of Bigarrays with variable
+numbers of dimensions\&.  Any number of dimensions between 0 and 16
+is supported\&.
+.sp
+The three type parameters to 
+.ft B
+Genarray\&.t
+.ft R
+identify the array element
+kind and layout, as follows:
+.sp
+\-the first parameter, 
+.ft B
+\&'a
+.ft R
+, is the OCaml type for accessing array
+elements (
+.ft B
+float
+.ft R
+, 
+.ft B
+int
+.ft R
+, 
+.ft B
+int32
+.ft R
+, 
+.ft B
+int64
+.ft R
+, 
+.ft B
+nativeint
+.ft R
+);
+.sp
+\-the second parameter, 
+.ft B
+\&'b
+.ft R
+, is the actual kind of array elements
+(
+.ft B
+float32_elt
+.ft R
+, 
+.ft B
+float64_elt
+.ft R
+, 
+.ft B
+int8_signed_elt
+.ft R
+, 
+.ft B
+int8_unsigned_elt
+.ft R
+,
+etc);
+.sp
+\-the third parameter, 
+.ft B
+\&'c
+.ft R
+, identifies the array layout
+(
+.ft B
+c_layout
+.ft R
+or 
+.ft B
+fortran_layout
+.ft R
+)\&.
+
+For instance, 
+.ft B
+(float, float32_elt, fortran_layout) Genarray\&.t
+.ft R
+is the type of generic Bigarrays containing 32\-bit floats
+in Fortran layout; reads and writes in this array use the
+OCaml type 
+.ft B
+float
+.ft R
+\&.
+
+.sp
+
+.I val create 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout -> int array -> ('a, 'b, 'c) t
+.sp
+
+.ft B
+Genarray\&.create kind layout dimensions
+.ft R
+returns a new Bigarray
+whose element kind is determined by the parameter 
+.ft B
+kind
+.ft R
+(one of
+.ft B
+float32
+.ft R
+, 
+.ft B
+float64
+.ft R
+, 
+.ft B
+int8_signed
+.ft R
+, etc) and whose layout is
+determined by the parameter 
+.ft B
+layout
+.ft R
+(one of 
+.ft B
+c_layout
+.ft R
+or
+.ft B
+fortran_layout
+.ft R
+)\&.  The 
+.ft B
+dimensions
+.ft R
+parameter is an array of
+integers that indicate the size of the Bigarray in each dimension\&.
+The length of 
+.ft B
+dimensions
+.ft R
+determines the number of dimensions
+of the Bigarray\&.
+.sp
+For instance, 
+.ft B
+Genarray\&.create int32 c_layout [|4;6;8|]
+.ft R
+returns a fresh Bigarray of 32\-bit integers, in C layout,
+having three dimensions, the three dimensions being 4, 6 and 8
+respectively\&.
+.sp
+Bigarrays returned by 
+.ft B
+Genarray\&.create
+.ft R
+are not initialized:
+the initial values of array elements is unspecified\&.
+.sp
+
+.ft B
+Genarray\&.create
+.ft R
+raises 
+.ft B
+Invalid_argument
+.ft R
+if the number of dimensions
+is not in the range 0 to 16 inclusive, or if one of the dimensions
+is negative\&.
+
+.sp
+
+.I val init 
+: 
+.B ('a, 'b) Bigarray.kind ->
+.B   'c Bigarray.layout ->
+.B   int array -> (int array -> 'a) -> ('a, 'b, 'c) t
+.sp
+
+.ft B
+Genarray\&.init kind layout dimensions f
+.ft R
+returns a new Bigarray 
+.ft B
+b
+.ft R
+whose element kind is determined by the parameter 
+.ft B
+kind
+.ft R
+(one of
+.ft B
+float32
+.ft R
+, 
+.ft B
+float64
+.ft R
+, 
+.ft B
+int8_signed
+.ft R
+, etc) and whose layout is
+determined by the parameter 
+.ft B
+layout
+.ft R
+(one of 
+.ft B
+c_layout
+.ft R
+or
+.ft B
+fortran_layout
+.ft R
+)\&.  The 
+.ft B
+dimensions
+.ft R
+parameter is an array of
+integers that indicate the size of the Bigarray in each dimension\&.
+The length of 
+.ft B
+dimensions
+.ft R
+determines the number of dimensions
+of the Bigarray\&.
+.sp
+Each element 
+.ft B
+Genarray\&.get b i
+.ft R
+is initialized to the result of 
+.ft B
+f i
+.ft R
+\&.
+In other words, 
+.ft B
+Genarray\&.init kind layout dimensions f
+.ft R
+tabulates
+the results of 
+.ft B
+f
+.ft R
+applied to the indices of a new Bigarray whose
+layout is described by 
+.ft B
+kind
+.ft R
+, 
+.ft B
+layout
+.ft R
+and 
+.ft B
+dimensions
+.ft R
+\&.  The index
+array 
+.ft B
+i
+.ft R
+may be shared and mutated between calls to f\&.
+.sp
+For instance, 
+.ft B
+Genarray\&.init int c_layout [|2; 1; 3|]
+.br
+\&      (Array\&.fold_left (+) 0)
+.ft R
+returns a fresh Bigarray of integers, in C
+layout, having three dimensions (2, 1, 3, respectively), with the
+element values 0, 1, 2, 1, 2, 3\&.
+.sp
+
+.ft B
+Genarray\&.init
+.ft R
+raises 
+.ft B
+Invalid_argument
+.ft R
+if the number of dimensions
+is not in the range 0 to 16 inclusive, or if one of the dimensions
+is negative\&.
+
+.sp
+.B "Since"
+4.12
+
+.sp
+
+.I val num_dims 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+Return the number of dimensions of the given Bigarray\&.
+
+.sp
+
+.I val dims 
+: 
+.B ('a, 'b, 'c) t -> int array
+.sp
+
+.ft B
+Genarray\&.dims a
+.ft R
+returns all dimensions of the Bigarray 
+.ft B
+a
+.ft R
+,
+as an array of integers of length 
+.ft B
+Genarray\&.num_dims a
+.ft R
+\&.
+
+.sp
+
+.I val nth_dim 
+: 
+.B ('a, 'b, 'c) t -> int -> int
+.sp
+
+.ft B
+Genarray\&.nth_dim a n
+.ft R
+returns the 
+.ft B
+n
+.ft R
+\-th dimension of the
+Bigarray 
+.ft B
+a
+.ft R
+\&.  The first dimension corresponds to 
+.ft B
+n = 0
+.ft R
+;
+the second dimension corresponds to 
+.ft B
+n = 1
+.ft R
+; the last dimension,
+to 
+.ft B
+n = Genarray\&.num_dims a \- 1
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+n
+.ft R
+is less than 0 or greater or equal than
+.ft B
+Genarray\&.num_dims a
+.ft R
+\&.
+
+.sp
+
+.I val kind 
+: 
+.B ('a, 'b, 'c) t -> ('a, 'b) Bigarray.kind
+.sp
+Return the kind of the given Bigarray\&.
+
+.sp
+
+.I val layout 
+: 
+.B ('a, 'b, 'c) t -> 'c Bigarray.layout
+.sp
+Return the layout of the given Bigarray\&.
+
+.sp
+
+.I val change_layout 
+: 
+.B ('a, 'b, 'c) t ->
+.B   'd Bigarray.layout -> ('a, 'b, 'd) t
+.sp
+
+.ft B
+Genarray\&.change_layout a layout
+.ft R
+returns a Bigarray with the
+specified 
+.ft B
+layout
+.ft R
+, sharing the data with 
+.ft B
+a
+.ft R
+(and hence having
+the same dimensions as 
+.ft B
+a
+.ft R
+)\&. No copying of elements is involved: the
+new array and the original array share the same storage space\&.
+The dimensions are reversed, such that 
+.ft B
+get v [| a; b |]
+.ft R
+in
+C layout becomes 
+.ft B
+get v [| b+1; a+1 |]
+.ft R
+in Fortran layout\&.
+
+.sp
+.B "Since"
+4.04
+
+.sp
+
+.I val size_in_bytes 
+: 
+.B ('a, 'b, 'c) t -> int
+.sp
+
+.ft B
+size_in_bytes a
+.ft R
+is the number of elements in 
+.ft B
+a
+.ft R
+multiplied
+by 
+.ft B
+a
+.ft R
+\&'s 
+.ft B
+Bigarray\&.kind_size_in_bytes
+.ft R
+\&.
+
+.sp
+.B "Since"
+4.03
+
+.sp
+
+.I val get 
+: 
+.B ('a, 'b, 'c) t -> int array -> 'a
+.sp
+Read an element of a generic Bigarray\&.
+.ft B
+Genarray\&.get a [|i1; \&.\&.\&.; iN|]
+.ft R
+returns the element of 
+.ft B
+a
+.ft R
+whose coordinates are 
+.ft B
+i1
+.ft R
+in the first dimension, 
+.ft B
+i2
+.ft R
+in
+the second dimension, \&.\&.\&., 
+.ft B
+iN
+.ft R
+in the 
+.ft B
+N
+.ft R
+\-th dimension\&.
+.sp
+If 
+.ft B
+a
+.ft R
+has C layout, the coordinates must be greater or equal than 0
+and strictly less than the corresponding dimensions of 
+.ft B
+a
+.ft R
+\&.
+If 
+.ft B
+a
+.ft R
+has Fortran layout, the coordinates must be greater or equal
+than 1 and less or equal than the corresponding dimensions of 
+.ft B
+a
+.ft R
+\&.
+.sp
+If 
+.ft B
+N > 3
+.ft R
+, alternate syntax is provided: you can write
+.ft B
+a\&.{i1, i2, \&.\&.\&., iN}
+.ft R
+instead of 
+.ft B
+Genarray\&.get a [|i1; \&.\&.\&.; iN|]
+.ft R
+\&.
+(The syntax 
+.ft B
+a\&.{\&.\&.\&.}
+.ft R
+with one, two or three coordinates is
+reserved for accessing one\-, two\- and three\-dimensional arrays
+as described below\&.)
+
+.sp
+.B "Raises Invalid_argument"
+if the array 
+.ft B
+a
+.ft R
+does not have exactly 
+.ft B
+N
+.ft R
+dimensions, or if the coordinates are outside the array bounds\&.
+
+.sp
+
+.I val set 
+: 
+.B ('a, 'b, 'c) t -> int array -> 'a -> unit
+.sp
+Assign an element of a generic Bigarray\&.
+.ft B
+Genarray\&.set a [|i1; \&.\&.\&.; iN|] v
+.ft R
+stores the value 
+.ft B
+v
+.ft R
+in the
+element of 
+.ft B
+a
+.ft R
+whose coordinates are 
+.ft B
+i1
+.ft R
+in the first dimension,
+.ft B
+i2
+.ft R
+in the second dimension, \&.\&.\&., 
+.ft B
+iN
+.ft R
+in the 
+.ft B
+N
+.ft R
+\-th dimension\&.
+.sp
+The array 
+.ft B
+a
+.ft R
+must have exactly 
+.ft B
+N
+.ft R
+dimensions, and all coordinates
+must lie inside the array bounds, as described for 
+.ft B
+Genarray\&.get
+.ft R
+;
+otherwise, 
+.ft B
+Invalid_argument
+.ft R
+is raised\&.
+.sp
+If 
+.ft B
+N > 3
+.ft R
+, alternate syntax is provided: you can write
+.ft B
+a\&.{i1, i2, \&.\&.\&., iN} <\- v
+.ft R
+instead of
+.ft B
+Genarray\&.set a [|i1; \&.\&.\&.; iN|] v
+.ft R
+\&.
+(The syntax 
+.ft B
+a\&.{\&.\&.\&.} <\- v
+.ft R
+with one, two or three coordinates is
+reserved for updating one\-, two\- and three\-dimensional arrays
+as described below\&.)
+
+.sp
+
+.I val sub_left 
+: 
+.B ('a, 'b, Bigarray.c_layout) t ->
+.B   int -> int -> ('a, 'b, Bigarray.c_layout) t
+.sp
+Extract a sub\-array of the given Bigarray by restricting the
+first (left\-most) dimension\&.  
+.ft B
+Genarray\&.sub_left a ofs len
+.ft R
+returns a Bigarray with the same number of dimensions as 
+.ft B
+a
+.ft R
+,
+and the same dimensions as 
+.ft B
+a
+.ft R
+, except the first dimension,
+which corresponds to the interval 
+.ft B
+[ofs \&.\&.\&. ofs + len \- 1]
+.ft R
+of the first dimension of 
+.ft B
+a
+.ft R
+\&.  No copying of elements is
+involved: the sub\-array and the original array share the same
+storage space\&.  In other terms, the element at coordinates
+.ft B
+[|i1; \&.\&.\&.; iN|]
+.ft R
+of the sub\-array is identical to the
+element at coordinates 
+.ft B
+[|i1+ofs; \&.\&.\&.; iN|]
+.ft R
+of the original
+array 
+.ft B
+a
+.ft R
+\&.
+.sp
+
+.ft B
+Genarray\&.sub_left
+.ft R
+applies only to Bigarrays in C layout\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+ofs
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate
+a valid sub\-array of 
+.ft B
+a
+.ft R
+, that is, if 
+.ft B
+ofs < 0
+.ft R
+, or 
+.ft B
+len < 0
+.ft R
+,
+or 
+.ft B
+ofs + len > Genarray\&.nth_dim a 0
+.ft R
+\&.
+
+.sp
+
+.I val sub_right 
+: 
+.B ('a, 'b, Bigarray.fortran_layout) t ->
+.B   int -> int -> ('a, 'b, Bigarray.fortran_layout) t
+.sp
+Extract a sub\-array of the given Bigarray by restricting the
+last (right\-most) dimension\&.  
+.ft B
+Genarray\&.sub_right a ofs len
+.ft R
+returns a Bigarray with the same number of dimensions as 
+.ft B
+a
+.ft R
+,
+and the same dimensions as 
+.ft B
+a
+.ft R
+, except the last dimension,
+which corresponds to the interval 
+.ft B
+[ofs \&.\&.\&. ofs + len \- 1]
+.ft R
+of the last dimension of 
+.ft B
+a
+.ft R
+\&.  No copying of elements is
+involved: the sub\-array and the original array share the same
+storage space\&.  In other terms, the element at coordinates
+.ft B
+[|i1; \&.\&.\&.; iN|]
+.ft R
+of the sub\-array is identical to the
+element at coordinates 
+.ft B
+[|i1; \&.\&.\&.; iN+ofs|]
+.ft R
+of the original
+array 
+.ft B
+a
+.ft R
+\&.
+.sp
+
+.ft B
+Genarray\&.sub_right
+.ft R
+applies only to Bigarrays in Fortran layout\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+ofs
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate
+a valid sub\-array of 
+.ft B
+a
+.ft R
+, that is, if 
+.ft B
+ofs < 1
+.ft R
+, or 
+.ft B
+len < 0
+.ft R
+,
+or 
+.ft B
+ofs + len > Genarray\&.nth_dim a (Genarray\&.num_dims a \- 1)
+.ft R
+\&.
+
+.sp
+
+.I val slice_left 
+: 
+.B ('a, 'b, Bigarray.c_layout) t ->
+.B   int array -> ('a, 'b, Bigarray.c_layout) t
+.sp
+Extract a sub\-array of lower dimension from the given Bigarray
+by fixing one or several of the first (left\-most) coordinates\&.
+.ft B
+Genarray\&.slice_left a [|i1; \&.\&.\&. ; iM|]
+.ft R
+returns the \&'slice\&'
+of 
+.ft B
+a
+.ft R
+obtained by setting the first 
+.ft B
+M
+.ft R
+coordinates to
+.ft B
+i1
+.ft R
+, \&.\&.\&., 
+.ft B
+iM
+.ft R
+\&.  If 
+.ft B
+a
+.ft R
+has 
+.ft B
+N
+.ft R
+dimensions, the slice has
+dimension 
+.ft B
+N \- M
+.ft R
+, and the element at coordinates
+.ft B
+[|j1; \&.\&.\&.; j(N\-M)|]
+.ft R
+in the slice is identical to the element
+at coordinates 
+.ft B
+[|i1; \&.\&.\&.; iM; j1; \&.\&.\&.; j(N\-M)|]
+.ft R
+in the original
+array 
+.ft B
+a
+.ft R
+\&.  No copying of elements is involved: the slice and
+the original array share the same storage space\&.
+.sp
+
+.ft B
+Genarray\&.slice_left
+.ft R
+applies only to Bigarrays in C layout\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+M >= N
+.ft R
+, or if 
+.ft B
+[|i1; \&.\&.\&. ; iM|]
+.ft R
+is outside the bounds of 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.I val slice_right 
+: 
+.B ('a, 'b, Bigarray.fortran_layout) t ->
+.B   int array -> ('a, 'b, Bigarray.fortran_layout) t
+.sp
+Extract a sub\-array of lower dimension from the given Bigarray
+by fixing one or several of the last (right\-most) coordinates\&.
+.ft B
+Genarray\&.slice_right a [|i1; \&.\&.\&. ; iM|]
+.ft R
+returns the \&'slice\&'
+of 
+.ft B
+a
+.ft R
+obtained by setting the last 
+.ft B
+M
+.ft R
+coordinates to
+.ft B
+i1
+.ft R
+, \&.\&.\&., 
+.ft B
+iM
+.ft R
+\&.  If 
+.ft B
+a
+.ft R
+has 
+.ft B
+N
+.ft R
+dimensions, the slice has
+dimension 
+.ft B
+N \- M
+.ft R
+, and the element at coordinates
+.ft B
+[|j1; \&.\&.\&.; j(N\-M)|]
+.ft R
+in the slice is identical to the element
+at coordinates 
+.ft B
+[|j1; \&.\&.\&.; j(N\-M); i1; \&.\&.\&.; iM|]
+.ft R
+in the original
+array 
+.ft B
+a
+.ft R
+\&.  No copying of elements is involved: the slice and
+the original array share the same storage space\&.
+.sp
+
+.ft B
+Genarray\&.slice_right
+.ft R
+applies only to Bigarrays in Fortran layout\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+M >= N
+.ft R
+, or if 
+.ft B
+[|i1; \&.\&.\&. ; iM|]
+.ft R
+is outside the bounds of 
+.ft B
+a
+.ft R
+\&.
+
+.sp
+
+.I val blit 
+: 
+.B ('a, 'b, 'c) t -> ('a, 'b, 'c) t -> unit
+.sp
+Copy all elements of a Bigarray in another Bigarray\&.
+.ft B
+Genarray\&.blit src dst
+.ft R
+copies all elements of 
+.ft B
+src
+.ft R
+into
+.ft B
+dst
+.ft R
+\&.  Both arrays 
+.ft B
+src
+.ft R
+and 
+.ft B
+dst
+.ft R
+must have the same number of
+dimensions and equal dimensions\&.  Copying a sub\-array of 
+.ft B
+src
+.ft R
+to a sub\-array of 
+.ft B
+dst
+.ft R
+can be achieved by applying 
+.ft B
+Genarray\&.blit
+.ft R
+to sub\-array or slices of 
+.ft B
+src
+.ft R
+and 
+.ft B
+dst
+.ft R
+\&.
+
+.sp
+
+.I val fill 
+: 
+.B ('a, 'b, 'c) t -> 'a -> unit
+.sp
+Set all elements of a Bigarray to a given value\&.
+.ft B
+Genarray\&.fill a v
+.ft R
+stores the value 
+.ft B
+v
+.ft R
+in all elements of
+the Bigarray 
+.ft B
+a
+.ft R
+\&.  Setting only some elements of 
+.ft B
+a
+.ft R
+to 
+.ft B
+v
+.ft R
+can be achieved by applying 
+.ft B
+Genarray\&.fill
+.ft R
+to a sub\-array
+or a slice of 
+.ft B
+a
+.ft R
+\&.
+
+.sp

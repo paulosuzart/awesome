@@ -1,0 +1,21 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_string" {"D"}
+  "doc/ppx_string/LICENSE.md" {"F:96403f2890fe417564002c251138fbe8"}
+  "doc/ppx_string/README.org" {"F:94bd00c5d29b89fefcd6befa0be7cb1c"}
+  "lib/ppx_string" {"D"}
+  "lib/ppx_string/META" {"F:a888756e0eb0e9e715c2b39a3d7e9ccf"}
+  "lib/ppx_string/dune-package" {"F:69afd69a1ce7e787d0d950a6e9b62acc"}
+  "lib/ppx_string/opam" {"F:76287979afc2759139c37ac7fec834e8"}
+  "lib/ppx_string/ppx.exe" {"F:a8a6eb3e111596dfa4a184c29ae560b5"}
+  "lib/ppx_string/ppx_string.a" {"F:b9b5ea89723e1288d0590f131dfd2191"}
+  "lib/ppx_string/ppx_string.cma" {"F:8ef6171cf870dd257b6e23a099e42499"}
+  "lib/ppx_string/ppx_string.cmi" {"F:51dc717ec4ae097c9aa9745fc74505ac"}
+  "lib/ppx_string/ppx_string.cmt" {"F:a2c4b8effae899952c7b024294631abf"}
+  "lib/ppx_string/ppx_string.cmti" {"F:1eb568324f94bf64a71f16136f9fac76"}
+  "lib/ppx_string/ppx_string.cmx" {"F:49eb304ad49462795ba24ee5289df33e"}
+  "lib/ppx_string/ppx_string.cmxa" {"F:9b6fcef4ffadce248b22045d9fc9273b"}
+  "lib/ppx_string/ppx_string.cmxs" {"F:e9eb5185137649ef800f0a1b617a262b"}
+  "lib/ppx_string/ppx_string.ml" {"F:96fb99520c4bfdf26658090682de63a5"}
+  "lib/ppx_string/ppx_string.mli" {"F:bab0eaa9aa599ed5540228978a3daa05"}
+]

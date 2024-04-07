@@ -1,0 +1,11 @@
+(library
+ (name microtime)
+ (modules microtime)
+ (foreign_stubs
+  (language c)
+  (names microtime)))
+
+(executable
+ (name attack)
+ (modules attack)
+ (libraries fmt unix microtime))

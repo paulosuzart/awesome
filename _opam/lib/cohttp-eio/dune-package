@@ -1,0 +1,100 @@
+(lang dune 3.15)
+(name cohttp-eio)
+(version v6.0.0_beta2)
+(sections (lib .) (libexec .) (doc ../../doc/cohttp-eio))
+(files
+ (lib
+  (META
+   body.ml
+   client.ml
+   client.mli
+   client_intf.ml
+   cohttp_eio.a
+   cohttp_eio.cma
+   cohttp_eio.cmi
+   cohttp_eio.cmt
+   cohttp_eio.cmx
+   cohttp_eio.cmxa
+   cohttp_eio.ml
+   cohttp_eio__.cmi
+   cohttp_eio__.cmt
+   cohttp_eio__.cmx
+   cohttp_eio__.ml
+   cohttp_eio__Body.cmi
+   cohttp_eio__Body.cmt
+   cohttp_eio__Body.cmx
+   cohttp_eio__Client.cmi
+   cohttp_eio__Client.cmt
+   cohttp_eio__Client.cmti
+   cohttp_eio__Client.cmx
+   cohttp_eio__Client_intf.cmi
+   cohttp_eio__Client_intf.cmt
+   cohttp_eio__Client_intf.cmx
+   cohttp_eio__Io.cmi
+   cohttp_eio__Io.cmt
+   cohttp_eio__Io.cmti
+   cohttp_eio__Io.cmx
+   cohttp_eio__Server.cmi
+   cohttp_eio__Server.cmt
+   cohttp_eio__Server.cmti
+   cohttp_eio__Server.cmx
+   cohttp_eio__Utils.cmi
+   cohttp_eio__Utils.cmt
+   cohttp_eio__Utils.cmx
+   dune-package
+   io.ml
+   io.mli
+   opam
+   server.ml
+   server.mli
+   utils.ml))
+ (libexec (cohttp_eio.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name cohttp-eio)
+ (kind normal)
+ (archives (byte cohttp_eio.cma) (native cohttp_eio.cmxa))
+ (plugins (byte cohttp_eio.cma) (native cohttp_eio.cmxs))
+ (native_archives cohttp_eio.a)
+ (requires http cohttp eio fmt logs ptime uri uri.services)
+ (main_module_name Cohttp_eio)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name cohttp_eio__)
+     (visibility public)
+     (kind alias)
+     (source (path Cohttp_eio__) (impl (path cohttp_eio__.ml-gen))))
+    (name Cohttp_eio)
+    (modules
+     (module
+      (obj_name cohttp_eio__Body)
+      (visibility public)
+      (source (path Body) (impl (path body.ml))))
+     (module
+      (obj_name cohttp_eio__Client)
+      (visibility public)
+      (source (path Client) (intf (path client.mli)) (impl (path client.ml))))
+     (module
+      (obj_name cohttp_eio__Client_intf)
+      (visibility public)
+      (source (path Client_intf) (impl (path client_intf.ml))))
+     (module
+      (obj_name cohttp_eio)
+      (visibility public)
+      (source (path Cohttp_eio) (impl (path cohttp_eio.ml))))
+     (module
+      (obj_name cohttp_eio__Io)
+      (visibility public)
+      (source (path Io) (intf (path io.mli)) (impl (path io.ml))))
+     (module
+      (obj_name cohttp_eio__Server)
+      (visibility public)
+      (source (path Server) (intf (path server.mli)) (impl (path server.ml))))
+     (module
+      (obj_name cohttp_eio__Utils)
+      (visibility public)
+      (source (path Utils) (impl (path utils.ml))))))
+   (wrapped true))))

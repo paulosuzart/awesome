@@ -1,0 +1,13 @@
+(rule
+ (targets ppx_deriving_ord.ml)
+ (action (run %{bin:cppo} -V OCAML:%{ocaml_version}
+              %{dep:ppx_deriving_ord.cppo.ml} -o %{targets})))
+
+(library
+ (name ppx_deriving_ord)
+ (public_name ppx_deriving.ord)
+ (synopsis "[@@deriving ord]")
+ (preprocess
+  (pps ppxlib.metaquot))
+ (libraries compiler-libs.common ppxlib ppx_deriving.api)
+ (kind ppx_deriver))

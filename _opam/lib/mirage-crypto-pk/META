@@ -1,0 +1,8 @@
+version = "0.11.3"
+description = ""
+requires =
+"cstruct eqaf.cstruct mirage-crypto mirage-crypto-rng sexplib0 zarith"
+archive(byte) = "mirage_crypto_pk.cma"
+archive(native) = "mirage_crypto_pk.cmxa"
+plugin(byte) = "mirage_crypto_pk.cma"
+plugin(native) = "mirage_crypto_pk.cmxs"

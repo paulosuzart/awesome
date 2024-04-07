@@ -1,0 +1,46 @@
+.TH "Obj.Extension_constructor" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Obj.Extension_constructor \- no description
+.SH Module
+Module   Obj.Extension_constructor
+.SH Documentation
+.sp
+Module
+.BI "Extension_constructor"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+= 
+.B extension_constructor
+
+.sp
+
+.sp
+
+.I val of_val 
+: 
+.B 'a -> t
+.sp
+
+.sp
+
+.I val name 
+: 
+.B t -> string
+.sp
+
+.sp
+
+.I val id 
+: 
+.B t -> int
+.sp
+
+.sp

@@ -1,0 +1,89 @@
+(lang dune 3.15)
+(name ppx_assert)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_assert))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_assert.a
+   ppx_assert.cma
+   ppx_assert.cmi
+   ppx_assert.cmt
+   ppx_assert.cmti
+   ppx_assert.cmx
+   ppx_assert.cmxa
+   ppx_assert.ml
+   ppx_assert.mli
+   runtime-lib/ppx_assert_lib.a
+   runtime-lib/ppx_assert_lib.cma
+   runtime-lib/ppx_assert_lib.cmi
+   runtime-lib/ppx_assert_lib.cmt
+   runtime-lib/ppx_assert_lib.cmx
+   runtime-lib/ppx_assert_lib.cmxa
+   runtime-lib/ppx_assert_lib.ml
+   runtime-lib/ppx_assert_lib__Runtime.cmi
+   runtime-lib/ppx_assert_lib__Runtime.cmt
+   runtime-lib/ppx_assert_lib__Runtime.cmti
+   runtime-lib/ppx_assert_lib__Runtime.cmx
+   runtime-lib/runtime.ml
+   runtime-lib/runtime.mli))
+ (libexec (ppx.exe ppx_assert.cmxs runtime-lib/ppx_assert_lib.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_assert)
+ (kind ppx_rewriter)
+ (archives (byte ppx_assert.cma) (native ppx_assert.cmxa))
+ (plugins (byte ppx_assert.cma) (native ppx_assert.cmxs))
+ (native_archives ppx_assert.a)
+ (requires
+  ppxlib.ast
+  ppxlib
+  ppx_sexp_conv.expander
+  ppx_here.expander
+  ppx_compare.expander)
+ (ppx_runtime_deps ppx_assert.runtime-lib)
+ (main_module_name Ppx_assert)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_assert)
+   (visibility public)
+   (source
+    (path Ppx_assert)
+    (intf (path ppx_assert.mli))
+    (impl (path ppx_assert.ml))))))
+(library
+ (name ppx_assert.runtime-lib)
+ (kind normal)
+ (archives
+  (byte runtime-lib/ppx_assert_lib.cma)
+  (native runtime-lib/ppx_assert_lib.cmxa))
+ (plugins
+  (byte runtime-lib/ppx_assert_lib.cma)
+  (native runtime-lib/ppx_assert_lib.cmxs))
+ (native_archives runtime-lib/ppx_assert_lib.a)
+ (requires base ppx_sexp_conv.runtime-lib sexplib0)
+ (main_module_name Ppx_assert_lib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_assert_lib)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ppx_assert_lib)
+      (impl (path runtime-lib/ppx_assert_lib.ml-gen))))
+    (name Ppx_assert_lib)
+    (modules
+     (module
+      (obj_name ppx_assert_lib__Runtime)
+      (visibility public)
+      (source
+       (path Runtime)
+       (intf (path runtime-lib/runtime.mli))
+       (impl (path runtime-lib/runtime.ml))))))
+   (wrapped true))))

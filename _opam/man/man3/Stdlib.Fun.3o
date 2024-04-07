@@ -1,0 +1,257 @@
+.TH "Stdlib.Fun" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Fun \- no description
+.SH Module
+Module   Stdlib.Fun
+.SH Documentation
+.sp
+Module
+.BI "Fun"
+ : 
+.B (module Stdlib__Fun)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Combinators
+
+.PP
+
+.I val id 
+: 
+.B 'a -> 'a
+.sp
+
+.ft B
+id
+.ft R
+is the identity function\&. For any argument 
+.ft B
+x
+.ft R
+, 
+.ft B
+id x
+.ft R
+is 
+.ft B
+x
+.ft R
+\&.
+
+.sp
+
+.I val const 
+: 
+.B 'a -> 'b -> 'a
+.sp
+
+.ft B
+const c
+.ft R
+is a function that always returns the value 
+.ft B
+c
+.ft R
+\&. For any
+argument 
+.ft B
+x
+.ft R
+, 
+.ft B
+(const c) x
+.ft R
+is 
+.ft B
+c
+.ft R
+\&.
+
+.sp
+
+.I val flip 
+: 
+.B ('a -> 'b -> 'c) -> 'b -> 'a -> 'c
+.sp
+
+.ft B
+flip f
+.ft R
+reverses the argument order of the binary function
+.ft B
+f
+.ft R
+\&. For any arguments 
+.ft B
+x
+.ft R
+and 
+.ft B
+y
+.ft R
+, 
+.ft B
+(flip f) x y
+.ft R
+is 
+.ft B
+f y x
+.ft R
+\&.
+
+.sp
+
+.I val negate 
+: 
+.B ('a -> bool) -> 'a -> bool
+.sp
+
+.ft B
+negate p
+.ft R
+is the negation of the predicate function 
+.ft B
+p
+.ft R
+\&. For any
+argument 
+.ft B
+x
+.ft R
+, 
+.ft B
+(negate p) x
+.ft R
+is 
+.ft B
+not (p x)
+.ft R
+\&.
+
+.sp
+
+.PP
+.SS Exception handling
+
+.PP
+
+.I val protect 
+: 
+.B finally:(unit -> unit) -> (unit -> 'a) -> 'a
+.sp
+
+.ft B
+protect ~finally work
+.ft R
+invokes 
+.ft B
+work ()
+.ft R
+and then 
+.ft B
+finally ()
+.ft R
+before 
+.ft B
+work ()
+.ft R
+returns with its value or an exception\&. In the
+latter case the exception is re\-raised after 
+.ft B
+finally ()
+.ft R
+\&. If
+.ft B
+finally ()
+.ft R
+raises an exception, then the exception
+.ft B
+Fun\&.Finally_raised
+.ft R
+is raised instead\&.
+.sp
+
+.ft B
+protect
+.ft R
+can be used to enforce local invariants whether 
+.ft B
+work ()
+.ft R
+returns normally or raises an exception\&. However, it does not
+protect against unexpected exceptions raised inside 
+.ft B
+finally ()
+.ft R
+such as 
+.ft B
+Out_of_memory
+.ft R
+, 
+.ft B
+Stack_overflow
+.ft R
+, or
+asynchronous exceptions raised by signal handlers
+(e\&.g\&. 
+.ft B
+Sys\&.Break
+.ft R
+)\&.
+.sp
+Note: It is a programming error if other kinds of exceptions
+are raised by 
+.ft B
+finally
+.ft R
+, as any exception raised in 
+.ft B
+work ()
+.ft R
+will
+be lost in the event of a 
+.ft B
+Fun\&.Finally_raised
+.ft R
+exception\&. Therefore,
+one should make sure to handle those inside the finally\&.
+
+.sp
+
+.I exception Finally_raised 
+.B of 
+.B exn
+
+.sp
+
+.ft B
+Finally_raised exn
+.ft R
+is raised by 
+.ft B
+protect ~finally work
+.ft R
+when
+.ft B
+finally
+.ft R
+raises an exception 
+.ft B
+exn
+.ft R
+\&. This exception denotes either
+an unexpected exception or a programming error\&. As a general rule,
+one should not catch a 
+.ft B
+Finally_raised
+.ft R
+exception except as part of
+a catch\-all handler\&.
+
+.sp

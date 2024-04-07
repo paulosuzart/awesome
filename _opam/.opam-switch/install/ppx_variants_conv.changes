@@ -1,0 +1,31 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_variants_conv" {"D"}
+  "doc/ppx_variants_conv/CHANGES.md" {"F:b81d8519030341049ed46ee592703368"}
+  "doc/ppx_variants_conv/LICENSE.md" {"F:f8218ef1b308b23779160577b1032a0a"}
+  "doc/ppx_variants_conv/README.md" {"F:7fbe21d908e6d1762012cc6403893557"}
+  "lib/ppx_variants_conv" {"D"}
+  "lib/ppx_variants_conv/META" {"F:af9d310e04c29226210ed2f32c6caa6f"}
+  "lib/ppx_variants_conv/dune-package" {"F:2faa76ee828ddebe0b542762b377865b"}
+  "lib/ppx_variants_conv/opam" {"F:b87e0e2aa619800d1d16cb9d0df65268"}
+  "lib/ppx_variants_conv/ppx_variants_conv.a"
+    {"F:420195af5daf9c9a9fc1626581db9f42"}
+  "lib/ppx_variants_conv/ppx_variants_conv.cma"
+    {"F:c7a1cb0ec46f9f5a3f7e85d0fe2dc90b"}
+  "lib/ppx_variants_conv/ppx_variants_conv.cmi"
+    {"F:2aff0a6d761a9981a0e609f1b520246c"}
+  "lib/ppx_variants_conv/ppx_variants_conv.cmt"
+    {"F:e34c963623bc339d1f7bf92cd073cc35"}
+  "lib/ppx_variants_conv/ppx_variants_conv.cmti"
+    {"F:e1f3a14ae3bc90269ef5a579246d985f"}
+  "lib/ppx_variants_conv/ppx_variants_conv.cmx"
+    {"F:ba104f09f6a661eaa371ba386911bfb4"}
+  "lib/ppx_variants_conv/ppx_variants_conv.cmxa"
+    {"F:5822854e4c17c374189fbf5cf3139b22"}
+  "lib/ppx_variants_conv/ppx_variants_conv.cmxs"
+    {"F:45ad0f050c1f9398b187d4f518705b27"}
+  "lib/ppx_variants_conv/ppx_variants_conv.ml"
+    {"F:4d07bb1423c24235cf422e995eefe868"}
+  "lib/ppx_variants_conv/ppx_variants_conv.mli"
+    {"F:d97c7bd271e5957a75ba5e71fe644607"}
+]

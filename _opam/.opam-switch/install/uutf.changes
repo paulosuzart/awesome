@@ -1,0 +1,18 @@
+opam-version: "2.0"
+added: [
+  "doc/uutf" {"D"}
+  "doc/uutf/CHANGES.md" {"F:5a3f558975c557743db3fdc86ae23ad9"}
+  "doc/uutf/LICENSE.md" {"F:588533a8b1e13d887760bb428af376f0"}
+  "doc/uutf/README.md" {"F:541a804ca291af80f3f26630ef3695c4"}
+  "lib/uutf" {"D"}
+  "lib/uutf/META" {"F:5009b81261627235f0598566c8c29b6b"}
+  "lib/uutf/opam" {"F:ae1a9699ad277f2bd0c51bb5da18e657"}
+  "lib/uutf/uutf.a" {"F:5599465b76e3e31cb96c74ac67dadad6"}
+  "lib/uutf/uutf.cma" {"F:09a4f413fb0f5ce0dd3bbabf6bad0d7b"}
+  "lib/uutf/uutf.cmi" {"F:27580bd709443ed5d0b2eb10ca00cff9"}
+  "lib/uutf/uutf.cmti" {"F:ba1cf227250b7859d6365b4c5925dab2"}
+  "lib/uutf/uutf.cmx" {"F:f6b49b1e1ab85c1798830c63124b7994"}
+  "lib/uutf/uutf.cmxa" {"F:b67cece9cd3977d0a1acfe428cb10926"}
+  "lib/uutf/uutf.cmxs" {"F:f21b5fb8e2bf0c3ae43b3f2a430f3bf1"}
+  "lib/uutf/uutf.mli" {"F:b26ccc0a10759bc0eb9207530b0a2a9a"}
+]

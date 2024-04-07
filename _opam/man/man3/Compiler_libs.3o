@@ -1,0 +1,25 @@
+.TH "Compiler_libs" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Compiler_libs \-  Warning  This library is part of the internal OCaml compiler API, and is not the language standard library.
+.SH Module
+Module   Compiler_libs
+.SH Documentation
+.sp
+Module
+.BI "Compiler_libs"
+ : 
+.B sig end
+
+.sp
+.SS Warning
+This library is part of the internal OCaml compiler API, and is
+not the language standard library\&.
+There are no compatibility guarantees between releases, so code written
+against these modules must be willing to depend on specific OCaml compiler
+versions\&.
+
+
+.sp
+
+.sp
+.sp

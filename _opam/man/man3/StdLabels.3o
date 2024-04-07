@@ -1,0 +1,81 @@
+.TH "StdLabels" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+StdLabels \- Standard labeled libraries.
+.SH Module
+Module   StdLabels
+.SH Documentation
+.sp
+Module
+.BI "StdLabels"
+ : 
+.B sig end
+
+.sp
+Standard labeled libraries\&.
+.sp
+This meta\-module provides versions of the 
+.ft B
+StdLabels\&.Array
+.ft R
+, 
+.ft B
+StdLabels\&.Bytes
+.ft R
+,
+.ft B
+StdLabels\&.List
+.ft R
+and 
+.ft B
+StdLabels\&.String
+.ft R
+modules where function arguments are
+systematically labeled\&.  It is intended to be opened at the top of
+source files, as shown below\&.
+.sp
+
+.EX
+.ft B
+.br
+\&     open StdLabels
+.br
+\&
+.br
+\&     let to_upper = String\&.map ~f:Char\&.uppercase_ascii
+.br
+\&     let seq len = List\&.init ~f:(fun i \-> i) ~len
+.br
+\&     let everything = Array\&.create_matrix ~dimx:42 ~dimy:42 42
+.br
+\&   
+.ft R
+.EE
+
+.sp
+
+.sp
+.sp
+.I module Array : 
+.B (module ArrayLabels)
+
+.sp
+
+.sp
+.I module Bytes : 
+.B (module BytesLabels)
+
+.sp
+
+.sp
+.I module List : 
+.B (module ListLabels)
+
+.sp
+
+.sp
+.I module String : 
+.B (module StringLabels)
+
+.sp
+
+.sp

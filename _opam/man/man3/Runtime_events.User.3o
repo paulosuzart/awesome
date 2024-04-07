@@ -1,0 +1,122 @@
+.TH "Runtime_events.User" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Runtime_events.User \- no description
+.SH Module
+Module   Runtime_events.User
+.SH Documentation
+.sp
+Module
+.BI "User"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+User events is a way for libraries to provide runtime events that can be
+consumed by other tools\&. These events can carry known data types or custom
+values\&. The current maximum number of user events is 8192\&.
+.PP
+.I type tag 
+= ..
+
+.sp
+The type for a user event tag\&. Tags are used to discriminate between
+user events of the same type
+
+.sp
+.I type 
+.B 'value
+.I t 
+
+.sp
+The type for a user event\&. User events describe their tag, carried data
+type and an unique string\-based name
+
+.sp
+
+.I val register 
+: 
+.B string ->
+.B   tag ->
+.B   'value Runtime_events.Type.t -> 'value t
+.sp
+
+.ft B
+register name tag ty
+.ft R
+registers a new event with an unique 
+.ft B
+name
+.ft R
+,
+carrying a 
+.ft B
+tag
+.ft R
+and values of type 
+.ft B
+ty
+.ft R
+
+
+.sp
+
+.I val write 
+: 
+.B 'value t -> 'value -> unit
+.sp
+
+.ft B
+write t v
+.ft R
+records a new event 
+.ft B
+t
+.ft R
+with value 
+.ft B
+v
+.ft R
+
+
+.sp
+
+.I val name 
+: 
+.B 'a t -> string
+.sp
+
+.ft B
+name t
+.ft R
+is the uniquely identifying name of event 
+.ft B
+t
+.ft R
+
+
+.sp
+
+.I val tag 
+: 
+.B 'a t -> tag
+.sp
+
+.ft B
+tag t
+.ft R
+is the associated tag of event 
+.ft B
+t
+.ft R
+, when it is known\&.
+An event can be unknown if it was not registered in the consumer
+program\&.
+
+.sp

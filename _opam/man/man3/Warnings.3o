@@ -1,0 +1,441 @@
+.TH "Warnings" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Warnings \- Warning definitions
+.SH Module
+Module   Warnings
+.SH Documentation
+.sp
+Module
+.BI "Warnings"
+ : 
+.B sig end
+
+.sp
+Warning definitions
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I type loc 
+= {
+ loc_start : 
+.B Lexing.position
+;
+ loc_end : 
+.B Lexing.position
+;
+ loc_ghost : 
+.B bool
+;
+ }
+
+.sp
+
+.sp
+
+.I val ghost_loc_in_file 
+: 
+.B string -> loc
+.sp
+Return an empty ghost range located in a given file
+
+.sp
+.I type field_usage_warning 
+=
+ | Unused
+ | Not_read
+ | Not_mutated
+ 
+.sp
+
+.sp
+.I type constructor_usage_warning 
+=
+ | Unused
+ | Not_constructed
+ | Only_exported_private
+ 
+.sp
+
+.sp
+.I type t 
+=
+ | Comment_start
+ | Comment_not_end
+ | Fragile_match
+.B of 
+.B string
+ | Ignored_partial_application
+ | Labels_omitted
+.B of 
+.B string list
+ | Method_override
+.B of 
+.B string list
+ | Partial_match
+.B of 
+.B string
+ | Missing_record_field_pattern
+.B of 
+.B string
+ | Non_unit_statement
+ | Redundant_case
+ | Redundant_subpat
+ | Instance_variable_override
+.B of 
+.B string list
+ | Illegal_backslash
+ | Implicit_public_methods
+.B of 
+.B string list
+ | Unerasable_optional_argument
+ | Undeclared_virtual_method
+.B of 
+.B string
+ | Not_principal
+.B of 
+.B string
+ | Non_principal_labels
+.B of 
+.B string
+ | Ignored_extra_argument
+ | Nonreturning_statement
+ | Preprocessor
+.B of 
+.B string
+ | Useless_record_with
+ | Bad_module_name
+.B of 
+.B string
+ | All_clauses_guarded
+ | Unused_var
+.B of 
+.B string
+ | Unused_var_strict
+.B of 
+.B string
+ | Wildcard_arg_to_constant_constr
+ | Eol_in_string
+ | Duplicate_definitions
+.B of 
+.B string * string * string * string
+ | Unused_value_declaration
+.B of 
+.B string
+ | Unused_open
+.B of 
+.B string
+ | Unused_type_declaration
+.B of 
+.B string
+ | Unused_for_index
+.B of 
+.B string
+ | Unused_ancestor
+.B of 
+.B string
+ | Unused_constructor
+.B of 
+.B string * constructor_usage_warning
+ | Unused_extension
+.B of 
+.B string * bool * constructor_usage_warning
+ | Unused_rec_flag
+ | Name_out_of_scope
+.B of 
+.B string * string list * bool
+ | Ambiguous_name
+.B of 
+.B string list * string list * bool * string
+ | Disambiguated_name
+.B of 
+.B string
+ | Nonoptional_label
+.B of 
+.B string
+ | Open_shadow_identifier
+.B of 
+.B string * string
+ | Open_shadow_label_constructor
+.B of 
+.B string * string
+ | Bad_env_variable
+.B of 
+.B string * string
+ | Attribute_payload
+.B of 
+.B string * string
+ | Eliminated_optional_arguments
+.B of 
+.B string list
+ | No_cmi_file
+.B of 
+.B string * string option
+ | Unexpected_docstring
+.B of 
+.B bool
+ | Wrong_tailcall_expectation
+.B of 
+.B bool
+ | Fragile_literal_pattern
+ | Misplaced_attribute
+.B of 
+.B string
+ | Duplicated_attribute
+.B of 
+.B string
+ | Inlining_impossible
+.B of 
+.B string
+ | Unreachable_case
+ | Ambiguous_var_in_pattern_guard
+.B of 
+.B string list
+ | No_cmx_file
+.B of 
+.B string
+ | Flambda_assignment_to_non_mutable_value
+ | Unused_module
+.B of 
+.B string
+ | Unboxable_type_in_prim_decl
+.B of 
+.B string
+ | Constraint_on_gadt
+ | Erroneous_printed_signature
+.B of 
+.B string
+ | Unsafe_array_syntax_without_parsing
+ | Redefining_unit
+.B of 
+.B string
+ | Unused_open_bang
+.B of 
+.B string
+ | Unused_functor_parameter
+.B of 
+.B string
+ | Match_on_mutable_state_prevent_uncurry
+ | Unused_field
+.B of 
+.B string * field_usage_warning
+ | Missing_mli
+ | Unused_tmc_attribute
+ | Tmc_breaks_tailcall
+ | Generative_application_expects_unit
+ 
+.sp
+
+.sp
+.I type alert 
+= {
+ kind : 
+.B string
+;
+ message : 
+.B string
+;
+ def : 
+.B loc
+;
+ use : 
+.B loc
+;
+ }
+
+.sp
+
+.sp
+
+.I val parse_options 
+: 
+.B bool -> string -> alert option
+.sp
+
+.sp
+
+.I val parse_alert_option 
+: 
+.B string -> unit
+.sp
+Disable/enable alerts based on the parameter to the \-alert
+command\-line option\&.  Raises 
+.ft B
+Arg\&.Bad
+.ft R
+if the string is not a
+valid specification\&.
+
+.sp
+
+.I val without_warnings 
+: 
+.B (unit -> 'a) -> 'a
+.sp
+Run the thunk with all warnings and alerts disabled\&.
+
+.sp
+
+.I val is_active 
+: 
+.B t -> bool
+.sp
+
+.sp
+
+.I val is_error 
+: 
+.B t -> bool
+.sp
+
+.sp
+
+.I val defaults_w 
+: 
+.B string
+.sp
+
+.sp
+
+.I val defaults_warn_error 
+: 
+.B string
+.sp
+
+.sp
+.I type reporting_information 
+= {
+ id : 
+.B string
+;
+ message : 
+.B string
+;
+ is_error : 
+.B bool
+;
+ sub_locs : 
+.B (loc * string) list
+;
+ }
+
+.sp
+
+.sp
+
+.I val report 
+: 
+.B t -> [ `Active of reporting_information | `Inactive ]
+.sp
+
+.sp
+
+.I val report_alert 
+: 
+.B alert -> [ `Active of reporting_information | `Inactive ]
+.sp
+
+.sp
+
+.I exception Errors 
+
+.sp
+
+.sp
+
+.I val check_fatal 
+: 
+.B unit -> unit
+.sp
+
+.sp
+
+.I val reset_fatal 
+: 
+.B unit -> unit
+.sp
+
+.sp
+
+.I val help_warnings 
+: 
+.B unit -> unit
+.sp
+
+.sp
+.I type state 
+
+.sp
+
+.sp
+
+.I val backup 
+: 
+.B unit -> state
+.sp
+
+.sp
+
+.I val restore 
+: 
+.B state -> unit
+.sp
+
+.sp
+
+.I val with_state 
+: 
+.B state -> (unit -> 'a) -> 'a
+.sp
+
+.sp
+
+.I val mk_lazy 
+: 
+.B (unit -> 'a) -> 'a Lazy.t
+.sp
+Like 
+.ft B
+Lazy\&.of_fun
+.ft R
+, but the function is applied with
+the warning/alert settings at the time 
+.ft B
+mk_lazy
+.ft R
+is called\&.
+
+.sp
+.I type description 
+= {
+ number : 
+.B int
+;
+ names : 
+.B string list
+;
+ description : 
+.B string
+;
+ since : 
+.B Sys.ocaml_release_info option
+;
+ }
+
+.sp
+
+.sp
+
+.I val descriptions 
+: 
+.B description list
+.sp
+
+.sp

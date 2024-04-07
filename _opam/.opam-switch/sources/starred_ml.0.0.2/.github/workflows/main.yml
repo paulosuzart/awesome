@@ -1,0 +1,72 @@
+name: Builds, tests & co
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+  id-token: write
+  
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout tree
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.event.repository.name }}
+
+      - name: Set-up OCaml
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: '5.1.1'
+
+      - run: opam install . --deps-only --with-test
+        working-directory: ${{ github.event.repository.name }}
+
+      - run: opam exec -- dune build
+        working-directory: ${{ github.event.repository.name }}
+
+      - run: opam exec -- dune runtest
+        working-directory: ${{ github.event.repository.name }}
+
+      - run: opam install dune-release 
+        working-directory: ${{ github.event.repository.name }}
+
+      - run: opam exec -- dune-release lint
+        working-directory: ${{ github.event.repository.name }}
+
+      - run: |
+          git config --global user.email "${{ secrets.USER_EMAIL }}"
+          git config --global user.name "Paulo Suzart"
+          git config --global url."https://github.com/".pushInsteadOf "git@github.com:"
+
+      - name: Checkout opam fork
+        uses: actions/checkout@v4
+        with:
+          repository: paulosuzart/opam-repository
+          path: opam-repository
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          persist-credentials: true
+
+      - run: opam exec -- dune-release tag -f -y -vv
+        working-directory: ${{ github.event.repository.name }}
+
+      - run: |
+          opam exec -- dune-release distrib
+          opam exec -- dune-release publish -y --token=${{ secrets.PERSONAL_TOKEN }} -vv
+        working-directory: ${{ github.event.repository.name }}
+
+      - run: |
+          opam exec -- dune-release opam pkg --token=${{ secrets.PERSONAL_TOKEN }} -v
+          opam exec -- dune-release opam submit --token=${{ secrets.PERSONAL_TOKEN }} -vv -y --no-auto-open -r https://github.com/paulosuzart/opam-repository -l ${{ github.workspace }}/opam-repository --draft
+        working-directory: ${{ github.event.repository.name }}
+

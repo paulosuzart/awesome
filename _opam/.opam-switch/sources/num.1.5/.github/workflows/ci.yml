@@ -1,0 +1,63 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      # Test Linux, macOS and Windows with the oldest and newest supported OCaml
+      # and trunk.
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+        ocaml-version:
+          - 4.06.x
+          - 4.14.x
+          - 5.1.x
+          - ocaml-variants.5.2.0+trunk
+        exclude:
+          - os: windows-latest
+            ocaml-version: ocaml-variants.5.2.0+trunk
+          - os: windows-latest
+            ocaml-version: 5.1.x
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set-up OCaml ${{ matrix.ocaml-version }}
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-version }}
+          allow-prelease-opam: true
+
+      # Dune (may fail with trunk)
+      - name: Install dune, if possible
+        id: dune
+        run: opam install dune
+        continue-on-error: ${{ contains(matrix.ocaml-version, '+trunk') }}
+
+      # Dependencies
+      - run: opam install . --deps-only --with-doc --with-test
+      - run: opam pin add num . --no-action
+
+      # Check building with make
+      - run: opam exec -- make PROFILE=dev
+      - run: opam exec -- make test
+      - run: opam exec -- make clean
+
+      # Check building with dune
+      - run: opam exec -- dune build @install
+        if: steps.dune.outcome == 'success'
+      - run: opam exec -- dune runtest
+        if: steps.dune.outcome == 'success'
+      - run: opam exec -- dune clean
+        if: steps.dune.outcome == 'success'
+
+      # Check installing with opam
+      - run: opam install --strict num

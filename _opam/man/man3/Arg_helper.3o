@@ -1,0 +1,38 @@
+.TH "Arg_helper" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Arg_helper \- Decipher command line arguments of the form <value> | <key>=<value>,...
+.SH Module
+Module   Arg_helper
+.SH Documentation
+.sp
+Module
+.BI "Arg_helper"
+ : 
+.B sig end
+
+.sp
+Decipher command line arguments of the form
+<value> | <key>=<value>
+.ft B
+,\&.\&.\&.
+.ft R
+.sp
+(as used for example for the specification of inlining parameters
+varying by simplification round)\&.
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+.I module Make : 
+.B functor (S : sig end) -> sig end
+
+.sp
+
+.sp

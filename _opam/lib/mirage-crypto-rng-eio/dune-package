@@ -1,0 +1,46 @@
+(lang dune 3.15)
+(name mirage-crypto-rng-eio)
+(version 0.11.3)
+(sections (lib .) (libexec .) (doc ../../doc/mirage-crypto-rng-eio))
+(files
+ (lib
+  (META
+   dune-package
+   mirage_crypto_rng_eio.a
+   mirage_crypto_rng_eio.cma
+   mirage_crypto_rng_eio.cmi
+   mirage_crypto_rng_eio.cmt
+   mirage_crypto_rng_eio.cmti
+   mirage_crypto_rng_eio.cmx
+   mirage_crypto_rng_eio.cmxa
+   mirage_crypto_rng_eio.ml
+   mirage_crypto_rng_eio.mli
+   opam))
+ (libexec (mirage_crypto_rng_eio.cmxs))
+ (doc
+  (CHANGES.md
+   LICENSE.md
+   LICENSE.md.mirage-crypto-ec
+   LICENSE.md.mirage-crypto-rng-mirage
+   README.md)))
+(library
+ (name mirage-crypto-rng-eio)
+ (kind normal)
+ (archives
+  (byte mirage_crypto_rng_eio.cma)
+  (native mirage_crypto_rng_eio.cmxa))
+ (plugins
+  (byte mirage_crypto_rng_eio.cma)
+  (native mirage_crypto_rng_eio.cmxs))
+ (native_archives mirage_crypto_rng_eio.a)
+ (requires eio cstruct logs mirage-crypto-rng duration mtime)
+ (main_module_name Mirage_crypto_rng_eio)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name mirage_crypto_rng_eio)
+   (visibility public)
+   (source
+    (path Mirage_crypto_rng_eio)
+    (intf (path mirage_crypto_rng_eio.mli))
+    (impl (path mirage_crypto_rng_eio.ml))))))

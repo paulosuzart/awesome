@@ -1,0 +1,7 @@
+version = "0.3.0"
+description = ""
+requires = ""
+archive(byte) = "optint.cma"
+archive(native) = "optint.cmxa"
+plugin(byte) = "optint.cma"
+plugin(native) = "optint.cmxs"

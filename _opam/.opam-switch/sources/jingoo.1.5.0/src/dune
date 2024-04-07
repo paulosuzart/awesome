@@ -1,0 +1,31 @@
+(menhir (flags (--explain)) (modules jg_parser) )
+
+(ocamllex (modules jg_lexer) )
+
+(library
+  (public_name jingoo)
+  (wrapped true)
+  (synopsis "jingoo library")
+  (libraries unix dynlink re uutf uucp)
+  (preprocess (pps ppx_deriving.show))
+  (modules
+    jg_types
+    jg_utils
+    jg_stub
+    jg_parser
+    jg_lexer
+    jg_ast_mapper
+    jg_ast_optimize
+    jg_runtime
+    jg_interp
+    jg_template
+    jg_template2
+  )
+)
+
+(executable
+  (name jg_cmdline)
+  (public_name jingoo)
+  (libraries jingoo)
+  (modules jg_cmdline)
+)

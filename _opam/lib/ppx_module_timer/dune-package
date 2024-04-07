@@ -1,0 +1,77 @@
+(lang dune 3.15)
+(name ppx_module_timer)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_module_timer))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_module_timer.a
+   ppx_module_timer.cma
+   ppx_module_timer.cmi
+   ppx_module_timer.cmt
+   ppx_module_timer.cmti
+   ppx_module_timer.cmx
+   ppx_module_timer.cmxa
+   ppx_module_timer.ml
+   ppx_module_timer.mli
+   runtime/ppx_module_timer_runtime.a
+   runtime/ppx_module_timer_runtime.cma
+   runtime/ppx_module_timer_runtime.cmi
+   runtime/ppx_module_timer_runtime.cmt
+   runtime/ppx_module_timer_runtime.cmti
+   runtime/ppx_module_timer_runtime.cmx
+   runtime/ppx_module_timer_runtime.cmxa
+   runtime/ppx_module_timer_runtime.ml
+   runtime/ppx_module_timer_runtime.mli))
+ (libexec
+  (ppx.exe ppx_module_timer.cmxs runtime/ppx_module_timer_runtime.cmxs))
+ (doc (LICENSE.md README.md)))
+(library
+ (name ppx_module_timer)
+ (kind ppx_rewriter)
+ (archives (byte ppx_module_timer.cma) (native ppx_module_timer.cmxa))
+ (plugins (byte ppx_module_timer.cma) (native ppx_module_timer.cmxs))
+ (native_archives ppx_module_timer.a)
+ (requires base ppxlib.ast ppxlib)
+ (ppx_runtime_deps ppx_module_timer.runtime)
+ (main_module_name Ppx_module_timer)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_module_timer)
+   (visibility public)
+   (source
+    (path Ppx_module_timer)
+    (intf (path ppx_module_timer.mli))
+    (impl (path ppx_module_timer.ml))))))
+(library
+ (name ppx_module_timer.runtime)
+ (kind normal)
+ (archives
+  (byte runtime/ppx_module_timer_runtime.cma)
+  (native runtime/ppx_module_timer_runtime.cmxa))
+ (plugins
+  (byte runtime/ppx_module_timer_runtime.cma)
+  (native runtime/ppx_module_timer_runtime.cmxs))
+ (native_archives runtime/ppx_module_timer_runtime.a)
+ (requires
+  base
+  stdio
+  time_now
+  ppx_sexp_conv.runtime-lib
+  sexplib0
+  ppx_compare.runtime-lib
+  ppx_enumerate.runtime-lib
+  ppx_hash.runtime-lib)
+ (main_module_name Ppx_module_timer_runtime)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_module_timer_runtime)
+   (visibility public)
+   (source
+    (path Ppx_module_timer_runtime)
+    (intf (path runtime/ppx_module_timer_runtime.mli))
+    (impl (path runtime/ppx_module_timer_runtime.ml))))))

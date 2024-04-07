@@ -1,0 +1,112 @@
+(lang dune 3.15)
+(name asn1-combinators)
+(version 0.2.6)
+(sections (lib .) (libexec .) (doc ../../doc/asn1-combinators))
+(files
+ (lib
+  (.private/asn_ber_der.cmi
+   .private/asn_ber_der.cmt
+   .private/asn_cache.cmi
+   .private/asn_cache.cmt
+   .private/asn_cache.cmti
+   .private/asn_combinators.cmi
+   .private/asn_combinators.cmt
+   .private/asn_core.cmi
+   .private/asn_core.cmt
+   .private/asn_oid.cmi
+   .private/asn_oid.cmt
+   .private/asn_oid.cmti
+   .private/asn_prim.cmi
+   .private/asn_prim.cmt
+   .private/asn_random.cmi
+   .private/asn_random.cmt
+   .private/asn_writer.cmi
+   .private/asn_writer.cmt
+   .private/asn_writer.cmti
+   META
+   asn.cmi
+   asn.cmt
+   asn.cmti
+   asn.cmx
+   asn.ml
+   asn.mli
+   asn1_combinators.a
+   asn1_combinators.cma
+   asn1_combinators.cmxa
+   asn_ber_der.cmx
+   asn_ber_der.ml
+   asn_cache.cmx
+   asn_cache.ml
+   asn_cache.mli
+   asn_combinators.cmx
+   asn_combinators.ml
+   asn_core.cmx
+   asn_core.ml
+   asn_oid.cmx
+   asn_oid.ml
+   asn_oid.mli
+   asn_prim.cmx
+   asn_prim.ml
+   asn_random.cmx
+   asn_random.ml
+   asn_writer.cmx
+   asn_writer.ml
+   asn_writer.mli
+   dune-package
+   opam))
+ (libexec (asn1_combinators.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name asn1-combinators)
+ (kind normal)
+ (synopsis "Embed typed ASN.1 grammars in OCaml")
+ (archives (byte asn1_combinators.cma) (native asn1_combinators.cmxa))
+ (plugins (byte asn1_combinators.cma) (native asn1_combinators.cmxs))
+ (native_archives asn1_combinators.a)
+ (requires cstruct zarith ptime)
+ (modes byte native)
+ (obj_dir (private_dir .private))
+ (modules
+  (unwrapped
+   (module
+    (obj_name asn)
+    (visibility public)
+    (source (path Asn) (intf (path asn.mli)) (impl (path asn.ml))))
+   (module
+    (obj_name asn_ber_der)
+    (visibility private)
+    (source (path Asn_ber_der) (impl (path asn_ber_der.ml))))
+   (module
+    (obj_name asn_cache)
+    (visibility private)
+    (source
+     (path Asn_cache)
+     (intf (path asn_cache.mli))
+     (impl (path asn_cache.ml))))
+   (module
+    (obj_name asn_combinators)
+    (visibility private)
+    (source (path Asn_combinators) (impl (path asn_combinators.ml))))
+   (module
+    (obj_name asn_core)
+    (visibility private)
+    (source (path Asn_core) (impl (path asn_core.ml))))
+   (module
+    (obj_name asn_oid)
+    (visibility private)
+    (source (path Asn_oid) (intf (path asn_oid.mli)) (impl (path asn_oid.ml))))
+   (module
+    (obj_name asn_prim)
+    (visibility private)
+    (source (path Asn_prim) (impl (path asn_prim.ml))))
+   (module
+    (obj_name asn_random)
+    (visibility private)
+    (source (path Asn_random) (impl (path asn_random.ml))))
+   (module
+    (obj_name asn_writer)
+    (visibility private)
+    (source
+     (path Asn_writer)
+     (intf (path asn_writer.mli))
+     (impl (path asn_writer.ml)))))))

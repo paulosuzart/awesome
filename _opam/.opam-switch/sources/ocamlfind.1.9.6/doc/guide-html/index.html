@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>The findlib User's Guide</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="NEXT"
+TITLE="User's Guide"
+HREF="p35.html"></HEAD
+><BODY
+CLASS="BOOK"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="BOOK"
+><A
+NAME="AEN1"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN1"
+>The findlib User's Guide</A
+></H1
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+></A
+>Gerd Stolpmann</H3
+><P
+CLASS="COPYRIGHT"
+>Copyright &copy; 1999-2014 Gerd Stolpmann</P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><P
+></P
+><A
+NAME="AEN15"
+></A
+><P
+>The "findlib" library provides a scheme to manage reusable software
+components (packages), and includes tools that support this
+scheme. Packages are collections of OCaml modules for which
+metainformation can be stored. The packages are kept in the filesystem
+hierarchy, but with strict directory structure. The library contains
+functions to look the directory up that stores a package, to query
+metainformation about a package, and to retrieve dependency
+information about multiple packages. There is also a tool that allows
+the user to enter queries on the command-line. In order to simplify
+compilation and linkage, there are new frontends of the various OCaml
+compilers that can directly deal with packages.</P
+><P
+>Together with the packages metainformation is stored. This includes a
+version string, the archives the package consists of, and additional
+linker options. Packages can also be dependent on other
+packages. There is a query which finds out all predecessors of a list
+of packages and sorts them topologically. The new compiler frontends
+do this implicitly.</P
+><P
+>Metainformation can be conditional, i.e. depend on a set of
+predicates. This is mainly used to be able to react on certain
+properties of the environment, such as if the bytecode or the native
+compiler is invoked, if the application is multi-threaded, and a few
+more. If the new compiler frontends are used, most predicates are
+found out automatically.</P
+><P
+>There is special support for scripts. A new directive, "#require",
+loads packages into scripts.</P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Download findlib. </B
+>This manual describes version 1.5 of the software
+package. It can be downloaded at
+<A
+HREF="http://download.camlcity.org/download"
+TARGET="_top"
+>http://download.camlcity.org/download</A
+>. The user's guide and the reference manual are included.
+Newest releases of "findlib" will be announced in
+<A
+HREF="http://links.camlcity.org"
+TARGET="_top"
+>The OCaml Link
+Database</A
+>.</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Quickstart. </B
+>See also the <A
+HREF="/projects/dl/findlib-1.5/doc/QUICKSTART"
+TARGET="_top"
+>Quickstart page</A
+>
+for instructions for the most common
+cases.</P
+></DIV
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="LEGALNOTICE"
+><A
+NAME="AEN29"
+></A
+><P
+><B
+>License</B
+></P
+><P
+>This document, and the described software, "findlib", are copyright by
+Gerd Stolpmann.</P
+><P
+>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this document and the "findlib" software (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</P
+><P
+>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</P
+><P
+>The Software is provided ``as is'', without warranty of any kind, express
+or implied, including but not limited to the warranties of
+merchantability, fitness for a particular purpose and noninfringement.
+In no event shall Gerd Stolpmann be liable for any claim, damages or
+other liability, whether in an action of contract, tort or otherwise,
+arising from, out of or in connection with the Software or the use or
+other dealings in the software.</P
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>I. <A
+HREF="p35.html"
+>User's Guide</A
+></DT
+><DD
+><DL
+><DT
+>1. <A
+HREF="c37.html"
+>Libraries and Packages</A
+></DT
+><DT
+>2. <A
+HREF="c74.html"
+>Using packages</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c74.html#AEN76"
+>Listing the installed packages</A
+></DT
+><DT
+><A
+HREF="x81.html"
+>Looking up package directories</A
+></DT
+><DT
+><A
+HREF="x89.html"
+>How a package directory looks like</A
+></DT
+><DT
+><A
+HREF="x108.html"
+>Querying information stored in META files</A
+></DT
+><DT
+><A
+HREF="x119.html"
+>How to compile and link a program that uses a package</A
+></DT
+><DT
+><A
+HREF="x135.html"
+>Dependencies</A
+></DT
+><DT
+><A
+HREF="x149.html"
+>Linker options</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="c161.html"
+>Dependency analysis of packages</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c161.html#AEN163"
+>Querying ancestors</A
+></DT
+><DT
+><A
+HREF="x180.html"
+>Querying descendants</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="c192.html"
+>A new frontend for ocamlc</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c192.html#AEN194"
+>Compiling and linking</A
+></DT
+><DT
+><A
+HREF="x231.html"
+>Toploops and runtime systems</A
+></DT
+><DT
+><A
+HREF="x265.html"
+>Multi-threaded applications</A
+></DT
+><DT
+><A
+HREF="x274.html"
+>Support for gprof-enabled modules</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="c278.html"
+>Complex packages</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c278.html#AEN280"
+>The standard predicates</A
+></DT
+><DT
+><A
+HREF="x311.html"
+>Defining additional predicates</A
+></DT
+><DT
+><A
+HREF="x326.html"
+>Appending to variables</A
+></DT
+><DT
+><A
+HREF="x338.html"
+>Subpackages</A
+></DT
+><DT
+><A
+HREF="x345.html"
+>Glue code</A
+></DT
+><DT
+><A
+HREF="x352.html"
+>Plugins</A
+></DT
+><DT
+><A
+HREF="x388.html"
+>Lint</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="c395.html"
+>How to create your own packages</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c395.html#AEN397"
+>Installing and removing packages</A
+></DT
+><DT
+><A
+HREF="x403.html"
+>Change your Makefile</A
+></DT
+><DT
+><A
+HREF="x421.html"
+>Using the Makefile wizard</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="c429.html"
+>FAQs</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c429.html#AEN431"
+>Does findlib support the autolink feature of OCaml 3?</A
+></DT
+><DT
+><A
+HREF="x443.html"
+>Why does findlib not automatically include the -custom option if
+linked with C code?</A
+></DT
+><DT
+><A
+HREF="x449.html"
+>Does findlib support linking of applications as well as
+packages?</A
+></DT
+><DT
+><A
+HREF="x461.html"
+>Does Findlib support camlp4?</A
+></DT
+><DT
+><A
+HREF="x513.html"
+>Does Findlib support ppx-style preprocessors?</A
+></DT
+><DT
+><A
+HREF="x524.html"
+>Why do some people install the .cmx files?</A
+></DT
+><DT
+><A
+HREF="x528.html"
+>How do I express conflicts?</A
+></DT
+></DL
+></DD
+></DL
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="p35.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>User's Guide</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

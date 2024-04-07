@@ -1,0 +1,86 @@
+.TH "Stdlib.Ephemeron" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Ephemeron \- no description
+.SH Module
+Module   Stdlib.Ephemeron
+.SH Documentation
+.sp
+Module
+.BI "Ephemeron"
+ : 
+.B (module Stdlib__Ephemeron)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+Unsynchronized accesses
+.PP
+
+.PP
+Unsynchronized accesses to a weak hash table may lead to an invalid
+weak hash table state\&. Thus, concurrent accesses to a buffer must be
+synchronized (for instance with a 
+.ft B
+Mutex\&.t
+.ft R
+)\&.
+.PP
+.I module type S = 
+.B sig end
+
+.sp
+The output signature of the functors 
+.ft B
+Ephemeron\&.K1\&.Make
+.ft R
+and 
+.ft B
+Ephemeron\&.K2\&.Make
+.ft R
+\&.
+These hash tables are weak in the keys\&. If all the keys of a binding are
+alive the binding is kept, but if one of the keys of the binding
+is dead then the binding is removed\&.
+
+.sp
+.I module type SeededS = 
+.B sig end
+
+.sp
+The output signature of the functors 
+.ft B
+Ephemeron\&.K1\&.MakeSeeded
+.ft R
+and 
+.ft B
+Ephemeron\&.K2\&.MakeSeeded
+.ft R
+\&.
+
+.sp
+.I module K1 : 
+.B sig end
+
+.sp
+Ephemerons with one key\&.
+
+.sp
+.I module K2 : 
+.B sig end
+
+.sp
+Ephemerons with two keys\&.
+
+.sp
+.I module Kn : 
+.B sig end
+
+.sp
+Ephemerons with arbitrary number of keys of the same type\&.
+
+.sp

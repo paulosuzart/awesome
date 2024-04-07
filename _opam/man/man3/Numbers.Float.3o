@@ -1,0 +1,51 @@
+.TH "Numbers.Float" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Numbers.Float \- no description
+.SH Module
+Module   Numbers.Float
+.SH Documentation
+.sp
+Module
+.BI "Float"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type t 
+
+.sp
+
+.sp
+.I module T : 
+.B sig end
+
+.sp
+
+.sp
+.I include Identifiable.Thing
+.sp
+
+.sp
+.I module Set : 
+.B sig end
+
+.sp
+
+.sp
+.I module Map : 
+.B sig end
+
+.sp
+
+.sp
+.I module Tbl : 
+.B sig end
+
+.sp
+
+.sp

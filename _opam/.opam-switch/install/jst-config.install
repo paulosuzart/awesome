@@ -1,0 +1,17 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/jst-config/META"
+  "_build/install/default/lib/jst-config/config.h"
+  "_build/install/default/lib/jst-config/config_h.a"
+  "_build/install/default/lib/jst-config/config_h.cma"
+  "_build/install/default/lib/jst-config/config_h.cmi"
+  "_build/install/default/lib/jst-config/config_h.cmt"
+  "_build/install/default/lib/jst-config/config_h.cmx"
+  "_build/install/default/lib/jst-config/config_h.cmxa"
+  "_build/install/default/lib/jst-config/config_h.ml"
+  "_build/install/default/lib/jst-config/dune-package"
+  "_build/install/default/lib/jst-config/opam"
+  "_build/install/default/lib/jst-config/thread_id.h"
+]
+doc: "_build/install/default/doc/jst-config/LICENSE.md"
+libexec: "_build/install/default/lib/jst-config/config_h.cmxs"

@@ -1,0 +1,31 @@
+version = "v0.16.0"
+description = ""
+requires =
+"base
+ base_quickcheck
+ base_quickcheck.ppx_quickcheck.runtime
+ bin_prot
+ fieldslib
+ int_repr
+ ppx_assert.runtime-lib
+ ppx_bench.runtime-lib
+ ppx_compare.runtime-lib
+ ppx_enumerate.runtime-lib
+ ppx_expect.collector
+ ppx_expect.config
+ ppx_hash.runtime-lib
+ ppx_here.runtime-lib
+ ppx_inline_test.config
+ ppx_inline_test.runtime-lib
+ ppx_log.types
+ ppx_module_timer.runtime
+ ppx_sexp_conv.runtime-lib
+ ppx_stable_witness.runtime
+ sexplib0
+ typerep
+ variantslib"
+archive(byte) = "base_bigstring.cma"
+archive(native) = "base_bigstring.cmxa"
+plugin(byte) = "base_bigstring.cma"
+plugin(native) = "base_bigstring.cmxs"
+jsoo_runtime = "runtime.js"

@@ -1,0 +1,71 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/re2/META"
+  "_build/install/default/lib/re2/c/libre2_c_stubs.a" {"c/libre2_c_stubs.a"}
+  "_build/install/default/lib/re2/c/re2_c.a" {"c/re2_c.a"}
+  "_build/install/default/lib/re2/c/re2_c.cma" {"c/re2_c.cma"}
+  "_build/install/default/lib/re2/c/re2_c.cmi" {"c/re2_c.cmi"}
+  "_build/install/default/lib/re2/c/re2_c.cmt" {"c/re2_c.cmt"}
+  "_build/install/default/lib/re2/c/re2_c.cmx" {"c/re2_c.cmx"}
+  "_build/install/default/lib/re2/c/re2_c.cmxa" {"c/re2_c.cmxa"}
+  "_build/install/default/lib/re2/c/re2_c.ml" {"c/re2_c.ml"}
+  "_build/install/default/lib/re2/dune-package"
+  "_build/install/default/lib/re2/explicit_dependencies_unignored.ml"
+  "_build/install/default/lib/re2/explicit_dependencies_unignored.mli"
+  "_build/install/default/lib/re2/libre2_stubs.a"
+  "_build/install/default/lib/re2/opam"
+  "_build/install/default/lib/re2/options.ml"
+  "_build/install/default/lib/re2/options.mli"
+  "_build/install/default/lib/re2/parser.ml"
+  "_build/install/default/lib/re2/parser.mli"
+  "_build/install/default/lib/re2/parser_intf.ml"
+  "_build/install/default/lib/re2/re2.a"
+  "_build/install/default/lib/re2/re2.cma"
+  "_build/install/default/lib/re2/re2.cmi"
+  "_build/install/default/lib/re2/re2.cmt"
+  "_build/install/default/lib/re2/re2.cmx"
+  "_build/install/default/lib/re2/re2.cmxa"
+  "_build/install/default/lib/re2/re2.ml"
+  "_build/install/default/lib/re2/re2__.cmi"
+  "_build/install/default/lib/re2/re2__.cmt"
+  "_build/install/default/lib/re2/re2__.cmx"
+  "_build/install/default/lib/re2/re2__.ml"
+  "_build/install/default/lib/re2/re2__Explicit_dependencies_unignored.cmi"
+  "_build/install/default/lib/re2/re2__Explicit_dependencies_unignored.cmt"
+  "_build/install/default/lib/re2/re2__Explicit_dependencies_unignored.cmti"
+  "_build/install/default/lib/re2/re2__Explicit_dependencies_unignored.cmx"
+  "_build/install/default/lib/re2/re2__Options.cmi"
+  "_build/install/default/lib/re2/re2__Options.cmt"
+  "_build/install/default/lib/re2/re2__Options.cmti"
+  "_build/install/default/lib/re2/re2__Options.cmx"
+  "_build/install/default/lib/re2/re2__Parser.cmi"
+  "_build/install/default/lib/re2/re2__Parser.cmt"
+  "_build/install/default/lib/re2/re2__Parser.cmti"
+  "_build/install/default/lib/re2/re2__Parser.cmx"
+  "_build/install/default/lib/re2/re2__Parser_intf.cmi"
+  "_build/install/default/lib/re2/re2__Parser_intf.cmt"
+  "_build/install/default/lib/re2/re2__Parser_intf.cmx"
+  "_build/install/default/lib/re2/re2__Regex.cmi"
+  "_build/install/default/lib/re2/re2__Regex.cmt"
+  "_build/install/default/lib/re2/re2__Regex.cmti"
+  "_build/install/default/lib/re2/re2__Regex.cmx"
+  "_build/install/default/lib/re2/re2__Regex_intf.cmi"
+  "_build/install/default/lib/re2/re2__Regex_intf.cmt"
+  "_build/install/default/lib/re2/re2__Regex_intf.cmx"
+  "_build/install/default/lib/re2/regex.ml"
+  "_build/install/default/lib/re2/regex.mli"
+  "_build/install/default/lib/re2/regex_intf.ml"
+]
+stublibs: [
+  "_build/install/default/lib/stublibs/dllre2_c_stubs.so"
+  "_build/install/default/lib/stublibs/dllre2_stubs.so"
+]
+doc: [
+  "_build/install/default/doc/re2/CHANGES.md"
+  "_build/install/default/doc/re2/LICENSE.md"
+  "_build/install/default/doc/re2/README.txt"
+]
+libexec: [
+  "_build/install/default/lib/re2/c/re2_c.cmxs" {"c/re2_c.cmxs"}
+  "_build/install/default/lib/re2/re2.cmxs"
+]

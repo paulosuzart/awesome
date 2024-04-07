@@ -1,0 +1,138 @@
+.TH "Lexer" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Lexer \- The lexical analyzer
+.SH Module
+Module   Lexer
+.SH Documentation
+.sp
+Module
+.BI "Lexer"
+ : 
+.B sig end
+
+.sp
+The lexical analyzer
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.I val init 
+: 
+.B unit -> unit
+.sp
+
+.sp
+
+.I val token 
+: 
+.B Lexing.lexbuf -> Parser.token
+.sp
+
+.sp
+
+.I val skip_hash_bang 
+: 
+.B Lexing.lexbuf -> unit
+.sp
+
+.sp
+.I type error 
+=
+ | Illegal_character
+.B of 
+.B char
+ | Illegal_escape
+.B of 
+.B string * string option
+ | Reserved_sequence
+.B of 
+.B string * string option
+ | Unterminated_comment
+.B of 
+.B Location.t
+ | Unterminated_string
+ | Unterminated_string_in_comment
+.B of 
+.B Location.t * Location.t
+ | Empty_character_literal
+ | Keyword_as_label
+.B of 
+.B string
+ | Invalid_literal
+.B of 
+.B string
+ | Invalid_directive
+.B of 
+.B string * string option
+ 
+.sp
+
+.sp
+
+.I exception Error 
+.B of 
+.B error * Location.t
+
+.sp
+
+.sp
+
+.I val in_comment 
+: 
+.B unit -> bool
+.sp
+
+.sp
+
+.I val in_string 
+: 
+.B unit -> bool
+.sp
+
+.sp
+
+.I val print_warnings 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val handle_docstrings 
+: 
+.B bool ref
+.sp
+
+.sp
+
+.I val comments 
+: 
+.B unit -> (string * Location.t) list
+.sp
+
+.sp
+
+.I val token_with_comments 
+: 
+.B Lexing.lexbuf -> Parser.token
+.sp
+
+.sp
+
+.I val set_preprocessor 
+: 
+.B (unit -> unit) ->
+.B   ((Lexing.lexbuf -> Parser.token) ->
+.B    Lexing.lexbuf -> Parser.token) ->
+.B   unit
+.sp
+
+.sp

@@ -1,0 +1,16 @@
+(library
+ (name eio_windows)
+ (public_name eio_windows)
+ (library_flags :standard -cclib -lbcrypt -cclib -lntdll)
+ (enabled_if (= %{os_type} "Win32"))
+ (foreign_stubs
+  (language c)
+  (include_dirs ../lib_eio/unix/include)
+  (names eio_windows_stubs eio_windows_cstruct_stubs))
+ (c_library_flags :standard -lbcrypt -lntdll)
+ (libraries eio eio.unix eio.utils fmt))
+
+(rule
+ (targets config.ml)
+ (enabled_if (= %{os_type} "Win32"))
+ (action (run ./include/discover.exe)))

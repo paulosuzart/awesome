@@ -1,0 +1,38 @@
+.TH "Obj.Closure" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Obj.Closure \- no description
+.SH Module
+Module   Obj.Closure
+.SH Documentation
+.sp
+Module
+.BI "Closure"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type info 
+= {
+ arity : 
+.B int
+;
+ start_env : 
+.B int
+;
+ }
+
+.sp
+
+.sp
+
+.I val info 
+: 
+.B Obj.t -> info
+.sp
+
+.sp

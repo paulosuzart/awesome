@@ -1,0 +1,7 @@
+version = "1.0.4"
+description = ""
+requires = "cstruct mirage-crypto"
+archive(byte) = "hkdf.cma"
+archive(native) = "hkdf.cmxa"
+plugin(byte) = "hkdf.cma"
+plugin(native) = "hkdf.cmxs"

@@ -1,0 +1,93 @@
+.TH "CamlinternalMenhirLib.ErrorReports" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.ErrorReports \- no description
+.SH Module
+Module   CamlinternalMenhirLib.ErrorReports
+.SH Documentation
+.sp
+Module
+.BI "ErrorReports"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I buffer 
+
+.sp
+
+.sp
+
+.I val wrap 
+: 
+.B (Lexing.lexbuf -> 'token) ->
+.B   (Lexing.position * Lexing.position)
+.B   buffer * (Lexing.lexbuf -> 'token)
+.sp
+
+.sp
+
+.I val wrap_supplier 
+: 
+.B (unit -> 'token * Lexing.position * Lexing.position) ->
+.B   (Lexing.position * Lexing.position)
+.B   buffer *
+.B   (unit -> 'token * Lexing.position * Lexing.position)
+.sp
+
+.sp
+
+.I val show 
+: 
+.B ('a -> string) -> 'a buffer -> string
+.sp
+
+.sp
+
+.I val last 
+: 
+.B 'a buffer -> 'a
+.sp
+
+.sp
+
+.I val extract 
+: 
+.B string -> Lexing.position * Lexing.position -> string
+.sp
+
+.sp
+
+.I val sanitize 
+: 
+.B string -> string
+.sp
+
+.sp
+
+.I val compress 
+: 
+.B string -> string
+.sp
+
+.sp
+
+.I val shorten 
+: 
+.B int -> string -> string
+.sp
+
+.sp
+
+.I val expand 
+: 
+.B (int -> string) -> string -> string
+.sp
+
+.sp

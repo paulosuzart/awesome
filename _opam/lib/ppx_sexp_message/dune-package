@@ -1,0 +1,69 @@
+(lang dune 3.15)
+(name ppx_sexp_message)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_sexp_message))
+(files
+ (lib
+  (META
+   dune-package
+   expander/ppx_sexp_message_expander.a
+   expander/ppx_sexp_message_expander.cma
+   expander/ppx_sexp_message_expander.cmi
+   expander/ppx_sexp_message_expander.cmt
+   expander/ppx_sexp_message_expander.cmti
+   expander/ppx_sexp_message_expander.cmx
+   expander/ppx_sexp_message_expander.cmxa
+   expander/ppx_sexp_message_expander.ml
+   expander/ppx_sexp_message_expander.mli
+   opam
+   ppx_sexp_message.a
+   ppx_sexp_message.cma
+   ppx_sexp_message.cmi
+   ppx_sexp_message.cmt
+   ppx_sexp_message.cmti
+   ppx_sexp_message.cmx
+   ppx_sexp_message.cmxa
+   ppx_sexp_message.ml
+   ppx_sexp_message.mli))
+ (libexec
+  (expander/ppx_sexp_message_expander.cmxs ppx.exe ppx_sexp_message.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_sexp_message)
+ (kind ppx_rewriter)
+ (archives (byte ppx_sexp_message.cma) (native ppx_sexp_message.cmxa))
+ (plugins (byte ppx_sexp_message.cma) (native ppx_sexp_message.cmxs))
+ (native_archives ppx_sexp_message.a)
+ (requires base ppxlib.ast ppxlib ppx_sexp_message.expander)
+ (main_module_name Ppx_sexp_message)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_sexp_message)
+   (visibility public)
+   (source
+    (path Ppx_sexp_message)
+    (intf (path ppx_sexp_message.mli))
+    (impl (path ppx_sexp_message.ml))))))
+(library
+ (name ppx_sexp_message.expander)
+ (kind normal)
+ (archives
+  (byte expander/ppx_sexp_message_expander.cma)
+  (native expander/ppx_sexp_message_expander.cmxa))
+ (plugins
+  (byte expander/ppx_sexp_message_expander.cma)
+  (native expander/ppx_sexp_message_expander.cmxs))
+ (native_archives expander/ppx_sexp_message_expander.a)
+ (requires base ppxlib.ast ppxlib ppx_sexp_conv.expander ppx_here.expander)
+ (ppx_runtime_deps ppx_sexp_conv.runtime-lib)
+ (main_module_name Ppx_sexp_message_expander)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_sexp_message_expander)
+   (visibility public)
+   (source
+    (path Ppx_sexp_message_expander)
+    (intf (path expander/ppx_sexp_message_expander.mli))
+    (impl (path expander/ppx_sexp_message_expander.ml))))))

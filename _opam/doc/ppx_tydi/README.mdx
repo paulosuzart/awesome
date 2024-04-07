@@ -1,0 +1,55 @@
+"ppx_tydi: concise type-directed dismabiguation of records in let-bindings"
+===========================================================================
+
+`ppx_tydi` allows concise type-directed disambiguation of record
+patterns on the left-hand side of let-bindings:
+
+<!-- $MDX file=test/test.mlt,part=simple-good -->
+```ocaml
+let () =
+  let%tydi { foo } = r in
+  ignore (foo : int)
+;;
+```
+
+where an ordinary let-binding would give an error:
+
+<!-- $MDX file=test/test.mlt,part=simple-bad -->
+```ocaml
+let () =
+  let { foo } = r in
+  ignore (foo : int)
+;;
+
+[%%expect {|
+Line _, characters _-_:
+Error: Unbound record field foo
+|}]
+```
+
+`ppx_tydi` rewrites let-bindings to match statements, e.g.
+
+<!-- $MDX file=doc/generate-snippets-for-readme/before.ml -->
+```ocaml
+let () =
+  let%tydi (() as unit) = () in
+  unit
+;;
+```
+
+goes to
+
+<!-- $MDX file=doc/generate-snippets-for-readme/before.ml.pp -->
+```ocaml
+let () = match () with | () as unit -> unit
+```
+
+`tydi` stands for "Type-directed" and is pronounced "Tidy".
+
+The problem is that the compiler cannot use the type of the expression
+on the right hand side to disambiguate the record pattern on the left.
+Let-bindings with record patterns are checked from left to right.
+
+Confusingly, let-bindings of variant patterns are fine. They get
+type-checked from right to left. This is an implementation detail
+related to type-checking of GADTs.

@@ -1,0 +1,174 @@
+.TH "UnixLabels.LargeFile" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+UnixLabels.LargeFile \- File operations on large files.
+.SH Module
+Module   UnixLabels.LargeFile
+.SH Documentation
+.sp
+Module
+.BI "LargeFile"
+ : 
+.B sig end
+
+.sp
+File operations on large files\&.
+This sub\-module provides 64\-bit variants of the functions
+.ft B
+UnixLabels\&.LargeFile\&.lseek
+.ft R
+(for positioning a file descriptor),
+.ft B
+UnixLabels\&.LargeFile\&.truncate
+.ft R
+and 
+.ft B
+UnixLabels\&.LargeFile\&.ftruncate
+.ft R
+(for changing the size of a file),
+and 
+.ft B
+UnixLabels\&.LargeFile\&.stat
+.ft R
+, 
+.ft B
+UnixLabels\&.LargeFile\&.lstat
+.ft R
+and 
+.ft B
+UnixLabels\&.LargeFile\&.fstat
+.ft R
+(for obtaining information on files)\&.  These alternate functions represent
+positions and sizes by 64\-bit integers (type 
+.ft B
+int64
+.ft R
+) instead of
+regular integers (type 
+.ft B
+int
+.ft R
+), thus allowing operating on files
+whose sizes are greater than 
+.ft B
+max_int
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.I val lseek 
+: 
+.B UnixLabels.file_descr -> int64 -> mode:UnixLabels.seek_command -> int64
+.sp
+See 
+.ft B
+lseek
+.ft R
+\&.
+
+.sp
+
+.I val truncate 
+: 
+.B string -> len:int64 -> unit
+.sp
+See 
+.ft B
+truncate
+.ft R
+\&.
+
+.sp
+
+.I val ftruncate 
+: 
+.B UnixLabels.file_descr -> len:int64 -> unit
+.sp
+See 
+.ft B
+ftruncate
+.ft R
+\&.
+
+.sp
+.I type stats 
+= 
+.B Unix.LargeFile.stats
+= {
+ st_dev : 
+.B int
+;  (* Device number
+ *) 
+ st_ino : 
+.B int
+;  (* Inode number
+ *) 
+ st_kind : 
+.B UnixLabels.file_kind
+;  (* Kind of the file
+ *) 
+ st_perm : 
+.B UnixLabels.file_perm
+;  (* Access rights
+ *) 
+ st_nlink : 
+.B int
+;  (* Number of links
+ *) 
+ st_uid : 
+.B int
+;  (* User id of the owner
+ *) 
+ st_gid : 
+.B int
+;  (* Group ID of the file\&'s group
+ *) 
+ st_rdev : 
+.B int
+;  (* Device ID (if special file)
+ *) 
+ st_size : 
+.B int64
+;  (* Size in bytes
+ *) 
+ st_atime : 
+.B float
+;  (* Last access time
+ *) 
+ st_mtime : 
+.B float
+;  (* Last modification time
+ *) 
+ st_ctime : 
+.B float
+;  (* Last status change time
+ *) 
+ }
+
+.sp
+
+.sp
+
+.I val stat 
+: 
+.B string -> stats
+.sp
+
+.sp
+
+.I val lstat 
+: 
+.B string -> stats
+.sp
+
+.sp
+
+.I val fstat 
+: 
+.B UnixLabels.file_descr -> stats
+.sp
+
+.sp

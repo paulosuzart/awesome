@@ -1,0 +1,7 @@
+version = "v0.16.0"
+description = ""
+requires = "sexplib0"
+archive(byte) = "parsexp.cma"
+archive(native) = "parsexp.cmxa"
+plugin(byte) = "parsexp.cma"
+plugin(native) = "parsexp.cmxs"

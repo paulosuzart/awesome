@@ -1,0 +1,594 @@
+.TH "Stdlib.Out_channel" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Stdlib.Out_channel \- no description
+.SH Module
+Module   Stdlib.Out_channel
+.SH Documentation
+.sp
+Module
+.BI "Out_channel"
+ : 
+.B (module Stdlib__Out_channel)
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS Channels
+
+.PP
+.I type t 
+= 
+.B out_channel
+
+.sp
+The type of output channel\&.
+
+.sp
+.I type open_flag 
+= 
+.B open_flag
+=
+ | Open_rdonly  (* open for reading\&.
+ *)
+ | Open_wronly  (* open for writing\&.
+ *)
+ | Open_append  (* open for appending: always write at end of file\&.
+ *)
+ | Open_creat  (* create the file if it does not exist\&.
+ *)
+ | Open_trunc  (* empty the file if it already exists\&.
+ *)
+ | Open_excl  (* fail if Open_creat and the file already exists\&.
+ *)
+ | Open_binary  (* open in binary mode (no conversion)\&.
+ *)
+ | Open_text  (* open in text mode (may perform conversions)\&.
+ *)
+ | Open_nonblock  (* open in non\-blocking mode\&.
+ *)
+ 
+.sp
+Opening modes for 
+.ft B
+Out_channel\&.open_gen
+.ft R
+\&.
+
+.sp
+
+.I val stdout 
+: 
+.B t
+.sp
+The standard output for the process\&.
+
+.sp
+
+.I val stderr 
+: 
+.B t
+.sp
+The standard error output for the process\&.
+
+.sp
+
+.I val open_bin 
+: 
+.B string -> t
+.sp
+Open the named file for writing, and return a new output channel on that
+file, positioned at the beginning of the file\&. The file is truncated to zero
+length if it already exists\&. It is created if it does not already exists\&.
+
+.sp
+
+.I val open_text 
+: 
+.B string -> t
+.sp
+Same as 
+.ft B
+Out_channel\&.open_bin
+.ft R
+, but the file is opened in text mode, so that newline
+translation takes place during writes\&. On operating systems that do not
+distinguish between text mode and binary mode, this function behaves like
+.ft B
+Out_channel\&.open_bin
+.ft R
+\&.
+
+.sp
+
+.I val open_gen 
+: 
+.B open_flag list -> int -> string -> t
+.sp
+
+.ft B
+open_gen mode perm filename
+.ft R
+opens the named file for writing, as described
+above\&. The extra argument 
+.ft B
+mode
+.ft R
+specifies the opening mode\&. The extra
+argument 
+.ft B
+perm
+.ft R
+specifies the file permissions, in case the file must be
+created\&.  
+.ft B
+Out_channel\&.open_text
+.ft R
+and 
+.ft B
+Out_channel\&.open_bin
+.ft R
+are special cases of this
+function\&.
+
+.sp
+
+.I val with_open_bin 
+: 
+.B string -> (t -> 'a) -> 'a
+.sp
+
+.ft B
+with_open_bin fn f
+.ft R
+opens a channel 
+.ft B
+oc
+.ft R
+on file 
+.ft B
+fn
+.ft R
+and returns 
+.ft B
+f
+.br
+\&    oc
+.ft R
+\&. After 
+.ft B
+f
+.ft R
+returns, either with a value or by raising an exception, 
+.ft B
+oc
+.ft R
+is guaranteed to be closed\&.
+
+.sp
+
+.I val with_open_text 
+: 
+.B string -> (t -> 'a) -> 'a
+.sp
+Like 
+.ft B
+Out_channel\&.with_open_bin
+.ft R
+, but the channel is opened in text mode (see
+.ft B
+Out_channel\&.open_text
+.ft R
+)\&.
+
+.sp
+
+.I val with_open_gen 
+: 
+.B open_flag list -> int -> string -> (t -> 'a) -> 'a
+.sp
+Like 
+.ft B
+Out_channel\&.with_open_bin
+.ft R
+, but can specify the opening mode and file permission,
+in case the file must be created (see 
+.ft B
+Out_channel\&.open_gen
+.ft R
+)\&.
+
+.sp
+
+.I val close 
+: 
+.B t -> unit
+.sp
+Close the given channel, flushing all buffered write operations\&.  Output
+functions raise a 
+.ft B
+Sys_error
+.ft R
+exception when they are applied to a closed
+output channel, except 
+.ft B
+Out_channel\&.close
+.ft R
+and 
+.ft B
+Out_channel\&.flush
+.ft R
+, which do nothing when applied
+to an already closed channel\&.  Note that 
+.ft B
+Out_channel\&.close
+.ft R
+may raise 
+.ft B
+Sys_error
+.ft R
+if
+the operating system signals an error when flushing or closing\&.
+
+.sp
+
+.I val close_noerr 
+: 
+.B t -> unit
+.sp
+Same as 
+.ft B
+Out_channel\&.close
+.ft R
+, but ignore all errors\&.
+
+.sp
+
+.PP
+.SS Output
+
+.PP
+
+.I val output_char 
+: 
+.B t -> char -> unit
+.sp
+Write the character on the given output channel\&.
+
+.sp
+
+.I val output_byte 
+: 
+.B t -> int -> unit
+.sp
+Write one 8\-bit integer (as the single character with that code) on the
+given output channel\&. The given integer is taken modulo 256\&.
+
+.sp
+
+.I val output_string 
+: 
+.B t -> string -> unit
+.sp
+Write the string on the given output channel\&.
+
+.sp
+
+.I val output_bytes 
+: 
+.B t -> bytes -> unit
+.sp
+Write the byte sequence on the given output channel\&.
+
+.sp
+
+.PP
+.SS Advanced output
+
+.PP
+
+.I val output 
+: 
+.B t -> bytes -> int -> int -> unit
+.sp
+
+.ft B
+output oc buf pos len
+.ft R
+writes 
+.ft B
+len
+.ft R
+characters from byte sequence 
+.ft B
+buf
+.ft R
+,
+starting at offset 
+.ft B
+pos
+.ft R
+, to the given output channel 
+.ft B
+oc
+.ft R
+\&.
+
+.sp
+.B "Raises Invalid_argument"
+if 
+.ft B
+pos
+.ft R
+and 
+.ft B
+len
+.ft R
+do not designate a valid range of
+.ft B
+buf
+.ft R
+\&.
+
+.sp
+
+.I val output_substring 
+: 
+.B t -> string -> int -> int -> unit
+.sp
+Same as 
+.ft B
+Out_channel\&.output
+.ft R
+but take a string as argument instead of a byte
+sequence\&.
+
+.sp
+
+.PP
+.SS Flushing
+
+.PP
+
+.I val flush 
+: 
+.B t -> unit
+.sp
+Flush the buffer associated with the given output channel, performing all
+pending writes on that channel\&.  Interactive programs must be careful about
+flushing standard output and standard error at the right time\&.
+
+.sp
+
+.I val flush_all 
+: 
+.B unit -> unit
+.sp
+Flush all open output channels; ignore errors\&.
+
+.sp
+
+.PP
+.SS Seeking
+
+.PP
+
+.I val seek 
+: 
+.B t -> int64 -> unit
+.sp
+
+.ft B
+seek chan pos
+.ft R
+sets the current writing position to 
+.ft B
+pos
+.ft R
+for channel
+.ft B
+chan
+.ft R
+\&. This works only for regular files\&. On files of other kinds (such as
+terminals, pipes and sockets), the behavior is unspecified\&.
+
+.sp
+
+.I val pos 
+: 
+.B t -> int64
+.sp
+Return the current writing position for the given channel\&.  Does not work on
+channels opened with the 
+.ft B
+Open_append
+.ft R
+flag (returns unspecified results)\&.
+.sp
+For files opened in text mode under Windows, the returned position is
+approximate (owing to end\-of\-line conversion); in particular, saving the
+current position with 
+.ft B
+Out_channel\&.pos
+.ft R
+, then going back to this position using 
+.ft B
+Out_channel\&.seek
+.ft R
+will not work\&.  For this programming idiom to work reliably and portably,
+the file must be opened in binary mode\&.
+
+.sp
+
+.PP
+.SS Attributes
+
+.PP
+
+.I val length 
+: 
+.B t -> int64
+.sp
+Return the size (number of characters) of the regular file on which the
+given channel is opened\&.  If the channel is opened on a file that is not a
+regular file, the result is meaningless\&.
+
+.sp
+
+.I val set_binary_mode 
+: 
+.B t -> bool -> unit
+.sp
+
+.ft B
+set_binary_mode oc true
+.ft R
+sets the channel 
+.ft B
+oc
+.ft R
+to binary mode: no
+translations take place during output\&.
+.sp
+
+.ft B
+set_binary_mode oc false
+.ft R
+sets the channel 
+.ft B
+oc
+.ft R
+to text mode: depending on
+the operating system, some translations may take place during output\&.  For
+instance, under Windows, end\-of\-lines will be translated from 
+.ft B
+\(rsn
+.ft R
+to
+.ft B
+\(rsr\(rsn
+.ft R
+\&.
+.sp
+This function has no effect under operating systems that do not distinguish
+between text mode and binary mode\&.
+
+.sp
+
+.I val set_buffered 
+: 
+.B t -> bool -> unit
+.sp
+
+.ft B
+set_buffered oc true
+.ft R
+sets the channel 
+.ft B
+oc
+.ft R
+to buffered mode\&. In this
+mode, data output on 
+.ft B
+oc
+.ft R
+will be buffered until either the internal buffer
+is full or the function 
+.ft B
+Out_channel\&.flush
+.ft R
+or 
+.ft B
+Out_channel\&.flush_all
+.ft R
+is called, at which point
+it will be sent to the output device\&.
+.sp
+
+.ft B
+set_buffered oc false
+.ft R
+sets the channel 
+.ft B
+oc
+.ft R
+to unbuffered mode\&. In
+this mode, data output on 
+.ft B
+oc
+.ft R
+will be sent to the output device
+immediately\&.
+.sp
+All channels are open in buffered mode by default\&.
+
+.sp
+
+.I val is_buffered 
+: 
+.B t -> bool
+.sp
+
+.ft B
+is_buffered oc
+.ft R
+returns whether the channel 
+.ft B
+oc
+.ft R
+is buffered (see
+.ft B
+Out_channel\&.set_buffered
+.ft R
+)\&.
+
+.sp
+
+.I val isatty 
+: 
+.B t -> bool
+.sp
+
+.ft B
+isatty oc
+.ft R
+is 
+.ft B
+true
+.ft R
+if 
+.ft B
+oc
+.ft R
+refers to a terminal or console window,
+.ft B
+false
+.ft R
+otherwise\&.
+
+.sp
+.B "Since"
+5.1
+
+.sp
+
+.PP
+.SS Examples
+Writing the contents of a file:
+.EX
+.ft B
+.br
+\&      let write_file file s =
+.br
+\&        Out_channel\&.with_open_bin file
+.br
+\&          (fun oc \-> Out_channel\&.output_string oc s))
+.br
+\&    
+.ft R
+.EE
+.PP

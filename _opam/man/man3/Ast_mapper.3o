@@ -1,0 +1,522 @@
+.TH "Ast_mapper" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Ast_mapper \- The interface of a -ppx rewriter
+.SH Module
+Module   Ast_mapper
+.SH Documentation
+.sp
+Module
+.BI "Ast_mapper"
+ : 
+.B sig end
+
+.sp
+The interface of a \-ppx rewriter
+.sp
+A \-ppx rewriter is a program that accepts a serialized abstract syntax
+tree and outputs another, possibly modified, abstract syntax tree\&.
+This module encapsulates the interface between the compiler and
+the \-ppx rewriters, handling such details as the serialization format,
+forwarding of command\-line flags, and storing state\&.
+.sp
+
+.ft B
+Ast_mapper\&.mapper
+.ft R
+enables AST rewriting using open recursion\&.
+A typical mapper would be based on 
+.ft B
+Ast_mapper\&.default_mapper
+.ft R
+, a deep
+identity mapper, and will fall back on it for handling the syntax it
+does not modify\&. For example:
+.sp
+
+.EX
+.ft B
+.br
+\&open Asttypes
+.br
+\&open Parsetree
+.br
+\&open Ast_mapper
+.br
+\&
+.br
+\&let test_mapper argv =
+.br
+\&  { default_mapper with
+.br
+\&    expr = fun mapper expr \->
+.br
+\&      match expr with
+.br
+\&      | { pexp_desc = Pexp_extension ({ txt = "test" }, PStr [])} \->
+.br
+\&        Ast_helper\&.Exp\&.constant (Const_int 42)
+.br
+\&      | other \-> default_mapper\&.expr mapper other; }
+.br
+\&
+.br
+\&let () =
+.br
+\&  register "ppx_test" test_mapper
+.ft R
+.EE
+.sp
+This \-ppx rewriter, which replaces 
+.ft B
+[%test]
+.ft R
+in expressions with
+the constant 
+.ft B
+42
+.ft R
+, can be compiled using
+.ft B
+ocamlc \-o ppx_test \-I +compiler\-libs ocamlcommon\&.cma ppx_test\&.ml
+.ft R
+\&.
+.sp
+Warning: this module is unstable and part of
+.ft B
+Compiler_libs
+.ft R
+\&.
+
+.sp
+
+.sp
+.sp
+
+.PP
+.SS A generic Parsetree mapper
+
+.PP
+.I type mapper 
+= {
+ attribute : 
+.B mapper -> Parsetree.attribute -> Parsetree.attribute
+;
+ attributes : 
+.B mapper -> Parsetree.attribute list -> Parsetree.attribute list
+;
+ binding_op : 
+.B mapper -> Parsetree.binding_op -> Parsetree.binding_op
+;
+ case : 
+.B mapper -> Parsetree.case -> Parsetree.case
+;
+ cases : 
+.B mapper -> Parsetree.case list -> Parsetree.case list
+;
+ class_declaration : 
+.B mapper ->
+.B   Parsetree.class_declaration -> Parsetree.class_declaration
+;
+ class_description : 
+.B mapper ->
+.B   Parsetree.class_description -> Parsetree.class_description
+;
+ class_expr : 
+.B mapper -> Parsetree.class_expr -> Parsetree.class_expr
+;
+ class_field : 
+.B mapper -> Parsetree.class_field -> Parsetree.class_field
+;
+ class_signature : 
+.B mapper -> Parsetree.class_signature -> Parsetree.class_signature
+;
+ class_structure : 
+.B mapper -> Parsetree.class_structure -> Parsetree.class_structure
+;
+ class_type : 
+.B mapper -> Parsetree.class_type -> Parsetree.class_type
+;
+ class_type_declaration : 
+.B mapper ->
+.B   Parsetree.class_type_declaration -> Parsetree.class_type_declaration
+;
+ class_type_field : 
+.B mapper -> Parsetree.class_type_field -> Parsetree.class_type_field
+;
+ constant : 
+.B mapper -> Parsetree.constant -> Parsetree.constant
+;
+ constructor_declaration : 
+.B mapper ->
+.B   Parsetree.constructor_declaration -> Parsetree.constructor_declaration
+;
+ expr : 
+.B mapper -> Parsetree.expression -> Parsetree.expression
+;
+ extension : 
+.B mapper -> Parsetree.extension -> Parsetree.extension
+;
+ extension_constructor : 
+.B mapper ->
+.B   Parsetree.extension_constructor -> Parsetree.extension_constructor
+;
+ include_declaration : 
+.B mapper ->
+.B   Parsetree.include_declaration -> Parsetree.include_declaration
+;
+ include_description : 
+.B mapper ->
+.B   Parsetree.include_description -> Parsetree.include_description
+;
+ label_declaration : 
+.B mapper ->
+.B   Parsetree.label_declaration -> Parsetree.label_declaration
+;
+ location : 
+.B mapper -> Location.t -> Location.t
+;
+ module_binding : 
+.B mapper -> Parsetree.module_binding -> Parsetree.module_binding
+;
+ module_declaration : 
+.B mapper ->
+.B   Parsetree.module_declaration -> Parsetree.module_declaration
+;
+ module_substitution : 
+.B mapper ->
+.B   Parsetree.module_substitution -> Parsetree.module_substitution
+;
+ module_expr : 
+.B mapper -> Parsetree.module_expr -> Parsetree.module_expr
+;
+ module_type : 
+.B mapper -> Parsetree.module_type -> Parsetree.module_type
+;
+ module_type_declaration : 
+.B mapper ->
+.B   Parsetree.module_type_declaration -> Parsetree.module_type_declaration
+;
+ open_declaration : 
+.B mapper -> Parsetree.open_declaration -> Parsetree.open_declaration
+;
+ open_description : 
+.B mapper -> Parsetree.open_description -> Parsetree.open_description
+;
+ pat : 
+.B mapper -> Parsetree.pattern -> Parsetree.pattern
+;
+ payload : 
+.B mapper -> Parsetree.payload -> Parsetree.payload
+;
+ signature : 
+.B mapper -> Parsetree.signature -> Parsetree.signature
+;
+ signature_item : 
+.B mapper -> Parsetree.signature_item -> Parsetree.signature_item
+;
+ structure : 
+.B mapper -> Parsetree.structure -> Parsetree.structure
+;
+ structure_item : 
+.B mapper -> Parsetree.structure_item -> Parsetree.structure_item
+;
+ typ : 
+.B mapper -> Parsetree.core_type -> Parsetree.core_type
+;
+ type_declaration : 
+.B mapper -> Parsetree.type_declaration -> Parsetree.type_declaration
+;
+ type_extension : 
+.B mapper -> Parsetree.type_extension -> Parsetree.type_extension
+;
+ type_exception : 
+.B mapper -> Parsetree.type_exception -> Parsetree.type_exception
+;
+ type_kind : 
+.B mapper -> Parsetree.type_kind -> Parsetree.type_kind
+;
+ value_binding : 
+.B mapper -> Parsetree.value_binding -> Parsetree.value_binding
+;
+ value_description : 
+.B mapper ->
+.B   Parsetree.value_description -> Parsetree.value_description
+;
+ with_constraint : 
+.B mapper -> Parsetree.with_constraint -> Parsetree.with_constraint
+;
+ }
+
+.sp
+A mapper record implements one "method" per syntactic category,
+using an open recursion style: each method takes as its first
+argument the mapper to be applied to children in the syntax
+tree\&.
+
+.sp
+
+.I val default_mapper 
+: 
+.B mapper
+.sp
+A default mapper, which implements a "deep identity" mapping\&.
+
+.sp
+
+.PP
+.SS Apply mappers to compilation units
+
+.PP
+
+.I val tool_name 
+: 
+.B unit -> string
+.sp
+Can be used within a ppx preprocessor to know which tool is
+calling it 
+.ft B
+"ocamlc"
+.ft R
+, 
+.ft B
+"ocamlopt"
+.ft R
+, 
+.ft B
+"ocamldoc"
+.ft R
+, 
+.ft B
+"ocamldep"
+.ft R
+,
+.ft B
+"ocaml"
+.ft R
+, \&.\&.\&.  Some global variables that reflect command\-line
+options are automatically synchronized between the calling tool
+and the ppx preprocessor: 
+.ft B
+Clflags\&.include_dirs
+.ft R
+,
+.ft B
+Load_path
+.ft R
+, 
+.ft B
+Clflags\&.open_modules
+.ft R
+, 
+.ft B
+Clflags\&.for_package
+.ft R
+,
+.ft B
+Clflags\&.debug
+.ft R
+\&.
+
+.sp
+
+.I val apply 
+: 
+.B source:string -> target:string -> mapper -> unit
+.sp
+Apply a mapper (parametrized by the unit name) to a dumped
+parsetree found in the 
+.ft B
+source
+.ft R
+file and put the result in the
+.ft B
+target
+.ft R
+file\&. The 
+.ft B
+structure
+.ft R
+or 
+.ft B
+signature
+.ft R
+field of the mapper
+is applied to the implementation or interface\&.
+
+.sp
+
+.I val run_main 
+: 
+.B (string list -> mapper) -> unit
+.sp
+Entry point to call to implement a standalone \-ppx rewriter from a
+mapper, parametrized by the command line arguments\&.  The current
+unit name can be obtained from 
+.ft B
+Location\&.input_name
+.ft R
+\&.  This
+function implements proper error reporting for uncaught
+exceptions\&.
+
+.sp
+
+.PP
+.SS Registration API
+
+.PP
+
+.I val register_function 
+: 
+.B (string -> (string list -> mapper) -> unit) ref
+.sp
+
+.sp
+
+.I val register 
+: 
+.B string -> (string list -> mapper) -> unit
+.sp
+Apply the 
+.ft B
+register_function
+.ft R
+\&.  The default behavior is to run the
+mapper immediately, taking arguments from the process command
+line\&.  This is to support a scenario where a mapper is linked as a
+stand\-alone executable\&.
+.sp
+It is possible to overwrite the 
+.ft B
+register_function
+.ft R
+to define
+"\-ppx drivers", which combine several mappers in a single process\&.
+Typically, a driver starts by defining 
+.ft B
+register_function
+.ft R
+to a
+custom implementation, then lets ppx rewriters (linked statically
+or dynamically) register themselves, and then run all or some of
+them\&.  It is also possible to have \-ppx drivers apply rewriters to
+only specific parts of an AST\&.
+.sp
+The first argument to 
+.ft B
+register
+.ft R
+is a symbolic name to be used by
+the ppx driver\&.
+
+.sp
+
+.PP
+.SS Convenience functions to write mappers
+
+.PP
+
+.I val map_opt 
+: 
+.B ('a -> 'b) -> 'a option -> 'b option
+.sp
+
+.sp
+
+.I val extension_of_error 
+: 
+.B Location.error -> Parsetree.extension
+.sp
+Encode an error into an \&'ocaml\&.error\&' extension node which can be
+inserted in a generated Parsetree\&.  The compiler will be
+responsible for reporting the error\&.
+
+.sp
+
+.I val attribute_of_warning 
+: 
+.B Location.t -> string -> Parsetree.attribute
+.sp
+Encode a warning message into an \&'ocaml\&.ppwarning\&' attribute which can be
+inserted in a generated Parsetree\&.  The compiler will be
+responsible for reporting the warning\&.
+
+.sp
+
+.PP
+.SS Helper functions to call external mappers
+
+.PP
+
+.I val add_ppx_context_str 
+: 
+.B tool_name:string -> Parsetree.structure -> Parsetree.structure
+.sp
+Extract information from the current environment and encode it
+into an attribute which is prepended to the list of structure
+items in order to pass the information to an external
+processor\&.
+
+.sp
+
+.I val add_ppx_context_sig 
+: 
+.B tool_name:string -> Parsetree.signature -> Parsetree.signature
+.sp
+Same as 
+.ft B
+add_ppx_context_str
+.ft R
+, but for signatures\&.
+
+.sp
+
+.I val drop_ppx_context_str 
+: 
+.B restore:bool -> Parsetree.structure -> Parsetree.structure
+.sp
+Drop the ocaml\&.ppx\&.context attribute from a structure\&.  If
+.ft B
+restore
+.ft R
+is true, also restore the associated data in the current
+process\&.
+
+.sp
+
+.I val drop_ppx_context_sig 
+: 
+.B restore:bool -> Parsetree.signature -> Parsetree.signature
+.sp
+Same as 
+.ft B
+drop_ppx_context_str
+.ft R
+, but for signatures\&.
+
+.sp
+
+.PP
+.SS Cookies
+
+.PP
+
+.PP
+Cookies are used to pass information from a ppx processor to
+a further invocation of itself, when called from the OCaml
+toplevel (or other tools that support cookies)\&.
+.PP
+
+.I val set_cookie 
+: 
+.B string -> Parsetree.expression -> unit
+.sp
+
+.sp
+
+.I val get_cookie 
+: 
+.B string -> Parsetree.expression option
+.sp
+
+.sp

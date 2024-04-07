@@ -1,0 +1,14 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/stdlib-shims/META"
+  "_build/install/default/lib/stdlib-shims/dune-package"
+  "_build/install/default/lib/stdlib-shims/opam"
+  "_build/install/default/lib/stdlib-shims/stdlib_shims.cma"
+  "_build/install/default/lib/stdlib-shims/stdlib_shims.cmxa"
+]
+doc: [
+  "_build/install/default/doc/stdlib-shims/CHANGES.md"
+  "_build/install/default/doc/stdlib-shims/LICENSE"
+  "_build/install/default/doc/stdlib-shims/README.md"
+]
+libexec: "_build/install/default/lib/stdlib-shims/stdlib_shims.cmxs"

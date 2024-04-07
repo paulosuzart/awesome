@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>FAQs</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="User's Guide"
+HREF="p35.html"><LINK
+REL="PREVIOUS"
+TITLE="Using the Makefile wizard"
+HREF="x421.html"><LINK
+REL="NEXT"
+TITLE="Why does findlib not automatically include the -custom option if
+linked with C code?"
+HREF="x443.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x421.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x443.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN429"
+></A
+>Chapter 7. FAQs</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="c429.html#AEN431"
+>Does findlib support the autolink feature of OCaml 3?</A
+></DT
+><DT
+><A
+HREF="x443.html"
+>Why does findlib not automatically include the -custom option if
+linked with C code?</A
+></DT
+><DT
+><A
+HREF="x449.html"
+>Does findlib support linking of applications as well as
+packages?</A
+></DT
+><DT
+><A
+HREF="x461.html"
+>Does Findlib support camlp4?</A
+></DT
+><DT
+><A
+HREF="x513.html"
+>Does Findlib support ppx-style preprocessors?</A
+></DT
+><DT
+><A
+HREF="x524.html"
+>Why do some people install the .cmx files?</A
+></DT
+><DT
+><A
+HREF="x528.html"
+>How do I express conflicts?</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN431"
+>Does findlib support the autolink feature of OCaml 3?</A
+></H1
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Short answer:</I
+></SPAN
+> Findlib is compatible with autolink</P
+><P
+>The new archive format introduced with OCaml 3 can store the linker options
+that are necessary to link an archive. For example:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlc -a -o myarchive.cma mymodule.cmo -cclib -lmylibrary</PRE
+>
+
+This command does not only create the new archive
+<TT
+CLASS="LITERAL"
+>myarchive.cma</TT
+>, but it also writes into a special section of
+that file that the linker option <TT
+CLASS="LITERAL"
+>-cclib -lmylibrary</TT
+> is
+necessary to link this archive.</P
+><P
+>This means for findlib that most of the "linkopts" attributes in META files
+have become superflous: The compiler itself already knows the linker options,
+we do not need to tell the compiler the options. We could simply leave all
+"linkopts" attributes out.</P
+><P
+>Of course, the "linkopts" feature of findlib still works. This is necessary
+because findlib should keep the compatibility with older software, and because
+"linkopts" is more powerful (you can have conditional linker options).</P
+><P
+>If you have software that must run in both OCaml 2 and OCaml 3 environments,
+you can make your "linkopts" attribute dependent on the "autolink"
+predicate. For example:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>linkopts = "-cclib -lmylibrary"
+linkopts(autolink) = ""</PRE
+>
+
+The findlib installation for OCaml 3 will take the second line which is
+reasonable because ocamlc already knows how to link; the installation for
+OCaml 2 never sets the "autolink" predicate and therefore uses the first line.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x421.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x443.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using the Makefile wizard</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p35.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Why does findlib not automatically include the -custom option if
+linked with C code?</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

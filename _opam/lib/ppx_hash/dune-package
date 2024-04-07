@@ -1,0 +1,96 @@
+(lang dune 3.15)
+(name ppx_hash)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_hash))
+(files
+ (lib
+  (META
+   dune-package
+   expander/ppx_hash_expander.a
+   expander/ppx_hash_expander.cma
+   expander/ppx_hash_expander.cmi
+   expander/ppx_hash_expander.cmt
+   expander/ppx_hash_expander.cmti
+   expander/ppx_hash_expander.cmx
+   expander/ppx_hash_expander.cmxa
+   expander/ppx_hash_expander.ml
+   expander/ppx_hash_expander.mli
+   opam
+   ppx_hash.a
+   ppx_hash.cma
+   ppx_hash.cmi
+   ppx_hash.cmt
+   ppx_hash.cmti
+   ppx_hash.cmx
+   ppx_hash.cmxa
+   ppx_hash.ml
+   ppx_hash.mli
+   runtime-lib/ppx_hash_lib.a
+   runtime-lib/ppx_hash_lib.cma
+   runtime-lib/ppx_hash_lib.cmi
+   runtime-lib/ppx_hash_lib.cmt
+   runtime-lib/ppx_hash_lib.cmx
+   runtime-lib/ppx_hash_lib.cmxa
+   runtime-lib/ppx_hash_lib.ml))
+ (libexec
+  (expander/ppx_hash_expander.cmxs
+   ppx_hash.cmxs
+   runtime-lib/ppx_hash_lib.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_hash)
+ (kind ppx_deriver)
+ (archives (byte ppx_hash.cma) (native ppx_hash.cmxa))
+ (plugins (byte ppx_hash.cma) (native ppx_hash.cmxs))
+ (native_archives ppx_hash.a)
+ (requires ppxlib.ast ppxlib ppx_hash.expander)
+ (main_module_name Ppx_hash)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_hash)
+   (visibility public)
+   (source
+    (path Ppx_hash)
+    (intf (path ppx_hash.mli))
+    (impl (path ppx_hash.ml))))))
+(library
+ (name ppx_hash.expander)
+ (kind normal)
+ (archives
+  (byte expander/ppx_hash_expander.cma)
+  (native expander/ppx_hash_expander.cmxa))
+ (plugins
+  (byte expander/ppx_hash_expander.cma)
+  (native expander/ppx_hash_expander.cmxs))
+ (native_archives expander/ppx_hash_expander.a)
+ (requires ppx_compare.expander base ppxlib.ast ppxlib compiler-libs.common)
+ (ppx_runtime_deps ppx_hash.runtime-lib)
+ (main_module_name Ppx_hash_expander)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_hash_expander)
+   (visibility public)
+   (source
+    (path Ppx_hash_expander)
+    (intf (path expander/ppx_hash_expander.mli))
+    (impl (path expander/ppx_hash_expander.ml))))))
+(library
+ (name ppx_hash.runtime-lib)
+ (kind normal)
+ (archives
+  (byte runtime-lib/ppx_hash_lib.cma)
+  (native runtime-lib/ppx_hash_lib.cmxa))
+ (plugins
+  (byte runtime-lib/ppx_hash_lib.cma)
+  (native runtime-lib/ppx_hash_lib.cmxs))
+ (native_archives runtime-lib/ppx_hash_lib.a)
+ (requires base ppx_sexp_conv.runtime-lib sexplib0 ppx_compare.runtime-lib)
+ (main_module_name Ppx_hash_lib)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_hash_lib)
+   (visibility public)
+   (source (path Ppx_hash_lib) (impl (path runtime-lib/ppx_hash_lib.ml))))))

@@ -1,0 +1,489 @@
+.TH "Misc.Magic_number" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Misc.Magic_number \- no description
+.SH Module
+Module   Misc.Magic_number
+.SH Documentation
+.sp
+Module
+.BI "Magic_number"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+a typical magic number is "Caml1999I011"; it is formed of an
+alphanumeric prefix, here Caml1990I, followed by a version,
+here 011\&. The prefix identifies the kind of the versioned data:
+here the I indicates that it is the magic number for \&.cmi files\&.
+.sp
+All magic numbers have the same byte length, 
+.ft B
+magic_length
+.ft R
+, and
+this is important for users as it gives them the number of bytes
+to read to obtain the byte sequence that should be a magic
+number\&. Typical user code will look like:
+.EX
+.ft B
+.br
+\&        let ic = open_in_bin path in
+.br
+\&        let magic =
+.br
+\&          try really_input_string ic Magic_number\&.magic_length
+.br
+\&          with End_of_file \-> \&.\&.\&. in
+.br
+\&        match Magic_number\&.parse magic with
+.br
+\&        | Error parse_error \-> \&.\&.\&.
+.br
+\&        | Ok info \-> \&.\&.\&.
+.br
+\&      
+.ft R
+.EE
+.sp
+A given compiler version expects one specific version for each
+kind of object file, and will fail if given an unsupported
+version\&. Because versions grow monotonically, you can compare
+the parsed version with the expected "current version" for
+a kind, to tell whether the wrong\-magic object file comes from
+the past or from the future\&.
+.sp
+An example of code block that expects the "currently supported version"
+of a given kind of magic numbers, here 
+.ft B
+Cmxa
+.ft R
+, is as follows:
+.EX
+.ft B
+.br
+\&        let ic = open_in_bin path in
+.br
+\&        begin
+.br
+\&          try Magic_number\&.(expect_current Cmxa (get_info ic)) with
+.br
+\&          | Parse_error error \-> \&.\&.\&.
+.br
+\&          | Unexpected error \-> \&.\&.\&.
+.br
+\&        end;
+.br
+\&        \&.\&.\&.
+.br
+\&      
+.ft R
+.EE
+.sp
+Parse errors distinguish inputs that are 
+.ft B
+Not_a_magic_number str
+.ft R
+,
+which are likely to come from the file being completely
+different, and 
+.ft B
+Truncated str
+.ft R
+, raised by headers that are the
+(possibly empty) prefix of a valid magic number\&.
+.sp
+Unexpected errors correspond to valid magic numbers that are not
+the one expected, either because it corresponds to a different
+kind, or to a newer or older version\&.
+.sp
+The helper functions 
+.ft B
+explain_parse_error
+.ft R
+and 
+.ft B
+explain_unexpected_error
+.ft R
+will generate a textual explanation of each error,
+for use in error messages\&.
+.PP
+.I type native_obj_config 
+= {
+ flambda : 
+.B bool
+;
+ }
+
+.sp
+native object files have a format and magic number that depend
+on certain native\-compiler configuration parameters\&. This
+configuration space is expressed by the 
+.ft B
+native_obj_config
+.ft R
+type\&.
+
+.sp
+
+.I val native_obj_config 
+: 
+.B native_obj_config
+.sp
+the native object file configuration of the active/configured compiler\&.
+
+.sp
+.I type version 
+= 
+.B int
+
+.sp
+
+.sp
+.I type kind 
+=
+ | Exec
+ | Cmi
+ | Cmo
+ | Cma
+ | Cmx
+.B of 
+.B native_obj_config
+ | Cmxa
+.B of 
+.B native_obj_config
+ | Cmxs
+ | Cmt
+ | Ast_impl
+ | Ast_intf
+ 
+.sp
+
+.sp
+.I type info 
+= {
+ kind : 
+.B kind
+;
+ version : 
+.B version
+;  (* Note: some versions of the compiler use the same 
+.ft B
+version
+.ft R
+suffix
+for all kinds, but others use different versions counters for different
+kinds\&. We may only assume that versions are growing monotonically
+(not necessarily always by one) between compiler versions\&.
+ *) 
+ }
+
+.sp
+
+.sp
+.I type raw 
+= 
+.B string
+
+.sp
+the type of raw magic numbers,
+such as "Caml1999A027" for the \&.cma files of OCaml 4\&.10
+
+.sp
+
+.PP
+.SS Parsing magic numbers
+
+.PP
+.I type parse_error 
+=
+ | Truncated
+.B of 
+.B string
+ | Not_a_magic_number
+.B of 
+.B string
+ 
+.sp
+
+.sp
+
+.I val explain_parse_error 
+: 
+.B kind option -> parse_error -> string
+.sp
+Produces an explanation for a parse error\&. If no kind is provided,
+we use an unspecific formulation suggesting that any compiler\-produced
+object file would have been satisfying\&.
+
+.sp
+
+.I val parse 
+: 
+.B raw ->
+.B   (info, parse_error) result
+.sp
+Parses a raw magic number
+
+.sp
+
+.I val read_info 
+: 
+.B in_channel ->
+.B   (info, parse_error) result
+.sp
+Read a raw magic number from an input channel\&.
+.sp
+If the data read 
+.ft B
+str
+.ft R
+is not a valid magic number, it can be
+recovered from the 
+.ft B
+Truncated str | Not_a_magic_number str
+.ft R
+payload of the 
+.ft B
+Error parse_error
+.ft R
+case\&.
+.sp
+If parsing succeeds with an 
+.ft B
+Ok info
+.ft R
+result, we know that
+exactly 
+.ft B
+magic_length
+.ft R
+bytes have been consumed from the
+input_channel\&.
+.sp
+If you also wish to enforce that the magic number
+is at the current version, see 
+.ft B
+Misc\&.Magic_number\&.read_current_info
+.ft R
+below\&.
+
+.sp
+
+.I val magic_length 
+: 
+.B int
+.sp
+all magic numbers take the same number of bytes
+
+.sp
+
+.PP
+.SS Checking that magic numbers are current
+
+.PP
+.I type 
+.B 'a
+.I unexpected 
+= {
+ expected : 
+.B 'a
+;
+ actual : 
+.B 'a
+;
+ }
+
+.sp
+
+.sp
+.I type unexpected_error 
+=
+ | Kind
+.B of 
+.B kind unexpected
+ | Version
+.B of 
+.B kind
+.B    * version unexpected
+ 
+.sp
+
+.sp
+
+.I val check_current 
+: 
+.B kind ->
+.B   info ->
+.B   (unit, unexpected_error) result
+.sp
+
+.ft B
+check_current kind info
+.ft R
+checks that the provided magic 
+.ft B
+info
+.ft R
+is the current version of 
+.ft B
+kind
+.ft R
+\&'s magic header\&.
+
+.sp
+
+.I val explain_unexpected_error 
+: 
+.B unexpected_error -> string
+.sp
+Provides an explanation of the 
+.ft B
+unexpected_error
+.ft R
+\&.
+
+.sp
+.I type error 
+=
+ | Parse_error
+.B of 
+.B parse_error
+ | Unexpected_error
+.B of 
+.B unexpected_error
+ 
+.sp
+
+.sp
+
+.I val read_current_info 
+: 
+.B expected_kind:kind option ->
+.B   in_channel ->
+.B   (info, error) result
+.sp
+Read a magic number as 
+.ft B
+read_info
+.ft R
+,
+and check that it is the current version as its kind\&.
+If the 
+.ft B
+expected_kind
+.ft R
+argument is 
+.ft B
+None
+.ft R
+, any kind is accepted\&.
+
+.sp
+
+.PP
+.SS Information on magic numbers
+
+.PP
+
+.I val string_of_kind 
+: 
+.B kind -> string
+.sp
+a user\-printable string for a kind, eg\&. "exec" or "cmo", to use
+in error messages\&.
+
+.sp
+
+.I val human_name_of_kind 
+: 
+.B kind -> string
+.sp
+a user\-meaningful name for a kind, eg\&. "executable file" or
+"bytecode object file", to use in error messages\&.
+
+.sp
+
+.I val current_raw 
+: 
+.B kind -> raw
+.sp
+the current magic number of each kind
+
+.sp
+
+.I val current_version 
+: 
+.B kind -> version
+.sp
+the current version of each kind
+
+.sp
+
+.PP
+.SS Raw representations
+.sp
+Mainly for internal usage and testing\&.
+.PP
+.I type raw_kind 
+= 
+.B string
+
+.sp
+the type of raw magic numbers kinds,
+such as "Caml1999A" for \&.cma files
+
+.sp
+
+.I val parse_kind 
+: 
+.B raw_kind -> kind option
+.sp
+parse a raw kind into a kind
+
+.sp
+
+.I val raw_kind 
+: 
+.B kind -> raw_kind
+.sp
+the current raw representation of a kind\&.
+.sp
+In some cases the raw representation of a kind has changed
+over compiler versions, so other files of the same kind
+may have different raw kinds\&.
+Note that all currently known cases are parsed correctly by 
+.ft B
+parse_kind
+.ft R
+\&.
+
+.sp
+
+.I val raw 
+: 
+.B info -> raw
+.sp
+A valid raw representation of the magic number\&.
+.sp
+Due to past and future changes in the string representation of
+magic numbers, we cannot guarantee that the raw strings returned
+for past and future versions actually match the expectations of
+those compilers\&. The representation is accurate for current
+versions, and it is correctly parsed back into the desired
+version by the parsing functions above\&.
+
+.sp
+
+.I val all_kinds 
+: 
+.B kind list
+.sp
+
+.sp

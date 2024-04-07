@@ -1,0 +1,46 @@
+(lang dune 3.15)
+(name ppx_base)
+(version v0.16.0)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/ppx_base))
+(files
+ (lib
+  (META
+   dune-package
+   opam
+   ppx_base.a
+   ppx_base.cma
+   ppx_base.cmi
+   ppx_base.cmt
+   ppx_base.cmx
+   ppx_base.cmxa
+   ppx_base.ml))
+ (libexec (ppx.exe ppx_base.cmxs))
+ (bin (ppx-base))
+ (doc (LICENSE.md)))
+(library
+ (name ppx_base)
+ (kind ppx_rewriter)
+ (archives (byte ppx_base.cma) (native ppx_base.cmxa))
+ (plugins (byte ppx_base.cma) (native ppx_base.cmxs))
+ (native_archives ppx_base.a)
+ (requires
+  ppxlib.ast
+  ppxlib
+  ppx_cold
+  ppx_sexp_conv
+  ppx_compare
+  ppx_enumerate
+  ppx_globalize
+  ppx_hash)
+ (main_module_name Ppx_base)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ppx_base)
+     (visibility public)
+     (kind alias)
+     (source (path Ppx_base) (impl (path ppx_base.ml-gen))))
+    (name Ppx_base))
+   (wrapped true))))

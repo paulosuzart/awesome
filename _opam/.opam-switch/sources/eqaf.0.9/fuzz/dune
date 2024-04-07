@@ -1,0 +1,11 @@
+(executable
+ (name fuzz)
+ (libraries crowbar eqaf))
+
+(rule
+ (alias runtest)
+ (package eqaf)
+ (deps
+  (:fuzz fuzz.exe))
+ (action
+  (run %{fuzz})))

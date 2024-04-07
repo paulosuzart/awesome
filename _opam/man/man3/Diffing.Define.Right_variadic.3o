@@ -1,0 +1,52 @@
+.TH "Diffing.Define.Right_variadic" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Diffing.Define.Right_variadic \- no description
+.SH Module
+Module   Diffing.Define.Right_variadic
+.SH Documentation
+.sp
+Module
+.BI "Right_variadic"
+ : 
+.B sig end -> S
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"*"
+
+.B sig end
+
+
+
+
+
+.sp
+.sp
+
+.I val diff 
+: 
+.B D.state -> D.left array -> D.right array -> Diffing.Define.patch
+.sp
+
+.ft B
+diff state l r
+.ft R
+computes the optimal patch between 
+.ft B
+l
+.ft R
+and 
+.ft B
+r
+.ft R
+,
+using the initial state 
+.ft B
+state
+.ft R
+\&.
+
+.sp

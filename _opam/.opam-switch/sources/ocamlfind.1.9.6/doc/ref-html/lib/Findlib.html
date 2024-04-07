@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="next" href="Fl_package_base.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Findlib" rel="Chapter" href="Findlib.html">
+<link title="Fl_package_base" rel="Chapter" href="Fl_package_base.html">
+<link title="Fl_metascanner" rel="Chapter" href="Fl_metascanner.html">
+<link title="Fl_dynload" rel="Chapter" href="Fl_dynload.html">
+<link title="Topfind" rel="Chapter" href="Topfind.html"><title>The Findlib Library : Findlib</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Fl_package_base.html" title="Fl_package_base">Next</a>
+</div>
+<h1>Module <a href="type_Findlib.html">Findlib</a></h1>
+
+<pre><span id="MODULEFindlib"><span class="keyword">module</span> Findlib</span>: <code class="code">sig</code> <a href="Findlib.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>The primary findlib interface</p>
+
+<p>The Findlib module is the primary interface of the findlib library. It
+ contains functions to look up packages, to interpret META
+ files, and to determine the ancestors of packages.</p>
+
+<p>This module must be initialized before it can be used: Call either
+ <code class="code">init</code> or <code class="code">init_manually</code> for this.</p>
+</div>
+</div>
+<hr width="100%">
+
+<pre><span id="EXCEPTIONNo_such_package"><span class="keyword">exception</span> No_such_package</span> <span class="keyword">of</span> <code class="type">string * string</code></pre>
+<div class="info ">
+<div class="info-desc">
+<p>First arg is the package name not found, second arg contains additional
+ info for the user</p>
+</div>
+</div>
+
+<pre><span id="EXCEPTIONPackage_loop"><span class="keyword">exception</span> Package_loop</span> <span class="keyword">of</span> <code class="type">string</code></pre>
+<div class="info ">
+<div class="info-desc">
+<p>A package is required by itself. The arg is the name of the 
+ package</p>
+</div>
+</div>
+
+<pre><span id="TYPEformal_pred"><span class="keyword">type</span> <code class="type"></code>formal_pred</span> = <code class="type">[ `NegPred of string | `Pred of string ]</code> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>A formal predicate as it occurs in a package definition</p>
+</div>
+</div>
+
+
+<pre><span id="VALinit"><span class="keyword">val</span> init</span> : <code class="type">?env_ocamlpath:string -><br>       ?env_ocamlfind_destdir:string -><br>       ?env_ocamlfind_metadir:string -><br>       ?env_ocamlfind_commands:string -><br>       ?env_ocamlfind_ignore_dups_in:string -><br>       ?env_ocamlfind_ignore_dups_in_list:string list -><br>       ?env_camllib:string -><br>       ?env_ldconf:string -> ?config:string -> ?toolchain:string -> unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Initializes the library from the configuration file and the environment. 
+ By default the
+ function reads the file specified at compile time, but you can also
+ pass a different file name in the <code class="code">config</code> argument.
+   Furthermore, the environment variables OCAMLPATH, OCAMLFIND_DESTDIR, 
+ OCAMLFIND_COMMANDS, OCAMLFIND_IGNORE_DUPS_IN, and CAMLLIB are interpreted.
+ By default, the function takes
+ the values found in the environment, but you can pass different values
+ using the <code class="code">env_*</code> arguments. By setting these values to empty strings 
+ they are no longer considered.
+     The result of the initialization is determined as follows:</p>
+<ul>
+<li>The default installation directory is the env variable OCAMLFIND_DESTDIR
+   (if present and non-empty), and otherwise the variable <code class="code">destdir</code> of the
+   configuration file.</li>
+<li>The installation directory for META files is read from the env 
+   variable OCAMLFIND_METADIR (if present and non-empty), and otherwise
+   from the variable <code class="code">metadir</code> of the configuration file, and otherwise
+   no such directory is used.
+   The special value <code class="code">"none"</code> turns this feature off.</li>
+<li>The search path is the concatenation of the env variable OCAMLPATH
+   and the variable <code class="code">path</code> of the config file</li>
+<li>The executables of (ocamlc|ocamlopt|ocamlcp|ocamlmklib|ocamlmktop) are
+   determined as follows: if the env variable OCAMLFIND_COMMANDS is set
+   and non-empty, its contents specify the executables. Otherwise, if the
+   config file variables <code class="code">ocamlc</code>, <code class="code">ocamlopt</code>, <code class="code">ocamlcp</code>, <code class="code">ocamlmklib</code> and
+   <code class="code">ocamlmktop</code> are set, their contents specify the executables. Otherwise,
+   the obvious default values are chosen: <code class="code">"ocamlc"</code> for <code class="code">ocamlc</code>,
+   <code class="code">"ocamlopt"</code> for <code class="code">ocamlopt</code>, and so on.</li>
+<li>The directory of the standard library is the value of the environment
+   variable CAMLLIB (or OCAMLLIB), or if unset or empty, the value of
+   the configuration variable <code class="code">stdlib</code>, or if unset the built-in location</li>
+<li>The <code class="code">ld.conf</code> file (configuring the dynamic loader) is the value of
+   the environment variable OCAMLFIND_LDCONF, or if unset or empty, the
+   value of the configuration variable <code class="code">ldconf</code>, or if unset the
+   built-in location.</li>
+<li>The ocamlfind tool doesn't emit warnings about double cmi files
+   for the directories listed in OCAMLFIND_IGNORE_DUPS_IN. Since
+   findlib-1.8 this variable is interpreted as colon-separated path.
+   (Before, only one directory could be given.) If the variable is not
+   set there are no exceptions, and the warnings are always printed.
+   Note that both the parameters <code class="code">env_ocamlfind_ignore_dups_in</code> (a
+   single directory) and <code class="code">env_ocamlfind_ignore_dups_in_list</code> (a list
+   of directories) override the default.</li>
+</ul>
+</div>
+</div>
+
+<pre><span id="VALinit_manually"><span class="keyword">val</span> init_manually</span> : <code class="type">?ocamlc_command:string -><br>       ?ocamlopt_command:string -><br>       ?ocamlcp_command:string -><br>       ?ocamloptp_command:string -><br>       ?ocamlmklib_command:string -><br>       ?ocamlmktop_command:string -><br>       ?ocamldep_command:string -><br>       ?ocamlbrowser_command:string -><br>       ?ocamldoc_command:string -><br>       ?ignore_dups_in:string -><br>       ?ignore_dups_in_list:string list -><br>       ?stdlib:string -><br>       ?ldconf:string -><br>       ?config:string -><br>       install_dir:string -><br>       meta_dir:string -> search_path:string list -> unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>This is an alternate way to initialize the library directly. 
+ Environment variables and configuration files are ignored. The
+ parameter <code class="code">config</code> just sets the file name reported by the
+ <code class="code">config_file</code> function below.</p>
+</div>
+</div>
+
+<pre><span id="VALconfig_file"><span class="keyword">val</span> config_file</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>The location of the configuration file</p>
+</div>
+</div>
+
+<pre><span id="VALdefault_location"><span class="keyword">val</span> default_location</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the default installation directory for packages</p>
+</div>
+</div>
+
+<pre><span id="VALmeta_directory"><span class="keyword">val</span> meta_directory</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the META installation directory for packages.
+ Returns <code class="code">""</code> if no such directory is configured.</p>
+</div>
+</div>
+
+<pre><span id="VALsearch_path"><span class="keyword">val</span> search_path</span> : <code class="type">unit -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the search path for packages</p>
+</div>
+</div>
+
+<pre><span id="VALcommand"><span class="keyword">val</span> command</span> : <code class="type">[ `ocamlbrowser<br>       | `ocamlc<br>       | `ocamlcp<br>       | `ocamldep<br>       | `ocamldoc<br>       | `ocamlmklib<br>       | `ocamlmktop<br>       | `ocamlopt<br>       | `ocamloptp ] -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the name/path of the executable</p>
+</div>
+</div>
+
+<pre><span id="VALocaml_stdlib"><span class="keyword">val</span> ocaml_stdlib</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the directory of the standard library</p>
+</div>
+</div>
+
+<pre><span id="VALocaml_ldconf"><span class="keyword">val</span> ocaml_ldconf</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the file name of <code class="code">ld.conf</code></p>
+</div>
+</div>
+
+<pre><span id="VALpackage_directory"><span class="keyword">val</span> package_directory</span> : <code class="type">string -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the absolute path of the directory where the given package is
+ stored.</p>
+
+<p>Raises <code class="code">No_such_package</code> if the package cannot be found.</p>
+</div>
+</div>
+
+<pre><span id="VALpackage_meta_file"><span class="keyword">val</span> package_meta_file</span> : <code class="type">string -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Get the absolute path of the META file of the given package</p>
+</div>
+</div>
+
+<pre><span id="VALignore_dups_in"><span class="keyword">val</span> ignore_dups_in</span> : <code class="type">unit -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>If <code class="code">Some d</code>, duplicate packages below <code class="code">d</code> are ignored, and do not
+ produce warnings.  (Only affects the generation of warnings.)</p>
+
+<p>Since findlib-1.8 this configuration is a list. Before, it was a
+ <code class="code">string option</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALpackage_property"><span class="keyword">val</span> package_property</span> : <code class="type">string list -> string -> string -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">package_property predlist pkg propname</code>:
+ Looks up the property <code class="code">propname</code> of package <code class="code">pkg</code> under the assumption
+ that the predicates in <code class="code">predlist</code> are true.</p>
+
+<p>Raises <code class="code">No_such_package</code> if the package, and <code class="code">Not_found</code> if the property
+ cannot be found.</p>
+
+<p>EXAMPLES:</p>
+<ul>
+<li><code class="code">package_property [] "p" "requires":</code>
+   get the value of the <code class="code">requires</code> clause of package <code class="code">p</code></li>
+<li><code class="code">package_property [ "mt"; "byte" ] "p" "archive":</code>
+   get the value of the <code class="code">archive</code> property of package <code class="code">p</code> for multi-
+   threaded bytecode applications.</li>
+</ul>
+</div>
+</div>
+
+<pre><span id="VALpackage_property_2"><span class="keyword">val</span> package_property_2</span> : <code class="type">string list -> string -> string -> string * <a href="Findlib.html#TYPEformal_pred">formal_pred</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">package_property_2 predlist pkg propname</code>: This returns two values
+      <code class="code">(v, preds)</code>. The first one, <code class="code">v</code>, is computed as in <code class="code">package_property</code>.
+      The other list, <code class="code">preds</code>, contains the predicates that actually had to
+      be set or not set in order to select the particular variable definition.</p>
+</div>
+</div>
+
+<pre><span id="VALpackage_ancestors"><span class="keyword">val</span> package_ancestors</span> : <code class="type">string list -> string -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">package_ancestors predlist pkg:</code>
+ Determines the direct ancestors of package <code class="code">pkg</code> under the assumption
+ that the predicates in <code class="code">predlist</code> are true, i.e. the names of the
+ packages required by <code class="code">pkg</code>.
+ The returned list is unsorted.</p>
+
+<p>Raises <code class="code">No_such_package</code> if the package <code class="code">pkg</code> or one of its ancestors
+ could not be found.</p>
+</div>
+</div>
+
+<pre><span id="VALpackage_deep_ancestors"><span class="keyword">val</span> package_deep_ancestors</span> : <code class="type">string list -> string list -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">package_deep_ancestors predlist pkglist:</code>
+ determines the list of direct or indirect ancestors of the packages
+ named in <code class="code">pkglist</code> under the assumption that the predicates in <code class="code">predlist</code>
+ are true.</p>
+
+<p>The returned list is topologically sorted: The first element is the
+ deepest ancestor; the last element is one of <code class="code">pkglist</code>.</p>
+
+<p>Raises <code class="code">No_such_package</code> if one of the packages in <code class="code">pkglist</code> or one of
+ the ancestors cannot be found. Raises <code class="code">Package_loop</code> if there is a
+ cyclic dependency.</p>
+</div>
+</div>
+
+<pre><span id="VALresolve_path"><span class="keyword">val</span> resolve_path</span> : <code class="type">?base:string -> ?explicit:bool -> string -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p>Resolves findlib notation in filename paths. The notation 
+ <code class="code"> +name/path </code> can be used to refer to the subdirectory <code class="code">name</code>
+ of the standard library directory; the continuation <code class="code"> /path </code> is
+ optional. The notation <code class="code"> @name/path </code> can be used to refer to
+ the directory of the package <code class="code">name</code>; the continuation <code class="code"> /path </code>
+ is optional. For these two notations, absolute paths are returned.</p>
+
+</div>
+</div>
+<div class="param_info"><code class="code">base</code> : When the function is applied on a relative path, the
+   <code class="code">base</code> path is prepended. Otherwise, the path is returned as
+   it is.</div>
+<div class="param_info"><code class="code">explicit</code> : Changes the meaning of <code class="code">base</code> so that only paths
+   count as relative that include at least one slash.</div>
+
+<pre><span id="VALlist_packages"><span class="keyword">val</span> list_packages</span> : <code class="type">?tab:int -> ?descr:bool -> Stdlib.out_channel -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Prints the list of available packages to the <code class="code">out_channel</code>.</p>
+
+</div>
+</div>
+<div class="param_info"><code class="code">tab</code> : The tabulator width, by default 20</div>
+<div class="param_info"><code class="code">descr</code> : Whether package descriptions are printed. Default: false</div>
+
+<pre><span id="VALlist_packages'"><span class="keyword">val</span> list_packages'</span> : <code class="type">?prefix:string -> unit -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns the (unsorted) list of all packages.</p>
+
+</div>
+</div>
+<div class="param_info"><code class="code">prefix</code> : Limit to the packages that starts with it. Default: unlimited</div>
+<p>Managing dynamically loaded packages</p>
+<p>This is a registry of packages that are available in-core. This is both
+    used for toploops and for plugins.</p>
+
+<pre><code><span id="TYPErectype"><span class="keyword">type</span> <code class="type"></code>rectype</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrectype.Record_core"><span class="constructor">Record_core</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The package is part of the executable core</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrectype.Record_load"><span class="constructor">Record_load</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+<div class="info-desc">
+<p>The package has been dynamically loaded</p>
+</div>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+
+
+<pre><span id="VALrecord_package"><span class="keyword">val</span> record_package</span> : <code class="type"><a href="Findlib.html#TYPErectype">rectype</a> -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Record this package</p>
+</div>
+</div>
+
+<pre><span id="VALrecord_package_predicates"><span class="keyword">val</span> record_package_predicates</span> : <code class="type">string list -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Record the predicates to be used for package loading. Certain predicates
+      are automatically filtered out if inappropriate. A call of
+      <code class="code">record_package_predicates</code> replaces the set of predicates that was
+      installed beforehand.</p>
+</div>
+</div>
+
+<pre><span id="VALrecorded_packages"><span class="keyword">val</span> recorded_packages</span> : <code class="type"><a href="Findlib.html#TYPErectype">rectype</a> -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>The list of packages recorded with <code class="code">record_package</code></p>
+</div>
+</div>
+
+<pre><span id="VALis_recorded_package"><span class="keyword">val</span> is_recorded_package</span> : <code class="type">string -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p>Whether there is a recording for this package</p>
+</div>
+</div>
+
+<pre><span id="VALtype_of_recorded_package"><span class="keyword">val</span> type_of_recorded_package</span> : <code class="type">string -> <a href="Findlib.html#TYPErectype">rectype</a></code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns the type, or raises <code class="code">Not_found</code></p>
+</div>
+</div>
+
+<pre><span id="VALrecorded_predicates"><span class="keyword">val</span> recorded_predicates</span> : <code class="type">unit -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p>The most recent version of the recorded predicate list</p>
+</div>
+</div>
+
+<pre><span id="VALreset_recordings"><span class="keyword">val</span> reset_recordings</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p>Removes all <code class="code">Record_load</code> packages from the list of recordings.
+      This forces that the packages are loaded again.</p>
+</div>
+</div>
+</body></html>

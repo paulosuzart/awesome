@@ -1,0 +1,7 @@
+version = "0.2.1"
+description = ""
+requires = ""
+archive(byte) = "duration.cma"
+archive(native) = "duration.cmxa"
+plugin(byte) = "duration.cma"
+plugin(native) = "duration.cmxs"

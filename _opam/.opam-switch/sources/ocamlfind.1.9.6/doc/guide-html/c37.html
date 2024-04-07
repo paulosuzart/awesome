@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Libraries and Packages</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="User's Guide"
+HREF="p35.html"><LINK
+REL="PREVIOUS"
+TITLE="User's Guide"
+HREF="p35.html"><LINK
+REL="NEXT"
+TITLE="Using packages"
+HREF="c74.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="p35.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c74.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN37"
+></A
+>Chapter 1. Libraries and Packages</H1
+><P
+> Reusability is one of the keywords in software engineering
+today. It simply means to have source code that can be shared by
+several programs. Usually, modules are combined to libraries, and the
+library archive files can be linked into programs. As the idea might
+be simple, its practical implementation is complex because sharing of
+source code has an impact on all steps and phases in software
+production. This document only addresses the following administrative
+problems:</P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+>Storing the libraries in file hierarchies</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>Compiling and linking programs using such libraries</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>Managing dependencies between libraries</P
+></LI
+></UL
+><P
+>Objective Caml has a variety of language means to support
+reusability. Most important, polymorphic functions can be written
+which generalize the types of input arguments and the
+type of the result value. There are many examples in the core library
+such that I assume that the reader is familiar with this
+feature. Second, modules and functors must be mentioned which not only
+generalize types of values, but can even generalize structures,
+i.e. types with associated operations. Third, the class construct
+allows us to adopt the object-oriented techniques of abstraction such
+as inheritage and dynamic method lookup.</P
+><P
+>In the following, we are only analyzing the problem of making and
+using libraries from a purely software-technical point of view. This
+means, we ignore how to make functions polymorphic, and how to create
+functors and classes. Instead, we only look at how to invoke the
+OCaml compiler to create, manage, and use libraries. Especially, we
+are interested in the administration of systems of libraries that
+have dependencies.</P
+><P
+>One of the complex operations on such a system is the replacement of 
+a library by a newer version. Because of the strict compatibility
+checks of OCaml, it is usually necessary to rebuild and reinstall
+all dependent libraries as well. With the help of findlib, one can
+find out which are the dependent libraries. (However, findlib does
+not provide a framework to rebuild them. For example, the GODI
+system includes such a framework.)</P
+><P
+>The library is also called a "package" when it is seen as a removeable
+and replaceable set of files. Findlib requires that there is a 
+certain directory structure; it is not possible to install the files
+at arbitrary places (findlib does not even maintain a file list).
+For simplicity, every library is usually stored into its own
+directory, i.e. the library archive files and the interface files.</P
+><P
+>From the perspective of the compiler, the library is made
+accessible by adding the package directory to the search path
+of the compiler. By doing so, the modules of the library are
+added to the namespace universe, and thus can be opened by 
+modules using them. This means that the approach "one package
+= one directory" can be naturally translated into language
+operations modifying the namespace scope.</P
+><P
+>When linking a program, it must be specified which link operation is
+necessary to use a certain library. Often, only a single archive file
+needs to be linked in, but sometimes additional archives or system
+libraries must be linked, too. Furthermore, the link operations
+often depends on certain conditions, e.g. whether a single- or
+multi-threaded program is being created.</P
+><P
+>The <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>findlib</I
+></SPAN
+> library is my suggestion for a
+package manager suitable for Objective Caml. It is a library (stored
+as a package itself) which can answer the following questions:</P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+>If I want to use a package, which is the directory containing
+the compiled interfaces and implementations? - The package directory
+may vary from system to system, and this feature makes it easier to
+write Makefiles that run everywhere. Furthermore, OCaml can load
+modules dynamically, and it is not a good practice to compile in the
+location of such modules. The better way is to ask findlib where the
+module resides today.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>Which other packages must be linked in, too, if I want to use a
+certain package?</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>Which archives need to be linked in, and which compiler options
+are necessary?</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>If there is a version of the archive with additional properties,
+which file should I use? - Additional properties are at least:
+Thread-safety, using POSIX threads, and being gprof-enabled. It is
+simple to add more criterions.</P
+></LI
+></UL
+><P
+>Furthermore, there is a frontend for this library called
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ocamlfind</I
+></SPAN
+>. It is a command-line interface for the
+library, but has also some additional abilities:</P
+><P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+STYLE="list-style-type: disc"
+><P
+>It can invoke ocamlc, ocamlopt, ocamlmktop, and ocamlcp such
+that compiler arguments necessary to use a package or link it in are
+automatically added.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>It can install and uninstall packages.</P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>It can find out dependent packages.</P
+></LI
+></UL
+><P
+>As you'll see in the following chapters, the usage of this library is
+really simple. If you want only to link in packages written by other
+people, you must only change the command that invokes the compiler,
+e.g. instead of calling "ocamlc program.ml" invoke "ocamlfind ocamlc
+-package name_of_package_to_use -linkpkg program.ml", and you can
+refer to the named package within program.ml. If you want to turn your
+collection of modules into a package, you need only to write one
+adminstrative file (META) containing all extra information such as
+required other packages.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="p35.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c74.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>User's Guide</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="p35.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using packages</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

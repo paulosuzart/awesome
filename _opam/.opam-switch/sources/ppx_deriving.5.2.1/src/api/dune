@@ -1,0 +1,22 @@
+(library
+ (name ppx_deriving_api)
+ (public_name ppx_deriving.api)
+ (synopsis "Plugin API for ppx_deriving")
+ (preprocess (pps ppxlib.metaquot))
+ (wrapped false)
+ (ppx_runtime_libraries ppx_deriving_runtime)
+ (libraries
+   compiler-libs.common
+   ppxlib
+   result
+   ppx_derivers))
+
+(rule
+ (deps ppx_deriving.cppo.ml)
+ (targets ppx_deriving.ml)
+ (action (run %{bin:cppo} -V OCAML:%{ocaml_version} %{deps} -o %{targets})))
+
+(rule
+ (deps ppx_deriving.cppo.mli)
+ (targets ppx_deriving.mli)
+ (action (run %{bin:cppo} -V OCAML:%{ocaml_version} %{deps} -o %{targets})))

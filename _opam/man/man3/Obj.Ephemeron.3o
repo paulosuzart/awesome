@@ -1,0 +1,172 @@
+.TH "Obj.Ephemeron" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+Obj.Ephemeron \- no description
+.SH Module
+Module   Obj.Ephemeron
+.SH Documentation
+.sp
+Module
+.BI "Ephemeron"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+
+.PP
+Ephemeron with arbitrary arity and untyped
+.PP
+.I type obj_t 
+= 
+.B Obj.t
+
+.sp
+alias for 
+.ft B
+Obj\&.t
+.ft R
+
+
+.sp
+.I type t 
+
+.sp
+an ephemeron cf 
+.ft B
+Obj\&.Ephemeron
+.ft R
+
+
+.sp
+
+.I val create 
+: 
+.B int -> t
+.sp
+
+.ft B
+create n
+.ft R
+returns an ephemeron with 
+.ft B
+n
+.ft R
+keys\&.
+All the keys and the data are initially empty\&.
+The argument 
+.ft B
+n
+.ft R
+must be between zero
+and 
+.ft B
+Obj\&.Ephemeron\&.max_ephe_length
+.ft R
+(limits included)\&.
+
+.sp
+
+.I val length 
+: 
+.B t -> int
+.sp
+return the number of keys
+
+.sp
+
+.I val get_key 
+: 
+.B t -> int -> obj_t option
+.sp
+
+.sp
+
+.I val get_key_copy 
+: 
+.B t -> int -> obj_t option
+.sp
+
+.sp
+
+.I val set_key 
+: 
+.B t -> int -> obj_t -> unit
+.sp
+
+.sp
+
+.I val unset_key 
+: 
+.B t -> int -> unit
+.sp
+
+.sp
+
+.I val check_key 
+: 
+.B t -> int -> bool
+.sp
+
+.sp
+
+.I val blit_key 
+: 
+.B t -> int -> t -> int -> int -> unit
+.sp
+
+.sp
+
+.I val get_data 
+: 
+.B t -> obj_t option
+.sp
+
+.sp
+
+.I val get_data_copy 
+: 
+.B t -> obj_t option
+.sp
+
+.sp
+
+.I val set_data 
+: 
+.B t -> obj_t -> unit
+.sp
+
+.sp
+
+.I val unset_data 
+: 
+.B t -> unit
+.sp
+
+.sp
+
+.I val check_data 
+: 
+.B t -> bool
+.sp
+
+.sp
+
+.I val blit_data 
+: 
+.B t -> t -> unit
+.sp
+
+.sp
+
+.I val max_ephe_length 
+: 
+.B int
+.sp
+Maximum length of an ephemeron, ie the maximum number of keys an
+ephemeron could contain
+
+.sp

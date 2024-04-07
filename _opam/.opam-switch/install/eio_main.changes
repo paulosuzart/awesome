@@ -1,0 +1,46 @@
+opam-version: "2.0"
+added: [
+  "doc/eio_main" {"D"}
+  "doc/eio_main/CHANGES.md" {"F:1b55e672250975f24595d49656d48380"}
+  "doc/eio_main/LICENSE.md" {"F:06e13767200a87a3ee1de75b80bf3a2b"}
+  "doc/eio_main/README.md" {"F:fc784beaabc8ee43bc51b2dd5bfe5278"}
+  "lib/eio_main" {"D"}
+  "lib/eio_main/META" {"F:232a563ad62cfa8c82c5c440629b9f24"}
+  "lib/eio_main/dune-package" {"F:fa90171e06545facf056920d9090be35"}
+  "lib/eio_main/eio_main.a" {"F:d3e6a921785766b95859efd92f1c6913"}
+  "lib/eio_main/eio_main.cma" {"F:80750c6c053aaaa0c2aa15515d0bf4a0"}
+  "lib/eio_main/eio_main.cmi" {"F:f28f4bb79019513557aed298d1a50576"}
+  "lib/eio_main/eio_main.cmt" {"F:396c4b6a74eaa57fe45d9371ff96ebc7"}
+  "lib/eio_main/eio_main.cmti" {"F:99f019d6786bdd8dabc6e32e15d2f71f"}
+  "lib/eio_main/eio_main.cmx" {"F:60d2d0ab43b65c2df931150db5d9c701"}
+  "lib/eio_main/eio_main.cmxa" {"F:313ac9603674f48986797dc0b3dc507c"}
+  "lib/eio_main/eio_main.cmxs" {"F:afc38f3d23842434bb154e52be51641b"}
+  "lib/eio_main/eio_main.ml" {"F:9c35f95a36983453f1bb91919afa301c"}
+  "lib/eio_main/eio_main.mli" {"F:eb4193a07b43d7f7e52dfc830ea63fde"}
+  "lib/eio_main/eio_main__.cmi" {"F:b238d04e26c7f2876bed12ebff956bcc"}
+  "lib/eio_main/eio_main__.cmt" {"F:ef54fbcf64af720bc5e55ec70f809deb"}
+  "lib/eio_main/eio_main__.cmx" {"F:e1a2f8bf333129c849249f5e3a16c7fd"}
+  "lib/eio_main/eio_main__.ml" {"F:559c0ba49afb73672bce485e9eea3a1c"}
+  "lib/eio_main/eio_main__Linux_backend.cmi"
+    {"F:2676dee571e72f33bdc2426fab798534"}
+  "lib/eio_main/eio_main__Linux_backend.cmt"
+    {"F:eb5beb918adc3d4dfd609c49d1fbf12b"}
+  "lib/eio_main/eio_main__Linux_backend.cmx"
+    {"F:43237b99380d6355395360cb44cb3d14"}
+  "lib/eio_main/eio_main__Posix_backend.cmi"
+    {"F:4aafec5808eed6a69d4acaf66fa2267c"}
+  "lib/eio_main/eio_main__Posix_backend.cmt"
+    {"F:62fdefca5505e86a5110fbe7765f1be0"}
+  "lib/eio_main/eio_main__Posix_backend.cmx"
+    {"F:2f10b2dabb66436672671efcb661b3c8"}
+  "lib/eio_main/eio_main__Windows_backend.cmi"
+    {"F:c83fbcb628bc0d894f94957b3566ffe2"}
+  "lib/eio_main/eio_main__Windows_backend.cmt"
+    {"F:42e9ffe363f58afa80a5bb9bfd35de28"}
+  "lib/eio_main/eio_main__Windows_backend.cmx"
+    {"F:a7aadfa2c265002451028da4ef432c47"}
+  "lib/eio_main/linux_backend.ml" {"F:a86c87f6f595569fc29e080967b46af1"}
+  "lib/eio_main/opam" {"F:7642fa8f54caac7971e05aaa25bf38d4"}
+  "lib/eio_main/posix_backend.ml" {"F:d769d4cf33df12cc73e7938e9bde7578"}
+  "lib/eio_main/windows_backend.ml" {"F:72007669c75d00c27a200708cf8cf98d"}
+]

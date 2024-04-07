@@ -1,0 +1,157 @@
+(lang dune 3.15)
+(name eio_posix)
+(version v1.0)
+(sections
+ (lib .)
+ (libexec .)
+ (doc ../../doc/eio_posix)
+ (stublibs ../stublibs))
+(files
+ (lib
+  (META
+   config.ml
+   domain_mgr.ml
+   dune-package
+   eio_posix.a
+   eio_posix.cma
+   eio_posix.cmi
+   eio_posix.cmt
+   eio_posix.cmti
+   eio_posix.cmx
+   eio_posix.cmxa
+   eio_posix.ml
+   eio_posix.mli
+   eio_posix__.cmi
+   eio_posix__.cmt
+   eio_posix__.cmx
+   eio_posix__.ml
+   eio_posix__Config.cmi
+   eio_posix__Config.cmt
+   eio_posix__Config.cmx
+   eio_posix__Domain_mgr.cmi
+   eio_posix__Domain_mgr.cmt
+   eio_posix__Domain_mgr.cmx
+   eio_posix__Err.cmi
+   eio_posix__Err.cmt
+   eio_posix__Err.cmx
+   eio_posix__Flow.cmi
+   eio_posix__Flow.cmt
+   eio_posix__Flow.cmx
+   eio_posix__Fs.cmi
+   eio_posix__Fs.cmt
+   eio_posix__Fs.cmx
+   eio_posix__Low_level.cmi
+   eio_posix__Low_level.cmt
+   eio_posix__Low_level.cmti
+   eio_posix__Low_level.cmx
+   eio_posix__Net.cmi
+   eio_posix__Net.cmt
+   eio_posix__Net.cmx
+   eio_posix__Path.cmi
+   eio_posix__Path.cmt
+   eio_posix__Path.cmti
+   eio_posix__Path.cmx
+   eio_posix__Process.cmi
+   eio_posix__Process.cmt
+   eio_posix__Process.cmx
+   eio_posix__Sched.cmi
+   eio_posix__Sched.cmt
+   eio_posix__Sched.cmti
+   eio_posix__Sched.cmx
+   eio_posix__Time.cmi
+   eio_posix__Time.cmt
+   eio_posix__Time.cmx
+   err.ml
+   flow.ml
+   fs.ml
+   libeio_posix_stubs.a
+   low_level.ml
+   low_level.mli
+   net.ml
+   opam
+   path.ml
+   path.mli
+   process.ml
+   sched.ml
+   sched.mli
+   time.ml))
+ (libexec (eio_posix.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md))
+ (stublibs (dlleio_posix_stubs.so)))
+(library
+ (name eio_posix)
+ (kind normal)
+ (archives (byte eio_posix.cma) (native eio_posix.cmxa))
+ (plugins (byte eio_posix.cma) (native eio_posix.cmxs))
+ (foreign_objects eio_posix_stubs.o)
+ (foreign_archives (archives (for all) (files libeio_posix_stubs.a)))
+ (foreign_dll_files ../stublibs/dlleio_posix_stubs.so)
+ (native_archives eio_posix.a)
+ (requires eio eio.utils eio.unix fmt iomux)
+ (main_module_name Eio_posix)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eio_posix__)
+     (visibility public)
+     (kind alias)
+     (source (path Eio_posix__) (impl (path eio_posix__.ml-gen))))
+    (name Eio_posix)
+    (modules
+     (module
+      (obj_name eio_posix__Config)
+      (visibility public)
+      (source (path Config) (impl (path config.ml))))
+     (module
+      (obj_name eio_posix__Domain_mgr)
+      (visibility public)
+      (source (path Domain_mgr) (impl (path domain_mgr.ml))))
+     (module
+      (obj_name eio_posix)
+      (visibility public)
+      (source
+       (path Eio_posix)
+       (intf (path eio_posix.mli))
+       (impl (path eio_posix.ml))))
+     (module
+      (obj_name eio_posix__Err)
+      (visibility public)
+      (source (path Err) (impl (path err.ml))))
+     (module
+      (obj_name eio_posix__Flow)
+      (visibility public)
+      (source (path Flow) (impl (path flow.ml))))
+     (module
+      (obj_name eio_posix__Fs)
+      (visibility public)
+      (source (path Fs) (impl (path fs.ml))))
+     (module
+      (obj_name eio_posix__Low_level)
+      (visibility public)
+      (source
+       (path Low_level)
+       (intf (path low_level.mli))
+       (impl (path low_level.ml))))
+     (module
+      (obj_name eio_posix__Net)
+      (visibility public)
+      (source (path Net) (impl (path net.ml))))
+     (module
+      (obj_name eio_posix__Path)
+      (visibility public)
+      (source (path Path) (intf (path path.mli)) (impl (path path.ml))))
+     (module
+      (obj_name eio_posix__Process)
+      (visibility public)
+      (source (path Process) (impl (path process.ml))))
+     (module
+      (obj_name eio_posix__Sched)
+      (visibility public)
+      (source (path Sched) (intf (path sched.mli)) (impl (path sched.ml))))
+     (module
+      (obj_name eio_posix__Time)
+      (visibility public)
+      (source (path Time) (impl (path time.ml))))))
+   (wrapped true))))

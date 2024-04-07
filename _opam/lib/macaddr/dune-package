@@ -1,0 +1,54 @@
+(lang dune 3.15)
+(name macaddr)
+(version 5.5.0)
+(sections (lib .) (libexec .) (doc ../../doc/macaddr))
+(files
+ (lib
+  (META
+   dune-package
+   macaddr.a
+   macaddr.cma
+   macaddr.cmi
+   macaddr.cmt
+   macaddr.cmti
+   macaddr.cmx
+   macaddr.cmxa
+   macaddr.ml
+   macaddr.mli
+   opam
+   top/macaddr_top.a
+   top/macaddr_top.cma
+   top/macaddr_top.cmi
+   top/macaddr_top.cmt
+   top/macaddr_top.cmx
+   top/macaddr_top.cmxa
+   top/macaddr_top.ml))
+ (libexec (macaddr.cmxs top/macaddr_top.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name macaddr)
+ (kind normal)
+ (archives (byte macaddr.cma) (native macaddr.cmxa))
+ (plugins (byte macaddr.cma) (native macaddr.cmxs))
+ (native_archives macaddr.a)
+ (main_module_name Macaddr)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name macaddr)
+   (visibility public)
+   (source (path Macaddr) (intf (path macaddr.mli)) (impl (path macaddr.ml))))))
+(library
+ (name macaddr.top)
+ (kind normal)
+ (archives (byte top/macaddr_top.cma) (native top/macaddr_top.cmxa))
+ (plugins (byte top/macaddr_top.cma) (native top/macaddr_top.cmxs))
+ (native_archives top/macaddr_top.a)
+ (requires macaddr compiler-libs)
+ (main_module_name Macaddr_top)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name macaddr_top)
+   (visibility public)
+   (source (path Macaddr_top) (impl (path top/macaddr_top.ml))))))

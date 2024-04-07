@@ -1,0 +1,23 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_cold/META"
+  "_build/install/default/lib/ppx_cold/dune-package"
+  "_build/install/default/lib/ppx_cold/opam"
+  "_build/install/default/lib/ppx_cold/ppx_cold.a"
+  "_build/install/default/lib/ppx_cold/ppx_cold.cma"
+  "_build/install/default/lib/ppx_cold/ppx_cold.cmi"
+  "_build/install/default/lib/ppx_cold/ppx_cold.cmt"
+  "_build/install/default/lib/ppx_cold/ppx_cold.cmti"
+  "_build/install/default/lib/ppx_cold/ppx_cold.cmx"
+  "_build/install/default/lib/ppx_cold/ppx_cold.cmxa"
+  "_build/install/default/lib/ppx_cold/ppx_cold.ml"
+  "_build/install/default/lib/ppx_cold/ppx_cold.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_cold/LICENSE.md"
+  "_build/install/default/doc/ppx_cold/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_cold/ppx.exe"
+  "_build/install/default/lib/ppx_cold/ppx_cold.cmxs"
+]

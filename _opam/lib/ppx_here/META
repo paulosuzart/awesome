@@ -1,0 +1,35 @@
+version = "v0.16.0"
+description = ""
+requires(ppx_driver) = "ppx_here.expander ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_here.cma"
+archive(ppx_driver,native) = "ppx_here.cmxa"
+plugin(ppx_driver,byte) = "ppx_here.cma"
+plugin(ppx_driver,native) = "ppx_here.cmxs"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_here.runtime-lib"
+ppx(-ppx_driver,-custom_ppx) = "./ppx.exe --as-ppx"
+library_kind = "ppx_rewriter"
+package "expander" (
+  directory = "expander"
+  version = "v0.16.0"
+  description = "Expander for ppx_here"
+  requires = "base ppxlib ppxlib.ast"
+  archive(byte) = "ppx_here_expander.cma"
+  archive(native) = "ppx_here_expander.cmxa"
+  plugin(byte) = "ppx_here_expander.cma"
+  plugin(native) = "ppx_here_expander.cmxs"
+  # This is what dune uses to find out the runtime dependencies of
+  # a preprocessor
+  ppx_runtime_deps = "ppx_here.runtime-lib"
+)
+package "runtime-lib" (
+  directory = "runtime-lib"
+  version = "v0.16.0"
+  description = "Runtime library for ppx_here"
+  requires = ""
+  archive(byte) = "ppx_here_lib.cma"
+  archive(native) = "ppx_here_lib.cmxa"
+  plugin(byte) = "ppx_here_lib.cma"
+  plugin(native) = "ppx_here_lib.cmxs"
+)

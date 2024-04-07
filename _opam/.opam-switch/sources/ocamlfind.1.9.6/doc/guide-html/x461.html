@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>	  Does Findlib support camlp4?
+        </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQs"
+HREF="c429.html"><LINK
+REL="PREVIOUS"
+TITLE="Does findlib support linking of applications as well as
+packages?"
+HREF="x449.html"><LINK
+REL="NEXT"
+TITLE="	  Does Findlib support ppx-style preprocessors?
+        "
+HREF="x513.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x449.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. FAQs</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x513.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN461"
+>Does Findlib support camlp4?</A
+></H1
+><P
+>	<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Short answer:</I
+></SPAN
+> Yes, but there is only little
+	documentation.</P
+><P
+>	Since Findlib-0.4, there is some experimental camlp4 support. For
+example, the following compiler invocation chooses the revised syntax:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -syntax camlp4r -package camlp4 -c file.ml</PRE
+>
+
+        As you can see, camlp4 must be included as package, and the
+-syntax option must specify which syntax is selected (either
+<TT
+CLASS="LITERAL"
+>camlp4o</TT
+> or <TT
+CLASS="LITERAL"
+>camlp4r</TT
+>).</P
+><P
+>	If you want to pass additional options to the preprocessor,
+you can use the <TT
+CLASS="LITERAL"
+>-ppopt</TT
+> option:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -syntax camlp4r -package camlp4 -ppopt pa_ifdef.cmo -c file.ml</PRE
+>
+        </P
+><P
+>From the toploop, the following commands work:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>$ ocaml
+        Objective Caml version 3.07+2
+ 
+# #use "./topfind";;
+- : unit = ()
+Findlib has been successfully loaded. Additional directives:
+  #require "package";;      to load a package
+  #list;;                   to list the available packages
+  #camlp4o;;                to load camlp4 (standard syntax)
+  #camlp4r;;                to load camlp4 (revised syntax)
+  #predicates "p,q,...";;   to set these predicates
+  Topfind.reset();;         to force that packages will be reloaded
+  #thread;;                 to enable threads
+ 
+- : unit = ()
+# #camlp4o;;            (* or camlp4r *)
+/opt/godi/lib/ocaml/std-lib/camlp4: added to search path
+/opt/godi/lib/ocaml/std-lib/camlp4/camlp4o.cma: loaded
+        Camlp4 Parsing version 3.07+2
+ 
+# _</PRE
+>&#13;</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN474"
+>The concept</A
+></H2
+><P
+>If you have a <TT
+CLASS="LITERAL"
+>-syntax</TT
+> option on the command line,
+ocamlfind will generate a <TT
+CLASS="LITERAL"
+>-pp</TT
+> parameter and pass it to the
+invoked compiler. This is performed as follows: The specified packages are
+inspected under a certain set of predicates, the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>syntax
+predicates</I
+></SPAN
+>. The syntax predicates are <TT
+CLASS="LITERAL"
+>syntax</TT
+>,
+<TT
+CLASS="LITERAL"
+>preprocessor</TT
+>, and the predicates following
+<TT
+CLASS="LITERAL"
+>-syntax</TT
+>. The predicate <TT
+CLASS="LITERAL"
+>syntax</TT
+> simply
+means that the <TT
+CLASS="LITERAL"
+>-syntax</TT
+> option has been specified.
+The predicate <TT
+CLASS="LITERAL"
+>preprocessor</TT
+> means that the preprocessor
+command is being constructed. The predicates added by
+<TT
+CLASS="LITERAL"
+>-syntax</TT
+> may be used to distinguish between syntax variants
+(currently <TT
+CLASS="LITERAL"
+>camlp4o</TT
+> and <TT
+CLASS="LITERAL"
+>camlp4r</TT
+>).</P
+><P
+>The packages are searched for a variable <TT
+CLASS="LITERAL"
+>preprocessor</TT
+>;
+normally the <TT
+CLASS="LITERAL"
+>camlp4</TT
+> package defines it as (see its META
+file):
+
+<PRE
+CLASS="PROGRAMLISTING"
+>preprocessor = "camlp4 -nolib"</PRE
+>
+
+Now that the name of the preprocessor command is known, the arguments of the
+command are looked up. The META files are evaluated under the syntax
+predicates, and all <TT
+CLASS="LITERAL"
+>archive</TT
+> variables are collected and
+passed as arguments to the preprocessor. For example, the camlp4 package
+defines:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>archive(syntax,preprocessor,camlp4o) = "pa_o.cmo pa_op.cmo pr_dump.cmo"
+archive(syntax,preprocessor,camlp4r) = "pa_r.cmo pa_rp.cmo pr_dump.cmo"</PRE
+>
+
+Note that the predicate <TT
+CLASS="LITERAL"
+>preprocessor</TT
+> prevents ocamlfind from
+including these archives into the regular list of archives to link.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN496"
+>How to write a META file for your own syntax extension</A
+></H2
+><P
+>Suppose you have two archives: <TT
+CLASS="LITERAL"
+>pa_myext.cma</TT
+> contains the
+extension code of camlp4, and <TT
+CLASS="LITERAL"
+>run_myext.cma</TT
+> contains runtime
+material that must be present in programs compiled with your extensions. Your
+META file should look as follows:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>requires = "camlp4"
+archive(syntax,toploop) = "pa_myext.cma run_myext.cma"
+archive(syntax,preprocessor) = "pa_myext.cma"
+archive(syntax,byte)    = "run_myext.cma"
+archive(syntax,native)  = "run_myext.cmxa"</PRE
+>
+
+You may add dependencies on <TT
+CLASS="LITERAL"
+>camlp4o</TT
+> or
+<TT
+CLASS="LITERAL"
+>camlp4r</TT
+> if you have archives only working for one of the two
+syntax variants.</P
+><P
+>To compile a program using your syntax extension package, one should use:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlc -package yourname -syntax variant ...</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN506"
+>Example</A
+></H2
+><P
+>The package <TT
+CLASS="LITERAL"
+>xstrp4</TT
+> defines a syntax extension allowing
+$-substitutions in OCaml strings. Version 1.0 of this package takes advantage
+from the new camlp4 support of findlib; you may have a look at it for an
+example.</P
+><P
+>You can find <TT
+CLASS="LITERAL"
+>xstrp4</TT
+>
+<A
+HREF="/projects/xstrp4.html"
+TARGET="_top"
+>here</A
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x449.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x513.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Does findlib support linking of applications as well as
+packages?</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c429.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Does Findlib support ppx-style preprocessors?</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

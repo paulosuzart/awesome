@@ -1,0 +1,53 @@
+.TH "CamlinternalMenhirLib.RowDisplacement" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.RowDisplacement \- no description
+.SH Module
+Module   CamlinternalMenhirLib.RowDisplacement
+.SH Documentation
+.sp
+Module
+.BI "RowDisplacement"
+ : 
+.B sig end
+
+.sp
+
+.sp
+
+.sp
+.sp
+.I type 
+.B 'a
+.I table 
+= 
+.B int array * 'a array
+
+.sp
+
+.sp
+
+.I val compress 
+: 
+.B ('a -> 'a -> bool) ->
+.B   ('a -> bool) ->
+.B   'a ->
+.B   int ->
+.B   int -> 'a array array -> 'a table
+.sp
+
+.sp
+
+.I val get 
+: 
+.B 'a table -> int -> int -> 'a
+.sp
+
+.sp
+
+.I val getget 
+: 
+.B ('displacement -> int -> int) ->
+.B   ('data -> int -> 'a) -> 'displacement * 'data -> int -> int -> 'a
+.sp
+
+.sp

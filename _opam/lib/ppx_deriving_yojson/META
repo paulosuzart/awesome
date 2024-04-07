@@ -1,0 +1,28 @@
+version = "3.7.0"
+description = "[@@deriving yojson]"
+requires(ppx_driver) = "ppx_deriving.api ppxlib ppxlib.ast"
+archive(ppx_driver,byte) = "ppx_deriving_yojson.cma"
+archive(ppx_driver,native) = "ppx_deriving_yojson.cmxa"
+plugin(ppx_driver,byte) = "ppx_deriving_yojson.cma"
+plugin(ppx_driver,native) = "ppx_deriving_yojson.cmxs"
+# This is what dune uses to find out the runtime dependencies of
+# a preprocessor
+ppx_runtime_deps = "ppx_deriving_yojson.runtime yojson"
+# This line makes things transparent for people mixing preprocessors
+# and normal dependencies
+requires(-ppx_driver) = "ppx_deriving.runtime
+                         ppx_deriving_yojson.runtime
+                         yojson"
+requires(-ppx_driver,-custom_ppx) += "ppx_deriving"
+ppxopt(-ppx_driver,-custom_ppx) = "ppx_deriving,package:ppx_deriving_yojson"
+library_kind = "ppx_deriver"
+package "runtime" (
+  directory = "runtime"
+  version = "3.7.0"
+  description = "Runtime components of [@@deriving yojson]"
+  requires = "ppx_deriving.runtime result"
+  archive(byte) = "ppx_deriving_yojson_runtime.cma"
+  archive(native) = "ppx_deriving_yojson_runtime.cmxa"
+  plugin(byte) = "ppx_deriving_yojson_runtime.cma"
+  plugin(native) = "ppx_deriving_yojson_runtime.cmxs"
+)

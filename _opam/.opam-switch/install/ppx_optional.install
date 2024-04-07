@@ -1,0 +1,24 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_optional/META"
+  "_build/install/default/lib/ppx_optional/dune-package"
+  "_build/install/default/lib/ppx_optional/opam"
+  "_build/install/default/lib/ppx_optional/ppx_optional.a"
+  "_build/install/default/lib/ppx_optional/ppx_optional.cma"
+  "_build/install/default/lib/ppx_optional/ppx_optional.cmi"
+  "_build/install/default/lib/ppx_optional/ppx_optional.cmt"
+  "_build/install/default/lib/ppx_optional/ppx_optional.cmti"
+  "_build/install/default/lib/ppx_optional/ppx_optional.cmx"
+  "_build/install/default/lib/ppx_optional/ppx_optional.cmxa"
+  "_build/install/default/lib/ppx_optional/ppx_optional.ml"
+  "_build/install/default/lib/ppx_optional/ppx_optional.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_optional/CHANGES.md"
+  "_build/install/default/doc/ppx_optional/LICENSE.md"
+  "_build/install/default/doc/ppx_optional/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_optional/ppx.exe"
+  "_build/install/default/lib/ppx_optional/ppx_optional.cmxs"
+]

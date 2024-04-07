@@ -1,0 +1,44 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_let/META"
+  "_build/install/default/lib/ppx_let/dune-package"
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.a"
+    {"expander/ppx_let_expander.a"}
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.cma"
+    {"expander/ppx_let_expander.cma"}
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.cmi"
+    {"expander/ppx_let_expander.cmi"}
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.cmt"
+    {"expander/ppx_let_expander.cmt"}
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.cmti"
+    {"expander/ppx_let_expander.cmti"}
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.cmx"
+    {"expander/ppx_let_expander.cmx"}
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.cmxa"
+    {"expander/ppx_let_expander.cmxa"}
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.ml"
+    {"expander/ppx_let_expander.ml"}
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.mli"
+    {"expander/ppx_let_expander.mli"}
+  "_build/install/default/lib/ppx_let/opam"
+  "_build/install/default/lib/ppx_let/ppx_let.a"
+  "_build/install/default/lib/ppx_let/ppx_let.cma"
+  "_build/install/default/lib/ppx_let/ppx_let.cmi"
+  "_build/install/default/lib/ppx_let/ppx_let.cmt"
+  "_build/install/default/lib/ppx_let/ppx_let.cmti"
+  "_build/install/default/lib/ppx_let/ppx_let.cmx"
+  "_build/install/default/lib/ppx_let/ppx_let.cmxa"
+  "_build/install/default/lib/ppx_let/ppx_let.ml"
+  "_build/install/default/lib/ppx_let/ppx_let.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_let/CHANGES.md"
+  "_build/install/default/doc/ppx_let/LICENSE.md"
+  "_build/install/default/doc/ppx_let/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_let/expander/ppx_let_expander.cmxs"
+    {"expander/ppx_let_expander.cmxs"}
+  "_build/install/default/lib/ppx_let/ppx.exe"
+  "_build/install/default/lib/ppx_let/ppx_let.cmxs"
+]

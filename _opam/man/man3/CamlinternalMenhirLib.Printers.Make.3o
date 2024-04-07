@@ -1,0 +1,82 @@
+.TH "CamlinternalMenhirLib.Printers.Make" 3 2024-04-07 OCamldoc "OCaml library"
+.SH NAME
+CamlinternalMenhirLib.Printers.Make \- no description
+.SH Module
+Module   CamlinternalMenhirLib.Printers.Make
+.SH Documentation
+.sp
+Module
+.BI "Make"
+ : 
+.B functor (I : IncrementalEngine.EVERYTHING) (User : sig end) -> sig end
+
+.sp
+
+.sp
+.B "Parameters:"
+.sp
+"I"
+
+.B CamlinternalMenhirLib.IncrementalEngine.EVERYTHING
+
+
+.sp
+"User"
+
+.B sig end
+
+
+
+
+
+.sp
+.sp
+
+.I val print_symbols 
+: 
+.B I.xsymbol list -> unit
+.sp
+
+.sp
+
+.I val print_element_as_symbol 
+: 
+.B I.element -> unit
+.sp
+
+.sp
+
+.I val print_stack 
+: 
+.B 'a I.env -> unit
+.sp
+
+.sp
+
+.I val print_item 
+: 
+.B I.item -> unit
+.sp
+
+.sp
+
+.I val print_production 
+: 
+.B I.production -> unit
+.sp
+
+.sp
+
+.I val print_current_state 
+: 
+.B 'a I.env -> unit
+.sp
+
+.sp
+
+.I val print_env 
+: 
+.B 'a I.env -> unit
+.sp
+
+.sp

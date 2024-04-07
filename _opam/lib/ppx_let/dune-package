@@ -1,0 +1,64 @@
+(lang dune 3.15)
+(name ppx_let)
+(version v0.16.0)
+(sections (lib .) (libexec .) (doc ../../doc/ppx_let))
+(files
+ (lib
+  (META
+   dune-package
+   expander/ppx_let_expander.a
+   expander/ppx_let_expander.cma
+   expander/ppx_let_expander.cmi
+   expander/ppx_let_expander.cmt
+   expander/ppx_let_expander.cmti
+   expander/ppx_let_expander.cmx
+   expander/ppx_let_expander.cmxa
+   expander/ppx_let_expander.ml
+   expander/ppx_let_expander.mli
+   opam
+   ppx_let.a
+   ppx_let.cma
+   ppx_let.cmi
+   ppx_let.cmt
+   ppx_let.cmti
+   ppx_let.cmx
+   ppx_let.cmxa
+   ppx_let.ml
+   ppx_let.mli))
+ (libexec (expander/ppx_let_expander.cmxs ppx.exe ppx_let.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name ppx_let)
+ (kind ppx_rewriter)
+ (archives (byte ppx_let.cma) (native ppx_let.cmxa))
+ (plugins (byte ppx_let.cma) (native ppx_let.cmxs))
+ (native_archives ppx_let.a)
+ (requires ppxlib.ast ppxlib ppx_let.expander)
+ (main_module_name Ppx_let)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_let)
+   (visibility public)
+   (source (path Ppx_let) (intf (path ppx_let.mli)) (impl (path ppx_let.ml))))))
+(library
+ (name ppx_let.expander)
+ (kind normal)
+ (archives
+  (byte expander/ppx_let_expander.cma)
+  (native expander/ppx_let_expander.cmxa))
+ (plugins
+  (byte expander/ppx_let_expander.cma)
+  (native expander/ppx_let_expander.cmxs))
+ (native_archives expander/ppx_let_expander.a)
+ (requires base ppxlib.ast ppxlib ppx_here.expander)
+ (main_module_name Ppx_let_expander)
+ (modes byte native)
+ (modules
+  (singleton
+   (obj_name ppx_let_expander)
+   (visibility public)
+   (source
+    (path Ppx_let_expander)
+    (intf (path expander/ppx_let_expander.mli))
+    (impl (path expander/ppx_let_expander.ml))))))

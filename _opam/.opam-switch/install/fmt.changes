@@ -1,0 +1,32 @@
+opam-version: "2.0"
+added: [
+  "doc/fmt" {"D"}
+  "doc/fmt/CHANGES.md" {"F:493a4285a306737476de27c8ff200e23"}
+  "doc/fmt/LICENSE.md" {"F:eb4331facaa595ba7e5bebb2769b09c1"}
+  "doc/fmt/README.md" {"F:ac8fd59c7969cca926b77eca7693b102"}
+  "lib/fmt" {"D"}
+  "lib/fmt/META" {"F:615906583b0e85add2e5591acac8b836"}
+  "lib/fmt/fmt.a" {"F:799e5a8017c4b99da8c51a1d1eecf966"}
+  "lib/fmt/fmt.cma" {"F:65818f2d5280ce2989a66b34e46471ca"}
+  "lib/fmt/fmt.cmi" {"F:e3799329fdd9c5ff2faa1f129b79b959"}
+  "lib/fmt/fmt.cmti" {"F:19620d0c4c1bc0df69dc3dbca4eccabf"}
+  "lib/fmt/fmt.cmx" {"F:f47f5c0d29aa9dd6eee3e2d79343bb0f"}
+  "lib/fmt/fmt.cmxa" {"F:4e4720ace0ef76c3215eaaff0de46f64"}
+  "lib/fmt/fmt.cmxs" {"F:fe3c233cb7ac103fdce9e9f7be9ea7f4"}
+  "lib/fmt/fmt.mli" {"F:d8155da5790b917da793fcc3609fc408"}
+  "lib/fmt/fmt_top.a" {"F:e1a0e719b975609008d8b9355334742e"}
+  "lib/fmt/fmt_top.cma" {"F:81bd2717ba5183a0f9c5f7fd646a1c2b"}
+  "lib/fmt/fmt_top.cmx" {"F:375452e7f2c8f7e63c6663cf0e938202"}
+  "lib/fmt/fmt_top.cmxa" {"F:dfebc779b00301c324e9dc77cd2540f6"}
+  "lib/fmt/fmt_top.cmxs" {"F:60a1961b8cb504d1bfd6d6edeb5cd0df"}
+  "lib/fmt/fmt_tty.a" {"F:62cf673d8ad545ddb3b54e7b0845b6ab"}
+  "lib/fmt/fmt_tty.cma" {"F:8176ca11d1b2a6cfbfe6e8821ade8c6b"}
+  "lib/fmt/fmt_tty.cmi" {"F:dbd2f140d798ead6827ae198c90c00e8"}
+  "lib/fmt/fmt_tty.cmti" {"F:2bb926b7e2bdb37399dd4a2d2966b6a4"}
+  "lib/fmt/fmt_tty.cmx" {"F:a18e408d46d4bd3ac190304bcb8effc7"}
+  "lib/fmt/fmt_tty.cmxa" {"F:d0336e52ec4d0c2eae3a7ca58827e558"}
+  "lib/fmt/fmt_tty.cmxs" {"F:a1e4f4855b9d3a6f36b32e90f0115caf"}
+  "lib/fmt/fmt_tty.mli" {"F:b822b4718d41eb544ea24cafd6ebdf28"}
+  "lib/fmt/fmt_tty_top_init.ml" {"F:3eb6eb265a198a4ab3304b289ef195d3"}
+  "lib/fmt/opam" {"F:056a8cb9fea348540a24d989d24c1f74"}
+]

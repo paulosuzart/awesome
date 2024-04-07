@@ -1,0 +1,49 @@
+opam-version: "2.0"
+added: [
+  "doc/base64" {"D"}
+  "doc/base64/CHANGES.md" {"F:75682c8c49b9f264788038f80dc98e3a"}
+  "doc/base64/LICENSE.md" {"F:e9f18b6f594926d761df292758324ee5"}
+  "doc/base64/README.md" {"F:91edbe865a23497a1cddabd9f19a735e"}
+  "lib/base64" {"D"}
+  "lib/base64/META" {"F:bd3928ee4b970d496965d5d08cd93395"}
+  "lib/base64/base64.a" {"F:bdf146ffaa6540f84127d4781bf74bc9"}
+  "lib/base64/base64.cma" {"F:4b8d6c3a005acd3bc6c8ace7611098bd"}
+  "lib/base64/base64.cmi" {"F:935754089437d5047c6c8e79ca3ac2f6"}
+  "lib/base64/base64.cmt" {"F:ba160a5ba3fa2ebff72df26686610381"}
+  "lib/base64/base64.cmti" {"F:a1505ca291bd7f43966f71a1f0683c1f"}
+  "lib/base64/base64.cmx" {"F:9187aba1c4051cf4eefb7c4d4b8895bd"}
+  "lib/base64/base64.cmxa" {"F:5898dd2d14d7c991026d4017704a14a2"}
+  "lib/base64/base64.cmxs" {"F:e9d34d45afc0982ffa1c4020463bc3f3"}
+  "lib/base64/base64.ml" {"F:a2d6255e6d0d484c78353b22a5e5c4cb"}
+  "lib/base64/base64.mli" {"F:fdc3585ac398a04ac08de5dfb87be978"}
+  "lib/base64/base64__.cmi" {"F:7bf51eac791f256d6e556a4ab7a68a7f"}
+  "lib/base64/base64__.cmt" {"F:5b8c3429dd8200cb5c76ae6c502079c1"}
+  "lib/base64/base64__.cmx" {"F:837c37e1d49e604f9405e4f516c802b6"}
+  "lib/base64/base64__.ml" {"F:90e8469179dcb5ea5e8ef80d854f56a5"}
+  "lib/base64/base64__Unsafe.cmi" {"F:0493d55c463e43439451045bc6cc59bf"}
+  "lib/base64/base64__Unsafe.cmt" {"F:8e75dc41e4766609006522470e6f5e35"}
+  "lib/base64/base64__Unsafe.cmx" {"F:5932d61baceaab66dfdb3d9161b61246"}
+  "lib/base64/dune-package" {"F:0c4a73c25de5aa206ff2efd49e15a381"}
+  "lib/base64/opam" {"F:475d5415fbefb65439a0a65074b54756"}
+  "lib/base64/rfc2045/base64_rfc2045.a"
+    {"F:298222952ff661efd3e80a7884b63284"}
+  "lib/base64/rfc2045/base64_rfc2045.cma"
+    {"F:ee0dddd0f5cd179b69302b353251f2b0"}
+  "lib/base64/rfc2045/base64_rfc2045.cmi"
+    {"F:179014234852e5a7d7ca267d956ab363"}
+  "lib/base64/rfc2045/base64_rfc2045.cmt"
+    {"F:ec9a556e86b30268611e7a3bbb5fd998"}
+  "lib/base64/rfc2045/base64_rfc2045.cmti"
+    {"F:d1df1fd36b2fe060e39a0b0ca2f08e26"}
+  "lib/base64/rfc2045/base64_rfc2045.cmx"
+    {"F:f911fd5c0a39a5d81893c13f1bb2e986"}
+  "lib/base64/rfc2045/base64_rfc2045.cmxa"
+    {"F:b5d722374258eff9ccd0daf3afa450ed"}
+  "lib/base64/rfc2045/base64_rfc2045.cmxs"
+    {"F:01671f39550c062fa6af00520f8a5a39"}
+  "lib/base64/rfc2045/base64_rfc2045.ml"
+    {"F:667526c04cbb88c491ac4781d506bbe7"}
+  "lib/base64/rfc2045/base64_rfc2045.mli"
+    {"F:cdf0a402b00c0fe40348c12e71d1815c"}
+  "lib/base64/unsafe.ml" {"F:1e1d898f4d5951efcfdd817649658dbf"}
+]

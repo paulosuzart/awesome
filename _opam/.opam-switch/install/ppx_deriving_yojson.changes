@@ -1,0 +1,50 @@
+opam-version: "2.0"
+added: [
+  "doc/ppx_deriving_yojson" {"D"}
+  "doc/ppx_deriving_yojson/CHANGELOG.md"
+    {"F:162b831d189a1f3e5f212f9c07f6b234"}
+  "doc/ppx_deriving_yojson/LICENSE.txt"
+    {"F:9f4db10fdaa3ddb16d6435590997c218"}
+  "doc/ppx_deriving_yojson/README.md" {"F:11a35a1090da7e79f307e3097c3f179f"}
+  "lib/ppx_deriving_yojson" {"D"}
+  "lib/ppx_deriving_yojson/META" {"F:8ed2d2386eff9d624c62d81143f2cedf"}
+  "lib/ppx_deriving_yojson/dune-package"
+    {"F:9e022588284d117294c547575aeff681"}
+  "lib/ppx_deriving_yojson/opam" {"F:ea91f569a88ea831232fa35ea2f84ab2"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.a"
+    {"F:cc54b1bab911c52cd48d99959331468d"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cma"
+    {"F:c50321ebbbd78f29a21f87072b409e11"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmi"
+    {"F:0d3637771c5ea5ad352a94445685ce46"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmt"
+    {"F:fc0265b853960106e233d7e744caa4cb"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmx"
+    {"F:47105e17952227e8e88ef6ee6e2e405a"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmxa"
+    {"F:1fff2329daf82df5ca738a9b60d2ecf1"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.cmxs"
+    {"F:90e583aa813b8844ad1472a2a8b585c5"}
+  "lib/ppx_deriving_yojson/ppx_deriving_yojson.ml"
+    {"F:61831cb064be72886ec7eb2a3259b5be"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.a"
+    {"F:ea0c2c35fb2843488a98bc4e9ffcf092"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cma"
+    {"F:3a5a4101564ff9ec6e9c31515f02fc8c"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmi"
+    {"F:cc771a8abd4326a3b7ddc18f0bf7cb6a"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmt"
+    {"F:36f6593ad63c2edfbd829a59f74d49a9"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmti"
+    {"F:2d482d4e1122159f0b9d0c0c0d3f4558"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmx"
+    {"F:59145fdd8ce07184083faa5779aaf202"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmxa"
+    {"F:e5f6c3c92e10b0bda8e988acbf8845eb"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.cmxs"
+    {"F:79a169e61e438275cb7c5d8092c723cb"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.ml"
+    {"F:0b319e126a31a2cb7ca725c8f940b57d"}
+  "lib/ppx_deriving_yojson/runtime/ppx_deriving_yojson_runtime.mli"
+    {"F:024f79ed1d062bd4652e3ea03fc5b8b2"}
+]

@@ -1,0 +1,75 @@
+(lang dune 3.15)
+(name eio_main)
+(version v1.0)
+(sections (lib .) (libexec .) (doc ../../doc/eio_main))
+(files
+ (lib
+  (META
+   dune-package
+   eio_main.a
+   eio_main.cma
+   eio_main.cmi
+   eio_main.cmt
+   eio_main.cmti
+   eio_main.cmx
+   eio_main.cmxa
+   eio_main.ml
+   eio_main.mli
+   eio_main__.cmi
+   eio_main__.cmt
+   eio_main__.cmx
+   eio_main__.ml
+   eio_main__Linux_backend.cmi
+   eio_main__Linux_backend.cmt
+   eio_main__Linux_backend.cmx
+   eio_main__Posix_backend.cmi
+   eio_main__Posix_backend.cmt
+   eio_main__Posix_backend.cmx
+   eio_main__Windows_backend.cmi
+   eio_main__Windows_backend.cmt
+   eio_main__Windows_backend.cmx
+   linux_backend.ml
+   opam
+   posix_backend.ml
+   windows_backend.ml))
+ (libexec (eio_main.cmxs))
+ (doc (CHANGES.md LICENSE.md README.md)))
+(library
+ (name eio_main)
+ (kind normal)
+ (archives (byte eio_main.cma) (native eio_main.cmxa))
+ (plugins (byte eio_main.cma) (native eio_main.cmxs))
+ (native_archives eio_main.a)
+ (requires eio_linux eio_posix)
+ (main_module_name Eio_main)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name eio_main__)
+     (visibility public)
+     (kind alias)
+     (source (path Eio_main__) (impl (path eio_main__.ml-gen))))
+    (name Eio_main)
+    (modules
+     (module
+      (obj_name eio_main)
+      (visibility public)
+      (source
+       (path Eio_main)
+       (intf (path eio_main.mli))
+       (impl (path eio_main.ml))))
+     (module
+      (obj_name eio_main__Linux_backend)
+      (visibility public)
+      (source (path Linux_backend) (impl (path linux_backend.ml))))
+     (module
+      (obj_name eio_main__Posix_backend)
+      (visibility public)
+      (source (path Posix_backend) (impl (path posix_backend.ml))))
+     (module
+      (obj_name eio_main__Windows_backend)
+      (visibility public)
+      (source (path Windows_backend) (impl (path windows_backend.ml))))))
+   (wrapped true))))

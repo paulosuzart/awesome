@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Plugins</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="The findlib User's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Complex packages"
+HREF="c278.html"><LINK
+REL="PREVIOUS"
+TITLE="Glue code"
+HREF="x345.html"><LINK
+REL="NEXT"
+TITLE="Lint"
+HREF="x388.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The findlib User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x345.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Complex packages</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x388.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN352"
+>Plugins</A
+></H1
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>(Since findlib-1.6.)</I
+></SPAN
+></P
+><P
+>Plugins are packages that can be loaded at runtime. Plugins are
+intended as a mechanism for loading add-on code into
+executables. Technically, there is some overlap with the concept of a
+"shared library". Note, however, that there is no universal support
+for plugins, as it is unimplemented on some platforms, and only
+poorly on some others (including x86 in the 32 bit case). Also, there
+must always be an explicit "load" statement in the loading executable.
+You cannot link an executable directly against plugins.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN357"
+>Preparing a plugin</A
+></H2
+><P
+>For bytecode there is no problem to load cma files at runtime.
+For native-code, though, you need to convert cmxa files into cmxs
+files first:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlopt -shared -linkall -o m.cmxs m.cmxa</PRE
+><P
+>As mentioned, be prepared that this command fails on platforms where
+plugins are unavailable.</P
+><P
+>The cmxs files can then be referenced from META. We don't use
+the "archive" variable in this case but "plugin":</P
+><PRE
+CLASS="PROGRAMLISTING"
+>plugin(byte) = "m.cma"
+plugin(native) = "m.cmxs"</PRE
+><P
+>Before findlib-1.6, there was some half-official convention using the
+"plugin" predicate. This is still supported, but deprecated:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>archive(byte) = "m.cma"
+archive(native,plugin) = "m.cmxs"</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN366"
+>Load-time dependencies</A
+></H2
+><P
+>Plugins can be, of course, be dependent on other
+plugins. You run into a problem, though, when you make a plugin dependent
+on a package that doesn't qualify as plugin (i.e. lacks the "plugin"
+definition). In this case, the loader simply skips the dependency,
+and you cannot load the plugin.</P
+><P
+>Because of this dependency issue, it is recommended to add the
+"plugin" variable to all packages that are installed on a system,
+because this does not only allow it to load all packages at runtime, but
+also to use these packages as dependency of the actual plugin code.</P
+><P
+>That said, you just need to add a "requires" directive, e.g.
+
+<PRE
+CLASS="PROGRAMLISTING"
+>requires = "pkg1"
+plugin(byte) = "m.cma"
+plugin(native) = "m.cmxs"</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN372"
+>How to load a plugin</A
+></H2
+><P
+>Linking an executable that can load a plugin: An executable
+must link the package "findlib.dynload". This does not only add
+the loader, but also special initialization code to the executable:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlopt -o program -package findlib.dynload -linkpkg ...</PRE
+><P
+>In particular, this records the packages that are already included
+into the executable (in-core packages). If a plugin is now dependent
+on such a package, this is recognized, and the package is not loaded
+(which would not work anyway).</P
+><P
+>Now, you can load a plugin "foo" with:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>Fl_dynload.load_packages ["foo"]</PRE
+><P
+>This loads the cma or cmxs files, and runs the initialization code
+of all top-level definitions of the included modules.</P
+><P
+>Of course, you can also call <TT
+CLASS="LITERAL"
+>load_packages</TT
+> from
+a library if "findlib.dynload" is a required package of the library
+package.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN382"
+>Fat plugins</A
+></H2
+><P
+>Sometimes it is handy to create plugins that already include all
+the required packages. The plugin acts more like a dynamically loadable
+executable that already includes whatever it needs. You can create such
+a "fat" plugin with:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlopt -shared -linkpkg -linkall -o m.cmxs -package p1,p2,p3 m.cmxa</PRE
+>
+
+In this case, the "requires" line in the META file should remain empty.</P
+><P
+>Note, however, that you cannot handle packages this way that are already
+linked into the main program, because it is invalid to load a module that
+is already part of the main executable. Let's assume that the executable
+links in q1, q2, and q3. Then, you need to exclude these packages from the
+plugin. The -dont-link option comes handy in this case:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ocamlfind ocamlopt -shared -linkpkg -linkall -o m.cmxs -package p1,p2,p3 -dont-link q1,q2,q3 m.cmxa</PRE
+>
+
+This excludes q1,q2,q3 even if these packages occur as dependencies of
+p1,p2,p3. In this case, though, you need to put q1,q2,q3 into the "requires"
+field of META.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x345.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x388.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Glue code</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c278.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Lint</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

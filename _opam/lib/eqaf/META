@@ -1,0 +1,27 @@
+version = "0.9"
+description = ""
+requires = ""
+archive(byte) = "eqaf.cma"
+archive(native) = "eqaf.cmxa"
+plugin(byte) = "eqaf.cma"
+plugin(native) = "eqaf.cmxs"
+package "bigstring" (
+  directory = "bigstring"
+  version = "0.9"
+  description = ""
+  requires = "eqaf"
+  archive(byte) = "eqaf_bigstring.cma"
+  archive(native) = "eqaf_bigstring.cmxa"
+  plugin(byte) = "eqaf_bigstring.cma"
+  plugin(native) = "eqaf_bigstring.cmxs"
+)
+package "cstruct" (
+  directory = "cstruct"
+  version = "0.9"
+  description = ""
+  requires = "cstruct eqaf.bigstring"
+  archive(byte) = "eqaf_cstruct.cma"
+  archive(native) = "eqaf_cstruct.cmxa"
+  plugin(byte) = "eqaf_cstruct.cma"
+  plugin(native) = "eqaf_cstruct.cmxs"
+)

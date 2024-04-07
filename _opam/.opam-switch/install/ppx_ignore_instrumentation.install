@@ -1,0 +1,23 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/ppx_ignore_instrumentation/META"
+  "_build/install/default/lib/ppx_ignore_instrumentation/dune-package"
+  "_build/install/default/lib/ppx_ignore_instrumentation/opam"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.a"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cma"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmi"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmt"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmti"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmx"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmxa"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.ml"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.mli"
+]
+doc: [
+  "_build/install/default/doc/ppx_ignore_instrumentation/LICENSE.md"
+  "_build/install/default/doc/ppx_ignore_instrumentation/README.md"
+]
+libexec: [
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx.exe"
+  "_build/install/default/lib/ppx_ignore_instrumentation/ppx_ignore_instrumentation.cmxs"
+]

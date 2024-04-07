@@ -1,0 +1,24 @@
+opam-version: "2.0"
+lib: [
+  "_build/install/default/lib/bigstringaf/META"
+  "_build/install/default/lib/bigstringaf/bigstringaf.a"
+  "_build/install/default/lib/bigstringaf/bigstringaf.cma"
+  "_build/install/default/lib/bigstringaf/bigstringaf.cmi"
+  "_build/install/default/lib/bigstringaf/bigstringaf.cmt"
+  "_build/install/default/lib/bigstringaf/bigstringaf.cmti"
+  "_build/install/default/lib/bigstringaf/bigstringaf.cmx"
+  "_build/install/default/lib/bigstringaf/bigstringaf.cmxa"
+  "_build/install/default/lib/bigstringaf/bigstringaf.ml"
+  "_build/install/default/lib/bigstringaf/bigstringaf.mli"
+  "_build/install/default/lib/bigstringaf/dune-package"
+  "_build/install/default/lib/bigstringaf/libbigstringaf_stubs.a"
+  "_build/install/default/lib/bigstringaf/opam"
+  "_build/install/default/lib/bigstringaf/runtime.js"
+]
+stublibs: "_build/install/default/lib/stublibs/dllbigstringaf_stubs.so"
+doc: [
+  "_build/install/default/doc/bigstringaf/CHANGES.md"
+  "_build/install/default/doc/bigstringaf/LICENSE"
+  "_build/install/default/doc/bigstringaf/README.md"
+]
+libexec: "_build/install/default/lib/bigstringaf/bigstringaf.cmxs"
