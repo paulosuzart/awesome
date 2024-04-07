@@ -25,7 +25,7 @@ jobs:
 
       - name: Generate awesome README
         env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: ${{ secrets.TOKEN }} # This token is a PAT with starred read access
         run: opam exec -- starred_ml > README.md
         working-directory: ${{ github.event.repository.name }}
   
