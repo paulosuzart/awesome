@@ -21,7 +21,7 @@ jobs:
 
       - run: TOKEN=${GITHUB_TOKEN} starred_ml > README.md
 
-      - use: peter-evans/create-pull-request@v6
+      - uses: peter-evans/create-pull-request@v6
         with:
           message: ${{ github.event.repository.updated_at}} starred_ml update
           title: ${{ GITHUB_RUN_NUMBER }} starred_ml update
