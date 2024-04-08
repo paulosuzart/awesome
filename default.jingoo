@@ -30,7 +30,7 @@ Contents
 ## {{ item.language }}
 
 {%- for repo in item.starred %}
-   - [{{ repo.name }}]({{ repo.url }}): {{ repo.description }}
+   - [{{ repo.name }}]({{ repo.html_url }}): {{ repo.description }}
 {%- endfor %}
 
 {% endfor %}
