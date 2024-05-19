@@ -400,11 +400,13 @@ Contents
    - [toorop/go-bittrex](https://github.com/toorop/go-bittrex) - Go  binding for the Bittrex crypto-currency exchange API.
    - [wcharczuk/go-chart](https://github.com/wcharczuk/go-chart) - go chart is a basic charting library in go.
    - [ipfs/go-ds-crdt](https://github.com/ipfs/go-ds-crdt) - A distributed go-datastore implementation using Merkle-CRDTs.
+   - [BooleanCat/go-functional](https://github.com/BooleanCat/go-functional) - go-functional is a library that offers functional programming in Go using generics
    - [thoas/go-funk](https://github.com/thoas/go-funk) - A modern Go utility library which provides helpers (map, find, contains, filter, ...)
    - [skelterjohn/go-gb](https://github.com/skelterjohn/go-gb) - A(nother) tool to build go projects.
    - [mattn/go-gtk](https://github.com/mattn/go-gtk) - Go binding for GTK
    - [kofalt/go-memoize](https://github.com/kofalt/go-memoize) - An easy, no-frills memoizer for Go. Cache your expensive function calls.
    - [dolthub/go-mysql-server](https://github.com/dolthub/go-mysql-server) - A MySQL-compatible relational database with a storage agnostic query engine. Implemented in pure Go.
+   - [redis/go-redis](https://github.com/redis/go-redis) - Redis Go client
    - [madari/go-socket.io](https://github.com/madari/go-socket.io) - A Socket.IO backend implementation written in Go
    - [go-swagger/go-swagger](https://github.com/go-swagger/go-swagger) - Swagger 2.0 implementation for go
    - [nsf/gocode](https://github.com/nsf/gocode) - An autocompletion daemon for the Go programming language
@@ -435,6 +437,7 @@ Contents
    - [xiaonanln/keylock](https://github.com/xiaonanln/keylock) - Golang utility class KeyLock: lock by string key, so as to avoid giant lock
    - [kubernetes/kops](https://github.com/kubernetes/kops) - Kubernetes Operations (kOps) - Production Grade k8s Installation, Upgrades and Management
    - [yonahd/kor](https://github.com/yonahd/kor) - A Golang Tool to discover unused Kubernetes Resources 
+   - [kubefirst/kubefirst](https://github.com/kubefirst/kubefirst) - The Kubefirst Open Source Platform
    - [jesseduffield/lazydocker](https://github.com/jesseduffield/lazydocker) - The lazier way to manage everything docker
    - [docker/libchan](https://github.com/docker/libchan) - Like Go channels over the network
    - [liftbridge-io/liftbridge](https://github.com/liftbridge-io/liftbridge) - Lightweight, fault-tolerant message streams.
@@ -461,8 +464,9 @@ Contents
    - [mogenius/punq](https://github.com/mogenius/punq) - A slim open-source workload manager for Kubernetes with team collaboration, WebApp, and CLI.
    - [oxequa/realize](https://github.com/oxequa/realize) - Realize is the #1 Golang Task Runner which enhance your workflow by automating the most common tasks and using the best performing Golang live reloading.
    - [nalgeon/redka](https://github.com/nalgeon/redka) - Redis re-implemented with SQLite
-   - [rigdev/rig](https://github.com/rigdev/rig) - Rig.dev is a developer-centric application platform for Kubernetes ⛵
+   - [rigdev/rig](https://github.com/rigdev/rig) - The DevEx &amp; Application-layer for your Internal Developer Platform ⛵
    - [risor-io/risor](https://github.com/risor-io/risor) - Fast and flexible scripting for Go developers and DevOps.
+   - [riverqueue/river](https://github.com/riverqueue/river) - Fast and reliable background jobs in Go
    - [rqlite/rqlite](https://github.com/rqlite/rqlite) - The lightweight, distributed relational database built on SQLite.
    - [JJBordy/rules](https://github.com/JJBordy/rules) - Minimal rules engine, uses yaml as input
    - [schemahero/schemahero](https://github.com/schemahero/schemahero) - A Kubernetes operator for declarative database schema management (gitops for database schemas)
@@ -491,6 +495,7 @@ Contents
    - [updatecli/updatecli](https://github.com/updatecli/updatecli) - A Declarative Dependency Management tool
    - [xo/usql](https://github.com/xo/usql) - Universal command-line interface for SQL databases
    - [poonai/vegamcache](https://github.com/poonai/vegamcache) - Distributed in-memory cache using gossip protocol in go-lang
+   - [charmbracelet/vhs](https://github.com/charmbracelet/vhs) - Your CLI home video recorder 📼
    - [blastrain/vitess-sqlparser](https://github.com/blastrain/vitess-sqlparser) - simply SQL Parser for Go ( powered by vitess and TiDB )
    - [warrant-dev/warrant](https://github.com/warrant-dev/warrant) - Warrant is a highly scalable, centralized authorization service based on Google Zanzibar, used for defining, querying, and auditing application authorization models and access control rules.
    - [google/wire](https://github.com/google/wire) - Compile-time Dependency Injection for Go
@@ -786,7 +791,7 @@ Contents
 
 ## Mustache
    - [alexandrebrg/openfga-helm](https://github.com/alexandrebrg/openfga-helm) - OpenFGA helm chart to help you deploy in your Kubernetes Cluster.
-   - [redkubes/otomi-core](https://github.com/redkubes/otomi-core) - Self-hosted PaaS for Kubernetes
+   - [redkubes/otomi-core](https://github.com/redkubes/otomi-core) - Application Platform for Kubernetes
 
 ## Not set
    - [fr0gger/Awesome-GPT-Agents](https://github.com/fr0gger/Awesome-GPT-Agents) - A curated list of GPT agents for cybersecurity
@@ -830,6 +835,7 @@ Contents
    - [Aracki/toolnetes](https://github.com/Aracki/toolnetes) - 🔧 Collection of miscellaneous Kubernetes tools and articles.
    - [worcr/worcr](https://github.com/worcr/worcr) - Next-gen background job processing 🏭
    - [camunda-community-hub/zeebe-docker-compose](https://github.com/camunda-community-hub/zeebe-docker-compose) - Zeebe with Operate Docker Compose configuration
+   - [ratfactor/ziglings](https://github.com/ratfactor/ziglings) - Learn the Zig programming language by fixing tiny broken programs.
 
 ## OCaml
    - [uds-psl/Prog](https://github.com/uds-psl/Prog) - 
@@ -877,7 +883,7 @@ Contents
 
 ## Python
    - [mikeknapp/AppEngine-OAuth-Library](https://github.com/mikeknapp/AppEngine-OAuth-Library) - An OAuth library for interacting with Twitter, MySpace, LinkedIn and Yahoo on AppEngine
-   - [IAHispano/Applio](https://github.com/IAHispano/Applio) - VITS-based Voice Conversion focused on simplicity, quality and performance
+   - [IAHispano/Applio](https://github.com/IAHispano/Applio) - VITS-based Voice Conversion focused on simplicity, quality and performance.
    - [eosphoros-ai/DB-GPT](https://github.com/eosphoros-ai/DB-GPT) - AI Native Data App Development framework with AWEL(Agentic Workflow Expression Language) and Agents
    - [lm-sys/FastChat](https://github.com/lm-sys/FastChat) - An open platform for training, serving, and evaluating large language models. Release repo for Vicuna and Chatbot Arena.
    - [pydantic/FastUI](https://github.com/pydantic/FastUI) - Build better UIs faster.
@@ -1051,9 +1057,9 @@ Contents
    - [ratatui-org/ratatui](https://github.com/ratatui-org/ratatui) - Rust library that&apos;s all about cooking up terminal user interfaces (TUIs) 👨‍🍳🐀
    - [GregoryConrad/rearch-rs](https://github.com/GregoryConrad/rearch-rs) - Re-imagined approach to application design and architecture
    - [rerun-io/rerun](https://github.com/rerun-io/rerun) - Visualize streams of multimodal data. Fast, easy to use, and simple to integrate.  Built in Rust using egui.
-   - [risingwavelabs/risingwave](https://github.com/risingwavelabs/risingwave) - SQL stream processing, analytics, and management. PostgreSQL simplicity, unrivaled performance, and seamless elasticity. 🚀 10x more productive. 🚀 10x more cost-efficient.
+   - [risingwavelabs/risingwave](https://github.com/risingwavelabs/risingwave) - SQL stream processing, analytics, and management. We decouple storage and compute to offer instant failover, dynamic scaling, speedy bootstrapping, and efficient joins.
    - [roapi/roapi](https://github.com/roapi/roapi) - Create full-fledged APIs for slowly moving datasets without writing a single line of code.
-   - [roc-lang/roc](https://github.com/roc-lang/roc) - A fast, friendly, functional language. Work in progress!
+   - [roc-lang/roc](https://github.com/roc-lang/roc) - A fast, friendly, functional language.
    - [skdziwak/rs-rdc](https://github.com/skdziwak/rs-rdc) - This crate is used to generate code for other languages from Rust&apos;s data structures. It can be used to generate DTO classes to make it easier to interact with other languages.
    - [aisk/rust-memcache](https://github.com/aisk/rust-memcache) - memcache client for rust
    - [rust-threadpool/rust-threadpool](https://github.com/rust-threadpool/rust-threadpool) - A very simple thread pool for parallel task execution
@@ -1074,7 +1080,7 @@ Contents
    - [swc-project/swc](https://github.com/swc-project/swc) - Rust-based platform for the Web
    - [CosmWasm/sylvia](https://github.com/CosmWasm/sylvia) - CosmWasm smart contract framework
    - [TabbyML/tabby](https://github.com/TabbyML/tabby) - Self-hosted AI coding assistant
-   - [tailcallhq/tailcall](https://github.com/tailcallhq/tailcall) - A high-performance GraphQL Platform
+   - [tailcallhq/tailcall](https://github.com/tailcallhq/tailcall) - A high-performance data access layer
    - [pingcap/talent-plan](https://github.com/pingcap/talent-plan) - open source training courses about distributed database and distributed systems
    - [quickwit-oss/tantivy](https://github.com/quickwit-oss/tantivy) - Tantivy is a full-text search engine library inspired by Apache Lucene and written in Rust
    - [TimelyDataflow/timely-dataflow](https://github.com/TimelyDataflow/timely-dataflow) - A modular implementation of timely dataflow in Rust
@@ -1108,7 +1114,7 @@ Contents
    - [circe/circe](https://github.com/circe/circe) - Yet another JSON library for Scala
    - [bmc/classutil](https://github.com/bmc/classutil) - Scala-friendly, fast class-finder library (using ASM under the covers)
    - [xuwei-k/dynamicjson](https://github.com/xuwei-k/dynamicjson) - no longer maintenanced
-   - [Philippus/elastic4s](https://github.com/Philippus/elastic4s) - Elasticsearch Scala Client - Reactive, Non Blocking, Type Safe, HTTP Client
+   - [Philippus/elastic4s](https://github.com/Philippus/elastic4s) - 🔍 Elasticsearch Scala Client - Reactive, Non Blocking, Type Safe, HTTP Client
    - [softwaremill/elasticmq](https://github.com/softwaremill/elasticmq) - In-memory message queue with an Amazon SQS-compatible interface. Runs stand-alone or embedded.
    - [twitter/finagle](https://github.com/twitter/finagle) - A fault tolerant, protocol-agnostic RPC system
    - [typelevel/fs2](https://github.com/typelevel/fs2) - Compositional, streaming I/O library for Scala
@@ -1194,6 +1200,7 @@ Contents
    - [continuedev/continue](https://github.com/continuedev/continue) - ⏩ Open-source VS Code and JetBrains extensions that enable you to easily create your own modular AI software development system
    - [graphile/crystal](https://github.com/graphile/crystal) - 🔮 Graphile&apos;s Crystal Monorepo; home to Grafast, PostGraphile, pg-introspection, pg-sql2 and much more!
    - [big-armor/datapm](https://github.com/big-armor/datapm) - 
+   - [bekk/db-scheduler-ui](https://github.com/bekk/db-scheduler-ui) - 
    - [deepstreamIO/deepstream.io](https://github.com/deepstreamIO/deepstream.io) - deepstream.io server
    - [torokmark/design_patterns_in_typescript](https://github.com/torokmark/design_patterns_in_typescript) - :triangular_ruler: Design pattern implementations in TypeScript
    - [drizzle-team/drizzle-orm](https://github.com/drizzle-team/drizzle-orm) - Headless TypeScript ORM with a head. Runs on Node, Bun and Deno. Lives on the Edge and yes, it&apos;s a JavaScript ORM too 😅
@@ -1220,7 +1227,7 @@ Contents
    - [medplum/medplum](https://github.com/medplum/medplum) - Medplum is a healthcare platform that helps you quickly develop high-quality compliant applications.
    - [ega-forever/mokka](https://github.com/ega-forever/mokka) - Mokka consensus
    - [nestjs/nest](https://github.com/nestjs/nest) - A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications with TypeScript/JavaScript 🚀
-   - [novuhq/novu](https://github.com/novuhq/novu) - 🔥 The open-source notification infrastructure with fully functional embedded notification center 🚀🚀🚀
+   - [novuhq/novu](https://github.com/novuhq/novu) - Open-Source Notification Platform. Embeddable Notification Center, E-mail, Push and Slack Integrations.
    - [pezzolabs/pezzo](https://github.com/pezzolabs/pezzo) - 🕹️ Open-source, developer-first LLMOps platform designed to streamline prompt design, version management, instant delivery, collaboration, troubleshooting, observability and more.
    - [electric-sql/pglite](https://github.com/electric-sql/pglite) - Lightweight Postgres packaged as WASM into a TypeScript library for the browser, Node.js, Bun and Deno
    - [pkgxdev/pkgx](https://github.com/pkgxdev/pkgx) - the last thing you’ll install
@@ -1260,6 +1267,5 @@ Contents
 ## Zig
    - [xataio/pgzx](https://github.com/xataio/pgzx) - Create PostgreSQL extensions using Zig.
    - [tigerbeetle/tigerbeetle](https://github.com/tigerbeetle/tigerbeetle) - The distributed financial transactions database designed for mission critical safety and performance.
-   - [ratfactor/ziglings](https://github.com/ratfactor/ziglings) - Learn the Zig programming language by fixing tiny broken programs.
 
 
