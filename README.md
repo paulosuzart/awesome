@@ -721,6 +721,7 @@ Contents
    - [defunkt/jquery-pjax](https://github.com/defunkt/jquery-pjax) - pushState + ajax = pjax
    - [js-joda/js-joda](https://github.com/js-joda/js-joda) - :clock2: Immutable date and time library for javascript
    - [watzon/json-to-crystal](https://github.com/watzon/json-to-crystal) - Convert JSON structures into Crystal classes with JSON mappings
+   - [tulios/kafkajs](https://github.com/tulios/kafkajs) - A modern Apache Kafka client for node.js
    - [PGBI/kong-dashboard](https://github.com/PGBI/kong-dashboard) - Dashboard for managing Kong gateway
    - [JetBrains/kotlin-web-site](https://github.com/JetBrains/kotlin-web-site) - The Kotlin programming language website
    - [BirdseyeSoftware/lein-dalap](https://github.com/BirdseyeSoftware/lein-dalap) -  Leiningen plugin to transform Clojure modules -&gt; Clojurescript, without having to fork your codebase!
@@ -1080,7 +1081,7 @@ Contents
    - [swc-project/swc](https://github.com/swc-project/swc) - Rust-based platform for the Web
    - [CosmWasm/sylvia](https://github.com/CosmWasm/sylvia) - CosmWasm smart contract framework
    - [TabbyML/tabby](https://github.com/TabbyML/tabby) - Self-hosted AI coding assistant
-   - [tailcallhq/tailcall](https://github.com/tailcallhq/tailcall) - A high-performance data access layer
+   - [tailcallhq/tailcall](https://github.com/tailcallhq/tailcall) - Build GraphQL as the speed of thought
    - [pingcap/talent-plan](https://github.com/pingcap/talent-plan) - open source training courses about distributed database and distributed systems
    - [quickwit-oss/tantivy](https://github.com/quickwit-oss/tantivy) - Tantivy is a full-text search engine library inspired by Apache Lucene and written in Rust
    - [TimelyDataflow/timely-dataflow](https://github.com/TimelyDataflow/timely-dataflow) - A modular implementation of timely dataflow in Rust
@@ -1119,7 +1120,7 @@ Contents
    - [twitter/finagle](https://github.com/twitter/finagle) - A fault tolerant, protocol-agnostic RPC system
    - [typelevel/fs2](https://github.com/typelevel/fs2) - Compositional, streaming I/O library for Scala
    - [fthomas/fs2-cron](https://github.com/fthomas/fs2-cron) - FS2 streams based on cron expressions
-   - [permutive-engineering/fs2-google-pubsub](https://github.com/permutive-engineering/fs2-google-pubsub) - Google Cloud Pub/Sub stream-based client built on top of cats-effect, fs2 and http4s.
+   - [permutive-engineering/fs2-pubsub](https://github.com/permutive-engineering/fs2-pubsub) - Google Cloud Pub/Sub stream-based client built on top of cats-effect, fs2 and http4s.
    - [ashwinbhaskar/functional-way](https://github.com/ashwinbhaskar/functional-way) - Write small programs (eg -algorithms) in a functional way. 
    - [scala-hamsters/hamsters](https://github.com/scala-hamsters/hamsters) - A mini Scala utility library
    - [paulosuzart/hellofinagle](https://github.com/paulosuzart/hellofinagle) - Code for a blog post
