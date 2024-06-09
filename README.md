@@ -97,11 +97,12 @@ Contents
    - [Snapchat/KeyDB](https://github.com/Snapchat/KeyDB) - A Multithreaded Fork of Redis
    - [microsoft/LightGBM](https://github.com/microsoft/LightGBM) - A fast, distributed, high performance gradient boosting (GBT, GBDT, GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking, classification and many other machine learning tasks.
    - [ReactiveX/RxCpp](https://github.com/ReactiveX/RxCpp) - Reactive Extensions for C++
+   - [aws/aws-sdk-cpp](https://github.com/aws/aws-sdk-cpp) - AWS SDK for C++
    - [bombela/backward-cpp](https://github.com/bombela/backward-cpp) - A beautiful stack trace pretty printer for C++
    - [tdenniston/bish](https://github.com/tdenniston/bish) - Bish is a language that compiles to Bash. It&apos;s designed to give shell scripting a more comfortable and modern feel.
    - [edouarda/brigand](https://github.com/edouarda/brigand) - Instant compile time C++ 11 metaprogramming library
    - [cachelot/cachelot](https://github.com/cachelot/cachelot) - Cache library and distributed caching server. Memcached compatible.
-   - [chdb-io/chdb](https://github.com/chdb-io/chdb) - chDB is an embedded OLAP SQL Engine 🚀 powered by ClickHouse 
+   - [chdb-io/chdb](https://github.com/chdb-io/chdb) - chDB is an in-process OLAP SQL Engine 🚀 powered by ClickHouse 
    - [rjenkins/conservator](https://github.com/rjenkins/conservator) - C++ Zookeeper client library inspired by Apache Curator 
    - [Naios/continuable](https://github.com/Naios/continuable) - C++14 asynchronous allocation aware futures (supporting then, exception handling, coroutines and connections)
    - [QHedgeTech/cpp-elasticsearch](https://github.com/QHedgeTech/cpp-elasticsearch) - C++ Client for elasticsearch
@@ -358,6 +359,7 @@ Contents
    - [hibiken/asynq](https://github.com/hibiken/asynq) - Simple, reliable, and efficient distributed task queue in Go
    - [atomix/atomix](https://github.com/atomix/atomix) - A Kubernetes toolkit for building distributed applications using cloud native principles
    - [etcd-io/bbolt](https://github.com/etcd-io/bbolt) - An embedded key/value database for Go.
+   - [warpstreamlabs/bento](https://github.com/warpstreamlabs/bento) - 
    - [allegro/bigcache](https://github.com/allegro/bigcache) - Efficient cache for gigabytes of data written in Go.
    - [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) - A powerful little TUI framework 🏗
    - [containers/buildah](https://github.com/containers/buildah) - A tool that facilitates building OCI images.
@@ -502,7 +504,7 @@ Contents
    - [poonai/vegamcache](https://github.com/poonai/vegamcache) - Distributed in-memory cache using gossip protocol in go-lang
    - [charmbracelet/vhs](https://github.com/charmbracelet/vhs) - Your CLI home video recorder 📼
    - [blastrain/vitess-sqlparser](https://github.com/blastrain/vitess-sqlparser) - simply SQL Parser for Go ( powered by vitess and TiDB )
-   - [warrant-dev/warrant](https://github.com/warrant-dev/warrant) - Warrant is a highly scalable, centralized authorization service based on Google Zanzibar, used for defining, querying, and auditing application authorization models and access control rules.
+   - [warrant-dev/warrant](https://github.com/warrant-dev/warrant) - Warrant is a highly scalable, centralized authorization service based on Google Zanzibar. Use it to define, enforce, query, and audit application authorization and access control.
    - [google/wire](https://github.com/google/wire) - Compile-time Dependency Injection for Go
    - [edwingeng/wuid](https://github.com/edwingeng/wuid) - An extremely fast globally unique number generator.
    - [uber-go/zap](https://github.com/uber-go/zap) - Blazing fast, structured, leveled logging in Go.
@@ -510,9 +512,11 @@ Contents
 
 ## Groovy
    - [palantir/gradle-docker](https://github.com/palantir/gradle-docker) - a Gradle plugin for orchestrating docker builds and pushes.
+   - [palantir/gradle-git-version](https://github.com/palantir/gradle-git-version) - a Gradle plugin that uses `git describe` to produce a version string.
    - [researchgate/gradle-release](https://github.com/researchgate/gradle-release) - gradle-release is a plugin for providing a Maven-like release process for projects using Gradle
    - [grails-aws/grails-aws](https://github.com/grails-aws/grails-aws) - Grails plugin for Amazon Web Services
    - [jwagenleitner/groovy-wslite](https://github.com/jwagenleitner/groovy-wslite) - Lightweight SOAP and REST webservice clients for Groovy
+   - [eXsio/querydsl-entityql](https://github.com/eXsio/querydsl-entityql) - QueryDSL EntityQL - Native Query builder for JPA
    - [lucastex/stampyourpdf](https://github.com/lucastex/stampyourpdf) - 
 
 ## HCL
@@ -598,7 +602,7 @@ Contents
    - [thegeekyasian/geo-assist](https://github.com/thegeekyasian/geo-assist) - Geo Assist is a spatial library to manage spatial data in-memory.
    - [google/google-java-format](https://github.com/google/google-java-format) - Reformats Java source code to comply with Google Java Style.
    - [oracle/graal](https://github.com/oracle/graal) - GraalVM compiles Java applications into native executables that start instantly, scale fast, and use fewer compute resources 🚀
-   - [palantir/gradle-git-version](https://github.com/palantir/gradle-git-version) - a Gradle plugin that uses `git describe` to produce a version string.
+   - [intuit/graphql-filter-java](https://github.com/intuit/graphql-filter-java) - This project is developed to help developers add filtering support to their graphql-java services
    - [graphql-java/graphql-java-extended-scalars](https://github.com/graphql-java/graphql-java-extended-scalars) - A library of extended scalars for graphql-java
    - [LogNet/grpc-spring-boot-starter](https://github.com/LogNet/grpc-spring-boot-starter) - Spring Boot starter module for gRPC  framework. 
    - [google/guava](https://github.com/google/guava) - Google core libraries for Java
@@ -607,6 +611,7 @@ Contents
    - [hazelcast/hazelcast-jet](https://github.com/hazelcast/hazelcast-jet) - Distributed Stream and Batch Processing
    - [hazelcast/hazelcast-kubernetes](https://github.com/hazelcast/hazelcast-kubernetes) - Kubernetes Discovery for Hazelcast 
    - [arturmkrtchyan/iban4j](https://github.com/arturmkrtchyan/iban4j) - A Java library for generation and validation of the International Bank Account Numbers (IBAN ISO_13616) and Business Identifier Codes (BIC ISO_9362).
+   - [infobip/infobip-spring-data-querydsl](https://github.com/infobip/infobip-spring-data-querydsl) - Infobip Spring Data Querydsl provides new functionality that enables the user to leverage the full power of Querydsl API on top of Spring Data repository infrastructure.
    - [FasterXML/jackson-module-jsonSchema](https://github.com/FasterXML/jackson-module-jsonSchema) - Module for generating JSON Schema (v3) definitions from POJOs
    - [DiUS/java-faker](https://github.com/DiUS/java-faker) - Brings the popular ruby faker gem to Java
    - [wavesoftware/java-mapstruct-jpa](https://github.com/wavesoftware/java-mapstruct-jpa) - A set of utilities focused on mapping JPA managed entities with MapStruct
@@ -769,6 +774,7 @@ Contents
 ## Kotlin
    - [LeoFuso/argo](https://github.com/LeoFuso/argo) - A Gradle plugin aimed to help working with Apache Avro. It supports code generation for JSON schema declaration files(.avsc), JSON protocol declaration files(.avpr), and Avro IDL files. In the future, it should support Schema Registry integration, as well.
    - [arrow-kt/arrow](https://github.com/arrow-kt/arrow) - Λrrow - Functional companion to Kotlin&apos;s Standard Library
+   - [Netflix/dgs-codegen](https://github.com/Netflix/dgs-codegen) - 
    - [intellij-rust/intellij-rust](https://github.com/intellij-rust/intellij-rust) - Rust plugin for the IntelliJ Platform
    - [javalin/javalin](https://github.com/javalin/javalin) - A simple and modern Java and Kotlin web framework
    - [libp2p/jvm-libp2p](https://github.com/libp2p/jvm-libp2p) - a libp2p implementation for the JVM, written in Kotlin 🔥
@@ -817,7 +823,6 @@ Contents
    - [appcypher/awesome-wasm-runtimes](https://github.com/appcypher/awesome-wasm-runtimes) - A list of webassemby runtimes
    - [meirwah/awesome-workflow-engines](https://github.com/meirwah/awesome-workflow-engines) - A curated list of awesome open source workflow engines
    - [matter-labs/awesome-zero-knowledge-proofs](https://github.com/matter-labs/awesome-zero-knowledge-proofs) - A curated list of awesome things related to learning Zero-Knowledge Proofs (ZKP).
-   - [aws/aws-sdk-cpp](https://github.com/aws/aws-sdk-cpp) - AWS SDK for C++
    - [cemerick/clojure-type-selection-flowchart](https://github.com/cemerick/clojure-type-selection-flowchart) - Flowchart for choosing the right Clojure type definition form
    - [paulosuzart/clojure-type-selection-flowchart](https://github.com/paulosuzart/clojure-type-selection-flowchart) - Flowchart for choosing the right Clojure type definition form
    - [DataExpert-io/data-engineer-handbook](https://github.com/DataExpert-io/data-engineer-handbook) - This is a repo with links to everything you&apos;d ever want to learn about data engineering
@@ -1039,7 +1044,7 @@ Contents
    - [kdash-rs/kdash](https://github.com/kdash-rs/kdash) - A simple and fast dashboard for Kubernetes
    - [saschagrunert/kubernix](https://github.com/saschagrunert/kubernix) - Single dependency Kubernetes clusters for local testing, experimenting and development
    - [lapce/lapce](https://github.com/lapce/lapce) - Lightning-fast and Powerful Code Editor written in Rust
-   - [AleoHQ/leo](https://github.com/AleoHQ/leo) - 🦁 The Leo Programming Language. A Programming Language for Formally Verified, Zero-Knowledge Applications
+   - [ProvableHQ/leo](https://github.com/ProvableHQ/leo) - 🦁 The Leo Programming Language. A Programming Language for Formally Verified, Zero-Knowledge Applications
    - [rustformers/llm](https://github.com/rustformers/llm) - An ecosystem of Rust libraries for working with large language models
    - [shafishlabs/llmchain-rs](https://github.com/shafishlabs/llmchain-rs) - 🦀Rust + Large Language Models - Make AI Services Freely and Easily.
    - [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) - A lightning-fast search API that fits effortlessly into your apps, websites, and workflow
@@ -1053,7 +1058,6 @@ Contents
    - [open-telemetry/opentelemetry-rust](https://github.com/open-telemetry/opentelemetry-rust) - The Rust OpenTelemetry implementation
    - [NoahGav/oxide-lang](https://github.com/NoahGav/oxide-lang) - 
    - [foresterre/parameterized](https://github.com/foresterre/parameterized) - 🐑 JUnit style parameterized testing for Rust
-   - [dylibso/pg_extism](https://github.com/dylibso/pg_extism) - About An Extism sample showing how you can run Extism plugins from PostgreSQL using pgrx
    - [tembo-io/pgmq](https://github.com/tembo-io/pgmq) - A lightweight message queue. Like AWS SQS and RSMQ but on Postgres.
    - [pgcentralfoundation/pgrx](https://github.com/pgcentralfoundation/pgrx) - Build Postgres Extensions with Rust!
    - [cloudflare/pingora](https://github.com/cloudflare/pingora) - A library for building fast, reliable and evolvable network services.
@@ -1237,6 +1241,7 @@ Contents
    - [nestjs/nest](https://github.com/nestjs/nest) - A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications with TypeScript/JavaScript 🚀
    - [novuhq/novu](https://github.com/novuhq/novu) - Open-Source Notification Platform. Embeddable Notification Center, E-mail, Push and Slack Integrations.
    - [pezzolabs/pezzo](https://github.com/pezzolabs/pezzo) - 🕹️ Open-source, developer-first LLMOps platform designed to streamline prompt design, version management, instant delivery, collaboration, troubleshooting, observability and more.
+   - [dylibso/pg_extism](https://github.com/dylibso/pg_extism) - About An Extism sample showing how you can run Extism plugins from PostgreSQL using pgrx
    - [electric-sql/pglite](https://github.com/electric-sql/pglite) - Lightweight Postgres packaged as WASM into a TypeScript library for the browser, Node.js, Bun and Deno
    - [pkgxdev/pkgx](https://github.com/pkgxdev/pkgx) - the last thing you’ll install
    - [portainer/portainer](https://github.com/portainer/portainer) - Making Docker and Kubernetes management easy.
