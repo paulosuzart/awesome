@@ -16,7 +16,7 @@ Have fun!
 Languages
 ---
 
-Languages starred: 47:
+Languages starred: 48:
    - [C](#C)
    - [C#](#C#)
    - [C++](#C++)
@@ -60,6 +60,7 @@ Languages starred: 47:
    - [Smarty](#Smarty)
    - [Starlark](#Starlark)
    - [Svelte](#Svelte)
+   - [Swift](#Swift)
    - [TypeScript](#TypeScript)
    - [V](#V)
    - [Vim script](#Vim script)
@@ -280,9 +281,9 @@ Contents
    - [IrenejMarc/dpq](https://github.com/IrenejMarc/dpq) - Simple but powerful PostgreSQL library inspired by higher-level languages.
    - [joakim-brannstrom/dsrcgen](https://github.com/joakim-brannstrom/dsrcgen) - The semantic code generation framework for Dlang
    - [dlang/dub-registry](https://github.com/dlang/dub-registry) - Online registry for dub packages
-   - [nomad-software/dunit](https://github.com/nomad-software/dunit) - Advanced unit testing toolkit for the D programming language
    - [jmcabo/dunit](https://github.com/jmcabo/dunit) - D Unit Testing Framework - class MyTest {mixin TestMixin; testMethod(){assert(true);} }
    - [linkrope/dunit](https://github.com/linkrope/dunit) - xUnit Testing Framework for D
+   - [nomad-software/dunit](https://github.com/nomad-software/dunit) - Advanced unit testing toolkit for the D programming language
    - [vibe-d/eventcore](https://github.com/vibe-d/eventcore) - High performance proactor event loop abstraction library
    - [jaypha/fixed](https://github.com/jaypha/fixed) - Fixed point type for D.
    - [huntlabs/flatbuffers](https://github.com/huntlabs/flatbuffers) - D Programming Language implementation of the google flatbuffers library
@@ -427,6 +428,7 @@ Contents
    - [go-gorm/gorm](https://github.com/go-gorm/gorm) - The fantastic ORM library for Golang, aims to be developer friendly
    - [99designs/gqlgen](https://github.com/99designs/gqlgen) - go generate based graphql server library
    - [graphql-go/graphql](https://github.com/graphql-go/graphql) - An implementation of GraphQL for Go / Golang
+   - [ldebruijn/graphql-protect](https://github.com/ldebruijn/graphql-protect) - A dead-simple yet highly customizable security proxy compatible with any HTTP GraphQL Server or Gateway.
    - [hyperjumptech/grule-rule-engine](https://github.com/hyperjumptech/grule-rule-engine) - Rule engine implementation in Golang
    - [charmbracelet/gum](https://github.com/charmbracelet/gum) - A tool for glamorous shell scripts 🎀
    - [google/gvisor](https://github.com/google/gvisor) - Application Kernel for Containers
@@ -438,7 +440,7 @@ Contents
    - [codenotary/immudb](https://github.com/codenotary/immudb) - immudb - immutable database based on zero trust, SQL/Key-Value/Document model, tamperproof, data change history
    - [cruise-automation/isopod](https://github.com/cruise-automation/isopod) - An expressive DSL and framework for Kubernetes configuration without YAML
    - [istio/istio](https://github.com/istio/istio) - Connect, secure, control, and observe services.
-   - [indeedeng/iwf](https://github.com/indeedeng/iwf) - iWF is an API orchestration platform offering an orchestration coding framework and service for building resilient, fault-tolerant, scalable long-running processes
+   - [indeedeng/iwf](https://github.com/indeedeng/iwf) - iWF is a WorkflowAsCode microservice orchestration platform offering an orchestration coding framework and service for building resilient, fault-tolerant, scalable long-running processes
    - [clastix/kamaji](https://github.com/clastix/kamaji) - Kamaji is the Hosted Control Plane Manager for Kubernetes.
    - [xiaonanln/keylock](https://github.com/xiaonanln/keylock) - Golang utility class KeyLock: lock by string key, so as to avoid giant lock
    - [kubernetes/kops](https://github.com/kubernetes/kops) - Kubernetes Operations (kOps) - Production Grade k8s Installation, Upgrades and Management
@@ -578,6 +580,7 @@ Contents
    - [tzolov/calcite-sql-rewriter](https://github.com/tzolov/calcite-sql-rewriter) - JDBC driver that converts any INSERT, UPDATE and DELETE statements into append-only INSERTs. Instead of updating rows in-place it inserts the new version of the row along with version metadata
    - [LiveRamp/captain](https://github.com/LiveRamp/captain) - distributed, light-weight java workflow engine for a microservice architecture
    - [ScaleUnlimited/cascading.simpledb](https://github.com/ScaleUnlimited/cascading.simpledb) - Cascading Tap &amp; Scheme for Amazon&apos;s SimpleDB
+   - [google/cel-java](https://github.com/google/cel-java) - Fast, portable, non-Turing complete expression evaluation with gradual typing (Java)
    - [dylibso/chicory](https://github.com/dylibso/chicory) - Native JVM WebAssembly runtime
    - [GoogleCloudPlatform/cloud-spanner-r2dbc](https://github.com/GoogleCloudPlatform/cloud-spanner-r2dbc) - R2DBC driver for Google Cloud Spanner
    - [npgall/concurrent-trees](https://github.com/npgall/concurrent-trees) - Concurrent Radix and Suffix Trees for Java
@@ -588,11 +591,14 @@ Contents
    - [yoomoney/db-queue](https://github.com/yoomoney/db-queue) - Worker-queue implementation on top of Java and database
    - [kagkarlsson/db-scheduler](https://github.com/kagkarlsson/db-scheduler) - Persistent cluster-friendly scheduler for Java
    - [rocketbase-io/db-scheduler-log](https://github.com/rocketbase-io/db-scheduler-log) - extension for db-scheduler that registers as log-service
+   - [derive4j/derive4j](https://github.com/derive4j/derive4j) - Java 8 annotation processor and framework for deriving algebraic data types constructors, pattern-matching, folds, optics and typeclasses.
    - [reugn/dev-tools](https://github.com/reugn/dev-tools) - Widely used software developer tools in a single application
+   - [xyzsd/dichotomy](https://github.com/xyzsd/dichotomy) - Result, Either, Try, and Maybe monadic types for Java
    - [alturkovic/distributed-lock](https://github.com/alturkovic/distributed-lock) - Distributed locking with Spring
    - [domaframework/doma](https://github.com/domaframework/doma) - DAO oriented database mapping framework for Java 8+
    - [domaframework/doma-spring-boot](https://github.com/domaframework/doma-spring-boot) - Spring Boot Support for Doma
    - [j-easy/easy-rules](https://github.com/j-easy/easy-rules) - The simple, stupid rules engine for Java
+   - [jbock-java/either](https://github.com/jbock-java/either) - Functional error handling for Java
    - [elasticsoftwarefoundation/elasticactors](https://github.com/elasticsoftwarefoundation/elasticactors) - Persistent Stateful Actor System
    - [nathanmarz/elephantdb](https://github.com/nathanmarz/elephantdb) - Distributed database specialized in exporting key/value data from Hadoop
    - [decorators-squad/eo-yaml](https://github.com/decorators-squad/eo-yaml) - YAML for Java 8 and above. A user-friendly OOP library. Previously known as &quot;Camel&quot;.
@@ -640,6 +646,7 @@ Contents
    - [java-json-tools/json-schema-validator](https://github.com/java-json-tools/json-schema-validator) - A JSON Schema validation implementation in pure Java, which aims for correctness and performance, in that order
    - [joelittlejohn/jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) - Generate Java types from JSON or JSON Schema and annotate those types for data-binding with Jackson, Gson, etc
    - [tomnelson/jungrapht-visualization](https://github.com/tomnelson/jungrapht-visualization) - visualization and sample code from Java Universal Network Graph ported to use JGraphT models and algorithms
+   - [karatelabs/karate](https://github.com/karatelabs/karate) - Test Automation Made Simple
    - [rayokota/kareldb](https://github.com/rayokota/kareldb) - A Relational Database Backed by Apache Kafka
    - [kcctl/kcctl](https://github.com/kcctl/kcctl) - A modern and intuitive command line client for Kafka Connect
    - [kestra-io/kestra](https://github.com/kestra-io/kestra) - Infinitely scalable, event-driven, language-agnostic orchestration and scheduling platform to manage millions of workflows declaratively in code.
@@ -657,6 +664,8 @@ Contents
    - [hrldcpr/pcollections](https://github.com/hrldcpr/pcollections) - A Persistent Java Collections Library
    - [adamalexandru4/pgmq-spring](https://github.com/adamalexandru4/pgmq-spring) - PGMQ Java client using Spring framework
    - [eugene-khyst/postgresql-event-sourcing](https://github.com/eugene-khyst/postgresql-event-sourcing) - A reference implementation of an event-sourced system that uses PostgreSQL as an event store built with Spring Boot. Fork the repository and use it as a template for your projects. Or clone the repository and run end-to-end tests to see how everything works together.
+   - [siy/pragmatica](https://github.com/siy/pragmatica) - Pragmatic Functional Java Essentials
+   - [siy/pragmatica-lite](https://github.com/siy/pragmatica-lite) - Simple micro web framework written in Pragmatic Functional Java style
    - [zalando/problem-spring-web](https://github.com/zalando/problem-spring-web) - A library for handling Problems in Spring Web MVC
    - [puniverse/quasar](https://github.com/puniverse/quasar) - Fibers, Channels and Actors for the JVM
    - [querydsl/querydsl](https://github.com/querydsl/querydsl) - Unified Queries for Java
@@ -686,6 +695,7 @@ Contents
    - [jtablesaw/tablesaw](https://github.com/jtablesaw/tablesaw) - Java dataframe and visualization library
    - [vert-x/test-tools-tests](https://github.com/vert-x/test-tools-tests) - Vert.x 2.x is deprecated - use instead
    - [f4b6a3/tsid-creator](https://github.com/f4b6a3/tsid-creator) - A Java library for generating Time-Sorted Unique Identifiers (TSID).
+   - [vavr-io/vavr](https://github.com/vavr-io/vavr) - vʌvr (formerly called Javaslang) is a non-commercial, non-profit object-functional library that runs with Java 8+. It aims to reduce the lines of code and increase code quality.
    - [eclipse-vertx/vert.x](https://github.com/eclipse-vertx/vert.x) - Vert.x is a tool-kit for building reactive applications on the JVM
    - [sczyh30/vertx-blueprint-microservice](https://github.com/sczyh30/vertx-blueprint-microservice) - Vert.x Blueprint Project - Micro-Shop microservice application
    - [engagingspaces/vertx-graphql-service-discovery](https://github.com/engagingspaces/vertx-graphql-service-discovery) - Service discovery and querying of GraphQL schema&apos;s in Vert.x based microservices
@@ -777,6 +787,7 @@ Contents
    - [Netflix/dgs-codegen](https://github.com/Netflix/dgs-codegen) - 
    - [intellij-rust/intellij-rust](https://github.com/intellij-rust/intellij-rust) - Rust plugin for the IntelliJ Platform
    - [javalin/javalin](https://github.com/javalin/javalin) - A simple and modern Java and Kotlin web framework
+   - [MarkoMilos/jsonapi](https://github.com/MarkoMilos/jsonapi) - Library for streamlined use of JSON:API using Kotlin and Java built on top of a modern json library Moshi.
    - [libp2p/jvm-libp2p](https://github.com/libp2p/jvm-libp2p) - a libp2p implementation for the JVM, written in Kotlin 🔥
    - [xenomachina/kessel](https://github.com/xenomachina/kessel) - A simple parser combinator library for Kotlin
    - [Sefford/kor](https://github.com/Sefford/kor) - A clean architecture implementation
@@ -1016,7 +1027,7 @@ Contents
    - [deus-labs/cw-contracts](https://github.com/deus-labs/cw-contracts) - Example contracts for using CosmWasm
    - [Rustixir/darkbird](https://github.com/Rustixir/darkbird) - In-memory database inspired by erlang mnesia
    - [datafuselabs/databend](https://github.com/datafuselabs/databend) - 𝗗𝗮𝘁𝗮, 𝗔𝗻𝗮𝗹𝘆𝘁𝗶𝗰𝘀 &amp; 𝗔𝗜. Modern alternative to Snowflake. Cost-effective and simple for massive-scale analytics. https://databend.com
-   - [apache/datafusion-ballista](https://github.com/apache/datafusion-ballista) - Apache Arrow Ballista Distributed Query Engine
+   - [apache/datafusion-ballista](https://github.com/apache/datafusion-ballista) - Apache DataFusion Ballista Distributed Query Engine
    - [denoland/deno](https://github.com/denoland/deno) - A modern runtime for JavaScript and TypeScript.
    - [diem/diem](https://github.com/diem/diem) - Diem’s mission is to build a trusted and innovative financial network that empowers people and businesses around the world.
    - [TimelyDataflow/differential-dataflow](https://github.com/TimelyDataflow/differential-dataflow) - An implementation of differential dataflow using timely dataflow on Rust.
@@ -1152,8 +1163,8 @@ Contents
    - [sangria-graphql/sangria-akka-http-example](https://github.com/sangria-graphql/sangria-akka-http-example) - An example GraphQL server written with akka-http, circe and sangria
    - [sbt/sbt-release](https://github.com/sbt/sbt-release) - A release plugin for sbt
    - [pauljamescleary/scala-pet-store](https://github.com/pauljamescleary/scala-pet-store) - An implementation of the java pet store using FP techniques in scala
-   - [rossabaker/scalatra](https://github.com/rossabaker/scalatra) - The authoritative fork is at http://github.com/scalatra/scalatra.
    - [scalatra/scalatra](https://github.com/scalatra/scalatra) - Tiny Scala high-performance, async web framework, inspired by Sinatra
+   - [rossabaker/scalatra](https://github.com/rossabaker/scalatra) - The authoritative fork is at http://github.com/scalatra/scalatra.
    - [scalaz/scalaz](https://github.com/scalaz/scalaz) - Principled Functional Programming in Scala
    - [milessabin/shapeless](https://github.com/milessabin/shapeless) - Generic programming for Scala
    - [devsisters/shardcake](https://github.com/devsisters/shardcake) - Sharding and location transparency for Scala
@@ -1196,6 +1207,9 @@ Contents
 ## Svelte
    - [mpiorowski/sgsg](https://github.com/mpiorowski/sgsg) - Open source application build using SvelteKit and Go connected via gRPC.
 
+## Swift
+   - [Tinder/StateMachine](https://github.com/Tinder/StateMachine) - A Kotlin and Swift DSL for finite state machine
+
 ## TypeScript
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
    - [openchatai/OpenCopilot](https://github.com/openchatai/OpenCopilot) - 🤖 🔥 Language-to-actions engine 
@@ -1209,7 +1223,7 @@ Contents
    - [cheeriojs/cheerio](https://github.com/cheeriojs/cheerio) - The fast, flexible, and elegant library for parsing and manipulating HTML and XML.
    - [typestack/class-validator](https://github.com/typestack/class-validator) - Decorator-based property validation for classes.
    - [Effect-TS/cluster](https://github.com/Effect-TS/cluster) - 
-   - [continuedev/continue](https://github.com/continuedev/continue) - ⏩ Continue enables you to create your own AI code assistant inside your IDE. Keep your developers in flow with open-source VS Code and JetBrains extensions
+   - [continuedev/continue](https://github.com/continuedev/continue) - ⏩ Continue is the leading open-source AI code assistant. You can connect any models and any context to build custom autocomplete and chat experiences inside VS Code and JetBrains
    - [graphile/crystal](https://github.com/graphile/crystal) - 🔮 Graphile&apos;s Crystal Monorepo; home to Grafast, PostGraphile, pg-introspection, pg-sql2 and much more!
    - [big-armor/datapm](https://github.com/big-armor/datapm) - 
    - [bekk/db-scheduler-ui](https://github.com/bekk/db-scheduler-ui) - 
@@ -1222,6 +1236,7 @@ Contents
    - [formsy/formsy-material-ui](https://github.com/formsy/formsy-material-ui) - A Formsy compatibility wrapper for Material-UI form components
    - [openfga/frontend-utils](https://github.com/openfga/frontend-utils) - Helpful functions for building OpenFGA model authoring frontends  - https://www.npmjs.com/package/@openfga/frontend-utils
    - [nestjs/graphql](https://github.com/nestjs/graphql) - GraphQL (TypeScript) module for Nest framework (node.js) 🍷
+   - [Escape-Technologies/graphql-armor](https://github.com/Escape-Technologies/graphql-armor) - 🛡️ The missing GraphQL security security layer for Apollo GraphQL and Yoga / Envelop servers 🛡️
    - [graphql-editor/graphql-editor](https://github.com/graphql-editor/graphql-editor) - 📺 Visual Editor &amp; GraphQL IDE. 
    - [slicknode/graphql-query-complexity](https://github.com/slicknode/graphql-query-complexity) - GraphQL query complexity analysis and validation for graphql-js
    - [kriasoft/graphql-starter-kit](https://github.com/kriasoft/graphql-starter-kit) - 💥  Monorepo template (seed project) pre-configured with GraphQL API, PostgreSQL, React, and Joy UI.
