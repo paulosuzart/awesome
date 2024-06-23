@@ -16,7 +16,7 @@ Have fun!
 Languages
 ---
 
-Languages starred: 48:
+Languages starred: 49:
    - [C](#C)
    - [C#](#C#)
    - [C++](#C++)
@@ -58,6 +58,7 @@ Languages starred: 48:
    - [Scala](#Scala)
    - [Shell](#Shell)
    - [Smarty](#Smarty)
+   - [Solidity](#Solidity)
    - [Starlark](#Starlark)
    - [Svelte](#Svelte)
    - [Swift](#Swift)
@@ -115,7 +116,7 @@ Contents
    - [Qihoo360/evpp](https://github.com/Qihoo360/evpp) - A modern C++ network library for developing high performance network services in TCP/UDP/HTTP protocols.
    - [google/flatbuffers](https://github.com/google/flatbuffers) - FlatBuffers: Memory Efficient Serialization Library
    - [facebook/folly](https://github.com/facebook/folly) - An open-source C++ library developed and used at Facebook.
-   - [nomic-ai/gpt4all](https://github.com/nomic-ai/gpt4all) - gpt4all: run open-source LLMs anywhere
+   - [nomic-ai/gpt4all](https://github.com/nomic-ai/gpt4all) - GPT4All: Chat with Local LLMs on Any Device
    - [hazelcast/hazelcast-cpp-client](https://github.com/hazelcast/hazelcast-cpp-client) - Hazelcast IMDG C++ Client
    - [paulftw/hiberlite](https://github.com/paulftw/hiberlite) - C++ ORM for SQLite
    - [STEllAR-GROUP/hpx](https://github.com/STEllAR-GROUP/hpx) - The C++ Standard Library for Parallelism and Concurrency
@@ -281,9 +282,9 @@ Contents
    - [IrenejMarc/dpq](https://github.com/IrenejMarc/dpq) - Simple but powerful PostgreSQL library inspired by higher-level languages.
    - [joakim-brannstrom/dsrcgen](https://github.com/joakim-brannstrom/dsrcgen) - The semantic code generation framework for Dlang
    - [dlang/dub-registry](https://github.com/dlang/dub-registry) - Online registry for dub packages
+   - [nomad-software/dunit](https://github.com/nomad-software/dunit) - Advanced unit testing toolkit for the D programming language
    - [jmcabo/dunit](https://github.com/jmcabo/dunit) - D Unit Testing Framework - class MyTest {mixin TestMixin; testMethod(){assert(true);} }
    - [linkrope/dunit](https://github.com/linkrope/dunit) - xUnit Testing Framework for D
-   - [nomad-software/dunit](https://github.com/nomad-software/dunit) - Advanced unit testing toolkit for the D programming language
    - [vibe-d/eventcore](https://github.com/vibe-d/eventcore) - High performance proactor event loop abstraction library
    - [jaypha/fixed](https://github.com/jaypha/fixed) - Fixed point type for D.
    - [huntlabs/flatbuffers](https://github.com/huntlabs/flatbuffers) - D Programming Language implementation of the google flatbuffers library
@@ -360,7 +361,7 @@ Contents
    - [hibiken/asynq](https://github.com/hibiken/asynq) - Simple, reliable, and efficient distributed task queue in Go
    - [atomix/atomix](https://github.com/atomix/atomix) - A Kubernetes toolkit for building distributed applications using cloud native principles
    - [etcd-io/bbolt](https://github.com/etcd-io/bbolt) - An embedded key/value database for Go.
-   - [warpstreamlabs/bento](https://github.com/warpstreamlabs/bento) - 
+   - [warpstreamlabs/bento](https://github.com/warpstreamlabs/bento) - Fancy stream processing made operationally mundane. This repository is a fork of the original project before the license was changed.
    - [allegro/bigcache](https://github.com/allegro/bigcache) - Efficient cache for gigabytes of data written in Go.
    - [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) - A powerful little TUI framework 🏗
    - [containers/buildah](https://github.com/containers/buildah) - A tool that facilitates building OCI images.
@@ -937,6 +938,7 @@ Contents
    - [byashimov/django-controlcenter](https://github.com/byashimov/django-controlcenter) - Set of widgets to build dashboards for Django projects
    - [kraiz/django-crontab](https://github.com/kraiz/django-crontab) - dead simple crontab powered job scheduling for django.
    - [raiderrobert/django-multiurl](https://github.com/raiderrobert/django-multiurl) - Have you ever wanted multiple views to match to the same URL? Now you can.
+   - [arthurio/fastapi-filter](https://github.com/arthurio/fastapi-filter) - Filter and order your endpoints
    - [lixxu/flask-paginate](https://github.com/lixxu/flask-paginate) - Pagination support for flask
    - [babbel/floto](https://github.com/babbel/floto) - Task Orchestration Tool Based on SWF and boto3
    - [minimaxir/gpt-2-simple](https://github.com/minimaxir/gpt-2-simple) - Python package to easily retrain OpenAI&apos;s GPT-2 text-generating model on new texts
@@ -953,7 +955,7 @@ Contents
    - [localstack/localstack](https://github.com/localstack/localstack) - 💻 A fully functional local AWS cloud stack. Develop and test your cloud &amp; Serverless apps offline
    - [spotify/luigi](https://github.com/spotify/luigi) - Luigi is a Python module that helps you build complex pipelines of batch jobs. It handles dependency resolution, workflow management, visualization etc. It also comes with Hadoop support built in. 
    - [mage-ai/mage-ai](https://github.com/mage-ai/mage-ai) - 🧙 Build, run, and manage data pipelines for integrating and transforming data.
-   - [mindsdb/mindsdb](https://github.com/mindsdb/mindsdb) - The platform for customizing AI from enterprise data
+   - [mindsdb/mindsdb](https://github.com/mindsdb/mindsdb) - The platform for building AI from enterprise data
    - [outlines-dev/outlines](https://github.com/outlines-dev/outlines) - Structured Text Generation
    - [cusma/pe-de-manga](https://github.com/cusma/pe-de-manga) - Plante e regue um pé de manga, grite oxê e colhe sua deliciosa manga NFT! 🥭
    - [zylon-ai/private-gpt](https://github.com/zylon-ai/private-gpt) - Interact with your documents using the power of GPT, 100% privately, no data leaks
@@ -1201,6 +1203,9 @@ Contents
 ## Smarty
    - [aahemm/helm-microservice](https://github.com/aahemm/helm-microservice) - A Helm Chart To Deploy (Almost) All Your Services
 
+## Solidity
+   - [smartcontractkit/smart-contract-examples](https://github.com/smartcontractkit/smart-contract-examples) - Example and sample projects
+
 ## Starlark
    - [bazelbuild/rules_d](https://github.com/bazelbuild/rules_d) - D rules for Bazel
 
@@ -1230,7 +1235,7 @@ Contents
    - [deepstreamIO/deepstream.io](https://github.com/deepstreamIO/deepstream.io) - deepstream.io server
    - [torokmark/design_patterns_in_typescript](https://github.com/torokmark/design_patterns_in_typescript) - :triangular_ruler: Design pattern implementations in TypeScript
    - [drizzle-team/drizzle-orm](https://github.com/drizzle-team/drizzle-orm) - Headless TypeScript ORM with a head. Runs on Node, Bun and Deno. Lives on the Edge and yes, it&apos;s a JavaScript ORM too 😅
-   - [Effect-TS/effect](https://github.com/Effect-TS/effect) - An ecosystem of tools to build robust applications in TypeScript.
+   - [Effect-TS/effect](https://github.com/Effect-TS/effect) - An ecosystem of tools to build robust applications in TypeScript
    - [boyney123/eventcatalog](https://github.com/boyney123/eventcatalog) - Discover, Explore and Document your Event Driven Architectures powered by Markdown.
    - [auth0/express-jwt](https://github.com/auth0/express-jwt) - connect/express middleware that validates a JsonWebToken (JWT) and set the req.user with the attributes
    - [formsy/formsy-material-ui](https://github.com/formsy/formsy-material-ui) - A Formsy compatibility wrapper for Material-UI form components
