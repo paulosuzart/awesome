@@ -16,7 +16,8 @@ Have fun!
 Languages
 ---
 
-Languages starred: 49:
+Languages starred: 51:
+   - [Assembly](#Assembly)
    - [C](#C)
    - [C#](#C#)
    - [C++](#C++)
@@ -51,6 +52,7 @@ Languages starred: 49:
    - [Python](#Python)
    - [R](#R)
    - [Racket](#Racket)
+   - [ReScript](#ReScript)
    - [Roc](#Roc)
    - [Ruby](#Ruby)
    - [Rust](#Rust)
@@ -69,6 +71,9 @@ Languages starred: 49:
 
 Contents
 ---
+
+## Assembly
+   - [BLAKE3-team/BLAKE3](https://github.com/BLAKE3-team/BLAKE3) - the official Rust and C implementations of the BLAKE3 cryptographic hash function
 
 ## C
    - [pikasTech/PikaPython](https://github.com/pikasTech/PikaPython) - An ultra-lightweight Python interpreter that runs with only 4KB of RAM, zero dependencies. It is ready to use out of the box without any configuration required and easy to extend with C. Similar project: MicroPython, JerryScript.
@@ -136,6 +141,7 @@ Contents
    - [fnc12/sqlite_orm](https://github.com/fnc12/sqlite_orm) - ❤️ SQLite ORM light header only library for modern C++
    - [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) - Simple, secure &amp; standards compliant web server for the most demanding of applications
    - [vnaydionov/yb-orm](https://github.com/vnaydionov/yb-orm) - YB.ORM is an object-relational mapper for C++
+   - [ydb-platform/ydb](https://github.com/ydb-platform/ydb) - YDB is an open source Distributed SQL Database that combines high availability and scalability with strong consistency and ACID transactions
 
 ## CSS
    - [GoogleChrome/web-vitals-extension](https://github.com/GoogleChrome/web-vitals-extension) - A Chrome extension to measure essential metrics for a healthy site
@@ -238,6 +244,7 @@ Contents
 ## Crystal
    - [Axentro/Axentro](https://github.com/Axentro/Axentro) - To be the go to platform for building dApps quickly and cheaply for business and gaming
    - [amberframework/amber](https://github.com/amberframework/amber) - A Crystal web framework that makes building applications fast, simple, and enjoyable. Get started with quick prototyping, less bugs, and blazing fast performance.
+   - [amethyst-framework/amethyst](https://github.com/amethyst-framework/amethyst) - Amethyst is a Rails inspired web-framework for Crystal language
    - [mosop/cli](https://github.com/mosop/cli) - Yet another Crystal library for building command-line interface applications.
    - [mamantoha/crest](https://github.com/mamantoha/crest) - HTTP and REST client for Crystal
    - [askn/crystal-by-example](https://github.com/askn/crystal-by-example) - Crystal By Example
@@ -356,6 +363,7 @@ Contents
 
 ## Go
    - [stakater/Reloader](https://github.com/stakater/Reloader) - A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&apos;re using it!
+   - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - A web security gateway, serve as a reverse proxy to protect your websites from attacks and exploits.
    - [nektos/act](https://github.com/nektos/act) - Run your GitHub Actions locally 🚀
    - [GeorgeNava/appgo](https://github.com/GeorgeNava/appgo) - Web framework for creating apps using Go in Google AppEngine
    - [hibiken/asynq](https://github.com/hibiken/asynq) - Simple, reliable, and efficient distributed task queue in Go
@@ -409,7 +417,7 @@ Contents
    - [toorop/go-bittrex](https://github.com/toorop/go-bittrex) - Go  binding for the Bittrex crypto-currency exchange API.
    - [wcharczuk/go-chart](https://github.com/wcharczuk/go-chart) - go chart is a basic charting library in go.
    - [ipfs/go-ds-crdt](https://github.com/ipfs/go-ds-crdt) - A distributed go-datastore implementation using Merkle-CRDTs.
-   - [BooleanCat/go-functional](https://github.com/BooleanCat/go-functional) - go-functional is a library that offers functional programming in Go using generics
+   - [BooleanCat/go-functional](https://github.com/BooleanCat/go-functional) - go-functional is a library of iterators to augment the standard library
    - [thoas/go-funk](https://github.com/thoas/go-funk) - A modern Go utility library which provides helpers (map, find, contains, filter, ...)
    - [skelterjohn/go-gb](https://github.com/skelterjohn/go-gb) - A(nother) tool to build go projects.
    - [mattn/go-gtk](https://github.com/mattn/go-gtk) - Go binding for GTK
@@ -656,6 +664,7 @@ Contents
    - [openfga/language](https://github.com/openfga/language) - Grammar for the OpenFGA modeling language
    - [jclouds/legacy-jclouds-examples](https://github.com/jclouds/legacy-jclouds-examples) - 
    - [liquidpie/lenses-java](https://github.com/liquidpie/lenses-java) - Implementation of Lens Pattern in Java
+   - [ddd-by-examples/library](https://github.com/ddd-by-examples/library) - A comprehensive Domain-Driven Design example with problem space strategic analysis and various tactical patterns.
    - [jankotek/mapdb](https://github.com/jankotek/mapdb) - MapDB provides concurrent Maps, Sets and Queues backed by disk storage or off-heap-memory. It is a fast and easy to use embedded Java database engine.
    - [mizosoft/methanol](https://github.com/mizosoft/methanol) - ⚗️ Lightweight HTTP extensions for Java
    - [mweirauch/micrometer-jvm-extras](https://github.com/mweirauch/micrometer-jvm-extras) - A set of additional JVM process metrics for micrometer.io.
@@ -692,6 +701,7 @@ Contents
    - [jreijn/spring-comparing-template-engines](https://github.com/jreijn/spring-comparing-template-engines) - Demo project to show different Java templating engines in combination with Spring MVC
    - [yugabyte/spring-data-yugabytedb](https://github.com/yugabyte/spring-data-yugabytedb) - Spring Data Module for YugabyteDB.
    - [spring-projects/spring-retry](https://github.com/spring-projects/spring-retry) - 
+   - [hirannor/springboot-hexagonal-ddd](https://github.com/hirannor/springboot-hexagonal-ddd) - Spring-Boot application based on hexagonal architecture and DDD
    - [statefulj/statefulj](https://github.com/statefulj/statefulj) - A Finite State Machine Implementation along with an integrated Spring Based Framework
    - [stateless4j/stateless4j](https://github.com/stateless4j/stateless4j) - Lightweight Java State Machine
    - [digitalpetri/strict-machine](https://github.com/digitalpetri/strict-machine) - A declarative DSL for building asynchronously evaluated Finite State Machines on the JVM
@@ -897,7 +907,6 @@ Contents
    - [rgrinberg/opium](https://github.com/rgrinberg/opium) - Sinatra like web toolkit for OCaml
    - [Gopiandcode/petrol](https://github.com/Gopiandcode/petrol) - Petrol&apos;s an OCaml SQL API made to go FAST.
    - [dbuenzli/react](https://github.com/dbuenzli/react) - Declarative events and signals for OCaml
-   - [rescript-lang/rescript-compiler](https://github.com/rescript-lang/rescript-compiler) - The compiler for ReScript.
    - [riot-ml/riot](https://github.com/riot-ml/riot) - An actor-model multi-core scheduler for OCaml 5 🐫
    - [paulosuzart/starred_ml](https://github.com/paulosuzart/starred_ml) - Creates a starred markdown
    - [suri-framework/trail](https://github.com/suri-framework/trail) - Minimal composable server framework for Riot
@@ -955,7 +964,7 @@ Contents
    - [carbonfact/lea](https://github.com/carbonfact/lea) - 🏃‍♀️ Minimalist alternative to dbt
    - [Lightning-AI/lit-llama](https://github.com/Lightning-AI/lit-llama) - Implementation of the LLaMA language model based on nanoGPT. Supports flash attention, Int8 and GPTQ 4bit quantization, LoRA and LLaMA-Adapter fine-tuning, pre-training. Apache 2.0-licensed.
    - [BerriAI/litellm](https://github.com/BerriAI/litellm) - Call all LLM APIs using the OpenAI format. Use Bedrock, Azure, OpenAI, Cohere, Anthropic, Ollama, Sagemaker, HuggingFace, Replicate (100+ LLMs)
-   - [Lightning-AI/litgpt](https://github.com/Lightning-AI/litgpt) - 20+ high-performance LLM implementations with recipes to pretrain, finetune and deploy at scale.
+   - [Lightning-AI/litgpt](https://github.com/Lightning-AI/litgpt) - 20+ high-performance LLMs with recipes to pretrain, finetune and deploy at scale.
    - [localstack/localstack](https://github.com/localstack/localstack) - 💻 A fully functional local AWS cloud stack. Develop and test your cloud &amp; Serverless apps offline
    - [spotify/luigi](https://github.com/spotify/luigi) - Luigi is a Python module that helps you build complex pipelines of batch jobs. It handles dependency resolution, workflow management, visualization etc. It also comes with Hadoop support built in. 
    - [mage-ai/mage-ai](https://github.com/mage-ai/mage-ai) - 🧙 Build, run, and manage data pipelines for integrating and transforming data.
@@ -997,6 +1006,9 @@ Contents
 ## Racket
    - [greghendershott/http](https://github.com/greghendershott/http) - Racket support for HTTP 1.1.
    - [david-vanderson/warp](https://github.com/david-vanderson/warp) - coop networked game in Racket
+
+## ReScript
+   - [rescript-lang/rescript-compiler](https://github.com/rescript-lang/rescript-compiler) - The compiler for ReScript.
 
 ## Roc
    - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver) - A basic webserver in Roc
@@ -1223,7 +1235,6 @@ Contents
 ## TypeScript
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
    - [openchatai/OpenCopilot](https://github.com/openchatai/OpenCopilot) - 🤖 🔥 Language-to-actions engine 
-   - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - A web security gateway, serve as a reverse proxy to protect your websites from attacks and exploits.
    - [Qovery/Torii](https://github.com/Qovery/Torii) - Torii ⛩️ is a simple, powerful and extensible open-source Internal Developer Portal
    - [Canner/WrenAI](https://github.com/Canner/WrenAI) - Wren AI makes your database RAG-ready. Implement Text-to-SQL more accurately and securely.
    - [aerographql/aerographql](https://github.com/aerographql/aerographql) - A small and opinionated Typescript toolkit to create GraphQL server using a declarative approach
@@ -1243,7 +1254,7 @@ Contents
    - [torokmark/design_patterns_in_typescript](https://github.com/torokmark/design_patterns_in_typescript) - :triangular_ruler: Design pattern implementations in TypeScript
    - [drizzle-team/drizzle-orm](https://github.com/drizzle-team/drizzle-orm) - Headless TypeScript ORM with a head. Runs on Node, Bun and Deno. Lives on the Edge and yes, it&apos;s a JavaScript ORM too 😅
    - [Effect-TS/effect](https://github.com/Effect-TS/effect) - An ecosystem of tools to build robust applications in TypeScript
-   - [boyney123/eventcatalog](https://github.com/boyney123/eventcatalog) - Discover, Explore and Document your Event Driven Architectures powered by Markdown.
+   - [event-catalog/eventcatalog](https://github.com/event-catalog/eventcatalog) - An open source documentation tool to bring discoverability to your event-driven architectures 
    - [auth0/express-jwt](https://github.com/auth0/express-jwt) - connect/express middleware that validates a JsonWebToken (JWT) and set the req.user with the attributes
    - [formsy/formsy-material-ui](https://github.com/formsy/formsy-material-ui) - A Formsy compatibility wrapper for Material-UI form components
    - [openfga/frontend-utils](https://github.com/openfga/frontend-utils) - Helpful functions for building OpenFGA model authoring frontends  - https://www.npmjs.com/package/@openfga/frontend-utils
@@ -1275,6 +1286,7 @@ Contents
    - [emmanueltouzery/prelude-ts](https://github.com/emmanueltouzery/prelude-ts) - Functional programming, immutable collections and FP constructs for typescript and javascript
    - [XPRNetwork/proton-market-old](https://github.com/XPRNetwork/proton-market-old) - Proton NFT Marketplace Frontend
    - [puppeteer/puppeteer](https://github.com/puppeteer/puppeteer) - Node.js API for Chrome 
+   - [gothinkster/realworld](https://github.com/gothinkster/realworld) - &quot;The mother of all demo apps&quot; — Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more
    - [typestack/routing-controllers](https://github.com/typestack/routing-controllers) - Create structured, declarative and beautifully organized class-based controllers with heavy decorators usage in Express / Koa using TypeScript and Routing Controllers Framework.
    - [safe-global/safe-wallet-web](https://github.com/safe-global/safe-wallet-web) - Safe{Wallet} – smart contract wallet for Ethereum (ex-Gnosis Safe multisig)
    - [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library aimed at visualizing graphs of thousands of nodes and edges
