@@ -16,7 +16,7 @@ Have fun!
 Languages
 ---
 
-Languages starred: 51:
+Languages starred: 52:
    - [Assembly](#Assembly)
    - [C](#C)
    - [C#](#C#)
@@ -49,6 +49,7 @@ Languages starred: 51:
    - [OCaml](#OCaml)
    - [Odin](#Odin)
    - [PHP](#PHP)
+   - [PLpgSQL](#PLpgSQL)
    - [Python](#Python)
    - [R](#R)
    - [Racket](#Racket)
@@ -365,6 +366,7 @@ Contents
    - [stakater/Reloader](https://github.com/stakater/Reloader) - A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&apos;re using it!
    - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - serve as a reverse proxy to protect your web services from attacks and exploits.
    - [nektos/act](https://github.com/nektos/act) - Run your GitHub Actions locally 🚀
+   - [FiloSottile/age](https://github.com/FiloSottile/age) - A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability.
    - [GeorgeNava/appgo](https://github.com/GeorgeNava/appgo) - Web framework for creating apps using Go in Google AppEngine
    - [hibiken/asynq](https://github.com/hibiken/asynq) - Simple, reliable, and efficient distributed task queue in Go
    - [atomix/atomix](https://github.com/atomix/atomix) - A Kubernetes toolkit for building distributed applications using cloud native principles
@@ -415,6 +417,7 @@ Contents
    - [flomesh-io/fsm](https://github.com/flomesh-io/fsm) - Lightweight service mesh for Kubernetes East-West and North-South traffic management, uses ebpf for layer4  and pipy proxy for layer7 traffic management, support multi cluster network. 
    - [go-fuego/fuego](https://github.com/go-fuego/fuego) - Golang Fuego - web framework generating OpenAPI 3 spec from source code
    - [paulosuzart/gb](https://github.com/paulosuzart/gb) - Go Benchmark. Inspired by Apache Benchmark
+   - [onsi/ginkgo](https://github.com/onsi/ginkgo) - A Modern Testing Framework for Go
    - [steveyen/gkvlite](https://github.com/steveyen/gkvlite) - Simple, ordered, key-value persistence library for the Go Language
    - [glasskube/glasskube](https://github.com/glasskube/glasskube) - 🧊 The next generation Package Manager for Kubernetes 📦 Featuring a GUI and a CLI. Glasskube packages are dependency aware, GitOps ready and can get automatic updates via a central public package repository.
    - [charmbracelet/glow](https://github.com/charmbracelet/glow) - Render markdown on the CLI, with pizzazz! 💅🏻
@@ -463,6 +466,7 @@ Contents
    - [kubernetes/kops](https://github.com/kubernetes/kops) - Kubernetes Operations (kOps) - Production Grade k8s Installation, Upgrades and Management
    - [yonahd/kor](https://github.com/yonahd/kor) - A Golang Tool to discover unused Kubernetes Resources 
    - [kubefirst/kubefirst](https://github.com/kubefirst/kubefirst) - The Kubefirst Open Source Platform
+   - [kumahq/kuma](https://github.com/kumahq/kuma) - 🐻 The multi-zone service mesh for containers, Kubernetes and VMs. Built with Envoy. CNCF Sandbox Project.
    - [jesseduffield/lazydocker](https://github.com/jesseduffield/lazydocker) - The lazier way to manage everything docker
    - [docker/libchan](https://github.com/docker/libchan) - Like Go channels over the network
    - [liftbridge-io/liftbridge](https://github.com/liftbridge-io/liftbridge) - Lightweight, fault-tolerant message streams.
@@ -494,7 +498,7 @@ Contents
    - [rigdev/rig](https://github.com/rigdev/rig) - The DevEx &amp; Application-layer for your Internal Developer Platform ⛵
    - [risor-io/risor](https://github.com/risor-io/risor) - Fast and flexible scripting for Go developers and DevOps.
    - [riverqueue/river](https://github.com/riverqueue/river) - Fast and reliable background jobs in Go
-   - [rqlite/rqlite](https://github.com/rqlite/rqlite) - The lightweight, distributed relational database built on SQLite.
+   - [rqlite/rqlite](https://github.com/rqlite/rqlite) - The lightweight, user-friendly, distributed relational database built on SQLite.
    - [rulego/rulego](https://github.com/rulego/rulego) - ⛓️RuleGo is a lightweight, high-performance, embedded, next-generation component orchestration rule engine framework for Go.
    - [JJBordy/rules](https://github.com/JJBordy/rules) - Minimal rules engine, uses yaml as input
    - [schemahero/schemahero](https://github.com/schemahero/schemahero) - A Kubernetes operator for declarative database schema management (gitops for database schemas)
@@ -515,6 +519,7 @@ Contents
    - [runvnc/tealang](https://github.com/runvnc/tealang) - Tealang - high level language for Algorand ASC1 and TEAL
    - [hashicorp/terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws) - The AWS Provider enables Terraform to manage AWS resources.
    - [ionos-cloud/terraform-provider-ionoscloud](https://github.com/ionos-cloud/terraform-provider-ionoscloud) - The IonosCloud Terraform provider gives the ability to deploy and configure resources using the IonosCloud APIs.
+   - [ZEISS/terraform-provider-openfga](https://github.com/ZEISS/terraform-provider-openfga) - (Experimental) OpenFGA Terraform Provider
    - [tilt-dev/tilt](https://github.com/tilt-dev/tilt) - Define your dev environment as code. For microservice apps on Kubernetes.
    - [aserto-dev/topaz](https://github.com/aserto-dev/topaz) - Cloud-native authorization for modern applications and APIs
    - [runabol/tork](https://github.com/runabol/tork) - A distributed workflow engine
@@ -742,6 +747,8 @@ Contents
    - [uilicious/english-compiler](https://github.com/uilicious/english-compiler) - POC AI based Compiler, for converting english based markdown specs, into functional code
    - [babel/example-node-server](https://github.com/babel/example-node-server) - Example Node Server w/ Babel
    - [simonexmachina/factory-girl-bookshelf](https://github.com/simonexmachina/factory-girl-bookshelf) - A Bookshelf adapter for factory-girl
+   - [fastify/fastify](https://github.com/fastify/fastify) - Fast and low overhead web framework, for Node.js
+   - [fastify/fastify-kafka](https://github.com/fastify/fastify-kafka) - Fastify plugin to interact with Apache Kafka.
    - [natevw/fermata](https://github.com/natevw/fermata) - Succinct native REST client, for client-side web apps and node.js. Turns URLs into (optionally: magic!) JavaScript objects.
    - [paulosuzart/fiscalia](https://github.com/paulosuzart/fiscalia) - 
    - [christianalfoni/formsy-react](https://github.com/christianalfoni/formsy-react) - A form input builder and validator for React JS
@@ -928,6 +935,9 @@ Contents
 ## PHP
    - [tnc/rac](https://github.com/tnc/rac) - PHP RabbitMQ Administration Console
 
+## PLpgSQL
+   - [electric-sql/pglite](https://github.com/electric-sql/pglite) - Lightweight Postgres packaged as WASM into a TypeScript library for the browser, Node.js, Bun and Deno
+
 ## Python
    - [mikeknapp/AppEngine-OAuth-Library](https://github.com/mikeknapp/AppEngine-OAuth-Library) - An OAuth library for interacting with Twitter, MySpace, LinkedIn and Yahoo on AppEngine
    - [IAHispano/Applio](https://github.com/IAHispano/Applio) - VITS-based Voice Conversion focused on simplicity, quality and performance.
@@ -965,7 +975,7 @@ Contents
    - [lixxu/flask-paginate](https://github.com/lixxu/flask-paginate) - Pagination support for flask
    - [babbel/floto](https://github.com/babbel/floto) - Task Orchestration Tool Based on SWF and boto3
    - [minimaxir/gpt-2-simple](https://github.com/minimaxir/gpt-2-simple) - Python package to easily retrain OpenAI&apos;s GPT-2 text-generating model on new texts
-   - [gpt-engineer-org/gpt-engineer](https://github.com/gpt-engineer-org/gpt-engineer) - Specify what you want it to build, the AI asks for clarification, and then builds it. Not actively maintained.
+   - [gpt-engineer-org/gpt-engineer](https://github.com/gpt-engineer-org/gpt-engineer) - Specify what you want it to build, the AI asks for clarification, and then builds it. Completely separate team and codebase from the AI Web App builder https://gptengineer.app
    - [marcio704/graphic_editor](https://github.com/marcio704/graphic_editor) - Description on &apos;instructions.txt&apos;
    - [benoitc/gunicorn](https://github.com/benoitc/gunicorn) - gunicorn &apos;Green Unicorn&apos; is a WSGI HTTP Server for UNIX, fast clients and sleepy applications.
    - [hazelcast/hazelcast-python-client](https://github.com/hazelcast/hazelcast-python-client) - Hazelcast Python Client
@@ -975,7 +985,7 @@ Contents
    - [lancedb/lancedb](https://github.com/lancedb/lancedb) - Developer-friendly, serverless vector database for AI applications. Easily add long-term memory to your LLM apps!
    - [carbonfact/lea](https://github.com/carbonfact/lea) - 🏃‍♀️ Minimalist alternative to dbt
    - [Lightning-AI/lit-llama](https://github.com/Lightning-AI/lit-llama) - Implementation of the LLaMA language model based on nanoGPT. Supports flash attention, Int8 and GPTQ 4bit quantization, LoRA and LLaMA-Adapter fine-tuning, pre-training. Apache 2.0-licensed.
-   - [BerriAI/litellm](https://github.com/BerriAI/litellm) - Call all LLM APIs using the OpenAI format. Use Bedrock, Azure, OpenAI, Cohere, Anthropic, Ollama, Sagemaker, HuggingFace, Replicate, Groq (100+ LLMs)
+   - [BerriAI/litellm](https://github.com/BerriAI/litellm) - LLM Proxy to call 100+ LLM APIs using the OpenAI format - Bedrock, Azure, OpenAI, VertexAI, Cohere, Anthropic, Sagemaker, HuggingFace, Replicate, Groq
    - [Lightning-AI/litgpt](https://github.com/Lightning-AI/litgpt) - 20+ high-performance LLMs with recipes to pretrain, finetune and deploy at scale.
    - [localstack/localstack](https://github.com/localstack/localstack) - 💻 A fully functional local AWS cloud stack. Develop and test your cloud &amp; Serverless apps offline
    - [spotify/luigi](https://github.com/spotify/luigi) - Luigi is a Python module that helps you build complex pipelines of batch jobs. It handles dependency resolution, workflow management, visualization etc. It also comes with Hadoop support built in. 
@@ -1111,7 +1121,7 @@ Contents
    - [ratatui-org/ratatui](https://github.com/ratatui-org/ratatui) - Rust library that&apos;s all about cooking up terminal user interfaces (TUIs) 👨‍🍳🐀
    - [GregoryConrad/rearch-rs](https://github.com/GregoryConrad/rearch-rs) - Re-imagined approach to application design and architecture
    - [rerun-io/rerun](https://github.com/rerun-io/rerun) - Visualize streams of multimodal data. Fast, easy to use, and simple to integrate.  Built in Rust using egui.
-   - [risingwavelabs/risingwave](https://github.com/risingwavelabs/risingwave) - SQL database for event streaming workloads. Build live dashboards, event-driven applications, ETL pipelines, and feature stores in minutes. Featuring a best-in-class stream processing engine. PostgreSQL compatible.
+   - [risingwavelabs/risingwave](https://github.com/risingwavelabs/risingwave) - SQL query engine for event streams. Perform streaming analytics, or build event-driven applications, real-time ETL pipelines, and feature stores in minutes. Unified streaming and batch processing. PostgreSQL compatible.
    - [roapi/roapi](https://github.com/roapi/roapi) - Create full-fledged APIs for slowly moving datasets without writing a single line of code.
    - [roc-lang/roc](https://github.com/roc-lang/roc) - A fast, friendly, functional language.
    - [skdziwak/rs-rdc](https://github.com/skdziwak/rs-rdc) - This crate is used to generate code for other languages from Rust&apos;s data structures. It can be used to generate DTO classes to make it easier to interact with other languages.
@@ -1248,7 +1258,7 @@ Contents
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
    - [event-driven-io/Pongo](https://github.com/event-driven-io/Pongo) - Pongo - Mongo but on Postgres and with strong consistency benefits
    - [Qovery/Torii](https://github.com/Qovery/Torii) - Torii ⛩️ is a simple, powerful and extensible open-source Internal Developer Portal
-   - [Canner/WrenAI](https://github.com/Canner/WrenAI) - Open-source Text-to-SQL solution, Wren AI makes your database RAG-ready. 
+   - [Canner/WrenAI](https://github.com/Canner/WrenAI) - 🚀 Open-source Text-to-SQL solution for data and business teams. 🙌
    - [aerographql/aerographql](https://github.com/aerographql/aerographql) - A small and opinionated Typescript toolkit to create GraphQL server using a declarative approach
    - [apollographql/apollo-tooling](https://github.com/apollographql/apollo-tooling) - ✏️ Apollo CLI for client tooling (Mostly replaced by Rover)
    - [bigcapitalhq/bigcapital](https://github.com/bigcapitalhq/bigcapital) - 💵 Bigcapital is financial accounting with intelligent reporting for faster decision-making, an open-source alternative to Quickbooks, Xero, etc.
@@ -1266,7 +1276,7 @@ Contents
    - [deepstreamIO/deepstream.io](https://github.com/deepstreamIO/deepstream.io) - deepstream.io server
    - [torokmark/design_patterns_in_typescript](https://github.com/torokmark/design_patterns_in_typescript) - :triangular_ruler: Design pattern implementations in TypeScript
    - [drizzle-team/drizzle-orm](https://github.com/drizzle-team/drizzle-orm) - Headless TypeScript ORM with a head. Runs on Node, Bun and Deno. Lives on the Edge and yes, it&apos;s a JavaScript ORM too 😅
-   - [Effect-TS/effect](https://github.com/Effect-TS/effect) - An ecosystem of tools to build robust applications in TypeScript
+   - [Effect-TS/effect](https://github.com/Effect-TS/effect) - An ecosystem of tools to build robust applications in TypeScript.
    - [event-catalog/eventcatalog](https://github.com/event-catalog/eventcatalog) - An open source documentation tool to bring discoverability to your event-driven architectures 
    - [auth0/express-jwt](https://github.com/auth0/express-jwt) - connect/express middleware that validates a JsonWebToken (JWT) and set the req.user with the attributes
    - [formsy/formsy-material-ui](https://github.com/formsy/formsy-material-ui) - A Formsy compatibility wrapper for Material-UI form components
@@ -1283,28 +1293,30 @@ Contents
    - [hazelcast/hazelcast-nodejs-client](https://github.com/hazelcast/hazelcast-nodejs-client) - Hazelcast Node.js Client
    - [javascript-obfuscator/javascript-obfuscator](https://github.com/javascript-obfuscator/javascript-obfuscator) - A powerful obfuscator for JavaScript and Node.js
    - [jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry) - JHipster Registry, based on Spring Cloud Netflix Eureka and Spring Cloud Config
-   - [keystonejs/keystone](https://github.com/keystonejs/keystone) - The most powerful headless CMS for Node.js — built with GraphQL and React
+   - [keystonejs/keystone](https://github.com/keystonejs/keystone) - The superpowered headless CMS for Node.js — built with GraphQL and React
    - [huggingface/llm-vscode](https://github.com/huggingface/llm-vscode) - LLM powered development for VSCode
    - [malloydata/malloy](https://github.com/malloydata/malloy) - Malloy is an experimental language for describing data relationships and transformations.
    - [Ff00ff/mammoth](https://github.com/Ff00ff/mammoth) - A type-safe Postgres query builder for TypeScript.
    - [medplum/medplum](https://github.com/medplum/medplum) - Medplum is a healthcare platform that helps you quickly develop high-quality compliant applications.
+   - [mikro-orm/mikro-orm](https://github.com/mikro-orm/mikro-orm) - TypeScript ORM for Node.js based on Data Mapper, Unit of Work and Identity Map patterns. Supports MongoDB, MySQL, MariaDB, MS SQL Server, PostgreSQL and SQLite/libSQL databases.
    - [ega-forever/mokka](https://github.com/ega-forever/mokka) - Mokka consensus
    - [nestjs/nest](https://github.com/nestjs/nest) - A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications with TypeScript/JavaScript 🚀
+   - [nocodb/nocodb](https://github.com/nocodb/nocodb) - 🔥 🔥 🔥 Open Source Airtable Alternative
    - [novuhq/novu](https://github.com/novuhq/novu) - Open-Source Notification Platform. Embeddable Notification Center, E-mail, Push and Slack Integrations.
    - [pezzolabs/pezzo](https://github.com/pezzolabs/pezzo) - 🕹️ Open-source, developer-first LLMOps platform designed to streamline prompt design, version management, instant delivery, collaboration, troubleshooting, observability and more.
    - [dylibso/pg_extism](https://github.com/dylibso/pg_extism) - About An Extism sample showing how you can run Extism plugins from PostgreSQL using pgrx
-   - [electric-sql/pglite](https://github.com/electric-sql/pglite) - Lightweight Postgres packaged as WASM into a TypeScript library for the browser, Node.js, Bun and Deno
    - [pkgxdev/pkgx](https://github.com/pkgxdev/pkgx) - the last thing you’ll install
    - [portainer/portainer](https://github.com/portainer/portainer) - Making Docker and Kubernetes management easy.
    - [emmanueltouzery/prelude-ts](https://github.com/emmanueltouzery/prelude-ts) - Functional programming, immutable collections and FP constructs for typescript and javascript
    - [XPRNetwork/proton-market-old](https://github.com/XPRNetwork/proton-market-old) - Proton NFT Marketplace Frontend
-   - [puppeteer/puppeteer](https://github.com/puppeteer/puppeteer) - Node.js API for Chrome 
+   - [puppeteer/puppeteer](https://github.com/puppeteer/puppeteer) - JavaScript API for Chrome and Firefox
    - [gothinkster/realworld](https://github.com/gothinkster/realworld) - &quot;The mother of all demo apps&quot; — Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more
    - [typestack/routing-controllers](https://github.com/typestack/routing-controllers) - Create structured, declarative and beautifully organized class-based controllers with heavy decorators usage in Express / Koa using TypeScript and Routing Controllers Framework.
    - [safe-global/safe-wallet-web](https://github.com/safe-global/safe-wallet-web) - Safe{Wallet} – smart contract wallet for Ethereum (ex-Gnosis Safe multisig)
    - [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library aimed at visualizing graphs of thousands of nodes and edges
    - [gajus/slonik](https://github.com/gajus/slonik) - A Node.js PostgreSQL client with runtime and build time type safety, and composable SQL.
    - [socketio/socket.io](https://github.com/socketio/socket.io) - Realtime application framework (Node.JS server)
+   - [ssoready/ssoready](https://github.com/ssoready/ssoready) - Open-source dev tools for enterprise SSO. Ship SAML support this afternoon.
    - [yangshun/tech-interview-handbook](https://github.com/yangshun/tech-interview-handbook) - 💯 Curated coding interview preparation materials for busy software engineers
    - [eclipse-theia/theia](https://github.com/eclipse-theia/theia) - Eclipse Theia is a cloud &amp; desktop IDE framework implemented in TypeScript.
    - [tldraw/tldraw](https://github.com/tldraw/tldraw) - SDK for creating whiteboards and canvas experiences on the web.
@@ -1320,6 +1332,7 @@ Contents
    - [Canner/vulcan-sql](https://github.com/Canner/vulcan-sql) - Data API Framework for AI Agents and Data Apps
    - [ojkelly/wahn](https://github.com/ojkelly/wahn) - Policy Machine for Role Based Access Control
    - [toptal/xene](https://github.com/toptal/xene) - 🤖 Modern library with simple API to build great conversational bots.
+   - [evertdespiegeleer/zhttp](https://github.com/evertdespiegeleer/zhttp) - A minimal, typesafe HTTP library with Zod validation 🧑‍💻
 
 ## V
    - [vlang/v](https://github.com/vlang/v) - Simple, fast, safe, compiled language for developing maintainable software. Compiles itself in &lt;1s with zero library dependencies. Supports automatic C =&gt; V translation. https://vlang.io
