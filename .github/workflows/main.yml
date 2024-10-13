@@ -18,6 +18,9 @@ jobs:
         with:
           path: ${{ github.event.repository.name }}
 
+      - name: Packge update
+        run: sudo apt-get update
+
       - name: Install system packages
         run: sudo apt-get --yes install bubblewrap curl darcs gcc git m4 make mercurial patch rsync sudo unzip
       
