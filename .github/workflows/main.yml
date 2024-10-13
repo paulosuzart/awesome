@@ -19,7 +19,7 @@ jobs:
           path: ${{ github.event.repository.name }}
   
       - name: Set-up OCaml
-        uses: ocaml/setup-ocaml@v2
+        uses: ocaml/setup-ocaml@v3.0.9
         with:
           ocaml-compiler: '5.1.1'
 
