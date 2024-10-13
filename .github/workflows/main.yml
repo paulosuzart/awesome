@@ -18,12 +18,6 @@ jobs:
         with:
           path: ${{ github.event.repository.name }}
 
-      - name: Retrieve new lists of system packages
-        run: apt-get update
-      
-      - name: Install system packages
-        run: apt-get --yes install bubblewrap curl darcs gcc git m4 make mercurial patch rsync sudo unzip
-          
       - name: Set-up OCaml
         uses: ocaml/setup-ocaml@v3.0.9
         with:
