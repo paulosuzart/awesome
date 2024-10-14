@@ -16,7 +16,7 @@ Have fun!
 Languages
 ---
 
-Languages starred: 52:
+Languages starred: 51:
    - [Assembly](#Assembly)
    - [C](#C)
    - [C#](#C#)
@@ -24,7 +24,6 @@ Languages starred: 52:
    - [CSS](#CSS)
    - [Clojure](#Clojure)
    - [Crystal](#Crystal)
-   - [Cypher](#Cypher)
    - [D](#D)
    - [Dockerfile](#Dockerfile)
    - [Elixir](#Elixir)
@@ -95,6 +94,7 @@ Contents
    - [dotnetcore/CAP](https://github.com/dotnetcore/CAP) - Distributed transaction solution in micro-service base on eventually consistency, also an eventbus with Outbox pattern
    - [RhynoVDS/ObjectTransport](https://github.com/RhynoVDS/ObjectTransport) - Send and Receive objects over TCP or UDP
    - [ThreeMammals/Ocelot](https://github.com/ThreeMammals/Ocelot) - .NET API Gateway
+   - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI 🤖
    - [thangchung/awesome-dotnet-core](https://github.com/thangchung/awesome-dotnet-core) - :honeybee: A collection of awesome .NET core libraries, tools, frameworks and software
    - [graphql-dotnet/graphql-dotnet](https://github.com/graphql-dotnet/graphql-dotnet) - GraphQL for .NET
    - [microsoft/kiota](https://github.com/microsoft/kiota) - OpenAPI based HTTP Client code generator
@@ -146,7 +146,6 @@ Contents
    - [GoogleChrome/web-vitals-extension](https://github.com/GoogleChrome/web-vitals-extension) - A Chrome extension to measure essential metrics for a healthy site
 
 ## Clojure
-   - [gf3/CLJBIN](https://github.com/gf3/CLJBIN) - A Clojure pastebin with code evaluation.
    - [macourtney/Conjure](https://github.com/macourtney/Conjure) - A Rails like framework for Clojure.
    - [chrix75/Gemini](https://github.com/chrix75/Gemini) - A data matching library written in Clojure
    - [korma/Korma](https://github.com/korma/Korma) - Tasty SQL for Clojure.
@@ -156,13 +155,11 @@ Contents
    - [damballa/abracad](https://github.com/damballa/abracad) - A Clojure library for de/serializing Clojure data structures with Avro.
    - [clj-commons/aleph](https://github.com/clj-commons/aleph) - Asynchronous streaming communication for Clojure - web server, web client, and raw TCP/UDP
    - [mcohen01/amazonica](https://github.com/mcohen01/amazonica) - A comprehensive Clojure client for the entire Amazon AWS api.
-   - [gcv/appengine-magic](https://github.com/gcv/appengine-magic) - A library designed to make it easy to use Google App Engine from Clojure
    - [paulosuzart/astro-comp](https://github.com/paulosuzart/astro-comp) - using cascalog to calculate users scores
    - [overtone/at-at](https://github.com/overtone/at-at) - Ahead-of-time function scheduler
    - [liebke/avout](https://github.com/liebke/avout) - Avout: Distributed State in Clojure
    - [theleoborges/bouncer](https://github.com/theleoborges/bouncer) - A validation DSL for Clojure &amp; Clojurescript applications
    - [funcool/buddy](https://github.com/funcool/buddy) - Security library for Clojure
-   - [runexec/chp](https://github.com/runexec/chp) - ClojureHomePage is a Compojure based web framework that allows you to write the backend and frontend with Clojure.
    - [paraseba/clache](https://github.com/paraseba/clache) - a caching library for clojure implementing various cache strategies
    - [oracle-samples/clara-rules](https://github.com/oracle-samples/clara-rules) - Forward-chaining rules in Clojure(Script)
    - [paulosuzart/clj-enlive-template](https://github.com/paulosuzart/clj-enlive-template) - lein-newnew template for web noir + enlive web applications
@@ -175,16 +172,13 @@ Contents
    - [shaolang/cljito](https://github.com/shaolang/cljito) - Mockito wrapper for Clojure
    - [liebke/cljr](https://github.com/liebke/cljr) - cljr is a Clojure REPL and package management system.
    - [paulosuzart/cloherence](https://github.com/paulosuzart/cloherence) - clojure map semantics and dsl on top of Coherence
-   - [clojure/clojurescript](https://github.com/clojure/clojurescript) - Clojure to JS compiler
    - [weavejester/compojure](https://github.com/weavejester/compojure) - A concise routing library for Ring/Clojure
    - [stuartsierra/component](https://github.com/stuartsierra/component) - Managed lifecycle of stateful objects in Clojure
    - [MichaelDrogalis/dire](https://github.com/MichaelDrogalis/dire) - Erlang-style supervisor error handling for Clojure
    - [jonase/eastwood](https://github.com/jonase/eastwood) - Clojure lint tool
-   - [cgrand/enlive](https://github.com/cgrand/enlive) - a selector-based (à la CSS) templating and transformation system for Clojure
    - [swannodette/enlive-tutorial](https://github.com/swannodette/enlive-tutorial) - An Easy Introduction to Enlive
    - [Workiva/eva](https://github.com/Workiva/eva) - A distributed database-system implementing an entity-attribute-value data-model that is time-aware, accumulative, and atomically consistent
    - [clojure-expectations/expectations](https://github.com/clojure-expectations/expectations) - A minimalist&apos;s unit testing framework (&quot;classic&quot; version)
-   - [clojure-numerics/expresso](https://github.com/clojure-numerics/expresso) - Clojure library for symbolic computation
    - [taoensso/faraday](https://github.com/taoensso/faraday) - Amazon DynamoDB client for Clojure
    - [cemerick/friend](https://github.com/cemerick/friend) - An extensible authentication and authorization library for Clojure Ring web applications and services. 
    - [weavejester/hiccup](https://github.com/weavejester/hiccup) - Fast library for rendering HTML in Clojure
@@ -199,7 +193,6 @@ Contents
    - [stuartsierra/lazytest](https://github.com/stuartsierra/lazytest) - (archived) New test framework for Clojure
    - [emezeske/lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild) - Leiningen plugin to make ClojureScript development easy.
    - [clj-commons/manifold](https://github.com/clj-commons/manifold) - A compatibility layer for event-driven abstractions
-   - [dcolthorp/matchure](https://github.com/dcolthorp/matchure) - Powerful, idiomatic pattern matching for clojure
    - [clojurewerkz/meltdown](https://github.com/clojurewerkz/meltdown) - Clojure interface to Reactor, an event-driven programming and stream processing toolkit for the JVM
    - [metabase/metabase](https://github.com/metabase/metabase) - The simplest, fastest way to get business intelligence and analytics to everyone in your company :yum:
    - [magomimmo/modern-cljs](https://github.com/magomimmo/modern-cljs) - A series of tutorials on ClojureScript
@@ -212,12 +205,9 @@ Contents
    - [pdfkit/pdfkit-clj](https://github.com/pdfkit/pdfkit-clj) - Clojure library for generating PDFs using wkhtmltopdf.
    - [xeqi/peridot](https://github.com/xeqi/peridot) - a basic api for interacting with ring apps
    - [plumatic/plumbing](https://github.com/plumatic/plumbing) - Prismatic&apos;s Clojure(Script) utility belt
-   - [clj-commons/potemkin](https://github.com/clj-commons/potemkin) - some ideas which are almost good
    - [ztellman/proteus](https://github.com/ztellman/proteus) - local. mutable. variables.
-   - [alandipert/reconfig](https://github.com/alandipert/reconfig) - Reload configuration files in Clojure daemons on SIGHUP.
    - [ring-clojure/ring-mock](https://github.com/ring-clojure/ring-mock) - Library to create mock Ring requests for unit tests
    - [weavejester/ring-oauth2](https://github.com/weavejester/ring-oauth2) - OAuth 2.0 client middleware for Ring
-   - [zoka/ringMon](https://github.com/zoka/ringMon) - A Ring middleware to add a web page with nREPL front end into an existing Clojure application, either web based or not.
    - [pjt/saxon](https://github.com/pjt/saxon) - Clojure wrapper library for the Saxon XSLT 2.0 processor.
    - [richhickey/sdb](https://github.com/richhickey/sdb) - A Clojure library for working with Amazon SimpleDB
    - [clj-commons/seesaw](https://github.com/clj-commons/seesaw) - Seesaw turns the Horror of Swing into a friendly, well-documented, Clojure library
@@ -260,9 +250,6 @@ Contents
    - [crystal-lang-tools/scry](https://github.com/crystal-lang-tools/scry) - Scry is a code analysis server for https://crystal-lang.org
    - [onyxframework/sql](https://github.com/onyxframework/sql) - A delightful SQL ORM ☺️
    - [squirm-framework/squirm](https://github.com/squirm-framework/squirm) - This was the night of the crawling terror!
-
-## Cypher
-   - [neo4j-examples/neo4j-procedure-template](https://github.com/neo4j-examples/neo4j-procedure-template) - Example code for building User Defined Procedures and Functions for Neo4j
 
 ## D
    - [gtkd-developers/GtkD](https://github.com/gtkd-developers/GtkD) - GtkD is a D binding and OO wrapper of GTK+ originally created by Antonio Monteiro
@@ -568,7 +555,6 @@ Contents
    - [adrianhurt/play-bootstrap](https://github.com/adrianhurt/play-bootstrap) - A Play Framework library for Bootstrap
    - [NikolaiT/se-scraper](https://github.com/NikolaiT/se-scraper) - Javascript scraping module based on puppeteer for many different search engines...
    - [paulosuzart/ultimate-geo](https://github.com/paulosuzart/ultimate-geo) - Command line tool for generating latitude and longitude reading csv files with random columns.
-   - [buremba/universql](https://github.com/buremba/universql) - Query Snowflake tables locally with DuckDB, without any need for a running warehouse
 
 ## Haskell
    - [facebook/Haxl](https://github.com/facebook/Haxl) - A Haskell library that simplifies access to remote data, such as databases or web-based services. 
@@ -688,7 +674,7 @@ Contents
    - [karatelabs/karate](https://github.com/karatelabs/karate) - Test Automation Made Simple
    - [rayokota/kareldb](https://github.com/rayokota/kareldb) - A Relational Database Backed by Apache Kafka
    - [kcctl/kcctl](https://github.com/kcctl/kcctl) - A modern and intuitive command line client for Kafka Connect
-   - [kestra-io/kestra](https://github.com/kestra-io/kestra) - :zap: Open-source workflow automation platform. Orchestrate any language using YAML, hundreds of integrations. Alternative to Airflow, n8n, RunDeck, Camunda, Jenkins...
+   - [kestra-io/kestra](https://github.com/kestra-io/kestra) - :zap: Workflow Automation Platform. Orchestrate &amp; Schedule code in any language, run anywhere, 500+ plugins. Alternative to Zapier, Rundeck, Camunda, Airflow...
    - [openfga/language](https://github.com/openfga/language) - Grammar for the OpenFGA modeling language
    - [jclouds/legacy-jclouds-examples](https://github.com/jclouds/legacy-jclouds-examples) - 
    - [liquidpie/lenses-java](https://github.com/liquidpie/lenses-java) - Implementation of Lens Pattern in Java
@@ -810,7 +796,7 @@ Contents
    - [react-materialize/react-materialize](https://github.com/react-materialize/react-materialize) - Material design for react, powered by materializecss
    - [walmartlabs/react-ssr-optimization](https://github.com/walmartlabs/react-ssr-optimization) - React.js server-side rendering optimization with component memoization and templatization
    - [hakimel/reveal.js](https://github.com/hakimel/reveal.js) - The HTML Presentation Framework
-   - [RockstarLang/rockstar](https://github.com/RockstarLang/rockstar) - The Rockstar programming language specification
+   - [RockstarLang/rockstar](https://github.com/RockstarLang/rockstar) - Home of the Rockstar programming language
    - [bredikhin/sailsjs-mocha-testing-barrels-fixtures-example](https://github.com/bredikhin/sailsjs-mocha-testing-barrels-fixtures-example) - An example of Sails.js-project testing with Mocha and Barrels for fixtures
    - [williamhaw/setup-wiremock-action](https://github.com/williamhaw/setup-wiremock-action) - Sets up a WireMock API using provided stubs.
    - [ansteh/shape-json](https://github.com/ansteh/shape-json) - Module used to convert a flat json array into a nested json object with a predefined scheme
@@ -824,7 +810,6 @@ Contents
 
 ## Jupyter Notebook
    - [AI4Finance-Foundation/FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) - FinGPT: Open-Source Financial Large Language Models!  Revolutionize 🔥    We release the trained model on HuggingFace.
-   - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI 🤖
    - [rpclib/benchmarks](https://github.com/rpclib/benchmarks) - 
    - [microsoft/generative-ai-for-beginners](https://github.com/microsoft/generative-ai-for-beginners) - 21 Lessons, Get Started Building with Generative AI  🔗 https://microsoft.github.io/generative-ai-for-beginners/
    - [superduper-io/superduper](https://github.com/superduper-io/superduper) - Superduper: Integrate AI models and machine learning workflows with your database to implement custom AI applications, without moving your data. Including streaming inference, scalable model hosting, training and vector search.
@@ -968,12 +953,13 @@ Contents
    - [hacksider/Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam) - real time face swap and one-click video deepfake with only a single image
    - [lm-sys/FastChat](https://github.com/lm-sys/FastChat) - An open platform for training, serving, and evaluating large language models. Release repo for Vicuna and Chatbot Arena.
    - [pydantic/FastUI](https://github.com/pydantic/FastUI) - Build better UIs faster.
+   - [Ucas-HaoranWei/GOT-OCR2.0](https://github.com/Ucas-HaoranWei/GOT-OCR2.0) - Official code implementation of General OCR Theory:  Towards OCR-2.0 via a Unified End-to-end Model
    - [All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands) - 🙌 OpenHands: Code Less, Make More
    - [olucurious/PyFCM](https://github.com/olucurious/PyFCM) - Python client for FCM - Firebase Cloud Messaging (Android, iOS and Web)
    - [digitalreasoning/PyStratus](https://github.com/digitalreasoning/PyStratus) - Python-based utility for managing various distributed services on cloud providers
    - [thisbejim/Pyrebase](https://github.com/thisbejim/Pyrebase) - A simple python wrapper for the Firebase API.
    - [billxbf/ReWOO](https://github.com/billxbf/ReWOO) - Decoupling Reasoning from Observations for Efficient Augmented Language Models
-   - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Personal AI Assistant for World Wide Web Surfers. Research &amp; Never forget anything you see on the Internet
+   - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Personal AI Assistant for Internet Surfers and Researchers. Research &amp; Never forget anything you see on the Internet
    - [OpenBMB/ToolBench](https://github.com/OpenBMB/ToolBench) - [ICLR&apos;24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning.
    - [ActivityWatch/activitywatch](https://github.com/ActivityWatch/activitywatch) - The best free and open-source automated time tracker. Cross-platform, extensible, privacy-focused.
    - [Agenta-AI/agenta](https://github.com/Agenta-AI/agenta) - The all-in-one LLM developer platform: prompt management, evaluation, human feedback, and deployment all in one place.
@@ -1050,6 +1036,7 @@ Contents
    - [Kitware/trame](https://github.com/Kitware/trame) - Trame lets you weave various components and technologies into a Web Application solely written in Python.
    - [huggingface/transformers](https://github.com/huggingface/transformers) - 🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.
    - [tav/tweetapp](https://github.com/tav/tweetapp) - Framework for creating Twitter apps on App Engine
+   - [buremba/universql](https://github.com/buremba/universql) - Query Snowflake tables locally with DuckDB, without any need for a running warehouse
    - [unslothai/unsloth](https://github.com/unslothai/unsloth) - Finetune Llama 3.2, Mistral, Phi &amp; Gemma LLMs 2-5x faster with 80% less memory
    - [vanna-ai/vanna](https://github.com/vanna-ai/vanna) - 🤖 Chat with your SQL database 📊. Accurate Text-to-SQL Generation via LLMs using RAG 🔄.
 
@@ -1135,6 +1122,7 @@ Contents
    - [rustformers/llm](https://github.com/rustformers/llm) - [Unmaintained, see README] An ecosystem of Rust libraries for working with large language models
    - [shafishlabs/llmchain-rs](https://github.com/shafishlabs/llmchain-rs) - 🦀Rust + Large Language Models - Make AI Services Freely and Easily.
    - [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) - A lightning-fast search API that fits effortlessly into your apps, websites, and workflow
+   - [tisonkun/morax](https://github.com/tisonkun/morax) - Message queue and data streaming based on cloud native services.
    - [anoma/namada](https://github.com/anoma/namada) - Rust implementation of Namada, a Proof-of-Stake L1 for interchain asset-agnostic privacy
    - [rust-bakery/nom](https://github.com/rust-bakery/nom) - Rust parser combinator framework
    - [greyblake/nutype](https://github.com/greyblake/nutype) - Rust newtype with guarantees  🇺🇦 🦀
@@ -1186,6 +1174,7 @@ Contents
    - [tailcallhq/tailcall](https://github.com/tailcallhq/tailcall) - High Performance GraphQL Runtime
    - [pingcap/talent-plan](https://github.com/pingcap/talent-plan) - open source training courses about distributed database and distributed systems
    - [quickwit-oss/tantivy](https://github.com/quickwit-oss/tantivy) - Tantivy is a full-text search engine library inspired by Apache Lucene and written in Rust
+   - [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) - enabling LLM applications that learn from real-world experience
    - [TimelyDataflow/timely-dataflow](https://github.com/TimelyDataflow/timely-dataflow) - A modular implementation of timely dataflow in Rust
    - [m1guelpf/tinyvector](https://github.com/m1guelpf/tinyvector) - A tiny embedding database in pure Rust.
    - [erikgrinaker/toydb](https://github.com/erikgrinaker/toydb) - Distributed SQL database in Rust, written as an educational project
@@ -1214,7 +1203,9 @@ Contents
    - [alephium/alephium](https://github.com/alephium/alephium) - Reference client for Alephium protocol
    - [sksamuel/avro4s](https://github.com/sksamuel/avro4s) - Avro schema generation and serialization / deserialization for Scala
    - [http4s/blaze](https://github.com/http4s/blaze) - Blazing fast NIO microframework and Http Parser
+   - [suprnation/cats-actors](https://github.com/suprnation/cats-actors) - Cats Actors framework for building apps which are reactive.  Cats actors uses a conceptual actor model as a higher level abstraction for concurrency.
    - [paulosuzart/cep-fusion](https://github.com/paulosuzart/cep-fusion) - support for my blog post
+   - [scalalandio/chimney](https://github.com/scalalandio/chimney) - Scala library for boilerplate-free, type-safe data transformations
    - [circe/circe](https://github.com/circe/circe) - Yet another JSON library for Scala
    - [bmc/classutil](https://github.com/bmc/classutil) - Scala-friendly, fast class-finder library (using ASM under the covers)
    - [xuwei-k/dynamicjson](https://github.com/xuwei-k/dynamicjson) - no longer maintenanced
@@ -1302,7 +1293,7 @@ Contents
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
    - [event-driven-io/Pongo](https://github.com/event-driven-io/Pongo) - Pongo - Mongo but on Postgres and with strong consistency benefits
    - [Qovery/Torii](https://github.com/Qovery/Torii) - Torii ⛩️ is a simple, powerful and extensible open-source Internal Developer Portal
-   - [Canner/WrenAI](https://github.com/Canner/WrenAI) - 🚀 Open-source SQL AI Agent for Text-to-SQL. Make Text2SQL Easy! 🙌
+   - [Canner/WrenAI](https://github.com/Canner/WrenAI) - 🚀 Open-source SQL AI Agent for Text-to-SQL. Supporting PostgreSQL, DuckDB, MySQL, MS SQL, ClickHouse, Trino, JSON, CSV, Parquet data sources, and more! 🚀
    - [aerographql/aerographql](https://github.com/aerographql/aerographql) - A small and opinionated Typescript toolkit to create GraphQL server using a declarative approach
    - [apollographql/apollo-tooling](https://github.com/apollographql/apollo-tooling) - ✏️ Apollo CLI for client tooling (Mostly replaced by Rover)
    - [nabind47/authjs](https://github.com/nabind47/authjs) - Authentication in Next.js 14 with Auth.js and server actions having credentials as well as socials signin along with forgot password and 2FA.
@@ -1323,7 +1314,7 @@ Contents
    - [siokas/denomander](https://github.com/siokas/denomander) - Deno command-line interfaces made easy
    - [torokmark/design_patterns_in_typescript](https://github.com/torokmark/design_patterns_in_typescript) - :triangular_ruler: Design pattern implementations in TypeScript
    - [drizzle-team/drizzle-orm](https://github.com/drizzle-team/drizzle-orm) - Headless TypeScript ORM with a head. Runs on Node, Bun and Deno. Lives on the Edge and yes, it&apos;s a JavaScript ORM too 😅
-   - [Effect-TS/effect](https://github.com/Effect-TS/effect) - An ecosystem of tools for building production-grade applications in TypeScript.
+   - [Effect-TS/effect](https://github.com/Effect-TS/effect) - An ecosystem of tools to build robust applications in TypeScript
    - [sukovanej/effect-http](https://github.com/sukovanej/effect-http) - Declarative HTTP API library for effect-ts
    - [event-catalog/eventcatalog](https://github.com/event-catalog/eventcatalog) - An open source documentation tool to bring discoverability to your event-driven architectures 
    - [auth0/express-jwt](https://github.com/auth0/express-jwt) - connect/express middleware that validates a JsonWebToken (JWT) and set the req.user with the attributes
@@ -1373,6 +1364,7 @@ Contents
    - [boxyhq/saas-starter-kit](https://github.com/boxyhq/saas-starter-kit) - 🔥 Enterprise SaaS Starter Kit - Kickstart your enterprise app development with the Next.js SaaS boilerplate 🚀
    - [safe-global/safe-wallet-web](https://github.com/safe-global/safe-wallet-web) - Safe{Wallet} – multisig EVM wallet
    - [scalar/scalar](https://github.com/scalar/scalar) - Scalar is an open-source platform with:　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　🌐 Modern Rest API Client　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　📖 Beautiful API References　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　✨ 1st-Class OpenAPI/Swagger Support
+   - [ocaml/setup-ocaml](https://github.com/ocaml/setup-ocaml) - GitHub Action for the OCaml programming language
    - [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library aimed at visualizing graphs of thousands of nodes and edges
    - [gajus/slonik](https://github.com/gajus/slonik) - A Node.js PostgreSQL client with runtime and build time type safety, and composable SQL.
    - [socketio/socket.io](https://github.com/socketio/socket.io) - Realtime application framework (Node.JS server)
@@ -1394,6 +1386,7 @@ Contents
    - [sequelize/umzug](https://github.com/sequelize/umzug) - Framework agnostic migration tool for Node.js
    - [fabian-hiller/valibot](https://github.com/fabian-hiller/valibot) - The modular and type safe schema library for validating structural data 🤖
    - [Canner/vulcan-sql](https://github.com/Canner/vulcan-sql) - Data API Framework for AI Agents and Data Apps
+   - [palixir/wabe](https://github.com/palixir/wabe) - Your backend in minutes not days
    - [ojkelly/wahn](https://github.com/ojkelly/wahn) - Policy Machine for Role Based Access Control
    - [toptal/xene](https://github.com/toptal/xene) - 🤖 Modern library with simple API to build great conversational bots.
    - [evertdespiegeleer/zhttp](https://github.com/evertdespiegeleer/zhttp) - A minimal, typesafe HTTP library with Zod validation 🧑‍💻
