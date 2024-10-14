@@ -32,7 +32,7 @@ jobs:
         working-directory: ${{ github.event.repository.name }}
   
   
-      - uses: peter-evans/create-pull-request@v6
+      - uses: peter-evans/create-pull-request@v7
         with:
           commit-message: ${{ github.event.repository.updated_at}} starred_ml update
           title: ${{ github.run_number }} starred_ml update
