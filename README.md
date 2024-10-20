@@ -94,7 +94,6 @@ Contents
    - [dotnetcore/CAP](https://github.com/dotnetcore/CAP) - Distributed transaction solution in micro-service base on eventually consistency, also an eventbus with Outbox pattern
    - [RhynoVDS/ObjectTransport](https://github.com/RhynoVDS/ObjectTransport) - Send and Receive objects over TCP or UDP
    - [ThreeMammals/Ocelot](https://github.com/ThreeMammals/Ocelot) - .NET API Gateway
-   - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI 🤖
    - [thangchung/awesome-dotnet-core](https://github.com/thangchung/awesome-dotnet-core) - :honeybee: A collection of awesome .NET core libraries, tools, frameworks and software
    - [graphql-dotnet/graphql-dotnet](https://github.com/graphql-dotnet/graphql-dotnet) - GraphQL for .NET
    - [microsoft/kiota](https://github.com/microsoft/kiota) - OpenAPI based HTTP Client code generator
@@ -360,8 +359,8 @@ Contents
    - [sourcegraph/conc](https://github.com/sourcegraph/conc) - Better structured concurrency for go
    - [redpanda-data/connect](https://github.com/redpanda-data/connect) - Fancy stream processing made operationally mundane
    - [frain-dev/convoy](https://github.com/frain-dev/convoy) - The Cloud Native Webhooks Gateway
-   - [gopherd/core](https://github.com/gopherd/core) - A powerful Go library that provides a component-based development framework for building backend services.
    - [cogentcore/core](https://github.com/cogentcore/core) - A free and open source framework for building powerful, fast, elegant 2D and 3D apps that run on macOS, Windows, Linux, iOS, Android, and the web with a single Go codebase, allowing you to Code Once, Run Everywhere.
+   - [gopherd/core](https://github.com/gopherd/core) - A powerful Go library that provides a component-based development framework for building backend services.
    - [gazette/core](https://github.com/gazette/core) - Build platforms that flexibly mix SQL, batch, and stream processing paradigms
    - [coroot/coroot](https://github.com/coroot/coroot) - Coroot is an open-source APM &amp; Observability tool, a DataDog and NewRelic alternative 📊, 🖥️, 👉. Powered by eBPF for rapid insights into system performance. Monitor, analyze, and optimize your infrastructure effortlessly for peak reliability at any scale.
    - [cortezaproject/corteza](https://github.com/cortezaproject/corteza) - Low-code platform
@@ -648,7 +647,6 @@ Contents
    - [wavesoftware/java-mapstruct-jpa](https://github.com/wavesoftware/java-mapstruct-jpa) - A set of utilities focused on mapping JPA managed entities with MapStruct
    - [petitparser/java-petitparser](https://github.com/petitparser/java-petitparser) - Dynamic parser combinators in Java.
    - [openfga/java-sdk](https://github.com/openfga/java-sdk) - OpenFGA SDK for Java - https://central.sonatype.com/artifact/dev.openfga/openfga-sdk
-   - [heroku/java-workbook](https://github.com/heroku/java-workbook) - Learn Java on Heroku
    - [ConSol/java9-modules-maven-junit-example](https://github.com/ConSol/java9-modules-maven-junit-example) - This simple project shows how Maven can be used to build Java 9 modules. 
    - [square/javapoet](https://github.com/square/javapoet) - A Java API for generating .java source files.
    - [jbangdev/jbang](https://github.com/jbangdev/jbang) - Unleash the power of Java - JBang Lets Students, Educators and Professional Developers create, edit and run self-contained source-only Java programs with unprecedented ease.
@@ -789,6 +787,7 @@ Contents
    - [cloudify-cosmo/node-replace-env-in-json-file](https://github.com/cloudify-cosmo/node-replace-env-in-json-file) - node module that simply replaces placeholders with environment variables values into a json file
    - [wit-ai/node-wit](https://github.com/wit-ai/node-wit) - Node.js SDK for Wit.ai
    - [ohmjs/ohm](https://github.com/ohmjs/ohm) - A library and language for building parsers, interpreters, compilers, etc.
+   - [ollama-ui/ollama-ui](https://github.com/ollama-ui/ollama-ui) - Simple HTML UI for Ollama
    - [kota65535/openapi-merger](https://github.com/kota65535/openapi-merger) - Merges multiple OpenAPI document files into a single file.
    - [personoids/personoids-lite](https://github.com/personoids/personoids-lite) - &quot;The Power of Autonomy in Every Chat.&quot; - Transform ChatGPT into a powerful autonomous agent that can independently accomplish complex tasks. 
    - [timgit/pg-boss](https://github.com/timgit/pg-boss) - Queueing jobs in Postgres from Node.js like a boss
@@ -810,9 +809,9 @@ Contents
 
 ## Jupyter Notebook
    - [AI4Finance-Foundation/FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) - FinGPT: Open-Source Financial Large Language Models!  Revolutionize 🔥    We release the trained model on HuggingFace.
+   - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI 🤖
    - [rpclib/benchmarks](https://github.com/rpclib/benchmarks) - 
    - [microsoft/generative-ai-for-beginners](https://github.com/microsoft/generative-ai-for-beginners) - 21 Lessons, Get Started Building with Generative AI  🔗 https://microsoft.github.io/generative-ai-for-beginners/
-   - [superduper-io/superduper](https://github.com/superduper-io/superduper) - Superduper: Integrate AI models and machine learning workflows with your database to implement custom AI applications, without moving your data. Including streaming inference, scalable model hosting, training and vector search.
 
 ## Kotlin
    - [LeoFuso/argo](https://github.com/LeoFuso/argo) - A Gradle plugin aimed to help working with Apache Avro. It supports code generation for JSON schema declaration files(.avsc), JSON protocol declaration files(.avpr), and Avro IDL files. In the future, it should support Schema Registry integration, as well.
@@ -1017,7 +1016,7 @@ Contents
    - [facebookarchive/python-instagram](https://github.com/facebookarchive/python-instagram) - Python Client for Instagram API
    - [ingolemo/python-lenses](https://github.com/ingolemo/python-lenses) - A python lens library for manipulating deeply nested immutable structures
    - [openfga/python-sdk](https://github.com/openfga/python-sdk) - OpenFGA SDK for Python 3 - https://pypi.org/project/openfga-sdk/
-   - [ray-project/ray](https://github.com/ray-project/ray) - Ray is a unified framework for scaling AI and Python applications. Ray consists of a core distributed runtime and a set of AI Libraries for accelerating ML workloads.
+   - [ray-project/ray](https://github.com/ray-project/ray) - Ray is an AI compute engine. Ray consists of a core distributed runtime and a set of AI Libraries for accelerating ML workloads.
    - [reactive-python/reactpy](https://github.com/reactive-python/reactpy) - It&apos;s React, but in Python
    - [leegao/readme2tex](https://github.com/leegao/readme2tex) - Renders TeXy Math for Github Readmes
    - [pypa/sampleproject](https://github.com/pypa/sampleproject) - A sample project that exists for PyPUG&apos;s &quot;Tutorial on Packaging and Distributing Projects&quot;
@@ -1030,6 +1029,7 @@ Contents
    - [explosion/spaCy](https://github.com/explosion/spaCy) - 💫 Industrial-strength Natural Language Processing (NLP) in Python
    - [tobymao/sqlglot](https://github.com/tobymao/sqlglot) - Python SQL Parser and Transpiler
    - [fastapi/sqlmodel](https://github.com/fastapi/sqlmodel) - SQL databases in Python, designed for simplicity, compatibility, and robustness.
+   - [superduper-io/superduper](https://github.com/superduper-io/superduper) - Superduper: Integrate AI models and machine learning workflows with your database to implement custom AI applications, without moving your data. Including streaming inference, scalable model hosting, training and vector search.
    - [tahoe-lafs/tahoe-lafs](https://github.com/tahoe-lafs/tahoe-lafs) - The Tahoe-LAFS decentralized secure filesystem.
    - [testcontainers/testcontainers-python](https://github.com/testcontainers/testcontainers-python) - Testcontainers is a Python library that providing a friendly API to run Docker container. It is designed to create runtime environment to use during your automatic tests.
    - [tornadoweb/tornado](https://github.com/tornadoweb/tornado) - Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed.
@@ -1262,7 +1262,6 @@ Contents
 ## Shell
    - [cloudfoundry-community/cppcms-buildpack](https://github.com/cloudfoundry-community/cppcms-buildpack) - Cloud Foundry buildpack for the CppCMS web framework.
    - [sameersbn/docker-gitlab](https://github.com/sameersbn/docker-gitlab) - Dockerized GitLab
-   - [heroku/heroku-buildpack-clojure](https://github.com/heroku/heroku-buildpack-clojure) - Heroku&apos;s buildpack for Clojure applications.
    - [pussinboots/heroku-buildpack-d](https://github.com/pussinboots/heroku-buildpack-d) - Buildpack of the D language for heroku.
    - [cyberdelia/heroku-geo-buildpack](https://github.com/cyberdelia/heroku-geo-buildpack) - Geo libraries for Heroku
    - [sergeysova/jq-action](https://github.com/sergeysova/jq-action) - This lets you do jq operations in GitHub Actions.
@@ -1284,6 +1283,7 @@ Contents
    - [bazelbuild/rules_d](https://github.com/bazelbuild/rules_d) - D rules for Bazel
 
 ## Svelte
+   - [open-webui/open-webui](https://github.com/open-webui/open-webui) - User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
    - [mpiorowski/sgsg](https://github.com/mpiorowski/sgsg) - Open source application build using SvelteKit and Go connected via gRPC.
 
 ## Swift
@@ -1363,7 +1363,7 @@ Contents
    - [typestack/routing-controllers](https://github.com/typestack/routing-controllers) - Create structured, declarative and beautifully organized class-based controllers with heavy decorators usage in Express / Koa using TypeScript and Routing Controllers Framework.
    - [boxyhq/saas-starter-kit](https://github.com/boxyhq/saas-starter-kit) - 🔥 Enterprise SaaS Starter Kit - Kickstart your enterprise app development with the Next.js SaaS boilerplate 🚀
    - [safe-global/safe-wallet-web](https://github.com/safe-global/safe-wallet-web) - Safe{Wallet} – multisig EVM wallet
-   - [scalar/scalar](https://github.com/scalar/scalar) - Scalar is an open-source platform with:　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　🌐 Modern Rest API Client　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　📖 Beautiful API References　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　✨ 1st-Class OpenAPI/Swagger Support
+   - [scalar/scalar](https://github.com/scalar/scalar) - Scalar is an open-source API platform:　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　🌐 Modern Rest API Client　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　📖 Beautiful API References　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　✨ 1st-Class OpenAPI/Swagger Support
    - [ocaml/setup-ocaml](https://github.com/ocaml/setup-ocaml) - GitHub Action for the OCaml programming language
    - [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library aimed at visualizing graphs of thousands of nodes and edges
    - [gajus/slonik](https://github.com/gajus/slonik) - A Node.js PostgreSQL client with runtime and build time type safety, and composable SQL.
@@ -1372,7 +1372,7 @@ Contents
    - [ssoready/ssoready](https://github.com/ssoready/ssoready) - Open-source dev tools for enterprise SSO. Ship SAML + SCIM support this afternoon.
    - [yangshun/tech-interview-handbook](https://github.com/yangshun/tech-interview-handbook) - 💯 Curated coding interview preparation materials for busy software engineers
    - [eclipse-theia/theia](https://github.com/eclipse-theia/theia) - Eclipse Theia is a cloud &amp; desktop IDE framework implemented in TypeScript.
-   - [tldraw/tldraw](https://github.com/tldraw/tldraw) - SDK for creating whiteboards and canvas experiences on the web.
+   - [tldraw/tldraw](https://github.com/tldraw/tldraw) - whiteboard / infinite canvas SDK
    - [EoinDavey/tsPEG](https://github.com/EoinDavey/tsPEG) - PEG Parser Generator for TypeScript
    - [garrettm/tsum](https://github.com/garrettm/tsum) - Typescript sum types with pattern matching, using multimethods
    - [microsoft/typed-rest-client](https://github.com/microsoft/typed-rest-client) - Node Rest and Http Clients with typings for use with TypeScript
@@ -1386,7 +1386,7 @@ Contents
    - [sequelize/umzug](https://github.com/sequelize/umzug) - Framework agnostic migration tool for Node.js
    - [fabian-hiller/valibot](https://github.com/fabian-hiller/valibot) - The modular and type safe schema library for validating structural data 🤖
    - [Canner/vulcan-sql](https://github.com/Canner/vulcan-sql) - Data API Framework for AI Agents and Data Apps
-   - [palixir/wabe](https://github.com/palixir/wabe) - Your backend in minutes not days
+   - [palixir/wabe](https://github.com/palixir/wabe) - Your backend in minutes not days for Node.js / Bun
    - [ojkelly/wahn](https://github.com/ojkelly/wahn) - Policy Machine for Role Based Access Control
    - [toptal/xene](https://github.com/toptal/xene) - 🤖 Modern library with simple API to build great conversational bots.
    - [evertdespiegeleer/zhttp](https://github.com/evertdespiegeleer/zhttp) - A minimal, typesafe HTTP library with Zod validation 🧑‍💻
