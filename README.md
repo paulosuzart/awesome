@@ -16,7 +16,7 @@ Have fun!
 Languages
 ---
 
-Languages starred: 48:
+Languages starred: 47:
    - [Assembly](#Assembly)
    - [C](#C)
    - [C#](#C#)
@@ -25,7 +25,6 @@ Languages starred: 48:
    - [Crystal](#Crystal)
    - [D](#D)
    - [Elixir](#Elixir)
-   - [Erlang](#Erlang)
    - [Go](#Go)
    - [Groovy](#Groovy)
    - [HCL](#HCL)
@@ -242,25 +241,12 @@ Contents
 
 ## D
    - [dlang-community/Pegged](https://github.com/dlang-community/Pegged) - A Parsing Expression Grammar (PEG) module, using the D programming language.
-   - [funkwerk/accessors](https://github.com/funkwerk/accessors) - Generate D getters and setters automatically
-   - [aermicioi/aedi](https://github.com/aermicioi/aedi) - A dependency injection container
-   - [huntlabs/collie](https://github.com/huntlabs/collie) - An asynchronous event-driven network framework( port netty ) written in D.
-   - [buggins/ddbc](https://github.com/buggins/ddbc) - DDBC is DB Connector for D language (similar to JDBC)
-   - [funkwerk/depend](https://github.com/funkwerk/depend) - Dependency Tool for D
-   - [ikod/dlang-requests](https://github.com/ikod/dlang-requests) - dlang http client library inspired by python-requests
    - [buggins/dlangide](https://github.com/buggins/dlangide) - D language IDE based on DlangUI
-   - [IrenejMarc/dpq](https://github.com/IrenejMarc/dpq) - Simple but powerful PostgreSQL library inspired by higher-level languages.
    - [dlang/dub-registry](https://github.com/dlang/dub-registry) - Online registry for dub packages
    - [nomad-software/dunit](https://github.com/nomad-software/dunit) - Advanced unit testing toolkit for the D programming language
    - [jmcabo/dunit](https://github.com/jmcabo/dunit) - D Unit Testing Framework - class MyTest {mixin TestMixin; testMethod(){assert(true);} }
    - [linkrope/dunit](https://github.com/linkrope/dunit) - xUnit Testing Framework for D
-   - [vibe-d/eventcore](https://github.com/vibe-d/eventcore) - High performance proactor event loop abstraction library
-   - [jaypha/fixed](https://github.com/jaypha/fixed) - Fixed point type for D.
-   - [huntlabs/flatbuffers](https://github.com/huntlabs/flatbuffers) - D Programming Language implementation of the google flatbuffers library
    - [BlackEdder/ggplotd](https://github.com/BlackEdder/ggplotd) - Plotting library for the D programming library. The design is inspired by ggplot2 for R.
-   - [nin-jin/go.d](https://github.com/nin-jin/go.d) - Wait free thread communication
-   - [huntlabs/hunt-framework](https://github.com/huntlabs/hunt-framework) - A Web framework for D Programming Language. Full-stack high-performance.
-   - [stefan-brus/inid](https://github.com/stefan-brus/inid) - A library for parsing config files
    - [karronoli/ironcache-d](https://github.com/karronoli/ironcache-d) - IronCache service wrapper by curl.
    - [rtbo/libconfig-d](https://github.com/rtbo/libconfig-d) - Port of libconfig to the D programming language
    - [huntlabs/libmemcached](https://github.com/huntlabs/libmemcached) - A wrapper library for Memcached with D
@@ -272,10 +258,7 @@ Contents
    - [DSoftOut/pgator](https://github.com/DSoftOut/pgator) - Application server that transforms JSON-RPC and Web REST calls into SQL queries for PostgreSQL
    - [lempiji/rx](https://github.com/lempiji/rx) - Reactive Extensions for D Programming Language
    - [kubo39/sharedlib](https://github.com/kubo39/sharedlib) - Deprecated: moved to https://github.com/kubo39/libloading 
-   - [jostly/specd](https://github.com/jostly/specd) - Library for writing unit tests as specifications in D.
-   - [belka-ew/tanya](https://github.com/belka-ew/tanya) - GC-free, high-performance D library: Containers, networking, metaprogramming, memory management, utilities
    - [vibe-d/vibe.d](https://github.com/vibe-d/vibe.d) - Official vibe.d development
-   - [kyllingstad/zmqd](https://github.com/kyllingstad/zmqd) - A ZeroMQ wrapper for the D programming language
 
 ## Elixir
    - [imeraj/Phoenix_rumbl](https://github.com/imeraj/Phoenix_rumbl) - Phoenix rumbl project converted to 1.3
@@ -300,10 +283,6 @@ Contents
    - [mojotech/torch](https://github.com/mojotech/torch) - A rapid admin generator for Elixir &amp; Phoenix
    - [ateliware/triplex](https://github.com/ateliware/triplex) - Database multitenancy for Elixir applications!
    - [cpursley/walex](https://github.com/cpursley/walex) - Postgres change events (CDC) in Elixir
-
-## Erlang
-   - [dalmatinerdb/dalmatinerdb](https://github.com/dalmatinerdb/dalmatinerdb) - See gitlab: https://gitlab.com/Project-FiFo/DalmatinerDB/dalmatinerdb
-   - [erleans/erleans](https://github.com/erleans/erleans) - Erlang Orleans
 
 ## Go
    - [stakater/Reloader](https://github.com/stakater/Reloader) - A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&apos;re using it!
@@ -478,7 +457,7 @@ Contents
    - [slingdata-io/sling-cli](https://github.com/slingdata-io/sling-cli) - Sling is a CLI tool that extracts data from a source storage/database and loads it in a target storage/database.
    - [SnellerInc/sneller](https://github.com/SnellerInc/sneller) - World&apos;s fastest log analysis: λ + SQL + JSON + S3
    - [authzed/spicedb](https://github.com/authzed/spicedb) - Open Source, Google Zanzibar-inspired database for scalably storing and querying fine-grained authorization data
-   - [zhufuyi/sponge](https://github.com/zhufuyi/sponge) - Sponge is a powerful Go development framework, it&apos;s easy to develop web, gRPC and microservice projects, it supports generating the necessary code for your project based on custom templates.
+   - [go-dev-frame/sponge](https://github.com/go-dev-frame/sponge) - Sponge is a powerful Go development framework for developing RESTful API, gRPC and microservice projects in a &quot;low code approach&quot;.
    - [volatiletech/sqlboiler](https://github.com/volatiletech/sqlboiler) - Generate a Go ORM tailored to your database schema.
    - [sqlc-dev/sqlc](https://github.com/sqlc-dev/sqlc) - Generate type-safe code from SQL
    - [jmoiron/sqlx](https://github.com/jmoiron/sqlx) - general purpose extensions to golang&apos;s database/sql
@@ -709,6 +688,7 @@ Contents
    - [jtablesaw/tablesaw](https://github.com/jtablesaw/tablesaw) - Java dataframe and visualization library
    - [enofex/taikai](https://github.com/enofex/taikai) - Taikai is an extension of the popular ArchUnit library, offering a comprehensive suite of predefined rules tailored for various technologies.
    - [vert-x/test-tools-tests](https://github.com/vert-x/test-tools-tests) - Vert.x 2.x is deprecated - use instead
+   - [ToastShaman/tiny-types](https://github.com/ToastShaman/tiny-types) - Java library for creating tiny/micro types with validation.
    - [f4b6a3/tsid-creator](https://github.com/f4b6a3/tsid-creator) - A Java library for generating Time-Sorted Unique Identifiers (TSID).
    - [microsoft/typespec](https://github.com/microsoft/typespec) - 
    - [vavr-io/vavr](https://github.com/vavr-io/vavr) - vʌvr (formerly called Javaslang) is a non-commercial, non-profit object-functional library that runs with Java 8+. It aims to reduce the lines of code and increase code quality.
@@ -800,6 +780,7 @@ Contents
 ## Jupyter Notebook
    - [open-mmlab/Amphion](https://github.com/open-mmlab/Amphion) - Amphion (/æmˈfaɪən/) is a toolkit for Audio, Music, and Speech Generation. Its purpose is to support reproducible research and help junior researchers and engineers get started in the field of audio, music, and speech generation research and development.
    - [AI4Finance-Foundation/FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) - FinGPT: Open-Source Financial Large Language Models!  Revolutionize 🔥    We release the trained model on HuggingFace.
+   - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI 🤖 PyPi: autogen-agentchat Discord: https://aka.ms/autogen-discord Office Hour: https://aka.ms/autogen-officehour
    - [rpclib/benchmarks](https://github.com/rpclib/benchmarks) - 
    - [DataExpert-io/data-engineer-handbook](https://github.com/DataExpert-io/data-engineer-handbook) - This is a repo with links to everything you&apos;d ever want to learn about data engineering
    - [microsoft/generative-ai-for-beginners](https://github.com/microsoft/generative-ai-for-beginners) - 21 Lessons, Get Started Building with Generative AI  🔗 https://microsoft.github.io/generative-ai-for-beginners/
@@ -965,7 +946,6 @@ Contents
    - [msoedov/agentic_security](https://github.com/msoedov/agentic_security) - Agentic LLM Vulnerability Scanner / AI red teaming kit
    - [marshmallow-code/apispec](https://github.com/marshmallow-code/apispec) - A pluggable API specification generator. Currently supports the OpenAPI Specification (f.k.a. the Swagger specification)..
    - [goauthentik/authentik](https://github.com/goauthentik/authentik) - The authentication glue you need.
-   - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI 🤖 (PyPi: autogen-agentchat)
    - [autogluon/autogluon](https://github.com/autogluon/autogluon) - Fast and Accurate ML in 3 Lines of Code
    - [phunt/avro-rpc-quickstart](https://github.com/phunt/avro-rpc-quickstart) - Apache Avro RPC Quick Start.
    - [lauris/awesome-scala](https://github.com/lauris/awesome-scala) - A community driven list of useful Scala libraries, frameworks and software.
@@ -1106,7 +1086,6 @@ Contents
    - [TimelyDataflow/differential-dataflow](https://github.com/TimelyDataflow/differential-dataflow) - An implementation of differential dataflow using timely dataflow on Rust.
    - [Wilfred/difftastic](https://github.com/Wilfred/difftastic) - a structural diff that understands syntax 🟥🟩
    - [DioxusLabs/dioxus](https://github.com/DioxusLabs/dioxus) - Fullstack app framework for web, desktop, mobile, and more.
-   - [Migorithm/duva](https://github.com/Migorithm/duva) - 
    - [emilk/egui](https://github.com/emilk/egui) - egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native
    - [embassy-rs/embassy](https://github.com/embassy-rs/embassy) - Modern embedded framework, using Rust and async.
    - [carllerche/eventual](https://github.com/carllerche/eventual) - A future &amp; stream abstraction for Rust
@@ -1120,6 +1099,7 @@ Contents
    - [orhun/git-cliff](https://github.com/orhun/git-cliff) - A highly customizable Changelog Generator that follows Conventional Commit specifications ⛰️ 
    - [extrawurst/gitui](https://github.com/extrawurst/gitui) - Blazing 💥 fast terminal-ui for git written in rust 🦀
    - [gleam-lang/gleam](https://github.com/gleam-lang/gleam) - ⭐️ A friendly language for building type-safe, scalable systems!
+   - [gluesql/gluesql](https://github.com/gluesql/gluesql) - GlueSQL is quite sticky. It attaches to anywhere.
    - [rustshop/htmx-sorta](https://github.com/rustshop/htmx-sorta) - Rust + htmx + tailwind + nix + redb  demo web app
    - [Orange-OpenSource/hurl](https://github.com/Orange-OpenSource/hurl) - Hurl, run and test HTTP requests with plain text.
    - [iced-rs/iced](https://github.com/iced-rs/iced) - A cross-platform GUI library for Rust, inspired by Elm
@@ -1166,6 +1146,7 @@ Contents
    - [ofek/pyapp](https://github.com/ofek/pyapp) - Runtime installer for Python applications
    - [PyO3/pyo3](https://github.com/PyO3/pyo3) - Rust bindings for the Python interpreter
    - [quickwit-oss/quickwit](https://github.com/quickwit-oss/quickwit) - Cloud-native search engine for observability. An open-source alternative to Datadog, Elasticsearch, Loki, and Tempo.
+   - [milen-denev/rasterizeddb](https://github.com/milen-denev/rasterizeddb) - A new schemaless, high-performance database written from scratch in Rust. https://crates.io/crates/rasterizeddb_core
    - [ratatui/ratatui](https://github.com/ratatui/ratatui) - A Rust crate for cooking up terminal user interfaces (TUIs) 👨‍🍳🐀 https://ratatui.rs
    - [rayon-rs/rayon](https://github.com/rayon-rs/rayon) - Rayon: A data parallelism library for Rust
    - [GregoryConrad/rearch-rs](https://github.com/GregoryConrad/rearch-rs) - Re-imagined approach to application design and architecture
@@ -1191,12 +1172,14 @@ Contents
    - [paulosuzart/similarr](https://github.com/paulosuzart/similarr) - Shuttle and Rust
    - [slatedb/slatedb](https://github.com/slatedb/slatedb) - A cloud native embedded storage engine built on object storage.
    - [slint-ui/slint](https://github.com/slint-ui/slint) - Slint is a declarative GUI toolkit to build native user interfaces for Rust, C++, or JavaScript apps.
+   - [efugier/smartcat](https://github.com/efugier/smartcat) - Putting a brain behind `cat`🐈‍⬛ Integrating language models in the Unix commands ecosystem through text streams.
    - [solana-labs/solana-program-library](https://github.com/solana-labs/solana-program-library) - A collection of Solana programs maintained by Solana Labs
    - [valeriansaliou/sonic](https://github.com/valeriansaliou/sonic) - 🦔 Fast, lightweight &amp; schema-less search backend. An alternative to Elasticsearch that runs on a few MBs of RAM.
    - [spring-rs/spring-rs](https://github.com/spring-rs/spring-rs) - 🍃spring-rs is a application framework written in rust inspired by java&apos;s spring-boot
    - [asg017/sqlite-loadable-rs](https://github.com/asg017/sqlite-loadable-rs) - A framework for writing fast and performant SQLite extensions in Rust
    - [launchbadge/sqlx](https://github.com/launchbadge/sqlx) - 🧰 The Rust SQL Toolkit. An async, pure Rust SQL crate featuring compile-time checked queries without a DSL. Supports PostgreSQL, MySQL, and SQLite.
    - [starship/starship](https://github.com/starship/starship) - ☄🌌️  The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+   - [regolith-labs/steel](https://github.com/regolith-labs/steel) - Solana smart contract framework.
    - [swc-project/swc](https://github.com/swc-project/swc) - Rust-based platform for the Web
    - [spaceandtimelabs/sxt-proof-of-sql](https://github.com/spaceandtimelabs/sxt-proof-of-sql) - Space and Time | Proof of SQL
    - [sycamore-rs/sycamore](https://github.com/sycamore-rs/sycamore) - A library for creating reactive web apps in Rust and WebAssembly
@@ -1395,7 +1378,7 @@ Contents
    - [malloydata/malloy](https://github.com/malloydata/malloy) - Malloy is an experimental language for describing data relationships and transformations.
    - [Ff00ff/mammoth](https://github.com/Ff00ff/mammoth) - A type-safe Postgres query builder for TypeScript.
    - [medplum/medplum](https://github.com/medplum/medplum) - Medplum is a healthcare platform that helps you quickly develop high-quality compliant applications.
-   - [midday-ai/midday](https://github.com/midday-ai/midday) - Run your business smarter 🪄
+   - [midday-ai/midday](https://github.com/midday-ai/midday) - Invoicing, Time tracking, File reconciliation, Storage, Financial Overview &amp; your own Assistant made for Freelancers
    - [mikro-orm/mikro-orm](https://github.com/mikro-orm/mikro-orm) - TypeScript ORM for Node.js based on Data Mapper, Unit of Work and Identity Map patterns. Supports MongoDB, MySQL, MariaDB, MS SQL Server, PostgreSQL and SQLite/libSQL databases.
    - [ega-forever/mokka](https://github.com/ega-forever/mokka) - Mokka consensus
    - [nanoapi-io/napi](https://github.com/nanoapi-io/napi) - Transpile your monolithic codebases to microservices in seconds
@@ -1415,7 +1398,7 @@ Contents
    - [upstash/rag-chat](https://github.com/upstash/rag-chat) - Batteries included SDK for RAG development.
    - [gothinkster/realworld](https://github.com/gothinkster/realworld) - &quot;The mother of all demo apps&quot; — Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more
    - [OptimalBits/redbird](https://github.com/OptimalBits/redbird) - A modern reverse proxy for node
-   - [fynnfluegge/rocketnotes](https://github.com/fynnfluegge/rocketnotes) - AI-powered Markdown note taking app - leverage vector embeddings and LLMs with your personal notes - 100% local or in the cloud
+   - [fynnfluegge/rocketnotes](https://github.com/fynnfluegge/rocketnotes) - AI-powered markdown editor - leverage vector embeddings and LLMs with your personal notes - 100% local or in the cloud
    - [typestack/routing-controllers](https://github.com/typestack/routing-controllers) - Create structured, declarative and beautifully organized class-based controllers with heavy decorators usage in Express / Koa using TypeScript and Routing Controllers Framework.
    - [boxyhq/saas-starter-kit](https://github.com/boxyhq/saas-starter-kit) - 🔥 Enterprise SaaS Starter Kit - Kickstart your enterprise app development with the Next.js SaaS boilerplate 🚀
    - [safe-global/safe-wallet-web](https://github.com/safe-global/safe-wallet-web) - Safe{Wallet} – smart account wallet
@@ -1450,6 +1433,7 @@ Contents
    - [evertdespiegeleer/zhttp](https://github.com/evertdespiegeleer/zhttp) - A minimal, typesafe HTTP library with Zod validation 🧑‍💻
 
 ## V
+   - [khalyomede/mantis](https://github.com/khalyomede/mantis) - A web framework written in V lang.
    - [vlang/v](https://github.com/vlang/v) - Simple, fast, safe, compiled language for developing maintainable software. Compiles itself in &lt;1s with zero library dependencies. Supports automatic C =&gt; V translation. https://vlang.io
    - [nedpals/vex](https://github.com/nedpals/vex) - Easy-to-use, modular web framework built for V
    - [elliotchance/vsql](https://github.com/elliotchance/vsql) - ✌️ Single-file or PostgreSQL-server compatible transactional SQL database written in pure V.
