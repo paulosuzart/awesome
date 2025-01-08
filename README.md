@@ -286,7 +286,7 @@ Contents
 
 ## Go
    - [stakater/Reloader](https://github.com/stakater/Reloader) - A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&apos;re using it!
-   - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - serve as a reverse proxy to protect your web services from attacks and exploits.
+   - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - SafeLine is a self-hosted WAF(Web Application Firewall) / reverse proxy to protect your web apps from attacks and exploits.
    - [nektos/act](https://github.com/nektos/act) - Run your GitHub Actions locally 🚀
    - [FiloSottile/age](https://github.com/FiloSottile/age) - A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability.
    - [ariasql/ariasql](https://github.com/ariasql/ariasql) - The AriaSQL relational database management system.
@@ -295,6 +295,7 @@ Contents
    - [etcd-io/bbolt](https://github.com/etcd-io/bbolt) - An embedded key/value database for Go.
    - [warpstreamlabs/bento](https://github.com/warpstreamlabs/bento) - Fancy stream processing made operationally mundane. This repository is a fork of the original project before the license was changed.
    - [allegro/bigcache](https://github.com/allegro/bigcache) - Efficient cache for gigabytes of data written in Go.
+   - [bruin-data/bruin](https://github.com/bruin-data/bruin) - Build data pipelines with SQL and Python, ingest data from different sources, add quality checks, and build end-to-end flows.
    - [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) - A powerful little TUI framework 🏗
    - [containers/buildah](https://github.com/containers/buildah) - A tool that facilitates building OCI images.
    - [everettraven/buoy](https://github.com/everettraven/buoy) - A declarative Kubernetes dashboard in your terminal
@@ -319,7 +320,7 @@ Contents
    - [daytonaio/daytona](https://github.com/daytonaio/daytona) - The Open Source Dev Environment Manager.
    - [decred/dcrd](https://github.com/decred/dcrd) - Decred daemon in Go (golang).
    - [docker-archive/deploykit](https://github.com/docker-archive/deploykit) - A toolkit for creating and managing declarative, self-healing infrastructure.
-   - [dgraph-io/dgraph](https://github.com/dgraph-io/dgraph) - The database for modern applications. Common use cases: knowledge graphs for AI, fraud detection, personalization, and search. Built and maintained by @HypermodeInc.
+   - [dgraph-io/dgraph](https://github.com/dgraph-io/dgraph) - high-performance graph database for powering real-time use cases
    - [wagoodman/dive](https://github.com/wagoodman/dive) - A tool for exploring each layer in a docker image
    - [dolthub/dolt](https://github.com/dolthub/dolt) - Dolt – Git for Data
    - [dolthub/doltgresql](https://github.com/dolthub/doltgresql) - DoltgreSQL - Version Controlled PostgreSQL
@@ -513,6 +514,7 @@ Contents
    - [EbookFoundation/free-programming-books](https://github.com/EbookFoundation/free-programming-books) - :books: Freely available programming books
    - [EsotericSoftware/kryo](https://github.com/EsotericSoftware/kryo) - Java binary serialization and cloning: fast, efficient, automatic
    - [collabnix/kubetools](https://github.com/collabnix/kubetools) - Kubetools - Curated List of Kubernetes Tools
+   - [web-infra-dev/midscene](https://github.com/web-infra-dev/midscene) - Automate browser actions, extract data, and perform assertions using AI. It offers JavaScript SDK, Chrome extension, and support for scripting in YAML.
    - [adrianhurt/play-bootstrap](https://github.com/adrianhurt/play-bootstrap) - A Play Framework library for Bootstrap
    - [NikolaiT/se-scraper](https://github.com/NikolaiT/se-scraper) - Javascript scraping module based on puppeteer for many different search engines...
    - [paulosuzart/ultimate-geo](https://github.com/paulosuzart/ultimate-geo) - Command line tool for generating latitude and longitude reading csv files with random columns.
@@ -609,7 +611,7 @@ Contents
    - [infobip/infobip-spring-data-querydsl](https://github.com/infobip/infobip-spring-data-querydsl) - Infobip Spring Data Querydsl provides new functionality that enables the user to leverage the full power of Querydsl API on top of Spring Data repository infrastructure.
    - [OpenAPITools/jackson-databind-nullable](https://github.com/OpenAPITools/jackson-databind-nullable) - JsonNullable wrapper class and Jackson module to support meaningful null values
    - [FasterXML/jackson-module-jsonSchema](https://github.com/FasterXML/jackson-module-jsonSchema) - Module for generating JSON Schema (v3) definitions from POJOs
-   - [gregory-ledenev/java-class-extension](https://github.com/gregory-ledenev/java-class-extension) - A powerful library that emulates class extensions (categories) in Java
+   - [gregory-ledenev/java-class-extension](https://github.com/gregory-ledenev/java-class-extension) - A powerful library that emulates class extensions (categories) in Java. In addition it supports interfaces composition, object unions and aspects.  
    - [DiUS/java-faker](https://github.com/DiUS/java-faker) - Brings the popular ruby faker gem to Java
    - [wavesoftware/java-mapstruct-jpa](https://github.com/wavesoftware/java-mapstruct-jpa) - A set of utilities focused on mapping JPA managed entities with MapStruct
    - [petitparser/java-petitparser](https://github.com/petitparser/java-petitparser) - Dynamic parser combinators in Java.
@@ -889,6 +891,7 @@ Contents
    - [ocaml/dune](https://github.com/ocaml/dune) - A composable build system for OCaml.
    - [tarides/dune-release](https://github.com/tarides/dune-release) - Streamlining the release of dune packages to opam
    - [ocaml-multicore/eio](https://github.com/ocaml-multicore/eio) - Effects-based direct-style IO for multicore OCaml
+   - [chshersh/github-tui](https://github.com/chshersh/github-tui) - 🌒 A TUI for GitHub
    - [issuu/graphite-async](https://github.com/issuu/graphite-async) - graphite-async
    - [aantron/hyper](https://github.com/aantron/hyper) - OCaml Web client, composable with Dream [unannounced]
    - [mirage/irmin](https://github.com/mirage/irmin) - Irmin is a distributed database that follows the same design principles as Git
@@ -928,6 +931,7 @@ Contents
 
 ## Python
    - [simular-ai/Agent-S](https://github.com/simular-ai/Agent-S) - Agent S: an open agentic framework that uses computers like a human
+   - [Thytu/Agentarium](https://github.com/Thytu/Agentarium) - open-source framework for creating and managing simulations populated with AI-powered agents. It provides an intuitive platform for designing complex, interactive environments where agents can act, learn, and evolve.
    - [open-mmlab/Amphion](https://github.com/open-mmlab/Amphion) - Amphion (/æmˈfaɪən/) is a toolkit for Audio, Music, and Speech Generation. Its purpose is to support reproducible research and help junior researchers and engineers get started in the field of audio, music, and speech generation research and development.
    - [mikeknapp/AppEngine-OAuth-Library](https://github.com/mikeknapp/AppEngine-OAuth-Library) - An OAuth library for interacting with Twitter, MySpace, LinkedIn and Yahoo on AppEngine
    - [IAHispano/Applio](https://github.com/IAHispano/Applio) - A simple, high-quality voice conversion tool focused on ease of use and performance.
@@ -979,7 +983,7 @@ Contents
    - [lixxu/flask-paginate](https://github.com/lixxu/flask-paginate) - Pagination support for flask
    - [babbel/floto](https://github.com/babbel/floto) - Task Orchestration Tool Based on SWF and boto3
    - [minimaxir/gpt-2-simple](https://github.com/minimaxir/gpt-2-simple) - Python package to easily retrain OpenAI&apos;s GPT-2 text-generating model on new texts
-   - [gpt-engineer-org/gpt-engineer](https://github.com/gpt-engineer-org/gpt-engineer) - Platform to experiment with the AI Software Engineer. Terminal based. NOTE: Very different from https://gptengineer.app
+   - [AntonOsika/gpt-engineer](https://github.com/AntonOsika/gpt-engineer) - Platform to experiment with the AI Software Engineer. Terminal based. NOTE: Very different from https://gptengineer.app
    - [marcio704/graphic_editor](https://github.com/marcio704/graphic_editor) - Description on &apos;instructions.txt&apos;
    - [benoitc/gunicorn](https://github.com/benoitc/gunicorn) - gunicorn &apos;Green Unicorn&apos; is a WSGI HTTP Server for UNIX, fast clients and sleepy applications.
    - [hazelcast/hazelcast-python-client](https://github.com/hazelcast/hazelcast-python-client) - Hazelcast Python Client
@@ -987,7 +991,6 @@ Contents
    - [sauljabin/kaskade](https://github.com/sauljabin/kaskade) - kaskade is a text user interface for kafka, which allows you to interact and consume topics from your terminal in style!
    - [khoj-ai/khoj](https://github.com/khoj-ai/khoj) - Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.
    - [capjamesg/knowledge-graph-language](https://github.com/capjamesg/knowledge-graph-language) - A query language for exploring knowledge graphs.
-   - [lancedb/lancedb](https://github.com/lancedb/lancedb) - Developer-friendly, serverless vector database for AI applications. Easily add long-term memory to your LLM apps!
    - [carbonfact/lea](https://github.com/carbonfact/lea) - 🏃‍♀️ Minimalist alternative to dbt
    - [Lightning-AI/lit-llama](https://github.com/Lightning-AI/lit-llama) - Implementation of the LLaMA language model based on nanoGPT. Supports flash attention, Int8 and GPTQ 4bit quantization, LoRA and LLaMA-Adapter fine-tuning, pre-training. Apache 2.0-licensed.
    - [BerriAI/litellm](https://github.com/BerriAI/litellm) - Python SDK, Proxy Server (LLM Gateway) to call 100+ LLM APIs in OpenAI format - [Bedrock, Azure, OpenAI, VertexAI, Cohere, Anthropic, Sagemaker, HuggingFace, Replicate, Groq]
@@ -1025,6 +1028,7 @@ Contents
    - [sieve-project/sieve](https://github.com/sieve-project/sieve) - Automatic Reliability Testing for Kubernetes Controllers and Operators
    - [minimaxir/simpleaichat](https://github.com/minimaxir/simpleaichat) - Python package for easily interfacing with chat apps, with robust features and minimal code complexity.
    - [marcelnicolay/simplexml](https://github.com/marcelnicolay/simplexml) - Simple and fast XML encoder/decoder for Python
+   - [Skyvern-AI/skyvern](https://github.com/Skyvern-AI/skyvern) - Automate browser-based workflows with LLMs and Computer Vision
    - [explosion/spaCy](https://github.com/explosion/spaCy) - 💫 Industrial-strength Natural Language Processing (NLP) in Python
    - [tobymao/sqlglot](https://github.com/tobymao/sqlglot) - Python SQL Parser and Transpiler
    - [fastapi/sqlmodel](https://github.com/fastapi/sqlmodel) - SQL databases in Python, designed for simplicity, compatibility, and robustness.
@@ -1073,8 +1077,10 @@ Contents
    - [cswinter/LocustDB](https://github.com/cswinter/LocustDB) - Blazingly fast analytics database that will rapidly devour all of your data.
    - [actix/actix-web](https://github.com/actix/actix-web) - Actix Web is a powerful, pragmatic, and extremely fast web framework for Rust.
    - [ankitects/anki](https://github.com/ankitects/anki) - Anki&apos;s shared backend and web components, and the Qt frontend
+   - [cognitive-engineering-lab/aquascope](https://github.com/cognitive-engineering-lab/aquascope) - Interactive visualizations of Rust at compile-time and run-time
    - [rust-unofficial/awesome-rust](https://github.com/rust-unofficial/awesome-rust) - A curated list of Rust code and resources.
    - [tokio-rs/axum](https://github.com/tokio-rs/axum) - Ergonomic and modular web framework built with Tokio, Tower, and Hyper
+   - [Akaike/axum-boilerplate-with-seaorm](https://github.com/Akaike/axum-boilerplate-with-seaorm) - Boilerplate for your next backend project
    - [bionic-gpt/bionic-gpt](https://github.com/bionic-gpt/bionic-gpt) - BionicGPT is an on-premise replacement for ChatGPT, offering the advantages of Generative AI while maintaining strict data confidentiality
    - [dalek-cryptography/bulletproofs](https://github.com/dalek-cryptography/bulletproofs) -  A pure-Rust implementation of Bulletproofs using Ristretto.
    - [tracel-ai/burn](https://github.com/tracel-ai/burn) - Burn is a new comprehensive dynamic Deep Learning Framework built using Rust with extreme flexibility, compute efficiency and portability as its primary goals.
@@ -1123,6 +1129,7 @@ Contents
    - [kdash-rs/kdash](https://github.com/kdash-rs/kdash) - A simple and fast dashboard for Kubernetes
    - [saschagrunert/kubernix](https://github.com/saschagrunert/kubernix) - Single dependency Kubernetes clusters for local testing, experimenting and development
    - [lakekeeper/lakekeeper](https://github.com/lakekeeper/lakekeeper) - Lakekeeper: A Rust native Iceberg REST Catalog
+   - [lancedb/lancedb](https://github.com/lancedb/lancedb) - Developer-friendly, serverless vector database for AI applications. Easily add long-term memory to your LLM apps!
    - [lapce/lapce](https://github.com/lapce/lapce) - Lightning-fast and Powerful Code Editor written in Rust
    - [ProvableHQ/leo](https://github.com/ProvableHQ/leo) - 🦁 The Leo Programming Language. A Programming Language for Formally Verified, Zero-Knowledge Applications
    - [tursodatabase/limbo](https://github.com/tursodatabase/limbo) - Limbo is a work-in-progress, in-process OLTP database management system, compatible with SQLite.
@@ -1134,6 +1141,7 @@ Contents
    - [anoma/namada](https://github.com/anoma/namada) - Rust implementation of Namada, a Proof-of-Stake L1 for interchain asset-agnostic privacy
    - [nurmohammed840/nio](https://github.com/nurmohammed840/nio) - Nio is an experimental async runtime for Rust
    - [njord-rs/njord](https://github.com/njord-rs/njord) - A versatile, feature-rich Rust ORM ⛵
+   - [vic1707/nnn](https://github.com/vic1707/nnn) - 
    - [rust-bakery/nom](https://github.com/rust-bakery/nom) - Rust parser combinator framework
    - [greyblake/nutype](https://github.com/greyblake/nutype) - Rust newtype with guarantees  🇺🇦 🦀
    - [x52dev/oas3-rs](https://github.com/x52dev/oas3-rs) - Structures and tools to parse, navigate and validate OpenAPI v3.1 specifications.
@@ -1204,6 +1212,7 @@ Contents
    - [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) - TensorZero creates a feedback loop for optimizing LLM applications — turning production data into smarter, faster, and cheaper models.
    - [dtolnay/thiserror](https://github.com/dtolnay/thiserror) - derive(Error) for struct and enum error types
    - [TimelyDataflow/timely-dataflow](https://github.com/TimelyDataflow/timely-dataflow) - A modular implementation of timely dataflow in Rust
+   - [sectore/timr-tui](https://github.com/sectore/timr-tui) - TUI to organize your time: Pomodoro, Countdown, Timer.
    - [m1guelpf/tinyvector](https://github.com/m1guelpf/tinyvector) - A tiny embedding database in pure Rust.
    - [hyperium/tonic](https://github.com/hyperium/tonic) - A native gRPC client &amp; server implementation with async/await support.
    - [erikgrinaker/toydb](https://github.com/erikgrinaker/toydb) - Distributed SQL database in Rust, written as an educational project
@@ -1414,6 +1423,7 @@ Contents
    - [safe-global/safe-wallet-monorepo](https://github.com/safe-global/safe-wallet-monorepo) - Safe{Wallet} – smart account wallet
    - [scalar/scalar](https://github.com/scalar/scalar) - Scalar is an open-source API platform:　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　🌐 Modern Rest API Client　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　📖 Beautiful API References　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　✨ 1st-Class OpenAPI/Swagger Support
    - [ocaml/setup-ocaml](https://github.com/ocaml/setup-ocaml) - GitHub Action for the OCaml programming language
+   - [anti-work/shortest](https://github.com/anti-work/shortest) - QA via natural language AI tests
    - [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library aimed at visualizing graphs of thousands of nodes and edges
    - [gajus/slonik](https://github.com/gajus/slonik) - A Node.js PostgreSQL client with runtime and build time type safety, and composable SQL.
    - [socketio/socket.io](https://github.com/socketio/socket.io) - Realtime application framework (Node.JS server)
@@ -1458,5 +1468,7 @@ Contents
 ## Zig
    - [xataio/pgzx](https://github.com/xataio/pgzx) - Create PostgreSQL extensions using Zig.
    - [tigerbeetle/tigerbeetle](https://github.com/tigerbeetle/tigerbeetle) - The financial transactions database designed for mission critical safety and performance.
+   - [GabrieleInvernizzi/zig-prompter](https://github.com/GabrieleInvernizzi/zig-prompter) - zig-prompter is a lightweight and flexible library for building and managing interactive text-based prompts. 
+   - [zon-dev/zinc](https://github.com/zon-dev/zinc) - Zinc is a web framework written in pure Zig with a focus on high performance, usability, security, and extensibility.
 
 
