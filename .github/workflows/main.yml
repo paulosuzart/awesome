@@ -3,7 +3,7 @@ name: Run starred_ml
 on:
   workflow_dispatch:
   schedule:
-  - cron: 30 0 * * 0
+    - cron: 30 0 * * 0
 
 permissions:
   pull-requests: write
@@ -17,11 +17,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: ${{ github.event.repository.name }}
-      
+
       - name: Set-up OCaml
         uses: ocaml/setup-ocaml@v3.0.9
         with:
-          ocaml-compiler: '5.1.1'
+          ocaml-compiler: "5.2.1"
 
       - run: opam install starred_ml
 
@@ -30,8 +30,7 @@ jobs:
           TOKEN: ${{ secrets.TOKEN }} # This token is a PAT with starred read access
         run: opam exec -- starred_ml > README.md
         working-directory: ${{ github.event.repository.name }}
-  
-  
+
       - uses: peter-evans/create-pull-request@v7
         with:
           commit-message: ${{ github.event.repository.updated_at}} starred_ml update

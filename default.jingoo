@@ -16,18 +16,17 @@ Have fun!
 Languages
 ---
 
-Languages starred: {{ lang_count }}:
-
+Total of `{{ lang_count }}` Languages starred:
 
 {%- for lang in languages %}
-   - [{{ lang }}](#{{ lang }})
+   - [{{ lang }}](#{{ lang }}) {% if lang == "NotSet" %} Repos without language specified {% endif %}
 {%- endfor %}
 
 Contents
 ---
 
 {% for item in by_language -%}
-## {{ item.language }}
+## <a name="{{ item.language }}"></a>{{ item.language }}
 
 {%- for repo in item.starred %}
    - [{{repo.owner_login}}/{{ repo.name }}]({{ repo.html_url }}) - {{ repo.description }}
