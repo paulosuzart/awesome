@@ -13,22 +13,19 @@ This is also a repository template to be used with [starred_ml](https://github.c
 Have fun!
 
 
-Languages
----
+# Languages
 
-Total of `{{ lang_count }}` Languages starred:
+Total of `{{ languages | length }}` Languages starred:
 
 {%- for lang in languages %}
-   - [{{ lang }}](#{{ lang }}) {% if lang == "NotSet" %} Repos without language specified {% endif %}
+   - [{{ lang }}](#{{ lang | urlencode }}) {% if lang == "Not Set" %} Repos without language specified {% endif %}
 {%- endfor %}
 
-Contents
----
+# Contents
+{% for group in repositories | groupby (attr('language')) | sort (attribute='language') %}
+## <a name="{{ group.grouper | urlencode }}"></a>{{ group.grouper }}
 
-{% for item in by_language -%}
-## <a name="{{ item.language }}"></a>{{ item.language }}
-
-{%- for repo in item.starred %}
+{%- for repo in group.list | sort (attribute='name') %}
    - [{{repo.owner_login}}/{{ repo.name }}]({{ repo.html_url }}) - {{ repo.description }}
 {%- endfor %}
 
