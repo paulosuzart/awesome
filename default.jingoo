@@ -25,7 +25,7 @@ Total of `{{ languages | length }}` Languages starred:
 {% for group in repositories | groupby (attr('language')) | sort (attribute='grouper') %}
 ## <a name="{{ group.grouper | urlencode }}"></a>{{ group.grouper }}
 
-{%- for repo in group.list | sort (attribute='language') %}
+{%- for repo in group.list | sort (attribute='name') %}
    - [{{repo.owner_login}}/{{ repo.name }}]({{ repo.html_url }}) - {{ repo.description }}
 {%- endfor %}
 
