@@ -28,7 +28,7 @@ jobs:
       - name: Generate awesome README
         env:
           TOKEN: ${{ secrets.TOKEN }} # This token is a PAT with starred read access
-        run: opam exec -- starred_ml > README.md
+        run: opam exec -- starred_ml render > README.md
         working-directory: ${{ github.event.repository.name }}
 
       - uses: peter-evans/create-pull-request@v7
