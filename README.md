@@ -913,8 +913,11 @@ Total of `47` Languages starred:
    - [ocaml/dune](https://github.com/ocaml/dune) - A composable build system for OCaml.
    - [tarides/dune-release](https://github.com/tarides/dune-release) - Streamlining the release of dune packages to opam
    - [ocaml-multicore/eio](https://github.com/ocaml-multicore/eio) - Effects-based direct-style IO for multicore OCaml
+   - [ocaml-multicore/eio-trace](https://github.com/ocaml-multicore/eio-trace) - Trace visualisation tool for Eio programs
+   - [robur-coop/git-kv](https://github.com/robur-coop/git-kv) - KV implementation on top of git (mirror of https://git.robur.coop/robur/git-kv)
    - [chshersh/github-tui](https://github.com/chshersh/github-tui) - 🌒 A TUI for GitHub
    - [issuu/graphite-async](https://github.com/issuu/graphite-async) - graphite-async
+   - [robur-coop/hurl](https://github.com/robur-coop/hurl) - A simple HTTP client for OCaml 5
    - [aantron/hyper](https://github.com/aantron/hyper) - OCaml Web client, composable with Dream [unannounced]
    - [mirage/irmin](https://github.com/mirage/irmin) - Irmin is a distributed database that follows the same design principles as Git
    - [c-cube/iter](https://github.com/c-cube/iter) - Simple iterator abstract datatype, intended to iterate efficiently on collections while performing some transformations.
@@ -927,6 +930,7 @@ Total of `47` Languages starred:
    - [mirage/mirage](https://github.com/mirage/mirage) - MirageOS is a library operating system that constructs unikernels
    - [mirage/ocaml-cohttp](https://github.com/mirage/ocaml-cohttp) - An OCaml library for HTTP clients and servers using Lwt or Async
    - [didier-wenzek/ocaml-kafka](https://github.com/didier-wenzek/ocaml-kafka) - OCaml bindings for Kafka
+   - [mransan/ocaml-protoc](https://github.com/mransan/ocaml-protoc) - A Protobuf Compiler for OCaml
    - [ocaml/ocaml-re](https://github.com/ocaml/ocaml-re) - Pure OCaml regular expressions, with support for Perl and POSIX-style strings
    - [mirleft/ocaml-tls](https://github.com/mirleft/ocaml-tls) - TLS in pure OCaml
    - [ocaml-ppx/ocamlformat](https://github.com/ocaml-ppx/ocamlformat) - Auto-formatter for OCaml code
@@ -937,8 +941,9 @@ Total of `47` Languages starred:
    - [dbuenzli/react](https://github.com/dbuenzli/react) - Declarative events and signals for OCaml
    - [riot-ml/riot](https://github.com/riot-ml/riot) - An actor-model multi-core scheduler for OCaml 5 🐫
    - [paulosuzart/starred_ml](https://github.com/paulosuzart/starred_ml) - Creates a starred markdown
-   - [terrateamio/terrateam](https://github.com/terrateamio/terrateam) - Terrateam is an open-source GitOps CI/CD platform for automating infrastructure workflows. It integrates with GitHub to orchestrate Terraform, OpenTofu, CDKTF, and Terragrunt operations via pull requests.
+   - [terrateamio/terrateam](https://github.com/terrateamio/terrateam) - Terrateam is an open-source GitOps CI/CD platform for automating infrastructure workflows. It integrates with GitHub to orchestrate Terraform, OpenTofu, CDKTF, Terragrunt, and Pulumi operations via pull requests.
    - [suri-framework/trail](https://github.com/suri-framework/trail) - Minimal composable server framework for Riot
+   - [xhtmlboi/yocaml](https://github.com/xhtmlboi/yocaml) - YOCaml is a static site generator, mostly written in OCaml
    - [ocaml-community/yojson](https://github.com/ocaml-community/yojson) - Low-level JSON parsing and pretty-printing library for OCaml
    - [funkywork/yourbones](https://github.com/funkywork/yourbones) - A companion library for writing applications on Tezos (in OCaml)
 
