@@ -348,7 +348,7 @@ Total of `44` Languages starred:
    - [flynn/flynn](https://github.com/flynn/flynn) - [UNMAINTAINED] A next generation open source platform as a service (PaaS)
    - [charmbracelet/freeze](https://github.com/charmbracelet/freeze) - Generate images of code and terminal output 📸
    - [flomesh-io/fsm](https://github.com/flomesh-io/fsm) - Lightweight service mesh for Kubernetes East-West and North-South traffic management, uses ebpf for layer4  and pipy proxy for layer7 traffic management, support multi cluster network. 
-   - [go-fuego/fuego](https://github.com/go-fuego/fuego) - Golang Fuego - web framework generating OpenAPI 3 spec from source code
+   - [go-fuego/fuego](https://github.com/go-fuego/fuego) - Golang Fuego - Web framework generating OpenAPI 3 spec from source code - Pluggable to existing Gin &amp; Echo APIs
    - [fyne-io/fyne](https://github.com/fyne-io/fyne) - Cross platform GUI toolkit in Go inspired by Material Design
    - [paulosuzart/gb](https://github.com/paulosuzart/gb) - Go Benchmark. Inspired by Apache Benchmark
    - [onsi/ginkgo](https://github.com/onsi/ginkgo) - A Modern Testing Framework for Go
@@ -426,7 +426,7 @@ Total of `44` Languages starred:
    - [eko/monday](https://github.com/eko/monday) - ⚡️ A dev tool for microservice developers to run local applications and/or forward others from/to Kubernetes SSH or TCP
    - [hoisie/mustache](https://github.com/hoisie/mustache) - The mustache template language in Go
    - [kataras/neffos](https://github.com/kataras/neffos) - A modern, fast and scalable websocket framework with elegant API written in Go
-   - [nucleuscloud/neosync](https://github.com/nucleuscloud/neosync) - Open source data anonymization and synthetic data orchestration for developers. Create high fidelity synthetic data and sync it across your environments. 
+   - [nucleuscloud/neosync](https://github.com/nucleuscloud/neosync) - Open source data anonymization and synthetic data platform for developers. Anonymize your production data and sync it across your environments so that developers can safely use it. 
    - [nitrictech/nitric](https://github.com/nitrictech/nitric) - Nitric is a multi-language framework for cloud applications with infrastructure from code.
    - [attic-labs/noms](https://github.com/attic-labs/noms) - The versioned, forkable, syncable database
    - [nixys/nxs-data-anonymizer](https://github.com/nixys/nxs-data-anonymizer) - A tool for anonymizing PostgreSQL and MySQL databases&apos; dump
@@ -715,7 +715,7 @@ Total of `44` Languages starred:
    - [rstuven/OpenTweetFilter](https://github.com/rstuven/OpenTweetFilter) - A browser extension/add-on to filter tweets. Currently, supporting Google Chrome.and Mozilla Firefox (15+)
    - [aisingapore/TagUI](https://github.com/aisingapore/TagUI) - Free RPA tool by AI Singapore
    - [ToolJet/ToolJet](https://github.com/ToolJet/ToolJet) - Low-code platform for building business applications. Connect to databases, cloud storages, GraphQL, API endpoints, Airtable, Google sheets, OpenAI, etc and build apps using drag and drop application builder. Built using JavaScript/TypeScript. 🚀
-   - [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) - The all-in-one Desktop &amp; Docker AI application with built-in RAG, AI agents, and more.
+   - [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) - The all-in-one Desktop &amp; Docker AI application with built-in RAG, AI agents, No-code agent builder, and more.
    - [jodacame/apidocjs-template-dark-Slate-Inspiration-](https://github.com/jodacame/apidocjs-template-dark-Slate-Inspiration-) - Theme dark (Slate) for apidocjs
    - [automerge/automerge](https://github.com/automerge/automerge) - A JSON-like data structure (a CRDT) that can be modified concurrently by different users, and merged again automatically. 
    - [haltcase/babel-plugin-partial-application](https://github.com/haltcase/babel-plugin-partial-application) - [DEPRECATED] Please use https://github.com/citycide/param.macro
@@ -831,7 +831,6 @@ Total of `44` Languages starred:
 
 ## <a name="MDX"></a>MDX
    - [openai/openai-cookbook](https://github.com/openai/openai-cookbook) - Examples and guides for using the OpenAI API
-   - [yewstack/yew](https://github.com/yewstack/yew) - Rust / Wasm framework for creating reliable and efficient web applications
 
 
 ## <a name="Makefile"></a>Makefile
@@ -952,7 +951,7 @@ Total of `44` Languages starred:
 
 
 ## <a name="Python"></a>Python
-   - [simular-ai/Agent-S](https://github.com/simular-ai/Agent-S) - Agent S: an open agentic framework that uses computers like a human
+   - [simular-ai/Agent-S](https://github.com/simular-ai/Agent-S) - [ICLR 2025] Agent S: an open agentic framework that uses computers like a human
    - [Thytu/Agentarium](https://github.com/Thytu/Agentarium) - open-source framework for creating and managing simulations populated with AI-powered agents. It provides an intuitive platform for designing complex, interactive environments where agents can act, learn, and evolve.
    - [open-mmlab/Amphion](https://github.com/open-mmlab/Amphion) - Amphion (/æmˈfaɪən/) is a toolkit for Audio, Music, and Speech Generation. Its purpose is to support reproducible research and help junior researchers and engineers get started in the field of audio, music, and speech generation research and development.
    - [mikeknapp/AppEngine-OAuth-Library](https://github.com/mikeknapp/AppEngine-OAuth-Library) - An OAuth library for interacting with Twitter, MySpace, LinkedIn and Yahoo on AppEngine
@@ -1080,6 +1079,8 @@ Total of `44` Languages starred:
 
 ## <a name="ReScript"></a>ReScript
    - [rescript-lang/rescript](https://github.com/rescript-lang/rescript) - ReScript is a robustly typed language that compiles to efficient and human-readable JavaScript.
+   - [DZakh/rescript-rest](https://github.com/DZakh/rescript-rest) - 😴 ReScript RPC-like client, contract, and server implementation for a pure REST API
+   - [DZakh/rescript-schema](https://github.com/DZakh/rescript-schema) - 🧬 The fastest parser in the entire JavaScript ecosystem with a focus on small bundle size and top-notch DX
 
 
 ## <a name="Roc"></a>Roc
@@ -1159,7 +1160,7 @@ Total of `44` Languages starred:
    - [casey/just](https://github.com/casey/just) - 🤖 Just a command runner
    - [kdash-rs/kdash](https://github.com/kdash-rs/kdash) - A simple and fast dashboard for Kubernetes
    - [saschagrunert/kubernix](https://github.com/saschagrunert/kubernix) - Single dependency Kubernetes clusters for local testing, experimenting and development
-   - [lakekeeper/lakekeeper](https://github.com/lakekeeper/lakekeeper) - Lakekeeper: A Rust native Iceberg REST Catalog
+   - [lakekeeper/lakekeeper](https://github.com/lakekeeper/lakekeeper) - Lakekeeper is an Apache-Licensed, secure, fast and easy to use Apache Iceberg REST Catalog written in Rust.
    - [lapce/lapce](https://github.com/lapce/lapce) - Lightning-fast and Powerful Code Editor written in Rust
    - [ProvableHQ/leo](https://github.com/ProvableHQ/leo) - 🦁 The Leo Programming Language. A Programming Language for Formally Verified, Zero-Knowledge Applications
    - [tursodatabase/limbo](https://github.com/tursodatabase/limbo) - Limbo is a project to build the modern evolution of SQLite.
@@ -1182,7 +1183,7 @@ Total of `44` Languages starred:
    - [maxmindlin/openfga-dsl-parser](https://github.com/maxmindlin/openfga-dsl-parser) - Parsing and JSON transformer library for the OpenFGA authorization DSL 
    - [openobserve/openobserve](https://github.com/openobserve/openobserve) - 🚀 10x easier, 🚀 140x lower storage cost, 🚀 high performance,  🚀 petabyte scale - Elasticsearch/Splunk/Datadog alternative for 🚀 (logs, metrics, traces, RUM, Error tracking, Session replay).
    - [open-telemetry/opentelemetry-rust](https://github.com/open-telemetry/opentelemetry-rust) - The Rust OpenTelemetry implementation
-   - [IUseRustBtw/oxide-lang](https://github.com/IUseRustBtw/oxide-lang) - 
+   - [NoahGav/oxide-lang](https://github.com/NoahGav/oxide-lang) - 
    - [paradedb/paradedb](https://github.com/paradedb/paradedb) - Postgres for Search and Analytics
    - [foresterre/parameterized](https://github.com/foresterre/parameterized) - 🐑 JUnit style parameterized testing for Rust
    - [postgresml/pgcat](https://github.com/postgresml/pgcat) - PostgreSQL pooler with sharding, load balancing and failover support.
@@ -1206,7 +1207,7 @@ Total of `44` Languages starred:
    - [seanmonstar/reqwest](https://github.com/seanmonstar/reqwest) - An easy and powerful Rust HTTP Client
    - [rerun-io/rerun](https://github.com/rerun-io/rerun) - Visualize streams of multimodal data. Free, fast, easy to use, and simple to integrate. Built in Rust.
    - [0xPlaygrounds/rig](https://github.com/0xPlaygrounds/rig) - ⚙️🦀 Build portable, modular &amp; lightweight Fullstack Agents
-   - [risingwavelabs/risingwave](https://github.com/risingwavelabs/risingwave) - The event stream processing platform for developers. Unified experience for real-time data ingestion, stream processing, and low-latency serving. Best-in-class performance and cost-efficiency. Supports SQL and Python.
+   - [risingwavelabs/risingwave](https://github.com/risingwavelabs/risingwave) - Stream processing platform for developers.
    - [rlink-rs/rlink-rs](https://github.com/rlink-rs/rlink-rs) - High-performance Stream Processing Framework. An alternative to Apache Flink.
    - [graniet/rllm](https://github.com/graniet/rllm) - Use multiple LLM backends in a single crate, simple builder-based configuration, and built-in prompt chaining &amp; templating.
    - [roapi/roapi](https://github.com/roapi/roapi) - Create full-fledged APIs for slowly moving datasets without writing a single line of code.
@@ -1235,6 +1236,7 @@ Total of `44` Languages starred:
    - [launchbadge/sqlx](https://github.com/launchbadge/sqlx) - 🧰 The Rust SQL Toolkit. An async, pure Rust SQL crate featuring compile-time checked queries without a DSL. Supports PostgreSQL, MySQL, and SQLite.
    - [starship/starship](https://github.com/starship/starship) - ☄🌌️  The minimal, blazing-fast, and infinitely customizable prompt for any shell!
    - [regolith-labs/steel](https://github.com/regolith-labs/steel) - Solana smart contract framework.
+   - [jonefeewang/stonemq](https://github.com/jonefeewang/stonemq) - A high-performance and efficient message queue developed   in Rust
    - [swc-project/swc](https://github.com/swc-project/swc) - Rust-based platform for the Web
    - [spaceandtimelabs/sxt-proof-of-sql](https://github.com/spaceandtimelabs/sxt-proof-of-sql) - Space and Time | Proof of SQL
    - [sycamore-rs/sycamore](https://github.com/sycamore-rs/sycamore) - A library for creating reactive web apps in Rust and WebAssembly
@@ -1258,6 +1260,7 @@ Total of `44` Languages starred:
    - [wasmerio/wasmer-postgres](https://github.com/wasmerio/wasmer-postgres) - 💽🕸 Postgres library to run WebAssembly binaries.
    - [bytecodealliance/wasmtime](https://github.com/bytecodealliance/wasmtime) - A lightweight WebAssembly runtime that is fast, secure, and standards-compliant
    - [sxyazi/yazi](https://github.com/sxyazi/yazi) - 💥 Blazing fast terminal file manager written in Rust, based on async I/O.
+   - [yewstack/yew](https://github.com/yewstack/yew) - Rust / Wasm framework for creating reliable and efficient web applications
    - [ZcashFoundation/zebra](https://github.com/ZcashFoundation/zebra) - Zcash - Financial Privacy in Rust 🦓
    - [zellij-org/zellij](https://github.com/zellij-org/zellij) - A terminal workspace with batteries included
    - [getzola/zola](https://github.com/getzola/zola) - A fast static site generator in a single binary with everything built-in. https://www.getzola.org
@@ -1369,7 +1372,7 @@ Total of `44` Languages starred:
 
 
 ## <a name="Svelte"></a>Svelte
-   - [Abdenasser/neohtop](https://github.com/Abdenasser/neohtop) - 💪🏻 system monitoring on steroids
+   - [Abdenasser/neohtop](https://github.com/Abdenasser/neohtop) - 💪🏻 Blazing-fast system monitoring for your desktop (built with Rust, Tauri &amp; Svelte)
 
 
 ## <a name="Swift"></a>Swift
@@ -1505,6 +1508,7 @@ Total of `44` Languages starred:
 
 
 ## <a name="Zig"></a>Zig
+   - [chrischtel/Ziglet](https://github.com/chrischtel/Ziglet) - A Minimalist, High-Performance Virtual Machine in Zig
    - [buzz-language/buzz](https://github.com/buzz-language/buzz) - 👨‍🚀  buzz, A small/lightweight statically typed scripting language
    - [karlseguin/http.zig](https://github.com/karlseguin/http.zig) - An HTTP/1.1 server for zig
    - [jetzig-framework/jetzig](https://github.com/jetzig-framework/jetzig) - Jetzig is a web framework written in Zig
@@ -1513,6 +1517,7 @@ Total of `44` Languages starred:
    - [tigerbeetle/tigerbeetle](https://github.com/tigerbeetle/tigerbeetle) - The financial transactions database designed for mission critical safety and performance.
    - [cztomsik/tokamak](https://github.com/cztomsik/tokamak) - Server-side framework for Zig, relying heavily on dependency injection.
    - [akarpovskii/tuile](https://github.com/akarpovskii/tuile) - A cross-platform Text UI (TUI) library in Zig
+   - [aleloi/zepl](https://github.com/aleloi/zepl) - Experimental repl for zig
    - [FOLLGAD/zig-ai](https://github.com/FOLLGAD/zig-ai) - OpenAI SDK with streaming support
    - [GabrieleInvernizzi/zig-prompter](https://github.com/GabrieleInvernizzi/zig-prompter) - zig-prompter is a lightweight and flexible library for building and managing interactive text-based prompts.
    - [zon-dev/zinc](https://github.com/zon-dev/zinc) - Zinc is a web framework written in pure Zig with a focus on high performance, usability, security, and extensibility.
