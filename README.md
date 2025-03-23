@@ -318,10 +318,11 @@ Total of `43` Languages starred:
    - [cortezaproject/corteza](https://github.com/cortezaproject/corteza) - Low-code platform
    - [crossplane/crossplane](https://github.com/crossplane/crossplane) - The Cloud Native Control Plane
    - [heimdalr/dag](https://github.com/heimdalr/dag) - Yet another directed acyclic graph (DAG) implementation in golang.
-   - [daytonaio/daytona](https://github.com/daytonaio/daytona) - Daytona is a Secure and Elastic Infrastructure for Running Your AI-Generated Code.
+   - [daytonaio/daytona](https://github.com/daytonaio/daytona) - Daytona is a Secure and Elastic Infrastructure for Running AI-Generated Code.
    - [decred/dcrd](https://github.com/decred/dcrd) - Decred daemon in Go (golang).
    - [docker-archive/deploykit](https://github.com/docker-archive/deploykit) - A toolkit for creating and managing declarative, self-healing infrastructure.
    - [hypermodeinc/dgraph](https://github.com/hypermodeinc/dgraph) - high-performance graph database for real-time use cases
+   - [DiceDB/dice](https://github.com/DiceDB/dice) - DiceDB is an open-source, fast, reactive, in-memory database optimized for modern hardware.
    - [wagoodman/dive](https://github.com/wagoodman/dive) - A tool for exploring each layer in a docker image
    - [dolthub/dolt](https://github.com/dolthub/dolt) - Dolt – Git for Data
    - [dolthub/doltgresql](https://github.com/dolthub/doltgresql) - DoltgreSQL - Version Controlled PostgreSQL
@@ -469,6 +470,7 @@ Total of `43` Languages starred:
    - [owenrumney/squealer](https://github.com/owenrumney/squealer) - Telling tales on you for leaking secrets!
    - [stern/stern](https://github.com/stern/stern) - ⎈ Multi pod and container log tailing for Kubernetes -- Friendly fork of https://github.com/wercker/stern
    - [asdine/storm](https://github.com/asdine/storm) - Simple and powerful toolkit for BoltDB
+   - [subtrace/subtrace](https://github.com/subtrace/subtrace) - Wireshark for Docker containers
    - [siderolabs/talos](https://github.com/siderolabs/talos) - Talos Linux is a modern Linux distribution built for Kubernetes.
    - [grafana/tanka](https://github.com/grafana/tanka) - Flexible, reusable and concise configuration for Kubernetes
    - [runvnc/tealang](https://github.com/runvnc/tealang) - Tealang - high level language for Algorand ASC1 and TEAL
@@ -950,7 +952,7 @@ Total of `43` Languages starred:
 
 
 ## <a name="Python"></a>Python
-   - [simular-ai/Agent-S](https://github.com/simular-ai/Agent-S) - Agent S: an open agentic framework that uses computers like a human
+   - [simular-ai/Agent-S](https://github.com/simular-ai/Agent-S) - [ICLR 2025] Agent S: an open agentic framework that uses computers like a human
    - [Thytu/Agentarium](https://github.com/Thytu/Agentarium) - open-source framework for creating and managing simulations populated with AI-powered agents. It provides an intuitive platform for designing complex, interactive environments where agents can act, learn, and evolve.
    - [open-mmlab/Amphion](https://github.com/open-mmlab/Amphion) - Amphion (/æmˈfaɪən/) is a toolkit for Audio, Music, and Speech Generation. Its purpose is to support reproducible research and help junior researchers and engineers get started in the field of audio, music, and speech generation research and development.
    - [mikeknapp/AppEngine-OAuth-Library](https://github.com/mikeknapp/AppEngine-OAuth-Library) - An OAuth library for interacting with Twitter, MySpace, LinkedIn and Yahoo on AppEngine
@@ -1012,8 +1014,8 @@ Total of `43` Languages starred:
    - [sauljabin/kaskade](https://github.com/sauljabin/kaskade) - kaskade is a text user interface for kafka, which allows you to interact and consume topics from your terminal in style!
    - [khoj-ai/khoj](https://github.com/khoj-ai/khoj) - Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.
    - [capjamesg/knowledge-graph-language](https://github.com/capjamesg/knowledge-graph-language) - A query language for exploring knowledge graphs.
-   - [lancedb/lancedb](https://github.com/lancedb/lancedb) - Developer-friendly, serverless vector database for AI applications. Easily add long-term memory to your LLM apps!
-   - [carbonfact/lea](https://github.com/carbonfact/lea) - 🏃‍♀️ Minimalist alternative to dbt
+   - [lancedb/lancedb](https://github.com/lancedb/lancedb) - Developer-friendly, embedded retrieval engine for multimodal AI. Search More; Manage Less.
+   - [carbonfact/lea](https://github.com/carbonfact/lea) - 🏃‍♀️ Minimalist SQL orchestrator
    - [Lightning-AI/lit-llama](https://github.com/Lightning-AI/lit-llama) - Implementation of the LLaMA language model based on nanoGPT. Supports flash attention, Int8 and GPTQ 4bit quantization, LoRA and LLaMA-Adapter fine-tuning, pre-training. Apache 2.0-licensed.
    - [BerriAI/litellm](https://github.com/BerriAI/litellm) - Python SDK, Proxy Server (LLM Gateway) to call 100+ LLM APIs in OpenAI format - [Bedrock, Azure, OpenAI, VertexAI, Cohere, Anthropic, Sagemaker, HuggingFace, Replicate, Groq]
    - [Lightning-AI/litgpt](https://github.com/Lightning-AI/litgpt) - 20+ high-performance LLMs with recipes to pretrain, finetune and deploy at scale.
@@ -1120,6 +1122,7 @@ Total of `43` Languages starred:
    - [clap-rs/clap](https://github.com/clap-rs/clap) - A full featured, fast Command Line Argument Parser for Rust
    - [codesnap-rs/codesnap](https://github.com/codesnap-rs/codesnap) - 🦀️📸 Pure Rust tool to generate beautiful code snapshots, provide CLI and Library
    - [google/comprehensive-rust](https://github.com/google/comprehensive-rust) - This is the Rust course used by the Android team at Google. It provides you the material to quickly teach Rust.
+   - [tokio-rs/console](https://github.com/tokio-rs/console) - a debugger for async rust!
    - [superfly/corrosion](https://github.com/superfly/corrosion) - Gossip-based service discovery (and more) for large distributed systems.
    - [cot-rs/cot](https://github.com/cot-rs/cot) - The Rust web framework for lazy developers.
    - [cozodb/cozo](https://github.com/cozodb/cozo) - A transactional, relational-graph-vector database that uses Datalog for query. The hippocampus for AI!
@@ -1190,6 +1193,7 @@ Total of `43` Languages starred:
    - [paradedb/paradedb](https://github.com/paradedb/paradedb) - Postgres for Search and Analytics
    - [foresterre/parameterized](https://github.com/foresterre/parameterized) - 🐑 JUnit style parameterized testing for Rust
    - [postgresml/pgcat](https://github.com/postgresml/pgcat) - PostgreSQL pooler with sharding, load balancing and failover support.
+   - [pgdogdev/pgdog](https://github.com/pgdogdev/pgdog) - Horizontal scaling for PostgreSQL with automatic sharding.
    - [pgcentralfoundation/pgrx](https://github.com/pgcentralfoundation/pgrx) - Build Postgres Extensions with Rust!
    - [mila411/pilgrimage](https://github.com/mila411/pilgrimage) - Create Kafaka-like things while enjoying low-level programming without external crates
    - [cloudflare/pingora](https://github.com/cloudflare/pingora) - A library for building fast, reliable and evolvable network services.
@@ -1233,6 +1237,7 @@ Total of `43` Languages starred:
    - [slatedb/slatedb](https://github.com/slatedb/slatedb) - A cloud native embedded storage engine built on object storage.
    - [slint-ui/slint](https://github.com/slint-ui/slint) - Slint is a declarative GUI toolkit to build native user interfaces for Rust, C++, or JavaScript apps.
    - [efugier/smartcat](https://github.com/efugier/smartcat) - Putting a brain behind `cat`🐈‍⬛ Integrating language models in the Unix commands ecosystem through text streams.
+   - [farcasterxyz/snapchain](https://github.com/farcasterxyz/snapchain) - The open-source, canonical implementation of Farcaster&apos;s Snapchain network.
    - [solana-labs/solana-program-library](https://github.com/solana-labs/solana-program-library) - A collection of Solana programs maintained by Solana Labs
    - [valeriansaliou/sonic](https://github.com/valeriansaliou/sonic) - 🦔 Fast, lightweight &amp; schema-less search backend. An alternative to Elasticsearch that runs on a few MBs of RAM.
    - [spring-rs/spring-rs](https://github.com/spring-rs/spring-rs) - 🍃spring-rs is a application framework written in rust inspired by java&apos;s spring-boot
@@ -1430,12 +1435,13 @@ Total of `43` Languages starred:
    - [ericwooley/graphql-typeorm-passport-boilerplate](https://github.com/ericwooley/graphql-typeorm-passport-boilerplate) - A boilerplate for passport, typeorm, and graphql
    - [kdby-io/graphql-typescript](https://github.com/kdby-io/graphql-typescript) - Define and build GraphQL Schemas using typed classes
    - [graphql-kit/graphql-voyager](https://github.com/graphql-kit/graphql-voyager) - 🛰️ Represent any GraphQL API as an interactive graph
-   - [dotansimha/graphql-yoga](https://github.com/dotansimha/graphql-yoga) - 🧘 Rewrite of a fully-featured GraphQL Server with focus on easy setup, performance &amp; great developer experience.  The core of Yoga implements WHATWG Fetch API and can run/deploy on any JS environment.
+   - [graphql-hive/graphql-yoga](https://github.com/graphql-hive/graphql-yoga) - 🧘 Rewrite of a fully-featured GraphQL Server with focus on easy setup, performance &amp; great developer experience.  The core of Yoga implements WHATWG Fetch API and can run/deploy on any JS environment.
    - [hazelcast/hazelcast-nodejs-client](https://github.com/hazelcast/hazelcast-nodejs-client) - Hazelcast Node.js Client
    - [Infisical/infisical](https://github.com/Infisical/infisical) - ♾ Infisical is the open-source secret management platform: Sync secrets across your team/infrastructure, prevent secret leaks, and manage internal PKI
    - [javascript-obfuscator/javascript-obfuscator](https://github.com/javascript-obfuscator/javascript-obfuscator) - A powerful obfuscator for JavaScript and Node.js
    - [jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry) - JHipster Registry, based on Spring Cloud Netflix Eureka and Spring Cloud Config
    - [keystonejs/keystone](https://github.com/keystonejs/keystone) - The superpowered headless CMS for Node.js — built with GraphQL and React
+   - [kubero-dev/kubero](https://github.com/kubero-dev/kubero) - A free and self-hosted PaaS alternative to Heroku / Netlify / Coolify / Vercel / Dokku / Portainer running on Kubernetes
    - [kysely-org/kysely](https://github.com/kysely-org/kysely) - A type-safe typescript SQL query builder
    - [RobinBlomberg/kysely-codegen](https://github.com/RobinBlomberg/kysely-codegen) - Generate Kysely type definitions from your database.
    - [kysely-org/kysely-ctl](https://github.com/kysely-org/kysely-ctl) - Command-line tool for Kysely
