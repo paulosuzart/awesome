@@ -285,7 +285,7 @@ Total of `41` Languages starred:
    - [gopherd/core](https://github.com/gopherd/core) - A powerful Go library that provides a component-based development framework for building backend services.
    - [cogentcore/core](https://github.com/cogentcore/core) - A free and open source framework for building powerful, fast, elegant 2D and 3D apps that run on macOS, Windows, Linux, iOS, Android, and web with a single Go codebase, allowing you to Code Once, Run Everywhere.
    - [gazette/core](https://github.com/gazette/core) - Build platforms that flexibly mix SQL, batch, and stream processing paradigms
-   - [coroot/coroot](https://github.com/coroot/coroot) - Coroot is an open-source APM &amp; Observability tool, a DataDog and NewRelic alternative. Metrics, logs, traces, continuous profiling, and SLO-based alerting, supercharged with predefined dashboards and inspections.
+   - [coroot/coroot](https://github.com/coroot/coroot) - Coroot is an open-source observability and APM tool with AI-powered Root Cause Analysis. It combines metrics, logs, traces, continuous profiling, and SLO-based alerting with predefined dashboards and inspections.
    - [cortezaproject/corteza](https://github.com/cortezaproject/corteza) - Low-code platform
    - [crossplane/crossplane](https://github.com/crossplane/crossplane) - The Cloud Native Control Plane
    - [heimdalr/dag](https://github.com/heimdalr/dag) - Yet another directed acyclic graph (DAG) implementation in golang.
@@ -369,7 +369,7 @@ Total of `41` Languages starred:
    - [charmbracelet/gum](https://github.com/charmbracelet/gum) - A tool for glamorous shell scripts 🎀
    - [google/gvisor](https://github.com/google/gvisor) - Application Kernel for Containers
    - [nvellon/hal](https://github.com/nvellon/hal) - A Golang implementation of HAL media type standard
-   - [teamhanko/hanko](https://github.com/teamhanko/hanko) - Privacy-first Customer Identity and Access Management (CIAM) for modern apps. Open source alternative to Auth0, Cognito, Clerk, Descope, Stytch.
+   - [teamhanko/hanko](https://github.com/teamhanko/hanko) - Modern Authentication—On Your Terms. Open source alternative to Auth0, Cognito, Clerk, Descope, Stytch.
    - [malisetti/hartman](https://github.com/malisetti/hartman) - hartman is a go routine manager
    - [arttor/helmify](https://github.com/arttor/helmify) - Creates Helm chart from Kubernetes yaml
    - [huton-io/huton](https://github.com/huton-io/huton) - An embeddable and distributed in-memory key-value store written in Go
@@ -786,7 +786,7 @@ Total of `41` Languages starred:
    - [AI4Finance-Foundation/FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) - FinGPT: Open-Source Financial Large Language Models!  Revolutionize 🔥    We release the trained model on HuggingFace.
    - [rpclib/benchmarks](https://github.com/rpclib/benchmarks) - 
    - [DataExpert-io/data-engineer-handbook](https://github.com/DataExpert-io/data-engineer-handbook) - This is a repo with links to everything you&apos;d ever want to learn about data engineering
-   - [microsoft/generative-ai-for-beginners](https://github.com/microsoft/generative-ai-for-beginners) - 21 Lessons, Get Started Building with Generative AI  🔗 https://microsoft.github.io/generative-ai-for-beginners/
+   - [microsoft/generative-ai-for-beginners](https://github.com/microsoft/generative-ai-for-beginners) - 21 Lessons, Get Started Building with Generative AI 
    - [hesamsheikh/ml-retreat](https://github.com/hesamsheikh/ml-retreat) - Machine Learning Journal for Intermediate to Advanced Topics. 
    - [openai/openai-cookbook](https://github.com/openai/openai-cookbook) - Examples and guides for using the OpenAI API
    - [buremba/universql](https://github.com/buremba/universql) - Pushdown compute from Snowflake to DuckDB running on your infrastructure
@@ -969,6 +969,7 @@ Total of `41` Languages starred:
    - [thisbejim/Pyrebase](https://github.com/thisbejim/Pyrebase) - A simple python wrapper for the Firebase API.
    - [QwenLM/Qwen-Agent](https://github.com/QwenLM/Qwen-Agent) - Agent framework and applications built upon Qwen&gt;=3.0, featuring Function Calling, MCP, Code Interpreter, RAG, Chrome extension, etc.
    - [billxbf/ReWOO](https://github.com/billxbf/ReWOO) - Decoupling Reasoning from Observations for Efficient Augmented Language Models
+   - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Open Source Alternative to NotebookLM / Perplexity, connected to external sources such as Search Engines, Slack, Linear, Jira, ClickUp, Confluence, Notion, YouTube, GitHub, Discord and more. Join our discord: https://discord.gg/ejRNvftDp9
    - [OpenBMB/ToolBench](https://github.com/OpenBMB/ToolBench) - [ICLR&apos;24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning.
    - [ActivityWatch/activitywatch](https://github.com/ActivityWatch/activitywatch) - The best free and open-source automated time tracker. Cross-platform, extensible, privacy-focused.
    - [Agenta-AI/agenta](https://github.com/Agenta-AI/agenta) - The open-source LLMOps platform: prompt playground, prompt management, LLM evaluation, and LLM observability all in one place.
@@ -1026,7 +1027,7 @@ Total of `41` Languages starred:
    - [localstack/localstack](https://github.com/localstack/localstack) - 💻 A fully functional local AWS cloud stack. Develop and test your cloud &amp; Serverless apps offline
    - [spotify/luigi](https://github.com/spotify/luigi) - Luigi is a Python module that helps you build complex pipelines of batch jobs. It handles dependency resolution, workflow management, visualization etc. It also comes with Hadoop support built in. 
    - [mage-ai/mage-ai](https://github.com/mage-ai/mage-ai) - 🧙 Build, run, and manage data pipelines for integrating and transforming data.
-   - [marimo-team/marimo](https://github.com/marimo-team/marimo) - A reactive notebook for Python — run reproducible experiments, query with SQL, execute as a script, deploy as an app, and version with git. All in a modern, AI-native editor.
+   - [marimo-team/marimo](https://github.com/marimo-team/marimo) - Transform data, train models, and run SQL with marimo — feels like a next-gen reactive notebook, stored as Git-friendly Python. Deploy as scripts, pipelines, endpoints, and apps. All from an AI-native editor (or your own).
    - [mem0ai/mem0](https://github.com/mem0ai/mem0) - Universal memory layer for AI Agents; Announcing OpenMemory MCP - local and secure memory management.
    - [mindsdb/mindsdb](https://github.com/mindsdb/mindsdb) - AI Analytics Engine that can answer questions over large scale data. - The only MCP Server you&apos;ll ever need
    - [moonshine-ai/moonshine](https://github.com/moonshine-ai/moonshine) - Fast and accurate automatic speech recognition (ASR) for edge devices
@@ -1174,6 +1175,7 @@ Total of `41` Languages starred:
    - [njord-rs/njord](https://github.com/njord-rs/njord) - A versatile, feature-rich Rust ORM ⛵
    - [vic1707/nnn](https://github.com/vic1707/nnn) - 
    - [rust-bakery/nom](https://github.com/rust-bakery/nom) - Rust parser combinator framework
+   - [notificohq/notifico](https://github.com/notificohq/notifico) - Self-hosted open source notification server
    - [greyblake/nutype](https://github.com/greyblake/nutype) - Rust newtype with guarantees  🇺🇦 🦀
    - [x52dev/oas3-rs](https://github.com/x52dev/oas3-rs) - Structures and tools to parse, navigate and validate OpenAPI v3.1 specifications.
    - [haraldng/omnipaxos](https://github.com/haraldng/omnipaxos) - OmniPaxos is a distributed log implemented as a Rust library.
@@ -1207,7 +1209,7 @@ Total of `41` Languages starred:
    - [GregoryConrad/rearch-rs](https://github.com/GregoryConrad/rearch-rs) - Re-imagined approach to application design and architecture
    - [seanmonstar/reqwest](https://github.com/seanmonstar/reqwest) - An easy and powerful Rust HTTP Client
    - [rerun-io/rerun](https://github.com/rerun-io/rerun) - Visualize streams of multimodal data. Free, fast, easy to use, and simple to integrate. Built in Rust.
-   - [0xPlaygrounds/rig](https://github.com/0xPlaygrounds/rig) - ⚙️🦀 Build portable, modular &amp; lightweight Fullstack Agents
+   - [0xPlaygrounds/rig](https://github.com/0xPlaygrounds/rig) - ⚙️🦀 Build modular and scalable LLM Applications in Rust
    - [risingwavelabs/risingwave](https://github.com/risingwavelabs/risingwave) - Real-time event streaming platform. Streaming CDC, stream processing, low-latency serving, and Iceberg management.
    - [rlink-rs/rlink-rs](https://github.com/rlink-rs/rlink-rs) - High-performance Stream Processing Framework. An alternative to Apache Flink.
    - [graniet/rllm](https://github.com/graniet/rllm) - Use multiple LLM backends in a single crate, simple builder-based configuration, and built-in prompt chaining &amp; templating.
@@ -1393,13 +1395,12 @@ Total of `41` Languages starred:
 
 
 ## <a name="TypeScript"></a>TypeScript
-   - [office-sec/AionUi](https://github.com/office-sec/AionUi) - Free, local, open-source GUI app for Gemini CLI — Enhance Chat Experience, Multi-tasking, Code Diff View, File &amp; Project Management, and more | 🌟 Star if you like it!
+   - [iOfficeAI/AionUi](https://github.com/iOfficeAI/AionUi) - Free, local, open-source GUI app for Gemini CLI — Enhance Chat Experience, Multi-tasking, Code Diff View, File &amp; Project Management, and more | 🌟 Star if you like it!
    - [any4ai/AnyCrawl](https://github.com/any4ai/AnyCrawl) - AnyCrawl 🚀: A Node.js/TypeScript crawler that turns websites into LLM-ready data and extracts structured SERP results from Google/Bing/Baidu/etc. Native multi-threading for bulk processing.
    - [Codehagen/Badget](https://github.com/Codehagen/Badget) - Badget aims to simplify financial management with a user-friendly interface and robust backend
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
    - [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) - Enhanced ChatGPT Clone: Features Agents, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active project.
    - [event-driven-io/Pongo](https://github.com/event-driven-io/Pongo) - Pongo - Mongo but on Postgres and with strong consistency benefits
-   - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Open Source Alternative to NotebookLM / Perplexity, connected to external sources such as Search Engines, Slack, Linear, Jira, ClickUp, Confluence, Notion, YouTube, GitHub, Discord and more. Join our discord: https://discord.gg/ejRNvftDp9
    - [Qovery/Torii](https://github.com/Qovery/Torii) - Torii ⛩️ is a simple, powerful and extensible open-source Internal Developer Portal
    - [Canner/WrenAI](https://github.com/Canner/WrenAI) - ⚡️ GenBI (Generative BI) queries any database in natural language, generates accurate SQL (Text-to-SQL), charts (Text-to-Chart), and AI-powered insights in seconds.
    - [activepieces/activepieces](https://github.com/activepieces/activepieces) - AI Agents &amp; MCPs &amp; AI Workflow Automation • (280+ MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows &amp; AI Agents • MCPs for AI Agents
@@ -1442,7 +1443,7 @@ Total of `41` Languages starred:
    - [kriasoft/graphql-starter-kit](https://github.com/kriasoft/graphql-starter-kit) - 💥  Monorepo template (seed project) pre-configured with GraphQL API, PostgreSQL, React, and Joy UI.
    - [ericwooley/graphql-typeorm-passport-boilerplate](https://github.com/ericwooley/graphql-typeorm-passport-boilerplate) - A boilerplate for passport, typeorm, and graphql
    - [kdby-io/graphql-typescript](https://github.com/kdby-io/graphql-typescript) - Define and build GraphQL Schemas using typed classes
-   - [graphql-kit/graphql-voyager](https://github.com/graphql-kit/graphql-voyager) - 🛰️ Represent any GraphQL API as an interactive graph
+   - [APIs-guru/graphql-voyager](https://github.com/APIs-guru/graphql-voyager) - 🛰️ Represent any GraphQL API as an interactive graph
    - [graphql-hive/graphql-yoga](https://github.com/graphql-hive/graphql-yoga) - 🧘 Rewrite of a fully-featured GraphQL Server with focus on easy setup, performance &amp; great developer experience.  The core of Yoga implements WHATWG Fetch API and can run/deploy on any JS environment.
    - [hazelcast/hazelcast-nodejs-client](https://github.com/hazelcast/hazelcast-nodejs-client) - Hazelcast Node.js Client
    - [Infisical/infisical](https://github.com/Infisical/infisical) - Infisical is the open-source platform for secrets management, PKI, and SSH access.
