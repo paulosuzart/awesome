@@ -634,7 +634,7 @@ Total of `41` Languages starred:
    - [rayokota/kareldb](https://github.com/rayokota/kareldb) - A Relational Database Backed by Apache Kafka
    - [rayokota/kcache](https://github.com/rayokota/kcache) - An In-Memory Cache Backed by Apache Kafka
    - [kcctl/kcctl](https://github.com/kcctl/kcctl) - A modern and intuitive command line client for Kafka Connect
-   - [kestra-io/kestra](https://github.com/kestra-io/kestra) - :zap: Universal Workflow Orchestration Platform — Code in any language, run anywhere. 800+ plugins for data, infrastructure, and AI automation.
+   - [kestra-io/kestra](https://github.com/kestra-io/kestra) - :zap: Universal Workflow Orchestration Platform — Code in any language, run anywhere. 900+ plugins for data, infrastructure, and AI automation.
    - [rayokota/keta](https://github.com/rayokota/keta) - A Transactional Metadata Store Backed by Apache Kafka
    - [michelin/kstreamplify](https://github.com/michelin/kstreamplify) - Swiftly build and enhance your Kafka Streams applications.
    - [jclouds/legacy-jclouds-examples](https://github.com/jclouds/legacy-jclouds-examples) - 
@@ -1193,12 +1193,12 @@ Total of `41` Languages starred:
    - [postgresml/pgcat](https://github.com/postgresml/pgcat) - PostgreSQL pooler with sharding, load balancing and failover support.
    - [pgdogdev/pgdog](https://github.com/pgdogdev/pgdog) - Horizontal scaling for PostgreSQL with automatic sharding.
    - [pgcentralfoundation/pgrx](https://github.com/pgcentralfoundation/pgrx) - Build Postgres Extensions with Rust!
-   - [mila411/pilgrimage](https://github.com/mila411/pilgrimage) - Create Kafaka-like things while enjoying low-level programming without external crates
+   - [mila411/pilgrimage](https://github.com/mila411/pilgrimage) - A new type of asynchronous database combining the concepts of distributed databases and blockchain
    - [cloudflare/pingora](https://github.com/cloudflare/pingora) - A library for building fast, reliable and evolvable network services.
    - [pkgxdev/pkgx](https://github.com/pkgxdev/pkgx) - Run Anything
    - [alceal/plotlars](https://github.com/alceal/plotlars) - Plotlars is a Rust library designed to facilitate the integration between the Polars data analysis library and Plotly library.
    - [poem-web/poem](https://github.com/poem-web/poem) - A full-featured and easy-to-use web framework with the Rust programming language.
-   - [pola-rs/polars](https://github.com/pola-rs/polars) - Dataframes powered by a multithreaded, vectorized query engine, written in Rust
+   - [pola-rs/polars](https://github.com/pola-rs/polars) - Extremely fast Query Engine for DataFrames, written in Rust
    - [postgresml/postgresml](https://github.com/postgresml/postgresml) - Postgres with GPUs for ML/AI apps.
    - [ofek/pyapp](https://github.com/ofek/pyapp) - Runtime installer for Python applications
    - [PyO3/pyo3](https://github.com/PyO3/pyo3) - Rust bindings for the Python interpreter
@@ -1396,7 +1396,7 @@ Total of `41` Languages starred:
 
 
 ## <a name="TypeScript"></a>TypeScript
-   - [iOfficeAI/AionUi](https://github.com/iOfficeAI/AionUi) - Free, local, open-source GUI app for Gemini CLI — Enhance Chat Experience, Multi-tasking, Code Diff View, File &amp; Project Management, and more | 🌟 Star if you like it!
+   - [iOfficeAI/AionUi](https://github.com/iOfficeAI/AionUi) - Free, local, open-source GUI app for Gemini CLI — Better Chat UI, File Management, AI image editing, multi-agent support, multi-LLMs &amp; apikey polling, code diff view &amp; more | 🌟 Star if you like it!
    - [any4ai/AnyCrawl](https://github.com/any4ai/AnyCrawl) - AnyCrawl 🚀: A Node.js/TypeScript crawler that turns websites into LLM-ready data and extracts structured SERP results from Google/Bing/Baidu/etc. Native multi-threading for bulk processing.
    - [Codehagen/Badget](https://github.com/Codehagen/Badget) - Badget aims to simplify financial management with a user-friendly interface and robust backend
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
@@ -1409,7 +1409,7 @@ Total of `41` Languages starred:
    - [liblaber/ai](https://github.com/liblaber/ai) - build internal applications for your organization
    - [apollographql/apollo-tooling](https://github.com/apollographql/apollo-tooling) - ✏️ Apollo CLI for client tooling (Mostly replaced by Rover)
    - [nabind47/authjs](https://github.com/nabind47/authjs) - Authentication in Next.js 14 with Auth.js and server actions having credentials as well as socials signin along with forgot password and 2FA.
-   - [BemiHQ/bemi](https://github.com/BemiHQ/bemi) - Automatic data change tracking for PostgreSQL
+   - [BemiHQ/bemi-io](https://github.com/BemiHQ/bemi-io) - Automatic data change tracking for PostgreSQL
    - [better-auth/better-auth](https://github.com/better-auth/better-auth) - The most comprehensive authentication framework for TypeScript
    - [bigcapitalhq/bigcapital](https://github.com/bigcapitalhq/bigcapital) - 💵 Bigcapital is financial accounting with intelligent reporting for faster decision-making, an open-source alternative to Quickbooks, Xero, etc.
    - [stackblitz-labs/bolt.diy](https://github.com/stackblitz-labs/bolt.diy) - Prompt, run, edit, and deploy full-stack web applications using any LLM you want!
@@ -1436,6 +1436,7 @@ Total of `41` Languages starred:
    - [feathersjs/feathers](https://github.com/feathersjs/feathers) - The API and real-time application framework
    - [devmatteini/football-calendar](https://github.com/devmatteini/football-calendar) - Automatically sync your google calendar with football matches of your favorite team!
    - [formsy/formsy-material-ui](https://github.com/formsy/formsy-material-ui) - A Formsy compatibility wrapper for Material-UI form components
+   - [freelensapp/freelens](https://github.com/freelensapp/freelens) - Free IDE for Kubernetes
    - [openfga/frontend-utils](https://github.com/openfga/frontend-utils) - Helpful functions for building OpenFGA model authoring frontends  - https://www.npmjs.com/package/@openfga/frontend-utils
    - [nestjs/graphql](https://github.com/nestjs/graphql) - GraphQL (TypeScript) module for Nest framework (node.js) 🍷
    - [Escape-Technologies/graphql-armor](https://github.com/Escape-Technologies/graphql-armor) - 🛡️ The missing GraphQL security security layer for Apollo GraphQL and Yoga / Envelop servers 🛡️
@@ -1459,7 +1460,7 @@ Total of `41` Languages starred:
    - [kysely-org/kysely-ctl](https://github.com/kysely-org/kysely-ctl) - Command-line tool for Kysely, Knex-compatible, works in Node.js, Deno, Bun, etc.
    - [huggingface/llm-vscode](https://github.com/huggingface/llm-vscode) - LLM powered development for VSCode
    - [magnitudedev/magnitude](https://github.com/magnitudedev/magnitude) - Open-source, vision-first browser agent
-   - [malloydata/malloy](https://github.com/malloydata/malloy) - Malloy is an experimental language for describing data relationships and transformations.
+   - [malloydata/malloy](https://github.com/malloydata/malloy) - Malloy is a modern open source language for describing data relationships and transformations.
    - [Ff00ff/mammoth](https://github.com/Ff00ff/mammoth) - A type-safe Postgres query builder for TypeScript.
    - [medplum/medplum](https://github.com/medplum/medplum) - Medplum is a healthcare platform that helps you quickly develop high-quality compliant applications.
    - [midday-ai/midday](https://github.com/midday-ai/midday) - Invoicing, Time tracking, File reconciliation, Storage, Financial Overview &amp; your own Assistant made for Freelancers
@@ -1536,13 +1537,16 @@ Total of `41` Languages starred:
 
 ## <a name="Zig"></a>Zig
    - [chrischtel/Ziglet](https://github.com/chrischtel/Ziglet) - A Minimalist, High-Performance Virtual Machine in Zig
+   - [Thomvanoorschot/backstage](https://github.com/Thomvanoorschot/backstage) - This repository contains an experimental actor framework built using the Zig programming language. The framework implements actor-based concurrent programming patterns, including message passing between actors, actor lifecycle management, and state isolation. It leverages the libxev library for its event loop and concurrency.
    - [lightpanda-io/browser](https://github.com/lightpanda-io/browser) - Lightpanda: the headless browser designed for AI and automation
    - [buzz-language/buzz](https://github.com/buzz-language/buzz) - 👨‍🚀  buzz, A small/lightweight statically typed scripting language
    - [karlseguin/http.zig](https://github.com/karlseguin/http.zig) - An HTTP/1.1 server for zig
    - [Super-ZIG/io](https://github.com/Super-ZIG/io) -  Easy input/output in ZIG. 
    - [jetzig-framework/jetzig](https://github.com/jetzig-framework/jetzig) - Jetzig is a web framework written in Zig
    - [rockorager/libvaxis](https://github.com/rockorager/libvaxis) - a modern tui library written in zig
+   - [karlseguin/pg.zig](https://github.com/karlseguin/pg.zig) - Native PostgreSQL driver / client for Zig
    - [xataio/pgzx](https://github.com/xataio/pgzx) - Create PostgreSQL extensions using Zig.
+   - [cocky-punch/raft](https://github.com/cocky-punch/raft) - Raft Consensus Algorithm implementation in Zig
    - [tigerbeetle/tigerbeetle](https://github.com/tigerbeetle/tigerbeetle) - The financial transactions database designed for mission critical safety and performance.
    - [cztomsik/tokamak](https://github.com/cztomsik/tokamak) - Web framework for Zig that leverages dependency injection for clean, modular application development.
    - [williamw520/toposort](https://github.com/williamw520/toposort) - Topological sort library in Zig
