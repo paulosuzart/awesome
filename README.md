@@ -15,7 +15,7 @@ Have fun!
 
 # Languages
 
-Total of `41` Languages starred:
+Total of `42` Languages starred:
    - [C](#C) 
    - [C#](#C%23) 
    - [C++](#C%2B%2B) 
@@ -23,6 +23,7 @@ Total of `41` Languages starred:
    - [Crystal](#Crystal) 
    - [D](#D) 
    - [Elixir](#Elixir) 
+   - [Flix](#Flix) 
    - [Go](#Go) 
    - [Groovy](#Groovy) 
    - [HCL](#HCL) 
@@ -256,6 +257,10 @@ Total of `41` Languages starred:
    - [cpursley/walex](https://github.com/cpursley/walex) - Postgres change events (CDC) in Elixir
 
 
+## <a name="Flix"></a>Flix
+   - [flix/flix](https://github.com/flix/flix) - The Flix Programming Language
+
+
 ## <a name="Go"></a>Go
    - [stakater/Reloader](https://github.com/stakater/Reloader) - A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&apos;re using it!
    - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - SafeLine is a self-hosted WAF(Web Application Firewall) / reverse proxy to protect your web apps from attacks and exploits.
@@ -383,7 +388,7 @@ Total of `41` Languages starred:
    - [guycipher/k4](https://github.com/guycipher/k4) - High-performance open-source, durable, transactional embedded storage engine designed for low-latency, and optimized read and write efficiency.
    - [clastix/kamaji](https://github.com/clastix/kamaji) - Kamaji is the Hosted Control Plane Manager for Kubernetes.
    - [projectdiscovery/katana](https://github.com/projectdiscovery/katana) - A next-generation crawling and spidering framework.
-   - [keploy/keploy](https://github.com/keploy/keploy) - Unit, API &amp; Integration Testing Agent for Developers. Generate tests, mocks/stubs for your APIs that actually work!
+   - [keploy/keploy](https://github.com/keploy/keploy) - API, Integration, E2E Testing Agent for Developers that actually work. Generate tests, mocks/stubs for your APIs!
    - [xiaonanln/keylock](https://github.com/xiaonanln/keylock) - Golang utility class KeyLock: lock by string key, so as to avoid giant lock
    - [kubernetes/kops](https://github.com/kubernetes/kops) - Kubernetes Operations (kOps) - Production Grade k8s Installation, Upgrades and Management
    - [yonahd/kor](https://github.com/yonahd/kor) - A Golang Tool to discover unused Kubernetes Resources 
@@ -421,6 +426,7 @@ Total of `41` Languages starred:
    - [hookdeck/outpost](https://github.com/hookdeck/outpost) - Open Source Outbound Webhooks and Event Destinations Infrastructure
    - [mikestefanello/pagoda](https://github.com/mikestefanello/pagoda) - Rapid, easy full-stack web development starter kit and admin panel in Go
    - [pgflo/pg_flo](https://github.com/pgflo/pg_flo) - Stream, transform, and route PostgreSQL data in real-time.
+   - [pgschema/pgschema](https://github.com/pgschema/pgschema) - Terraform-style, declarative schema migration for Postgres
    - [mosuka/phalanx](https://github.com/mosuka/phalanx) - Phalanx is a cloud-native distributed search engine that provides endpoints through gRPC and traditional RESTful API.
    - [andydunstall/piko](https://github.com/andydunstall/piko) - An open-source alternative to Ngrok, designed to serve production traffic and be simple to host (particularly on Kubernetes)
    - [pocketbase/pocketbase](https://github.com/pocketbase/pocketbase) - Open Source realtime backend in 1 file
@@ -455,7 +461,7 @@ Total of `41` Languages starred:
    - [stern/stern](https://github.com/stern/stern) - ⎈ Multi pod and container log tailing for Kubernetes -- Friendly fork of https://github.com/wercker/stern
    - [stoolap/stoolap](https://github.com/stoolap/stoolap) - NewSQL That Starts Simple. High-performance SQL database with MVCC, columnar indexes, and HTAP capabilities. Pure Go and zero dependencies.
    - [asdine/storm](https://github.com/asdine/storm) - Simple and powerful toolkit for BoltDB
-   - [subtrace/subtrace](https://github.com/subtrace/subtrace) - Wireshark for Docker containers
+   - [subtrace/subtrace](https://github.com/subtrace/subtrace) - Network inspector for your backend
    - [siderolabs/talos](https://github.com/siderolabs/talos) - Talos Linux is a modern Linux distribution built for Kubernetes.
    - [grafana/tanka](https://github.com/grafana/tanka) - Flexible, reusable and concise configuration for Kubernetes
    - [runvnc/tealang](https://github.com/runvnc/tealang) - Tealang - high level language for Algorand ASC1 and TEAL
@@ -585,7 +591,7 @@ Total of `41` Languages starred:
    - [failsafe-lib/failsafe](https://github.com/failsafe-lib/failsafe) - Fault tolerance and resilience patterns for the JVM
    - [RuedigerMoeller/fast-serialization](https://github.com/RuedigerMoeller/fast-serialization) - FST: fast java serialization drop in-replacement 
    - [google/google-java-format](https://github.com/google/google-java-format) - Reformats Java source code to comply with Google Java Style.
-   - [oracle/graal](https://github.com/oracle/graal) - GraalVM compiles Java applications into native executables that start instantly, scale fast, and use fewer compute resources 🚀
+   - [oracle/graal](https://github.com/oracle/graal) - GraalVM compiles applications into native executables that start instantly, scale fast, and use fewer compute resources 🚀
    - [intuit/graphql-filter-java](https://github.com/intuit/graphql-filter-java) - This project is developed to help developers add filtering support to their graphql-java services
    - [LogNet/grpc-spring-boot-starter](https://github.com/LogNet/grpc-spring-boot-starter) - Spring Boot starter module for gRPC  framework. 
    - [google/guava](https://github.com/google/guava) - Google core libraries for Java
@@ -835,6 +841,7 @@ Total of `41` Languages starred:
 
 
 ## <a name="MoonBit"></a>MoonBit
+   - [moonbitlang/async](https://github.com/moonbitlang/async) - async programming library for MoonBit
    - [oboard/mocket](https://github.com/oboard/mocket) - A web framework for MoonBit.
    - [gmlewis/spin-moonbit-sdk](https://github.com/gmlewis/spin-moonbit-sdk) - Experimental Spin SDK for the MoonBit programming language.
 
@@ -980,7 +987,7 @@ Total of `41` Languages starred:
    - [alumnium-hq/alumnium](https://github.com/alumnium-hq/alumnium) - Pave the way towards AI-powered test automation.
    - [marshmallow-code/apispec](https://github.com/marshmallow-code/apispec) - A pluggable API specification generator. Currently supports the OpenAPI Specification (f.k.a. the Swagger specification)..
    - [goauthentik/authentik](https://github.com/goauthentik/authentik) - The authentication glue you need.
-   - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI 🤖 PyPi: autogen-agentchat Discord: https://aka.ms/autogen-discord Office Hour: https://aka.ms/autogen-officehour
+   - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI
    - [autogluon/autogluon](https://github.com/autogluon/autogluon) - Fast and Accurate ML in 3 Lines of Code
    - [phunt/avro-rpc-quickstart](https://github.com/phunt/avro-rpc-quickstart) - Apache Avro RPC Quick Start.
    - [lauris/awesome-scala](https://github.com/lauris/awesome-scala) - A community driven list of useful Scala libraries, frameworks and software.
@@ -1072,7 +1079,7 @@ Total of `41` Languages starred:
    - [Kitware/trame](https://github.com/Kitware/trame) - Trame lets you weave various components and technologies into a Web Application solely written in Python.
    - [huggingface/transformers](https://github.com/huggingface/transformers) - 🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. 
    - [tav/tweetapp](https://github.com/tav/tweetapp) - Framework for creating Twitter apps on App Engine
-   - [unslothai/unsloth](https://github.com/unslothai/unsloth) - Fine-tuning &amp; Reinforcement Learning for LLMs. 🦥 Train OpenAI gpt-oss, Qwen3, Llama 4, DeepSeek-R1, Gemma 3, TTS 2x faster with 70% less VRAM.
+   - [unslothai/unsloth](https://github.com/unslothai/unsloth) - Fine-tuning &amp; Reinforcement Learning for LLMs. 🦥 Train OpenAI gpt-oss, DeepSeek-R1, Qwen3, Gemma 3, TTS 2x faster with 70% less VRAM.
    - [vanna-ai/vanna](https://github.com/vanna-ai/vanna) - 🤖 Chat with your SQL database 📊. Accurate Text-to-SQL Generation via LLMs using RAG 🔄.
 
 
@@ -1098,6 +1105,8 @@ Total of `41` Languages starred:
    - [ankitects/anki](https://github.com/ankitects/anki) - Anki is a smart spaced repetition flashcard program
    - [cognitive-engineering-lab/aquascope](https://github.com/cognitive-engineering-lab/aquascope) - Interactive visualizations of Rust at compile-time and run-time
    - [arkflow-rs/arkflow](https://github.com/arkflow-rs/arkflow) - High performance Rust stream processing engine seamlessly integrates AI capabilities, providing powerful real-time data processing and intelligent analysis. 
+   - [apache/arrow-rs](https://github.com/apache/arrow-rs) - Official Rust implementation of Apache Arrow
+   - [ArroyoSystems/arroyo](https://github.com/ArroyoSystems/arroyo) - Distributed stream processing engine in Rust
    - [rust-unofficial/awesome-rust](https://github.com/rust-unofficial/awesome-rust) - A curated list of Rust code and resources.
    - [tokio-rs/axum](https://github.com/tokio-rs/axum) - Ergonomic and modular web framework built with Tokio, Tower, and Hyper
    - [Akaike/axum-boilerplate-with-seaorm](https://github.com/Akaike/axum-boilerplate-with-seaorm) - Boilerplate for your next backend project
@@ -1187,7 +1196,7 @@ Total of `41` Languages starred:
    - [openobserve/openobserve](https://github.com/openobserve/openobserve) - 🚀 10x easier, 🚀 140x lower storage cost, 🚀 high performance,  🚀 petabyte scale - Elasticsearch/Splunk/Datadog alternative for 🚀 (logs, metrics, traces, RUM, Error tracking, Session replay).
    - [open-telemetry/opentelemetry-rust](https://github.com/open-telemetry/opentelemetry-rust) - The Rust OpenTelemetry implementation
    - [NoahGav/oxide-lang](https://github.com/NoahGav/oxide-lang) - 
-   - [paradedb/paradedb](https://github.com/paradedb/paradedb) - ParadeDB is a modern Elasticsearch alternative built on Postgres. Built for real-time, update-heavy workloads.
+   - [paradedb/paradedb](https://github.com/paradedb/paradedb) - The transactional Elasticsearch alternative built on Postgres
    - [foresterre/parameterized](https://github.com/foresterre/parameterized) - 🐑 JUnit style parameterized testing for Rust
    - [Mooncake-Labs/pg_mooncake](https://github.com/Mooncake-Labs/pg_mooncake) - Real-time analytics on Postgres tables
    - [postgresml/pgcat](https://github.com/postgresml/pgcat) - PostgreSQL pooler with sharding, load balancing and failover support.
@@ -1203,6 +1212,7 @@ Total of `41` Languages starred:
    - [ofek/pyapp](https://github.com/ofek/pyapp) - Runtime installer for Python applications
    - [PyO3/pyo3](https://github.com/PyO3/pyo3) - Rust bindings for the Python interpreter
    - [quickwit-oss/quickwit](https://github.com/quickwit-oss/quickwit) - Cloud-native search engine for observability. An open-source alternative to Datadog, Elasticsearch, Loki, and Tempo.
+   - [tikv/raft-rs](https://github.com/tikv/raft-rs) - Raft distributed consensus algorithm implemented in Rust.
    - [milen-denev/rasterizeddb](https://github.com/milen-denev/rasterizeddb) - A new schemafull, Postgres compatible, high-performance database written from scratch in Rust. https://crates.io/crates/rasterizeddb_core
    - [ratatui/ratatui](https://github.com/ratatui/ratatui) - A Rust crate for cooking up terminal user interfaces (TUIs) 👨‍🍳🐀 https://ratatui.rs
    - [orhun/ratzilla](https://github.com/orhun/ratzilla) - Build terminal-themed web applications with Rust and WebAssembly. Powered by Ratatui.
@@ -1256,6 +1266,7 @@ Total of `41` Languages starred:
    - [pingcap/talent-plan](https://github.com/pingcap/talent-plan) - open source training courses about distributed database and distributed systems
    - [quickwit-oss/tantivy](https://github.com/quickwit-oss/tantivy) - Tantivy is a full-text search engine library inspired by Apache Lucene and written in Rust
    - [tanu-rs/tanu](https://github.com/tanu-rs/tanu) - High-performance, async-friendly and ergonomic WebAPI testing framework for Rust
+   - [JasterV/teatui](https://github.com/JasterV/teatui) - Experimental library providing an Elm-like framework to build TUI applications in Rust
    - [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) - TensorZero is an open-source stack for industrial-grade LLM applications. It unifies an LLM gateway, observability, optimization, evaluation, and experimentation.
    - [dtolnay/thiserror](https://github.com/dtolnay/thiserror) - derive(Error) for struct and enum error types
    - [TimelyDataflow/timely-dataflow](https://github.com/TimelyDataflow/timely-dataflow) - A modular implementation of timely dataflow in Rust
@@ -1306,7 +1317,6 @@ Total of `41` Languages starred:
    - [softwaremill/elasticmq](https://github.com/softwaremill/elasticmq) - In-memory message queue with an Amazon SQS-compatible interface. Runs stand-alone or embedded.
    - [com-lihaoyi/fastparse](https://github.com/com-lihaoyi/fastparse) - Writing Fast Parsers Fast in Scala
    - [twitter/finagle](https://github.com/twitter/finagle) - A fault tolerant, protocol-agnostic RPC system
-   - [flix/flix](https://github.com/flix/flix) - The Flix Programming Language
    - [typelevel/fs2](https://github.com/typelevel/fs2) - Compositional, streaming I/O library for Scala
    - [fthomas/fs2-cron](https://github.com/fthomas/fs2-cron) - FS2 streams based on cron expressions
    - [permutive-engineering/fs2-pubsub](https://github.com/permutive-engineering/fs2-pubsub) - Google Cloud Pub/Sub stream-based client built on top of cats-effect, fs2 and http4s.
@@ -1400,7 +1410,7 @@ Total of `41` Languages starred:
    - [any4ai/AnyCrawl](https://github.com/any4ai/AnyCrawl) - AnyCrawl 🚀: A Node.js/TypeScript crawler that turns websites into LLM-ready data and extracts structured SERP results from Google/Bing/Baidu/etc. Native multi-threading for bulk processing.
    - [Codehagen/Badget](https://github.com/Codehagen/Badget) - Badget aims to simplify financial management with a user-friendly interface and robust backend
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
-   - [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) - Enhanced ChatGPT Clone: Features Agents, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active project.
+   - [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) - Enhanced ChatGPT Clone: Features Agents, MCP, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active.
    - [event-driven-io/Pongo](https://github.com/event-driven-io/Pongo) - Pongo - Mongo but on Postgres and with strong consistency benefits
    - [Qovery/Torii](https://github.com/Qovery/Torii) - Torii ⛩️ is a simple, powerful and extensible open-source Internal Developer Portal
    - [Canner/WrenAI](https://github.com/Canner/WrenAI) - ⚡️ GenBI (Generative BI) queries any database in natural language, generates accurate SQL (Text-to-SQL), charts (Text-to-Chart), and AI-powered insights in seconds.
