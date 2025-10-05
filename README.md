@@ -272,6 +272,7 @@ Total of `42` Languages starred:
    - [etcd-io/bbolt](https://github.com/etcd-io/bbolt) - An embedded key/value database for Go.
    - [warpstreamlabs/bento](https://github.com/warpstreamlabs/bento) - Fancy stream processing made operationally mundane. This repository is a fork of the original project before the license was changed.
    - [allegro/bigcache](https://github.com/allegro/bigcache) - Efficient cache for gigabytes of data written in Go.
+   - [go-kratos/blades](https://github.com/go-kratos/blades) - Blades is a Go-based multimodal AI Agent framework.
    - [bruin-data/bruin](https://github.com/bruin-data/bruin) - Build data pipelines with SQL and Python, ingest data from different sources, add quality checks, and build end-to-end flows.
    - [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) - A powerful little TUI framework 🏗
    - [containers/buildah](https://github.com/containers/buildah) - A tool that facilitates building OCI images.
@@ -378,6 +379,7 @@ Total of `42` Languages starred:
    - [nvellon/hal](https://github.com/nvellon/hal) - A Golang implementation of HAL media type standard
    - [teamhanko/hanko](https://github.com/teamhanko/hanko) - Privacy-first authentication and user management for B2C and B2B. Open source alternative to Auth0, Cognito, Clerk, Descope, Stytch.
    - [malisetti/hartman](https://github.com/malisetti/hartman) - hartman is a go routine manager
+   - [hatchet-dev/hatchet](https://github.com/hatchet-dev/hatchet) - 🪓 Run Background Tasks at Scale
    - [arttor/helmify](https://github.com/arttor/helmify) - Creates Helm chart from Kubernetes yaml
    - [huton-io/huton](https://github.com/huton-io/huton) - An embeddable and distributed in-memory key-value store written in Go
    - [codenotary/immudb](https://github.com/codenotary/immudb) - immudb - immutable database based on zero trust, SQL/Key-Value/Document model, tamperproof, data change history
@@ -440,7 +442,7 @@ Total of `42` Languages starred:
    - [rigdev/rig](https://github.com/rigdev/rig) - The DevEx &amp; Application-layer for your Internal Developer Platform ⛵
    - [deepnoodle-ai/risor](https://github.com/deepnoodle-ai/risor) - Fast and flexible scripting for Go developers and DevOps.
    - [riverqueue/river](https://github.com/riverqueue/river) - Fast and reliable background jobs in Go
-   - [rqlite/rqlite](https://github.com/rqlite/rqlite) - The lightweight, user-friendly, distributed relational database built on SQLite.
+   - [rqlite/rqlite](https://github.com/rqlite/rqlite) - The lightweight, user-friendly, fault-tolerant database built on SQLite.
    - [rulego/rulego](https://github.com/rulego/rulego) - ⛓️RuleGo is a lightweight, high-performance, embedded, next-generation component orchestration rule engine framework for Go.
    - [JJBordy/rules](https://github.com/JJBordy/rules) - Minimal rules engine, uses yaml as input
    - [schemahero/schemahero](https://github.com/schemahero/schemahero) - A Kubernetes operator for declarative database schema management (gitops for database schemas)
@@ -487,7 +489,7 @@ Total of `42` Languages starred:
    - [blastrain/vitess-sqlparser](https://github.com/blastrain/vitess-sqlparser) - simply SQL Parser for Go ( powered by vitess and TiDB )
    - [backube/volsync](https://github.com/backube/volsync) - Asynchronous data replication for Kubernetes volumes
    - [warrant-dev/warrant](https://github.com/warrant-dev/warrant) - Warrant is a highly scalable, centralized authorization service based on Google Zanzibar. Use it to define, enforce, query, and audit application authorization and access control.
-   - [webhookx-io/webhookx](https://github.com/webhookx-io/webhookx) - an open-source webhooks gateway for message receiving, processing, and delivering.
+   - [webhookx-io/webhookx](https://github.com/webhookx-io/webhookx) - The Next-Generation Webhooks Gateway.
    - [google/wire](https://github.com/google/wire) - Compile-time Dependency Injection for Go
    - [edwingeng/wuid](https://github.com/edwingeng/wuid) - An extremely fast globally unique number generator.
    - [uber-go/zap](https://github.com/uber-go/zap) - Blazing fast, structured, leveled logging in Go.
@@ -577,6 +579,7 @@ Total of `42` Languages starred:
    - [kagkarlsson/db-scheduler](https://github.com/kagkarlsson/db-scheduler) - Persistent cluster-friendly scheduler for Java
    - [rocketbase-io/db-scheduler-log](https://github.com/rocketbase-io/db-scheduler-log) - extension for db-scheduler that registers as log-service
    - [bekk/db-scheduler-ui](https://github.com/bekk/db-scheduler-ui) - 
+   - [dbos-inc/dbos-transact-java](https://github.com/dbos-inc/dbos-transact-java) - DBOS Transact Java SDK 
    - [derive4j/derive4j](https://github.com/derive4j/derive4j) - Java 8 annotation processor and framework for deriving algebraic data types constructors, pattern-matching, folds, optics and typeclasses.
    - [reugn/dev-tools](https://github.com/reugn/dev-tools) - A collection of developer utilities in a single desktop application
    - [xyzsd/dichotomy](https://github.com/xyzsd/dichotomy) - Result, Either, Try, and Maybe monadic types for Java
@@ -640,7 +643,7 @@ Total of `42` Languages starred:
    - [rayokota/kareldb](https://github.com/rayokota/kareldb) - A Relational Database Backed by Apache Kafka
    - [rayokota/kcache](https://github.com/rayokota/kcache) - An In-Memory Cache Backed by Apache Kafka
    - [kcctl/kcctl](https://github.com/kcctl/kcctl) - A modern and intuitive command line client for Kafka Connect
-   - [kestra-io/kestra](https://github.com/kestra-io/kestra) - :zap: Universal Workflow Orchestration Platform — Code in any language, run anywhere. 900+ plugins for data, infrastructure, and AI automation.
+   - [kestra-io/kestra](https://github.com/kestra-io/kestra) - Orchestrate everything - from scripts to data, infra, AI, and business - as code, with UI and AI Copilot. Simple. Fast. Scalable.
    - [rayokota/keta](https://github.com/rayokota/keta) - A Transactional Metadata Store Backed by Apache Kafka
    - [michelin/kstreamplify](https://github.com/michelin/kstreamplify) - Swiftly build and enhance your Kafka Streams applications.
    - [jclouds/legacy-jclouds-examples](https://github.com/jclouds/legacy-jclouds-examples) - 
@@ -661,7 +664,7 @@ Total of `42` Languages starred:
    - [adamalexandru4/pgmq-spring](https://github.com/adamalexandru4/pgmq-spring) - PGMQ Java client using Spring framework
    - [eugene-khyst/postgresql-event-sourcing](https://github.com/eugene-khyst/postgresql-event-sourcing) - A reference implementation of an event-sourced system that uses PostgreSQL as an event store built with Spring Boot. Fork the repository and use it as a template for your projects. Or clone the repository and run end-to-end tests to see how everything works together.
    - [siy/pragmatica](https://github.com/siy/pragmatica) - Pragmatic Functional Java Essentials
-   - [siy/pragmatica-lite](https://github.com/siy/pragmatica-lite) - Simple micro web framework written in Pragmatic Functional Java style
+   - [siy/pragmatica-lite](https://github.com/siy/pragmatica-lite) - Modern Functional Programming for Java 25
    - [zalando/problem](https://github.com/zalando/problem) - A Java library that implements application/problem+json
    - [zalando/problem-spring-web](https://github.com/zalando/problem-spring-web) - A library for handling Problems in Spring Web MVC
    - [puniverse/quasar](https://github.com/puniverse/quasar) - Fibers, Channels and Actors for the JVM
@@ -869,7 +872,7 @@ Total of `42` Languages starred:
    - [lukasmasuch/best-of-ml-python](https://github.com/lukasmasuch/best-of-ml-python) - 🏆 A ranked list of awesome machine learning Python libraries. Updated weekly.
    - [paulosuzart/clojure-type-selection-flowchart](https://github.com/paulosuzart/clojure-type-selection-flowchart) - Flowchart for choosing the right Clojure type definition form
    - [cemerick/clojure-type-selection-flowchart](https://github.com/cemerick/clojure-type-selection-flowchart) - Flowchart for choosing the right Clojure type definition form
-   - [zakirullin/cognitive-load](https://github.com/zakirullin/cognitive-load) - 🧠 Cognitive Load is what matters
+   - [zakirullin/cognitive-load](https://github.com/zakirullin/cognitive-load) - 🧠 Cognitive load is what matters
    - [robinong79/docker-swarm-monitoring](https://github.com/robinong79/docker-swarm-monitoring) - Monitoring Docker Swarm with Prometheus and ELK stack
    - [mistercrunch/duckstreams](https://github.com/mistercrunch/duckstreams) - 
    - [resonatehq/durable-promise-specification](https://github.com/resonatehq/durable-promise-specification) - Durable Promise Specification
@@ -1003,6 +1006,7 @@ Total of `42` Languages starred:
    - [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) - Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.
    - [fiorix/cyclone](https://github.com/fiorix/cyclone) - Cyclone is a web server framework for Python, that implements the Tornado API as a Twisted protocol.
    - [datafold/data-diff](https://github.com/datafold/data-diff) - Compare tables within or across databases
+   - [dbos-inc/dbos-transact-py](https://github.com/dbos-inc/dbos-transact-py) - Lightweight Durable Python Workflows
    - [anelendata/dbt-ksql](https://github.com/anelendata/dbt-ksql) - dbt ksqlDB adapter
    - [smol-ai/developer](https://github.com/smol-ai/developer) - the first library to let you embed a developer agent in your own app!
    - [anymail/django-anymail](https://github.com/anymail/django-anymail) - Django email backends and webhooks for Amazon SES, Brevo (Sendinblue), MailerSend, Mailgun, Mailjet, Postmark, Postal, Resend, Scaleway TEM, SendGrid, SparkPost, Unisender Go and more
@@ -1020,7 +1024,6 @@ Total of `42` Languages starred:
    - [AntonOsika/gpt-engineer](https://github.com/AntonOsika/gpt-engineer) - CLI platform to experiment with codegen. Precursor to: https://lovable.dev
    - [marcio704/graphic_editor](https://github.com/marcio704/graphic_editor) - Description on &apos;instructions.txt&apos;
    - [benoitc/gunicorn](https://github.com/benoitc/gunicorn) - gunicorn &apos;Green Unicorn&apos; is a WSGI HTTP Server for UNIX, fast clients and sleepy applications.
-   - [hatchet-dev/hatchet](https://github.com/hatchet-dev/hatchet) - 🪓 Run Background Tasks at Scale
    - [hazelcast/hazelcast-python-client](https://github.com/hazelcast/hazelcast-python-client) - Hazelcast Python Client
    - [bruin-data/ingestr](https://github.com/bruin-data/ingestr) - ingestr is a CLI tool to copy data between any databases with a single command seamlessly.
    - [python-jsonschema/jsonschema](https://github.com/python-jsonschema/jsonschema) - An implementation of the JSON Schema specification for Python
@@ -1038,7 +1041,7 @@ Total of `42` Languages starred:
    - [mage-ai/mage-ai](https://github.com/mage-ai/mage-ai) - 🧙 Build, run, and manage data pipelines for integrating and transforming data.
    - [marimo-team/marimo](https://github.com/marimo-team/marimo) - Transform data, train models, and run SQL with marimo — feels like a next-gen reactive notebook, stored as Git-friendly reproducible Python. Deploy as scripts, pipelines, endpoints, and apps. All from an AI-native editor (or your own).
    - [mem0ai/mem0](https://github.com/mem0ai/mem0) - Universal memory layer for AI Agents; Announcing OpenMemory MCP - local and secure memory management.
-   - [mindsdb/mindsdb](https://github.com/mindsdb/mindsdb) - AI Analytics Engine that can answer questions over large scale data. - The only MCP Server you&apos;ll ever need
+   - [mindsdb/mindsdb](https://github.com/mindsdb/mindsdb) - AI Analytics and Knowledge Engine for RAG over large-scale, heterogeneous data. - The only MCP Server you&apos;ll ever need
    - [moonshine-ai/moonshine](https://github.com/moonshine-ai/moonshine) - Fast and accurate automatic speech recognition (ASR) for edge devices
    - [MotleyAI/motleycrew](https://github.com/MotleyAI/motleycrew) - Flexible and powerful multi-agent AI framework
    - [openai/openai-agents-python](https://github.com/openai/openai-agents-python) - A lightweight, powerful framework for multi-agent workflows
@@ -1062,6 +1065,7 @@ Total of `42` Languages starred:
    - [leegao/readme2tex](https://github.com/leegao/readme2tex) - Renders TeXy Math for Github Readme - No longer needed with official MathTex support on GH
    - [rio-labs/rio](https://github.com/rio-labs/rio) - WebApps in pure Python. No JavaScript, HTML and CSS needed
    - [pypa/sampleproject](https://github.com/pypa/sampleproject) - A sample project that exists for PyPUG&apos;s &quot;Tutorial on Packaging and Distributing Projects&quot;
+   - [agent-infra/sandbox](https://github.com/agent-infra/sandbox) - All-in-One Sandbox for AI Agents that combines Browser, Shell, File, MCP and VSCode Server in a single Docker container.
    - [BeastByteAI/scikit-llm](https://github.com/BeastByteAI/scikit-llm) - Seamlessly integrate LLMs into scikit-learn.
    - [sgl-project/sglang](https://github.com/sgl-project/sglang) - SGLang is a fast serving framework for large language models and vision language models.
    - [sieve-project/sieve](https://github.com/sieve-project/sieve) - Automatic Reliability Testing for Kubernetes Controllers and Operators
@@ -1118,7 +1122,7 @@ Total of `42` Languages starred:
    - [tracel-ai/burn](https://github.com/tracel-ai/burn) - Burn is a next generation Deep Learning Framework that doesn&apos;t compromise on flexibility, efficiency and portability.
    - [huggingface/candle](https://github.com/huggingface/candle) - Minimalist ML framework for Rust
    - [clap-rs/clap](https://github.com/clap-rs/clap) - A full featured, fast Command Line Argument Parser for Rust
-   - [cocoindex-io/cocoindex](https://github.com/cocoindex-io/cocoindex) - Data transformation framework for AI. Ultra performant, with incremental processing.
+   - [cocoindex-io/cocoindex](https://github.com/cocoindex-io/cocoindex) - Data transformation framework for AI. Ultra performant, with incremental processing.  🌟 Star if you like it!
    - [codesnap-rs/codesnap](https://github.com/codesnap-rs/codesnap) - 🦀️📸 Pure Rust tool to generate beautiful code snapshots, provide CLI and Library
    - [openai/codex](https://github.com/openai/codex) - Lightweight coding agent that runs in your terminal
    - [google/comprehensive-rust](https://github.com/google/comprehensive-rust) - This is the Rust course used by the Android team at Google. It provides you the material to quickly teach Rust.
@@ -1274,7 +1278,7 @@ Total of `42` Languages starred:
    - [m1guelpf/tinyvector](https://github.com/m1guelpf/tinyvector) - A tiny embedding database in pure Rust.
    - [hyperium/tonic](https://github.com/hyperium/tonic) - A native gRPC client &amp; server implementation with async/await support.
    - [erikgrinaker/toydb](https://github.com/erikgrinaker/toydb) - Distributed SQL database in Rust, written as an educational project
-   - [tursodatabase/turso](https://github.com/tursodatabase/turso) - Turso Database is a project to build the next evolution of SQLite.
+   - [tursodatabase/turso](https://github.com/tursodatabase/turso) - Turso is an in-process SQL database, compatible with SQLite.
    - [typst/typst](https://github.com/typst/typst) - A new markup-based typesetting system that is powerful and easy to learn.
    - [akwaaba-xyz/urkel](https://github.com/akwaaba-xyz/urkel) - A gRPC client and HTTP wrapping server for Open FGA, built in Rust.
    - [seanmonstar/warp](https://github.com/seanmonstar/warp) - A super-easy, composable, web server framework for warp speeds.
@@ -1427,7 +1431,7 @@ Total of `42` Languages starred:
    - [ojkelly/bunjil](https://github.com/ojkelly/bunjil) - A GraphQL bastion server with schema merging, authentication and authorization with Policy Based Access Control
    - [Chainlit/chainlit](https://github.com/Chainlit/chainlit) - Build Conversational AI in minutes ⚡️
    - [cheeriojs/cheerio](https://github.com/cheeriojs/cheerio) - The fast, flexible, and elegant library for parsing and manipulating HTML and XML.
-   - [campfirein/cipher](https://github.com/campfirein/cipher) - Byterover Cipher is an opensource memory layer specifically designed for coding agents. Compatible with Cursor, Windsurf, Claude Code, Cline, Claude Desktop, Gemini CLI, AWS&apos;s Kiro, VS Code, Roo Code, Trae, Amp Code and Warp through MCP. Built by https://byterover.dev/
+   - [campfirein/cipher](https://github.com/campfirein/cipher) - Byterover Cipher is an opensource memory layer specifically designed for coding agents. Compatible with Cursor, Codex, Claude Code, Windsurf, Cline, Claude Desktop, Gemini CLI, AWS&apos;s Kiro, VS Code, Roo Code, Trae, Amp Code and Warp through MCP. Built by https://byterover.dev/
    - [typestack/class-validator](https://github.com/typestack/class-validator) - Decorator-based property validation for classes.
    - [continuedev/continue](https://github.com/continuedev/continue) - ⏩ Ship faster with Continuous AI. Build and run custom agents across your IDE, terminal, and CI
    - [openchatai/copilot](https://github.com/openchatai/copilot) - 
@@ -1469,7 +1473,7 @@ Total of `42` Languages starred:
    - [RobinBlomberg/kysely-codegen](https://github.com/RobinBlomberg/kysely-codegen) - Generate Kysely type definitions from your database.
    - [kysely-org/kysely-ctl](https://github.com/kysely-org/kysely-ctl) - Command-line tool for Kysely, Knex-compatible, works in Node.js, Deno, Bun, etc.
    - [huggingface/llm-vscode](https://github.com/huggingface/llm-vscode) - LLM powered development for VSCode
-   - [magnitudedev/magnitude](https://github.com/magnitudedev/magnitude) - Open-source, vision-first browser agent
+   - [sagekit/magnitude](https://github.com/sagekit/magnitude) - Open-source, vision-first browser agent
    - [malloydata/malloy](https://github.com/malloydata/malloy) - Malloy is a modern open source language for describing data relationships and transformations.
    - [Ff00ff/mammoth](https://github.com/Ff00ff/mammoth) - A type-safe Postgres query builder for TypeScript.
    - [medplum/medplum](https://github.com/medplum/medplum) - Medplum is a healthcare platform that helps you quickly develop high-quality compliant applications.
@@ -1522,9 +1526,10 @@ Total of `42` Languages starred:
    - [ether/ueberDB](https://github.com/ether/ueberDB) - Abstract your databases, make datababies.  Transforms every database into a object key value store.
    - [sequelize/umzug](https://github.com/sequelize/umzug) - Framework agnostic migration tool for Node.js
    - [fabian-hiller/valibot](https://github.com/fabian-hiller/valibot) - The modular and type safe schema library for validating structural data 🤖
+   - [cloudflare/vibesdk](https://github.com/cloudflare/vibesdk) - An open-source vibe coding platform that helps you build your own vibe-coding platform, built entirely on Cloudflare stack 
    - [vratix-dev/vratix-expressjs-api-modules](https://github.com/vratix-dev/vratix-expressjs-api-modules) - Instantly build Node.js API backend services with Vratix 🚀. A collection of open-source, production-ready API modules for Express.js written in TypeScript. Supports authentication, Stripe billing, email integrations (Postmark), AWS S3 uploads, Docker configs, and more!
    - [Canner/vulcan-sql](https://github.com/Canner/vulcan-sql) - Data API Framework for AI Agents and Data Apps
-   - [palixir/wabe](https://github.com/palixir/wabe) - Your backend in minutes not days for Node.js / Bun
+   - [palixir/wabe](https://github.com/palixir/wabe) - Your backend without vendor lock-in in Typescript
    - [ojkelly/wahn](https://github.com/ojkelly/wahn) - Policy Machine for Role Based Access Control
    - [evertdespiegeleer/zhttp](https://github.com/evertdespiegeleer/zhttp) - A minimal, typesafe HTTP library with Zod validation 🧑‍💻
 
