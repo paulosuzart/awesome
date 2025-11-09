@@ -68,10 +68,13 @@ Total of `42` Languages starred:
    - [c3lang/c3c](https://github.com/c3lang/c3c) - Compiler for the C3 language
    - [hydradatabase/columnar](https://github.com/hydradatabase/columnar) - Postgres-native columnar storage extension
    - [bloomberg/comdb2](https://github.com/bloomberg/comdb2) - Bloomberg&apos;s distributed RDBMS
+   - [lalinsky/dusty](https://github.com/lalinsky/dusty) - HTTP server library for Zig
    - [aergoio/litetree](https://github.com/aergoio/litetree) - SQLite with Branches
    - [nanomsg/nanomsg](https://github.com/nanomsg/nanomsg) - nanomsg library
    - [onyx-lang/onyx](https://github.com/onyx-lang/onyx) - ✨ The compiler and developer toolchain for Onyx
+   - [orioledb/orioledb](https://github.com/orioledb/orioledb) - OrioleDB – building a modern cloud-native storage engine (... and solving some PostgreSQL wicked problems) 
    - [sraoss/pg_ivm](https://github.com/sraoss/pg_ivm) - IVM (Incremental View Maintenance) implementation as a PostgreSQL extension
+   - [Snowflake-Labs/pg_lake](https://github.com/Snowflake-Labs/pg_lake) - pg_lake: Postgres with Iceberg and data lake access
    - [zigzap/zap](https://github.com/zigzap/zap) - blazingly fast backends in zig
 
 
@@ -94,7 +97,7 @@ Total of `42` Languages starred:
    - [lynx-family/lynx](https://github.com/lynx-family/lynx) - Empower the Web community and invite more to build across platforms.
    - [mysql/mysql-connector-cpp](https://github.com/mysql/mysql-connector-cpp) - MySQL Connector/C++ is a MySQL database connector for C++. It lets you develop C++ and C applications that connect to MySQL Server.
    - [duckdb/pg_duckdb](https://github.com/duckdb/pg_duckdb) - DuckDB-powered Postgres for high performance apps &amp; analytics.
-   - [timeplus-io/proton](https://github.com/timeplus-io/proton) - Fastest SQL pipeline engine in a single C++ binary, for stream processing, analytics, observability and AI.  
+   - [timeplus-io/proton](https://github.com/timeplus-io/proton) - ⚡  Fastest SQL ETL pipeline in a single C++ binary,  built for Stream Processing, Observability, Analytics and AI/ML.   🔥  50 GB/s throughput. Zero replication. Zero lag.
    - [hmartiro/redox](https://github.com/hmartiro/redox) - Modern, asynchronous, and wicked fast C++11 client for Redis
    - [Corvusoft/restbed](https://github.com/Corvusoft/restbed) - Corvusoft&apos;s Restbed framework brings asynchronous RESTful functionality to C++14 applications.
    - [rpclib/rpclib](https://github.com/rpclib/rpclib) - rpclib is a modern C++ msgpack-RPC server and client library
@@ -113,6 +116,7 @@ Total of `42` Languages starred:
    - [paulosuzart/Server-Stats](https://github.com/paulosuzart/Server-Stats) - A framework for writing ssh-based server monitoring and alerts, written in clojure.
    - [ksuzuki/Sevenri](https://github.com/ksuzuki/Sevenri) - Sevenri, a Clojure environment
    - [damballa/abracad](https://github.com/damballa/abracad) - A Clojure library for de/serializing Clojure data structures with Avro.
+   - [redplanetlabs/agent-o-rama](https://github.com/redplanetlabs/agent-o-rama) - An end-to-end LLM agent platform for Java and Clojure for building, tracing, testing, and monitoring agents with integrated storage and one-click deployment. Inspired by LangGraph/LangSmith.
    - [clj-commons/aleph](https://github.com/clj-commons/aleph) - Asynchronous streaming communication for Clojure - web server, web client, and raw TCP/UDP
    - [mcohen01/amazonica](https://github.com/mcohen01/amazonica) - A comprehensive Clojure client for the entire Amazon AWS api.
    - [overtone/at-at](https://github.com/overtone/at-at) - Ahead-of-time function scheduler
@@ -257,6 +261,7 @@ Total of `42` Languages starred:
    - [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) - A powerful little TUI framework 🏗
    - [containers/buildah](https://github.com/containers/buildah) - A tool that facilitates building OCI images.
    - [everettraven/buoy](https://github.com/everettraven/buoy) - A declarative Kubernetes dashboard in your terminal
+   - [casbin/caswaf](https://github.com/casbin/caswaf) - HTTP &amp; OAuth Gateway and Web Application Firewall (WAF) based on ModSecurity, online demo: https://door.caswaf.com
    - [cayleygraph/cayley](https://github.com/cayleygraph/cayley) - An open-source graph database
    - [centrifugal/centrifugo](https://github.com/centrifugal/centrifugo) - Scalable real-time messaging server in a language-agnostic way. Self-hosted alternative to Pubnub, Pusher, Ably, socket.io. Set up once and forever.
    - [cerbos/cerbos](https://github.com/cerbos/cerbos) - Cerbos is the open core, language-agnostic, scalable authorization solution that makes user permissions and authorization simple to implement and manage by writing context-aware access control policies for your application resources.
@@ -359,7 +364,7 @@ Total of `42` Languages starred:
    - [charmbracelet/gum](https://github.com/charmbracelet/gum) - A tool for glamorous shell scripts 🎀
    - [google/gvisor](https://github.com/google/gvisor) - Application Kernel for Containers
    - [nvellon/hal](https://github.com/nvellon/hal) - A Golang implementation of HAL media type standard
-   - [teamhanko/hanko](https://github.com/teamhanko/hanko) - Privacy-first authentication and user management for B2C and B2B. Open source alternative to Auth0, Cognito, Clerk, Descope, Stytch.
+   - [teamhanko/hanko](https://github.com/teamhanko/hanko) - Modern authentication, on your terms. Open source alternative to Auth0, Clerk, WorkOS, Stytch.
    - [malisetti/hartman](https://github.com/malisetti/hartman) - hartman is a go routine manager
    - [hatchet-dev/hatchet](https://github.com/hatchet-dev/hatchet) - 🪓 Run Background Tasks at Scale
    - [arttor/helmify](https://github.com/arttor/helmify) - Creates Helm chart from Kubernetes yaml
@@ -543,6 +548,7 @@ Total of `42` Languages starred:
    - [build-on-aws/building-apache-kafka-connectors](https://github.com/build-on-aws/building-apache-kafka-connectors) - Sample code that shows the important aspects of developing custom connectors for Kafka Connect. It provides the resources for building, deploying, and running the code on-premises using Docker, as well as running the code in the cloud.
    - [cache2k/cache2k](https://github.com/cache2k/cache2k) - Lightweight, high performance Java caching
    - [ben-manes/caffeine](https://github.com/ben-manes/caffeine) - A high performance caching library for Java
+   - [CajunSystems/cajun](https://github.com/CajunSystems/cajun) - A pluggable actor system written in java leveraging modern features from JDK21+
    - [tzolov/calcite-sql-rewriter](https://github.com/tzolov/calcite-sql-rewriter) - JDBC driver that converts any INSERT, UPDATE and DELETE statements into append-only INSERTs. Instead of updating rows in-place it inserts the new version of the row along with version metadata
    - [LiveRamp/captain](https://github.com/LiveRamp/captain) - distributed, light-weight java workflow engine for a microservice architecture
    - [google/cel-java](https://github.com/google/cel-java) - Fast, portable, non-Turing complete expression evaluation with gradual typing (Java)
@@ -1035,7 +1041,7 @@ Total of `42` Languages starred:
    - [dottxt-ai/outlines](https://github.com/dottxt-ai/outlines) - Structured Outputs
    - [cusma/pe-de-manga](https://github.com/cusma/pe-de-manga) - Plante e regue um pé de manga, grite oxê e colhe sua deliciosa manga NFT! 🥭
    - [piku/piku](https://github.com/piku/piku) - The tiniest PaaS you&apos;ve ever seen. Piku allows you to do git push deployments to your own servers.
-   - [qodo-ai/pr-agent](https://github.com/qodo-ai/pr-agent) - 🚀 PR-Agent: An AI-Powered 🤖 Tool for Automated Pull Request Analysis, Feedback, Suggestions and More! 💻🔍 (For more advanced: check Qodo Merge)
+   - [qodo-ai/pr-agent](https://github.com/qodo-ai/pr-agent) - 🚀 PR-Agent: An AI-Powered 🤖 Tool for Automated Pull Request Analysis, Feedback, Suggestions and More! 💻🔍 
    - [zylon-ai/private-gpt](https://github.com/zylon-ai/private-gpt) - Interact with your documents using the power of GPT, 100% privately, no data leaks
    - [getmoss/pullama](https://github.com/getmoss/pullama) - A Pull Request summarizer powered by Ollama and Llama2
    - [pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai) - GenAI Agent Framework, the Pydantic way
@@ -1056,7 +1062,7 @@ Total of `42` Languages starred:
    - [sieve-project/sieve](https://github.com/sieve-project/sieve) - Automatic Reliability Testing for Kubernetes Controllers and Operators
    - [minimaxir/simpleaichat](https://github.com/minimaxir/simpleaichat) - Python package for easily interfacing with chat apps, with robust features and minimal code complexity.
    - [marcelnicolay/simplexml](https://github.com/marcelnicolay/simplexml) - Simple and fast XML encoder/decoder for Python
-   - [Skyvern-AI/skyvern](https://github.com/Skyvern-AI/skyvern) - Automate browser-based workflows with LLMs and Computer Vision
+   - [Skyvern-AI/skyvern](https://github.com/Skyvern-AI/skyvern) - Automate browser based workflows with AI
    - [explosion/spaCy](https://github.com/explosion/spaCy) - 💫 Industrial-strength Natural Language Processing (NLP) in Python
    - [tobymao/sqlglot](https://github.com/tobymao/sqlglot) - Python SQL Parser and Transpiler
    - [fastapi/sqlmodel](https://github.com/fastapi/sqlmodel) - SQL databases in Python, designed for simplicity, compatibility, and robustness.
@@ -1086,6 +1092,7 @@ Total of `42` Languages starred:
 
 
 ## <a name="Rust"></a>Rust
+   - [liquidos-ai/AutoAgents](https://github.com/liquidos-ai/AutoAgents) - A  multi-agent framework written in Rust that enables you to build, deploy, and coordinate multiple intelligent agents
    - [HigherOrderCO/Bend](https://github.com/HigherOrderCO/Bend) - A massively parallel, high-level programming language
    - [Eventual-Inc/Daft](https://github.com/Eventual-Inc/Daft) - Distributed query engine providing simple and reliable data processing for any modality and scale
    - [SeaQL/FireDBG.for.Rust](https://github.com/SeaQL/FireDBG.for.Rust) - 🔥 Time Travel Visual Debugger for Rust
@@ -1134,6 +1141,7 @@ Total of `42` Languages starred:
    - [Migorithm/duva](https://github.com/Migorithm/duva) - Rust-powered key-value store ensuring strong consistency
    - [emilk/egui](https://github.com/emilk/egui) - egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native
    - [embassy-rs/embassy](https://github.com/embassy-rs/embassy) - Modern embedded framework, using Rust and async.
+   - [supabase/etl](https://github.com/supabase/etl) - Stream your Postgres data anywhere in real-time. Simple Rust building blocks for change data capture (CDC) pipelines.
    - [carllerche/eventual](https://github.com/carllerche/eventual) - A future &amp; stream abstraction for Rust
    - [dmexe/failsafe-rs](https://github.com/dmexe/failsafe-rs) - A circuit breaker implementation for rust
    - [tomtomwombat/fastbloom](https://github.com/tomtomwombat/fastbloom) - The fastest Bloom filter in Rust. No accuracy compromises. Full concurrency support and compatible with any hasher.
@@ -1171,7 +1179,7 @@ Total of `42` Languages starred:
    - [rustformers/llm](https://github.com/rustformers/llm) - [Unmaintained, see README] An ecosystem of Rust libraries for working with large language models
    - [shafishlabs/llmchain-rs](https://github.com/shafishlabs/llmchain-rs) - 🦀Rust + Large Language Models - Make AI Services Freely and Easily.
    - [jnsahaj/lumen](https://github.com/jnsahaj/lumen) - Instant AI Git Commit message, Git changes summary from the CLI (no API key required)
-   - [Zackriya-Solutions/meeting-minutes](https://github.com/Zackriya-Solutions/meeting-minutes) - A free and open source, self hosted Ai based live meeting note taker and minutes summary generator that can completely run in your Local device (Mac OS and windows OS Support added. Working on adding linux support soon) https://meetily.zackriya.com/ is meetly ai
+   - [Zackriya-Solutions/meeting-minutes](https://github.com/Zackriya-Solutions/meeting-minutes) - A free and open source, self hosted Ai based live meeting note taker and minutes summary generator that can completely run in your Local device (Mac OS and windows OS Support added. Working on adding linux support soon) https://meetily.ai/ is meetly ai
    - [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) - A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications.
    - [tisonkun/morax](https://github.com/tisonkun/morax) - Message queue and data streaming based on cloud native services.
    - [namada-net/namada](https://github.com/namada-net/namada) - Rust implementation of Namada, a Proof-of-Stake L1 for interchain asset-agnostic privacy
@@ -1187,7 +1195,7 @@ Total of `42` Languages starred:
    - [haraldng/omnipaxos-rocksdb-tutorial](https://github.com/haraldng/omnipaxos-rocksdb-tutorial) - This is a small demo of how to transform a simple single-server RocksDB service written in Rust into a distributed version using OmniPaxos.
    - [apache/opendal](https://github.com/apache/opendal) - Apache OpenDAL: One Layer, All Storage.
    - [maxmindlin/openfga-dsl-parser](https://github.com/maxmindlin/openfga-dsl-parser) - Parsing and JSON transformer library for the OpenFGA authorization DSL 
-   - [openobserve/openobserve](https://github.com/openobserve/openobserve) - 🚀 10x easier, 🚀 140x lower storage cost, 🚀 high performance,  🚀 petabyte scale - Elasticsearch/Splunk/Datadog alternative for 🚀 (logs, metrics, traces, RUM, Error tracking, Session replay).
+   - [openobserve/openobserve](https://github.com/openobserve/openobserve) - Modern observability platform: 10x easier, 140x lower storage cost, petabyte scale. Open-source alternative to Elasticsearch/Splunk/Datadog for logs, metrics, traces, RUM, and more.
    - [open-telemetry/opentelemetry-rust](https://github.com/open-telemetry/opentelemetry-rust) - The Rust OpenTelemetry implementation
    - [NoahGav/oxide-lang](https://github.com/NoahGav/oxide-lang) - 
    - [paradedb/paradedb](https://github.com/paradedb/paradedb) - The transactional Elasticsearch alternative built on Postgres
@@ -1425,7 +1433,7 @@ Total of `42` Languages starred:
    - [cheeriojs/cheerio](https://github.com/cheeriojs/cheerio) - The fast, flexible, and elegant library for parsing and manipulating HTML and XML.
    - [campfirein/cipher](https://github.com/campfirein/cipher) - Byterover Cipher is an opensource memory layer specifically designed for coding agents. Compatible with Cursor, Codex, Claude Code, Windsurf, Cline, Claude Desktop, Gemini CLI, AWS&apos;s Kiro, VS Code, Roo Code, Trae, Amp Code and Warp through MCP. Built by https://byterover.dev/
    - [typestack/class-validator](https://github.com/typestack/class-validator) - Decorator-based property validation for classes.
-   - [continuedev/continue](https://github.com/continuedev/continue) - ⏩ Ship faster with Continuous AI. Build and run custom agents across your IDE, terminal, and CI
+   - [continuedev/continue](https://github.com/continuedev/continue) - ⏩ Ship faster with Continuous AI. Open-source CLI that can be used in TUI mode as a coding agent or Headless mode to run background agents
    - [openchatai/copilot](https://github.com/openchatai/copilot) - 
    - [graphile/crystal](https://github.com/graphile/crystal) - 🔮 Graphile&apos;s Crystal Monorepo; home to Grafast, PostGraphile, pg-introspection, pg-sql2 and much more!
    - [big-armor/datapm](https://github.com/big-armor/datapm) - 
