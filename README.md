@@ -62,6 +62,7 @@ Total of `42` Languages starred:
 # Contents
 
 ## <a name="C"></a>C
+   - [FalkorDB/FalkorDB](https://github.com/FalkorDB/FalkorDB) - A super fast Graph Database uses GraphBLAS under the hood for its sparse adjacency matrix graph representation. Our goal is to provide the best Knowledge Graph for LLM (GraphRAG).
    - [pikasTech/PikaPython](https://github.com/pikasTech/PikaPython) - An ultra-lightweight Python interpreter that runs with only 4KB of RAM, zero dependencies. It is ready to use out of the box without any configuration required and easy to extend with C. Similar project: MicroPython, JerryScript.
    - [apache/age](https://github.com/apache/age) - Graph database optimized for fast analysis and real-time data processing. It is provided as an extension to PostgreSQL.
    - [bluemathsoft/bm-linalg](https://github.com/bluemathsoft/bm-linalg) - Linear Algebra in TypeScript
@@ -246,6 +247,7 @@ Total of `42` Languages starred:
 
 
 ## <a name="Go"></a>Go
+   - [memodb-io/Acontext](https://github.com/memodb-io/Acontext) - One Place for Agents to Store, Observe, and Learn. Context Data Platform for Self-learning Agents, designed to simplify context engineering and improve agent reliability and task success rates.
    - [stakater/Reloader](https://github.com/stakater/Reloader) - A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&apos;re using it!
    - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - SafeLine is a self-hosted WAF(Web Application Firewall) / reverse proxy to protect your web apps from attacks and exploits.
    - [nektos/act](https://github.com/nektos/act) - Run your GitHub Actions locally 🚀
@@ -312,7 +314,7 @@ Total of `42` Languages starred:
    - [turbot/flowpipe](https://github.com/turbot/flowpipe) - Flowpipe is a cloud scripting engine. Automation and workflow to connect your clouds to the people, systems and data that matters.
    - [flynn/flynn](https://github.com/flynn/flynn) - [UNMAINTAINED] A next generation open source platform as a service (PaaS)
    - [charmbracelet/freeze](https://github.com/charmbracelet/freeze) - Generate images of code and terminal output 📸
-   - [flomesh-io/fsm](https://github.com/flomesh-io/fsm) - Lightweight service mesh for Kubernetes East-West and North-South traffic management, uses ebpf for layer4  and pipy proxy for layer7 traffic management, support multi cluster network. 
+   - [flomesh-io/fsm](https://github.com/flomesh-io/fsm) - Lightweight service mesh for Kubernetes East-West and North-South traffic management, uses eBPF for layer4  and pipy proxy for layer7 traffic management, support multi cluster network. 
    - [go-fuego/fuego](https://github.com/go-fuego/fuego) - Golang Fuego - Web framework generating OpenAPI 3 spec from source code - Pluggable to existing Gin &amp; Echo APIs
    - [fyne-io/fyne](https://github.com/fyne-io/fyne) - Cross platform GUI toolkit in Go inspired by Material Design
    - [paulosuzart/gb](https://github.com/paulosuzart/gb) - Go Benchmark. Inspired by Apache Benchmark
@@ -756,7 +758,6 @@ Total of `42` Languages starred:
    - [wit-ai/node-wit](https://github.com/wit-ai/node-wit) - Node.js SDK for Wit.ai
    - [ohmjs/ohm](https://github.com/ohmjs/ohm) - A library and language for building parsers, interpreters, compilers, etc.
    - [ollama-ui/ollama-ui](https://github.com/ollama-ui/ollama-ui) - Simple HTML UI for Ollama
-   - [open-webui/open-webui](https://github.com/open-webui/open-webui) - User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
    - [kota65535/openapi-merger](https://github.com/kota65535/openapi-merger) - Merges multiple OpenAPI document files into a single file.
    - [personoids/personoids-lite](https://github.com/personoids/personoids-lite) - &quot;The Power of Autonomy in Every Chat.&quot; - Transform ChatGPT into a powerful autonomous agent that can independently accomplish complex tasks. 
    - [fbettag/println](https://github.com/fbettag/println) - blogging / publishing software written in Scala (Lift Web Framework)
@@ -976,6 +977,7 @@ Total of `42` Languages starred:
    - [msoedov/agentic_security](https://github.com/msoedov/agentic_security) - Agentic LLM Vulnerability Scanner / AI red teaming kit 🧪
    - [agno-agi/agno](https://github.com/agno-agi/agno) - Multi-agent framework, runtime and control plane. Built for speed, privacy, and scale.
    - [alumnium-hq/alumnium](https://github.com/alumnium-hq/alumnium) - Pave the way towards AI-powered test automation.
+   - [qodex-ai/apimesh](https://github.com/qodex-ai/apimesh) - Auto-generate OpenAPI 3.0 specs + interactive HTML API UI from your codebase — in seconds.
    - [marshmallow-code/apispec](https://github.com/marshmallow-code/apispec) - A pluggable API specification generator. Currently supports the OpenAPI Specification (f.k.a. the Swagger specification)..
    - [goauthentik/authentik](https://github.com/goauthentik/authentik) - The authentication glue you need.
    - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI
@@ -1094,7 +1096,7 @@ Total of `42` Languages starred:
 ## <a name="Rust"></a>Rust
    - [liquidos-ai/AutoAgents](https://github.com/liquidos-ai/AutoAgents) - A  multi-agent framework written in Rust that enables you to build, deploy, and coordinate multiple intelligent agents
    - [HigherOrderCO/Bend](https://github.com/HigherOrderCO/Bend) - A massively parallel, high-level programming language
-   - [Eventual-Inc/Daft](https://github.com/Eventual-Inc/Daft) - Distributed query engine providing simple and reliable data processing for any modality and scale
+   - [Eventual-Inc/Daft](https://github.com/Eventual-Inc/Daft) - High-performance data engine for AI and multimodal workloads. Process images, audio, video, and structured data at any scale
    - [SeaQL/FireDBG.for.Rust](https://github.com/SeaQL/FireDBG.for.Rust) - 🔥 Time Travel Visual Debugger for Rust
    - [cswinter/LocustDB](https://github.com/cswinter/LocustDB) - Blazingly fast analytics database that will rapidly devour all of your data.
    - [Mahir101/Rafka](https://github.com/Mahir101/Rafka) - Rafka is a blazing-fast, experimental distributed asynchronous message broker inspired by Apache Kafka. Built with Rust and leveraging Tokio&apos;s async runtime, it delivers exceptional performance through its peer-to-peer mesh architecture and custom in-memory database for unparalleled scalability and low-latency message processing.
@@ -1406,6 +1408,7 @@ Total of `42` Languages starred:
 
 ## <a name="Svelte"></a>Svelte
    - [Abdenasser/neohtop](https://github.com/Abdenasser/neohtop) - 💪🏻 Blazing-fast system monitoring for your desktop (built with Rust, Tauri &amp; Svelte)
+   - [open-webui/open-webui](https://github.com/open-webui/open-webui) - User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
 
 
 ## <a name="Swift"></a>Swift
@@ -1417,6 +1420,7 @@ Total of `42` Languages starred:
    - [any4ai/AnyCrawl](https://github.com/any4ai/AnyCrawl) - AnyCrawl 🚀: A Node.js/TypeScript crawler that turns websites into LLM-ready data and extracts structured SERP results from Google/Bing/Baidu/etc. Native multi-threading for bulk processing.
    - [Codehagen/Badget](https://github.com/Codehagen/Badget) - Badget aims to simplify financial management with a user-friendly interface and robust backend
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
+   - [opendatalab/LabelLLM](https://github.com/opendatalab/LabelLLM) - The Open-Source Data Annotation Platform
    - [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) - Enhanced ChatGPT Clone: Features Agents, MCP, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active.
    - [event-driven-io/Pongo](https://github.com/event-driven-io/Pongo) - Pongo - Mongo but on Postgres and with strong consistency benefits
    - [Qovery/Torii](https://github.com/Qovery/Torii) - Torii ⛩️ is a simple, powerful and extensible open-source Internal Developer Portal
