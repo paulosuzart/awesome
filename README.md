@@ -290,7 +290,7 @@ Total of `42` Languages starred:
    - [decred/dcrd](https://github.com/decred/dcrd) - Decred daemon in Go (golang).
    - [docker-archive/deploykit](https://github.com/docker-archive/deploykit) - A toolkit for creating and managing declarative, self-healing infrastructure.
    - [dgraph-io/dgraph](https://github.com/dgraph-io/dgraph) - high-performance graph database for real-time use cases
-   - [dicedb/dice](https://github.com/dicedb/dice) - DiceDB is an open-source, fast, reactive, in-memory database optimized for modern hardware.
+   - [dicedb/dicedb](https://github.com/dicedb/dicedb) - DiceDB is an open-source, fast, reactive, in-memory database optimized for modern hardware.
    - [wagoodman/dive](https://github.com/wagoodman/dive) - A tool for exploring each layer in a docker image
    - [dolthub/dolt](https://github.com/dolthub/dolt) - Dolt – Git for Data
    - [dolthub/doltgresql](https://github.com/dolthub/doltgresql) - DoltgreSQL - Version Controlled PostgreSQL
@@ -491,7 +491,6 @@ Total of `42` Languages starred:
 
 ## <a name="Groovy"></a>Groovy
    - [palantir/gradle-docker](https://github.com/palantir/gradle-docker) - a Gradle plugin for orchestrating docker builds and pushes.
-   - [palantir/gradle-git-version](https://github.com/palantir/gradle-git-version) - a Gradle plugin that uses `git describe` to produce a version string.
    - [researchgate/gradle-release](https://github.com/researchgate/gradle-release) - gradle-release is a plugin for providing a Maven-like release process for projects using Gradle
    - [revolut-engineering/jooq-plugin](https://github.com/revolut-engineering/jooq-plugin) - Plugin for generating jOOQ classes using dockerized databases
 
@@ -588,6 +587,7 @@ Total of `42` Languages starred:
    - [RuedigerMoeller/fast-serialization](https://github.com/RuedigerMoeller/fast-serialization) - FST: fast java serialization drop in-replacement 
    - [google/google-java-format](https://github.com/google/google-java-format) - Reformats Java source code to comply with Google Java Style.
    - [oracle/graal](https://github.com/oracle/graal) - GraalVM compiles applications into native executables that start instantly, scale fast, and use fewer compute resources 🚀
+   - [palantir/gradle-git-version](https://github.com/palantir/gradle-git-version) - a Gradle plugin that uses `git describe` to produce a version string.
    - [intuit/graphql-filter-java](https://github.com/intuit/graphql-filter-java) - This project is developed to help developers add filtering support to their graphql-java services
    - [LogNet/grpc-spring-boot-starter](https://github.com/LogNet/grpc-spring-boot-starter) - Spring Boot starter module for gRPC  framework. 
    - [google/guava](https://github.com/google/guava) - Google core libraries for Java
@@ -816,6 +816,7 @@ Total of `42` Languages starred:
    - [JetBrains/kotlin](https://github.com/JetBrains/kotlin) - The Kotlin Programming Language. 
    - [KStateMachine/kstatemachine](https://github.com/KStateMachine/kstatemachine) - Powerful Kotlin Multiplatform library with clean DSL syntax for creating complex state machines and statecharts driven by Kotlin Coroutines.
    - [andrewoma/kwery](https://github.com/andrewoma/kwery) - Kwery is an SQL library for Kotlin
+   - [namastack/namastack-outbox](https://github.com/namastack/namastack-outbox) - Outbox Implementation for Spring Boot
    - [glasskube/operator](https://github.com/glasskube/operator) - 🧊 Glasskube Apps Operator
    - [domnikl/schema-registry-gitops](https://github.com/domnikl/schema-registry-gitops) - Manage Confluent Schema Registry subjects through Infrastructure as code
    - [ImFlog/schema-registry-plugin](https://github.com/ImFlog/schema-registry-plugin) - Gradle plugin to interact with Confluent Schema-Registry.
@@ -881,6 +882,7 @@ Total of `42` Languages starred:
    - [limetext/lime](https://github.com/limetext/lime) - Open source API-compatible alternative to the text editor Sublime Text
    - [forcesunseen/llm-hackers-handbook](https://github.com/forcesunseen/llm-hackers-handbook) - A guide to LLM hacking: fundamentals, prompt injection, offense, and defense
    - [lucia-auth/lucia](https://github.com/lucia-auth/lucia) - Authentication, simple and clean
+   - [piotrkulpinski/openalternative](https://github.com/piotrkulpinski/openalternative) - Curated list of open source alternatives to proprietary software.
    - [nvartolomei/oswald](https://github.com/nvartolomei/oswald) - A Write-Ahead Log (WAL) design built exclusively on object storage primitives.
    - [n8n-io/self-hosted-ai-starter-kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) - The Self-hosted AI Starter Kit is an open-source template that quickly sets up a local AI environment. Curated by n8n, it provides essential tools for creating secure, self-hosted AI workflows.
    - [ehazlett/shipyard](https://github.com/ehazlett/shipyard) - Composable Docker Management
@@ -980,7 +982,6 @@ Total of `42` Languages starred:
    - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Connect any LLM to your internal knowledge sources and chat with it in real time alongside your team. OSS alternative to NotebookLM, Perplexity, and Glean. Join our Discord: https://discord.gg/ejRNvftDp9
    - [OpenBMB/ToolBench](https://github.com/OpenBMB/ToolBench) - [ICLR&apos;24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning.
    - [ActivityWatch/activitywatch](https://github.com/ActivityWatch/activitywatch) - The best free and open-source automated time tracker. Cross-platform, extensible, privacy-focused.
-   - [Agenta-AI/agenta](https://github.com/Agenta-AI/agenta) - The open-source LLMOps platform: prompt playground, prompt management, LLM evaluation, and LLM observability all in one place.
    - [msoedov/agentic_security](https://github.com/msoedov/agentic_security) - Agentic LLM Vulnerability Scanner / AI red teaming kit 🧪
    - [agno-agi/agno](https://github.com/agno-agi/agno) - Build multi-agent systems that learn and improve with every interaction.
    - [alumnium-hq/alumnium](https://github.com/alumnium-hq/alumnium) - Pave the way towards AI-powered test automation.
@@ -1142,7 +1143,7 @@ Total of `42` Languages starred:
    - [cube-js/cube](https://github.com/cube-js/cube) - 📊 Cube Core is open-source semantic layer for AI, BI and embedded analytics
    - [dagrs-dev/dagrs](https://github.com/dagrs-dev/dagrs) - High-performance, Rust-based asynchronous task programming framework implementing Flow-Based Programming for scalable directed acyclic graph (DAG) task orchestration
    - [Rustixir/darkbird](https://github.com/Rustixir/darkbird) - In-memory database inspired by erlang mnesia
-   - [databendlabs/databend](https://github.com/databendlabs/databend) - One Warehouse for  Analytics, Search, AI. Snowflake + Elasticsearch + Vector DB — rebuilt from scratch. Unified architecture on your S3.
+   - [databendlabs/databend](https://github.com/databendlabs/databend) - Data Agent Ready Warehouse : One for  Analytics, Search, AI, Python Sandbox.  — rebuilt from scratch. Unified architecture on your S3.
    - [apache/datafusion-ballista](https://github.com/apache/datafusion-ballista) - Apache DataFusion Ballista Distributed Query Engine
    - [datafusion-contrib/datafusion-federation](https://github.com/datafusion-contrib/datafusion-federation) - Allow DataFusion to resolve queries across remote query engines while pushing down as much compute as possible down.
    - [blackportal-ai/delta](https://github.com/blackportal-ai/delta) - An Open-Source Machine Learning Framework in Rust Δ
@@ -1293,6 +1294,7 @@ Total of `42` Languages starred:
    - [tursodatabase/turso](https://github.com/tursodatabase/turso) - Turso is an in-process SQL database, compatible with SQLite.
    - [typst/typst](https://github.com/typst/typst) - A markup-based typesetting system that is powerful and easy to learn.
    - [akwaaba-xyz/urkel](https://github.com/akwaaba-xyz/urkel) - A gRPC client and HTTP wrapping server for Open FGA, built in Rust.
+   - [tryemerge/vibe-factory](https://github.com/tryemerge/vibe-factory) - Kanban board to manage your AI coding agents
    - [nubskr/walrus](https://github.com/nubskr/walrus) - 🦭 Distributed log streaming engine built from first principles
    - [seanmonstar/warp](https://github.com/seanmonstar/warp) - A super-easy, composable, web server framework for warp speeds.
    - [wasmerio/wasmer-postgres](https://github.com/wasmerio/wasmer-postgres) - 💽🕸 Postgres library to run WebAssembly binaries.
@@ -1423,8 +1425,9 @@ Total of `42` Languages starred:
 
 
 ## <a name="TypeScript"></a>TypeScript
-   - [memodb-io/Acontext](https://github.com/memodb-io/Acontext) - Simple Context Storage for Cloud Agents.
-   - [iOfficeAI/AionUi](https://github.com/iOfficeAI/AionUi) - Free, local, open-source 24/7 Cowork and Clawdbot for Gemini CLI, Claude Code, Codex, OpenCode, Qwen Code, Goose CLI, Auggie, and more | 🌟 Star if you like it!
+   - [chenhunghan/0ma](https://github.com/chenhunghan/0ma) - A modern, desktop-based GUI for managing Lima instances and Kubernetes clusters on macOS.
+   - [memodb-io/Acontext](https://github.com/memodb-io/Acontext) - Context Data Platform for AI Agents
+   - [iOfficeAI/AionUi](https://github.com/iOfficeAI/AionUi) - Free, local, open-source 24/7 Cowork and OpenClaw for Gemini CLI, Claude Code, Codex, OpenCode, Qwen Code, Goose CLI, Auggie, and more | 🌟 Star if you like it!
    - [any4ai/AnyCrawl](https://github.com/any4ai/AnyCrawl) - AnyCrawl 🚀: A Node.js/TypeScript crawler that turns websites into LLM-ready data and extracts structured SERP results from Google/Bing/Baidu/etc. Native multi-threading for bulk processing.
    - [Codehagen/Badget](https://github.com/Codehagen/Badget) - Badget aims to simplify financial management with a user-friendly interface and robust backend
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
@@ -1436,6 +1439,7 @@ Total of `42` Languages starred:
    - [Canner/WrenAI](https://github.com/Canner/WrenAI) - ⚡️ GenBI (Generative BI) queries any database in natural language, generates accurate SQL (Text-to-SQL), charts (Text-to-Chart), and AI-powered business intelligence in seconds.
    - [activepieces/activepieces](https://github.com/activepieces/activepieces) - AI Agents &amp; MCPs &amp; AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows &amp; AI Agents • MCPs for AI Agents
    - [aerographql/aerographql](https://github.com/aerographql/aerographql) - A small and opinionated Typescript toolkit to create GraphQL server using a declarative approach
+   - [Agenta-AI/agenta](https://github.com/Agenta-AI/agenta) - The open-source LLMOps platform: prompt playground, prompt management, LLM evaluation, and LLM observability all in one place.
    - [liblaber/ai](https://github.com/liblaber/ai) - build internal applications for your organization
    - [apollographql/apollo-tooling](https://github.com/apollographql/apollo-tooling) - ✏️ Apollo CLI for client tooling (Mostly replaced by Rover)
    - [cyanheads/atlas-mcp-server](https://github.com/cyanheads/atlas-mcp-server) - A Model Context Protocol (MCP) server for ATLAS, a Neo4j-powered task management system for LLM Agents - implementing a three-tier architecture (Projects, Tasks, Knowledge) to manage complex workflows. Now with Deep Research.
@@ -1445,6 +1449,7 @@ Total of `42` Languages starred:
    - [bigcapitalhq/bigcapital](https://github.com/bigcapitalhq/bigcapital) - 💵 Bigcapital is financial accounting with intelligent reporting for faster decision-making, an open-source alternative to Quickbooks, Xero, etc.
    - [stackblitz-labs/bolt.diy](https://github.com/stackblitz-labs/bolt.diy) - Prompt, run, edit, and deploy full-stack web applications using any LLM you want!
    - [BrainJS/brain.js](https://github.com/BrainJS/brain.js) - 🤖 GPU accelerated Neural networks in JavaScript for Browsers and Node.js
+   - [magnitudedev/browser-agent](https://github.com/magnitudedev/browser-agent) - Open-source, vision-first browser agent
    - [ojkelly/bunjil](https://github.com/ojkelly/bunjil) - A GraphQL bastion server with schema merging, authentication and authorization with Policy Based Access Control
    - [cheeriojs/cheerio](https://github.com/cheeriojs/cheerio) - The fast, flexible, and elegant library for parsing and manipulating HTML and XML.
    - [campfirein/cipher](https://github.com/campfirein/cipher) - Byterover Cipher is an opensource memory layer specifically designed for coding agents. Compatible with Cursor, Codex, Claude Code, Windsurf, Cline, Claude Desktop, Gemini CLI, AWS&apos;s Kiro, VS Code, Roo Code, Trae, Amp Code and Warp through MCP. Built by https://byterover.dev/
@@ -1495,7 +1500,6 @@ Total of `42` Languages starred:
    - [RobinBlomberg/kysely-codegen](https://github.com/RobinBlomberg/kysely-codegen) - Generate Kysely type definitions from your database.
    - [kysely-org/kysely-ctl](https://github.com/kysely-org/kysely-ctl) - Command-line tool for Kysely, Knex-compatible, works in Node.js, Deno, Bun, etc.
    - [huggingface/llm-vscode](https://github.com/huggingface/llm-vscode) - LLM powered development for VSCode
-   - [sagekit/magnitude](https://github.com/sagekit/magnitude) - Open-source, vision-first browser agent
    - [malloydata/malloy](https://github.com/malloydata/malloy) - Malloy is a modern open source language for describing data relationships and transformations.
    - [Ff00ff/mammoth](https://github.com/Ff00ff/mammoth) - A type-safe Postgres query builder for TypeScript.
    - [markdoc/markdoc](https://github.com/markdoc/markdoc) - A powerful, flexible, Markdown-based authoring framework.
@@ -1509,8 +1513,7 @@ Total of `42` Languages starred:
    - [nestjs/nest](https://github.com/nestjs/nest) - A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications with TypeScript/JavaScript 🚀
    - [nocodb/nocodb](https://github.com/nocodb/nocodb) - 🔥 🔥 🔥 A Free &amp; Self-hostable Airtable Alternative
    - [novuhq/novu](https://github.com/novuhq/novu) - The open-source notification Inbox infrastructure. E-mail, SMS, Push and Slack Integrations.
-   - [piotrkulpinski/openalternative](https://github.com/piotrkulpinski/openalternative) - A community driven list of open source alternatives to proprietary software and applications.
-   - [openobserve/openobserve](https://github.com/openobserve/openobserve) - Modern observability platform: 10x easier, 140x lower storage cost, petabyte scale. Open-source alternative to Elasticsearch/Splunk/Datadog for logs, metrics, traces, RUM, and more.
+   - [openobserve/openobserve](https://github.com/openobserve/openobserve) - OpenObserve is an open-source observability platform for logs, metrics, traces, and frontend monitoring. A cost-effective alternative to Datadog, Splunk, and Elasticsearch with 140x lower storage costs and single binary deployment.
    - [opticdev/optic](https://github.com/opticdev/optic) - OpenAPI linting, diffing and testing. Optic helps prevent breaking changes, publish accurate documentation and improve the design of your APIs.
    - [pezzolabs/pezzo](https://github.com/pezzolabs/pezzo) - 🕹️ Open-source, developer-first LLMOps platform designed to streamline prompt design, version management, instant delivery, collaboration, troubleshooting, observability and more.
    - [timgit/pg-boss](https://github.com/timgit/pg-boss) - Queueing jobs in Postgres from Node.js like a boss
