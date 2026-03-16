@@ -146,7 +146,6 @@ Total of `43` Languages starred:
    - [weavejester/hiccup](https://github.com/weavejester/hiccup) - Fast library for rendering HTML in Clojure
    - [seancorfield/honeysql](https://github.com/seancorfield/honeysql) - Turn Clojure data structures into SQL
    - [8thlight/hyperion](https://github.com/8thlight/hyperion) - Clojure API for generic persistence.
-   - [instantdb/instant](https://github.com/instantdb/instant) - Instant is a modern Firebase. We make you productive by giving your frontend a real-time database.
    - [clojure/java.jdbc](https://github.com/clojure/java.jdbc) - JDBC from Clojure (formerly clojure.contrib.sql)
    - [jepsen-io/jepsen](https://github.com/jepsen-io/jepsen) - A framework for distributed systems verification, with fault injection
    - [walmartlabs/lacinia](https://github.com/walmartlabs/lacinia) - GraphQL implementation in pure Clojure
@@ -314,6 +313,7 @@ Total of `43` Languages starred:
    - [pquerna/ffjson](https://github.com/pquerna/ffjson) - faster JSON serialization for Go
    - [paulosuzart/fgamanager](https://github.com/paulosuzart/fgamanager) - A Text based UI for managing FGA Tuples
    - [flipt-io/flipt](https://github.com/flipt-io/flipt) - Enterprise-ready, Git native feature management solution
+   - [cvhariharan/flowctl](https://github.com/cvhariharan/flowctl) - An open source self-service workflow execution platform
    - [turbot/flowpipe](https://github.com/turbot/flowpipe) - Flowpipe is a cloud scripting engine. Automation and workflow to connect your clouds to the people, systems and data that matters.
    - [flynn/flynn](https://github.com/flynn/flynn) - [UNMAINTAINED] A next generation open source platform as a service (PaaS)
    - [charmbracelet/freeze](https://github.com/charmbracelet/freeze) - Generate images of code and terminal output 📸
@@ -422,6 +422,7 @@ Total of `43` Languages starred:
    - [pgplex/pgschema](https://github.com/pgplex/pgschema) - Terraform-style, declarative schema migration CLI for Postgres. Agent friendly.
    - [mosuka/phalanx](https://github.com/mosuka/phalanx) - Phalanx is a cloud-native distributed search engine that provides endpoints through gRPC and traditional RESTful API.
    - [andydunstall/piko](https://github.com/andydunstall/piko) - An open-source alternative to Ngrok, designed to serve production traffic and be simple to host (particularly on Kubernetes)
+   - [pinchtab/pinchtab](https://github.com/pinchtab/pinchtab) - High-performance browser automation bridge and multi-instance orchestrator with advanced stealth injection and real-time dashboard.
    - [pocketbase/pocketbase](https://github.com/pocketbase/pocketbase) - Open Source realtime backend in 1 file
    - [harshadmanglani/polaris](https://github.com/harshadmanglani/polaris) - Polaris: High performance workflow orchestrator for Golang
    - [cashapp/pranadb](https://github.com/cashapp/pranadb) - 
@@ -453,7 +454,6 @@ Total of `43` Languages starred:
    - [jmoiron/sqlx](https://github.com/jmoiron/sqlx) - general purpose extensions to golang&apos;s database/sql
    - [owenrumney/squealer](https://github.com/owenrumney/squealer) - Telling tales on you for leaking secrets!
    - [stern/stern](https://github.com/stern/stern) - ⎈ Multi pod and container log tailing for Kubernetes -- Friendly fork of https://github.com/wercker/stern
-   - [stoolap/stoolap-go](https://github.com/stoolap/stoolap-go) - NewSQL That Starts Simple. High-performance SQL database with MVCC, columnar indexes, and HTAP capabilities. Pure Go and zero dependencies.
    - [asdine/storm](https://github.com/asdine/storm) - Simple and powerful toolkit for BoltDB
    - [subtrace/subtrace](https://github.com/subtrace/subtrace) - Network inspector for your backend
    - [siderolabs/talos](https://github.com/siderolabs/talos) - Talos Linux is a modern Linux distribution built for Kubernetes.
@@ -1430,7 +1430,6 @@ Total of `43` Languages starred:
 
 
 ## <a name="Svelte"></a>Svelte
-   - [cvhariharan/flowctl](https://github.com/cvhariharan/flowctl) - An open source self-service workflow execution platform
    - [Abdenasser/neohtop](https://github.com/Abdenasser/neohtop) - 💪🏻 Blazing-fast system monitoring for your desktop (built with Rust, Tauri &amp; Svelte)
 
 
@@ -1506,6 +1505,7 @@ Total of `43` Languages starred:
    - [growthbook/growthbook](https://github.com/growthbook/growthbook) - Open Source Feature Flags, Experimentation, and Product Analytics
    - [hazelcast/hazelcast-nodejs-client](https://github.com/hazelcast/hazelcast-nodejs-client) - Hazelcast Node.js Client
    - [Infisical/infisical](https://github.com/Infisical/infisical) - Infisical is the open-source platform for secrets, certificates, and privileged access management.
+   - [instantdb/instant](https://github.com/instantdb/instant) - Instant is a modern Firebase. We make you productive by giving your frontend a real-time database.
    - [javascript-obfuscator/javascript-obfuscator](https://github.com/javascript-obfuscator/javascript-obfuscator) - A powerful obfuscator for JavaScript and Node.js
    - [jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry) - JHipster Registry, based on Spring Cloud Netflix Eureka and Spring Cloud Config
    - [keystonejs/keystone](https://github.com/keystonejs/keystone) - The superpowered headless CMS for Node.js — built with GraphQL and React
@@ -1523,7 +1523,7 @@ Total of `43` Languages starred:
    - [medplum/medplum](https://github.com/medplum/medplum) - Medplum is a healthcare platform that helps you quickly develop high-quality compliant applications.
    - [midday-ai/midday](https://github.com/midday-ai/midday) - Invoicing, Time tracking, File reconciliation, Storage, Financial Overview &amp; your own Assistant made for Freelancers
    - [middlewarehq/middleware](https://github.com/middlewarehq/middleware) - ✨ Open-source DORA metrics platform for engineering teams ✨
-   - [web-infra-dev/midscene](https://github.com/web-infra-dev/midscene) - Driving all platforms UI automation with vision-based model
+   - [web-infra-dev/midscene](https://github.com/web-infra-dev/midscene) - AI-powered, vision-driven UI automation for every platform.
    - [mikro-orm/mikro-orm](https://github.com/mikro-orm/mikro-orm) - TypeScript ORM for Node.js based on Data Mapper, Unit of Work and Identity Map patterns. Supports MongoDB, MySQL, MariaDB, MS SQL Server, PostgreSQL and SQLite/libSQL databases.
    - [ega-forever/mokka](https://github.com/ega-forever/mokka) - Mokka consensus
    - [qwibitai/nanoclaw](https://github.com/qwibitai/nanoclaw) - A lightweight alternative to OpenClaw that runs in containers for security. Connects to WhatsApp, Telegram, Slack, Discord, Gmail and other messaging apps,, has memory, scheduled jobs, and runs directly on Anthropic&apos;s Agents SDK
