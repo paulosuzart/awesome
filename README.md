@@ -704,7 +704,7 @@ Total of `41` Languages starred:
    - [28mm/blast-radius](https://github.com/28mm/blast-radius) - Interactive visualizations of Terraform dependency graphs using d3.js
    - [cdk8s-team/cdk8s](https://github.com/cdk8s-team/cdk8s) - Define Kubernetes native apps and abstractions using object-oriented programming
    - [acode/cli](https://github.com/acode/cli) - Autocode CLI and standard library tooling
-   - [facebook/create-react-app](https://github.com/facebook/create-react-app) - Set up a modern web app by running one command.
+   - [react/create-react-app](https://github.com/react/create-react-app) - Set up a modern web app by running one command.
    - [documentationjs/documentation](https://github.com/documentationjs/documentation) - :book: documentation for modern JavaScript
    - [Velron/doxygen-bootstrapped](https://github.com/Velron/doxygen-bootstrapped) - Customize doxygen output to use the twitter bootstrap framework.
    - [uilicious/english-compiler](https://github.com/uilicious/english-compiler) - POC AI based Compiler, for converting english based markdown specs, into functional code
@@ -831,7 +831,7 @@ Total of `41` Languages starred:
    - [devoxx/JavaRoadmap](https://github.com/devoxx/JavaRoadmap) - The 2024 Java Developers Roadmap 
    - [openfga/action-openfga-deploy](https://github.com/openfga/action-openfga-deploy) - Github Action for deploying your Authorization Model to an OpenFGA Store
    - [openfga/action-openfga-test](https://github.com/openfga/action-openfga-test) - Github Action for testing your OpenFGA Authorization Model
-   - [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) - A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&apos;s observations on LLM coding pitfalls.
+   - [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) - A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&apos;s observations on LLM coding pitfalls.
    - [paulosuzart/awesome](https://github.com/paulosuzart/awesome) - My own awesome project list based on starred projects
    - [DopplerHQ/awesome-bots](https://github.com/DopplerHQ/awesome-bots) - The most awesome list about bots ⭐️🤖
    - [kuchin/awesome-cto](https://github.com/kuchin/awesome-cto) - A curated and opinionated list of resources for Chief Technology Officers, with the emphasis on startups
@@ -981,6 +981,7 @@ Total of `41` Languages starred:
    - [microsoft/autogen](https://github.com/microsoft/autogen) - A programming framework for agentic AI
    - [autogluon/autogluon](https://github.com/autogluon/autogluon) - Fast and Accurate ML in 3 Lines of Code
    - [phunt/avro-rpc-quickstart](https://github.com/phunt/avro-rpc-quickstart) - Apache Avro RPC Quick Start.
+   - [rossant/awesome-math](https://github.com/rossant/awesome-math) - A curated list of awesome mathematics resources
    - [lauris/awesome-scala](https://github.com/lauris/awesome-scala) - A community driven list of useful Scala libraries, frameworks and software.
    - [earl/beanstalkc](https://github.com/earl/beanstalkc) - A simple beanstalkd client library for Python
    - [browser-use/browser-use](https://github.com/browser-use/browser-use) - 🌐 Make websites accessible for AI agents. Automate tasks online with ease.
@@ -1038,7 +1039,7 @@ Total of `41` Languages starred:
    - [marimo-team/marimo](https://github.com/marimo-team/marimo) - A reactive notebook for Python — run reproducible experiments, query with SQL, execute as a script, deploy as an app, and version with git. Stored as pure Python. All in a modern, AI-native editor.
    - [mem0ai/mem0](https://github.com/mem0ai/mem0) - Universal memory layer for AI Agents
    - [zhangfengcdt/memoir](https://github.com/zhangfengcdt/memoir) - Hierarchical Agent Memory with Git-Like Version Control
-   - [mindsdb/mindsdb](https://github.com/mindsdb/mindsdb) - AI Data Vault - A query engine for AI Agents to securely query data from any datasource
+   - [mindsdb/minds-platform](https://github.com/mindsdb/minds-platform) - Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and deploy anywhere.
    - [novix-science/mlx-sim](https://github.com/novix-science/mlx-sim) - 
    - [MotleyAI/motleycrew](https://github.com/MotleyAI/motleycrew) - Flexible and powerful multi-agent AI framework
    - [open-webui/open-webui](https://github.com/open-webui/open-webui) - User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
@@ -1056,6 +1057,7 @@ Total of `41` Languages starred:
    - [recombee/python-api-client](https://github.com/recombee/python-api-client) - Python client for easy use of the Recombee recommendation API
    - [facebookarchive/python-instagram](https://github.com/facebookarchive/python-instagram) - Python Client for Instagram API
    - [ingolemo/python-lenses](https://github.com/ingolemo/python-lenses) - A python lens library for manipulating deeply nested immutable structures
+   - [bruin-data/python-sdk](https://github.com/bruin-data/python-sdk) - Bruin Python SDK — eliminate boilerplate in Bruin Python assets
    - [openfga/python-sdk](https://github.com/openfga/python-sdk) - OpenFGA SDK for Python 3 - https://pypi.org/project/openfga-sdk/
    - [KruxAI/ragbuilder](https://github.com/KruxAI/ragbuilder) - A toolkit to create optimal Production-readyRetrieval Augmented Generation(RAG) setup for your data
    - [ray-project/ray](https://github.com/ray-project/ray) - Ray is an AI compute engine. Ray consists of a core distributed runtime and a set of AI Libraries for accelerating ML workloads.
@@ -1104,7 +1106,7 @@ Total of `41` Languages starred:
    - [cswinter/LocustDB](https://github.com/cswinter/LocustDB) - Blazingly fast analytics database that will rapidly devour all of your data.
    - [Mahir101/Rafka](https://github.com/Mahir101/Rafka) - Rafka is a blazing-fast, experimental distributed asynchronous message broker inspired by Apache Kafka. Built with Rust and leveraging Tokio&apos;s async runtime, it delivers exceptional performance through its peer-to-peer mesh architecture and custom in-memory database for unparalleled scalability and low-latency message processing.
    - [microsoft/RustTraining](https://github.com/microsoft/RustTraining) - Beginner, advanced, expert level Rust training material
-   - [Canner/WrenAI](https://github.com/Canner/WrenAI) - The open context layer that gives AI agents grounded, governed SQL across 20+ data sources, that helps you build GenBI, dashboards, and advanced analytics.
+   - [Canner/WrenAI](https://github.com/Canner/WrenAI) - The open context layer that gives AI agents grounded, governed SQL across 20+ data sources, that helps you build GenBI, text-to-sql, dashboards, and advanced analytics.
    - [actix/actix](https://github.com/actix/actix) - Actor framework for Rust.
    - [actix/actix-web](https://github.com/actix/actix-web) - Actix Web is a powerful, pragmatic, and extremely fast web framework for Rust.
    - [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) - Browser automation CLI for AI agents
@@ -1127,6 +1129,7 @@ Total of `41` Languages starred:
    - [bnjbvr/cargo-machete](https://github.com/bnjbvr/cargo-machete) - Remove unused Rust dependencies with this one weird trick!
    - [clap-rs/clap](https://github.com/clap-rs/clap) - A full featured, fast Command Line Argument Parser for Rust
    - [9j/claude-code-mux](https://github.com/9j/claude-code-mux) - High-performance AI routing proxy built in Rust with automatic failover, priority-based routing, and    support for 15+ providers (Anthropic, OpenAI, Cerebras, Minimax, Kimi, etc.)
+   - [Jakedismo/codegraph-rust](https://github.com/Jakedismo/codegraph-rust) - 100% Rust implementation of code graphRAG with blazing fast AST+FastML parsing, surrealDB backend and advanced agentic code analysis tools through MCP for efficient code agent context management
    - [codesnap-rs/codesnap](https://github.com/codesnap-rs/codesnap) - 🦀️📸 Pure Rust tool to generate beautiful code snapshots, provide CLI and Library
    - [openai/codex](https://github.com/openai/codex) - Lightweight coding agent that runs in your terminal
    - [google/comprehensive-rust](https://github.com/google/comprehensive-rust) - This is the Rust course used by the Android team at Google. It provides you the material to quickly teach Rust.
@@ -1250,7 +1253,7 @@ Total of `41` Languages starred:
    - [readysettech/readyset](https://github.com/readysettech/readyset) - Readyset is a MySQL and Postgres wire-compatible caching layer that sits in front of existing databases to speed up queries and horizontally scale read throughput. Under the hood, ReadySet caches the results of cached select statements and incrementally updates these results over time as the underlying data changes.
    - [GregoryConrad/rearch-rs](https://github.com/GregoryConrad/rearch-rs) - Re-imagined approach to application design and architecture
    - [seanmonstar/reqwest](https://github.com/seanmonstar/reqwest) - An easy and powerful Rust HTTP Client
-   - [rerun-io/rerun](https://github.com/rerun-io/rerun) - An open source SDK for logging, storing, querying, and visualizing multimodal and multi-rate data
+   - [rerun-io/rerun](https://github.com/rerun-io/rerun) - Visualize, query, and stream to train on multimodal robotics data.
    - [0xPlaygrounds/rig](https://github.com/0xPlaygrounds/rig) - ⚙️🦀 Build modular and scalable LLM Applications in Rust
    - [risingwavelabs/risingwave](https://github.com/risingwavelabs/risingwave) - Event streaming platform for agentic AI. Continuously ingest, transform, and serve event streams in real time, at scale.
    - [rlink-rs/rlink-rs](https://github.com/rlink-rs/rlink-rs) - High-performance Stream Processing Framework. An alternative to Apache Flink.
@@ -1479,8 +1482,9 @@ Total of `41` Languages starred:
    - [campfirein/byterover-cli](https://github.com/campfirein/byterover-cli) - ByteRover CLI (brv) - The portable memory layer for  autonomous coding agents (formerly Cipher)
    - [cheeriojs/cheerio](https://github.com/cheeriojs/cheerio) - The fast, flexible, and elegant library for parsing and manipulating HTML and XML.
    - [typestack/class-validator](https://github.com/typestack/class-validator) - Decorator-based property validation for classes.
-   - [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) - A Claude Code plugin that automatically captures everything Claude does during your coding sessions, compresses it with AI (using Claude&apos;s agent-sdk), and injects relevant context back into future sessions.
+   - [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) - Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More
    - [unicodeveloper/consultralph](https://github.com/unicodeveloper/consultralph) - The Ultimate AI-powered app for consultants worldwide (EY, Deloitte, PwC, KPMG, McKinsey, BCG, Bain, etc) to do their research and complete work in hours instead of days, weeks and months.
+   - [mksglu/context-mode](https://github.com/mksglu/context-mode) - Context window optimization for AI coding agents. Sandboxes tool output, 98% reduction. 15 platforms
    - [forloopcodes/contextplus](https://github.com/forloopcodes/contextplus) - Semantic Intelligence for Large-Scale Engineering. Context+ is an MCP server designed for developers who demand 99% accuracy. By combining RAG, Tree-sitter AST, Spectral Clustering, and Obsidian-style linking, Context+ turns a massive codebase into a searchable, hierarchical feature graph.
    - [continuedev/continue](https://github.com/continuedev/continue) - ⏩ Source-controlled AI checks, enforceable in CI. Powered by the open-source Continue CLI
    - [opencx-labs/copilot](https://github.com/opencx-labs/copilot) - 
@@ -1528,6 +1532,7 @@ Total of `41` Languages starred:
    - [jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry) - JHipster Registry, based on Spring Cloud Netflix Eureka and Spring Cloud Config
    - [keystonejs/keystone](https://github.com/keystonejs/keystone) - The superpowered headless CMS for Node.js — built with GraphQL and React
    - [kitojs/kito](https://github.com/kitojs/kito) - 🐺 The high-performance, type-safe and modern TypeScript web framework written in Rust.
+   - [kloudlite/kloudlite](https://github.com/kloudlite/kloudlite) - RemoteLocal Environments to build distributed applications.
    - [kodustech/kodus-ai](https://github.com/kodustech/kodus-ai) - AI Code Review with Full Control Over Model Choice and Costs.
    - [JetBrains/kotlin-web-site](https://github.com/JetBrains/kotlin-web-site) - The Kotlin programming language website
    - [kubero-dev/kubero](https://github.com/kubero-dev/kubero) - A free and self-hosted PaaS alternative to Heroku / Netlify / Coolify / Vercel / Dokku / Portainer running on Kubernetes
@@ -1552,7 +1557,7 @@ Total of `41` Languages starred:
    - [novuhq/novu](https://github.com/novuhq/novu) - The open-source notification infrastructure. In-app Inbox component, E-mail, SMS, Push and Slack Integrations.
    - [nexu-io/open-design](https://github.com/nexu-io/open-design) - 🎨 Local-first, open-source alternative to Anthropic&apos;s Claude Design. ⚡ 19 Skills · ✨ 71 brand-grade Design Systems 🖼 Generate web · desktop · mobile prototypes · slides · images · videos · HyperFrames 📦 Sandboxed preview · HTML/PDF/PPTX/MP4 export 🤖 Runs on Claude Code / Codex / Cursor / Gemini / OpenCode / Qwen / Copilot / Hermes / Kimi CLI.
    - [wexare-ai/openbrowserclaw](https://github.com/wexare-ai/openbrowserclaw) - Browser-native personal AI assistant. Zero infrastructure, the browser is the server.
-   - [openobserve/openobserve](https://github.com/openobserve/openobserve) - OpenObserve is an open-source observability platform for logs, metrics, traces, and frontend monitoring. A cost-effective alternative to Datadog, Splunk, and Elasticsearch with 140x lower storage costs and single binary deployment.
+   - [openobserve/openobserve](https://github.com/openobserve/openobserve) - Open source observability platform for logs, metrics, traces, frontend monitoring, pipelines and LLM observability. A sophisticated, simple and highly performant alternative to Datadog, Splunk, and Elasticsearch with 140x lower storage costs and single binary deployment.
    - [anomalyco/opentui](https://github.com/anomalyco/opentui) - OpenTUI is a library for building terminal user interfaces (TUIs)
    - [opticdev/optic](https://github.com/opticdev/optic) - OpenAPI linting, diffing and testing. Optic helps prevent breaking changes, publish accurate documentation and improve the design of your APIs.
    - [pezzolabs/pezzo](https://github.com/pezzolabs/pezzo) - 🕹️ Open-source, developer-first LLMOps platform designed to streamline prompt design, version management, instant delivery, collaboration, troubleshooting, observability and more.
@@ -1572,6 +1577,7 @@ Total of `41` Languages starred:
    - [boxyhq/saas-starter-kit](https://github.com/boxyhq/saas-starter-kit) - 🔥 Enterprise SaaS Starter Kit - Kickstart your enterprise app development with the Next.js SaaS boilerplate 🚀
    - [safe-global/safe-wallet-monorepo](https://github.com/safe-global/safe-wallet-monorepo) - Safe{Wallet} – smart account wallet
    - [scalar/scalar](https://github.com/scalar/scalar) - Scalar is an open-source API platform:　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　🌐 Modern REST API Client　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　📖 Beautiful API References　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　✨ 1st-Class OpenAPI/Swagger Support
+   - [bruin-data/setup-bruin](https://github.com/bruin-data/setup-bruin) - Official action to install Bruin CLI in Github Actions.
    - [ocaml/setup-ocaml](https://github.com/ocaml/setup-ocaml) - GitHub Action for the OCaml programming language
    - [antiwork/shortest](https://github.com/antiwork/shortest) - QA via natural language AI tests
    - [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library aimed at visualizing graphs of thousands of nodes and edges
