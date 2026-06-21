@@ -15,14 +15,14 @@ Have fun!
 
 # Languages
 
-Total of `42` Languages starred:
+Total of `43` Languages starred:
    - [C](#C) 
    - [C#](#C%23) 
    - [C++](#C%2B%2B) 
    - [C3](#C3) 
    - [Clojure](#Clojure) 
    - [Crystal](#Crystal) 
-   - [Dockerfile](#Dockerfile) 
+   - [Dart](#Dart) 
    - [Elixir](#Elixir) 
    - [Flix](#Flix) 
    - [Go](#Go) 
@@ -36,6 +36,7 @@ Total of `42` Languages starred:
    - [Koka](#Koka) 
    - [Kotlin](#Kotlin) 
    - [Lua](#Lua) 
+   - [Makefile](#Makefile) 
    - [MoonBit](#MoonBit) 
    - [Not Set](#Not%20Set)  Repos without language specified 
    - [OCaml](#OCaml) 
@@ -69,7 +70,6 @@ Total of `42` Languages starred:
    - [lalinsky/dusty](https://github.com/lalinsky/dusty) - HTTP client/server library for Zig
    - [aergoio/litetree](https://github.com/aergoio/litetree) - SQLite with Branches
    - [justrach/merjs](https://github.com/justrach/merjs) - A Zig-native web framework. File-based routing, SSR, type-safe APIs, WASM client interactivity. No Node. No npm. Just zig build serve.
-   - [moonshine-ai/moonshine](https://github.com/moonshine-ai/moonshine) - Very low latency speech to text, intent recognition, and text to speech, for building voice agents and interfaces
    - [invariant-hq/mosaic](https://github.com/invariant-hq/mosaic) - Terminal user interfaces for OCaml.
    - [nanomsg/nanomsg](https://github.com/nanomsg/nanomsg) - nanomsg library
    - [onyx-lang/onyx](https://github.com/onyx-lang/onyx) - ✨ The compiler and developer toolchain for Onyx
@@ -87,7 +87,6 @@ Total of `42` Languages starred:
 
 ## <a name="C%2B%2B"></a>C++
    - [Snapchat/KeyDB](https://github.com/Snapchat/KeyDB) - A Multithreaded Fork of Redis
-   - [aws/aws-sdk-cpp](https://github.com/aws/aws-sdk-cpp) - AWS SDK for C++
    - [sztomi/cpp-static-init-block](https://github.com/sztomi/cpp-static-init-block) - Emulating the static initialization blocks of Java in C++
    - [duckdb/duckdb](https://github.com/duckdb/duckdb) - DuckDB is an analytical in-process SQL database management system
    - [duckdb/duckdb-wasm](https://github.com/duckdb/duckdb-wasm) - WebAssembly version of DuckDB
@@ -95,21 +94,16 @@ Total of `42` Languages starred:
    - [google/flatbuffers](https://github.com/google/flatbuffers) - FlatBuffers: Memory Efficient Serialization Library
    - [gizmodata/gizmosql](https://github.com/gizmodata/gizmosql) - 🚀 GizmoSQL — High-Performance Database Server
    - [nomic-ai/gpt4all](https://github.com/nomic-ai/gpt4all) - GPT4All: Run Local LLMs on Any Device. Open-source and available for commercial use.
-   - [TheHPXProject/hpx](https://github.com/TheHPXProject/hpx) - The C++ Standard Library for Parallelism and Concurrency
    - [google/leveldb](https://github.com/google/leveldb) - LevelDB is a fast key-value storage library written at Google that provides an ordered mapping from string keys to string values.
    - [graphql/libgraphqlparser](https://github.com/graphql/libgraphqlparser) - A GraphQL query parser in C++ with C and C++ APIs
    - [lynx-family/lynx](https://github.com/lynx-family/lynx) - Empower the Web community and invite more to build across platforms.
-   - [mysql/mysql-connector-cpp](https://github.com/mysql/mysql-connector-cpp) - MySQL Connector/C++ is a MySQL database connector for C++. It lets you develop C++ and C applications that connect to MySQL Server.
+   - [moonshine-ai/moonshine](https://github.com/moonshine-ai/moonshine) - Very low latency speech to text, intent recognition, and text to speech, for building voice agents and interfaces
    - [duckdb/pg_duckdb](https://github.com/duckdb/pg_duckdb) - DuckDB-powered Postgres for high performance apps &amp; analytics.
    - [relytcloud/pg_ducklake](https://github.com/relytcloud/pg_ducklake) - Native lakehouse experience in Postgres powered by DuckDB &amp; Ducklake
    - [timeplus-io/proton](https://github.com/timeplus-io/proton) - ⚡  Fastest SQL ETL pipeline in a single C++ binary,  built for stream processing, observability, analytics and AI/ML  
-   - [hmartiro/redox](https://github.com/hmartiro/redox) - Modern, asynchronous, and wicked fast C++11 client for Redis
    - [Corvusoft/restbed](https://github.com/Corvusoft/restbed) - Corvusoft&apos;s Restbed framework brings asynchronous RESTful functionality to C++ applications.
-   - [rpclib/rpclib](https://github.com/rpclib/rpclib) - rpclib is a modern C++ msgpack-RPC server and client library
    - [scylladb/seastar](https://github.com/scylladb/seastar) - High performance server-side application framework
-   - [fnc12/sqlite_orm](https://github.com/fnc12/sqlite_orm) - ❤️ SQLite ORM light header only library for modern C++
    - [Alex313031/thorium](https://github.com/Alex313031/thorium) - Chromium fork named after radioactive element No. 90. Source code and Linux releases. Windows/MacOS/ARM builds served in different repos, links are towards the top of the README.md.
-   - [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) - Simple, secure &amp; standards compliant web server for the most demanding of applications
    - [vnaydionov/yb-orm](https://github.com/vnaydionov/yb-orm) - YB.ORM is an object-relational mapper for C++
    - [ydb-platform/ydb](https://github.com/ydb-platform/ydb) - YDB is an open source Distributed SQL Database that combines high availability and scalability with strong consistency and ACID transactions
 
@@ -154,26 +148,18 @@ Total of `42` Languages starred:
    - [clojure/java.jdbc](https://github.com/clojure/java.jdbc) - JDBC from Clojure (formerly clojure.contrib.sql)
    - [jepsen-io/jepsen](https://github.com/jepsen-io/jepsen) - A framework for distributed systems verification, with fault injection
    - [walmartlabs/lacinia](https://github.com/walmartlabs/lacinia) - GraphQL implementation in pure Clojure
-   - [ztellman/lamina](https://github.com/ztellman/lamina) - not under active development - event-driven workflows for clojure
-   - [stuartsierra/lazytest](https://github.com/stuartsierra/lazytest) - (archived) New test framework for Clojure
-   - [emezeske/lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild) - Leiningen plugin to make ClojureScript development easy.
    - [clj-commons/manifold](https://github.com/clj-commons/manifold) - A compatibility layer for event-driven abstractions
    - [clojurewerkz/meltdown](https://github.com/clojurewerkz/meltdown) - Clojure interface to Reactor, an event-driven programming and stream processing toolkit for the JVM
    - [metabase/metabase](https://github.com/metabase/metabase) - The easy-to-use open source Business Intelligence and Embedded Analytics tool that lets everyone work with data :bar_chart:
    - [motherduckdb/metabase_duckdb_driver](https://github.com/motherduckdb/metabase_duckdb_driver) - Metabase DuckDB Driver shipped as 3rd party plugin
-   - [magomimmo/modern-cljs](https://github.com/magomimmo/modern-cljs) - A series of tutorials on ClojureScript
    - [paulosuzart/moyure](https://github.com/paulosuzart/moyure) - Organize your meet ups fast (sample)
    - [taoensso/nippy](https://github.com/taoensso/nippy) - Fast serialization library for Clojure
    - [andrewvc/noir-async](https://github.com/andrewvc/noir-async) - Seamless, concise, async webservices for clojure.
-   - [onyx-platform/onyx](https://github.com/onyx-platform/onyx) - Distributed, masterless, high performance, fault tolerant data processing
    - [suprematic/otplike](https://github.com/suprematic/otplike) - Erlang/OTP like processes and behaviours for Clojure on top of core.async
    - [pdfkit/pdfkit-clj](https://github.com/pdfkit/pdfkit-clj) - Clojure library for generating PDFs using wkhtmltopdf.
    - [xeqi/peridot](https://github.com/xeqi/peridot) - a basic api for interacting with ring apps
-   - [plumatic/plumbing](https://github.com/plumatic/plumbing) - Prismatic&apos;s Clojure(Script) utility belt
-   - [ztellman/proteus](https://github.com/ztellman/proteus) - local. mutable. variables.
    - [ring-clojure/ring-mock](https://github.com/ring-clojure/ring-mock) - Library to create mock Ring requests for unit tests
    - [weavejester/ring-oauth2](https://github.com/weavejester/ring-oauth2) - OAuth 2.0 client middleware for Ring
-   - [pjt/saxon](https://github.com/pjt/saxon) - Clojure wrapper library for the Saxon XSLT 2.0 processor.
    - [clj-commons/seesaw](https://github.com/clj-commons/seesaw) - Seesaw turns the Horror of Swing into a friendly, well-documented, Clojure library
    - [taoensso/sente](https://github.com/taoensso/sente) - Realtime web comms library for Clojure/Script
    - [hoophq/sequence](https://github.com/hoophq/sequence) - Immutable, scalable, and easy to use ledger service.
@@ -185,13 +171,10 @@ Total of `42` Languages starred:
    - [clojure/tools.trace](https://github.com/clojure/tools.trace) - 1.3 update of clojure.contrib.trace
    - [paulosuzart/xstandard](https://github.com/paulosuzart/xstandard) - Abstractions to easily validate xml content
    - [xtdb/xtdb](https://github.com/xtdb/xtdb) - An immutable SQL database for application development, time-travel reporting and data compliance. Developed by @juxt
-   - [yaml/yamlscript](https://github.com/yaml/yamlscript) - Programming in YAML
    - [krisajenkins/yesql](https://github.com/krisajenkins/yesql) - A Clojure library for using SQL.
-   - [liebke/zookeeper-clj](https://github.com/liebke/zookeeper-clj) - A Clojure DSL for Apache ZooKeeper
 
 
 ## <a name="Crystal"></a>Crystal
-   - [Axentro/Axentro](https://github.com/Axentro/Axentro) - To be the go to platform for building dApps quickly and cheaply for business and gaming
    - [amberframework/amber](https://github.com/amberframework/amber) - A Crystal web framework that makes building applications fast, simple, and enjoyable. Get started with quick prototyping, less bugs, and blazing fast performance.
    - [amethyst-framework/amethyst](https://github.com/amethyst-framework/amethyst) - Amethyst is a Rails inspired web-framework for Crystal language
    - [mosop/cli](https://github.com/mosop/cli) - Yet another Crystal library for building command-line interface applications.
@@ -217,8 +200,8 @@ Total of `42` Languages starred:
    - [squirm-framework/squirm](https://github.com/squirm-framework/squirm) - This was the night of the crawling terror!
 
 
-## <a name="Dockerfile"></a>Dockerfile
-   - [mindsdb/minds](https://github.com/mindsdb/minds) - General-purpose AI designed for knowledge workers — creators, strategists, and operators — and individuals seeking AI systems they can truly control to help them get work done, with full flexibility to extend and deploy anywhere (VPC, on-prem, or cloud).
+## <a name="Dart"></a>Dart
+   - [StacDev/stac](https://github.com/StacDev/stac) - Stac is a Server-Driven UI (SDUI) framework for Flutter, enabling you to create stunning, cross-platform applications dynamically with JSON. Build and update your app&apos;s UI in real-time with ease and flexibility!
 
 
 ## <a name="Elixir"></a>Elixir
@@ -411,6 +394,7 @@ Total of `42` Languages starred:
    - [attic-labs/noms](https://github.com/attic-labs/noms) - The versioned, forkable, syncable database
    - [nixys/nxs-data-anonymizer](https://github.com/nixys/nxs-data-anonymizer) - A tool for anonymizing PostgreSQL and MySQL databases&apos; dump
    - [oauth2-proxy/oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy) - A reverse proxy that provides authentication with Google, Azure, OpenID Connect and many more identity providers.
+   - [alibaba/open-code-review](https://github.com/alibaba/open-code-review) - Open-source &amp; free — Battle-tested at Alibaba&apos;s scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI &amp; Anthropic compatible.
    - [openbao/openbao](https://github.com/openbao/openbao) - OpenBao is a software solution to manage, store, and distribute sensitive data including secrets, certificates, and keys.
    - [openchoreo/openchoreo](https://github.com/openchoreo/openchoreo) - OpenChoreo is a developer platform for Kubernetes
    - [openfga/openfga](https://github.com/openfga/openfga) - A high performance and flexible authorization/permission engine built for developers and inspired by Google Zanzibar
@@ -557,7 +541,7 @@ Total of `42` Languages starred:
    - [CajunSystems/cajun](https://github.com/CajunSystems/cajun) - A pluggable actor system written in java leveraging modern features from JDK21+
    - [tzolov/calcite-sql-rewriter](https://github.com/tzolov/calcite-sql-rewriter) - JDBC driver that converts any INSERT, UPDATE and DELETE statements into append-only INSERTs. Instead of updating rows in-place it inserts the new version of the row along with version metadata
    - [LiveRamp/captain](https://github.com/LiveRamp/captain) - distributed, light-weight java workflow engine for a microservice architecture
-   - [google/cel-java](https://github.com/google/cel-java) - Fast, portable, non-Turing complete expression evaluation with gradual typing (Java)
+   - [cel-expr/cel-java](https://github.com/cel-expr/cel-java) - Fast, portable, non-Turing complete expression evaluation with gradual typing (Java)
    - [dylibso/chicory](https://github.com/dylibso/chicory) - Native JVM WebAssembly runtime
    - [classgraph/classgraph](https://github.com/classgraph/classgraph) - An uber-fast parallelized Java classpath scanner and module scanner.
    - [GoogleCloudPlatform/cloud-spanner-r2dbc](https://github.com/GoogleCloudPlatform/cloud-spanner-r2dbc) - R2DBC driver for Google Cloud Spanner
@@ -643,7 +627,7 @@ Total of `42` Languages starred:
    - [liquidpie/lenses-java](https://github.com/liquidpie/lenses-java) - Implementation of Lens Pattern in Java
    - [paulosuzart/lib-entity](https://github.com/paulosuzart/lib-entity) - Java library for building type-safe, state-driven business entities with validation and action handling
    - [ddd-by-examples/library](https://github.com/ddd-by-examples/library) - A comprehensive Domain-Driven Design example with problem space strategic analysis and various tactical patterns.
-   - [littlehorse-enterprises/littlehorse](https://github.com/littlehorse-enterprises/littlehorse) - LittleHorse Server: the Workflow Engine for Microservice Orchestration &amp; Business-as-Code
+   - [littlehorse-enterprises/littlehorse](https://github.com/littlehorse-enterprises/littlehorse) - LittleHorse Server: Workflow Engine for Microservice Orchestration &amp; Business-as-Code, and the core of the Saddle Command Center
    - [lmdbjava/lmdbjava](https://github.com/lmdbjava/lmdbjava) - Lightning Memory Database (LMDB) for Java: a low latency, transactional, sorted, embedded, key-value store
    - [jankotek/mapdb](https://github.com/jankotek/mapdb) - MapDB provides concurrent Maps, Sets and Queues backed by disk storage or off-heap-memory. It is a fast and easy to use embedded Java database engine.
    - [mizosoft/methanol](https://github.com/mizosoft/methanol) - ⚗️ Lightweight HTTP extensions for Java &amp; Kotlin
@@ -832,6 +816,10 @@ Total of `42` Languages starred:
    - [LazyVim/LazyVim](https://github.com/LazyVim/LazyVim) - Neovim config for the lazy
 
 
+## <a name="Makefile"></a>Makefile
+   - [mindsdb/minds](https://github.com/mindsdb/minds) - General-purpose AI designed for knowledge workers — creators, strategists, and operators — and individuals seeking AI systems they can truly control to help them get work done, with full flexibility to extend and deploy anywhere (VPC, on-prem, or cloud).
+
+
 ## <a name="MoonBit"></a>MoonBit
    - [moonbitlang/async](https://github.com/moonbitlang/async) - async programming library for MoonBit
    - [oboard/mocket](https://github.com/oboard/mocket) - A web framework for MoonBit.
@@ -985,7 +973,7 @@ Total of `42` Languages starred:
    - [microsoft/SkillOpt](https://github.com/microsoft/SkillOpt) - SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gated updates, and deployable best_skill.md artifacts.
    - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - An open source, privacy focused alternative to NotebookLM for teams with no data limits. Join our Discord: https://discord.gg/ejRNvftDp9
    - [OpenBMB/ToolBench](https://github.com/OpenBMB/ToolBench) - [ICLR&apos;24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning.
-   - [Canner/WrenAI](https://github.com/Canner/WrenAI) - Give AI agents the context to query business data correctly through the open context layer that gives AI agents grounded, governed memory, context, SQL across 20+ data sources, that helps you build agentic GenBI, text-to-sql, dashboards, and agentic analytics.
+   - [Canner/WrenAI](https://github.com/Canner/WrenAI) - Open-source GenBI: let your AI agents generate, deploy, and govern dashboards from any database, grounded in a context layer they can trust.
    - [ActivityWatch/activitywatch](https://github.com/ActivityWatch/activitywatch) - The best free and open-source automated time tracker. Cross-platform, extensible, privacy-focused.
    - [msoedov/agentic_security](https://github.com/msoedov/agentic_security) - Agentic LLM Vulnerability Scanner / AI red teaming kit 🧪
    - [agno-agi/agno](https://github.com/agno-agi/agno) - Build, run, and manage agent platforms.
@@ -1259,7 +1247,7 @@ Total of `42` Languages starred:
    - [j178/prek](https://github.com/j178/prek) - ⚡ A fast Git hook manager written in Rust, designed as a drop-in alternative to pre-commit, reimagined.
    - [ofek/pyapp](https://github.com/ofek/pyapp) - Runtime installer for Python applications
    - [PyO3/pyo3](https://github.com/PyO3/pyo3) - Rust bindings for the Python interpreter
-   - [quickwit-oss/quickwit](https://github.com/quickwit-oss/quickwit) - Cloud-native search engine for observability. An open-source alternative to Datadog, Elasticsearch, Loki, and Tempo.
+   - [quickwit-oss/quickwit](https://github.com/quickwit-oss/quickwit) - Cloud-native OSS search engine for observability
    - [slawlor/ractor](https://github.com/slawlor/ractor) - Rust actor framework
    - [agents-sh/radkit](https://github.com/agents-sh/radkit) - Rust Agent Development Kit
    - [tikv/raft-rs](https://github.com/tikv/raft-rs) - Raft distributed consensus algorithm implemented in Rust.
@@ -1295,6 +1283,7 @@ Total of `42` Languages starred:
    - [SeaQL/seaography](https://github.com/SeaQL/seaography) - 🧭 A GraphQL framework for Rust
    - [sentrux/sentrux](https://github.com/sentrux/sentrux) - Real-time architectural sensor that helps AI agents close the feedback loop, enabling recursive self-improvement of code quality. Pure Rust.
    - [serde-rs/serde](https://github.com/serde-rs/serde) - Serialization framework for Rust
+   - [strands-agents/shell](https://github.com/strands-agents/shell) - Give your agent a shell without giving it the keys to your machine.
    - [Aloxaf/silicon](https://github.com/Aloxaf/silicon) - Create beautiful image of your source code.
    - [paulosuzart/similarr](https://github.com/paulosuzart/similarr) - Shuttle and Rust
    - [slatedb/slatedb](https://github.com/slatedb/slatedb) - A cloud native embedded storage engine built on object storage.
@@ -1327,7 +1316,7 @@ Total of `42` Languages starred:
    - [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) - TensorZero is an open-source LLMOps platform that unifies an LLM gateway, observability, evaluation, optimization, and experimentation.
    - [dtolnay/thiserror](https://github.com/dtolnay/thiserror) - derive(Error) for struct and enum error types
    - [TimelyDataflow/timely-dataflow](https://github.com/TimelyDataflow/timely-dataflow) - A modular implementation of timely dataflow in Rust
-   - [sectore/timr-tui](https://github.com/sectore/timr-tui) - TUI to organize your time: Pomodoro, Countdown, Timer, Event.
+   - [sectore/timr-tui](https://github.com/sectore/timr-tui) - TUI to organize your time: Pomodoro, Tabata, Countdown, Timer, Event.
    - [m1guelpf/tinyvector](https://github.com/m1guelpf/tinyvector) - A tiny embedding database in pure Rust.
    - [erikgrinaker/toydb](https://github.com/erikgrinaker/toydb) - Distributed SQL database in Rust, written as an educational project
    - [tursodatabase/turso](https://github.com/tursodatabase/turso) - Turso is an in-process SQL database, compatible with SQLite.
@@ -1461,7 +1450,7 @@ Total of `42` Languages starred:
 
 
 ## <a name="Starlark"></a>Starlark
-   - [google/cel-spec](https://github.com/google/cel-spec) - Common Expression Language -- specification and binary representation
+   - [cel-expr/cel-spec](https://github.com/cel-expr/cel-spec) - Common Expression Language -- specification and binary representation
 
 
 ## <a name="Svelte"></a>Svelte
@@ -1507,7 +1496,7 @@ Total of `42` Languages starred:
    - [unicodeveloper/consultralph](https://github.com/unicodeveloper/consultralph) - The Ultimate AI-powered app for consultants worldwide (EY, Deloitte, PwC, KPMG, McKinsey, BCG, Bain, etc) to do their research and complete work in hours instead of days, weeks and months.
    - [mksglu/context-mode](https://github.com/mksglu/context-mode) - Context window optimization for AI coding agents. Sandboxes tool output, 98% reduction. 15 platforms
    - [forloopcodes/contextplus](https://github.com/forloopcodes/contextplus) - Semantic Intelligence for Large-Scale Engineering. Context+ is an MCP server designed for developers who demand 99% accuracy. By combining RAG, Tree-sitter AST, Spectral Clustering, and Obsidian-style linking, Context+ turns a massive codebase into a searchable, hierarchical feature graph.
-   - [continuedev/continue](https://github.com/continuedev/continue) - ⏩ Source-controlled AI checks, enforceable in CI. Powered by the open-source Continue CLI
+   - [continuedev/continue](https://github.com/continuedev/continue) - open-source coding agent
    - [opencx-labs/copilot](https://github.com/opencx-labs/copilot) - 
    - [graphile/crystal](https://github.com/graphile/crystal) - 🔮 Graphile&apos;s Crystal Monorepo; home to Grafast, PostGraphile, pg-introspection, pg-sql2 and much more!
    - [big-armor/datapm](https://github.com/big-armor/datapm) - 
