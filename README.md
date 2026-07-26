@@ -329,7 +329,7 @@ Total of `44` Languages starred:
    - [madari/go-socket.io](https://github.com/madari/go-socket.io) - A Socket.IO backend implementation written in Go
    - [go-swagger/go-swagger](https://github.com/go-swagger/go-swagger) - Swagger 2.0 implementation for go
    - [Azure/go-workflow](https://github.com/Azure/go-workflow) - Workflow is library to organize steps with dependencies into DAG (Directed-Acyclic-Graph) for Go
-   - [Tochemey/goakt](https://github.com/Tochemey/goakt) - [Go] Distributed Actor/Grain framework for Golang with goodies
+   - [Tochemey/goakt](https://github.com/Tochemey/goakt) - [Go]Distributed Actor/Grain framework for Golang with goodies
    - [nsf/gocode](https://github.com/nsf/gocode) - An autocompletion daemon for the Go programming language
    - [yikakia/godoc-mcp-server](https://github.com/yikakia/godoc-mcp-server) - A mcp server provide infomation from pkg.go.dev. For all golang programmers
    - [joho/godotenv](https://github.com/joho/godotenv) - A Go port of Ruby&apos;s dotenv library (Loads environment variables from .env files)
@@ -511,7 +511,7 @@ Total of `44` Languages starred:
    - [AxonFramework/Axon-trader](https://github.com/AxonFramework/Axon-trader) - A sample to use the axon framework for a trading application
    - [AxonIQ/AxonFramework](https://github.com/AxonIQ/AxonFramework) - Framework for Evolutionary Message-Driven Microservices on the JVM
    - [hicod3r/BigQuery-isolated-unit-testing](https://github.com/hicod3r/BigQuery-isolated-unit-testing) - 
-   - [OtterMind/Chat2DB](https://github.com/OtterMind/Chat2DB) - AI-driven database tool and SQL client, The hottest GUI client, supporting MySQL, Oracle, PostgreSQL, DB2, SQL Server, DB2, SQLite, H2, ClickHouse, and more.
+   - [OtterMind/Chat2DB](https://github.com/OtterMind/Chat2DB) - 🔥🔥🔥 AI-driven database tool and SQL client, The hottest GUI client, supporting MySQL, Oracle, PostgreSQL, DB2, SQL Server, DB2, SQLite, H2, ClickHouse, and more.
    - [OpenHFT/Chronicle-Map](https://github.com/OpenHFT/Chronicle-Map) - Replicate your Key Value Store across your network, with consistency, persistance and performance.
    - [yahoo/HaloDB](https://github.com/yahoo/HaloDB) - A fast, log structured key-value store.
    - [linkedin/Hoptimator](https://github.com/linkedin/Hoptimator) - Multi-hop declarative data pipelines
@@ -528,6 +528,7 @@ Total of `44` Languages starred:
    - [lukas-krecan/ShedLock](https://github.com/lukas-krecan/ShedLock) - Distributed lock for your scheduled tasks
    - [bertilmuth/act](https://github.com/bertilmuth/act) - Executable state charts, property based testing and more.
    - [zakgof/actr](https://github.com/zakgof/actr) - Simple, fast and typesafe Java actor model implementation
+   - [Petersoj/alpaca-java](https://github.com/Petersoj/alpaca-java) - A Java library for the Alpaca brokerage platform providing access to stocks, options, crypto trading, and more (https://alpaca.markets)
    - [CoreyForsyth/annotation-constraints](https://github.com/CoreyForsyth/annotation-constraints) - 
    - [Apicurio/apicurio-registry](https://github.com/Apicurio/apicurio-registry) - An API/Schema registry - stores APIs and Schemas.
    - [AsyncHttpClient/async-http-client](https://github.com/AsyncHttpClient/async-http-client) - Asynchronous, non-blocking HTTP &amp; WebSocket client for the JVM
@@ -869,7 +870,7 @@ Total of `44` Languages starred:
    - [limetext/lime](https://github.com/limetext/lime) - Open source API-compatible alternative to the text editor Sublime Text
    - [forcesunseen/llm-hackers-handbook](https://github.com/forcesunseen/llm-hackers-handbook) - A guide to LLM hacking: fundamentals, prompt injection, offense, and defense
    - [lucia-auth/lucia](https://github.com/lucia-auth/lucia) - Authentication, simple and clean
-   - [piotrkulpinski/openalternative](https://github.com/piotrkulpinski/openalternative) - Curated list of open source alternatives to proprietary software.
+   - [piotrkulpinski/open-source-alternatives](https://github.com/piotrkulpinski/open-source-alternatives) - Curated list of open source alternatives to proprietary software.
    - [nvartolomei/oswald](https://github.com/nvartolomei/oswald) - A Write-Ahead Log (WAL) design built exclusively on object storage primitives.
    - [n8n-io/self-hosted-ai-starter-kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) - The Self-hosted AI Starter Kit is an open-source template that quickly sets up a local AI environment. Curated by n8n, it provides essential tools for creating secure, self-hosted AI workflows.
    - [ehazlett/shipyard](https://github.com/ehazlett/shipyard) - Composable Docker Management
@@ -974,7 +975,7 @@ Total of `44` Languages starred:
    - [QwenLM/Qwen-Agent](https://github.com/QwenLM/Qwen-Agent) - Agent framework and applications built upon Qwen&gt;=3.0, featuring Function Calling, MCP, Code Interpreter, RAG, Chrome extension, etc.
    - [billxbf/ReWOO](https://github.com/billxbf/ReWOO) - Decoupling Reasoning from Observations for Efficient Augmented Language Models
    - [microsoft/SkillOpt](https://github.com/microsoft/SkillOpt) - SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gated updates, and deployable best_skill.md artifacts.
-   - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Open-source NotebookLM alternative. Research the open web with live data, through one platform, API or MCP server. Join our Discord: https://discord.gg/ejRNvftDp9
+   - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Open-source NotebookLM alternative. Research the open web with live data(Reddit, YT, IG, TikTok, Indeed, Google Search, Maps etc) through one platform, API or MCP server. Join our Discord: https://discord.gg/ejRNvftDp9
    - [OpenBMB/ToolBench](https://github.com/OpenBMB/ToolBench) - [ICLR&apos;24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning.
    - [Canner/WrenAI](https://github.com/Canner/WrenAI) - GenBI (Generative BI) for AI agents, an open-source, governed text-to-SQL through an open context layer that turns natural-language questions into trusted dashboards, charts, and SQL across 20+ data sources, such as BigQuery, Snowflake, PostgreSQL, ClickHouse, Amazon Redshift, Databricks and more.
    - [ActivityWatch/activitywatch](https://github.com/ActivityWatch/activitywatch) - The best free and open-source automated time tracker. Cross-platform, extensible, privacy-focused.
@@ -1053,7 +1054,7 @@ Total of `44` Languages starred:
    - [dottxt-ai/outlines](https://github.com/dottxt-ai/outlines) - Structured Outputs
    - [cusma/pe-de-manga](https://github.com/cusma/pe-de-manga) - Plante e regue um pé de manga, grite oxê e colhe sua deliciosa manga NFT! 🥭
    - [piku/piku](https://github.com/piku/piku) - The tiniest PaaS you&apos;ve ever seen. Piku allows you to do git push deployments to your own servers.
-   - [The-PR-Agent/pr-agent](https://github.com/The-PR-Agent/pr-agent) - 🚀 PR Agent: The Original Open-Source PR Reviewer.  This project It is not the Qodo free tier.
+   - [The-PR-Agent/pr-agent](https://github.com/The-PR-Agent/pr-agent) - 🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.
    - [zylon-ai/private-gpt](https://github.com/zylon-ai/private-gpt) - Complete API layer for private AI applications on local models: RAG, skills, tools, MCP, text-to-sql, and more. Works with any OpenAI-compatible inference server.
    - [getmoss/pullama](https://github.com/getmoss/pullama) - A Pull Request summarizer powered by Ollama and Llama2
    - [pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai) - AI Agent Framework, the Pydantic way
@@ -1088,7 +1089,7 @@ Total of `44` Languages starred:
    - [Kitware/trame](https://github.com/Kitware/trame) - Trame lets you weave various components and technologies into a Web Application solely written in Python.
    - [huggingface/transformers](https://github.com/huggingface/transformers) - 🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. 
    - [tav/tweetapp](https://github.com/tav/tweetapp) - Framework for creating Twitter apps on App Engine
-   - [unslothai/unsloth](https://github.com/unslothai/unsloth) - Unsloth Studio is a web UI for training and running open models like Gemma 4, Qwen3.6, DeepSeek, gpt-oss locally.
+   - [unslothai/unsloth](https://github.com/unslothai/unsloth) - Unsloth is a local UI for training and running Gemma 4, Qwen3.6, DeepSeek, Kimi, GLM and other models.
    - [vanna-ai/vanna](https://github.com/vanna-ai/vanna) - 🤖 Chat with your SQL database 📊. Accurate Text-to-SQL Generation via LLMs using Agentic Retrieval 🔄.
 
 
@@ -1115,7 +1116,7 @@ Total of `44` Languages starred:
    - [actix/actix](https://github.com/actix/actix) - Actor framework for Rust.
    - [actix/actix-web](https://github.com/actix/actix-web) - Actix Web is a powerful, pragmatic, and extremely fast web framework for Rust.
    - [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) - Browser automation CLI for AI agents
-   - [rivet-dev/agentos](https://github.com/rivet-dev/agentos) - A faster, lighter, cheaper alternative to sandboxes. Run any coding agent inside an isolated Linux VM, with agent orchestration built in.
+   - [rivet-dev/agentos](https://github.com/rivet-dev/agentos) - Give agents an operating system as a library. Runs in your existing backend – no sandboxes, VMs, or SaaS. Powered by WebAssembly &amp; V8 isolates.
    - [ankitects/anki](https://github.com/ankitects/anki) - Anki is a smart spaced repetition flashcard program
    - [apalis-dev/apalis](https://github.com/apalis-dev/apalis) - Type-safe, extensible, and high-performance background processing library for Rust
    - [cognitive-engineering-lab/aquascope](https://github.com/cognitive-engineering-lab/aquascope) - Interactive visualizations of Rust at compile-time and run-time
@@ -1488,7 +1489,7 @@ Total of `44` Languages starred:
    - [activepieces/activepieces](https://github.com/activepieces/activepieces) - AI Agents &amp; MCPs &amp; AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows &amp; AI Agents • MCPs for AI Agents
    - [aerographql/aerographql](https://github.com/aerographql/aerographql) - A small and opinionated Typescript toolkit to create GraphQL server using a declarative approach
    - [BuilderIO/agent-native](https://github.com/BuilderIO/agent-native) - A framework for building agent-native applications.
-   - [Agenta-AI/agenta](https://github.com/Agenta-AI/agenta) - The open-source LLMOps platform: prompt playground, prompt management, LLM evaluation, and LLM observability all in one place.
+   - [Agenta-AI/agenta](https://github.com/Agenta-AI/agenta) - The open-source workspace for building and running AI agents. Build agents through chat, share them with your team, and run background agents on schedules or app events.
    - [liblaber/ai](https://github.com/liblaber/ai) - build internal applications for your organization
    - [alumnium-hq/alumnium](https://github.com/alumnium-hq/alumnium) - End-to-end testing with AI
    - [apollographql/apollo-tooling](https://github.com/apollographql/apollo-tooling) - ✏️ Apollo CLI for client tooling (Mostly replaced by Rover)
@@ -1526,7 +1527,7 @@ Total of `44` Languages starred:
    - [sukovanej/effect-http](https://github.com/sukovanej/effect-http) - Declarative HTTP API library for effect-ts
    - [blackboardsh/electrobun](https://github.com/blackboardsh/electrobun) - Build ultra fast, tiny, and cross-platform desktop apps with Typescript.
    - [event-driven-io/emmett](https://github.com/event-driven-io/emmett) - Emmett - a Node.js library taking your event-driven applications back to the future!
-   - [event-catalog/eventcatalog](https://github.com/event-catalog/eventcatalog) - The discovery and governance layer for event-driven systems. Document your domains, services, events and schemas — for your teams and your AI agents.
+   - [event-catalog/eventcatalog](https://github.com/event-catalog/eventcatalog) - Documentation tool built for software architecture. Document your domains, services, events and schemas — for your teams and your AI agents.
    - [auth0/express-jwt](https://github.com/auth0/express-jwt) - connect/express middleware that validates a JsonWebToken (JWT) and set the req.user with the attributes
    - [feathersjs/feathers](https://github.com/feathersjs/feathers) - The API and real-time application framework
    - [withastro/flue](https://github.com/withastro/flue) - The sandbox agent framework.
