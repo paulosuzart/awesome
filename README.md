@@ -62,7 +62,6 @@ Total of `37` Languages starred:
    - [dicedb/dicedb](https://github.com/dicedb/dicedb) - Open-source, low-latency key/value engine built on Valkey with query subscriptions and hierarchical storage tiers.
    - [lalinsky/dusty](https://github.com/lalinsky/dusty) - HTTP client/server library for Zig
    - [aergoio/litetree](https://github.com/aergoio/litetree) - SQLite with Branches
-   - [justrach/merjs](https://github.com/justrach/merjs) - A Zig-native web framework. File-based routing, SSR, type-safe APIs, WASM client interactivity. No Node. No npm. Just zig build serve.
    - [invariant-hq/mosaic](https://github.com/invariant-hq/mosaic) - Terminal user interfaces for OCaml.
    - [nanomsg/nanomsg](https://github.com/nanomsg/nanomsg) - nanomsg library
    - [onyx-lang/onyx](https://github.com/onyx-lang/onyx) - ✨ The compiler and developer toolchain for Onyx
@@ -225,10 +224,12 @@ Total of `37` Languages starred:
 
 ## <a name="Go"></a>Go
    - [danielmiessler/Fabric](https://github.com/danielmiessler/Fabric) - Fabric is an open-source framework for augmenting humans using AI. It provides a modular system for solving specific problems using a crowdsourced set of AI prompts that can be used anywhere.
+   - [opensandbox-group/OpenSandbox](https://github.com/opensandbox-group/OpenSandbox) - Secure, Fast, and Extensible Sandbox runtime for AI agents.
    - [stakater/Reloader](https://github.com/stakater/Reloader) - A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&apos;re using it!
    - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - SafeLine is a self-hosted WAF(Web Application Firewall) / reverse proxy to protect your web apps from attacks and exploits.
    - [nektos/act](https://github.com/nektos/act) - Run your GitHub Actions locally 🚀
    - [FiloSottile/age](https://github.com/FiloSottile/age) - A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability.
+   - [Untrivial-ai/agent-orchestrator](https://github.com/Untrivial-ai/agent-orchestrator) - Agent IDE that enables you to manage fleets of coding agents. It comes with an agentic orchestrator that plans tasks, spawns agents, and autonomously handles CI fixes, merge conflicts, and code reviews.
    - [ariasql/ariasql](https://github.com/ariasql/ariasql) - The AriaSQL relational database management system.
    - [hibiken/asynq](https://github.com/hibiken/asynq) - Simple, reliable, and efficient distributed task queue in Go
    - [atomix/atomix](https://github.com/atomix/atomix) - A Kubernetes toolkit for building distributed applications using cloud native principles
@@ -353,6 +354,7 @@ Total of `37` Languages starred:
    - [huton-io/huton](https://github.com/huton-io/huton) - An embeddable and distributed in-memory key-value store written in Go
    - [codenotary/immudb](https://github.com/codenotary/immudb) - immudb - immutable database based on zero trust, SQL/Key-Value/Document model, tamperproof, data change history
    - [apache/incubator-seata-go](https://github.com/apache/incubator-seata-go) - Go Implementation For Seata
+   - [cinar/indicator](https://github.com/cinar/indicator) - Indicator Go delivers a rich set of technical analysis indicators, customizable strategies, and a powerful backtesting framework. No dependencies, just pure simplicity. ✨ See how! 👀
    - [bruin-data/ingestr](https://github.com/bruin-data/ingestr) - ingestr is a CLI tool to copy data between any databases with a single command seamlessly.
    - [cruise-automation/isopod](https://github.com/cruise-automation/isopod) - An expressive DSL and framework for Kubernetes configuration without YAML
    - [istio/istio](https://github.com/istio/istio) - Connect, secure, control, and observe services.
@@ -761,7 +763,7 @@ Total of `37` Languages starred:
    - [spekt8/spekt8](https://github.com/spekt8/spekt8) - Visualize your Kubernetes cluster in real time
    - [tweeio/twee-framework](https://github.com/tweeio/twee-framework) - Modern MVC Framework for Node.js and io.js based on Express.js for professionals with deadlines in enterprise
    - [josdejong/workerpool](https://github.com/josdejong/workerpool) - Offload tasks to a pool of workers on node.js and in the browser
-   - [pixlcore/xyops](https://github.com/pixlcore/xyops) - A complete workflow automation and server monitoring system.
+   - [pixlcore/xyops](https://github.com/pixlcore/xyops) - The next generation of Cronicle: open-source job scheduling, visual workflows, server monitoring, alerting, and incident response.
 
 
 ## <a name="Jupyter%20Notebook"></a>Jupyter Notebook
@@ -862,6 +864,7 @@ Total of `37` Languages starred:
    - [jrwest/learn_you_a_scalaz](https://github.com/jrwest/learn_you_a_scalaz) - Learn You a Scalaz for Greatest Good
    - [limetext/lime](https://github.com/limetext/lime) - Open source API-compatible alternative to the text editor Sublime Text
    - [forcesunseen/llm-hackers-handbook](https://github.com/forcesunseen/llm-hackers-handbook) - A guide to LLM hacking: fundamentals, prompt injection, offense, and defense
+   - [nexu-io/open-design](https://github.com/nexu-io/open-design) - 🎨 Best DeepSeek Harness Design Plugin. The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images &amp; video — real files, HTML/PDF/PPTX/MP4 export. 🤖 Claude Code / Codex / Cursor / DeepSeek Harness / OpenCode &amp; 20+ CLIs via BYOK.
    - [piotrkulpinski/open-source-alternatives](https://github.com/piotrkulpinski/open-source-alternatives) - Curated list of open source alternatives to proprietary software.
    - [nvartolomei/oswald](https://github.com/nvartolomei/oswald) - A Write-Ahead Log (WAL) design built exclusively on object storage primitives.
    - [n8n-io/self-hosted-ai-starter-kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) - The Self-hosted AI Starter Kit is an open-source template that quickly sets up a local AI environment. Curated by n8n, it provides essential tools for creating secure, self-hosted AI workflows.
@@ -957,10 +960,12 @@ Total of `37` Languages starred:
    - [pydantic/FastUI](https://github.com/pydantic/FastUI) - Build better UIs faster.
    - [Ucas-HaoranWei/GOT-OCR2.0](https://github.com/Ucas-HaoranWei/GOT-OCR2.0) - Official code implementation of General OCR Theory:  Towards OCR-2.0 via a Unified End-to-end Model
    - [c0dejump/HExHTTP](https://github.com/c0dejump/HExHTTP) - Header Exploitation HTTP
+   - [yifanfeng97/Hyper-Extract](https://github.com/yifanfeng97/Hyper-Extract) - Hypergraph is more powerful. Transform unstructured text into structured knowledge with LLMs. Graphs, hypergraphs, and spatio-temporal extractions — with one command.
    - [InternLM/InternLM](https://github.com/InternLM/InternLM) - Official release of InternLM series (InternLM, InternLM2, InternLM2.5, InternLM3).
-   - [StarTrail-org/LEANN](https://github.com/StarTrail-org/LEANN) - [MLsys2026]: RAG on Everything with LEANN. Enjoy 97% storage savings while running a fast, accurate, and 100% private RAG application on your personal device.
+   - [StarTrail-org/LEANN](https://github.com/StarTrail-org/LEANN) - [MLsys2026 Best Paper]: https://arxiv.org/abs/2506.08276. RAG on Everything with LEANN. Enjoy 97% storage savings while running a fast, accurate, and 100% private RAG application on your personal device.
+   - [ulab-uiuc/LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - LLMRouter: An Open-Source Library for LLM Routing
    - [HKUDS/OpenPhone](https://github.com/HKUDS/OpenPhone) - [ACL 2026] &quot;OpenPhone: Mobile Agentic Foundation Models for AI Phone&quot;
-   - [opensandbox-group/OpenSandbox](https://github.com/opensandbox-group/OpenSandbox) - Secure, Fast, and Extensible Sandbox runtime for AI agents.
+   - [volcengine/OpenViking](https://github.com/volcengine/OpenViking) - Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.
    - [olucurious/PyFCM](https://github.com/olucurious/PyFCM) - Python client for FCM - Firebase Cloud Messaging (Android, iOS and Web)
    - [digitalreasoning/PyStratus](https://github.com/digitalreasoning/PyStratus) - Python-based utility for managing various distributed services on cloud providers
    - [thisbejim/Pyrebase](https://github.com/thisbejim/Pyrebase) - A simple python wrapper for the Firebase API.
@@ -1048,9 +1053,11 @@ Total of `37` Languages starred:
    - [cactus-compute/needle](https://github.com/cactus-compute/needle) - 14MB foundation model for tiny devices; phones, wearables, smart home, and robots.
    - [open-webui/open-webui](https://github.com/open-webui/open-webui) - User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
    - [openai/openai-agents-python](https://github.com/openai/openai-agents-python) - A lightweight, powerful framework for multi-agent workflows
+   - [andrewyng/openworker](https://github.com/andrewyng/openworker) - 
    - [mabel-dev/opteryx](https://github.com/mabel-dev/opteryx) - 🦖 A SQL-on-everything Query Engine you can execute over multiple databases and file formats. Query your data, where it lives.
    - [algorithmicsuperintelligence/optillm](https://github.com/algorithmicsuperintelligence/optillm) - Optimizing inference proxy for LLMs
    - [dottxt-ai/outlines](https://github.com/dottxt-ai/outlines) - Structured Outputs
+   - [chirpz-ai/pandaprobe](https://github.com/chirpz-ai/pandaprobe) - open source agent engineering platform: traces, evals, and metrics to debug and improve your AI agents. Integrates with LangGraph, CrewAI, Claude Agent SDK, and more. 
    - [cusma/pe-de-manga](https://github.com/cusma/pe-de-manga) - Plante e regue um pé de manga, grite oxê e colhe sua deliciosa manga NFT! 🥭
    - [Snowflake-Labs/pg_lake](https://github.com/Snowflake-Labs/pg_lake) - pg_lake: Postgres with Iceberg and data lake access
    - [piku/piku](https://github.com/piku/piku) - The tiniest PaaS you&apos;ve ever seen. Piku allows you to do git push deployments to your own servers.
@@ -1058,7 +1065,7 @@ Total of `37` Languages starred:
    - [The-PR-Agent/pr-agent](https://github.com/The-PR-Agent/pr-agent) - 🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.
    - [zylon-ai/private-gpt](https://github.com/zylon-ai/private-gpt) - Complete API layer for private AI applications on local models: RAG, skills, tools, MCP, text-to-sql, and more. Works with any OpenAI-compatible inference server.
    - [getmoss/pullama](https://github.com/getmoss/pullama) - A Pull Request summarizer powered by Ollama and Llama2
-   - [pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai) - How Python does AI: agents, realtime voice, image generation, embeddings. Every model, every interface, typed end to end.
+   - [pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai) - How Python does AI. Agents, realtime voice, image generation, embeddings. Every model, every interface, typed end to end.
    - [Kanaries/pygwalker](https://github.com/Kanaries/pygwalker) - PyGWalker: Turn your dataframe into an interactive UI for visual analysis
    - [recombee/python-api-client](https://github.com/recombee/python-api-client) - Python client for easy use of the Recombee recommendation API
    - [facebookarchive/python-instagram](https://github.com/facebookarchive/python-instagram) - Python Client for Instagram API
@@ -1090,8 +1097,9 @@ Total of `37` Languages starred:
    - [Kitware/trame](https://github.com/Kitware/trame) - Trame lets you weave various components and technologies into a Web Application solely written in Python.
    - [huggingface/transformers](https://github.com/huggingface/transformers) - 🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. 
    - [tav/tweetapp](https://github.com/tav/tweetapp) - Framework for creating Twitter apps on App Engine
-   - [unslothai/unsloth](https://github.com/unslothai/unsloth) - Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.
+   - [unslothai/unsloth](https://github.com/unslothai/unsloth) - Local UI to run and train LLMs and diffusion models. Supports GGUF, MLX, Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, FLUX and more.
    - [vanna-ai/vanna](https://github.com/vanna-ai/vanna) - 🤖 Chat with your SQL database 📊. Accurate Text-to-SQL Generation via LLMs using Agentic Retrieval 🔄.
+   - [segment-any-text/wtpsplit](https://github.com/segment-any-text/wtpsplit) - Toolkit to segment text into sentences or other semantic units in a robust, efficient and adaptable way.
 
 
 ## <a name="Rust"></a>Rust
@@ -1313,7 +1321,6 @@ Total of `37` Languages starred:
    - [hashedone/sylvia](https://github.com/hashedone/sylvia) - CosmWasm smart contract framework
    - [TabbyML/tabby](https://github.com/TabbyML/tabby) - Self-hosted AI coding assistant
    - [shshemi/tabiew](https://github.com/shshemi/tabiew) - A lightweight TUI application to view and query tabular data files, such as CSV, TSV, and parquet.
-   - [tailcallhq/tailcall](https://github.com/tailcallhq/tailcall) - High Performance GraphQL Runtime
    - [pingcap/talent-plan](https://github.com/pingcap/talent-plan) - open source training courses about distributed database and distributed systems
    - [quickwit-oss/tantivy](https://github.com/quickwit-oss/tantivy) - Tantivy is a full-text search engine library inspired by Apache Lucene and written in Rust
    - [tanu-rs/tanu](https://github.com/tanu-rs/tanu) - High-performance, async-friendly and ergonomic WebAPI testing framework for Rust
@@ -1438,6 +1445,7 @@ Total of `37` Languages starred:
    - [pussinboots/heroku-buildpack-d](https://github.com/pussinboots/heroku-buildpack-d) - Buildpack of the D language for heroku.
    - [cyberdelia/heroku-geo-buildpack](https://github.com/cyberdelia/heroku-geo-buildpack) - Geo libraries for Heroku
    - [sergeysova/jq-action](https://github.com/sergeysova/jq-action) - This lets you do jq operations in GitHub Actions.
+   - [llm-d/llm-d](https://github.com/llm-d/llm-d) - Achieve state of the art inference performance with modern accelerators on Kubernetes
    - [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) - 🙃   A delightful community-driven (with 2,500+ contributors) framework for managing your zsh configuration. Includes 300+ optional plugins (rails, git, macOS, hub, docker, homebrew, node, php, python, etc), 140+ themes to spice up your morning, and an auto-update tool that makes it easy to keep up with the latest updates from the community.
    - [haraldng/omnipaxos-playground](https://github.com/haraldng/omnipaxos-playground) - Playground to visualize OmniPaxos.
    - [androm3da/optviewer-demo](https://github.com/androm3da/optviewer-demo) - Demonstration of LLVM&apos;s opt-viewer tool
@@ -1455,7 +1463,7 @@ Total of `37` Languages starred:
    - [iOfficeAI/AionUi](https://github.com/iOfficeAI/AionUi) - Open-source 24/7 Cowork app for OpenClaw, Hermes, Claude Code, Codex, OpenCode and 20+ more CLI Agent | Customize your assistants | Team them up｜Star if you like it!
    - [Codehagen/Badget](https://github.com/Codehagen/Badget) - Badget aims to simplify financial management with a user-friendly interface and robust backend
    - [microsoft/BosqueLanguage](https://github.com/microsoft/BosqueLanguage) - The Bosque programming language is an experiment in regularized design for a machine assisted rapid and reliable software development lifecycle. 
-   - [NanoNets/Graft](https://github.com/NanoNets/Graft) - Turbocharge Claude Code, Cursor, Codex, Gemini &amp; every coding agent: faster, cheaper, with contextual understanding specific to your codebase.
+   - [trailhq/Graft](https://github.com/trailhq/Graft) - Turbocharge Claude Code, Cursor, Codex, Gemini &amp; every coding agent: faster, cheaper, with contextual understanding specific to your codebase.
    - [opendatalab/LabelLLM](https://github.com/opendatalab/LabelLLM) - The Open-Source Data Annotation Platform
    - [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) - Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active
    - [OpenHands/OpenHands](https://github.com/OpenHands/OpenHands) - 🙌 OpenHands: AI-Driven Development
@@ -1542,6 +1550,7 @@ Total of `37` Languages starred:
    - [JetBrains/kotlin-web-site](https://github.com/JetBrains/kotlin-web-site) - The Kotlin programming language website
    - [Kaelio/ktx](https://github.com/Kaelio/ktx) - ktx is an executable context layer for data and analytics agents 🐙 Allow Claude Code, Codex, or other AI agents to query analytical databases accurately and with full context of your company
    - [kubero-dev/kubero](https://github.com/kubero-dev/kubero) - A free and self-hosted PaaS alternative to Heroku / Netlify / Coolify / Vercel / Dokku / Portainer running on Kubernetes
+   - [cloudflare/kumo](https://github.com/cloudflare/kumo) - Cloudflare&apos;s component library for building modern web applications.
    - [kysely-org/kysely](https://github.com/kysely-org/kysely) - A type-safe TypeScript SQL query builder
    - [RobinBlomberg/kysely-codegen](https://github.com/RobinBlomberg/kysely-codegen) - Generate Kysely type definitions from your database.
    - [kysely-org/kysely-ctl](https://github.com/kysely-org/kysely-ctl) - Command-line tool for Kysely, Knex-compatible, works in Node.js, Deno, Bun, etc.
@@ -1562,7 +1571,6 @@ Total of `37` Languages starred:
    - [nestjs/nest](https://github.com/nestjs/nest) - A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications with TypeScript/JavaScript 🚀
    - [nocodb/nocodb](https://github.com/nocodb/nocodb) - 🔥 🔥 🔥 A Free &amp; Self-hostable Airtable Alternative
    - [novuhq/novu](https://github.com/novuhq/novu) - The open-source communication infrastructure for agents and products
-   - [nexu-io/open-design](https://github.com/nexu-io/open-design) - 🎨 Best DeepSeek Harness Design Plugin. The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images &amp; video — real files, HTML/PDF/PPTX/MP4 export. 🤖 Claude Code / Codex / Cursor / DeepSeek Harness / OpenCode &amp; 20+ CLIs via BYOK.
    - [open-mercato/open-mercato](https://github.com/open-mercato/open-mercato) - The AI-Engineering Foundation Framework for CRM/ERP and commerce: open-source TypeScript, with multi-tenancy, RBAC, events and domain modules already decided as conventions and specs, so Cursor, Claude Code and Codex build features instead of re-deciding architecture. Start with 80% done.
    - [wexare-ai/openbrowserclaw](https://github.com/wexare-ai/openbrowserclaw) - Browser-native personal AI assistant. Zero infrastructure, the browser is the server.
    - [openobserve/openobserve](https://github.com/openobserve/openobserve) - Open source observability platform for logs, metrics, traces, frontend monitoring, pipelines and LLM observability. A sophisticated, simple and highly performant alternative to Datadog, Splunk, and Elasticsearch with 140x lower storage costs and single binary deployment.
@@ -1644,6 +1652,7 @@ Total of `37` Languages starred:
    - [Super-ZIG/io](https://github.com/Super-ZIG/io) -  Easy input/output in ZIG. 
    - [jetzig-framework/jetzig](https://github.com/jetzig-framework/jetzig) - Jetzig is a web framework written in Zig
    - [rockorager/libvaxis](https://github.com/rockorager/libvaxis) - a modern tui library written in zig
+   - [justrach/merjs](https://github.com/justrach/merjs) - A Zig-native web framework. File-based routing, SSR, type-safe APIs, WASM client interactivity. No Node. No npm. Just zig build serve.
    - [vercel-labs/native](https://github.com/vercel-labs/native) - Toolkit for building native desktop apps
    - [karlseguin/pg.zig](https://github.com/karlseguin/pg.zig) - Native PostgreSQL driver / client for Zig
    - [xataio/pgzx](https://github.com/xataio/pgzx) - Create PostgreSQL extensions using Zig.
