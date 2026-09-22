@@ -8,6 +8,7 @@ on:
 permissions:
   pull-requests: write
   contents: write
+  actions: write # required for Actions cache when permissions are restricted
 
 jobs:
   starred_ml:
@@ -18,12 +19,25 @@ jobs:
         with:
           path: ${{ github.event.repository.name }}
 
+      # Full switch (compiler + starred_ml). setup-ocaml's own opam cache
+      # only snapshots the bare compiler switch.
+      - name: Cache opam switch
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.opam
+            _opam
+          key: opam-5.4.1-starred_ml-0.0.9-${{ runner.os }}-ubuntu-22.04
+
       - name: Set-up OCaml
-        uses: ocaml/setup-ocaml@v3.0.9
+        uses: ocaml/setup-ocaml@v3
         with:
           ocaml-compiler: "5.4.1"
+          cache: false
+          dune-cache: true
 
-      - run: opam install starred_ml
+      - name: Install starred_ml
+        run: opam install starred_ml.0.0.9
 
       - name: Generate awesome README
         env:
