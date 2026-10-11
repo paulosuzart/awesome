@@ -231,7 +231,7 @@ Total of `37` Languages starred:
    - [chaitin/SafeLine](https://github.com/chaitin/SafeLine) - SafeLine is a self-hosted WAF(Web Application Firewall) / reverse proxy to protect your web apps from attacks and exploits.
    - [nektos/act](https://github.com/nektos/act) - Run your GitHub Actions locally 🚀
    - [FiloSottile/age](https://github.com/FiloSottile/age) - A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability.
-   - [Untrivial-ai/agent-orchestrator](https://github.com/Untrivial-ai/agent-orchestrator) - Run and supervise teams of coding agents from planning to merge. Any harness (Claude code, codex, +25 more). Desktop, web, mobile, and cloud agents.
+   - [OrchestratorInc/agent-orchestrator](https://github.com/OrchestratorInc/agent-orchestrator) - Run and supervise teams of coding agents from planning to merge. Any harness (Claude code, codex, +25 more). Desktop, web, mobile, and cloud agents.
    - [kubernetes-sigs/agent-sandbox](https://github.com/kubernetes-sigs/agent-sandbox) - agent-sandbox enables easy management of isolated, stateful, singleton workloads, ideal for use cases like AI agent runtimes  and reinforcement learning (RL).
    - [ariasql/ariasql](https://github.com/ariasql/ariasql) - The AriaSQL relational database management system.
    - [hibiken/asynq](https://github.com/hibiken/asynq) - Simple, reliable, and efficient distributed task queue in Go
@@ -423,7 +423,7 @@ Total of `37` Languages starred:
    - [nalgeon/redka](https://github.com/nalgeon/redka) - Redis re-implemented with SQL
    - [rigdev/rig](https://github.com/rigdev/rig) - The DevEx &amp; Application-layer for your Internal Developer Platform ⛵
    - [deepnoodle-ai/risor](https://github.com/deepnoodle-ai/risor) - Risor is a fast, embeddable scripting language for Go applications.  Add dynamic expressions, filters, and user-defined logic to your Go programs without embedding a heavy runtime like V8 or Python. Expressions compile to bytecode and run on a lightweight VM. Pure Go, minimal dependencies.
-   - [riverqueue/river](https://github.com/riverqueue/river) - Fast and reliable background jobs in Go
+   - [riverqueue/river](https://github.com/riverqueue/river) - The polyglot queue: Fast and reliable background jobs in Go, Ruby, Rust, and JS/TS on Postgres or SQLite.
    - [samber/ro](https://github.com/samber/ro) - 🏎️ Streams &amp; Reactive Programming paradigm for Go: declarative and composable API for event-driven applications
    - [rqlite/rqlite](https://github.com/rqlite/rqlite) - The lightweight, fault-tolerant database built on SQLite. Designed to keep your data highly available with minimal effort.
    - [rulego/rulego](https://github.com/rulego/rulego) - ⛓️RuleGo is a lightweight, high-performance, embedded, next-generation component orchestration rule engine framework for Go.
@@ -444,7 +444,7 @@ Total of `37` Languages starred:
    - [sqlc-dev/sqlc](https://github.com/sqlc-dev/sqlc) - Generate type-safe code from SQL
    - [jmoiron/sqlx](https://github.com/jmoiron/sqlx) - general purpose extensions to golang&apos;s database/sql
    - [owenrumney/squealer](https://github.com/owenrumney/squealer) - Telling tales on you for leaking secrets!
-   - [stern/stern](https://github.com/stern/stern) - ⎈ Multi pod and container log tailing for Kubernetes -- Friendly fork of https://github.com/wercker/stern
+   - [stern/stern](https://github.com/stern/stern) - ⎈ Multi pod and container log tailing for Kubernetes
    - [asdine/storm](https://github.com/asdine/storm) - Simple and powerful toolkit for BoltDB
    - [subtrace/subtrace](https://github.com/subtrace/subtrace) - Network inspector for your backend
    - [siderolabs/talos](https://github.com/siderolabs/talos) - Talos Linux is a modern Linux distribution built for Kubernetes.
@@ -492,6 +492,7 @@ Total of `37` Languages starred:
 
 
 ## <a name="HTML"></a>HTML
+   - [ToolJet/ToolJet](https://github.com/ToolJet/ToolJet) - Open-source foundation of ToolJet AI - the enterprise app generation platform for internal tools, dashboards, business applications, workflows and AI agents. Build visually, from a prompt, or from Claude Code, Codex and Cursor over MCP 🚀
    - [Cocoon-AI/architecture-diagram-generator](https://github.com/Cocoon-AI/architecture-diagram-generator) - Generate beautiful dark-themed system architecture diagrams as standalone HTML/SVG files. Works as a Claude AI skill.    
    - [ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) - A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev
    - [bobbyiliev/introduction-to-bash-scripting](https://github.com/bobbyiliev/introduction-to-bash-scripting) - Free Introduction to Bash Scripting eBook
@@ -703,10 +704,9 @@ Total of `37` Languages starred:
    - [affaan-m/ECC](https://github.com/affaan-m/ECC) - The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.
    - [0xranx/OpenContext](https://github.com/0xranx/OpenContext) - A personal context store for AI agents and assistants—reuse your existing coding agent CLI (Codex/Claude/OpenCode) with built‑in Skills/tools and a desktop GUI to capture, search, and reuse project knowledge across agents and repos.
    - [aisingapore/TagUI](https://github.com/aisingapore/TagUI) - Free RPA tool by AI Singapore
-   - [ToolJet/ToolJet](https://github.com/ToolJet/ToolJet) - Open-source foundation of ToolJet AI - the enterprise app generation platform for internal tools, dashboards, business applications, workflows and AI agents. Build visually, from a prompt, or from Claude Code, Codex and Cursor over MCP 🚀
    - [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) - Stop renting your intelligence. Own it with AnythingLLM. Everything you need for a powerful local-first agent experience 
    - [jodacame/apidocjs-template-dark-Slate-Inspiration-](https://github.com/jodacame/apidocjs-template-dark-Slate-Inspiration-) - Theme dark (Slate) for apidocjs
-   - [tt-a1i/archify](https://github.com/tt-a1i/archify) - Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
+   - [tt-a1i/archify](https://github.com/tt-a1i/archify) - Turn any idea, plan, or codebase into a beautiful interactive diagram. An agent skill for Claude Code, Codex, and more.
    - [automerge/automerge](https://github.com/automerge/automerge) - A JSON-like data structure (a CRDT) that can be modified concurrently by different users, and merged again automatically. 
    - [haltcase/babel-plugin-partial-application](https://github.com/haltcase/babel-plugin-partial-application) - [DEPRECATED] Please use https://github.com/citycide/param.macro
    - [WiseLibs/better-sqlite3](https://github.com/WiseLibs/better-sqlite3) - The fastest and simplest library for SQLite3 in Node.js.
@@ -809,7 +809,7 @@ Total of `37` Languages starred:
    - [JetBrains/kotlin](https://github.com/JetBrains/kotlin) - The Kotlin Programming Language. 
    - [KStateMachine/kstatemachine](https://github.com/KStateMachine/kstatemachine) - A powerful Kotlin Multiplatform state machine library with clean DSL syntax and first-class Kotlin Coroutines support
    - [andrewoma/kwery](https://github.com/andrewoma/kwery) - Kwery is an SQL library for Kotlin
-   - [namastack/namastack-outbox](https://github.com/namastack/namastack-outbox) - Outbox Implementation for Spring Boot
+   - [namastack/namastack-outbox](https://github.com/namastack/namastack-outbox) - Transactional Outbox for reliable event delivery with Spring Boot
    - [glasskube/operator](https://github.com/glasskube/operator) - 🧊 Glasskube Apps Operator
    - [domnikl/schema-registry-gitops](https://github.com/domnikl/schema-registry-gitops) - Manage Confluent Schema Registry subjects through Infrastructure as code
    - [ImFlog/schema-registry-plugin](https://github.com/ImFlog/schema-registry-plugin) - Gradle plugin to interact with Confluent Schema-Registry.
@@ -978,9 +978,9 @@ Total of `37` Languages starred:
    - [InternLM/InternLM](https://github.com/InternLM/InternLM) - Official release of InternLM series (InternLM, InternLM2, InternLM2.5, InternLM3).
    - [StarTrail-org/LEANN](https://github.com/StarTrail-org/LEANN) - [MLsys2026 Best Paper]: https://arxiv.org/abs/2506.08276. RAG on Everything with LEANN. Enjoy 97% storage savings while running a fast, accurate, and 100% private RAG application on your personal device.
    - [ulab-uiuc/LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - LLMRouter: An Open-Source Library for LLM Routing
-   - [HKUDS/OpenPhone](https://github.com/HKUDS/OpenPhone) - [ACL 2026] &quot;OpenPhone: Mobile Agentic Foundation Models for AI Phone&quot;
    - [opensandbox-group/OpenSandbox](https://github.com/opensandbox-group/OpenSandbox) - Secure, Fast, and Extensible Sandbox runtime for AI agents.
    - [volcengine/OpenViking](https://github.com/volcengine/OpenViking) - Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.
+   - [HKUDS/PhoneCLI](https://github.com/HKUDS/PhoneCLI) - PhoneCLI: Making ALL Mobile Apps Agent-Native
    - [olucurious/PyFCM](https://github.com/olucurious/PyFCM) - Python client for FCM - Firebase Cloud Messaging (Android, iOS and Web)
    - [digitalreasoning/PyStratus](https://github.com/digitalreasoning/PyStratus) - Python-based utility for managing various distributed services on cloud providers
    - [thisbejim/Pyrebase](https://github.com/thisbejim/Pyrebase) - A simple python wrapper for the Firebase API.
@@ -990,7 +990,7 @@ Total of `37` Languages starred:
    - [smart-models/Sentences-Chunker](https://github.com/smart-models/Sentences-Chunker) - Cutting-edge tool designed to intelligently segment text documents into optimally-sized chunks
    - [microsoft/SkillOpt](https://github.com/microsoft/SkillOpt) - SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gated updates, and deployable best_skill.md artifacts.
    - [MakazhanAlpamys/Soup](https://github.com/MakazhanAlpamys/Soup) - Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.
-   - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Air gapped, privacy focused open source NotebookLM alternative. Join our Discord: https://discord.gg/ejRNvftDp9
+   - [MODSetter/SurfSense](https://github.com/MODSetter/SurfSense) - Air-gapped, privacy-focused, open-source NotebookLM alternative. AI agent that researches, transforms, and edits your documents. Join our Discord: https://discord.gg/ejRNvftDp9
    - [OpenBMB/ToolBench](https://github.com/OpenBMB/ToolBench) - [ICLR&apos;24 spotlight] An open platform for training, serving, and evaluating large language model for tool learning.
    - [Canner/WrenAI](https://github.com/Canner/WrenAI) - GenBI (Generative BI) for AI agents, an open-source, governed text-to-SQL through an open context layer that turns natural-language questions into trusted dashboards, charts, and SQL across 20+ data sources, such as BigQuery, Snowflake, PostgreSQL, ClickHouse, Amazon Redshift, Databricks and more.
    - [ActivityWatch/activitywatch](https://github.com/ActivityWatch/activitywatch) - The best free and open-source automated time tracker. Cross-platform, extensible, privacy-focused.
@@ -1033,7 +1033,7 @@ Total of `37` Languages starred:
    - [raiderrobert/django-multiurl](https://github.com/raiderrobert/django-multiurl) - Have you ever wanted multiple views to match to the same URL? Now you can.
    - [docling-project/docling](https://github.com/docling-project/docling) - Get your documents ready for gen AI
    - [microsoft/durabletask-python](https://github.com/microsoft/durabletask-python) - A Durable Task Python SDK compatible with the Durable Task Scheduler
-   - [MichaelS1011/ephemora-cell](https://github.com/MichaelS1011/ephemora-cell) - Ephemora Cell is a lightweight security and execution primitive for running untrusted code inside AI agents, MCP tools, plugins, and applications. Source-available under BUSL-1.1.
+   - [MichaelS1011/ephemora-cell](https://github.com/MichaelS1011/ephemora-cell) - Ephemeral, stateless, capability-bound execution for untrusted AI and agent-generated code.
    - [arthurio/fastapi-filter](https://github.com/arthurio/fastapi-filter) - Filter and order your endpoints
    - [qdrant/fastembed](https://github.com/qdrant/fastembed) - Fast, Accurate, Lightweight Python library to make State of the Art Embedding
    - [PrefectHQ/fastmcp](https://github.com/PrefectHQ/fastmcp) - 🚀 The fast, Pythonic way to build MCP servers and clients.
@@ -1071,10 +1071,12 @@ Total of `37` Languages starred:
    - [mem0ai/mem0](https://github.com/mem0ai/mem0) - The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. Built for production.
    - [zhangfengcdt/memoir](https://github.com/zhangfengcdt/memoir) - Hierarchical Agent Memory with Git-Like Version Control
    - [novix-science/mlx-sim](https://github.com/novix-science/mlx-sim) - 
+   - [jeansossmeier/modupy](https://github.com/jeansossmeier/modupy) - A pythonic modular monolith library that grows with your team: start as one app, scale out to processes and services without a rewrite.
    - [MotleyAI/motleycrew](https://github.com/MotleyAI/motleycrew) - Flexible and powerful multi-agent AI framework
-   - [cactus-compute/needle](https://github.com/cactus-compute/needle) - Automation foundation model for tiny devices: 2-bit, 8-29 MB, tool calls, structured extraction and embeddings on phones, wearables, smart homes, robots, cars and microcontrollers.
+   - [cactus-compute/needle](https://github.com/cactus-compute/needle) - Automation foundation model for tiny devices: 2-bit, 8-29 MB, tool calls, ASR, structured extraction and embeddings on phones, wearables, smart homes, robots, cars and microcontrollers.
    - [open-webui/open-webui](https://github.com/open-webui/open-webui) - User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
    - [openai/openai-agents-python](https://github.com/openai/openai-agents-python) - A lightweight, powerful framework for multi-agent workflows
+   - [Tracer-Cloud/opensre](https://github.com/Tracer-Cloud/opensre) - Build your own AI SRE agents. The open source toolkit for the AI era.
    - [andrewyng/openworker](https://github.com/andrewyng/openworker) - 
    - [mabel-dev/opteryx](https://github.com/mabel-dev/opteryx) - 🦖 A SQL-on-everything Query Engine you can execute over multiple databases and file formats. Query your data, where it lives.
    - [algorithmicsuperintelligence/optillm](https://github.com/algorithmicsuperintelligence/optillm) - Optimizing inference proxy for LLMs
@@ -1383,6 +1385,7 @@ Total of `37` Languages starred:
    - [sxyazi/yazi](https://github.com/sxyazi/yazi) - 💥 Blazing fast terminal file manager written in Rust, based on async I/O.
    - [bogzbonny/yeehaw](https://github.com/bogzbonny/yeehaw) - TUI Framework With Batteries Included
    - [yewstack/yew](https://github.com/yewstack/yew) - Rust / Wasm framework for creating reliable and efficient web applications
+   - [yologdev/yoagent](https://github.com/yologdev/yoagent) - The agent loop for Rust — stream from 7 LLM protocols, run tools, loop until done.
    - [paulosuzart/zart](https://github.com/paulosuzart/zart) - Embedded durable execution for rust
    - [ZcashFoundation/zebra](https://github.com/ZcashFoundation/zebra) - Zcash - Financial Privacy in Rust 🦓
    - [zed-industries/zed](https://github.com/zed-industries/zed) - Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.
@@ -1476,7 +1479,7 @@ Total of `37` Languages starred:
 
 
 ## <a name="Shell"></a>Shell
-   - [tw93/Mole](https://github.com/tw93/Mole) - 🐹 Clean, uninstall, analyze, optimize, and monitor your Mac. Free open-source CLI, plus a native Mac app.
+   - [tw93/Mole](https://github.com/tw93/Mole) - 🐹 Keep your Mac clean, light, and running like new. Fast open-source CLI, plus a native Mac app.
    - [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) - A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.
    - [RchGrav/claudebox](https://github.com/RchGrav/claudebox) - The Ultimate Claude Code Docker Development Environment - Run Claude AI&apos;s coding assistant in a fully containerized, reproducible environment with pre-configured development profiles.
    - [cloudfoundry-community/cppcms-buildpack](https://github.com/cloudfoundry-community/cppcms-buildpack) - Cloud Foundry buildpack for the CppCMS web framework.
@@ -1611,7 +1614,7 @@ Total of `37` Languages starred:
    - [medplum/medplum](https://github.com/medplum/medplum) - Medplum is a healthcare platform that helps you quickly develop high-quality compliant applications.
    - [midday-ai/midday](https://github.com/midday-ai/midday) - Invoicing, Time tracking, File reconciliation, Storage, Financial Overview &amp; your own Assistant made for Freelancers
    - [middlewarehq/middleware](https://github.com/middlewarehq/middleware) - ✨ Open-source DORA metrics platform for engineering teams ✨
-   - [web-infra-dev/midscene](https://github.com/web-infra-dev/midscene) - GUI Agent for E2E Testing
+   - [web-infra-dev/midscene](https://github.com/web-infra-dev/midscene) - See interfaces like a human. E2E testing in natural language.
    - [mikro-orm/mikro-orm](https://github.com/mikro-orm/mikro-orm) - TypeScript ORM for Node.js based on Data Mapper, Unit of Work and Identity Map patterns. Supports MongoDB, MySQL, MariaDB, MS SQL Server, PostgreSQL and SQLite/libSQL databases.
    - [ega-forever/mokka](https://github.com/ega-forever/mokka) - Mokka consensus
    - [nanocoai/nanoclaw](https://github.com/nanocoai/nanoclaw) - A lightweight alternative to OpenClaw that runs in containers for security. Connects to WhatsApp, Telegram, Slack, Discord, Gmail and other messaging apps,, has memory, scheduled jobs, and runs directly on Anthropic&apos;s Agents SDK
