@@ -15,18 +15,15 @@ Have fun!
 
 # Languages
 
-Total of `37` Languages starred:
+Total of `31` Languages starred:
    - [C](#C) 
    - [C#](#C%23) 
    - [C++](#C%2B%2B) 
    - [C3](#C3) 
    - [Clojure](#Clojure) 
    - [Crystal](#Crystal) 
-   - [Dart](#Dart) 
    - [Elixir](#Elixir) 
-   - [Flix](#Flix) 
    - [Go](#Go) 
-   - [Groovy](#Groovy) 
    - [HCL](#HCL) 
    - [HTML](#HTML) 
    - [Haskell](#Haskell) 
@@ -35,9 +32,7 @@ Total of `37` Languages starred:
    - [Jupyter Notebook](#Jupyter%20Notebook) 
    - [Koka](#Koka) 
    - [Kotlin](#Kotlin) 
-   - [Lua](#Lua) 
    - [Makefile](#Makefile) 
-   - [MoonBit](#MoonBit) 
    - [Not Set](#Not%20Set)  Repos without language specified 
    - [OCaml](#OCaml) 
    - [Odin](#Odin) 
@@ -51,7 +46,6 @@ Total of `37` Languages starred:
    - [TeX](#TeX) 
    - [TypeScript](#TypeScript) 
    - [V](#V) 
-   - [Vim script](#Vim%20script) 
    - [Zig](#Zig) 
 
 # Contents
@@ -182,60 +176,12 @@ Total of `37` Languages starred:
 
 
 ## <a name="Crystal"></a>Crystal
-   - [amberframework/amber](https://github.com/amberframework/amber) - A Crystal web framework that makes building applications fast, simple, and enjoyable. Get started with quick prototyping, less bugs, and blazing fast performance.
-   - [amethyst-framework/amethyst](https://github.com/amethyst-framework/amethyst) - Amethyst is a Rails inspired web-framework for Crystal language
-   - [mosop/cli](https://github.com/mosop/cli) - Yet another Crystal library for building command-line interface applications.
-   - [mamantoha/crest](https://github.com/mamantoha/crest) - HTTP and REST client for Crystal
-   - [crystal-lang/crystal](https://github.com/crystal-lang/crystal) - The Crystal Programming Language
-   - [askn/crystal-by-example](https://github.com/askn/crystal-by-example) - Crystal By Example
-   - [jeromegn/docker.cr](https://github.com/jeromegn/docker.cr) - Docker API client in Crystal.
-   - [andre/geocoder](https://github.com/andre/geocoder) - Simple Geocoding in Crystal
-   - [ziprandom/graphql-crystal](https://github.com/ziprandom/graphql-crystal) - a graphql implementation for crystal
-   - [grip-framework/grip](https://github.com/grip-framework/grip) - The microframework for writing powerful web applications.
-   - [icyleaf/halite](https://github.com/icyleaf/halite) - 💎HTTP Requests Client with a chainable REST API, built-in sessions and middlewares.
-   - [kemalcr/kemal](https://github.com/kemalcr/kemal) - Fast, Effective, Simple Web Framework
-   - [jasonl99/lattice-core](https://github.com/jasonl99/lattice-core) - A WebSocket-first object-oriented framework for Crystal
-   - [luckyframework/lucky](https://github.com/luckyframework/lucky) - A full-featured Crystal web framework that catches bugs for you, runs incredibly fast, and helps you write code that lasts.
-   - [watzon/marionette](https://github.com/watzon/marionette) - Selenium alternative for Crystal. Browser manipulation without the Java overhead.
-   - [crystal-community/msgpack-crystal](https://github.com/crystal-community/msgpack-crystal) - MessagePack implementation in Crystal msgpack.org[Crystal]
-   - [watzon/ngrok.cr](https://github.com/watzon/ngrok.cr) - Ngrok wrapper for Crystal
-   - [mosop/optarg](https://github.com/mosop/optarg) - Yet another Crystal library for parsing command-line options and arguments.
-   - [cubos/rethinkdb.cr](https://github.com/cubos/rethinkdb.cr) - RethinkDB Driver for Crystal
-   - [tbrand/router.cr](https://github.com/tbrand/router.cr) - Minimum High Performance Middleware for Crystal Web Server.
    - [crystal-lang-tools/scry](https://github.com/crystal-lang-tools/scry) - Scry is a code analysis server for https://crystal-lang.org
-   - [onyxframework/sql](https://github.com/onyxframework/sql) - A delightful SQL ORM ☺️
-   - [squirm-framework/squirm](https://github.com/squirm-framework/squirm) - This was the night of the crawling terror!
-
-
-## <a name="Dart"></a>Dart
-   - [StacDev/stac](https://github.com/StacDev/stac) - Stac is a Server-Driven UI (SDUI) framework for Flutter, enabling you to create stunning, cross-platform applications dynamically with JSON. Build and update your app&apos;s UI in real-time with ease and flexibility!
 
 
 ## <a name="Elixir"></a>Elixir
-   - [imeraj/Phoenix_rumbl](https://github.com/imeraj/Phoenix_rumbl) - Phoenix rumbl project converted to 1.3
-   - [absinthe-graphql/absinthe](https://github.com/absinthe-graphql/absinthe) - The GraphQL toolkit for Elixir
-   - [aws-beam/aws-elixir](https://github.com/aws-beam/aws-elixir) - AWS clients for Elixir
-   - [beam-community/bamboo](https://github.com/beam-community/bamboo) - Testable, composable, and adapter based Elixir email library for devs that love piping.
-   - [Nebo15/ecto_mnesia](https://github.com/Nebo15/ecto_mnesia) - Ecto adapter for Mnesia Erlang term database.
    - [googleapis/elixir-google-api](https://github.com/googleapis/elixir-google-api) - Elixir client libraries for accessing Google APIs.
-   - [smpallen99/ex_admin](https://github.com/smpallen99/ex_admin) - ExAdmin is an auto administration package for Elixir and the Phoenix Framework
-   - [discord/fastglobal](https://github.com/discord/fastglobal) - Fast no copy globals for Elixir &amp; Erlang.
-   - [antonmi/flowex](https://github.com/antonmi/flowex) - Flow-Based Programming framework for Elixir
-   - [aviabird/gringotts](https://github.com/aviabird/gringotts) - A complete payment library for Elixir and Phoenix Framework
    - [doomspork/hydra](https://github.com/doomspork/hydra) - Open source API gateway with integrated cache and data transformations.
-   - [kafkaex/kafka_ex](https://github.com/kafkaex/kafka_ex) - Kafka client library for Elixir
-   - [bitwalker/libcluster](https://github.com/bitwalker/libcluster) - Automatic cluster formation/healing for Elixir applications
-   - [discord/manifold](https://github.com/discord/manifold) - Fast batch message passing between nodes for Erlang/Elixir.
-   - [tallarium/reverse_proxy_plug](https://github.com/tallarium/reverse_proxy_plug) - 🔛 an Elixir reverse proxy Plug with HTTP/2, chunked transfer and path proxying support
-   - [arjan/singleton](https://github.com/arjan/singleton) - Global, supervised singleton processes for Elixir
-   - [bitwalker/swarm](https://github.com/bitwalker/swarm) - Easy clustering, registration, and distribution of worker processes for Erlang/Elixir
-   - [mojotech/torch](https://github.com/mojotech/torch) - A rapid admin generator for Elixir &amp; Phoenix
-   - [ateliware/triplex](https://github.com/ateliware/triplex) - Database multitenancy for Elixir applications!
-   - [agoodway/walex](https://github.com/agoodway/walex) - Postgres change events (CDC) in Elixir [WAL]
-
-
-## <a name="Flix"></a>Flix
-   - [flix/flix](https://github.com/flix/flix) - The Flix Programming Language
 
 
 ## <a name="Go"></a>Go
@@ -445,7 +391,7 @@ Total of `37` Languages starred:
    - [rulego/rulego](https://github.com/rulego/rulego) - ⛓️RuleGo is a lightweight, high-performance, embedded, next-generation component orchestration rule engine framework for Go.
    - [JJBordy/rules](https://github.com/JJBordy/rules) - Minimal rules engine, uses yaml as input
    - [schemahero/schemahero](https://github.com/schemahero/schemahero) - A Kubernetes operator for declarative database schema management (gitops for database schemas)
-   - [seaweedfs/seaweedfs](https://github.com/seaweedfs/seaweedfs) - SeaweedFS is a distributed storage system for object storage (S3), file systems, and Iceberg tables, designed to handle billions of files with O(1) disk access and effortless horizontal scaling.
+   - [seaweedfs/seaweedfs](https://github.com/seaweedfs/seaweedfs) - SeaweedFS is a distributed storage system for object storage (S3), file systems, Iceberg table buckets, and Lance vector buckets, designed to handle billions of files with O(1) disk access and effortless horizontal scaling.
    - [taleshape-com/shaper](https://github.com/taleshape-com/shaper) - Visualize and share your data. All in SQL. Powered by DuckDB.
    - [MightyMoud/sidekick](https://github.com/MightyMoud/sidekick) - Bare metal to production ready in mins; your own fly server on your VPS.
    - [tobert/skeezy](https://github.com/tobert/skeezy) - A simple blog using Go &amp; Cassandra 
@@ -496,10 +442,6 @@ Total of `37` Languages starred:
    - [uber-go/zap](https://github.com/uber-go/zap) - Blazing fast, structured, leveled logging in Go.
    - [zincsearch/zincsearch](https://github.com/zincsearch/zincsearch) - ZincSearch . A lightweight alternative to elasticsearch that requires minimal resources, written in Go.
    - [zitadel/zitadel](https://github.com/zitadel/zitadel) - ZITADEL - Identity infrastructure, simplified for you.
-
-
-## <a name="Groovy"></a>Groovy
-   - [revolut-engineering/jooq-plugin](https://github.com/revolut-engineering/jooq-plugin) - Plugin for generating jOOQ classes using dockerized databases
 
 
 ## <a name="HCL"></a>HCL
@@ -722,7 +664,6 @@ Total of `37` Languages starred:
    - [memodb-io/Acontext](https://github.com/memodb-io/Acontext) - Agent Skills as a Memory Layer
    - [affaan-m/ECC](https://github.com/affaan-m/ECC) - The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.
    - [0xranx/OpenContext](https://github.com/0xranx/OpenContext) - A personal context store for AI agents and assistants—reuse your existing coding agent CLI (Codex/Claude/OpenCode) with built‑in Skills/tools and a desktop GUI to capture, search, and reuse project knowledge across agents and repos.
-   - [aisingapore/TagUI](https://github.com/aisingapore/TagUI) - Free RPA tool by AI Singapore
    - [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) - Stop renting your intelligence. Own it with AnythingLLM. Everything you need for a powerful local-first agent experience 
    - [jodacame/apidocjs-template-dark-Slate-Inspiration-](https://github.com/jodacame/apidocjs-template-dark-Slate-Inspiration-) - Theme dark (Slate) for apidocjs
    - [tt-a1i/archify](https://github.com/tt-a1i/archify) - Turn any idea, plan, or codebase into a beautiful interactive diagram. An agent skill for Claude Code, Codex, and more.
@@ -841,19 +782,8 @@ Total of `37` Languages starred:
    - [adevinta/zoe](https://github.com/adevinta/zoe) - The Kafka CLI for humans
 
 
-## <a name="Lua"></a>Lua
-   - [jackMort/ChatGPT.nvim](https://github.com/jackMort/ChatGPT.nvim) - ChatGPT Neovim Plugin: Effortless Natural Language Generation with OpenAI&apos;s ChatGPT API
-   - [LazyVim/LazyVim](https://github.com/LazyVim/LazyVim) - Neovim config for the lazy
-
-
 ## <a name="Makefile"></a>Makefile
    - [mindsdb/mindshub](https://github.com/mindsdb/mindshub) - The unified workspace where open-source models get things done for you.
-
-
-## <a name="MoonBit"></a>MoonBit
-   - [moonbitlang/async](https://github.com/moonbitlang/async) - async programming library for MoonBit
-   - [oboard/mocket](https://github.com/oboard/mocket) - A web framework for MoonBit.
-   - [gmlewis/spin-moonbit-sdk](https://github.com/gmlewis/spin-moonbit-sdk) - Experimental Spin SDK for the MoonBit programming language.
 
 
 ## <a name="Not%20Set"></a>Not Set
@@ -972,9 +902,11 @@ Total of `37` Languages starred:
 
 ## <a name="Odin"></a>Odin
    - [odin-lang/Odin](https://github.com/odin-lang/Odin) - Odin Programming Language
+   - [pmbanugo/tina](https://github.com/pmbanugo/tina) - A shared-nothing, thread-per-core concurrency framework. Designed for massive concurrency because There Is No Alternative (TINA)
 
 
 ## <a name="PHP"></a>PHP
+   - [aisingapore/TagUI](https://github.com/aisingapore/TagUI) - Free RPA tool by AI Singapore
    - [coollabsio/coolify](https://github.com/coollabsio/coolify) - An open-source, self-hostable PaaS alternative to Vercel, Heroku &amp; Netlify that lets you easily deploy static sites, databases, full-stack applications and 360+ one-click services on your own servers.
    - [grokability/snipe-it](https://github.com/grokability/snipe-it) - A free open source IT asset/license management system
 
@@ -1002,7 +934,7 @@ Total of `37` Languages starred:
    - [ulab-uiuc/LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - LLMRouter: An Open-Source Library for LLM Routing
    - [opensandbox-group/OpenSandbox](https://github.com/opensandbox-group/OpenSandbox) - Secure, Fast, and Extensible Sandbox runtime for AI agents.
    - [volcengine/OpenViking](https://github.com/volcengine/OpenViking) - Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.
-   - [HKUDS/PhoneCLI](https://github.com/HKUDS/PhoneCLI) - PhoneCLI: Making ALL Mobile Apps Agent-Native
+   - [HKUDS/PhoneCLI](https://github.com/HKUDS/PhoneCLI) - PhoneCLI: Making Mobile Apps Agent-Native
    - [olucurious/PyFCM](https://github.com/olucurious/PyFCM) - Python client for FCM - Firebase Cloud Messaging (Android, iOS and Web)
    - [digitalreasoning/PyStratus](https://github.com/digitalreasoning/PyStratus) - Python-based utility for managing various distributed services on cloud providers
    - [thisbejim/Pyrebase](https://github.com/thisbejim/Pyrebase) - A simple python wrapper for the Firebase API.
@@ -1070,6 +1002,7 @@ Total of `37` Languages starred:
    - [minimaxir/gpt-2-simple](https://github.com/minimaxir/gpt-2-simple) - Python package to easily retrain OpenAI&apos;s GPT-2 text-generating model on new texts
    - [AntonOsika/gpt-engineer](https://github.com/AntonOsika/gpt-engineer) - CLI platform to experiment with codegen. Precursor to: https://lovable.dev
    - [marcio704/graphic_editor](https://github.com/marcio704/graphic_editor) - Description on &apos;instructions.txt&apos;
+   - [SorinS/gslib](https://github.com/SorinS/gslib) - Goose Library
    - [guardrails-ai/guardrails](https://github.com/guardrails-ai/guardrails) - Adding guardrails to large language models.
    - [guardrails-ai/guardrails-hub-monorepo](https://github.com/guardrails-ai/guardrails-hub-monorepo) - 
    - [benoitc/gunicorn](https://github.com/benoitc/gunicorn) - gunicorn &apos;Green Unicorn&apos; is a WSGI HTTP Server for UNIX, fast clients and sleepy applications.
@@ -1102,7 +1035,7 @@ Total of `37` Languages starred:
    - [cactus-compute/needle](https://github.com/cactus-compute/needle) - Automation foundation model for tiny devices: 2-bit, 8-29 MB, tool calls, ASR, structured extraction and embeddings on phones, wearables, smart homes, robots, cars and microcontrollers.
    - [open-webui/open-webui](https://github.com/open-webui/open-webui) - User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
    - [openai/openai-agents-python](https://github.com/openai/openai-agents-python) - A lightweight, powerful framework for multi-agent workflows
-   - [Tracer-Cloud/opensre](https://github.com/Tracer-Cloud/opensre) - Build your own AI SRE agents. The open source toolkit for the AI era.
+   - [Tracer-Cloud/opensre](https://github.com/Tracer-Cloud/opensre) - The open-source agent for CI/CD reliability.
    - [andrewyng/openworker](https://github.com/andrewyng/openworker) - 
    - [mabel-dev/opteryx](https://github.com/mabel-dev/opteryx) - 🦖 A SQL-on-everything Query Engine you can execute over multiple databases and file formats. Query your data, where it lives.
    - [algorithmicsuperintelligence/optillm](https://github.com/algorithmicsuperintelligence/optillm) - Optimizing inference proxy for LLMs
@@ -1556,6 +1489,7 @@ Total of `37` Languages starred:
    - [trailhq/Trail-Code](https://github.com/trailhq/Trail-Code) - Turbocharge Claude Code, Cursor, Codex, Gemini &amp; every coding agent: faster, cheaper, with contextual understanding specific to your codebase.
    - [activepieces/activepieces](https://github.com/activepieces/activepieces) - AI Agents &amp; MCPs &amp; AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows &amp; AI Agents • MCPs for AI Agents
    - [aerographql/aerographql](https://github.com/aerographql/aerographql) - A small and opinionated Typescript toolkit to create GraphQL server using a declarative approach
+   - [yielded-dev/agent](https://github.com/yielded-dev/agent) - Yielded Agent: an agent harness toolkit for TypeScript, built on Effect and Effect AI.
    - [BuilderIO/agent-native](https://github.com/BuilderIO/agent-native) - A framework for building agentic apps
    - [Agenta-AI/agenta](https://github.com/Agenta-AI/agenta) - Agenta is a workspace where you and your team build agents and automations.
    - [liblaber/ai](https://github.com/liblaber/ai) - build internal applications for your organization
@@ -1666,8 +1600,6 @@ Total of `37` Languages starred:
    - [oomol-lab/open-connector](https://github.com/oomol-lab/open-connector) - Open-source auth gateway connecting 1500+ SaaS providers to AI agents through SDK, CLI, MCP, HTTP, and OpenAPI.
    - [nexu-io/open-design](https://github.com/nexu-io/open-design) - The 1st Collaborative AI Design Agent Workspace. Local-first and open source. Create motion, prototypes, websites, apps, dashboards, presentations, images, and videos with your team and AI agents. Share work, exchange feedback, and iterate together in one workspace.
    - [open-mercato/open-mercato](https://github.com/open-mercato/open-mercato) - The AI-Engineering Foundation Framework for business apps: open-source TypeScript, with multi-tenancy, RBAC, events and domain modules already decided as conventions and specs, so Cursor, Claude Code and Codex build features instead of re-deciding architecture. Start with 80% done.
-   - [wexare-ai/openbrowserclaw](https://github.com/wexare-ai/openbrowserclaw) - Browser-native personal AI assistant. Zero infrastructure, the browser is the server.
-   - [openobserve/openobserve](https://github.com/openobserve/openobserve) - Open source observability platform for logs, metrics, traces, RUM (web, android, ios), Session replay, pipelines, SLO and LLM observability. A sophisticated, simple and highly performant alternative to Datadog, Splunk, and Elasticsearch with 140x lower storage costs and single binary deployment.
    - [anomalyco/opentui](https://github.com/anomalyco/opentui) - OpenTUI is a library to build terminal user interfaces (TUI)
    - [opticdev/optic](https://github.com/opticdev/optic) - OpenAPI linting, diffing and testing. Optic helps prevent breaking changes, publish accurate documentation and improve the design of your APIs.
    - [natew/orez](https://github.com/natew/orez) - Zero on PGLite and SQLite-WASM - An experimental dev server to run Postgres and Zero Sync in dev mode instantly and easily with no configuration.
@@ -1693,7 +1625,6 @@ Total of `37` Languages starred:
    - [scalar/scalar](https://github.com/scalar/scalar) - Scalar is an open-source API platform:　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　🌐 Modern REST API Client　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　📖 Beautiful API References　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　✨ 1st-Class OpenAPI/Swagger Support
    - [bruin-data/setup-bruin](https://github.com/bruin-data/setup-bruin) - Official action to install Bruin CLI in Github Actions.
    - [ocaml/setup-ocaml](https://github.com/ocaml/setup-ocaml) - GitHub Action for the OCaml programming language
-   - [antiwork/shortest](https://github.com/antiwork/shortest) - QA via natural language AI tests
    - [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library aimed at visualizing graphs of thousands of nodes and edges
    - [simstudioai/sim](https://github.com/simstudioai/sim) - Sim is the collaborative workspace to build, deploy, and monitor AI agents and workflows. Used by 100,000+ builders.
    - [gajus/slonik](https://github.com/gajus/slonik) - A Node.js PostgreSQL client with runtime and build time type safety, and composable SQL.
@@ -1713,7 +1644,6 @@ Total of `37` Languages starred:
    - [microsoft/typed-rest-client](https://github.com/microsoft/typed-rest-client) - Node Rest and Http Clients with typings for use with TypeScript
    - [typestack/typedi](https://github.com/typestack/typedi) - Simple yet powerful dependency injection tool for JavaScript and TypeScript.
    - [TypeStrong/typedoc](https://github.com/TypeStrong/typedoc) - Documentation generator for TypeScript projects.
-   - [denolib/typeorm](https://github.com/denolib/typeorm) - Forked from https://github.com/typeorm/typeorm
    - [typeorm/typeorm](https://github.com/typeorm/typeorm) - TypeScript &amp; JavaScript ORM for Node.js — supports PostgreSQL, MySQL, MariaDB, SQLite, SQL Server, Oracle, and more.
    - [typestack/typeorm-typedi-extensions](https://github.com/typestack/typeorm-typedi-extensions) - Dependency injection and service container integration with TypeORM using TypeDI library.
    - [bitjson/typescript-starter](https://github.com/bitjson/typescript-starter) - Quickly create and configure a new library or Node.js project
@@ -1730,14 +1660,7 @@ Total of `37` Languages starred:
 
 
 ## <a name="V"></a>V
-   - [khalyomede/mantis](https://github.com/khalyomede/mantis) - A web framework written in V lang.
    - [vlang/v](https://github.com/vlang/v) - Simple, fast, safe, compiled language for developing maintainable software. Compiles itself in &lt;1s with zero library dependencies. Supports automatic C =&gt; V translation. https://vlang.io
-   - [nedpals/vex](https://github.com/nedpals/vex) - Easy-to-use, modular web framework built for V
-   - [elliotchance/vsql](https://github.com/elliotchance/vsql) - ✌️ Single-file or PostgreSQL-server compatible transactional SQL database written in pure V.
-
-
-## <a name="Vim%20script"></a>Vim script
-   - [carlhuda/janus](https://github.com/carlhuda/janus) - Vim distribution
 
 
 ## <a name="Zig"></a>Zig
